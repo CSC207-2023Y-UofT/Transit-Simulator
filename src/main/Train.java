@@ -15,6 +15,7 @@ class Train {
         this.capacity = capacity;
         this.line = line;
         this.direction = direction;
+        this.occupancy = 0;
 
 
     }
