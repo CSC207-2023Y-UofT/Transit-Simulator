@@ -1,6 +1,18 @@
-// Train class
+/*  Train class
+ *
+ *  Current to-do list:
+ *
+ */
+
+
+
+
+
+
+
+
+
 import java.util.HashMap;
-import java.util.ArrayList;
 
 class Train {
     // constructor type params
@@ -21,35 +33,41 @@ class Train {
         this.capacity = capacity;
         this.line = line;
         this.direction = direction;
-        this.staff = new HashMap<>();
+        this.staff = new HashMap<String, ArrayList<Staff>>();
 
         staff.put("Driver", new ArrayList<Staff>());
-        // we can add more staff jobs here
+        // can add more staff jobs here
 
 
 
     }
 
 
-    /*
+    /**
      *  Setter function to add staff
-     *  @param String type:
-     *  @param Staff obj:   TODO: rename obj with better name
+     *  @param type:
+     *  @param obj:   TODO: rename obj with better name
+     *  @return boolean whether the staff was successfully added
      */
-    public void AddStaff (String type, Staff obj) {
-        staff.get(type).add(obj);
+    public boolean AddStaff (String type, Staff obj) {
+        if (this.staff.containsKey(type)) {
+            this.staff.get(type).add(obj);
+            return true;
+        } else {return false;}
     }
 
     // TODO: add a remover staff function
 
-    /*  Query function for the direction of this train.
+    /**
+     *  Query function for the direction of this train.
      *  @return true iff train is going in the forward direction
      */
     public boolean GetDirection () {
         return this.direction;
     }
 
-    /*  Query function for the line number this train is running on.
+    /**
+     *  Query function for the line number this train is running on.
      *  @return the line number
      */
     public int GetLine () {
