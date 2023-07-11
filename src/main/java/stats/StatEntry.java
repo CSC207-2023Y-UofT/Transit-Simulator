@@ -1,0 +1,5 @@
+package stats;
+
+interface StatEntry {
+
+}
