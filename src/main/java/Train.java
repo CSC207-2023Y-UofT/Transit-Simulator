@@ -20,14 +20,14 @@ class Train {
      *  Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
      *  tracks have spare tracks that others can pass
      */
-    public enum StatusType {
+    public static enum StatusType {
         ONLINE,
         MAINTENANCE,
         OFFLINE
     }
     StatusType status;
-    int line;  // line number
-    boolean direction;  // true for forwards, false for backwards
+    private int line;  // line number
+    private final DirectionType direction;  // true for forwards, false for backwards
     // dict mapping from staff type to an arraylist of staff assigned to that role
     private Map<String, List<Staff>> staff;
     private int occupancy;
@@ -35,7 +35,7 @@ class Train {
 
 
     // constructor
-    public Train (int capacity, int line, boolean direction, Node currentLocation, Map env) {
+    public Train (int capacity, int line, DirectionType direction, Node currentLocation, Map env) {
         this.occupancy = 0;
         this.capacity = capacity;
         this.status = StatusType.OFFLINE;
@@ -94,9 +94,9 @@ class Train {
 
     /**
      *  Query function for the direction of this train.
-     *  @return true iff train is going in the forward direction
+     *  @return FORWARD iff train is going in the forward direction, BACKWARD when going backwards
      */
-    public boolean getDirection () {
+    public DirectionType getDirection () {
         return this.direction;
     }
 
