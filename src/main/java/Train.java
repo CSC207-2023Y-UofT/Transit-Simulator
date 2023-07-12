@@ -1,7 +1,8 @@
 /*  Train class
  *
  *  Current to-do list:
- *  TODO: create a train controller to handle the logic between Train and nodes stations and tracks
+ *  TODO: create a train controller to handle the logic between Train and nodes stations and tracks? Either this or make the NodeUpdater
+ *  TODO: instead of occupancy, make a dictionary mapping from a passenger's desired stops to ride to hte number of passengers wanting that number
  */
 
 
@@ -28,7 +29,7 @@ class Train {
 
 
     // constructor
-    public Train (int capacity, int line, DirectionType direction, Node currentLocation, Map env) {
+    public Train (int capacity, int line, DirectionType direction, Node currentLocation, Plot env) {
         this.occupancy = 0;
         this.capacity = capacity;
         this.status = StatusType.OFFLINE;
