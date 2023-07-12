@@ -1,15 +1,9 @@
 /*  Train class
  *
  *  Current to-do list:
- *
+ *  TODO: create a train controller to handle the logic between Train and nodes stations and tracks
  */
 
-
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ArrayList;
 
 class Train {
 
