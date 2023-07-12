@@ -27,9 +27,8 @@ class Train {
     }
     StatusType status;
     private int line;  // line number
-    private final DirectionType direction;  // true for forwards, false for backwards
-    // dict mapping from staff type to an arraylist of staff assigned to that role
-    private Map<String, List<Staff>> staff;
+    private DirectionType direction;  // true for forwards, false for backwards. Note: Cannot be final in case of Line-type tracks
+    private Map<String, List<Staff>> staff;// dict mapping from staff type to an arraylist of staff assigned to that role
     private int occupancy;
     Node currentLocation;  // assuming that both Station and Track objects can be referenced by this "Node"
 
@@ -47,6 +46,24 @@ class Train {
         // can add more staff jobs here
 
         this.currentLocation = currentLocation;
+    }
+
+    /**
+     *  Setter function that updates this train's location based on the current location, direction and line
+     */
+    public void updateCurrentLocation () {
+        this.currentLocation = this.getNextStation();
+    }
+
+    /**
+     *  Setter function for changing the direction of this train.
+     */
+    public void changeDirection () {
+        if (this.direction == DirectionType.FORWARD) {  // the == here is nullsafe
+            this.direction = DirectionType.BACKWARD;
+        } else {
+            this.direction = DirectionType.FORWARD;  // By repr. invariance, this.direction must be the other
+        }
     }
 
     /**
