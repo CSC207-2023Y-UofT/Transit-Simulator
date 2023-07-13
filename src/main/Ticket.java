@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.time.Duration;
 
-abstract class Ticket{
+abstract class Ticket implements TicketInterface{
     public long expiration;
     public abstract int price;
     public Station departure;
@@ -124,4 +124,26 @@ class StudentTicket extends Ticket{
     public static void setPrice(int price){
         StudentTicket.price = price;
     }
+    }
 }
+public void ticketSelling(){
+    Scanner depart = new Scanner(System.in);
+    System.out.println("Please enter your departure station");
+    Scanner dest = new Scanner(System.in);
+    System.out.println("Please enter your destination staion");
+    Scanner tick = new Scanner(System.in);
+    System.out.println("Please choose the ticket you want to purchase:\n 1. Adult\n 2. Senior\n 3.Child\n 4.Student");
+    if(tick.equals("0")){
+        // wait for the statistics class to add the new ticket into it
+        }else if(tick.equals("1")){
+
+        }else if(tick.equals("2")){
+
+        }else if(tick.equals("3")){
+
+        }else if(tick.equals("4")){
+
+        }else{
+        System.out.println("Please enter the valid ticket");
+        }
+        }
