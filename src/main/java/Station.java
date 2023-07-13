@@ -7,12 +7,12 @@
  */
 
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull;  // This was automatically suggested by IntelliJ, idk what it does
 
 public class Station extends Node {
     private int boarding = 0;  // passengers waiting for the next train
 
-
+    public String name;
 
 
     public Station () {
