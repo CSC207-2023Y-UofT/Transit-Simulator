@@ -3,6 +3,8 @@
  *  Current to-do list:
  *  TODO: create a train controller to handle the logic between Train and nodes stations and tracks? Either this or make the NodeUpdater
  *  TODO: instead of occupancy, make a dictionary mapping from a passenger's desired stops to ride to hte number of passengers wanting that number
+ *  TODO: create a way to keep track of emergencies, delays, scheduled maintenances.
+ *  TODO: Above by doing a event calling system???? somewhere
  */
 
 
@@ -15,10 +17,10 @@ class Train {
      *  Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
      *  tracks have spare tracks that others can pass
      */
-    public static enum StatusType {
-        ONLINE,
+    public enum StatusType {
+        IN_SERVICE,
         MAINTENANCE,
-        OFFLINE
+        OUT_OF_SERVICE
     }
     StatusType status;
     private int line;  // line number
@@ -32,12 +34,12 @@ class Train {
     public Train (int capacity, int line, DirectionType direction, Node currentLocation, Plot env) {
         this.occupancy = 0;
         this.capacity = capacity;
-        this.status = StatusType.OFFLINE;
+        this.status = StatusType.OUT_OF_SERVICE;
         this.line = line;
         this.direction = direction;
         this.staff = new HashMap<String, ArrayList<Staff>>();
 
-        staff.put("Driver", new ArrayList<Staff>());
+        staff.put("Driver", new ArrayList<Staff>()); // TODO rename to TrainOperator when zoey uploads
         // can add more staff jobs here
 
         this.currentLocation = currentLocation;
@@ -89,7 +91,7 @@ class Train {
      *  @param position String position to check for the presence of a worker
      *  @return Arraylist of staff currently in that position, or null if the position was not found
      */
-    public ArrayList<Staff> getStaffInJob (String position) {
+    public List<Staff> getStaffInJob (String position) {
         return this.staff.getOrDefault(position, null);
     }
 
