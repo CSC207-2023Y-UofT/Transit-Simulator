@@ -1,5 +1,12 @@
 package stats;
 
+import java.util.List;
+
 public interface StatAggregator {
-    void aggregate(StatEntry entry);
+    void aggregate(List<StatEntry> entries);
 }
+
+
+
+
+

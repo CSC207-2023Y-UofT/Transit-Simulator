@@ -1,5 +1,3 @@
 package stats;
 
-interface StatEntry {
-
-}
+interface StatEntry {}
