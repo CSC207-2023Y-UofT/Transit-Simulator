@@ -1,3 +1,7 @@
 package stats;
 
-interface StatEntry {}
+import java.io.Serializable;
+
+interface StatEntry extends Serializable {
+    
+}
