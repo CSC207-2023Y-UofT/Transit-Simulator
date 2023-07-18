@@ -9,8 +9,18 @@ public class TrainOperator extends Employee {
      */
     @Override
     public double getMonthlySalary() {
-        return 7000;
+        return super.getBaseSalary();
+    }
+
+    /**
+     * receives payment for an employee object
+     */
+    @Override
+    public void setPaid(boolean isPaid) {
+        TrainOperator.isPaid = isPaid; //when this object is paid, how is this information retained or updated?
     }
 
 
+
 }
+
