@@ -6,6 +6,7 @@ abstract class Ticket implements TicketInterface{
     public abstract int price;
     public Station departure;
     public Station destination;
+    public abstract String getType();
 
 }
 
@@ -126,6 +127,8 @@ class StudentTicket extends Ticket{
     }
     }
 }
+
+
 public void ticketSelling(){
     Scanner depart = new Scanner(System.in);
     System.out.println("Please enter your departure station");
@@ -134,7 +137,7 @@ public void ticketSelling(){
     Scanner tick = new Scanner(System.in);
     System.out.println("Please choose the ticket you want to purchase:\n 1. Adult\n 2. Senior\n 3.Child\n 4.Student");
     if(tick.equals("0")){
-        // wait for the statistics class to add the new ticket into it
+        // wait for the statistics and station class to add the new ticket into it
         }else if(tick.equals("1")){
 
         }else if(tick.equals("2")){
