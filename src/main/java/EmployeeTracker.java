@@ -1,9 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class EmployeeTracker {
 
     private List<Employee> employees = new ArrayList<>();
+
 
     /**
      * adds staff to employee list
