@@ -76,6 +76,18 @@ public abstract class Node {
         }
     }
 
+    public int getDistanceToNextStation (Train train) {
+        if (this instanceof Station) {
+            return 0;
+        } else {
+            if (this.trains.contains(train)) {
+                return this.distances.get(this.trains.indexOf(train));
+            } else {
+                throw new RuntimeException("Train not found in this node");
+            }
+        }
+    }
+
     public void sendTrain (Train outgoingTrain) {
         // handle sending trains
         if (outgoingTrain.getDirection() == DirectionType.FORWARD) {
@@ -93,7 +105,28 @@ public abstract class Node {
         return this.prev == null;
     }
 
-    public abstract void update();
+    public void updateTrainAndDistances() {
+        // handle trains currently contained in this node
+        for (int i = 0; i < this.trains.size(); i++) {
+            if (this.trains.get(i).getStatus() == Train.StatusType.IN_SERVICE) {
+                this.distances.set(i, this.distances.get(i) - 1); // decrement distance by 1
+            }
+            // Cannot handle sending trains here because we would be modifying the length of the list we are iterating
+        }
+        if (this.distances.get(0) <= 0) {  // NOTE: we always assume that there are never two trains at the same distance
+            this.sendTrain(this.trains.get(0));
+            this.trains.remove(0);
+            this.distances.remove(0);
+        }
+    }
+
+    public void setDistanceToNextNode(int distanceToNextNode) {
+        this.distanceToNextNode = distanceToNextNode;
+    }
+
+    public int getDistanceToNextNode() {
+        return this.distanceToNextNode;
+    }
 
     public Node (int distanceToNextNode) {
         this.distanceToNextNode = distanceToNextNode;

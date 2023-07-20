@@ -18,13 +18,19 @@ class Train {
     // constructor type params
     private final int capacity;  // max capacity
     /**
-     *  Either ONLINE, MAINTENANCE or OFFLINE. Precondition: train in MAINTENANCE cannot be ONLINE
+     *  Either ONLINE, SCHEDULED_MAINTENANCE, UNDER_MAINTENANCE or OFFLINE.
+     *  Online: Running properly.
+     *  Scheduled_maintenance: still running, will stop for maintenance at the next station. (not automatically under maintenance)
+     *  Under_maintenance: stopped for maintenance at a station and staff assigned to maintain.
+     *  Offline: not running.
+     *  Precondition: train UNDER_MAINTENANCE cannot be ONLINE
      *  Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
      *  tracks have spare tracks that others can pass
      */
     public enum StatusType {
         IN_SERVICE,
-        MAINTENANCE,
+        SCHEDULED_MAINTENANCE,
+        UNDER_MAINTENANCE,
         OUT_OF_SERVICE
     }
     StatusType status;
@@ -33,7 +39,6 @@ class Train {
     private Map<String, List<Staff>> staff;// dict mapping from staff type to an arraylist of staff assigned to that role
     private int occupancy;  // number of passengers on board
     private Map<Integer, Integer> passengerDestinations;  // dict mapping from a passenger's desired stops to ride to the number of passengers wanting that number
-    private boolean needsMaintenance = false;
     Node currentLocation;  // assuming that both Station and Track objects can be referenced by this "Node"
 
 
@@ -46,11 +51,17 @@ class Train {
         this.direction = direction;
         this.staff = new HashMap<String, ArrayList<Staff>>();
 
-        staff.put("Driver", new ArrayList<Staff>()); // TODO rename to TrainOperator when zoey uploads
-        // can add more staff jobs here
+        staff.put("TrainOperator", new ArrayList<Staff>());
+        staff.put("TrainEngineer", new ArrayList<Staff>());
+        // can add more staff jobs here if needed
 
         this.currentLocation = currentLocation;
         this.passengerDestinations = new TreeMap<Integer, Integer>();  // Implements SortedMap (naturally orders the keys of the map)
+    }
+
+
+    public boolean requestTrainEngineer () {
+        return this.status == StatusType.SCHEDULED_MAINTENANCE && this.currentLocation instanceof Station;
     }
 
     /**
@@ -78,7 +89,7 @@ class Train {
     // getters and setters
 
     public int getDistanceToNextStation () {
-        return this.currentLocation.getDistanceToNextStation();
+        return this.currentLocation.getDistanceToNextStation(this);
     }
 
     /**
@@ -88,22 +99,29 @@ class Train {
     public int getOffloadingPassengers () {
         int offloadingPassengers = this.passengerDestinations.getOrDefault(0, 0);
         this.passengerDestinations.remove(0);  // implicit .containsKey(0) check
+        this.occupancy -= offloadingPassengers;
         return offloadingPassengers;
     }
 
-    /**
-     *
+    /** add passengers to the train
+     *  @param ride_length number of stations the passengers will ride before getting off
      *  @param numPassengers number of passengers to add to the train
-     *  @param stationsToRide number of stations the passengers will ride before getting off
-     *  @return true iff the passengers were successfully added to the train
+     *  @return the remainder of passengers that could not board the train
      */
-    public boolean addPassengers (int numPassengers, int stationsToRide) {
-        if (this.occupancy + numPassengers > this.capacity) {
-            return false;
+    public int addPassengers (int ride_length, int numPassengers) {
+        if (this.occupancy >= this.capacity) {
+            return numPassengers;
+        } else if (this.occupancy + numPassengers > this.capacity) { // if the train is not full but adding the passengers will make it full
+            int to_add = this.capacity - this.occupancy;
+            numPassengers = this.occupancy + numPassengers - this.capacity;
+            this.occupancy = this.capacity;
+            this.passengerDestinations.put(ride_length, this.passengerDestinations.getOrDefault(ride_length, 0) + to_add);
+            return numPassengers;
+        } else {
+            this.occupancy += numPassengers;
+            this.passengerDestinations.put(ride_length, this.passengerDestinations.getOrDefault(ride_length, 0) + numPassengers);
+            return 0;
         }
-        this.occupancy += numPassengers;
-        this.passengerDestinations.put(stationsToRide, this.passengerDestinations.getOrDefault(stationsToRide, 0) + numPassengers);
-        return true;
     }
 
     public void scheduleInService () {
@@ -115,13 +133,17 @@ class Train {
     }
 
     public boolean getNeedsMaintenance () {
-        return this.needsMaintenance;
+        return this.status == StatusType.SCHEDULED_MAINTENANCE;
     }
 
+    /**
+     *  Setter function for the needsMaintenance boolean.
+     *  If it doesn't need maintenance, then the train is set to IN_SERVICE.
+     *  @param needsMaintenance boolean whether the train needs maintenance
+     */
     public void setNeedsMaintenance (boolean needsMaintenance) {
-        this.needsMaintenance = needsMaintenance;
         if (needsMaintenance) {
-            this.status = StatusType.MAINTENANCE;
+            this.status = StatusType.SCHEDULED_MAINTENANCE;
         } else {
             this.status = StatusType.IN_SERVICE;
         }
@@ -237,27 +259,15 @@ class Train {
     }
 
     /**
-     * Setter function to transfer passengers to this train
-     * @param passengers integer to put on the train
-     * @return number of passengers not able to board the train
-     */
-    public int addOccupancy (int passengers) {
-        if (this.occupancy + passengers > this.capacity) {
-            passengers = this.occupancy + passengers - this.capacity;
-            this.occupancy = this.capacity;
-            return passengers;
-        } else {
-            this.occupancy += passengers;
-            return 0;
-        }
-    }
-
-    /**
      *  Query function for this train's current occupancy
      *  @return the occupancy
      */
-    public int getOccupancy () {
-        return this.occupancy;
+    public int calculateOccupancy () {
+        int i = 0;
+        for (int value : this.passengerDestinations.values()) {
+            i += value;
+        }
+        return i;
     }
 
     /**

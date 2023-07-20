@@ -6,6 +6,6 @@ public interface ITrack {
      *  the previous Node and so on and so on, in the case that there is no immediate Train in the vicinity.
      */
     // The whole reason this interface exists is because of the CRC cards, im pre sure this interface could be made way better
-    int nextArrivalDistance ();  // Or, depending on the unit, can be renamed to "nextArrivalTime"
+    int nextArrivalsDistance ();  // Or, depending on the unit, can be renamed to "nextArrivalTime"
 
 }
