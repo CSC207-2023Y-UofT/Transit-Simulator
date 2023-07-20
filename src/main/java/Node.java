@@ -2,6 +2,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 
@@ -76,15 +77,56 @@ public abstract class Node {
         }
     }
 
-    public int getDistanceToNextStation (Train train) {
-        if (this instanceof Station) {
-            return 0;
+
+    private List<Integer> directionCaseHelper(DirectionType direction, int numTrains, int distanceToOriginalStation) {
+        if (direction == DirectionType.FORWARD) {
+            return this.prev.nextArrivalsDistance(direction, numTrains, distanceToOriginalStation);
         } else {
-            if (this.trains.contains(train)) {
-                return this.distances.get(this.trains.indexOf(train));
-            } else {
-                throw new RuntimeException("Train not found in this node");
+            return this.next.nextArrivalsDistance(direction, numTrains, distanceToOriginalStation);
+        }
+    }
+
+    /**
+     *  This is a Node method that fills out a list of the distances of the next incoming trains.
+     *  It recursively asks the previous or next Node for the next incoming trains, and stops when if has found the
+     *  number of trains numTrains.
+     */
+    public List<Integer> nextArrivalsDistance (DirectionType direction, int numTrains, int distanceToOriginalStation) {
+        if (numTrains < 0) {
+            throw new RuntimeException("numTrains must be non-negative");
+        } else if (numTrains == 0) {
+            return new ArrayList <> ();
+        } else { // numTrains is larger than 0
+            List<Train> correct_Trains = this.trains.stream().filter(train -> train.getDirection() == direction).collect(Collectors.toList());
+            int num_correct_Trains = correct_Trains.size();
+            if (num_correct_Trains == 0) {
+                return this.directionCaseHelper(direction, numTrains, distanceToOriginalStation + this.distanceToNextNode);
+            } else { // num_correct_Trains is larger than 0
+                if (num_correct_Trains < numTrains) {
+                    int remainder = numTrains - num_correct_Trains;
+                    List<Integer> result = new ArrayList<>();
+                    for (int i = 0; i < num_correct_Trains; i++) {
+                        result.add(distanceToOriginalStation + correct_Trains.get(i).getDistanceToNextNode());
+                    }
+                    result.addAll(directionCaseHelper(direction, remainder, distanceToOriginalStation + this.distanceToNextNode));
+                    return result;
+                } else { // num_correct_Trains >= numTrains
+                    List<Integer> result = new ArrayList<>();
+                    for (int i = 0; i < numTrains; i++) {
+                        result.add(distanceToOriginalStation + correct_Trains.get(i).getDistanceToNextNode());
+                    }
+                    return result;
+                }
             }
+        }
+    }
+
+
+    public int getDistanceToNextNode(Train train) {
+        if (this.trains.contains(train)) {
+            return this.distances.get(this.trains.indexOf(train));
+        } else {
+            throw new RuntimeException("That Train was not found in this node");
         }
     }
 

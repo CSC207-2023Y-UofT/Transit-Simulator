@@ -1,5 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 
 /*
  *
@@ -9,18 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 
 
-public class Track extends Node implements ITrack{
+public class Track extends Node {
 
-
-    @Override
-    public int nextArrivalsDistance() {
-
-        ;  // TODO: either implement this as a Station method with this as a helper method that recursively asks the
-           //       previous tracks and stations for incoming trains (until it finds the closest one, adding up the
-           //       distance of the previous passed tracks onto the result of the call of the stations closest to that
-           //       particular train) until the original station is asked (then we know there is no train, and we
-           //       cancel the method call)
-    }
 
     public Track (int distanceToNextNode) {
         super(distanceToNextNode);
