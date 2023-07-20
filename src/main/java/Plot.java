@@ -9,6 +9,7 @@
 
 
 public class Plot {
-    ;  // TODO a calculator class for next stations
     // TODO a statistics port num passengers going out of stations
+
+
 }

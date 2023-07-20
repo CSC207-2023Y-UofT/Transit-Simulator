@@ -60,7 +60,7 @@ class Train {
     }
 
 
-    public boolean requestTrainEngineer () {
+    public boolean needsTrainEngineer () {
         return this.status == StatusType.SCHEDULED_MAINTENANCE && this.currentLocation instanceof Station;
     }
 
@@ -88,8 +88,8 @@ class Train {
 
     // getters and setters
 
-    public int getDistanceToNextStation () {
-        return this.currentLocation.getDistanceToNextStation(this);
+    public int getDistanceToNextNode() {
+        return this.currentLocation.getDistanceToNextNode(this);
     }
 
     /**
