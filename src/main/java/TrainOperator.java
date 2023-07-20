@@ -33,7 +33,6 @@ public class TrainOperator extends Employee implements AddToLine {
     public void addEmployeeToLine(String line, Employee employee){
         lineToStaff.put(line, employee);
     }
-
 }
 
 

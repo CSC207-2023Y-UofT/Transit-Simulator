@@ -4,7 +4,6 @@ public class EmployeeTracker {
 
     private List<Employee> employees = new ArrayList<>();
 
-
     /**
      * adds staff to employee list
      */
