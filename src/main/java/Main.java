@@ -25,7 +25,10 @@
  */
 public class Main {
     public static void main(String[] args) {
-        ;
+        // TODO: Create the Plot environment, modeled as so in the image "Model Transit System Map simple.png". Please
+        //       reference to this image to note how to construct our model below.
+
+        // TODO: Create a scenario (dates, times, fresh instances of Trains, etc) to complete the model
     }
 }
 
