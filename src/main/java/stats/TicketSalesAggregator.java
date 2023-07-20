@@ -16,11 +16,9 @@ public class TicketSalesAggregator implements StatAggregator {
 
         for (StatEntry stat : stats) {
 
-            total++;
+            if (!(stat instanceof TicketSaleStat)) continue;
 
-            if (!(stat instanceof TicketSaleEvent)) continue;
-
-            TicketSaleEvent event = (TicketSaleEvent) stat;
+            TicketSaleStat event = (TicketSaleStat) stat;
             Ticket ticket = event.getTicket();
             String type = ticket.getType();
 

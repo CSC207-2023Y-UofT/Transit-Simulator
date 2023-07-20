@@ -1,10 +1,10 @@
 package stats;
 
-public class SubwayEmergencyEvent implements StatEntry {
+public class LineDelayEvent implements StatEntry{
 
     private final int line;
 
-    public SubwayEmergencyEvent(int line) {
+    public LineDelayEvent(int line) {
         this.line = line;
     }
 
