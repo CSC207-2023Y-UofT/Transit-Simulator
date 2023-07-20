@@ -5,17 +5,15 @@ class AdultTicket extends Ticket {
     public Station destination;
 
     public AdultTicket(Station start, Station end) {
-        this.validity = this.expiration;
+        this.validity = expiration;
         this.departure = start;
         this.destination = end;
     }
 
-    public static void setPrice(int price) {
-        AdultTicket.price = price;
+    public static void setPrice(int price) {AdultTicket.price = price;
     }
 
-    public static void setExpiration(long time) {
-        AdultTicket.expiration = time;
+    public static void setExpiration(long time) {AdultTicket.expiration = time;
     }
 
     @Override

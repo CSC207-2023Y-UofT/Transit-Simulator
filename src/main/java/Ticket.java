@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.time.Duration;
 
 abstract class Ticket implements TicketInterface {
-    public long expiration;
+    public static long expiration;
     public int price;
     public Station departure;
     public Station destination;
