@@ -1,4 +1,11 @@
-public class TrainEngineer extends Employee {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class TrainEngineer extends Employee implements AddToLine {
+
+    private List<Employee> employees = new ArrayList<>();
+    HashMap<String, Employee> lineToStaff = new HashMap<String, Employee>();
 
     public TrainEngineer(String name, int num) {
         super(name, num);
@@ -29,4 +36,12 @@ public class TrainEngineer extends Employee {
         }
     }
 
+    /**
+     * add the employee object to the specified line
+     * @param employee
+     * @param line
+     */
+    public void addEmployeeToLine(String line, Employee employee){
+        lineToStaff.put(line, employee);
+    }
 }

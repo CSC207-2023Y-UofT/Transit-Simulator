@@ -26,5 +26,4 @@ public class Admin extends Employee {
     public void payEmployee(Employee employee) {
         employee.setPaid(true);
     }
-
 }
