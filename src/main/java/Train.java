@@ -189,7 +189,7 @@ class Train {
      *  @return the next Station
      */
     public Station getNextStation () {
-        return env.getNextStation(this.line, this.direction, this.currentLocation);
+        return env.getNextStation(this.line, this.direction, this.currentLocation); // TODO: dependency inversion
     }
 
 
