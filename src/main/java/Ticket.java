@@ -39,5 +39,5 @@ public void ticketSelling(){
     if(num == 0){
 
         }
-        }
+    }
 }
