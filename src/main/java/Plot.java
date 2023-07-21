@@ -15,4 +15,6 @@ public class Plot {
     // TODO add track distance data to json files.
     // TODO add station distance to json files, initialize with a default value.
     // TODO deal with placeholder distance measurements in code.
+    // TODO add train initialization to json files.
+    // TODO add train identification for statistical purposes.
 }
