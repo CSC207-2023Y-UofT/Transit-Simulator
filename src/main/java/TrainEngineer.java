@@ -1,12 +1,14 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class TrainOperator extends Employee implements AddToLine {
+public class TrainEngineer extends Employee implements AddToLine {
 
+    private List<Employee> employees = new ArrayList<>();
     HashMap<String, Employee> lineToStaff = new HashMap<String, Employee>();
 
-    public TrainOperator(String name, int num) {
+    public TrainEngineer(String name, int num) {
         super(name, num);
-
     }
 
     /**
@@ -14,7 +16,7 @@ public class TrainOperator extends Employee implements AddToLine {
      */
     @Override
     public double getMonthlySalary() {
-        return super.getBaseSalary();
+        return 1.2 * super.getBaseSalary();
     }
 
     /**
@@ -22,7 +24,16 @@ public class TrainOperator extends Employee implements AddToLine {
      */
     @Override
     public void setPaid(boolean isPaid) {
-        TrainOperator.isPaid = isPaid; // should i be doing admin.ispaid or super.ispaid?
+        TrainEngineer.isPaid = isPaid; //when this object is paid, how is this information retained or updated?
+    }
+
+    /**
+     * fixes Train object's maintenance issues
+     */
+    public void fixMaintenanceIssue(Train train) {
+        if (train.needsMaintenance() = True) {
+            train.setMaintenance(False);
+        }
     }
 
     /**
@@ -34,8 +45,3 @@ public class TrainOperator extends Employee implements AddToLine {
         lineToStaff.put(line, employee);
     }
 }
-
-
-
-
-
