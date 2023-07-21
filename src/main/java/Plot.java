@@ -12,4 +12,7 @@ public class Plot {
     // TODO a statistics port num passengers going out of stations
 
     // Model json files
+    // TODO add track distance data to json files.
+    // TODO add station distance to json files, initialize with a default value.
+    // TODO deal with placeholder distance measurements in code.
 }
