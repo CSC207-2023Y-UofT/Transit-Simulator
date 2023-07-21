@@ -29,7 +29,7 @@ public class Station extends Node {
         super.receiveTrain(incomingTrain);  // 1), 1.5), 2) finished
         this.handleDisembarking(incomingTrain);  // 3) finished
         // 4) TODO: Handle statistics
-        // 5) TODO: Make train offline if end of day
+        // TODO: consider Maintenance states
         if (this.endOfDay) {
             incomingTrain.setStatus(Train.StatusType.OUT_OF_SERVICE);  // 5) finished
         } else {
