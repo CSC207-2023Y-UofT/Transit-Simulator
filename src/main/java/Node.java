@@ -88,10 +88,14 @@ public abstract class Node {
 
     /**
      *  This is a Node method that fills out a list of the distances of the next incoming trains.
-     *  It recursively asks the previous or next Node for the next incoming trains, and stops when if has found the
+     *  It recursively asks the previous or next Node for the next incoming trains, and stops when it has found the
      *  number of trains numTrains.
+     *  @param direction the direction of the train
+     *  @param numTrains the number of trains to find
+     *  @param distanceToOriginalStation the distance to the original station
+     *  @return a list of the distances of the next incoming trains
      */
-    public List<Integer> nextArrivalsDistance (DirectionType direction, int numTrains, int distanceToOriginalStation) {
+    public List<Integer> nextArrivalsDistance (DirectionType direction, int numTrains, int distanceToOriginalStation) {  // TODO: Consider the corner case where there are no trains on the line. This program will run forever; we need to add a condition to stop the recursion.
         if (numTrains < 0) {
             throw new RuntimeException("numTrains must be non-negative");
         } else if (numTrains == 0) {
