@@ -8,8 +8,9 @@
         "Delta",
         "Epsilon"
       ],
+      "lineType": "Circle",
       "lineNumber": 1,
-      "lineType": "Circle"
+      "lineName": "City Centre"
     },
     {
       "line": [
@@ -19,8 +20,9 @@
         "Theta",
         "Iota"
       ],
+      "lineType": "Straight",
       "lineNumber": 2,
-        "lineType": "Straight"
+      "lineName": "Radial"
     },
     {
       "line": [
@@ -29,8 +31,9 @@
         "Lambda",
         "Mu"
       ],
+      "lineType": "Straight",
       "lineNumber": 3,
-        "lineType": "Straight"
+      "lineName": "Star"
     }
   ]
 }
