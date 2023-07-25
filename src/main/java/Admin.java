@@ -48,8 +48,8 @@ public class Admin extends Employee implements AddToLine{
      * @param employee
      * @return
      */
-    public String checkLine(Employee employee) {
-        for (String key : lineToStaff.keySet()) {
+    public Integer checkLine(Employee employee) {
+        for (Integer key : lineToStaff.keySet()) {
             if (lineToStaff.get(key).contains(employee)) {
                 return key;
             }

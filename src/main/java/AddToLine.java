@@ -11,7 +11,7 @@ public interface AddToLine {
      * returns the line that the employee is assigned to
      * @param employee
      */
-    public String checkLine(Employee employee);
-a
+    public Integer checkLine(Employee employee);
+
 }
 
