@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Admin extends Employee implements AddToLine{
 
-    HashMap<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
+    Map<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
 
     public Admin(String name, int num) {
         super(name, num);
@@ -33,20 +35,23 @@ public class Admin extends Employee implements AddToLine{
         employee.setPaid(true);
     }
 
+
     /**
      * add the employee object to the specified line
      * @param employee
      * @param line
      */
-    public void addEmployeesToLine(Integer line, List<Employee> employee){
+    public void addEmployeeToLine(Integer line, Employee employee) {
 
-        lineToStaff.put(line, employee);
+        List<Employee> curr = lineToStaff.computeIfAbsent(line, ArrayList::new);
+        curr.add(employee);
     }
+
 
     /**
      * returns the line that the employee is assigned to
      * @param employee
-     * @return
+     * @return line
      */
     public Integer checkLine(Employee employee) {
         for (Integer key : lineToStaff.keySet()) {
