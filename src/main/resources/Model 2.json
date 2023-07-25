@@ -2,44 +2,196 @@
   "lines": [
     {
       "line": [
-        "Vaughan Metropolitan Centre",
-        "Highway 407",
-        "Pioneer Village",
-        "York University",
-        "Finch West",
-        "Downsview Park",
-        "Sheppard West",
-        "Wilson",
-        "Yorkdale",
-        "Lawrence West",
-        "Glencairn",
-        "Eglinton West",
-        "St. Clair West",
-        "Dupont",
-        "Spadina",
-        "St. George",
-        "Museum",
-        "Queen's Park",
-        "St. Patrick",
-        "Osgoode",
-        "St. Andrew",
-        "Union",
-        "King",
-        "Queen",
-        "Dundas",
-        "College",
-        "Wellesley",
-        "Bloor-Yonge",
-        "Rosedale",
-        "Summerhill",
-        "St. Clair",
-        "Davisville",
-        "Eglinton",
-        "Lawrence",
-        "York Mills",
-        "Sheppard-Yonge",
-        "North York Centre",
-        "Finch"
+        {
+          "name": "Vaughan Metropolitan Centre",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Highway 407",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Pioneer Village",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "York University",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Finch West",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Downsview Park",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Sheppard West",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Wilson",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Yorkdale",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Lawrence West",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Glencairn",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Eglinton West",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "St. Clair West",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Dupont",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Spadina",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "St. George",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Museum",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Queen's Park",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "St. Patrick",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Osgoode",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "St. Andrew",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Union",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "King",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Queen",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Dundas",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "College",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Wellesley",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Bloor-Yonge",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Rosedale",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Summerhill",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "St. Clair",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Davisville",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Eglinton",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Lawrence",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "York Mills",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Sheppard-Yonge",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "North York Centre",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Finch",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
       ],
       "lineType": "Straight",
       "lineNumber": 1,
@@ -47,50 +199,198 @@
     },
     {
       "line": [
-        "Kipling",
-        "Islington",
-        "Royal York",
-        "Old Mill",
-        "Jane",
-        "Runnymede",
-        "High Park",
-        "Keele",
-        "Dundas West",
-        "Lansdowne",
-        "Dufferin",
-        "Ossington",
-        "Christie",
-        "Bathurst",
-        "Spadina",
-        "St. George",
-        "Bay",
-        "Bloor-Yonge",
-        "Sherbourne",
-        "Castle Frank",
-        "Broadview",
-        "Chester",
-        "Pape",
-        "Donlands",
-        "Greenwood",
-        "Coxwell",
-        "Woodbine",
-        "Main Street",
-        "Victoria Park",
-        "Warden",
-        "Kennedy"
-        ],
+        {
+          "name": "Kipling",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Islington",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Royal York",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Old Mill",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Jane",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Runnymede",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "High Park",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Keele",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Dundas West",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Lansdowne",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Dufferin",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Ossington",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Christie",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Bathurst",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Spadina",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "St. George",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Bay",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Bloor-Yonge",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Sherbourne",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Castle Frank",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Broadview",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Chester",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Pape",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Donlands",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Greenwood",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Coxwell",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Woodbine",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Main Street",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Victoria Park",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Warden",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Kennedy",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
+      ],
       "lineType": "Straight",
       "lineNumber": 2,
       "lineName": "Line 2 (Bloor-Danforth)"
     },
     {
       "line": [
-        "Kennedy",
-        "Lawrence East",
-        "Ellesmere",
-        "Midland",
-        "Scarborough Centre",
-        "McCowan"
+        {
+          "name": "Kennedy",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Lawrence East",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Ellesmere",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Midland",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Scarborough Centre",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "McCowan",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
       ],
       "lineType": "Straight",
       "lineNumber": 3,
@@ -98,12 +398,32 @@
     },
     {
       "line": [
-        "Sheppard-Yonge",
-        "Bayview",
-        "Bessarion",
-        "Leslie",
-        "Don Mills"
-        ],
+        {
+          "name": "Sheppard-Yonge",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Bayview",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Bessarion",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Leslie",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Don Mills",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
+      ],
       "lineType": "Straight",
       "lineNumber": 4,
       "lineName": "Line 4 (Sheppard)"
