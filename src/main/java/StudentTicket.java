@@ -8,14 +8,14 @@ class StudentTicket extends Ticket{
     public Station departure;
     public Station destination;
 
-    public StudentTicket(){
+    public StudentTicket(Station dep, Station des){
         Scanner status = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Are you a student? Please enter Yes or No");
         String input = status.nextLine();
         if(Objects.equals(input, "Yes")){
             this.validity = expiration;
-            this.departure = start;
-            this.destination = end;
+            this.departure = dep;
+            this.destination = des;
         }else {
             System.out.println("You are not eligible for this ticket");
         }
