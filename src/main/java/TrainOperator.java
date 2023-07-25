@@ -1,8 +1,7 @@
 import java.util.HashMap;
 
-public class TrainOperator extends Employee implements AddToLine {
+public class TrainOperator extends Employee{
 
-    HashMap<String, Employee> lineToStaff = new HashMap<String, Employee>();
 
     public TrainOperator(String name, int num) {
         super(name, num);
@@ -22,18 +21,20 @@ public class TrainOperator extends Employee implements AddToLine {
      */
     @Override
     public void setPaid(boolean isPaid) {
-        TrainOperator.isPaid = isPaid; // should i be doing admin.ispaid or super.ispaid?
+        TrainOperator.isPaid = isPaid;
     }
 
     /**
-     * add the employee object to the specified line
-     * @param employee
-     * @param line
+     * returns Line that the Employee is assigned to
      */
-    public void addEmployeeToLine(String line, Employee employee){
-        lineToStaff.put(line, employee);
+    public String checkLine(Employee employee) {
+        return
     }
+
+
+
 }
+
 
 
 
