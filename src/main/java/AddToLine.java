@@ -5,7 +5,7 @@ public interface AddToLine {
      * @param line
      * @param employee
      */
-    public void addEmployeeToLine(String line, Employee employee);
+    public void addEmployeeToLine(Integer line, Employee employee);
 
     /**
      * returns the line that the employee is assigned to
