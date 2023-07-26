@@ -20,17 +20,7 @@ public class TrainEngineer extends Employee  {
      * fixes Train object's maintenance issues
      */
     public void fixTrain(Train train) {
-        if (train.getStatus() == Train.Status.UNDER_MAINTENANCE) {
-            train.setStatus(Train.Status.OUT_OF_SERVICE);
-        }
+        train.setStatus(Train.Status.OUT_OF_SERVICE);
     }
 
-    /**
-     * add the employee object to the specified line
-     * @param employee
-     * @param line
-     */
-    public void addEmployeeToLine(String line, Employee employee){
-        lineToStaff.put(line, employee);
-    }
 }

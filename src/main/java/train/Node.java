@@ -28,16 +28,23 @@ import java.util.*;
 
 public abstract class Node {
     private final NodeTracker tracker;
+    private final String name;
     private final int length;
+    private final Map<Direction, Train> trains = new HashMap<>();
+
     private Node prev;
     private Node next;
-    private Map<Direction, Train> trains = new HashMap<>();
 
-    public Node(NodeTracker tracker, int length) {
+    public Node(NodeTracker tracker, String name, int length) {
         this.tracker = tracker;
         this.length = length;
+        this.name = name;
         this.prev = null;
         this.next = null;
+    }
+
+    public Node(NodeTracker tracker, int length) {
+        this(tracker, generateName(8), length);
     }
 
     public Node getNext() {
@@ -129,6 +136,16 @@ public abstract class Node {
         Node nextNode = this.getNextNode(direction);
         if (nextNode == null) return;
         nextNode.nextNodesRecursive(direction, accumulator);
+    }
+
+    private static String generateName(int length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz1234567890";
+        StringBuilder name = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            name.append(chars.charAt(random.nextInt(chars.length())));
+        }
+        return name.toString();
     }
 
 }
