@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 
-
 public class MaintenanceAggregator implements StatAggregator {
 
     private int repairCosts = 0;
