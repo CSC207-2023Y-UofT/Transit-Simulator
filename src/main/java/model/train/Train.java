@@ -108,10 +108,38 @@ public class Train {
                 position.getPositionOnNode();
     }
 
-    public boolean move(double amount) {
+    public boolean move(Direction direction, double amount) {
+        Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
+        amount = amount * direction.getMultiplier();
+
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
         double nodeLength = position.getNode().getLength();
 
+        Node node = position.getNode();
+        double target = position.getPositionOnNode() + amount;
+
+        // While the target is not within the bounds of
+        // the current node, change which node we are on
+        while (!(target >= 0) || !(target < node.getLength())) {
+
+            Node nextNode = node.getNextNode(direction);
+            if (nextNode == null) {
+                return false; // Endpoint
+            }
+
+            double nextNodeOffset = direction == Direction.FORWARD ?
+                    node.getLength() - position.getPositionOnNode() :
+                    -position.getPositionOnNode();
+
+            target -= nextNodeOffset;
+
+            node = nextNode;
+
+        }
+
+        position = new TrainPosition(node, target);
+
+        return true;
     }
 
     protected void setPosition(TrainPosition position) {

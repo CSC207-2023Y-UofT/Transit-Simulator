@@ -1,3 +1,5 @@
+import model.node.Station;
+
 class SeniorTicket extends Ticket {
     private static int minAge;
     public static int price;
