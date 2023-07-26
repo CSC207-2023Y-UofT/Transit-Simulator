@@ -1,20 +1,5 @@
-package train.old;/*
- *  Name: Transit System Tracker
- *  Description: TODO
- *
- *  Github: https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/tree/main
- *  Contributors: Binhe Jia
- *                Charles Cheung
- *                Grace Liu
- *                Matthew Lack
- *                Zoey Lee
- *  Licensing: No License (TODO)
- */
-
-
-
 /**
-    The train.old.Main program that sets up all required classes and executes the program.
+    The Main program that sets up all required classes and executes the program.
 
     What this should do:
 

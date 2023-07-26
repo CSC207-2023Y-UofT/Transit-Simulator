@@ -1,4 +1,6 @@
-package train;
+package model.train;
+
+import model.node.Node;
 
 public class TrainPosition {
     private Node node;

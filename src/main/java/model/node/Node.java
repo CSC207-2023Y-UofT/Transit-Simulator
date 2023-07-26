@@ -1,8 +1,10 @@
-package train;
+package model.node;
 
 import org.jetbrains.annotations.Nullable;
 
-import train.util.Preconditions;
+import model.Direction;
+import model.train.Train;
+import model.util.Preconditions;
 
 import java.util.*;
 

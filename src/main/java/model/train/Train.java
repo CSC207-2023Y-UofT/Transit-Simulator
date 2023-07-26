@@ -1,7 +1,10 @@
-package train;
+package model.train;
 
-import train.old.Employee;
-import train.util.Preconditions;
+import model.*;
+import model.control.TransitTracker;
+import model.staff.Employee;
+import model.node.Node;
+import model.util.Preconditions;
 
 import java.util.*;
 

@@ -1,8 +1,9 @@
-package train;
+package model.train;
 
-import train.old.Employee;
+import model.staff.Employee;
+import model.train.Train;
 
-public class TrainEngineer extends Employee  {
+public class TrainEngineer extends Employee {
 
     public TrainEngineer(String name, int num) {
         super(name, num);

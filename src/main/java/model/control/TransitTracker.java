@@ -1,6 +1,13 @@
-package train;
+package model.control;
 
+import model.Direction;
+import model.train.Train;
+import model.train.TrainPosition;
+import model.train.TrainTracker;
 import org.jetbrains.annotations.Nullable;
+import model.node.Node;
+import model.node.NodeFactory;
+import model.node.NodeTracker;
 
 import java.util.*;
 

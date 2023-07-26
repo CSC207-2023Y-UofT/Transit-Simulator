@@ -1,4 +1,4 @@
-package train;
+package model;
 
 public enum Direction {
     FORWARD,

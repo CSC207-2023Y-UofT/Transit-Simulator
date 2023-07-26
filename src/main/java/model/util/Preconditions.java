@@ -1,4 +1,4 @@
-package train.util;
+package model.util;
 
 public class Preconditions {
     public static void checkArgument(boolean condition, String message) {

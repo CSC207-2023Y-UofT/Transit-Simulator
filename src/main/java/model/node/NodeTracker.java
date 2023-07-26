@@ -1,6 +1,5 @@
-package train;
+package model.node;
 
-import java.util.List;
 import java.util.Map;
 
 public interface NodeTracker {

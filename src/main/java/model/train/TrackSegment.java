@@ -1,11 +1,9 @@
-package train;
+package model.train;
 
-import org.jetbrains.annotations.NotNull;
-import train.Node;
-import train.NodeTracker;
+import model.node.Node;
+import model.node.NodeTracker;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class TrackSegment extends Node {
     public TrackSegment(NodeTracker tracker, int length) {

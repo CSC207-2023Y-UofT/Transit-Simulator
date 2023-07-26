@@ -1,4 +1,4 @@
-package train;
+package model.train;
 
 public class Passenger {
     // TODO ticket

@@ -1,7 +1,4 @@
-package train.old;
-
-import java.util.ArrayList;
-import java.util.List;
+package model.staff;
 
 public abstract class Employee {
     private static final double BASE_SALARY = 7000;

@@ -1,8 +1,6 @@
-package train;
+package model.train;
 
-import train.old.Employee;
-
-import java.util.HashMap;
+import model.staff.Employee;
 
 public class TrainOperator extends Employee {
 

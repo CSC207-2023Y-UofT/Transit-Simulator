@@ -1,7 +1,7 @@
 # Transit-system-tracker #
 
 This program is a (mock) transit system tracker that has offers many functions to a user, from directions and local 
-train schedules to the average customer, as well as offering statistics to the 'local' transit company who 'made' the 
+model schedules to the average customer, as well as offering statistics to the 'local' transit company who 'made' the 
 program.
 
 This program is :
@@ -14,10 +14,10 @@ Some features that would hopefully be implemented in the future:
 
 ## Examples ##
 
-- A customer wants to go from point A to point B; this program would provide information like train schedules, ETAs, 
+- A customer wants to go from point A to point B; this program would provide information like model schedules, ETAs, 
 directions and more from the 'local' transit system.
 - The 'local' transit company would like to see some statistics; this program would show how many passengers purchased 
-tickets on a given day, train capacities during specific times, analytics, etc.
+tickets on a given day, model capacities during specific times, analytics, etc.
 
 ## How To Use ##
 - Clone the repository
