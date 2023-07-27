@@ -4,5 +4,4 @@ public interface RevenueStat extends StatEntry {
 
     double getRevenue();
 
-
 }
