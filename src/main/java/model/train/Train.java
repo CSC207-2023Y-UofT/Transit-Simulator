@@ -7,9 +7,7 @@ import model.node.Node;
 import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
 import model.util.Preconditions;
-import org.jetbrains.annotations.Nullable;
 
-import javax.sound.midi.Track;
 import java.util.*;
 
 public class Train {
@@ -135,14 +133,7 @@ public class Train {
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
 
-        double distanceToEndOfTrack;
-        if (direction == Direction.FORWARD) {
-            distanceToEndOfTrack = track.getLength() - position.getPositionOnTrack();
-        } else {
-            distanceToEndOfTrack = position.getPositionOnTrack();
-        }
-
-        double distance = distanceToEndOfTrack;
+        double distance = position.distanceToEndOfTrack(direction);
 
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
 
