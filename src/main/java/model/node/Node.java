@@ -31,66 +31,13 @@ import java.util.*;
 public abstract class Node {
     private final NodeTracker tracker;
     private final String name;
-    private final int length;
-    private final Map<Direction, Train> trains = new HashMap<>();
-
-    private Node prev;
-    private Node next;
-
-    public Node(NodeTracker tracker, String name, int length) {
+    public Node(NodeTracker tracker, String name) {
         this.tracker = tracker;
-        this.length = length;
         this.name = name;
-        this.prev = null;
-        this.next = null;
-    }
-
-    public Node(NodeTracker tracker, int length) {
-        this(tracker, generateName(8), length);
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public Node getPrev() {
-        return prev;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public boolean isEndpoint(Direction direction) {
-        return getNextNode(direction) == null;
-    }
-
-    public @Nullable Node getNextNode(Direction direction) {
-        return direction == Direction.FORWARD ? this.next : this.prev;
-    }
-
-    public @Nullable Train getTrain(Direction direction) {
-        return this.trains.get(direction);
     }
 
     public NodeTracker getTracker() {
         return tracker;
-    }
-
-    protected void setPrev(Node prev) {
-        Preconditions.checkArgument(
-                next.getTracker() == this.getTracker(),
-                "Cannot connect nodes from different networks"
-        );
-        this.prev = prev;
-    }
-
-    protected void setNext(Node next) {
-        Preconditions.checkArgument(
-                next.getTracker() == this.getTracker(),
-                "Cannot connect nodes from different networks"
-        );
-        this.next = next;
     }
 
     /**
@@ -138,16 +85,6 @@ public abstract class Node {
         Node nextNode = this.getNextNode(direction);
         if (nextNode == null) return;
         nextNode.nextNodesRecursive(direction, accumulator);
-    }
-
-    private static String generateName(int length) {
-        String chars = "abcdefghijklmnopqrstuvwxyz1234567890";
-        StringBuilder name = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < length; i++) {
-            name.append(chars.charAt(random.nextInt(chars.length())));
-        }
-        return name.toString();
     }
 
 }
