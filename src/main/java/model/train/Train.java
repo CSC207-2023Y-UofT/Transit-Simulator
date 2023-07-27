@@ -36,8 +36,8 @@ public class Train {
     private final TransitTracker transitTracker;
     private final List<Passenger> passengerList = new ArrayList<>();
     private final int capacity;
+    private final Direction direction;
     private Status status = Status.OUT_OF_SERVICE;
-    private Direction direction;
     private TrainPosition position;
     private final Map<TrainJob, Employee> staff = new HashMap<>();
 
