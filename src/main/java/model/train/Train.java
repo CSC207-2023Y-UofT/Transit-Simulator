@@ -113,7 +113,6 @@ public class Train {
         amount = amount * direction.getMultiplier();
 
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
-        double nodeLength = position.getNode().getLength();
 
         Node node = position.getNode();
         double target = position.getPositionOnNode() + amount;

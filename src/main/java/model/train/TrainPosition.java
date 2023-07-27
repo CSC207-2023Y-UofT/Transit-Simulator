@@ -4,10 +4,12 @@ import model.node.Node;
 
 public class TrainPosition {
     private Node node;
+    private int lineNumber;
     private double positionOnNode;
 
-    public TrainPosition(Node node, double positionOnNode) {
+    public TrainPosition(Node node, int lineNumber, double positionOnNode) {
         this.node = node;
+        this.lineNumber = lineNumber;
         this.positionOnNode = positionOnNode;
     }
 
@@ -17,6 +19,10 @@ public class TrainPosition {
 
     public double getPositionOnNode() {
         return positionOnNode;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
     }
 
     public void setPositionOnNode(double positionOnNode) {
