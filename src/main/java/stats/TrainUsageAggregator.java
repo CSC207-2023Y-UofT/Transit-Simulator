@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class TrainUsageAggregator implements StatAggregator {
 
-    private int total = 0;
+    private static int total = 0;
 
     private Map<Integer, Integer> usageCounts = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class TrainUsageAggregator implements StatAggregator {
         }
     }
 
-    public int getTotal() {
+    public static int getTotal() {
         return total;
     }
 
