@@ -14,9 +14,10 @@ class Prestissimo{
 
     public Optional<Boolean> purchase(int cost){
         if(cost > this.fund){
-            return false;
+            return Optional.of(false);
         }else{
             this.fund -= cost;
         }
+        return Optional.empty();
     }
 }
