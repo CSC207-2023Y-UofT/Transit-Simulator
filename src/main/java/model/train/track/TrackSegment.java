@@ -1,17 +1,20 @@
-package model.train;
+package model.train.track;
 
+import model.Direction;
+import model.train.TrackRepo;
+import model.train.Train;
 import model.util.Preconditions;
 
-public class Track {
+public class TrackSegment {
     private final String id;
     private final TrackRepo repo;
     private final int length;
 
-    private Track next = null;
-    private Track prev = null;
+    private TrackSegment next = null;
+    private TrackSegment prev = null;
     private Train train = null;
 
-    public Track(TrackRepo repo, String id, int length) {
+    public TrackSegment(TrackRepo repo, String id, int length) {
         this.repo = repo;
         this.id = id;
         this.length = length;
@@ -29,20 +32,24 @@ public class Track {
         return id;
     }
 
-    public Track getNext() {
+    public TrackSegment getNext(Direction direction) {
+        return direction == Direction.FORWARD ? getNext() : getPrev();
+    }
+
+    public TrackSegment getNext() {
         return next;
     }
 
-    public Track getPrev() {
+    public TrackSegment getPrev() {
         return prev;
     }
 
-    public void linkForward(Track next) {
-        Track.link(this, next);
+    public void linkForward(TrackSegment next) {
+        TrackSegment.link(this, next);
     }
 
-    public void linkBackward(Track prev) {
-        Track.link(prev, this);
+    public void linkBackward(TrackSegment prev) {
+        TrackSegment.link(prev, this);
     }
 
 
@@ -71,7 +78,7 @@ public class Track {
         this.train = train;
     }
 
-    public static void link(Track prev, Track next) {
+    public static void link(TrackSegment prev, TrackSegment next) {
         if (prev.next == next && next.prev == prev) {
             // Already linked
             return;
@@ -84,7 +91,7 @@ public class Track {
         next.prev = prev;
     }
 
-    public static void unlink(Track prev, Track next) {
+    public static void unlink(TrackSegment prev, TrackSegment next) {
         if (prev.next != next && next.prev != prev) {
             // Already unlinked
             return;

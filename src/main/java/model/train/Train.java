@@ -4,8 +4,12 @@ import model.*;
 import model.control.TransitTracker;
 import model.staff.Employee;
 import model.node.Node;
+import model.train.track.NodeTrackSegment;
+import model.train.track.TrackSegment;
 import model.util.Preconditions;
+import org.jetbrains.annotations.Nullable;
 
+import javax.sound.midi.Track;
 import java.util.*;
 
 public class Train {
@@ -94,12 +98,28 @@ public class Train {
     }
 
     /**
-     * Get the next node that this train will move to
+     * Get the next node that this train will move to, excluding
+     * the current node if this train is already at a node.
      */
-    public Node getNextNode() {
-        return direction == Direction.FORWARD ?
-                position.getNode().getNext() :
-                position.getNode().getPrev();
+    public @Nullable Node getNextNode() {
+
+    }
+
+    public List<TrackSegment> getNextTrackSegments(Direction direction) {
+
+        TrackSegment curr = position.getTrack();
+        if (curr == null) return new ArrayList<>();
+
+        // Use a linked hash set so that contains() runs in O(1) and
+        // the insertion order of the tracks is maintained.
+        LinkedHashSet<TrackSegment> segments = new LinkedHashSet<>();
+        TrackSegment next = curr.getNext(direction);
+        while (next != null && !segments.contains(next)) {
+            segments.add(next);
+            next = next.getNext(direction);
+        }
+
+        return new ArrayList<>(segments);
     }
 
     public double getDistanceToNextNode() {

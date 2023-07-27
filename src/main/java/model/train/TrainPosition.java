@@ -1,6 +1,6 @@
 package model.train;
 
-import model.node.Node;
+import model.train.track.TrackSegment;
 
 import java.util.Objects;
 
@@ -8,15 +8,15 @@ import java.util.Objects;
  * Immutable representation of a train's position.
  */
 public class TrainPosition {
-    private final Track track;
+    private final TrackSegment track;
     private final double positionOnTrack;
 
-    public TrainPosition(Track track, double positionOnNode) {
+    public TrainPosition(TrackSegment track, double positionOnNode) {
         this.track = track;
         this.positionOnTrack = positionOnNode;
     }
 
-    public Track getTrack() {
+    public TrackSegment getTrack() {
         return track;
     }
 

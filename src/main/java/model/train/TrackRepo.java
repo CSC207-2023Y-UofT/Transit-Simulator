@@ -1,9 +1,11 @@
 package model.train;
 
+import model.train.track.TrackSegment;
+
 import java.util.Map;
 
 public interface TrackRepo {
-    Map<String, Track> getTracks();
-    Track getTrack(String id);
-    Track createTrack(String id, int length);
+    Map<String, TrackSegment> getTracks();
+    TrackSegment getTrack(String id);
+    TrackSegment createTrack(String id, int length);
 }
