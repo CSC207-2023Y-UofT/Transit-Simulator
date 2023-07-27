@@ -157,7 +157,7 @@ public class Train {
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
         amount = amount * direction.getMultiplier();
 
-        TrainPosition movedPosition = position.move(amount)
+        TrainPosition movedPosition = position.move(amount, false)
                 .orElse(null);
 
         if (movedPosition == null) return false;

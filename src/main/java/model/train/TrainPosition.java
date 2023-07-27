@@ -51,7 +51,33 @@ public class TrainPosition {
         return Math.abs(trackEndOffset(direction));
     }
 
+    /**
+     * Returns a new TrainPosition representing a new position that is moved
+     * by the given amount. If the amount is negative, the position will be
+     * moved backwards. The new position may be on a new track, or the returned
+     * Optional may be empty if an endpoint was reached.
+     * @param amount The amount to move by
+     * @return A new TrainPosition representing the moved position, or an empty
+     *       Optional if an endpoint was reached.
+     */
     public Optional<TrainPosition> move(double amount) {
+        return move(amount, true);
+    }
+
+    /**
+     * Returns a new TrainPosition representing a new position that is moved
+     * by the given amount. If the amount is negative, the position will be
+     * moved backwards. The new position may be on a new track, or the returned
+     * Optional may be empty if an endpoint was reached or if noClip is false
+     * and an occupied track was encountered.
+     *
+     * @param amount The amount to move by
+     * @param noClip Whether to ignore occupied tracks and treat them as unoccupied.
+     * @return A new TrainPosition representing the moved position, or an empty
+     *        Optional if an endpoint was reached or if noClip is false and an
+     *        occupied track was encountered.
+     */
+    public Optional<TrainPosition> move(double amount, boolean noClip) {
         if (amount == 0.0) return Optional.of(this);
 
         Direction direction = amount < 0.0 ? Direction.BACKWARD : Direction.FORWARD;
@@ -67,6 +93,10 @@ public class TrainPosition {
 
             if (next == null) {
                 return Optional.empty(); // Endpoint reached
+            }
+
+            if (!next.isEmpty() && !noClip) {
+                return Optional.empty(); // Collision
             }
 
             double nextTrackOffset = currPosition.trackEndOffset(direction);

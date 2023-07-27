@@ -79,6 +79,10 @@ public class TrackSegment {
         return getNext(direction) == null;
     }
 
+    public boolean isEmpty() {
+        return train == null;
+    }
+
 
     /**
      * Gets the train on this track.
