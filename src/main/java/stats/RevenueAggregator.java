@@ -23,4 +23,6 @@ public class RevenueAggregator implements StatAggregator {
     public double getRevenue() {
         return revenue;
     }
+
+
 }

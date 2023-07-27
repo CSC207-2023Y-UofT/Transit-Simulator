@@ -3,7 +3,7 @@ package stats;
 import java.util.List;
 
 
-public class ExpensesAggregator implements StatAggregator {
+public class ExpenseAggregator implements StatAggregator {
 
     private double expenses = 0;
 
