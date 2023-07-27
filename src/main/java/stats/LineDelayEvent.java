@@ -9,4 +9,5 @@ public class LineDelayEvent implements StatEntry{
     }
 
     public int getLine() { return line; }
+
 }
