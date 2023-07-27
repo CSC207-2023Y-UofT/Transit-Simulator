@@ -4,12 +4,24 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Aggregator for the total number of train usage.
+ */
 public class TrainUsageAggregator implements StatAggregator {
 
+    /**
+     * The total number of train usage.
+     */
     private static int total = 0;
 
+    /**
+     * The number of train usage per line.
+     */
     private Map<Integer, Integer> usageCounts = new HashMap<>();
 
+    /**
+     * Aggregate the total number of train usage.
+     */
     @Override
     public void aggregate(List<StatEntry> stats) {
 
@@ -28,11 +40,11 @@ public class TrainUsageAggregator implements StatAggregator {
         }
     }
 
+    /**
+     * Return the number of train usage per line.
+     */
     public static int getTotal() {
         return total;
     }
 
-
 }
-
-

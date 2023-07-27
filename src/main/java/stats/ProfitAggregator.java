@@ -2,10 +2,19 @@ package stats;
 
 import java.util.List;
 
+/**
+ * Aggregator for the total profit.
+ */
 public class ProfitAggregator implements StatAggregator {
 
+    /**
+     * The total profit.
+     */
     private double profit = 0.0;
 
+    /**
+     * Aggregate the total profit.
+     */
     @Override
     public void aggregate(List<StatEntry> entries) {
 
@@ -25,6 +34,9 @@ public class ProfitAggregator implements StatAggregator {
         this.profit = revenue - expense;
     }
 
+    /**
+     * Return the total profit.
+     */
     public double getProfit() {
         return profit;
     }
