@@ -6,6 +6,7 @@ repositories {
     mavenCentral()
 }
 
+// Little change
 dependencies {
     implementation 'junit:junit:4.13.1'
     implementation 'org.jetbrains:annotations:24.0.0'
