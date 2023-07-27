@@ -24,15 +24,15 @@ public class TransitTracker implements NodeTracker, TrainTracker {
      * @throws IllegalArgumentException if the track is not a valid track in this tracker's track repo.
      * @throws IllegalStateException if the track is occupied.
      */
-    public Train createTrain(TrackSegment track, Direction direction, int capacity) {
-        if (trackRepo.getTrack(track.getId()).orElse(null) != track) {
-            throw new IllegalArgumentException("Track " + track.getId() + " created with wrong tracker");
+    public Train createTrain(TrackSegment trackSegment, Direction direction, int capacity) {
+        if (trackRepo.getTrack(trackSegment.getId()).orElse(null) != trackSegment) {
+            throw new IllegalArgumentException("Track " + trackSegment.getId() + " created with wrong tracker");
         }
 
-        TrainPosition position = TrainPosition.entryPoint(track, direction);
+        TrainPosition position = TrainPosition.entryPoint(trackSegment, direction);
 
-        if (!track.isEmpty()) {
-            throw new IllegalStateException("Track " + track.getId() + " is occupied");
+        if (!trackSegment.isEmpty()) {
+            throw new IllegalStateException("Track " + trackSegment.getId() + " is occupied");
         }
 
         Train train = new Train(this, direction, position, capacity);

@@ -2,7 +2,8 @@ package model.train;
 
 import model.Direction;
 import model.train.Train;
+import model.train.track.TrackSegment;
 
 public interface TrainTracker {
-    Train createTrain(String nodeId, Direction direction, int capacity);
+    Train createTrain(TrackSegment trackSegment, Direction direction, int capacity);
 }
