@@ -10,23 +10,6 @@ import java.util.*;
 
 
 
-/*
- *  TODO: Node Updater
- *  Potential idea: an updater that goes around
- *
- *
- *  On train arrival : controller action:
- *  1) Update the train's location
- *  2) change its location if this is an endpoint station
- *  3) Handle offloading passengers
- *  4) Handle statistics
- *  5) Make train offline if end of day, or scheduled for maintenance
- *  5.1) Handle onboarding passengers
- *  5.5) Handle time
- *  6) Send train if online
- *
- */
-
 
 public abstract class Node {
     private final NodeTracker tracker;
