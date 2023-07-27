@@ -13,7 +13,7 @@ abstract class Ticket implements TicketInterface {
 
 
 
-public void ticketSelling(Station dep, Station des){
+    public void ticketSelling(Station dep, Station des){
     Scanner tick = new Scanner(System.in);
     System.out.println("Please choose the ticket you want to purchase:\n 1. Adult\n 2. Senior\n 3.Child\n 4.Student");
     String input3 = tick.nextLine();
