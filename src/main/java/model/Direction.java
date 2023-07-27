@@ -12,4 +12,8 @@ public enum Direction {
     public int getMultiplier() {
         return multiplier;
     }
+
+    public Direction opposite() {
+        return this == FORWARD ? BACKWARD : FORWARD;
+    }
 }

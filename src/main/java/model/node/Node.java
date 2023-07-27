@@ -31,6 +31,9 @@ import java.util.*;
 public abstract class Node {
     private final NodeTracker tracker;
     private final String name;
+
+    private final Map<Integer, NodeLineProfile> lineProfiles = new HashMap<>();
+
     public Node(NodeTracker tracker, String name) {
         this.tracker = tracker;
         this.name = name;
@@ -40,31 +43,20 @@ public abstract class Node {
         return tracker;
     }
 
-    /**
-     * Returns the next {@code numTrains} trains that will arrive at this station in the given {@code direction}.
-     *
-     * @param direction the direction the trains are moving
-     * @param numTrains the maximum number of trains to return
-     * @throws IllegalStateException if the network of nodes this node is a part of is cyclic
-     */
-    public List<Train> nextArrivals(Direction direction, int numTrains) {
-        List<Train> nextArrivals = new ArrayList<>();
-        Set<Node> visited = new HashSet<>();
-        nextArrivalsRecursive(direction, numTrains, nextArrivals, visited);
-        return nextArrivals;
+    public String getName() {
+        return name;
     }
 
-    private void nextArrivalsRecursive(Direction direction,
-                                       int numTrains,
-                                       List<Train> accumulator,
-                                       Set<Node> visited) {
-        if (accumulator.size() >= numTrains) return;
-        if (visited.contains(this)) return;
-        visited.add(this);
-        accumulator.add(this.trains.get(direction));
-        Node nextNode = this.getNextNode(direction);
-        if (nextNode == null) return;
-        nextNode.nextArrivalsRecursive(direction, numTrains, accumulator, visited);
+    public Optional<NodeLineProfile> getLineProfile(int lineNumber) {
+        return Optional.ofNullable(lineProfiles.get(lineNumber));
+    }
+
+    public NodeLineProfile createLineProfile(int lineNumber) {
+        Preconditions.checkArgument(lineNumber > 0, "Line number must be positive");
+        Preconditions.checkArgument(!lineProfiles.containsKey(lineNumber), "Line number already exists");
+        NodeLineProfile profile = new NodeLineProfile(this, lineNumber);
+        lineProfiles.put(lineNumber, profile);
+        return profile;
     }
 
     /**

@@ -31,6 +31,8 @@ public class Train {
         OUT_OF_SERVICE
     }
 
+    public static int LENGTH = 50;
+
     private final TransitTracker transitTracker;
     private final List<Passenger> passengerList = new ArrayList<>();
     private final int capacity;
