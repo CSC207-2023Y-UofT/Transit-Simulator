@@ -5,6 +5,10 @@ import model.train.TrackRepo;
 import model.train.Train;
 import model.util.Preconditions;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 public class TrackSegment {
     private final String id;
     private final TrackRepo repo;
@@ -50,6 +54,29 @@ public class TrackSegment {
 
     public void linkBackward(TrackSegment prev) {
         TrackSegment.link(prev, this);
+    }
+
+    /**
+     * Gets all the next track segments in the given direction.
+     * This method will return all track segments in the given direction
+     * until either an endpoint is reached, or the track becomes cyclic.
+     */
+    public List<TrackSegment> getNextTrackSegments(Direction direction) {
+
+        // Use a linked hash set so that contains() runs in O(1) and
+        // the insertion order of the tracks is maintained.
+        LinkedHashSet<TrackSegment> segments = new LinkedHashSet<>();
+        TrackSegment next = this.getNext(direction);
+        while (next != null && !segments.contains(next)) {
+            segments.add(next);
+            next = next.getNext(direction);
+        }
+
+        return new ArrayList<>(segments);
+    }
+
+    public boolean isEndpoint(Direction direction) {
+        return getNext(direction) == null;
     }
 
 

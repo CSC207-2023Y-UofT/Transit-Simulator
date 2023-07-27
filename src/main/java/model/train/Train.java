@@ -100,63 +100,69 @@ public class Train {
     /**
      * Get the next node that this train will move to, excluding
      * the current node if this train is already at a node.
+     *
+     * If this train is not on a track, or there is no next node,
+     * the returned Optional will be empty.
      */
-    public @Nullable Node getNextNode() {
+    public Optional<Node> getNextNode(Direction direction) {
+        TrackSegment track = position.getTrack();
+        if (track == null) return Optional.empty();
 
-    }
-
-    public List<TrackSegment> getNextTrackSegments(Direction direction) {
-
-        TrackSegment curr = position.getTrack();
-        if (curr == null) return new ArrayList<>();
-
-        // Use a linked hash set so that contains() runs in O(1) and
-        // the insertion order of the tracks is maintained.
-        LinkedHashSet<TrackSegment> segments = new LinkedHashSet<>();
-        TrackSegment next = curr.getNext(direction);
-        while (next != null && !segments.contains(next)) {
-            segments.add(next);
-            next = next.getNext(direction);
+        List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
+        for (TrackSegment nextSegment : nextSegments) {
+            if (nextSegment instanceof NodeTrackSegment) {
+                Node node = ((NodeTrackSegment) nextSegment).getNode();
+                return Optional.of(node);
+            }
         }
 
-        return new ArrayList<>(segments);
+        return Optional.empty();
     }
 
-    public double getDistanceToNextNode() {
-        return direction == Direction.FORWARD ?
-                position.getNode().getLength() - position.getPositionOnNode() :
-                position.getPositionOnNode();
+
+    /**
+     * Get the distance to the next node that this train will move to, excluding
+     * the current node if this train is already at a node.
+     * If this train is not on a track, or there is no next node,
+     * the returned Optional will be empty.
+     */
+    public Optional<Double> getDistanceToNextNode(Direction direction) {
+
+        TrackSegment track = position.getTrack();
+        if (track == null) return Optional.empty();
+
+        double distanceToEndOfTrack;
+        if (direction == Direction.FORWARD) {
+            distanceToEndOfTrack = track.getLength() - position.getPositionOnTrack();
+        } else {
+            distanceToEndOfTrack = position.getPositionOnTrack();
+        }
+
+        double distance = distanceToEndOfTrack;
+
+        List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
+
+        for (TrackSegment nextSegment : nextSegments) {
+            if (nextSegment instanceof NodeTrackSegment) {
+                return Optional.of(distance);
+            }
+            distance += nextSegment.getLength();
+        }
+
+        return Optional.empty();
     }
 
     public boolean move(Direction direction, double amount) {
+
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
         amount = amount * direction.getMultiplier();
 
-        Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
+        TrainPosition movedPosition = position.move(amount)
+                .orElse(null);
 
-        Node node = position.getNode();
-        double target = position.getPositionOnNode() + amount;
+        if (movedPosition == null) return false;
 
-        // While the target is not within the bounds of
-        // the current node, change which node we are on
-        while (!(target >= 0) || !(target < node.getLength())) {
-
-            Node nextNode = node.getNextNode(direction);
-            if (nextNode == null) {
-                return false; // Endpoint
-            }
-
-            double nextNodeOffset = direction == Direction.FORWARD ?
-                    node.getLength() - position.getPositionOnNode() :
-                    -position.getPositionOnNode();
-
-            target -= nextNodeOffset;
-
-            node = nextNode;
-
-        }
-
-        position = new TrainPosition(node, target);
+        position = movedPosition;
 
         return true;
     }
