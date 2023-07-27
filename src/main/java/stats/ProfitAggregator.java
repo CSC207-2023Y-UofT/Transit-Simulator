@@ -9,14 +9,24 @@ public class ProfitAggregator implements StatAggregator {
     @Override
     public void aggregate(List<StatEntry> entries) {
 
+        // create new revenue and expense aggregators
+        RevenueAggregator revenueAggregator = new RevenueAggregator();
+        ExpenseAggregator expenseAggregator = new ExpenseAggregator();
 
-        // make the revenue and expense aggregators
+        // make revenue and expense aggregate
+        revenueAggregator.aggregate(entries);
+        expenseAggregator.aggregate(entries);
 
+        // get the aggregated revenue and expense amount
+        double revenue = revenueAggregator.getRevenue();
+        double expense = expenseAggregator.getExpense();
 
-
-
-        // make each of them aggregate
-
-
+        // subtract to find the profit
+        this.profit = revenue - expense;
     }
+
+    public double getProfit() {
+        return profit;
+    }
+
 }

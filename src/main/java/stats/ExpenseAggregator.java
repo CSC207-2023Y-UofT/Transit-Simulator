@@ -23,7 +23,7 @@ public class ExpenseAggregator implements StatAggregator {
     }
 
 
-    public double getExpenses() {
+    public double getExpense() {
         return expenses;
     }
 }
