@@ -8,7 +8,7 @@ public class TicketSalesAggregator implements StatAggregator {
 
 
     private int total = 0;
-    public static Map<String, Integer> ticketCounts = new HashMap<>();
+    public Map<String, Integer> ticketCounts = new HashMap<>();
 
 
     @Override

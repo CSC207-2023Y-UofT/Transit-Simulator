@@ -30,5 +30,5 @@ public class SubwayEmergencyAggregator implements StatAggregator {
 
     public int getTotal() { return total; }
 
-}
 
+}
