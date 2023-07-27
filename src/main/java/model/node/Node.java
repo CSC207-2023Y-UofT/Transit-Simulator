@@ -59,24 +59,4 @@ public abstract class Node {
         return profile;
     }
 
-    /**
-     * Returns the next nodes in the given {@code direction}.
-     *
-     * @throws IllegalStateException if the network of nodes this node is a part of is cyclic
-     */
-    public List<Node> nextNodes(Direction direction) {
-        LinkedHashSet<Node> nodes = new LinkedHashSet<>();
-        nextNodesRecursive(direction, nodes);
-        return new ArrayList<>(nodes);
-    }
-
-    private void nextNodesRecursive(Direction direction,
-                                    LinkedHashSet<Node> accumulator) {
-        if (accumulator.contains(this)) return;
-        accumulator.add(this);
-        Node nextNode = this.getNextNode(direction);
-        if (nextNode == null) return;
-        nextNode.nextNodesRecursive(direction, accumulator);
-    }
-
 }
