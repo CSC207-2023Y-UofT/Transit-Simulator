@@ -3,9 +3,10 @@ package model.train;
 import model.train.track.TrackSegment;
 
 import java.util.Map;
+import java.util.Optional;
 
 public interface TrackRepo {
     Map<String, TrackSegment> getTracks();
-    TrackSegment getTrack(String id);
-    TrackSegment createTrack(String id, int length);
+    Optional<TrackSegment> getTrack(String id);
+    void addTrack(TrackSegment segment);
 }

@@ -34,6 +34,8 @@ public class NodeLineProfile {
             );
         }
 
+        tracks.values().forEach(trackRepo::addTrack);
+
     }
 
     public int getLineNumber() {

@@ -1,31 +1,39 @@
 package model.control;
 
 import model.Direction;
-import model.train.Train;
-import model.train.TrainPosition;
-import model.train.TrainTracker;
+import model.train.*;
+import model.train.track.TrackSegment;
 import org.jetbrains.annotations.Nullable;
 import model.node.Node;
 import model.node.NodeFactory;
 import model.node.NodeTracker;
 
+import javax.sound.midi.Track;
 import java.util.*;
 
+// TODO separate this out into different places
 public class TransitTracker implements NodeTracker, TrainTracker {
 
     private final List<Train> trainList = new ArrayList<>();
     private final Map<String, Node> nodeMap = new HashMap<>();
 
-    public Train createTrain(String nodeId, Direction direction, int capacity) {
-        if (!nodeMap.containsKey(nodeId)) {
-            throw new IllegalArgumentException("Node " + nodeId + " does not exist");
+    private final TrackRepo trackRepo = new BasicTrackRepo();
+
+    /**
+     * Creates a train on the given track in the given direction with the given capacity.
+     * @throws IllegalArgumentException if the track is not a valid track in this tracker's track repo.
+     * @throws IllegalStateException if the track is occupied.
+     */
+    public Train createTrain(TrackSegment track, Direction direction, int capacity) {
+        if (trackRepo.getTrack(track.getId()).orElse(null) != track) {
+            throw new IllegalArgumentException("Track " + track.getId() + " created with wrong tracker");
         }
 
-        Node node = nodeMap.get(nodeId);
+        TrainPosition position = TrainPosition.entryPoint(track, direction);
 
-        double positionAlongNode = direction == Direction.FORWARD ? 0 : node.getLength();
-
-        TrainPosition position = new TrainPosition(node, positionAlongNode);
+        if (!track.isEmpty()) {
+            throw new IllegalStateException("Track " + track.getId() + " is occupied");
+        }
 
         Train train = new Train(this, direction, position, capacity);
         trainList.add(train);
@@ -50,6 +58,11 @@ public class TransitTracker implements NodeTracker, TrainTracker {
         }
         nodeMap.put(identifier, node);
         return node;
+    }
+
+    @Override
+    public TrackRepo getTrackRepo() {
+        return trackRepo;
     }
 
 }
