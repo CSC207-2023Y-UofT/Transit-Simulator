@@ -4,12 +4,24 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Aggregator for the total number of subway emergencies.
+ */
 public class SubwayEmergencyAggregator implements StatAggregator {
 
+    /**
+     * The total number of subway emergencies.
+     */
     private int total = 0;
 
+    /**
+     * The number of subway emergencies per line.
+     */
     private Map<Integer, Integer> emergencyCounts = new HashMap<>();
 
+    /**
+     * Aggregate the total number of subway emergencies.
+     */
     @Override
     public void aggregate(List<StatEntry> stats) {
 
@@ -28,7 +40,9 @@ public class SubwayEmergencyAggregator implements StatAggregator {
         }
     }
 
+    /**
+     * Return the number of subway emergencies per line.
+     */
     public int getTotal() { return total; }
-
 
 }
