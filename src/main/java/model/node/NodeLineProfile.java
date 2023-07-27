@@ -61,6 +61,7 @@ public class NodeLineProfile {
 
         for (TrackSegment trackSegment : trackSegments) {
             if (trackSegment.getTrain() == null) continue;
+            if (arrivals.size() >= numTrains) break;
 
             Train train = trackSegment.getTrain();
 
@@ -74,6 +75,7 @@ public class NodeLineProfile {
 
             TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
             arrivals.add(arrival);
+
         }
 
         return arrivals;
