@@ -48,26 +48,21 @@ public class NodeLineProfile {
         return tracks.get(direction);
     }
 
-    /**
-     * Returns the next {@code numTrains} trains that will arrive at this station in the given {@code direction}.
-     *
-     * @param direction the direction the trains are moving
-     * @param numTrains the maximum number of trains to return
-     * @throws IllegalStateException if the network of nodes this node is a part of is cyclic
-     */
-    public List<Train> nextArrivals(Direction direction, int numTrains) {
+    public List<TrainArrival> nextArrivals(Direction direction, int numTrains) {
         List<TrackSegment> trackSegments = getTrack(direction)
                 .getNextTrackSegments(direction.opposite());
 
-        List<Train> trains = new ArrayList<>();
+        List<TrainArrival> arrivals = new ArrayList<>();
         for (TrackSegment trackSegment : trackSegments) {
-            if (trackSegment instanceof NodeTrackSegment) {
-                NodeTrackSegment nodeTrackSegment = (NodeTrackSegment) trackSegment;
-                Train train = nodeTrackSegment.getTrain();
-                if (train != null) {
-                    trains.add(train);
-                }
-            }
+            if (trackSegment.getTrain() == null) continue;
+
+            Train train = trackSegment.getTrain();
+            long delay = 0; // TODO
+
+            TrainArrival arrival = new TrainArrival(train, node, delay);
+            arrivals.add(arrival);
         }
+
+        return arrivals;
     }
 }
