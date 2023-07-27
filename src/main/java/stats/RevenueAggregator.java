@@ -1,14 +1,27 @@
 package stats;
 
+import java.util.List;
 import java.util.Map;
 
-public class RevenueAggregator {
+public class RevenueAggregator implements StatAggregator {
 
-    Map<String, Integer> counts = TicketSalesAggregator.ticketCounts;
+    private double revenue = 0.0;
 
-    for (String key : counts.keys()) {
+    @Override
+    public void aggregate(List<StatEntry> entries) {
 
-        // code here
+        double total = 0.0;
+        for (StatEntry stat : entries) {
+            if (!(stat instanceof RevenueStat)) continue;
+            RevenueStat saleStat = (RevenueStat) stat;
+            total += saleStat.getRevenue();
+        }
+
+        this.revenue = total;
+    }
+
+    public double getRevenue() {
+        return revenue;
     }
 
 
