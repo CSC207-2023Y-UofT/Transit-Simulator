@@ -9,12 +9,12 @@ class SeniorTicket extends Ticket {
     public Station departure;
     public Station destination;
 
-    public SeniorTicket(int age) {
+    public SeniorTicket(int age, Station dep, Station des) {
         if (age >= minAge) {
             this.validity = expiration;
             this.age = age;
-            this.departure = start;
-            this.destination = end;
+            this.departure = dep;
+            this.destination = des;
         } else {
             System.out.println("You are not eligible for this ticket");
         }
