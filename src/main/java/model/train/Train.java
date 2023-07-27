@@ -31,7 +31,9 @@ public class Train {
         OUT_OF_SERVICE
     }
 
-    public static int LENGTH = 50;
+    public static int LENGTH = 100;
+    public static int MAX_SPEED = 32; // m/s, this is about 115 km/h
+    public static long STATION_WAIT_TIME = 1000 * 20; // 20 seconds
 
     private final TransitTracker transitTracker;
     private final List<Passenger> passengerList = new ArrayList<>();

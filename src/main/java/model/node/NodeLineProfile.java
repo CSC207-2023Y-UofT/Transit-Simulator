@@ -53,13 +53,24 @@ public class NodeLineProfile {
                 .getNextTrackSegments(direction.opposite());
 
         List<TrainArrival> arrivals = new ArrayList<>();
+
+        double waitTime = 0;
+
+
         for (TrackSegment trackSegment : trackSegments) {
             if (trackSegment.getTrain() == null) continue;
 
             Train train = trackSegment.getTrain();
-            long delay = 0; // TODO
 
-            TrainArrival arrival = new TrainArrival(train, node, delay);
+            // Calculate the added wait time
+            if (trackSegment instanceof NodeTrackSegment) {
+                // The train will probably stop here, so add the extra
+                // time that will be spent at the node/station
+                waitTime += Train.STATION_WAIT_TIME;
+            }
+            waitTime += trackSegment.getLength() / (double) Train.MAX_SPEED;
+
+            TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
             arrivals.add(arrival);
         }
 
