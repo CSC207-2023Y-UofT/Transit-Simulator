@@ -10,7 +10,7 @@ public class StatTracker {
     /**
      * Stores the list of stat entries.
      */
-    private List<TimestampedStatEntry> statEntries = new ArrayList<>();
+    private final List<TimestampedStatEntry> statEntries = new ArrayList<>();
 
     public List<TimestampedStatEntry> getStatEntries() {
         return Collections.unmodifiableList(statEntries);
