@@ -1,3 +1,4 @@
 public interface TicketInterface {
-    void ticketSelling();
+    void ticketSelling(Station dep, Station des);
+    String getType();
 }

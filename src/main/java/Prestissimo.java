@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 class Prestissimo{
     public int number;
     public int fund;
@@ -10,11 +12,12 @@ class Prestissimo{
         this.fund += load;
     }
 
-    public Optional<boolean> purchase(int cost){
+    public Optional<Boolean> purchase(int cost){
         if(cost > this.fund){
-            return false;
+            return Optional.of(false);
         }else{
             this.fund -= cost;
         }
+        return Optional.empty();
     }
 }
