@@ -1,9 +1,5 @@
 package ticket;
 
-import model.node.Station;
-import stats.TicketSaleStat;
-
-import java.util.Scanner;
 
 public abstract class Ticket {
     private final long expiry;

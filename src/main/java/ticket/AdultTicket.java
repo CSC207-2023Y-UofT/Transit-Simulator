@@ -2,6 +2,9 @@ package ticket;
 
 import model.node.Station;
 
+
+// TODO: are we using the expiry date?
+
 public class AdultTicket extends Ticket {
 
     public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L; // 1 day
@@ -12,7 +15,7 @@ public class AdultTicket extends Ticket {
 
     @Override
     public double getPrice() {
-        return 5.0;
+        return 3.35;
     }
 
     @Override

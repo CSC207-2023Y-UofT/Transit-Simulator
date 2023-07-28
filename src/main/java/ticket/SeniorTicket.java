@@ -1,6 +1,5 @@
 package ticket;
 
-import model.node.Station;
 
 class SeniorTicket extends Ticket {
     public static final int MIN_AGE = 65;
@@ -17,6 +16,6 @@ class SeniorTicket extends Ticket {
 
     @Override
     public double getPrice() {
-        return 3.99;
+        return 2.30;
     }
 }
