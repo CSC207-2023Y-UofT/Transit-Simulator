@@ -4,13 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Aggregator for the total number of ticket sales.
+ */
 public class TicketSalesAggregator implements StatAggregator {
 
-
+    /**
+     * The total number of ticket sales.
+     */
     private int total = 0;
+
+    /**
+     * The number of ticket sales per type.
+     */
     public Map<String, Integer> ticketCounts = new HashMap<>();
 
-
+    /**
+     * Aggregate the total number of ticket sales.
+     */
     @Override
     public void aggregate(List<StatEntry> stats) {
 
@@ -31,6 +42,9 @@ public class TicketSalesAggregator implements StatAggregator {
 
     }
 
+    /**
+     * Return the number of ticket sales per type.
+     */
     public int getTotal() {
         return total;
     }

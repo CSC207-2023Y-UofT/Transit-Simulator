@@ -36,7 +36,7 @@ class Train {
     StatusType status;
     private int line;  // line number
     private DirectionType direction;  // true for forwards, false for backwards. Note: Cannot be final in case of Line-type tracks
-    private Map<String, List<Staff>> staff;// dict mapping from staff type to an arraylist of staff assigned to that role
+    private Map<String, List<Employee>> staff;// dict mapping from staff type to an arraylist of staff assigned to that role
     private int occupancy;  // number of passengers on board
     private Map<Integer, Integer> passengerDestinations;  // dict mapping from a passenger's desired stops to ride to the number of passengers wanting that number
     Node currentLocation;  // assuming that both Station and Track objects can be referenced by this "Node"
@@ -49,10 +49,10 @@ class Train {
         this.status = StatusType.OUT_OF_SERVICE;
         this.line = line;
         this.direction = direction;
-        this.staff = new HashMap<String, ArrayList<Staff>>();
+        this.staff = new HashMap<String, ArrayList<Employee>>();
 
-        staff.put("TrainOperator", new ArrayList<Staff>());
-        staff.put("TrainEngineer", new ArrayList<Staff>());
+        staff.put("TrainOperator", new ArrayList<Employee>());
+        staff.put("TrainEngineer", new ArrayList<Employee>());
         // can add more staff jobs here if needed
 
         this.currentLocation = currentLocation;
@@ -199,7 +199,7 @@ class Train {
      *  @param employee Staff obj to add
      *  @return boolean whether the staff was successfully added
      */
-    public boolean addStaff (String position, Staff employee) {
+    public boolean addStaff (String position, Employee employee) {
         if (this.staff.containsKey(position)) {
             this.staff.get(position).add(employee);
             return true;
@@ -211,7 +211,7 @@ class Train {
      *  @param position String position to check for the presence of a worker
      *  @return Arraylist of staff currently in that position, or null if the position was not found
      */
-    public List<Staff> getStaffInJob (String position) {
+    public List<Employee> getStaffInJob (String position) {
         return this.staff.getOrDefault(position, null);
     }
 
@@ -219,7 +219,7 @@ class Train {
      *  Setter function to remove staff
      *  @return boolean iff the employee was successfully removed
      */
-    public boolean removeStaff (String position, Staff employee) {
+    public boolean removeStaff (String position, Employee employee) {
         if (this.staff.containsKey(position) && this.staff.get(position).contains(employee)) {  // using short circuit eval
             this.staff.get(position).remove(employee);
             return true;
