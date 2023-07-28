@@ -4,10 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Aggregator for the number of leaves for each station.
+ */
 public class CustomerLeaveStationAggregator implements StatAggregator {
 
+    /**
+     * Map of station name to number of leaves.
+     */
     private final Map<String, Integer> entries = new HashMap<>();
 
+    /**
+     * Aggregate the number of leaves for each station.
+     */
     @Override
     public void aggregate(List<StatEntry> stats) {
 
@@ -22,6 +31,10 @@ public class CustomerLeaveStationAggregator implements StatAggregator {
 
     }
 
+    /**
+     * Return the number of leaves that were aggregated
+     * for a specific station.
+     */
     public int getLeaves(String station) {
         return entries.getOrDefault(station, 0);
     }
