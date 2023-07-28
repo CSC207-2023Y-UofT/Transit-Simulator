@@ -1,5 +1,7 @@
 package ticket;
 
+import model.node.Station;
+
 public class ChildTicket extends Ticket {
     private static int maxAge;
     public static int price;
