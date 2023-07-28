@@ -1,36 +1,96 @@
 {
+  "modelName": "Test Model 1",
   "lines": [
     {
       "line": [
-        "Alpha",
-        "Beta",
-        "Gamma",
-        "Delta",
-        "Epsilon"
+        {
+          "name": "Alpha",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Beta",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Gamma",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Delta",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Epsilon",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
       ],
+      "lineType": "Circle",
       "lineNumber": 1,
-      "lineType": "Circle"
+      "lineName": "City Centre"
     },
     {
       "line": [
-        "Beta",
-        "Zeta",
-        "Eta",
-        "Theta",
-        "Iota"
+        {
+          "name": "Beta",
+            "nodeType": "Station",
+            "nodeLength": 15
+        },
+        {
+          "name": "Zeta",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Eta",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Theta",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Iota",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
       ],
+      "lineType": "Straight",
       "lineNumber": 2,
-        "lineType": "Straight"
+      "lineName": "Radial"
     },
     {
       "line": [
-        "Delta",
-        "Kappa",
-        "Lambda",
-        "Mu"
+        {
+          "name": "Delta",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Kappa",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Lambda",
+          "nodeType": "Station",
+          "nodeLength": 15
+        },
+        {
+          "name": "Mu",
+          "nodeType": "Station",
+          "nodeLength": 15
+        }
       ],
+      "lineType": "Straight",
       "lineNumber": 3,
-        "lineType": "Straight"
+      "lineName": "Star"
     }
   ]
 }
