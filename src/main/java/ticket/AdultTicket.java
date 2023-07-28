@@ -1,4 +1,8 @@
-class AdultTicket extends Ticket {
+package ticket;
+
+import model.node.Station;
+
+public class AdultTicket extends Ticket {
     public long validity;
     public static int price;
     public Station departure;
@@ -18,6 +22,6 @@ class AdultTicket extends Ticket {
 
     @Override
     public String getType() {
-        return "Adult Ticket";
+        return "Adult";
     }
 }

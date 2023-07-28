@@ -1,5 +1,6 @@
 package stats;
 
+import ticket.Ticket;
 
 /**
  * Event for a ticket sale.

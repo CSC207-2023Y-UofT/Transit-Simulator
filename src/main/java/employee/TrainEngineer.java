@@ -1,13 +1,16 @@
+package employee;
+
+import model.train.Train;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class TrainEngineer extends Employee{
 
     private List<Employee> employees = new ArrayList<>();
 
-    public TrainEngineer(String name, int num) {
-        super(name, num);
+    public TrainEngineer(String lastName, int num) {
+        super(lastName, num);
     }
 
     /**

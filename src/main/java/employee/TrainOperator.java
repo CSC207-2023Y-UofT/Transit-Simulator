@@ -1,10 +1,10 @@
-import java.util.HashMap;
+package employee;
 
 public class TrainOperator extends Employee{
 
 
-    public TrainOperator(String name, int num) {
-        super(name, num);
+    public TrainOperator(String lastName, int num) {
+        super(lastName, num);
 
     }
 
@@ -13,11 +13,12 @@ public class TrainOperator extends Employee{
      */
     @Override
     public double getMonthlySalary() {
-        return super.getBaseSalary();
+        return getBaseSalary();
     }
 
     /**
-     * receives payment for an employee object
+     * sets the isPaid boolean to true or false depending if this staff.TrainOperator was paid
+     * @param isPaid
      */
     @Override
     public void setPaid(boolean isPaid) {
@@ -28,7 +29,7 @@ public class TrainOperator extends Employee{
      * returns Line that the Employee is assigned to
      */
     public String checkLine(Employee employee) {
-        return
+        return;
     }
 
 

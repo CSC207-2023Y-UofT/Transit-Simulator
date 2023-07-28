@@ -1,3 +1,5 @@
+package ticket;
+
 import model.node.Station;
 
 class SeniorTicket extends Ticket {
@@ -34,6 +36,6 @@ class SeniorTicket extends Ticket {
 
     @Override
     public String getType() {
-        return "Senior Ticket";
+        return "Senior";
     }
 }

@@ -1,4 +1,4 @@
-package model.staff;
+package employee;
 
 import java.util.*;
 

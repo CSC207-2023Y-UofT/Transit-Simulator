@@ -1,6 +1,8 @@
+package ticket;
+
 import java.util.Optional;
 
-class Prestissimo{
+public class Prestissimo extends Ticket {
     public int number;
     public int fund;
     public Prestissimo(int num){
@@ -19,5 +21,10 @@ class Prestissimo{
             this.fund -= cost;
         }
         return Optional.empty();
+    }
+
+    @Override
+    public String getType() {
+        return "Presstissimo";
     }
 }

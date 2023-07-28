@@ -1,3 +1,7 @@
+package ticket;
+
+import model.node.Station;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -31,6 +35,6 @@ class StudentTicket extends Ticket{
     }
 
     public String getType(){
-        return "Student Ticket";
+        return "Student";
     }
 }
