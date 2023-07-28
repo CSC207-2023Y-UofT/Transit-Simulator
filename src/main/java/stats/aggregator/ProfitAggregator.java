@@ -1,4 +1,7 @@
-package stats;
+package stats.aggregator;
+
+import stats.StatAggregator;
+import stats.StatEntry;
 
 import java.util.List;
 

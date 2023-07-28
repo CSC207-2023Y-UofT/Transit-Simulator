@@ -1,6 +1,7 @@
-import model.staff.Employee;
+package employee;
+
 import model.train.Train;
-import stats.MaintenanceEvent;
+import stats.event.MaintenanceEvent;
 import java.util.Random;
 
 public class TrainEngineer extends Employee {

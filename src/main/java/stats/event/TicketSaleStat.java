@@ -1,5 +1,6 @@
-package stats;
+package stats.event;
 
+import stats.RevenueStat;
 import ticket.Ticket;
 
 /**

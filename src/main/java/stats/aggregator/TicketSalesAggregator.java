@@ -1,5 +1,8 @@
-package stats;
+package stats.aggregator;
 
+import stats.StatAggregator;
+import stats.StatEntry;
+import stats.event.TicketSaleStat;
 import ticket.Ticket;
 
 import java.util.HashMap;

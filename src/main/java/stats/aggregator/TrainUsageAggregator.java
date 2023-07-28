@@ -1,4 +1,8 @@
-package stats;
+package stats.aggregator;
+
+import stats.StatAggregator;
+import stats.StatEntry;
+import stats.event.TrainUsageEvent;
 
 import java.util.List;
 import java.util.HashMap;

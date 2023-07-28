@@ -1,4 +1,8 @@
-package stats;
+package stats.aggregator;
+
+import stats.event.LineDelayEvent;
+import stats.StatAggregator;
+import stats.StatEntry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +11,7 @@ import java.util.List;
 /**
  * Aggregator for the total number of delays for each line.
  */
-public class LineDelayAggregator implements StatAggregator{
+public class LineDelayAggregator implements StatAggregator {
 
     /**
      * The total number of delays.

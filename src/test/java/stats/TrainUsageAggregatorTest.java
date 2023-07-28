@@ -2,6 +2,8 @@ package stats;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import stats.aggregator.TrainUsageAggregator;
+import stats.event.TrainUsageEvent;
 
 import java.util.Arrays;
 import java.util.List;

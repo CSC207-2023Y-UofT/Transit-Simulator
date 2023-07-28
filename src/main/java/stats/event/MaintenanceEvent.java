@@ -1,4 +1,6 @@
-package stats;
+package stats.event;
+
+import stats.ExpenseStat;
 
 /**
  * Event for when a maintenance event occurs.

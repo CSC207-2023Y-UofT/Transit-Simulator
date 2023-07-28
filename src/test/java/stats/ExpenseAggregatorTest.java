@@ -1,8 +1,9 @@
 package stats;
 
-import com.sun.tools.javac.Main;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import stats.aggregator.ExpenseAggregator;
+import stats.event.MaintenanceEvent;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,9 +1,11 @@
-package stats;
+package stats.event;
+
+import stats.StatEntry;
 
 /**
  * Event for when a line is delayed.
  */
-public class LineDelayEvent implements StatEntry{
+public class LineDelayEvent implements StatEntry {
 
     /**
      * The line that is delayed.

@@ -1,5 +1,6 @@
 package stats;
 
+import stats.event.TicketSaleStat;
 import ticket.AdultTicket;
 import ticket.Ticket;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,9 +1,11 @@
-package stats;
+package stats.event;
+
+import stats.StatEntry;
 
 /**
  * Event for when a customer leaves a station.
  */
-public class CustomerLeaveStationEvent implements StatEntry{
+public class CustomerLeaveStationEvent implements StatEntry {
 
     /**
      * The station that the customer left.

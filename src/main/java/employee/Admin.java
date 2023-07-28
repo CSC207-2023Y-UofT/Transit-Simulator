@@ -17,25 +17,8 @@ public class Admin extends Employee implements AddToLine{
      */
     @Override
     public double getMonthlySalary() {
-        return 4 * super.getBaseSalary();
+        return 4 * super.getMonthlySalary();
     }
-
-    /**
-     * receives payment for an employee object
-     */
-    @Override
-    public void setPaid(boolean isPaid) {
-        Admin.isPaid = isPaid; // should i be doing admin.ispaid or super.ispaid?
-    }
-
-    /**
-     * pays inferior employees
-     * @param employee
-     */
-    public void payEmployee(Employee employee) {
-        employee.setPaid(true);
-    }
-
 
     /**
      * add the employee object to the specified line

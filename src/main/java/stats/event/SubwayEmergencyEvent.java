@@ -1,4 +1,6 @@
-package stats;
+package stats.event;
+
+import stats.StatEntry;
 
 /**
  * Event for a subway emergency.

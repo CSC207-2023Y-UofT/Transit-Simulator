@@ -1,9 +1,11 @@
-package stats;
+package stats.event;
+
+import stats.StatEntry;
 
 /**
  * Event for a train usage.
  */
-public class TrainUsageEvent implements StatEntry{
+public class TrainUsageEvent implements StatEntry {
 
     /**
      * The line of the train usage.
