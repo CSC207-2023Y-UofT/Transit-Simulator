@@ -41,6 +41,13 @@ public class Train {
     private TrainPosition position;
     private final Map<TrainJob, Employee> staff = new HashMap<>();
 
+    /**
+     *  Creates a train on the given track in the given direction with the given capacity.
+     *  @param transitTracker the transit tracker that this train is associated with
+     *  @param direction the direction that this train is travelling in
+     *  @param position the position of this train
+     *  @param capacity the capacity of this train
+     */
     public Train(TransitTracker transitTracker, Direction direction, TrainPosition position, int capacity) {
         this.transitTracker = transitTracker;
         this.position = position;
@@ -48,32 +55,57 @@ public class Train {
         this.direction = direction;
     }
 
+    /**
+     *  Get a mapping of TrainJobs to Employees assigned to this train.
+     *  @return the staff assigned to this train
+     */
     public Map<TrainJob, Employee> getStaff() {
         return staff;
     }
 
+    /**
+     *  Assign an employee to a job on this train.
+     *  @param job the job to assign the employee to
+     *  @param employee the employee to assign to the job
+     */
     public void setStaff(TrainJob job, Employee employee) {
         staff.put(job, employee);
     }
 
+    /**
+     *  Get the employee assigned to a job on this train.
+     *  @param job the job to get the employee for
+     */
     public void getStaff(TrainJob job) {
         staff.get(job);
     }
 
+    /**
+     *  Get the status of this train.
+     *  @return the status of this train
+     */
     public Status getStatus() {
         return status;
     }
 
+    /**
+     *  Set the status of this train.
+     *  @param status the new status of this train
+     */
     public void setStatus(Status status) {
         this.status = status;
     }
 
+    /**
+     *  Get the list of passengers on this train.
+     *  @return the list of passengers on this train
+     */
     public List<Passenger> getPassengerList() {
         return Collections.unmodifiableList(passengerList);
     }
 
     /**
-     * Adds a passenger to the train
+     * Adds a passenger to this train.
      *
      * @param passenger the passenger to add
      * @throws IllegalStateException if the train is full
@@ -83,18 +115,42 @@ public class Train {
         passengerList.add(passenger);
     }
 
+    /**
+     *  Get the transit tracker that this train is associated with.
+     *  @return the transit tracker that this train is associated with
+     */
     public TransitTracker getTransitTracker() {
         return transitTracker;
     }
 
+    /**
+     *  Get the capacity of this train.
+     *  @return the capacity of this train
+     */
     public int getCapacity() {
         return capacity;
     }
 
+    /**
+     *  Get the position of this train.
+     *  @return the position of this train
+     */
     public TrainPosition getPosition() {
         return position;
     }
 
+    /**
+     *  Set the position of this train.
+     *  @param position the new position of this train
+     */
+    protected void setPosition(TrainPosition position) {
+        this.position = position;
+    }
+
+    /**
+     *  Get the direction of this train.
+     *  @return the direction of this train
+     */
     public Direction getDirection() {
         return direction;
     }
@@ -105,6 +161,9 @@ public class Train {
      *
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
+     *
+     * @param direction the direction to look for the next node
+     * @return the next node, or empty if there is no next node
      */
     public Optional<Node> getNextNode(Direction direction) {
         TrackSegment track = position.getTrack();
@@ -127,6 +186,9 @@ public class Train {
      * the current node if this train is already at a node.
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
+     *
+     * @param direction the direction to look for the next node
+     * @return the distance to the next node, or empty if there is no next node
      */
     public Optional<Double> getDistanceToNextNode(Direction direction) {
 
@@ -147,6 +209,13 @@ public class Train {
         return Optional.empty();
     }
 
+    /**
+     * Move the train in the given direction by the given amount.
+     *
+     * @param direction the direction to move the train
+     * @param amount the amount to move the train by
+     * @return true if the train was moved, false if the train could not be moved
+     */
     public boolean move(Direction direction, double amount) {
 
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
@@ -162,7 +231,4 @@ public class Train {
         return true;
     }
 
-    protected void setPosition(TrainPosition position) {
-        this.position = position;
-    }
 }
