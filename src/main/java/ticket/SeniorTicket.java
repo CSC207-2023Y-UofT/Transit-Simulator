@@ -1,7 +1,7 @@
 package ticket;
 
 
-class SeniorTicket extends Ticket {
+public class SeniorTicket extends Ticket {
     public static final int MIN_AGE = 65;
     public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L; // 1 day
 
