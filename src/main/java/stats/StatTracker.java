@@ -1,6 +1,5 @@
 package stats;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

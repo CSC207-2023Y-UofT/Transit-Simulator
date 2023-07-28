@@ -3,7 +3,7 @@ package stats;
 /**
  * A StatEntry with a timestamp.
  */
-public class TimestampedStatEntry implements StatEntry {
+public class TimestampedStatEntry {
 
     /**
      * The StatEntry.
