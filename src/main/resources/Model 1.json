@@ -1,0 +1,36 @@
+{
+  "lines": [
+    {
+      "line": [
+        "Alpha",
+        "Beta",
+        "Gamma",
+        "Delta",
+        "Epsilon"
+      ],
+      "lineNumber": 1,
+      "lineType": "Circle"
+    },
+    {
+      "line": [
+        "Beta",
+        "Zeta",
+        "Eta",
+        "Theta",
+        "Iota"
+      ],
+      "lineNumber": 2,
+        "lineType": "Straight"
+    },
+    {
+      "line": [
+        "Delta",
+        "Kappa",
+        "Lambda",
+        "Mu"
+      ],
+      "lineNumber": 3,
+        "lineType": "Straight"
+    }
+  ]
+}
