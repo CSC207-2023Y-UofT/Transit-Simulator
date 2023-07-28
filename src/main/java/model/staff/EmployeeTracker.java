@@ -1,5 +1,10 @@
+package model.staff;
+
 import java.util.*;
 
+/**
+ *
+ */
 public class EmployeeTracker {
 
     private List<Employee> employees = new ArrayList<>();
