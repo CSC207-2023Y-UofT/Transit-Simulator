@@ -5,6 +5,7 @@ import java.util.Optional;
 public class Prestissimo extends Ticket {
     public int number;
     public int fund;
+
     public Prestissimo(int num){
         this.number = num;
         this.fund = 0;

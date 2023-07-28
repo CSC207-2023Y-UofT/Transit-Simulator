@@ -7,14 +7,12 @@ public class ChildTicket extends Ticket {
     public static int price;
     public static long expiration;
     public long validity;
-    public Station departure;
-    public Station destination;
+
 
     public ChildTicket(int age, Station start, Station end){
         if(age <= maxAge){
             this.validity = expiration;
-            this.departure = start;
-            this.destination = end;
+
         }else{
             System.out.println("You are not eligible for this ticket");
         }
@@ -31,7 +29,7 @@ public class ChildTicket extends Ticket {
         ChildTicket.price = price;
     }
 
-
+    @Override
     public String getType() {
         return "Child";
     }

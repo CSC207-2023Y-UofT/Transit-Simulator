@@ -5,14 +5,16 @@ import stats.TicketSaleStat;
 
 import java.util.Scanner;
 
-public abstract class Ticket implements TicketInterface {
+public abstract class Ticket {
     public static long expiration;
     public int price;
-    public Station departure;
-    public Station destination;
+
 
     public abstract String getType();
 
+    public int getPrice() {
+        return price;
+    }
 
     public void ticketSelling(Station dep, Station des) {
         Scanner tick = new Scanner(System.in);
