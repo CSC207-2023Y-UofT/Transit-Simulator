@@ -1,4 +1,4 @@
-package model.staff;
+package employee;
 
 public abstract class Employee {
     private static final double BASE_SALARY = 7000;

@@ -1,3 +1,5 @@
+package employee;
+
 public interface AddToLine {
 
     /**

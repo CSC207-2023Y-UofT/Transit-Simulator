@@ -2,7 +2,7 @@ package model.train;
 
 import model.*;
 import model.control.TransitTracker;
-import model.staff.Employee;
+import employee.Employee;
 import model.node.Node;
 import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;

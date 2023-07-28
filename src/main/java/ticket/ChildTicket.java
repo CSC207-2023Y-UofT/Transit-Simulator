@@ -1,4 +1,6 @@
-public class ChildTicket {
+package ticket;
+
+public class ChildTicket extends Ticket {
     private static int maxAge;
     public static int price;
     public static long expiration;
@@ -29,7 +31,7 @@ public class ChildTicket {
 
 
     public String getType() {
-        return "Child Ticket";
+        return "Child";
     }
 }
 

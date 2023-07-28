@@ -1,14 +1,15 @@
+package employee;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Admin extends Employee implements AddToLine{
-
     Map<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
 
-    public Admin(String name, int num) {
-        super(name, num);
+    public Admin(String lastName, int num) {
+        super(lastName, num);
     }
 
     /**
