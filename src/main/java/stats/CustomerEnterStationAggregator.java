@@ -4,10 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Aggregator for the number of entries for each station.
+ */
 public class CustomerEnterStationAggregator implements StatAggregator{
 
+    /**
+     * Map of station name to number of entries.
+     */
     private final Map<String, Integer> entries = new HashMap<>();
 
+    /**
+     * Aggregate the number of entries for each station.
+     */
     @Override
     public void aggregate(List<StatEntry> stats) {
 

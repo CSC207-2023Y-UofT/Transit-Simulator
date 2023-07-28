@@ -3,10 +3,19 @@ package stats;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Aggregator for the total revenue.
+ */
 public class RevenueAggregator implements StatAggregator {
 
+    /**
+     * The total revenue.
+     */
     private double revenue = 0.0;
 
+    /**
+     * Aggregate the total revenue.
+     */
     @Override
     public void aggregate(List<StatEntry> entries) {
 
@@ -20,6 +29,9 @@ public class RevenueAggregator implements StatAggregator {
         this.revenue = total;
     }
 
+    /**
+     * Return the total revenue.
+     */
     public double getRevenue() {
         return revenue;
     }

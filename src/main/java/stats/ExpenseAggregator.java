@@ -3,10 +3,19 @@ package stats;
 import java.util.List;
 
 
+/**
+ * Aggregator for the total expenses.
+ */
 public class ExpenseAggregator implements StatAggregator {
 
+    /**
+     * The total expenses.
+     */
     private double expenses = 0;
 
+    /**
+     * Aggregate the total expenses.
+     */
     @Override
     public void aggregate(List<StatEntry> stats) {
 
@@ -22,8 +31,10 @@ public class ExpenseAggregator implements StatAggregator {
 
     }
 
-
-    public double getExpenses() {
+    /**
+     * Return the total expenses.
+     */
+    public double getExpense() {
         return expenses;
     }
 }
