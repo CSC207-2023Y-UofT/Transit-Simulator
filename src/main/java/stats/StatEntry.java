@@ -1,6 +1,6 @@
 package stats;
 
-import stats.aggregator.CustomerEnterStationAggregator;
+import stats.aggregator.old.CustomerEnterStationAggregator;
 import stats.event.CustomerEnterStationEvent;
 
 import java.io.Serializable;

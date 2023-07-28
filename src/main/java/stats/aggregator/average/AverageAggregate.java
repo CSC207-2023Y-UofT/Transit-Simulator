@@ -1,7 +1,5 @@
 package stats.aggregator.average;
 
-import stats.StatAggregate;
-
 public class AverageAggregate implements StatAggregate {
 
     private final int count;

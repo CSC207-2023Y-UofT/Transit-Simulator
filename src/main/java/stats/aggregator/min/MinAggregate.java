@@ -1,7 +1,5 @@
 package stats.aggregator.min;
 
-import stats.StatAggregate;
-
 public class MinAggregate implements StatAggregate {
 
     private final double max;

@@ -2,7 +2,7 @@ package stats;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import stats.aggregator.CustomerLeaveStationAggregator;
+import stats.aggregator.old.CustomerLeaveStationAggregator;
 import stats.event.CustomerLeaveStationEvent;
 
 import java.util.Arrays;

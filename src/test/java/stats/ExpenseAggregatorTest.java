@@ -2,7 +2,7 @@ package stats;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import stats.aggregator.ExpenseAggregator;
+import stats.aggregator.old.ExpenseAggregator;
 import stats.event.MaintenanceEvent;
 
 import java.util.Arrays;

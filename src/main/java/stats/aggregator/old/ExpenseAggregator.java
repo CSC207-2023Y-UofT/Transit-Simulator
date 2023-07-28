@@ -1,4 +1,4 @@
-package stats.aggregator;
+package stats.aggregator.old;
 
 import stats.ExpenseStat;
 import stats.StatAggregator;
