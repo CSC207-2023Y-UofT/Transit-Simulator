@@ -3,39 +3,20 @@ package ticket;
 import model.node.Station;
 
 class SeniorTicket extends Ticket {
-    private static int minAge;
-    public static int price;
-    public static long expiration;
-    public long validity;
-    private int age;
-    public Station departure;
-    public Station destination;
+    public static final int MIN_AGE = 65;
+    public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L; // 1 day
 
-    public SeniorTicket(int age, Station dep, Station des) {
-        if (age >= minAge) {
-            this.validity = expiration;
-            this.age = age;
-            this.departure = dep;
-            this.destination = des;
-        } else {
-            System.out.println("You are not eligible for this ticket");
-        }
-    }
-
-    public static void setMinAge(int age) {
-        SeniorTicket.minAge = age;
-    }
-
-    public static void setExpiration(long time) {
-        SeniorTicket.expiration = time;
-    }
-
-    public static void setPrice(int price) {
-        SeniorTicket.price = price;
+    public SeniorTicket() {
+        super(System.currentTimeMillis() + TICKET_LIFETIME);
     }
 
     @Override
     public String getType() {
         return "Senior";
+    }
+
+    @Override
+    public double getPrice() {
+        return 3.99;
     }
 }
