@@ -7,7 +7,7 @@ import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
 import org.jetbrains.annotations.NotNull;
 
-import javax.sound.midi.Track;
+
 import java.util.*;
 
 public class NodeLineProfile {
