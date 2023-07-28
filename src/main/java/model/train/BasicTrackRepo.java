@@ -27,5 +27,4 @@ public class BasicTrackRepo implements TrackRepo {
         Preconditions.checkArgument(!tracks.containsKey(segment.getId()), "Track already exists");
         tracks.put(segment.getId(), segment);
     }
-
 }

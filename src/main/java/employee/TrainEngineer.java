@@ -1,41 +1,33 @@
-package employee;
-
+import model.staff.Employee;
 import model.train.Train;
+import stats.MaintenanceEvent;
+import java.util.Random;
 
-import java.util.ArrayList;
-import java.util.List;
+public class TrainEngineer extends Employee {
 
-public class TrainEngineer extends Employee{
-
-    private List<Employee> employees = new ArrayList<>();
-
-    public TrainEngineer(String lastName, int num) {
-        super(lastName, num);
+    public TrainEngineer(String name, int num) {
+        super(name, num);
     }
 
     /**
-     * returns what this employee obejct is being paid
+     *  returns what this employee obejct is being paid
+     *  @return the monthly salary of this employee
      */
     @Override
     public double getMonthlySalary() {
-        return 1.2 * super.getBaseSalary();
+        return 1.2 * super.getMonthlySalary();
     }
 
     /**
-     * receives payment for an employee object
+     *  fixes Train object's maintenance issues
+     *  @param train the train object that needs to be fixed
      */
-    @Override
-    public void setPaid(boolean isPaid) {
-        TrainEngineer.isPaid = isPaid; //when this object is paid, how is this information retained or updated?
-    }
-
-    /**
-     * fixes Train object's maintenance issues
-     */
-    public void fixMaintenanceIssue(Train train) {
-        if (train.getNeedsMaintenance() == true) {
-            train.setNeedsMaintenance(false);
-        }
+    public void fixTrain(Train train) {
+        train.setStatus(Train.Status.OUT_OF_SERVICE);
+        Random rand = new Random();
+        int cost = rand.nextInt(5000 + 1) + 5000;  // .nextInt(5000 + 1) will generate from 0-5000, so we add 5000 to get 5000-10000
+        MaintenanceEvent event = new MaintenanceEvent(cost); // The price is arbitrarily between 5k and 10k, set by Grace ISO time: 2023-07-27T19:10:07
+        // TODO: create a sub-handler for maintenance events on the side of the train or employee
     }
 
 }
