@@ -15,7 +15,7 @@ class StudentTicket extends Ticket{
 
     @Override
     public double getPrice() {
-        return 3.99;
+        return 2.35;
     }
 
     @Override
