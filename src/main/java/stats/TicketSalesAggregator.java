@@ -1,8 +1,11 @@
 package stats;
 
+import ticket.Ticket;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * Aggregator for the total number of ticket sales.
