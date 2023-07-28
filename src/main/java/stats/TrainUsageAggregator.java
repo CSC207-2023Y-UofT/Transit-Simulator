@@ -17,7 +17,7 @@ public class TrainUsageAggregator implements StatAggregator {
     /**
      * The number of train usage per line.
      */
-    private Map<Integer, Integer> usageCounts = new HashMap<>();
+    public Map<Integer, Integer> usageCounts = new HashMap<>();
 
     /**
      * Aggregate the total number of train usage.
