@@ -3,10 +3,10 @@ package employee;
 public abstract class Employee {
     private static final double BASE_SALARY = 7000;
     private final int staffNumber;
-    private final String name;
+    private final String lastName;
 
     public Employee(String name, int id) {
-        this.name = name;
+        this.lastName = name;
         this.staffNumber = id;
     }
 
@@ -17,7 +17,7 @@ public abstract class Employee {
     /**
      * returns what an employee object is being paid
      */
-    public double getMonthlySalary() {
+    public double getBaseSalary() {
         return BASE_SALARY;
     }
 }

@@ -9,11 +9,11 @@ public class TrainOperator extends Employee{
     }
 
     /**
-     * returns what this employee obejct is being paid
+     * returns what this employee object is being paid
      */
     @Override
-    public double getMonthlySalary() {
-        return getBaseSalary();
+    public double getBaseSalary() {
+        return super.getBaseSalary();
     }
 
     /**

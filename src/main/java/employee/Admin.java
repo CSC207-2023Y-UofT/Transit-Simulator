@@ -16,7 +16,7 @@ public class Admin extends Employee implements AddToLine{
      * returns what this employee obejct is being paid
      */
     @Override
-    public double getMonthlySalary() {
+    public double getBaseSalary() {
         return 4 * super.getBaseSalary();
     }
 
