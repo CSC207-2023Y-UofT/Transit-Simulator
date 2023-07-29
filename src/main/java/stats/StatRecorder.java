@@ -1,6 +1,5 @@
 package stats;
 
-import stats.aggregate.BasicStatAggregate;
 import stats.aggregate.StatAggregate;
 import stats.persistence.StatDataStore;
 import stats.type.StatType;
@@ -32,7 +31,11 @@ public class StatRecorder<A extends StatAggregate<A>> {
     }
 
     public void record(StatType<?, A> type, A aggregate) {
-        aggregates.put(type, aggregate);
+        if (aggregates.containsKey(type)) {
+            aggregates.put(type, aggregates.get(type).merge(aggregate));
+        } else {
+            aggregates.put(type, aggregate);
+        }
     }
 
     public CompletableFuture<StatReport<A>> getReport(
@@ -45,7 +48,7 @@ public class StatRecorder<A extends StatAggregate<A>> {
 
         return dataStore.getReport(type, startMinute, endMinute)
                 .thenApply(report -> {
-                    current.ifPresent(a -> report.getData().put(minute, a));
+                    current.ifPresent(currData -> report.getData().put(minute, currData));
                     return report;
                 });
     }

@@ -29,7 +29,7 @@ public class Stats {
             register(
                     new IndexedStatType<TicketSaleStat>("ticket_sale",
                             "Ticket Sale",
-                            t -> new Pair<>(t.getTicket().getTypeId(), 1.0))
+                            stat -> new Pair<>(stat.getTicket().getTypeId(), 1.0))
                             .also(REVENUE, TicketSaleStat::getRevenue)
             );
 
