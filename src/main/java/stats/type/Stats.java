@@ -4,6 +4,7 @@ import stats.aggregate.BasicStatAggregate;
 import stats.aggregate.IndexedStatAggregate;
 import stats.event.CustomerEnterStationEvent;
 import stats.event.MaintenanceEvent;
+import stats.event.SubwayEmergencyEvent;
 import stats.event.TicketSaleStat;
 import util.Pair;
 
@@ -53,6 +54,13 @@ public class Stats {
                             "Maintenance",
                             e -> 1.0)
                             .also(EXPENSES, MaintenanceEvent::getExpense)
+            );
+
+    public static final StatType<SubwayEmergencyEvent, BasicStatAggregate> EMERGENCIES =
+            register(
+                    new BasicStatType<>("emergencies",
+                            "Emergencies",
+                            e -> 1.0)
             );
 
     private static <T, A> StatType<T, A> register(StatType<T, A> type) {
