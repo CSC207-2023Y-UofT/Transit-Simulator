@@ -18,7 +18,7 @@ public class StatRecorder<A extends StatAggregate<A>> {
         this.dataStore = dataStore;
     }
 
-    public void flush() {
+    public synchronized void flush() {
         long currentMinute = System.currentTimeMillis() / 60000;
         aggregates.forEach((type, aggregate) -> {
             dataStore.record(type, currentMinute, aggregate);
@@ -26,11 +26,11 @@ public class StatRecorder<A extends StatAggregate<A>> {
         });
     }
 
-    public Optional<A> getCurrent(StatType<?, A> type) {
+    public synchronized Optional<A> getCurrent(StatType<?, A> type) {
         return Optional.ofNullable(aggregates.get(type));
     }
 
-    public void record(StatType<?, A> type, A aggregate) {
+    public synchronized void record(StatType<?, A> type, A aggregate) {
         if (aggregates.containsKey(type)) {
             aggregates.put(type, aggregates.get(type).merge(aggregate));
         } else {
