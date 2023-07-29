@@ -1,11 +1,9 @@
 package stats.event;
 
-import stats.ExpenseStat;
-
 /**
  * Event for when a maintenance event occurs.
  */
-public class MaintenanceEvent implements ExpenseStat {
+public class MaintenanceEvent {
 
     /**
      * The cost of the maintenance event.
@@ -22,7 +20,6 @@ public class MaintenanceEvent implements ExpenseStat {
     /**
      * Return the cost of the maintenance event.
      */
-    @Override
     public double getExpense() {
         return cost;
     }

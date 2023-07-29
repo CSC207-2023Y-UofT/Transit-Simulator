@@ -1,18 +1,23 @@
-package stats.aggregator;
+package stats.aggregate;
 
-import stats.StatAggregatorRef;
-
-public class StatAggregate {
+/**
+ * Basic representation of an aggregated set of a numeric statistic.
+ */
+public class BasicStatAggregate implements StatAggregate<BasicStatAggregate> {
     private final double mean;
     private final double min;
     private final double max;
     private final int count;
 
-    public StatAggregate(double mean, double min, double max, int count) {
+    public BasicStatAggregate(double mean, double min, double max, int count) {
         this.mean = mean;
         this.min = min;
         this.max = max;
         this.count = count;
+    }
+
+    public BasicStatAggregate(double value) {
+        this(value, value, value, 1);
     }
 
     public double getMean() {
@@ -31,14 +36,14 @@ public class StatAggregate {
         return min;
     }
 
-    public StatAggregate combine(StatAggregate other) {
+    public BasicStatAggregate merge(BasicStatAggregate other) {
         double max = Math.max(this.max, other.max);
         double min = Math.min(this.min, other.min);
         int count = this.count + other.count;
         double mod1 = (double) this.count / count;
         double mod2 = (double) other.count / count;
         double mean = this.mean * mod1 + other.mean * mod2;
-        return new StatAggregate(mean, min, max, count);
+        return new BasicStatAggregate(mean, min, max, count);
     }
 
 }

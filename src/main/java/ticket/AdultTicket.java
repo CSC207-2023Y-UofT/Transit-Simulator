@@ -19,7 +19,7 @@ public class AdultTicket extends Ticket {
     }
 
     @Override
-    public String getType() {
+    public String getTypeId() {
         return "Adult";
     }
 }

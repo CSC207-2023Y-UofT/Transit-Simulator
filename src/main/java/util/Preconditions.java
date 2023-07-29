@@ -1,4 +1,4 @@
-package model.util;
+package util;
 
 public class Preconditions {
     public static void checkArgument(boolean condition, String message) {

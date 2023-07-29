@@ -1,12 +1,11 @@
 package stats.event;
 
-import stats.RevenueStat;
 import ticket.Ticket;
 
 /**
  * Event for a ticket sale.
  */
-public class TicketSaleStat implements RevenueStat {
+public class TicketSaleStat {
 
     /**
      * The ticket that was sold.
@@ -30,7 +29,6 @@ public class TicketSaleStat implements RevenueStat {
     /**
      * Return the revenue.
      */
-    @Override
     public double getRevenue() {
         return ticket.getPrice();
     }

@@ -1,11 +1,9 @@
 package stats.event;
 
-import stats.StatEntry;
-
 /**
  * Event for a subway emergency.
  */
-public class SubwayEmergencyEvent implements StatEntry {
+public class SubwayEmergencyEvent {
 
     /**
      * The line of the subway emergency.

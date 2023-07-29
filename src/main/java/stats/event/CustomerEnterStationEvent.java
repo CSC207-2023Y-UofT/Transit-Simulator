@@ -1,11 +1,9 @@
 package stats.event;
 
-import stats.StatEntry;
-
 /**
  * Event for when a customer enters a station.
  */
-public class CustomerEnterStationEvent implements StatEntry {
+public class CustomerEnterStationEvent {
 
     /**
      * The station that the customer entered.
