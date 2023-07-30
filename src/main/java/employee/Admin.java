@@ -31,6 +31,15 @@ public class Admin extends Employee {
     }
 
     /**
+     * returns whether this TrainOperator object has been paid yet
+     * @return a boolean
+     */
+    @Override
+    boolean getPaid() {
+        return this.isPaid;
+    }
+
+    /**
      * pays inferior employees
      * @param employee is an Employee
      */

@@ -108,4 +108,4 @@ public class TrainTest {
 //        Train train = new Train(1, 1, 1, 1, 1, 1);
 //        Assertions.assertEquals(null, train.getPosition());
 //    }
-}
+  }
