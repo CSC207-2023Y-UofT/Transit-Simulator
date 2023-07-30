@@ -3,15 +3,25 @@ package employee;
 import model.train.Train;
 import java.util.Random;
 
+/**
+ * The TrainEngineer class extends the Employee class.
+ * It represents a train engineer who can fix trains and has a monthly salary 1.2 times the base salary of an Employee.
+ */
 public class TrainEngineer extends Employee {
 
+    /**
+     * Constructs a new TrainEngineer object with the given employee number.
+     *
+     * @param num The unique employee number.
+     */
     public TrainEngineer(int num) {
         super(num);
     }
 
     /**
-     *  returns what this employee obejct is being paid
-     *  @return the monthly salary of this employee
+     * Returns the monthly salary of this TrainEngineer, which is 1.2 times the base salary.
+     *
+     * @return The monthly salary of this TrainEngineer.
      */
     @Override
     public double getMonthlySalary() {
@@ -19,8 +29,9 @@ public class TrainEngineer extends Employee {
     }
 
     /**
-     * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
-     * @param isPaid is a boolean
+     * Sets the payment status of this TrainEngineer.
+     *
+     * @param isPaid The new payment status. True if the TrainEngineer has been paid; otherwise false.
      */
     @Override
     public void setPaid(boolean isPaid) {
@@ -28,8 +39,9 @@ public class TrainEngineer extends Employee {
     }
 
     /**
-     * returns whether this TrainOperator object has been paid yet
-     * @return a boolean
+     * Returns the payment status of this TrainEngineer.
+     *
+     * @return True if the TrainEngineer has been paid; otherwise false.
      */
     @Override
     public boolean getPaid() {
@@ -37,23 +49,26 @@ public class TrainEngineer extends Employee {
     }
 
     /**
-     * returns Line that the current instance of TrainOperator is assigned to, must ask an admin
-     * @param admin is an Admin
+     * Returns the line number that this TrainEngineer is assigned to.
+     * This method requires an Admin instance to check the line assignment.
+     *
+     * @param admin The Admin instance that checks the line assignment.
+     * @return The line number that this TrainEngineer is assigned to.
      */
     public Integer checkTrainOperatorLine(Admin admin) {
         return admin.checkLine(this);
     }
 
     /**
-     *  fixes Train object's maintenance issues
-     *  @param train the train object that needs to be fixed
+     * Fixes the specified Train's maintenance issues.
+     * The method sets the status of the Train to OUT_OF_SERVICE and generates a random cost for the maintenance.
+     *
+     * @param train The Train that needs to be fixed.
      */
     public void fixTrain(Train train) {
         train.setStatus(Train.Status.OUT_OF_SERVICE);
         Random rand = new Random();
-        int cost = rand.nextInt(5000 + 1) + 5000;  // .nextInt(5000 + 1) will generate from 0-5000, so we add 5000 to get 5000-10000
-//        MaintenanceEvent event = new MaintenanceEvent(cost); // The price is arbitrarily between 5k and 10k, set by Grace ISO time: 2023-07-27T19:10:07
-        // TODO: create a sub-handler for maintenance events on the side of the train or employee
+        int cost = rand.nextInt(5000 + 1) + 5000;  // Generates a random number between 5000 and 10000
     }
 
 }
