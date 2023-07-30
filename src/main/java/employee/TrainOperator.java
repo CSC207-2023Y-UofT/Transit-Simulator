@@ -2,7 +2,6 @@ package employee;
 
 public class TrainOperator extends Employee{
 
-    private boolean isPaid = false;
 
     public TrainOperator(int num) {
         super(num);
@@ -19,7 +18,7 @@ public class TrainOperator extends Employee{
 
     /**
      * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
-     * @param isPaid
+     * @param isPaid is a boolean
      */
     @Override
     public void setPaid(boolean isPaid) {
@@ -28,7 +27,7 @@ public class TrainOperator extends Employee{
 
     /**
      * returns Line that the current instance of TrainOperator is assigned to, must ask an admin
-     * @param admin
+     * @param admin is an Admin
      */
     public Integer checkTrainOperatorLine(Admin admin) {
         return admin.checkLine(this);

@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class Admin extends Employee {
 
-    private boolean isPaid = false;
-
     Map<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
 
     public Admin(int num) {
@@ -25,7 +23,7 @@ public class Admin extends Employee {
 
     /**
      * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
-     * @param isPaid
+     * @param isPaid is a boolean
      */
     @Override
     public void setPaid(boolean isPaid) {
@@ -34,7 +32,7 @@ public class Admin extends Employee {
 
     /**
      * pays inferior employees
-     * @param employee
+     * @param employee is an Employee
      */
     public void payEmployee(Employee employee) {
         employee.setPaid(true);
@@ -43,8 +41,8 @@ public class Admin extends Employee {
 
     /**
      * add the employee object to the specified line
-     * @param employee
-     * @param line
+     * @param employee is an Employee
+     * @param line is an Integer
      */
     public void addEmployeeToLine(Integer line, Employee employee) {
 
