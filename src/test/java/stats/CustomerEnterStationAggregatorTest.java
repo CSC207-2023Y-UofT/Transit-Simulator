@@ -3,7 +3,7 @@ package stats;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import stats.aggregator.old.CustomerEnterStationAggregator;
-import stats.event.CustomerEnterStationEvent;
+import stats.entry.CustomerEnterStationEvent;
 
 import java.util.Arrays;
 import java.util.List;

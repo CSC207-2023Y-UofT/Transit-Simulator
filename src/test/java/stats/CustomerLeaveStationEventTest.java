@@ -2,7 +2,7 @@ package stats;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import stats.event.CustomerLeaveStationEvent;
+import stats.entry.CustomerLeaveStationEvent;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

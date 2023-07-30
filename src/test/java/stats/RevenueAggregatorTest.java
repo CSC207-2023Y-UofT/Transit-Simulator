@@ -3,7 +3,7 @@ package stats;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import stats.aggregator.old.RevenueAggregator;
-import stats.event.TicketSaleStat;
+import stats.entry.TicketSaleStat;
 import ticket.SeniorTicket;
 import ticket.StudentTicket;
 

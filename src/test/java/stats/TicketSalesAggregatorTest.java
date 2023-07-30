@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import stats.aggregator.old.TicketSalesAggregator;
-import stats.event.TicketSaleStat;
+import stats.entry.TicketSaleStat;
 import ticket.AdultTicket;
 import ticket.ChildTicket;
 import ticket.SeniorTicket;
