@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 
 import java.util.List;
+import java.util.Set;
 
 public class TrainTest {
     private static Train trainForwards;
@@ -99,7 +100,7 @@ public class TrainTest {
 
     @Test
     public void testGetPassengerList() {
-        List<Passenger> passengerList = trainForwards.getPassengerList();
+        Set<Passenger> passengerList = trainForwards.getPassengerList();
         Assertions.assertEquals(0, passengerList.size());
     }
 
