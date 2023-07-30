@@ -74,4 +74,8 @@ public class EntryHierarchy {
     private Set<Class<? extends StatEntry>> getChildren(Class<?> entryClass) {
         return hierarchy.getOrDefault(entryClass, new HashSet<>());
     }
+
+    public List<Class<? extends StatEntry>> getAllLeafClasses() {
+        return getLeafClasses(StatEntry.class);
+    }
 }
