@@ -2,14 +2,15 @@ package stats.aggregate;
 
 import java.io.Serializable;
 
-public class SingletonAggregate implements Serializable {
-    private final double total;
+public abstract class SingletonAggregate<T> implements Serializable {
+    private final T total;
 
-    public SingletonAggregate(double total) {
+    public SingletonAggregate(T total) {
         this.total = total;
     }
 
-    public double getTotal() {
+    public T getTotal() {
         return total;
     }
+
 }

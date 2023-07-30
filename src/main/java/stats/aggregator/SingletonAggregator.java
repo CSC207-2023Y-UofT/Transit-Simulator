@@ -2,49 +2,52 @@ package stats.aggregator;
 
 import stats.aggregate.SingletonAggregate;
 import stats.entry.StatEntry;
+import util.Preconditions;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public abstract class SingletonAggregator<T, E extends StatEntry, A extends SingletonAggregate<T>>
         extends StatAggregator<E, A> {
 
-    private final Function<E, Double> entryToDouble;
-    private final Function<Double, A> aggregateFactory;
-    private final Function<T, T> aggregator;
+    private final Function<E, A> entryConverter;
+    private final BiFunction<A, A, A> aggregator;
 
     protected SingletonAggregator(
             Class<E> entryClass,
             Class<A> aggregateClass,
-            Function<E, Double> entryToDouble,
-            Function<Double, A> aggregateFactory,
-            Function<T, T> aggregator
+            Function<E, A> entryConverter,
+            BiFunction<A, A, A> aggregator
     ) {
         super(entryClass, aggregateClass);
-        this.entryToDouble = entryToDouble;
-        this.aggregateFactory = aggregateFactory;
+        this.entryConverter = entryConverter;
         this.aggregator = aggregator;
     }
 
     @Override
     public A aggregate(List<E> entries) {
-        T total = null;
+        Preconditions.checkArgument(!entries.isEmpty(), "entries is empty");
+
+        A accumulator = entryConverter.apply(entries.get(0));
 
         for (E entry : entries) {
-            total += entryToDouble.apply(entry);
+            accumulator = aggregator.apply(accumulator, entryConverter.apply(entry));
         }
 
-        return aggregateFactory.apply(total);
+        return accumulator;
     }
 
     @Override
     public A aggregateExisting(List<A> aggregates) {
-        double total = 0.0;
+        Preconditions.checkArgument(!aggregates.isEmpty(), "aggregates is empty");
+
+        A accumulator = aggregates.get(0);
 
         for (A aggregate : aggregates) {
-            total += aggregate.getTotal();
+            accumulator = aggregator.apply(accumulator, aggregate);
         }
 
-        return aggregateFactory.apply(total);
+        return accumulator;
     }
 }
