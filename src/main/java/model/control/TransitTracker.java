@@ -42,11 +42,6 @@ public class TransitTracker implements NodeTracker, TrainTracker {
     }
 
     @Override
-    public List<Train> getTrains() {
-        return trainList;
-    }
-
-    @Override
     public Map<String, Node> getNodes() {
         return Collections.unmodifiableMap(nodeMap);
     }
