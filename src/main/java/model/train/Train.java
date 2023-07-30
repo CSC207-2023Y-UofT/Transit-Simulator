@@ -20,7 +20,7 @@ public class Train {
      * Offline: not running.
      * Precondition: train UNDER_MAINTENANCE cannot be ONLINE
      * Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
-     * tracks have spare tracks that others can pass
+     * tracks have spare tracks that others can pass.
      */
     public enum Status {
         IN_SERVICE,
