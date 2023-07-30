@@ -10,8 +10,8 @@ public class TrainOperator extends Employee {
     }
 
     @Override
-    public double getBaseSalary() {
-        return super.getBaseSalary() + 1000; // TODO change or whatever
+    public double getMonthlySalary() {
+        return super.getMonthlySalary() + 1000; // TODO change or whatever
     }
 }
 

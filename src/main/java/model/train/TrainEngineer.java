@@ -12,8 +12,8 @@ public class TrainEngineer extends Employee {
      * returns what this employee obejct is being paid
      */
     @Override
-    public double getBaseSalary() {
-        return 1.2 * super.getBaseSalary();
+    public double getMonthlySalary() {
+        return 1.2 * super.getMonthlySalary();
     }
 
     /**

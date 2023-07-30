@@ -8,6 +8,6 @@ public class TrainOperatorTest {
     @Test
     public void TrainOperatorCheckSalary() {
         Employee emp = new TrainOperator("Lack", 001);
-        Assertions.assertEquals(7000, emp.getBaseSalary());
+        Assertions.assertEquals(7000, emp.getMonthlySalary());
     }
 }

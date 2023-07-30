@@ -1,9 +1,13 @@
-import model.staff.Employee;
+package employee;
+
 import model.train.Train;
 import stats.MaintenanceEvent;
 import java.util.Random;
 
 public class TrainEngineer extends Employee {
+
+    private boolean isPaid = false;
+
 
     public TrainEngineer(String name, int num) {
         super(name, num);
@@ -16,6 +20,23 @@ public class TrainEngineer extends Employee {
     @Override
     public double getMonthlySalary() {
         return 1.2 * super.getMonthlySalary();
+    }
+
+    /**
+     * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
+     * @param isPaid
+     */
+    @Override
+    public void setPaid(boolean isPaid) {
+        this.isPaid = isPaid;
+    }
+
+    /**
+     * returns Line that the current instance of TrainOperator is assigned to, must ask an admin
+     * @param admin
+     */
+    public Integer checkTrainOperatorLine(Admin admin) {
+        return admin.checkLine(this);
     }
 
     /**
