@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Aggregates data from a {@link StatDataController} into a single aggregate value.
  * @param <E> The entry class
  * @param <A> The aggregator class
  */

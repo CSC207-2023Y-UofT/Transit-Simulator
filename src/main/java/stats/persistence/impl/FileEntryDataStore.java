@@ -41,6 +41,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
     @Override
     public <E extends StatEntry> List<E> retrieve(Class<E> clazz, long index) {
         File file = getFile(index, clazz);
+        if (!file.exists()) {
+            return new ArrayList<>();
+        }
         try {
             byte[] bytes = Files.readAllBytes(file.toPath());
             List<?> entries = (List<?>) new ObjectInputStream(new ByteArrayInputStream(bytes)).readObject();
