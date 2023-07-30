@@ -5,15 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Admin extends Employee implements AddToLine{
-    Map<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
+public class Admin extends Employee {
 
-    public Admin(String lastName, int num) {
-        super(lastName, num);
+    Map<Integer, List<Employee>> lineToStaff = new HashMap<>();
+
+    public Admin(int num) {
+        super(num);
     }
 
     /**
-     * returns what this employee obejct is being paid
+     * returns what this employee object is being paid
      */
     @Override
     public double getMonthlySalary() {
@@ -21,9 +22,28 @@ public class Admin extends Employee implements AddToLine{
     }
 
     /**
+     * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
+     * @param isPaid is a boolean
+     */
+    @Override
+    public void setPaid(boolean isPaid) {
+        this.isPaid = isPaid;
+    }
+
+    /**
+     * pays inferior employees
+     * @param employee is an Employee
+     */
+    public void payEmployee(Employee employee) {
+        employee.setPaid(true);
+    }
+
+
+    /**
+
      * add the employee object to the specified line
-     * @param employee
-     * @param line
+     * @param employee is an Employee
+     * @param line is an Integer
      */
     public void addEmployeeToLine(Integer line, Employee employee) {
 
@@ -34,7 +54,7 @@ public class Admin extends Employee implements AddToLine{
 
     /**
      * returns the line that the employee is assigned to
-     * @param employee
+     * @param employee is an Employee
      * @return line
      */
     public Integer checkLine(Employee employee) {
