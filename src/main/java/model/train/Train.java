@@ -13,12 +13,16 @@ import java.util.*;
 public class Train {
 
     /**
-     * Either ONLINE, SCHEDULED_MAINTENANCE, UNDER_MAINTENANCE or OFFLINE.
-     * Online: Running properly.
-     * Scheduled_maintenance: still running, will stop for maintenance at the next station. (not automatically under maintenance)
-     * Under_maintenance: stopped for maintenance at a station and staff assigned to maintain.
-     * Offline: not running.
-     * Precondition: train UNDER_MAINTENANCE cannot be ONLINE
+     * Either IN_SERVICE, SCHEDULED_MAINTENANCE, UNDER_MAINTENANCE or OUT_OF_SERVICE.
+     * <br>
+
+     * IN_SERVICE:            Running properly.
+     * SCHEDULED_MAINTENANCE: still running, will stop for maintenance at the next station. (not automatically under maintenance)
+     * UNDER_MAINTENANCE:     stopped for maintenance at a station and staff assigned to maintain.
+     * OUT_OF_SERVICE:        Not running.
+     * <br>
+
+     * Precondition: Trains UNDER_MAINTENANCE cannot be IN_SERVICE.
      * Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
      * tracks have spare tracks that others can pass.
      */
@@ -29,15 +33,27 @@ public class Train {
         OUT_OF_SERVICE
     }
 
+    /** The length of a train. */
     public static int LENGTH = 100;
-    public static int MAX_SPEED = 32; // m/s, this is about 115 km/h
-    public static long STATION_WAIT_TIME = 1000 * 20; // 20 seconds
+    /** The maximum speed of a train in m/s. This is around 115km/h. */
+    public static int MAX_SPEED = 32;
+    /** The time that a train will wait at a station in milliseconds; 20000 milliseconds = 20 seconds. */
+    public static long STATION_WAIT_TIME = 1000 * 20;
 
+    /** The transit tracker (the controller) that this train is associated with. */
     private final TransitTracker transitTracker;
+    /** The list of passengers on this train. */
     private final List<Passenger> passengerList = new ArrayList<>();
+    /** The capacity of this train. */
     private final int capacity;
+    /** The status of this train. */
     private Status status = Status.OUT_OF_SERVICE;
+    /** The position of this train. */
     private TrainPosition position;
+    /**
+     * The staff assigned to this train.
+     * HashMap mapping TrainJobs to Employees.
+     */
     private final Map<TrainJob, Employee> staff = new HashMap<>();
 
     /**
@@ -147,14 +163,14 @@ public class Train {
     /**
      * Get the next node that this train will move to, excluding
      * the current node if this train is already at a node.
-     *
+
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
      *
      * @param direction the direction to look for the next node
      * @return the next node, or empty if there is no next node
      */
-    public Optional<Node> getNextNode(Direction direction) {
+    public Optional<Node> getNextNode(Direction direction) {  //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
 
@@ -173,13 +189,14 @@ public class Train {
     /**
      * Get the distance to the next node that this train will move to, excluding
      * the current node if this train is already at a node.
+
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
      *
      * @param direction the direction to look for the next node
      * @return the distance to the next node, or empty if there is no next node
      */
-    public Optional<Double> getDistanceToNextNode(Direction direction) {
+    public Optional<Double> getDistanceToNextNode(Direction direction) { //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
 
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
