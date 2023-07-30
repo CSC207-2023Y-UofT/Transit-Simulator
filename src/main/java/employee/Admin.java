@@ -47,9 +47,7 @@ public class Admin extends Employee {
         employee.setPaid(true);
     }
 
-
     /**
-
      * add the employee object to the specified line
      * @param employee is an Employee
      * @param line is an Integer
@@ -59,7 +57,6 @@ public class Admin extends Employee {
         List<Employee> curr = lineToStaff.computeIfAbsent(line, ArrayList::new);
         curr.add(employee);
     }
-
 
     /**
      * returns the line that the employee is assigned to
@@ -74,4 +71,5 @@ public class Admin extends Employee {
         }
         return null;
     }
+
 }
