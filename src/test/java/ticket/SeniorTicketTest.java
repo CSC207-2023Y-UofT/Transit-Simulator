@@ -29,7 +29,6 @@ public class SeniorTicketTest {
 
     @Test
     public void testSeniorTicketMinAge() {
-        SeniorTicket seniorTicket = new SeniorTicket();
         int minAge = SeniorTicket.MIN_AGE;
         Assertions.assertEquals(65, minAge, "Minimum age for senior ticket should be 65");
     }
