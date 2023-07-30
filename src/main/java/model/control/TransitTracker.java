@@ -29,7 +29,7 @@ public class TransitTracker implements NodeTracker, TrainTracker {
             throw new IllegalArgumentException("Track " + trackSegment.getId() + " created with wrong tracker");
         }
 
-        TrainPosition position = TrainPosition.entryPoint(trackSegment, direction);
+        TrainPosition position = TrainPosition.entryPoint(trackSegment, Direction.FORWARD);
 
         if (!trackSegment.isEmpty()) {
             throw new IllegalStateException("Track " + trackSegment.getId() + " is occupied");
