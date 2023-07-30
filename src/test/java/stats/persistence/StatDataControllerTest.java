@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import stats.aggregator.ExampleExpenseAggregator;
 import stats.aggregator.ExpenseAggregate;
+import stats.entry.StatEntry;
 import stats.entry.impl.MaintenanceStat;
 import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;

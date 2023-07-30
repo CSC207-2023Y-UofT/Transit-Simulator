@@ -21,6 +21,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
     private File getFile(long index, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
+        classFolder.mkdirs();
         return new File(classFolder, index + ".stat");
     }
 
@@ -49,7 +50,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
         }
         try {
             byte[] bytes = Files.readAllBytes(file.toPath());
-            List<?> entries = (List<?>) new ObjectInputStream(new ByteArrayInputStream(bytes)).readObject();
+            ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+            int version = bais.read(); // Version
+            List<?> entries = (List<?>) new ObjectInputStream(bais).readObject();
 
             List<E> castedEntries = new ArrayList<>();
             for (Object entry : entries) {
@@ -78,7 +81,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
         File file = new File(directory, "hierarchy-leaves.txt");
         try {
-            Files.write(file.toPath(), classNames, StandardOpenOption.CREATE);
+            Files.write(file.toPath(), classNames);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

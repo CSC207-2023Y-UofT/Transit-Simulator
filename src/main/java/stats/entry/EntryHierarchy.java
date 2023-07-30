@@ -39,6 +39,10 @@ public class EntryHierarchy {
         map(entryClass);
 
         if (!hierarchy.containsKey(entryClass)) {
+            boolean isConcrete = !Modifier.isAbstract(entryClass.getModifiers());
+            isConcrete &= !Modifier.isInterface(entryClass.getModifiers());
+
+            if (isConcrete) return List.of(entryClass);
             return new ArrayList<>();
         }
 
