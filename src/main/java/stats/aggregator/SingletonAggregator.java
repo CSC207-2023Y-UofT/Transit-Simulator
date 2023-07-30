@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public abstract class SingletonAggregator<T, E extends StatEntry, A extends SingletonAggregate<T>>
+public abstract class SingletonAggregator<E extends StatEntry, A extends SingletonAggregate<?>>
         extends StatAggregator<E, A> {
 
     private final Function<E, A> entryConverter;

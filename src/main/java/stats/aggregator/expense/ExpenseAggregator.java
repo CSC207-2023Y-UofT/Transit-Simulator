@@ -10,7 +10,7 @@ public class ExpenseAggregator extends SingletonAggregator<ExpenseStat, ExpenseA
     public ExpenseAggregator() {
         super(ExpenseStat.class,
                 ExpenseAggregate.class,
-                ExpenseStat::getExpense,
-                ExpenseAggregate::new);
+                s -> new ExpenseAggregate(s.getExpense()),
+                (a1, a2) -> new ExpenseAggregate(a1.getTotal() + a2.getTotal()));
     }
 }
