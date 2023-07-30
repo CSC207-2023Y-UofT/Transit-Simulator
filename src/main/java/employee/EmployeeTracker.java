@@ -3,25 +3,31 @@ package employee;
 import java.util.*;
 
 /**
- *
+ * The EmployeeTracker class maintains a list of Employee objects.
+ * It provides functionality to add employees to the list and retrieve the list of employees.
  */
 public class EmployeeTracker {
 
+    /**
+     * The list of employees.
+     */
     private List<Employee> employees = new ArrayList<>();
 
     /**
-     * adds staff to employee list
-     * @param employee is an Employee
+     * Adds the given Employee to the list of employees.
+     *
+     * @param employee The Employee object to be added.
      */
-    public void AddToEmployees(Employee employee) {
+    public void addToEmployees(Employee employee) {
         employees.add(employee);
     }
 
     /**
-     * returns list of employees at this transit company
-     * @return a List of Employees
+     * Returns the list of all employees.
+     *
+     * @return The list of all Employee objects.
      */
-    public List<Employee> GetEmployeeList() {
+    public List<Employee> getEmployeeList() {
         return employees;
     }
 

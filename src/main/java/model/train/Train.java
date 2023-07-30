@@ -36,7 +36,6 @@ public class Train {
     private final TransitTracker transitTracker;
     private final List<Passenger> passengerList = new ArrayList<>();
     private final int capacity;
-    private final Direction direction;
     private Status status = Status.OUT_OF_SERVICE;
     private TrainPosition position;
     private final Map<TrainJob, Employee> staff = new HashMap<>();
@@ -48,11 +47,10 @@ public class Train {
      *  @param position the position of this train
      *  @param capacity the capacity of this train
      */
-    public Train(TransitTracker transitTracker, Direction direction, TrainPosition position, int capacity) {
+    public Train(TransitTracker transitTracker, TrainPosition position, int capacity) {
         this.transitTracker = transitTracker;
         this.position = position;
         this.capacity = capacity;
-        this.direction = direction;
     }
 
     /**
@@ -145,14 +143,6 @@ public class Train {
      */
     protected void setPosition(TrainPosition position) {
         this.position = position;
-    }
-
-    /**
-     *  Get the direction of this train.
-     *  @return the direction of this train
-     */
-    public Direction getDirection() {
-        return direction;
     }
 
     /**
