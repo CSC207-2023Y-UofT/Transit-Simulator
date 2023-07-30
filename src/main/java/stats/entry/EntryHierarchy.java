@@ -16,26 +16,23 @@ public class EntryHierarchy {
         if (mappedClasses.contains(entryClass)) return;
         mappedClasses.add(entryClass);
 
-        List<Class<?>> superclasses = new ArrayList<>(List.of(entryClass.getInterfaces()));
-        superclasses.removeIf(c -> !StatEntry.class.isAssignableFrom(c));
+        List<Class<?>> parents = new ArrayList<>(List.of(entryClass.getInterfaces()));
+        parents.add(entryClass.getSuperclass());
+        parents.removeIf(Objects::isNull);
+        parents.removeIf(c -> !StatEntry.class.isAssignableFrom(c));
 
-        for (Class<?> superclass : superclasses) {
+        for (Class<?> inter : parents) {
 
             // Safe cast
-            Class<? extends StatEntry> asSubclass = superclass.asSubclass(StatEntry.class);
+            Class<? extends StatEntry> interAsStatEntry = inter.asSubclass(StatEntry.class);
 
-            Set<Class<? extends StatEntry>> existing = hierarchy.getOrDefault(superclass, new HashSet<>());
+            Set<Class<? extends StatEntry>> existing = hierarchy.getOrDefault(inter, new HashSet<>());
             existing.add(entryClass);
-            hierarchy.put(asSubclass, existing);
+            hierarchy.put(interAsStatEntry, existing);
 
-            map(asSubclass);
+            map(interAsStatEntry);
         }
 
-        Class<?> superclass = entryClass.getSuperclass();
-        if (superclass != null && StatEntry.class.isAssignableFrom(superclass)) {
-            // Safe cast
-            map(superclass.asSubclass(StatEntry.class));
-        }
     }
 
     public <T extends StatEntry> List<Class<? extends T>> getLeafClasses(Class<T> entryClass) {
@@ -47,6 +44,7 @@ public class EntryHierarchy {
 
         List<Class<? extends StatEntry>> pool = new ArrayList<>(List.of(entryClass));
         for (int i = 0; i < pool.size(); i++) {
+
             Class<? extends StatEntry> entry = pool.get(i);
 
             pool.addAll(getChildren(entry));

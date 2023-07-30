@@ -19,6 +19,7 @@ class EntryHierarchyTest {
         EntryHierarchy hierarchy = new EntryHierarchy();
         hierarchy.map(TestSubEntryImpl2.class);
         List<Class<? extends StatEntry>> all = hierarchy.getLeafClasses(StatEntry.class);
+        System.out.println(all);
         assertEquals(2, all.size());
     }
 }
