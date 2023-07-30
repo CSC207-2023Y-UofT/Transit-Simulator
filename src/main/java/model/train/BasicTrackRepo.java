@@ -1,7 +1,7 @@
 package model.train;
 
 import model.train.track.TrackSegment;
-import model.util.Preconditions;
+import util.Preconditions;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,6 +25,7 @@ public class BasicTrackRepo implements TrackRepo {
     @Override
     public void addTrack(TrackSegment segment) {
         Preconditions.checkArgument(!tracks.containsKey(segment.getId()), "Track already exists");
+        Preconditions.checkArgument(segment.getRepo() == this, "Track belongs to another repo");
         tracks.put(segment.getId(), segment);
     }
 }
