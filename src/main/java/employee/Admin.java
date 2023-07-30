@@ -5,16 +5,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Admin class extends the Employee class.
+ * It represents an administrative employee who has the authority to manage, pay, and assign other employees to lines.
+ * The Admin employee earns four times the base monthly salary of a standard Employee.
+ */
 public class Admin extends Employee {
 
-    Map<Integer, List<Employee>> lineToStaff = new HashMap<>();
+    /**
+     * A mapping of line numbers to the list of Employees assigned to each line.
+     */
+    private Map<Integer, List<Employee>> lineToStaff = new HashMap<>();
 
+    /**
+     * Constructs a new Admin object with the given employee number.
+     *
+     * @param num The unique employee number.
+     */
     public Admin(int num) {
         super(num);
     }
 
     /**
-     * returns what this employee object is being paid
+     * Returns the monthly salary of this Admin, which is four times the base salary.
+     *
+     * @return The monthly salary of this Admin.
      */
     @Override
     public double getMonthlySalary() {
@@ -22,8 +37,9 @@ public class Admin extends Employee {
     }
 
     /**
-     * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
-     * @param isPaid is a boolean
+     * Sets the payment status of this Admin.
+     *
+     * @param isPaid The new payment status. True if the Admin has been paid; otherwise false.
      */
     @Override
     public void setPaid(boolean isPaid) {
@@ -31,8 +47,9 @@ public class Admin extends Employee {
     }
 
     /**
-     * returns whether this TrainOperator object has been paid yet
-     * @return a boolean
+     * Returns the payment status of this Admin.
+     *
+     * @return True if the Admin has been paid; otherwise false.
      */
     @Override
     boolean getPaid() {
@@ -40,31 +57,30 @@ public class Admin extends Employee {
     }
 
     /**
-     * pays inferior employees
-     * @param employee is an Employee
+     * Pays the specified employee, changing their payment status to true.
+     *
+     * @param employee The Employee to be paid.
      */
     public void payEmployee(Employee employee) {
         employee.setPaid(true);
     }
 
-
     /**
-
-     * add the employee object to the specified line
-     * @param employee is an Employee
-     * @param line is an Integer
+     * Assigns the specified employee to the specified line.
+     *
+     * @param line The line number to which the employee is to be assigned.
+     * @param employee The Employee to be assigned.
      */
     public void addEmployeeToLine(Integer line, Employee employee) {
-
         List<Employee> curr = lineToStaff.computeIfAbsent(line, ArrayList::new);
         curr.add(employee);
     }
 
-
     /**
-     * returns the line that the employee is assigned to
-     * @param employee is an Employee
-     * @return line
+     * Returns the line number to which the specified employee is assigned, or null if the employee is not assigned.
+     *
+     * @param employee The Employee whose assignment is to be checked.
+     * @return The line number to which the employee is assigned, or null if the employee is not assigned.
      */
     public Integer checkLine(Employee employee) {
         for (Integer key : lineToStaff.keySet()) {
@@ -74,4 +90,5 @@ public class Admin extends Employee {
         }
         return null;
     }
+
 }

@@ -11,14 +11,6 @@ public class TrainOperator extends Employee{
     }
 
     /**
-     * returns what this employee object is being paid
-     */
-    @Override
-    public double getMonthlySalary() {
-        return super.getMonthlySalary();
-    }
-
-    /**
      * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
      * @param isPaid is a boolean
      */
