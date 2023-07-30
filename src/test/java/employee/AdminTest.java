@@ -49,10 +49,11 @@ public class AdminTest {
 
     @Test
     public void testAddEmployeeToLine() {
+        admin.clearLineToStaff();
         admin.addEmployeeToLine(1, employee1);
         admin.addEmployeeToLine(1, employee2);
 
-        List<Employee> employeesOnLine1 = admin.lineToStaff.get(1);
+        List<Employee> employeesOnLine1 = admin.getLineToStaff().get(1);
         assertNotNull(employeesOnLine1);
         assertEquals(2, employeesOnLine1.size());
         assertTrue(employeesOnLine1.contains(employee1));
@@ -69,5 +70,26 @@ public class AdminTest {
 
         assertEquals(Integer.valueOf(1), lineForEmployee1);
         assertEquals(Integer.valueOf(2), lineForEmployee2);
+    }
+
+    @Test
+    public void testClearLineToStaff() {
+        // Add employees to lines
+        admin.addEmployeeToLine(1, employee1);
+        admin.addEmployeeToLine(2, employee2);
+        admin.addEmployeeToLine(1, employee2);
+
+        // Verify that the lines are not empty before clearing
+        assertFalse(admin.getLineToStaff().isEmpty());
+        assertNotNull(admin.getLineToStaff().get(1));
+        assertNotNull(admin.getLineToStaff().get(2));
+
+        // Clear the lineToStaff mapping
+        admin.clearLineToStaff();
+
+        // Verify that the lines are empty after clearing
+        assertTrue(admin.getLineToStaff().isEmpty());
+        assertNull(admin.getLineToStaff().get(1));
+        assertNull(admin.getLineToStaff().get(2));
     }
 }
