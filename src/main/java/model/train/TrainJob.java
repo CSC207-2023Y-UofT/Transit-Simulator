@@ -1,6 +1,6 @@
 package model.train;
 
 public enum TrainJob {
-    CONDUCTOR,
+    OPERATOR,
     ENGINEER
 }
