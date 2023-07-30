@@ -7,15 +7,34 @@ import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
 import org.jetbrains.annotations.NotNull;
 
-
 import java.util.*;
 
+/**
+ * Represents a line profile for a Node in the transit system.
+ * This class is responsible for managing all the TrackSegments that are attached to a specific Node and Line.
+ */
 public class NodeLineProfile {
+
+    /**
+     * The Node object this profile is associated with.
+     */
     private final Node node;
+
+    /**
+     * The line number for this profile.
+     */
     private final int lineNumber;
 
+    /**
+     * Map of TrackSegments associated with this profile, keyed by direction.
+     */
     private final Map<Direction, TrackSegment> tracks = new HashMap<>();
 
+    /**
+     * Constructs a NodeLineProfile for the given Node and line number.
+     * @param node the Node object
+     * @param lineNumber the line number
+     */
     public NodeLineProfile(Node node, int lineNumber) {
         this.node = node;
         this.lineNumber = lineNumber;
@@ -35,21 +54,39 @@ public class NodeLineProfile {
         }
 
         tracks.values().forEach(trackRepo::addTrack);
-
     }
 
+    /**
+     * Returns the line number for this profile.
+     * @return an int representing the line number
+     */
     public int getLineNumber() {
         return lineNumber;
     }
 
+    /**
+     * Returns the Node this profile is associated with.
+     * @return the Node object
+     */
     public @NotNull Node getNode() {
         return node;
     }
 
+    /**
+     * Returns the TrackSegment that corresponds to a given direction.
+     * @param direction the direction of the track
+     * @return the corresponding TrackSegment
+     */
     public @NotNull TrackSegment getTrack(Direction direction) {
         return tracks.get(direction);
     }
 
+    /**
+     * Returns a list of TrainArrival objects for the next arriving trains in the given direction.
+     * @param direction the direction to check for arriving trains
+     * @param numTrains the number of arriving trains to return
+     * @return a List of TrainArrival objects
+     */
     public List<TrainArrival> nextArrivals(Direction direction, int numTrains) {
         List<TrackSegment> trackSegments = getTrack(direction)
                 .getNextTrackSegments(direction.opposite());
@@ -75,9 +112,9 @@ public class NodeLineProfile {
 
             TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
             arrivals.add(arrival);
-
         }
 
         return arrivals;
     }
+
 }
