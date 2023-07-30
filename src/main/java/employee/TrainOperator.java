@@ -1,5 +1,7 @@
 package employee;
 
+import employee.Employee;
+
 public class TrainOperator extends Employee{
 
 

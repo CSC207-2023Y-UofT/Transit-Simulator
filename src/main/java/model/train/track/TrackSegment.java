@@ -3,7 +3,7 @@ package model.train.track;
 import model.Direction;
 import model.train.TrackRepo;
 import model.train.Train;
-import model.util.Preconditions;
+import util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

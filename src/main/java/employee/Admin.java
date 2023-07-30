@@ -40,6 +40,7 @@ public class Admin extends Employee {
 
 
     /**
+
      * add the employee object to the specified line
      * @param employee is an Employee
      * @param line is an Integer
