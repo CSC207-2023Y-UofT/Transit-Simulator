@@ -1,5 +1,6 @@
 package stats.entry;
 
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
@@ -47,14 +48,14 @@ public class EntryHierarchy {
         List<Class<? extends StatEntry>> pool = new ArrayList<>(List.of(entryClass));
         for (int i = 0; i < pool.size(); i++) {
             Class<? extends StatEntry> entry = pool.get(i);
-            Set<Class<? extends StatEntry>> children = getChildren(entry);
 
-            if (children.isEmpty()) {
-                continue; // Leaf encountered, leave it in there
-            }
+            pool.addAll(getChildren(entry));
 
-            // Not a leaf, remove it and add its children
-            pool.addAll(children);
+            boolean remove = Modifier.isAbstract(entry.getModifiers());
+            remove |= Modifier.isInterface(entry.getModifiers());
+
+            if (!remove) continue;
+
             pool.remove(i);
             i--;
         }

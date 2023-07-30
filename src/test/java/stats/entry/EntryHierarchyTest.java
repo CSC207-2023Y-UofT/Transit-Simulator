@@ -12,12 +12,12 @@ class EntryHierarchyTest {
     public interface TestSubEntry extends TestEntry {}
     public class TestEntryImpl implements TestEntry {}
     public class TestSubEntryImpl implements TestSubEntry {}
+    public class TestSubEntryImpl2 extends TestEntryImpl {}
 
     @Test
     public void testHierarchy() {
         EntryHierarchy hierarchy = new EntryHierarchy();
-        hierarchy.map(TestSubEntry.class);
-        hierarchy.map(TestEntry.class);
+        hierarchy.map(TestSubEntryImpl2.class);
         List<Class<? extends StatEntry>> all = hierarchy.getLeafClasses(StatEntry.class);
         assertEquals(2, all.size());
     }
