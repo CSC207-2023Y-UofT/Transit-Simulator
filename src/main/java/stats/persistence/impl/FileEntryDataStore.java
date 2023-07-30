@@ -1,5 +1,6 @@
 package stats.persistence.impl;
 
+import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 import stats.persistence.StatEntryDataStore;
 
@@ -61,6 +62,50 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
             return castedEntries;
         } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void storeHierarchy(EntryHierarchy hierarchy) {
+        List<Class<? extends StatEntry>> leafClasses = hierarchy.getAllLeafClasses();
+        List<String> classNames = new ArrayList<>();
+        for (Class<? extends StatEntry> leafClass : leafClasses) {
+            classNames.add(leafClass.getName());
+        }
+
+        File file = new File(directory, "hierarchy-leaves.txt");
+        try {
+            Files.write(file.toPath(), classNames);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public EntryHierarchy retrieveHierarchy() {
+        File file = new File(directory, "hierarchy-leaves.txt");
+        if (!file.exists()) {
+            return null;
+        }
+        try {
+            List<String> classNames = Files.readAllLines(file.toPath());
+
+            List<Class<? extends StatEntry>> classes = new ArrayList<>();
+            for (String className : classNames) {
+                try {
+                    classes.add(Class.forName(className).asSubclass(StatEntry.class));
+                } catch (ClassNotFoundException | ClassCastException e) {
+                    // Ignored, the class was removed. This doesn't matter.
+                }
+            }
+
+            EntryHierarchy hierarchy = new EntryHierarchy();
+            classes.forEach(hierarchy::map);
+            return hierarchy;
+
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

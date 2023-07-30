@@ -1,6 +1,7 @@
 package stats.persistence;
 
 import stats.aggregator.StatAggregator;
+import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 
 import java.util.*;
@@ -14,6 +15,9 @@ public class StatDataController {
     public StatDataController(StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
         this.entryDataStore = entryDataStore;
         this.aggregateDataStore = aggregateDataStore;
+
+        EntryHierarchy hierarchy = entryDataStore.retrieveHierarchy();
+        hierarchy.getAllLeafClasses().forEach(StatEntry.HIERARCHY::map);
     }
 
     public StatEntryDataStore getEntryDataStore() {
@@ -25,7 +29,10 @@ public class StatDataController {
     }
 
     public void record(StatEntry entry) {
+
         Class<? extends StatEntry> clazz = entry.getClass(); // Will always be a concrete class
+        StatEntry.HIERARCHY.map(clazz);
+
         List<StatEntry> list = entries.getOrDefault(clazz, new ArrayList<>());
         list.add(entry);
         entries.put(clazz, list);
