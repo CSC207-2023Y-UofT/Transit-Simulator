@@ -2,6 +2,7 @@ package stats.aggregator;
 
 import org.junit.jupiter.api.Test;
 import stats.aggregate.SingletonAggregate;
+import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.entry.impl.ExpenseStat;
 import stats.entry.impl.MaintenanceStat;
@@ -30,12 +31,12 @@ class RevenueAggregatorTest {
 
         ExpenseAggregator expenseAggregator = new ExpenseAggregator();
 
-        List<SingletonAggregate> expenseAggregates = List.of(
-                new SingletonAggregate(1.0),
-                new SingletonAggregate(1000.0)
+        List<ExpenseAggregate> expenseAggregates = List.of(
+                new ExpenseAggregate(1.0),
+                new ExpenseAggregate(1000.0)
         );
 
-        SingletonAggregate singletonAggregate = expenseAggregator.aggregateExisting(expenseAggregates);
+        ExpenseAggregate singletonAggregate = expenseAggregator.aggregateExisting(expenseAggregates);
 
         assertEquals(1001.0, singletonAggregate.getTotal());
     }

@@ -44,8 +44,8 @@ public abstract class SingletonAggregator<E extends StatEntry, A extends Singlet
 
         A accumulator = aggregates.get(0);
 
-        for (A aggregate : aggregates) {
-            accumulator = aggregator.apply(accumulator, aggregate);
+        for (int i = 1; i < aggregates.size(); i++) {
+            accumulator = aggregator.apply(accumulator, aggregates.get(i));
         }
 
         return accumulator;
