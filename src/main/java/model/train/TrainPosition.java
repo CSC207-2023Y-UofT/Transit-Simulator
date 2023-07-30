@@ -2,7 +2,7 @@ package model.train;
 
 import model.Direction;
 import model.train.track.TrackSegment;
-import model.util.Preconditions;
+import util.Preconditions;
 
 import java.util.Objects;
 import java.util.Optional;
