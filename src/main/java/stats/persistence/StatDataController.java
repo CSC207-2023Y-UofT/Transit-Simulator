@@ -4,6 +4,7 @@ import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 
+import java.io.Serializable;
 import java.util.*;
 
 public class StatDataController {
@@ -63,7 +64,7 @@ public class StatDataController {
         return aggregateDataStore.retrieve(entryClass, aggregateClass, index);
     }
 
-    public <E extends StatEntry, A> A getOrAggregate(StatAggregator<E, A> aggregator, long index) {
+    public <E extends StatEntry, A extends Serializable> A getOrAggregate(StatAggregator<E, A> aggregator, long index) {
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
 

@@ -1,5 +1,7 @@
 package stats.entry.impl;
 
-public interface RevenueStat {
+import stats.entry.StatEntry;
+
+public interface RevenueStat extends StatEntry {
     double getRevenue();
 }
