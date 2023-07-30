@@ -39,6 +39,7 @@ public class TrainEngineer extends Employee {
     /**
      * returns Line that the current instance of TrainOperator is assigned to, must ask an admin
      * @param admin is an Admin
+     * @return an Integer
      */
     public Integer checkTrainOperatorLine(Admin admin) {
         return admin.checkLine(this);

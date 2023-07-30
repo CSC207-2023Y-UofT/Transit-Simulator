@@ -24,6 +24,7 @@ public abstract class Employee {
 
     /**
      * returns what an employee object is being paid
+     * @return a double
      */
     public double getMonthlySalary() {
         return BASE_SALARY;

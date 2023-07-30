@@ -15,6 +15,7 @@ public class Admin extends Employee {
 
     /**
      * returns what this employee object is being paid
+     * @return a double
      */
     @Override
     public double getMonthlySalary() {
@@ -64,7 +65,7 @@ public class Admin extends Employee {
     /**
      * returns the line that the employee is assigned to
      * @param employee is an Employee
-     * @return line
+     * @return line which is an Integer
      */
     public Integer checkLine(Employee employee) {
         for (Integer key : lineToStaff.keySet()) {
