@@ -1,7 +1,7 @@
 package stats.aggregator;
 
 import org.junit.jupiter.api.Test;
-import stats.aggregate.DoubleAggregate;
+import stats.aggregate.SingletonAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.entry.impl.ExpenseStat;
 import stats.entry.impl.MaintenanceStat;
@@ -21,8 +21,8 @@ class RevenueAggregatorTest {
                 new MaintenanceStat(1000.0)
         );
 
-        DoubleAggregate doubleAggregate = expenseAggregator.aggregate(expenseStats);
-        assertEquals(1001.0, doubleAggregate.getTotal());
+        SingletonAggregate singletonAggregate = expenseAggregator.aggregate(expenseStats);
+        assertEquals(1001.0, singletonAggregate.getTotal());
     }
 
     @Test
@@ -30,14 +30,14 @@ class RevenueAggregatorTest {
 
         ExpenseAggregator expenseAggregator = new ExpenseAggregator();
 
-        List<DoubleAggregate> expenseAggregates = List.of(
-                new DoubleAggregate(1.0),
-                new DoubleAggregate(1000.0)
+        List<SingletonAggregate> expenseAggregates = List.of(
+                new SingletonAggregate(1.0),
+                new SingletonAggregate(1000.0)
         );
 
-        DoubleAggregate doubleAggregate = expenseAggregator.aggregateExisting(expenseAggregates);
+        SingletonAggregate singletonAggregate = expenseAggregator.aggregateExisting(expenseAggregates);
 
-        assertEquals(1001.0, doubleAggregate.getTotal());
+        assertEquals(1001.0, singletonAggregate.getTotal());
     }
 
 }

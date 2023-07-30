@@ -64,17 +64,20 @@ public class StatDataController {
         return aggregateDataStore.retrieve(entryClass, aggregateClass, index);
     }
 
-    public <E extends StatEntry, A extends Serializable> A getOrAggregate(StatAggregator<E, A> aggregator, long index) {
+    public <E extends StatEntry, A extends Serializable> Optional<A> getOrAggregate(StatAggregator<E, A> aggregator, long index) {
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
 
         A aggregate = getAggregate(entryClass, aggregateClass, index).orElse(null);
         if (aggregate == null) {
+
             List<E> entries = getEntries(entryClass, index);
+            if (entries.isEmpty()) return Optional.empty(); // No data
+
             aggregate = aggregator.aggregate(entries);
             aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
         }
 
-        return aggregate;
+        return Optional.ofNullable(aggregate);
     }
 }
