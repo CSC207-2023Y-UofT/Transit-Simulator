@@ -1,24 +1,11 @@
 package ticket;
 
-import model.node.Station;
-
-public class ChildTicket extends Ticket {
-    private static int MAX_AGE = 15;
+public class ChildTicket extends AbstractNormalTicket {
+    private static final int MAX_AGE = 15;
     public static long TICKET_LIFETIME = 1000 * 60 * 60 * 24L; // 1 day
 
 
     public ChildTicket() {
-        super(System.currentTimeMillis() + TICKET_LIFETIME);
-    }
-
-    @Override
-    public String getTypeId() {
-        return "Child";
-    }
-
-    @Override
-    public double getPrice() {
-        return 2.40;
+        super("Child", 2.40, TICKET_LIFETIME);
     }
 }
-
