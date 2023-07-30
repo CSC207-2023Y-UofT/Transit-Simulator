@@ -28,6 +28,15 @@ public class TrainOperator extends Employee{
     }
 
     /**
+     * returns whether this TrainOperator object has been paid yet
+     * @return a boolean
+     */
+    @Override
+    public boolean getPaid() {
+        return this.isPaid;
+    }
+
+    /**
      * returns Line that the current instance of TrainOperator is assigned to, must ask an admin
      * @param admin is an Admin
      */

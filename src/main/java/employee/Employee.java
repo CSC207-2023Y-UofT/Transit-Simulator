@@ -17,6 +17,12 @@ public abstract class Employee {
     abstract void setPaid(boolean isPaid);
 
     /**
+     * returns whether this employee object has been paid yet
+     * @return a boolean
+     */
+    abstract boolean getPaid();
+
+    /**
      * returns what an employee object is being paid
      */
     public double getMonthlySalary() {
