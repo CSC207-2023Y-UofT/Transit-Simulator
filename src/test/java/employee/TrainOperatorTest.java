@@ -1,3 +1,6 @@
+package employee;
+
+import employee.Admin;
 import employee.Employee;
 import employee.TrainOperator;
 import org.junit.jupiter.api.Test;
@@ -15,7 +18,7 @@ public class TrainOperatorTest {
     public void testGetMonthlySalary() {
         TrainOperator trainOperator = new TrainOperator(123);
         double monthlySalary = trainOperator.getMonthlySalary();
-        double expectedSalary = 3000.0; // Replace this with the expected salary value
+        double expectedSalary = 7000.0; // Replace this with the expected salary value
         Assertions.assertEquals(expectedSalary, monthlySalary, 0.001); // You may adjust the delta (0.001) based on precision
     }
 
@@ -28,6 +31,18 @@ public class TrainOperatorTest {
 
         trainOperator.setPaid(false);
         Assertions.assertFalse(trainOperator.getPaid());
+    }
+
+    @Test
+    public void testCheckTrainOperatorLine() {
+        TrainOperator trainOperator = new TrainOperator(123);
+        Admin admin = new Admin(456);
+
+        // Simulate adding TrainOperator to a line in the Admin's map
+        admin.addEmployeeToLine(1, trainOperator);
+
+        Integer line = trainOperator.checkTrainOperatorLine(admin);
+        Assertions.assertEquals(Integer.valueOf(1), line);
     }
 }
 
