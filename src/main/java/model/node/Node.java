@@ -1,11 +1,7 @@
 package model.node;
 
 import util.Preconditions;
-
 import java.util.*;
-
-
-
 
 public abstract class Node {
     private final NodeTracker tracker;

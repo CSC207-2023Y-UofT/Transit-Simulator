@@ -1,25 +1,25 @@
 package ticket;
 
-import model.node.Station;
+/**
+ * StudentTicket is a concrete implementation of the AbstractNormalTicket class.
+ * It represents a normal ticket that is specifically for students.
+ * This ticket has a predetermined type ("Student"), price (2.35), and a lifetime (1 day).
+ *
+ * @see AbstractNormalTicket
+ */
+public class StudentTicket extends AbstractNormalTicket {
 
-import java.util.Objects;
-import java.util.Scanner;
+    /**
+     * The lifetime of the ticket in milliseconds.
+     * This is a constant value representing 1 day (24 hours).
+     */
+    public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L;
 
-public class StudentTicket extends Ticket{
-
-    public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L; // 1 day
-
+    /**
+     * Constructs a new StudentTicket object with the predetermined type, price and ticket lifetime.
+     */
     public StudentTicket() {
-        super(System.currentTimeMillis() + TICKET_LIFETIME);
+        super("Student", 2.35, TICKET_LIFETIME);
     }
 
-    @Override
-    public double getPrice() {
-        return 2.35;
-    }
-
-    @Override
-    public String getTypeId(){
-        return "Student";
-    }
 }
