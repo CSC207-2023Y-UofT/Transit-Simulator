@@ -68,7 +68,7 @@ public class Admin extends Employee {
     /**
      * Assigns the specified employee to the specified line.
      *
-     * @param line The line number to which the employee is to be assigned.
+     * @param line     The line number to which the employee is to be assigned.
      * @param employee The Employee to be assigned.
      */
     public void addEmployeeToLine(Integer line, Employee employee) {
@@ -80,9 +80,9 @@ public class Admin extends Employee {
      * Returns the line number to which the specified employee is assigned, or null if the employee is not assigned.
      *
      * @param employee The Employee whose assignment is to be checked.
+     * @param employee is an Employee
      * @return The line number to which the employee is assigned, or null if the employee is not assigned.
      * returns the line that the employee is assigned to
-     * @param employee is an Employee
      * @return line which is an Integer
      */
     public Integer checkLine(Employee employee) {
@@ -94,4 +94,21 @@ public class Admin extends Employee {
         return null;
     }
 
+
+    /**
+     * returns lineToStaff which is a HashMap of Lines to List of Employees
+     *
+     * @return a HashMap of Lines to List of Employees
+     */
+    public Map<Integer, List<Employee>> getLineToStaff() {
+        return lineToStaff;
+    }
+
+    /**
+     * removes all Employees from the lineToStaff HashMap
+     */
+    public void clearLineToStaff() {
+        lineToStaff.clear();
+
+    }
 }
