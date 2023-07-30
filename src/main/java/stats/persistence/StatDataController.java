@@ -38,7 +38,8 @@ public class StatDataController {
         entries.put(clazz, list);
     }
 
-    public void store(long index) {
+    public void flush(long index) {
+        entryDataStore.storeHierarchy(StatEntry.HIERARCHY);
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
             entryDataStore.store(index, entry.getKey(), entry.getValue());
         }
@@ -47,11 +48,11 @@ public class StatDataController {
 
     public <E extends StatEntry> List<E> getEntries(Class<E> entryClass, long index) {
 
-        List<Class<? extends E>> baseClasses = StatEntry.HIERARCHY.getLeafClasses(entryClass);
+        List<Class<? extends E>> concreteClasses = StatEntry.HIERARCHY.getInheritors(entryClass);
 
         List<E> entries = new ArrayList<>();
 
-        for (Class<? extends E> baseClass : baseClasses) {
+        for (Class<? extends E> baseClass : concreteClasses) {
             entries.addAll(entryDataStore.retrieve(baseClass, index));
         }
 

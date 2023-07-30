@@ -35,7 +35,7 @@ public class EntryHierarchy {
 
     }
 
-    public <T extends StatEntry> List<Class<? extends T>> getLeafClasses(Class<T> entryClass) {
+    public <T extends StatEntry> List<Class<? extends T>> getInheritors(Class<T> entryClass) {
         map(entryClass);
 
         if (!hierarchy.containsKey(entryClass)) {
@@ -75,6 +75,6 @@ public class EntryHierarchy {
     }
 
     public List<Class<? extends StatEntry>> getAllLeafClasses() {
-        return getLeafClasses(StatEntry.class);
+        return getInheritors(StatEntry.class);
     }
 }

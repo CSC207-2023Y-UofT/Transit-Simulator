@@ -1,6 +1,8 @@
 package stats.aggregator;
 
-public class ExpenseAggregate {
+import java.io.Serializable;
+
+public class ExpenseAggregate implements Serializable {
     private final double expensesTotal;
 
     public ExpenseAggregate(double expensesTotal) {

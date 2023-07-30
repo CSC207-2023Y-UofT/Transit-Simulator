@@ -6,6 +6,7 @@ import stats.persistence.StatEntryDataStore;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     private final File directory;
 
     public FileEntryDataStore(File directory) {
+        directory.mkdirs();
         this.directory = directory;
     }
 
@@ -32,7 +34,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
         try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
             oos.writeObject(entries);
             byte[] bytes = baos.toByteArray();
-            Files.write(file.toPath(), bytes);
+            Files.write(file.toPath(), bytes, StandardOpenOption.CREATE);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +78,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
         File file = new File(directory, "hierarchy-leaves.txt");
         try {
-            Files.write(file.toPath(), classNames);
+            Files.write(file.toPath(), classNames, StandardOpenOption.CREATE);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -87,7 +89,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     public EntryHierarchy retrieveHierarchy() {
         File file = new File(directory, "hierarchy-leaves.txt");
         if (!file.exists()) {
-            return null;
+            return new EntryHierarchy();
         }
         try {
             List<String> classNames = Files.readAllLines(file.toPath());

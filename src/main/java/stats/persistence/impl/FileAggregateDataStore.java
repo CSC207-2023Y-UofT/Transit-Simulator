@@ -5,6 +5,8 @@ import stats.persistence.StatAggregateDataStore;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 
 public class FileAggregateDataStore implements StatAggregateDataStore {
@@ -12,6 +14,7 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
     private final File directory;
 
     public FileAggregateDataStore(File directory) {
+        directory.mkdirs();
         this.directory = directory;
     }
 

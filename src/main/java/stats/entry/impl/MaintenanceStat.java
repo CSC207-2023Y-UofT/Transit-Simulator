@@ -6,6 +6,6 @@ package stats.entry.impl;
 public class MaintenanceStat implements ExpenseStat {
     @Override
     public double getExpense() {
-        return 0;
+        return 1;
     }
 }
