@@ -7,14 +7,14 @@ import java.util.Map;
 
 public class Admin extends Employee {
 
-    Map<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
+    Map<Integer, List<Employee>> lineToStaff = new HashMap<>();
 
     public Admin(int num) {
         super(num);
     }
 
     /**
-     * returns what this employee obejct is being paid
+     * returns what this employee object is being paid
      */
     @Override
     public double getMonthlySalary() {
