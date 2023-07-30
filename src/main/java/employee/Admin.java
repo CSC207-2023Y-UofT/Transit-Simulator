@@ -81,6 +81,9 @@ public class Admin extends Employee {
      *
      * @param employee The Employee whose assignment is to be checked.
      * @return The line number to which the employee is assigned, or null if the employee is not assigned.
+     * returns the line that the employee is assigned to
+     * @param employee is an Employee
+     * @return line which is an Integer
      */
     public Integer checkLine(Employee employee) {
         for (Integer key : lineToStaff.keySet()) {
