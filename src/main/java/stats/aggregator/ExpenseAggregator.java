@@ -4,7 +4,7 @@ import stats.entry.impl.ExpenseStat;
 
 import java.util.List;
 
-public class ExampleExpenseAggregator extends StatAggregator<ExpenseStat, ExpenseAggregate> {
+public class ExpenseAggregator extends StatAggregator<ExpenseStat, ExpenseAggregate> {
     @Override
     public Class<ExpenseStat> getEntryClass() {
         return ExpenseStat.class;

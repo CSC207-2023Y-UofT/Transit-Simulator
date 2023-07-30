@@ -2,9 +2,8 @@ package stats.persistence;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import stats.aggregator.ExampleExpenseAggregator;
+import stats.aggregator.ExpenseAggregator;
 import stats.aggregator.ExpenseAggregate;
-import stats.entry.StatEntry;
 import stats.entry.impl.MaintenanceStat;
 import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
@@ -37,7 +36,7 @@ class StatDataControllerTest {
 
     @Test
     void getAggregate() {
-        ExampleExpenseAggregator aggregator = new ExampleExpenseAggregator();
+        ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(List.of(new MaintenanceStat()));
         controller.getAggregateDataStore().store(0, MaintenanceStat.class, aggregate.getClass(), aggregate);
         ExpenseAggregate aggregate2 = controller.getAggregate(MaintenanceStat.class, ExpenseAggregate.class, 0)
@@ -54,7 +53,7 @@ class StatDataControllerTest {
         }
         controller.flush(1);
 
-        ExampleExpenseAggregator aggregator = new ExampleExpenseAggregator();
+        ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(controller, 1, 1);
 
         assertEquals(aggregate.getExpensesTotal(), 1000.0);
