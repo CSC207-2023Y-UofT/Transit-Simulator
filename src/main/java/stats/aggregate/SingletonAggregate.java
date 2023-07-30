@@ -9,7 +9,7 @@ public abstract class SingletonAggregate<T> implements Serializable {
         this.total = total;
     }
 
-    public T getTotal() {
+    public T getValue() {
         return total;
     }
 

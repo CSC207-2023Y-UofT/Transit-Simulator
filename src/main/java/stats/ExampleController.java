@@ -2,7 +2,6 @@ package stats;
 
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
-import stats.aggregate.SingletonAggregate;
 import stats.persistence.StatAggregateDataStore;
 import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
@@ -24,6 +23,6 @@ public class ExampleController {
     public double getExpenses(long beginTimeIndex, long endTimeIndex) {
         ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(dataController, beginTimeIndex, endTimeIndex).orElse(null);
-        return aggregate == null ? 0 : aggregate.getTotal();
+        return aggregate == null ? 0 : aggregate.getValue();
     }
 }

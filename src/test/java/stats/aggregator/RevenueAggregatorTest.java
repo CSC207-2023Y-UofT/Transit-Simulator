@@ -23,7 +23,7 @@ class RevenueAggregatorTest {
         );
 
         SingletonAggregate singletonAggregate = expenseAggregator.aggregate(expenseStats);
-        assertEquals(1001.0, singletonAggregate.getTotal());
+        assertEquals(1001.0, singletonAggregate.getValue());
     }
 
     @Test
@@ -38,7 +38,7 @@ class RevenueAggregatorTest {
 
         ExpenseAggregate singletonAggregate = expenseAggregator.aggregateExisting(expenseAggregates);
 
-        assertEquals(1001.0, singletonAggregate.getTotal());
+        assertEquals(1001.0, singletonAggregate.getValue());
     }
 
 }

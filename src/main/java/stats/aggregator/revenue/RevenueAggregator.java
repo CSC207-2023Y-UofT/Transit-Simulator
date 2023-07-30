@@ -11,6 +11,6 @@ public class RevenueAggregator extends SingletonAggregator<RevenueStat, RevenueA
         super(RevenueStat.class,
                 RevenueAggregate.class,
                 s -> new RevenueAggregate(s.getRevenue()),
-                (a1, a2) -> new RevenueAggregate(a1.getTotal() + a2.getTotal()));
+                (a1, a2) -> new RevenueAggregate(a1.getValue() + a2.getValue()));
     }
 }
