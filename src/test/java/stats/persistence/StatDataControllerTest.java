@@ -48,5 +48,15 @@ class StatDataControllerTest {
 
     @Test
     void getOrAggregate() {
+        controller.flush(0);
+        for (int i = 0; i < 1000; i++) {
+            controller.record(new MaintenanceStat());
+        }
+        controller.flush(1);
+
+        ExampleExpenseAggregator aggregator = new ExampleExpenseAggregator();
+        ExpenseAggregate aggregate = aggregator.aggregate(controller, 1, 1);
+
+        assertEquals(aggregate.getExpensesTotal(), 1000.0);
     }
 }
