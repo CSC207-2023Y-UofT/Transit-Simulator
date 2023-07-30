@@ -19,7 +19,7 @@ public class StudentTicket extends Ticket{
     }
 
     @Override
-    public String getType(){
+    public String getTypeId(){
         return "Student";
     }
 }

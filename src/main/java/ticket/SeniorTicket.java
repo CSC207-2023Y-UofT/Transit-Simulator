@@ -10,7 +10,7 @@ public class SeniorTicket extends Ticket {
     }
 
     @Override
-    public String getType() {
+    public String getTypeId() {
         return "Senior";
     }
 

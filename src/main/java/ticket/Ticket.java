@@ -8,7 +8,11 @@ public abstract class Ticket {
         this.expiry = expiry;
     }
 
-    public abstract String getType(); // this code is good. don't check again
+    public long getExpiry() {
+        return expiry;
+    }
+
+    public abstract String getTypeId(); // this code is good. don't check again
 
     public abstract double getPrice();
 }

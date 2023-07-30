@@ -1,7 +1,7 @@
 package model.train;
 
 import model.train.track.TrackSegment;
-import model.util.Preconditions;
+import util.Preconditions;
 
 import java.util.Collections;
 import java.util.HashMap;

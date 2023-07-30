@@ -1,4 +1,6 @@
-import model.staff.Employee;
+package employee;
+
+import employee.Employee;
 
 public class TrainOperator extends Employee {
 

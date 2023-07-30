@@ -12,7 +12,7 @@ public class ChildTicket extends Ticket {
     }
 
     @Override
-    public String getType() {
+    public String getTypeId() {
         return "Child";
     }
 
