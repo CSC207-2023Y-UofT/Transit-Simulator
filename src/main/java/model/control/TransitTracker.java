@@ -30,7 +30,6 @@ public class TransitTracker implements NodeTracker, TrainTracker {
      * Creates a train on the given track in the given direction with the given capacity.
      *
      * @param trackSegment The segment of the track where the train is to be created.
-     * @param direction The direction in which the train is going.
      * @param capacity The capacity of the train.
      * @return The created Train object.
      * @throws IllegalArgumentException if the track is not a valid track in this tracker's track repo.

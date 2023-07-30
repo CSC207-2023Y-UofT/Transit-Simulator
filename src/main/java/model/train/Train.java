@@ -43,7 +43,6 @@ public class Train {
     /**
      *  Creates a train on the given track in the given direction with the given capacity.
      *  @param transitTracker the transit tracker that this train is associated with
-     *  @param direction the direction that this train is travelling in
      *  @param position the position of this train
      *  @param capacity the capacity of this train
      */
