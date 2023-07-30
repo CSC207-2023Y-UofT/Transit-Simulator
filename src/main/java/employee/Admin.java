@@ -11,8 +11,8 @@ public class Admin extends Employee {
 
     Map<Integer, List<Employee>> lineToStaff = new HashMap<Integer, List<Employee>>();
 
-    public Admin(String lastName, int num) {
-        super(lastName, num);
+    public Admin(int num) {
+        super(num);
     }
 
     /**

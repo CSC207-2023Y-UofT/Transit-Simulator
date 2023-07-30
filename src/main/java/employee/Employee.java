@@ -3,12 +3,10 @@ package employee;
 public abstract class Employee {
     private static final double BASE_SALARY = 7000;
     private final int staffNumber;
-    private final String lastName;
 
     private boolean isPaid = false;
 
-    public Employee(String name, int id) {
-        this.lastName = name;
+    public Employee(int id) {
         this.staffNumber = id;
     }
 

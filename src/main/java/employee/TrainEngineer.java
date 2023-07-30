@@ -9,8 +9,8 @@ public class TrainEngineer extends Employee {
     private boolean isPaid = false;
 
 
-    public TrainEngineer(String name, int num) {
-        super(name, num);
+    public TrainEngineer(int num) {
+        super(num);
     }
 
     /**

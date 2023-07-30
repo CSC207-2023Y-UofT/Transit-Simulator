@@ -4,9 +4,8 @@ public class TrainOperator extends Employee{
 
     private boolean isPaid = false;
 
-
-    public TrainOperator(String lastName, int num) {
-        super(lastName, num);
+    public TrainOperator(int num) {
+        super(num);
 
     }
 
