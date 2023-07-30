@@ -8,6 +8,12 @@ package stats.aggregate;
  */
 public interface StatAggregate<A> {
 
+    /**
+     * Merges this aggregate with another aggregate of the same type.
+     * @param other The other aggregate to merge with.
+     * @return A new aggregate that is the result of merging this aggregate
+     * with the other aggregate.
+     */
     A merge(A other);
 
 }

@@ -8,6 +8,10 @@ import java.util.Map;
  * This class implements the {@link StatAggregate} interface for merging statistical aggregates.
  */
 public class IndexedStatAggregate implements StatAggregate<IndexedStatAggregate> {
+
+    /**
+     * The map of aggregates, where each entry is associated with a key.
+     */
     private final Map<String, BasicStatAggregate> aggregates;
 
     /**

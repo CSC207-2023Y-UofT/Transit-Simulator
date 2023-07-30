@@ -14,6 +14,9 @@ import java.util.function.Function;
  */
 public class BasicStatType<T> extends StatType<T, BasicStatAggregate> {
 
+    /**
+     * The function to transform data of type T to a Double value for aggregation.
+     */
     private final Function<T, Double> transform;
 
     /**

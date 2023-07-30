@@ -5,9 +5,25 @@ package stats.aggregate;
  * This class implements the {@link StatAggregate} interface for merging statistical aggregates.
  */
 public class BasicStatAggregate implements StatAggregate<BasicStatAggregate> {
+
+    /**
+     * The mean value of the data.
+     */
     private final double mean;
+
+    /**
+     * The minimum value of the data.
+     */
     private final double min;
+
+    /**
+     * The maximum value of the data.
+     */
     private final double max;
+
+    /**
+     * The count of data points.
+     */
     private final int count;
 
     /**

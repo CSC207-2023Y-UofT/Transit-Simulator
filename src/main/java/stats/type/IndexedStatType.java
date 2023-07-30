@@ -15,6 +15,9 @@ import java.util.function.Function;
  */
 public class IndexedStatType<T> extends StatType<T, IndexedStatAggregate> {
 
+    /**
+     * The function to transform data of type T to a Pair of String and Double values representing the index and data value, respectively.
+     */
     private final Function<T, Pair<String, Double>> transform;
 
     /**

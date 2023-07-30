@@ -32,4 +32,5 @@ public class TicketSaleStat {
     public double getRevenue() {
         return ticket.getPrice();
     }
+
 }

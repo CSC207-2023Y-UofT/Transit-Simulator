@@ -19,6 +19,9 @@ import java.util.List;
  */
 public class Stats {
 
+    /**
+     * The list of registered statistical types.
+     */
     private static final List<StatType<?, ?>> TYPES = new ArrayList<>();
 
     /**

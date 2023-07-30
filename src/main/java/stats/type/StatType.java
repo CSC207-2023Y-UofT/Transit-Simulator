@@ -12,7 +12,14 @@ import java.util.function.Function;
  */
 public abstract class StatType<T, A> {
 
+    /**
+     * The unique identifier for this statistical type.
+     */
     private final String identifier;
+
+    /**
+     * The human-readable name of this statistical type.
+     */
     private final String name;
 
     /**
@@ -66,7 +73,6 @@ public abstract class StatType<T, A> {
             long startMinute,
             long endMinute
     );
-
 
     /**
      * Chains this StatType with another StatType, producing a new chained StatType.

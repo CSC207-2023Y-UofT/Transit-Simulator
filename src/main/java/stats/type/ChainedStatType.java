@@ -11,8 +11,20 @@ import java.util.function.Function;
  * This class extends {@link StatType} and provides implementation for processing data and obtaining reports.
  */
 public class ChainedStatType<T, A, OT, OA> extends StatType<T, A> {
+
+    /**
+     * The first StatType to process data of type T and produce aggregated data of type A.
+     */
     private final StatType<T, A> wrapped;
+
+    /**
+     * The next StatType to process data of type OT (output of the first StatType) and produce aggregated data of type OA.
+     */
     private final StatType<OT, OA> next;
+
+    /**
+     * The function to transform data of type T to data of type OT for the next StatType.
+     */
     private final Function<T, OT> transform;
 
     /**
