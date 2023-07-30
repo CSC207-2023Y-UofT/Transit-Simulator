@@ -1,3 +1,5 @@
+package model;
+
 /**
  * The Direction enum represents the direction of movement along a track segment.
  * It defines two directions: FORWARD and BACKWARD.
