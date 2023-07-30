@@ -7,5 +7,7 @@ package stats.aggregate;
  *           same type as the implementing class.
  */
 public interface StatAggregate<A> {
+
     A merge(A other);
+
 }
