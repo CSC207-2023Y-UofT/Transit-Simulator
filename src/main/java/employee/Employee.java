@@ -17,13 +17,6 @@ public abstract class Employee {
     abstract void setPaid(boolean isPaid);
 
     /**
-     * returns the staffNumber of the employee
-     */
-    public int getStaffNumber() {
-        return staffNumber;
-    }
-
-    /**
      * returns what an employee object is being paid
      */
     public double getMonthlySalary() {

@@ -53,7 +53,7 @@ public class Admin extends Employee {
 
     /**
      * returns the line that the employee is assigned to
-     * @param employee
+     * @param employee is an Employee
      * @return line
      */
     public Integer checkLine(Employee employee) {
