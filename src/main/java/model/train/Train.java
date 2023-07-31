@@ -10,10 +10,15 @@ import util.Preconditions;
 
 import java.util.*;
 
+/**
+ * The Train class represents a train in a transportation system.
+ * It contains information about the train's status, position, passengers, staff, and associated transit tracker.
+ * Trains can move along tracks in both forward and backward directions and can carry passengers.
+ */
 public class Train {
 
     /**
-     * Either IN_SERVICE, SCHEDULED_MAINTENANCE, UNDER_MAINTENANCE or OUT_OF_SERVICE.
+     * Enum representing the possible statuses of a train.
      * <br>
 
      * IN_SERVICE:            Running properly.
@@ -33,34 +38,59 @@ public class Train {
         OUT_OF_SERVICE
     }
 
-    /** The length of a train. */
-    public static int LENGTH = 100;
-    /** The maximum speed of a train in m/s. This is around 115km/h. */
-    public static int MAX_SPEED = 32;
-    /** The time that a train will wait at a station in milliseconds; 20000 milliseconds = 20 seconds. */
-    public static long STATION_WAIT_TIME = 1000 * 20;
 
-    /** The transit tracker (the controller) that this train is associated with. */
-    private final TransitTracker transitTracker;
-    /** The list of passengers on this train. */
-    private final List<Passenger> passengerList = new ArrayList<>();
-    /** The capacity of this train. */
-    private final int capacity;
-    /** The status of this train. */
-    private Status status = Status.OUT_OF_SERVICE;
-    /** The position of this train. */
-    private TrainPosition position;
     /**
-     * The staff assigned to this train.
-     * HashMap mapping TrainJobs to Employees.
+     * The maximum length of the train in meters.
+     */
+    public static int LENGTH = 100;
+
+    /**
+     * The maximum speed of the train in meters per second. This is approximately 115 km/h.
+     */
+    public static int MAX_SPEED = 32;
+
+    /**
+     * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
+     */
+    public static long STATION_WAIT_TIME = 1000 * 20; // 20 seconds
+
+    /**
+     * The associated TransitTracker for this train.
+     */
+    private final TransitTracker transitTracker;
+
+    /**
+     * The set containing the list of passengers currently on this train.
+     */
+    private final Set<Passenger> passengerList = new HashSet<>();
+
+    /**
+     * The maximum capacity of this train, representing the maximum number of passengers it can carry.
+     */
+    private final int capacity;
+
+    /**
+     * The current status of this train (IN_SERVICE, SCHEDULED_MAINTENANCE, UNDER_MAINTENANCE, OUT_OF_SERVICE).
+     * Default status is OUT_OF_SERVICE.
+     */
+    private Status status = Status.OUT_OF_SERVICE;
+
+    /**
+     * The current position of this train represented by a TrainPosition object.
+     */
+    private TrainPosition position;
+
+    /**
+     * A mapping of TrainJobs to Employees assigned to this train.
      */
     private final Map<TrainJob, Employee> staff = new HashMap<>();
 
     /**
-     *  Creates a train on the given track in the given direction with the given capacity.
-     *  @param transitTracker the transit tracker that this train is associated with
-     *  @param position the position of this train
-     *  @param capacity the capacity of this train
+     * Creates a train associated with the given TransitTracker, positioned at the given TrainPosition, and with the given capacity.
+     *
+     * @param transitTracker The TransitTracker that this train is associated with.
+     * @param position The position of this train.
+     * @param capacity The capacity of this train.
      */
     public Train(TransitTracker transitTracker, TrainPosition position, int capacity) {
         this.transitTracker = transitTracker;
@@ -69,8 +99,9 @@ public class Train {
     }
 
     /**
-     *  Get a mapping of TrainJobs to Employees assigned to this train.
-     *  @return the staff assigned to this train
+     * Gets a mapping of TrainJobs to Employees assigned to this train.
+     *
+     * @return A map containing the TrainJobs as keys and the corresponding Employee objects as values.
      */
     public Map<TrainJob, Employee> getStaff() {
         return staff;
@@ -86,7 +117,7 @@ public class Train {
 
     /**
      *  Assign an employee to a job on this train.
-     *  @param job the job to assign the employee to
+     *  @param the TrainJob to assign the employee to
      *  @param employee the employee to assign to the job
      */
     public void setStaff(TrainJob job, Employee employee) {
@@ -95,42 +126,46 @@ public class Train {
 
     /**
      * Remove and return an employee from a job on this train.
-     * @param job the job to remove the employee from
+     * @param the TrainJob to remove the employee from
      * @return the employee if it was currently assigned to the TrainJob job
+
      */
     public Employee removeStaff(TrainJob job) {
         return this.staff.remove(job);
     }
 
     /**
-     *  Get the status of this train.
-     *  @return the status of this train
+     * Gets the status of this train.
+     *
+     * @return The current status of this train.
      */
     public Status getStatus() {
         return status;
     }
 
     /**
-     *  Set the status of this train.
-     *  @param status the new status of this train
+     * Sets the status of this train.
+     *
+     * @param status The new status of this train.
      */
     public void setStatus(Status status) {
         this.status = status;
     }
 
     /**
-     *  Get the list of passengers on this train.
-     *  @return the list of passengers on this train
+     * Gets the list of passengers on this train.
+     *
+     * @return An unmodifiable set containing the passengers on this train.
      */
-    public List<Passenger> getPassengerList() {
-        return Collections.unmodifiableList(passengerList);
+    public Set<Passenger> getPassengerList() {
+        return Collections.unmodifiableSet(passengerList);
     }
 
     /**
      * Adds a passenger to this train.
      *
-     * @param passenger the passenger to add
-     * @throws IllegalStateException if the train is full
+     * @param passenger The passenger to add.
+     * @throws IllegalStateException if the train is full and cannot accept more passengers.
      */
     public void addPassenger(Passenger passenger) {
         Preconditions.checkState(passengerList.size() < capacity, "Train is full");
@@ -158,31 +193,34 @@ public class Train {
 
     /**
      *  Get the transit tracker that this train is associated with.
-     *  @return the transit tracker that this train is associated with
+     *  @return the TransitTracker that this train is associated with
      */
     public TransitTracker getTransitTracker() {
         return transitTracker;
     }
 
     /**
-     *  Get the capacity of this train.
-     *  @return the capacity of this train
+     * Gets the capacity of this train.
+     *
+     * @return The maximum capacity of this train.
      */
     public int getCapacity() {
         return capacity;
     }
 
     /**
-     *  Get the position of this train.
-     *  @return the position of this train
+     * Gets the position of this train.
+     *
+     * @return The current TrainPosition of this train.
      */
     public TrainPosition getPosition() {
         return position;
     }
 
     /**
-     *  Set the position of this train.
-     *  @param position the new position of this train
+     * Sets the position of this train.
+     *
+     * @param position The new TrainPosition for this train.
      */
     protected void setPosition(TrainPosition position) {
         this.position = position;
@@ -195,8 +233,8 @@ public class Train {
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
      *
-     * @param direction the direction to look for the next node
-     * @return the next node, or empty if there is no next node
+     * @param direction The direction to look for the next node.
+     * @return An Optional containing the next Node that this train will move to, or an empty Optional if there is no next node.
      */
     public Optional<Node> getNextNode(Direction direction) {  //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
         TrackSegment track = position.getTrack();
@@ -213,16 +251,19 @@ public class Train {
         return Optional.empty();
     }
 
-
     /**
+
      * Get the distance to the next node that this train will move to, excluding
      * the current node if this train is already at a node.
 
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
+
+     * Gets the distance to the next node that this train will move to, excluding the current node if this train is already at a node.
+     * If this train is not on a track or there is no next node, the returned Optional will be empty.
      *
-     * @param direction the direction to look for the next node
-     * @return the distance to the next node, or empty if there is no next node
+     * @param direction The direction to look for the next node.
+     * @return An Optional containing the distance to the next node, or an empty Optional if there is no next node.
      */
     public Optional<Double> getDistanceToNextNode(Direction direction) { //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
 
@@ -244,14 +285,13 @@ public class Train {
     }
 
     /**
-     * Move the train in the given direction by the given amount.
+     * Moves the train in the given direction by the given amount.
      *
-     * @param direction the direction to move the train
-     * @param amount the amount to move the train by
-     * @return true if the train was moved, false if the train could not be moved
+     * @param direction The direction to move the train.
+     * @param amount The amount to move the train by.
+     * @return true if the train was moved, false if the train could not be moved.
      */
     public boolean move(Direction direction, double amount) {
-
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
         amount = amount * direction.getMultiplier();
 
@@ -268,7 +308,6 @@ public class Train {
 
         // Then move the train
         position = movedPosition;
-
         return true;
     }
 

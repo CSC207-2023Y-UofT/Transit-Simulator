@@ -126,7 +126,7 @@ public class TrainTest {
     @Disabled
     @Test
     public void testGetPassengerList() {
-        List<Passenger> passengerList = trainForwards.getPassengerList();
+        Set<Passenger> passengerList = trainForwards.getPassengerList();
         Assertions.assertEquals(0, passengerList.size());
     }
 

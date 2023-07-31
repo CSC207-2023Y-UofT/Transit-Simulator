@@ -10,21 +10,49 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A file-based implementation of the {@link StatEntryDataStore} interface.
+ * This class provides methods to store and retrieve statistic entry data from a file system.
+ */
 public class FileEntryDataStore implements StatEntryDataStore {
 
+    /**
+     * The directory where the entry data files are stored.
+     */
     private final File directory;
 
+    /**
+     * Constructs a FileEntryDataStore instance with a specified directory.
+     *
+     * @param directory The directory where the entry data files are stored.
+     */
     public FileEntryDataStore(File directory) {
         directory.mkdirs();
         this.directory = directory;
     }
 
+    /**
+     * Returns a file instance pointing to the data file for the given index and class.
+     *
+     * @param index The index of the data.
+     * @param clazz The class of the data.
+     * @return A File instance.
+     */
     private File getFile(long index, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
         classFolder.mkdirs();
         return new File(classFolder, index + ".stat");
     }
 
+
+    /**
+     * Stores the given list of entries into a file for the given index and class.
+     *
+     * @param index The index of the data.
+     * @param clazz The class of the data.
+     * @param entries The list of entries to store.
+     * @param <E> The class of the entries.
+     */
     @Override
     public <E extends StatEntry> void store(long index, Class<? extends StatEntry> clazz, List<E> entries) {
         File file = getFile(index, clazz);
@@ -42,8 +70,17 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
     }
 
+    /**
+     * Retrieves a list of entries from a file for the given index and class.
+     * If no data is found, it returns an empty list.
+     *
+     * @param index The index of the data.
+     * @param clazz The class of the data.
+     * @param <E> The class of the entries.
+     * @return A list of entries.
+     */
     @Override
-    public <E extends StatEntry> List<E> retrieve(Class<E> clazz, long index) {
+    public <E extends StatEntry> List<E> retrieve(long index, Class<E> clazz) {
         File file = getFile(index, clazz);
         if (!file.exists()) {
             return new ArrayList<>();
@@ -71,6 +108,11 @@ public class FileEntryDataStore implements StatEntryDataStore {
         }
     }
 
+    /**
+     * Stores an EntryHierarchy into the file system.
+     *
+     * @param hierarchy The EntryHierarchy to store.
+     */
     @Override
     public void storeHierarchy(EntryHierarchy hierarchy) {
         List<Class<? extends StatEntry>> leafClasses = hierarchy.getAllLeafClasses();
@@ -88,6 +130,12 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
     }
 
+    /**
+     * Retrieves an EntryHierarchy from the file system.
+     * If no data is found, it returns a new EntryHierarchy.
+     *
+     * @return An EntryHierarchy.
+     */
     @Override
     public EntryHierarchy retrieveHierarchy() {
         File file = new File(directory, "hierarchy-leaves.txt");
@@ -114,4 +162,5 @@ public class FileEntryDataStore implements StatEntryDataStore {
             throw new RuntimeException(e);
         }
     }
+
 }

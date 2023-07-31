@@ -1,8 +1,7 @@
 package stats;
 
-import stats.aggregator.ExampleExpenseAggregator;
-import stats.aggregator.ExpenseAggregate;
-import stats.entry.StatEntry;
+import stats.aggregator.expense.ExpenseAggregate;
+import stats.aggregator.expense.ExpenseAggregator;
 import stats.persistence.StatAggregateDataStore;
 import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
@@ -22,8 +21,8 @@ public class ExampleController {
     }
 
     public double getExpenses(long beginTimeIndex, long endTimeIndex) {
-        ExampleExpenseAggregator aggregator = new ExampleExpenseAggregator();
-        ExpenseAggregate aggregate = aggregator.aggregate(dataController, beginTimeIndex, endTimeIndex);
-        return aggregate.getExpensesTotal();
+        ExpenseAggregator aggregator = new ExpenseAggregator();
+        ExpenseAggregate aggregate = aggregator.aggregate(dataController, beginTimeIndex, endTimeIndex).orElse(null);
+        return aggregate == null ? 0 : aggregate.getValue();
     }
 }
