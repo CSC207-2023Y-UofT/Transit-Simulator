@@ -8,6 +8,7 @@ import java.util.Optional;
  * Interface for storing and retrieving stat aggregates.
  */
 public interface StatAggregateDataStore {
+
     /**
      * Store the stat aggregate {@code aggregate} at the specified
      * time index {@code index} and under the type {@code clazz}.

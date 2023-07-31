@@ -40,4 +40,5 @@ public interface StatEntryDataStore {
      * @return The entry hierarchy.
      */
     EntryHierarchy retrieveHierarchy();
+
 }

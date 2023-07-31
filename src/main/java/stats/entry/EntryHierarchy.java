@@ -114,4 +114,5 @@ public class EntryHierarchy {
     public List<Class<? extends StatEntry>> getAllLeafClasses() {
         return getInheritors(StatEntry.class);
     }
+
 }
