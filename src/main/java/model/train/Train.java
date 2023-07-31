@@ -139,21 +139,21 @@ public class Train {
 
     /**
      * Handle the alighting passengers on this train.
-     * @return the list of passengers that alighted
+     * @return the number of passengers that alighted
      */
-    public List<Passenger> handleAlightingPassengers() {
-        List<Passenger> alightingPassengers = new ArrayList<>();
+    public int handleAlightingPassengers() {
+        int counter = 0;
         Iterator<Passenger> passengerIterator = passengerList.iterator();
         while (passengerIterator.hasNext()) {
             Passenger passenger = passengerIterator.next();
             if (passenger.willAlight()) {
-                alightingPassengers.add(passenger);
+                counter++;
                 passengerIterator.remove();  // This is a safe way to remove elements while iterating over a collection
                                              // without a risk of a ConcurrentModificationException.
             }
         }
 
-        return alightingPassengers;
+        return counter;
     }
 
     /**
