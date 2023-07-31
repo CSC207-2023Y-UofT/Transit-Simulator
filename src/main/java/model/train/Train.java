@@ -77,6 +77,14 @@ public class Train {
     }
 
     /**
+     *  Get the employee assigned to a job on this train.
+     *  @param job the job to get the employee for
+     */
+    public void getStaff(TrainJob job) {  // This function is overloading for .getStaff()
+        staff.get(job);
+    }
+
+    /**
      *  Assign an employee to a job on this train.
      *  @param job the job to assign the employee to
      *  @param employee the employee to assign to the job
@@ -86,24 +94,12 @@ public class Train {
     }
 
     /**
-     * Remove an employee from a job on this train.
+     * Remove and return an employee from a job on this train.
      * @param job the job to remove the employee from
-     * @return true if the employee was removed, false if it was not possible to remove the employee
+     * @return the employee if it was currently assigned to the TrainJob job
      */
-    public boolean removeStaff(TrainJob job, Employee employee) {
-        if (employee == staff.getOrDefault(job, null)) {
-            staff.remove(job);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     *  Get the employee assigned to a job on this train.
-     *  @param job the job to get the employee for
-     */
-    public void getStaff(TrainJob job) {
-        staff.get(job);
+    public Employee removeStaff(TrainJob job) {
+        return this.staff.remove(job);
     }
 
     /**
