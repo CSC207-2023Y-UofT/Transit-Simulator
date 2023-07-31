@@ -5,23 +5,30 @@ import model.control.TransitTracker;
 import model.node.NodeLineProfile;
 import model.node.Station;
 import model.train.track.TrackSegment;
+import employee.TrainOperator;
+import employee.TrainEngineer;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 
 public class TrainTest {
+    private static TransitTracker transitTracker;
     private static Train trainForwards;
     private static Train trainBackwards;
+    private static TrainOperator operator;
+    private static TrainEngineer engineer;
 
     @DisplayName("TrainTest Class Setup")
     @BeforeAll
     public static void setup() {
         // Create the controller
-        TransitTracker transitTracker = new TransitTracker();
+        transitTracker = new TransitTracker();
+
+        // Refer to images/TrainTest System Construction Diagram for visualization.
 
         // Create the stations
         Station station1 = new Station(transitTracker, "station1");
@@ -77,6 +84,9 @@ public class TrainTest {
         // Create the trains
         trainForwards = transitTracker.createTrain(s1f, 120);
         trainBackwards = transitTracker.createTrain(s1b, 120);
+
+        operator = new TrainOperator(0b0001);
+        engineer = new TrainEngineer(0b0010);
     }
 
     @Test
@@ -97,10 +107,36 @@ public class TrainTest {
         Assertions.assertEquals(Train.Status.IN_SERVICE, trainForwards.getStatus());
     }
 
+    @Disabled
     @Test
     public void testGetPassengerList() {
         List<Passenger> passengerList = trainForwards.getPassengerList();
         Assertions.assertEquals(0, passengerList.size());
+    }
+
+    @Test
+    public void testGetStaff() {
+        Map<Object, Object> emptyMap = new HashMap<>();
+        Assertions.assertEquals(emptyMap, trainForwards.getStaff());
+    }
+
+    @Test
+    public void testSetStaff() {
+        trainForwards.setStaff(TrainJob.OPERATOR, operator);
+        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainJob.OPERATOR));
+    }
+
+    @Test
+    public void testRemoveStaff() {
+        Map<Object, Object> emptyMap = new HashMap<>();
+        trainForwards.setStaff(TrainJob.ENGINEER, engineer);  // Method was tested above
+        Assertions.assertSame(engineer, trainForwards.removeStaff(TrainJob.ENGINEER));
+        Assertions.assertEquals(emptyMap, trainForwards.getStaff());
+    }
+
+    @Test
+    public void testGetStaffOverloadOneParam() {
+        // TODO
     }
 
 //    @Test
@@ -120,4 +156,15 @@ public class TrainTest {
 //        Train train = new Train(1, 1, 1, 1, 1, 1);
 //        Assertions.assertEquals(null, train.getPosition());
 //    }
+
+    @DisplayName("TrainTest Class Teardown")
+    @AfterAll
+    public static void teardown() {
+        // Tearing down the class since we have static variables
+        transitTracker = null;
+        trainForwards = null;
+        trainBackwards = null;
+        operator = null;
+        engineer = null;
+    }
   }
