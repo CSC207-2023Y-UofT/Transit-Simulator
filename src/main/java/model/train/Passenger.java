@@ -23,6 +23,13 @@ public class Passenger {
         this.stationsToTravelPast = stationsToTravelPast;
     }
 
+    /**
+     * Decrements the number of stations to travel by 1.
+     */
+    public void decrementStationsToTravel() {
+        this.stationsToTravelPast--;
+    }
+
     public Passenger(int stationsToTravel) {
         this.stationsToTravelPast = stationsToTravel;
     }
