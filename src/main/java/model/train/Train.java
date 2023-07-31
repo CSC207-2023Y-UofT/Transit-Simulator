@@ -137,7 +137,24 @@ public class Train {
         passengerList.add(passenger);
     }
 
+    /**
+     * Handle the alighting passengers on this train.
+     * @return the list of passengers that alighted
+     */
+    public List<Passenger> handleAlightingPassengers() {
+        List<Passenger> alightingPassengers = new ArrayList<>();
+        Iterator<Passenger> passengerIterator = passengerList.iterator();
+        while (passengerIterator.hasNext()) {
+            Passenger passenger = passengerIterator.next();
+            if (passenger.willAlight()) {
+                alightingPassengers.add(passenger);
+                passengerIterator.remove();  // This is a safe way to remove elements while iterating over a collection
+                                             // without a risk of a ConcurrentModificationException.
+            }
+        }
 
+        return alightingPassengers;
+    }
 
     /**
      *  Get the transit tracker that this train is associated with.
