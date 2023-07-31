@@ -9,8 +9,9 @@ import employee.TrainOperator;
 import employee.TrainEngineer;
 
 import org.junit.jupiter.api.*;
+import ticket.*;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -87,6 +88,7 @@ public class TrainTest {
         trainForwards = transitTracker.createTrain(s1f, 120);
         trainBackwards = transitTracker.createTrain(s1b, 120);
 
+        // Create the employees
         operator = new TrainOperator(0b0001);
         engineer = new TrainEngineer(0b0010);
     }
@@ -103,6 +105,12 @@ public class TrainTest {
     public void testGetCapacity() {
         Assertions.assertEquals(120, trainForwards.getCapacity());
         Assertions.assertEquals(120, trainBackwards.getCapacity());
+    }
+
+    @Test
+    public void testGetPosition() {
+        Assertions.assertInstanceOf(TrainPosition.class, trainForwards.getPosition());
+        Assertions.assertInstanceOf(TrainPosition.class, trainBackwards.getPosition());
     }
 
     @Test
@@ -123,13 +131,6 @@ public class TrainTest {
         Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
     }
 
-    @Disabled
-    @Test
-    public void testGetPassengerList() {
-        Set<Passenger> passengerList = trainForwards.getPassengerList();
-        Assertions.assertEquals(0, passengerList.size());
-    }
-
     @Test
     public void testGetStaffNull() {
         Map<Object, Object> emptyMap = new HashMap<>();
@@ -146,6 +147,8 @@ public class TrainTest {
     public void testGetStaffValue() {
         trainForwards.setStaff(TrainJob.OPERATOR, operator);
         Assertions.assertSame(operator, trainForwards.getStaff().get(TrainJob.OPERATOR));
+        // teardown
+        trainForwards.removeStaff(TrainJob.OPERATOR);
     }
 
     @Test
@@ -153,6 +156,8 @@ public class TrainTest {
         Map<Object, Object> emptyMap = new HashMap<>();
         trainForwards.setStaff(TrainJob.ENGINEER, engineer);  // Method was tested above
         Assertions.assertSame(engineer, trainForwards.removeStaff(TrainJob.ENGINEER));
+        Assertions.assertNull(trainForwards.getStaff(TrainJob.ENGINEER));
+        // removing a non-assigned staff
         trainForwards.removeStaff(TrainJob.OPERATOR);
         Assertions.assertNull(trainForwards.getStaff().get(TrainJob.OPERATOR));
         Assertions.assertEquals(emptyMap, trainForwards.getStaff());
@@ -162,25 +167,47 @@ public class TrainTest {
     public void testGetStaffOverloadOneParam() {
         trainForwards.setStaff(TrainJob.OPERATOR, operator);
         Assertions.assertSame(operator, trainForwards.getStaff(TrainJob.OPERATOR));
+        // teardown
+        trainForwards.removeStaff(TrainJob.OPERATOR);
     }
 
-//    @Test
-//    public void testAddPassenger() {
-//        Passenger passenger = new Passenger(1, 1, 1, 1, 1);
-//        train.addPassenger(passenger);
-//        Assertions.assertEquals(1, train.getPassengerList().size());
-//    }
-//
-//    @Test
-//    public void testGetCapacity() {
-//        Assertions.assertEquals(1, train.getCapacity());
-//    }
-//
-//    @Test
-//    public void testGetPosition() {
-//        Train train = new Train(1, 1, 1, 1, 1, 1);
-//        Assertions.assertEquals(null, train.getPosition());
-//    }
+    @Test
+    public void testGetPassengerListZero() {
+        Assertions.assertEquals(new HashSet<>(), trainForwards.getPassengerList());
+        Assertions.assertEquals(0, trainForwards.getPassengerList().size());
+    }
+
+    @Test
+    public void testAddAndRemovePassenger() {
+        // setup
+        Passenger passengerAdult = new Passenger(new AdultTicket(), 0);
+        Passenger passengerChild = new Passenger(new ChildTicket(), 1);
+        Passenger passengerStudent = new Passenger(new StudentTicket(), 2);
+        Passenger passengerSenior = new Passenger(new SeniorTicket(), 3);
+
+        trainForwards.addPassenger(passengerAdult);
+        trainForwards.addPassenger(passengerChild);
+        trainForwards.addPassenger(passengerStudent);
+        trainForwards.addPassenger(passengerSenior);
+
+        // test
+        Assertions.assertEquals(4, trainForwards.getPassengerList().size());
+
+        Assertions.assertTrue(trainForwards.getPassengerList().contains(passengerAdult));
+        Assertions.assertTrue(trainForwards.getPassengerList().contains(passengerChild));
+        Assertions.assertTrue(trainForwards.getPassengerList().contains(passengerStudent));
+        Assertions.assertTrue(trainForwards.getPassengerList().contains(passengerSenior));
+
+        // convenient teardown
+        trainForwards.removePassenger(passengerAdult);
+        trainForwards.removePassenger(passengerChild);
+        trainForwards.removePassenger(passengerStudent);
+        trainForwards.removePassenger(passengerSenior);
+
+        Assertions.assertTrue(trainForwards.getPassengerList().isEmpty());
+    }
+
+
 
     @DisplayName("TrainTest Class Teardown")
     @AfterAll
