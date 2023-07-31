@@ -1,6 +1,7 @@
 package model.train.track;
 
 import model.Direction;
+import model.node.Node;
 import model.train.TrackRepo;
 import model.train.Train;
 import util.Preconditions;
@@ -8,6 +9,7 @@ import util.Preconditions;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The TrackSegment class represents a segment of a track in a track system.
@@ -61,6 +63,10 @@ public class TrackSegment {
      */
     public String getId() {
         return id;
+    }
+
+    public Optional<Node> getNode() {
+        return Optional.empty();
     }
 
     /**

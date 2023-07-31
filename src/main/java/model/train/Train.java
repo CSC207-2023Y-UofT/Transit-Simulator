@@ -252,9 +252,9 @@ public class Train {
 
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
         for (TrackSegment nextSegment : nextSegments) {
-            if (nextSegment instanceof NodeTrackSegment) { // TODO ask in office hours about how to avoid this usage of instanceof
-                Node node = ((NodeTrackSegment) nextSegment).getNode();
-                return Optional.of(node);
+            Optional<Node> node = nextSegment.getNode();
+            if (node.isPresent()) {
+                return node;
             }
         }
 
@@ -285,10 +285,12 @@ public class Train {
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
 
         for (TrackSegment nextSegment : nextSegments) {
-            if (nextSegment instanceof NodeTrackSegment) {
+            Optional<Node> node = nextSegment.getNode();
+            if (node.isPresent()) {
                 return Optional.of(distance);
+            } else {
+                distance += nextSegment.getLength();
             }
-            distance += nextSegment.getLength();
         }
 
         return Optional.empty();
