@@ -243,9 +243,24 @@ public class Train {
 
         if (movedPosition == null) return false;
 
+        // Check for arrival at a NodeTrackSegment
+        TrackSegment currTrack = position.getTrack();
+        if (currTrack != movedPosition.getTrack() && currTrack instanceof NodeTrackSegment) { // HELP: instanceof used
+            decrementAllPassengersStationsToTravel();
+        }
+
+        // Then move the train
         position = movedPosition;
 
         return true;
     }
 
+    /**
+     *  Decrement the stations to travel for all passengers on this train.
+     */
+    private void decrementAllPassengersStationsToTravel() {
+        for (Passenger passenger : this.passengerList) {
+            passenger.decrementStationsToTravel();
+        }
+    }
 }
