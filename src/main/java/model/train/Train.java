@@ -80,8 +80,8 @@ public class Train {
      *  Get the employee assigned to a job on this train.
      *  @param job the job to get the employee for
      */
-    public void getStaff(TrainJob job) {  // This function is overloading for .getStaff()
-        staff.get(job);
+    public Employee getStaff(TrainJob job) {  // This function is overloading for .getStaff()
+        return staff.get(job);
     }
 
     /**
@@ -136,6 +136,8 @@ public class Train {
         Preconditions.checkState(passengerList.size() < capacity, "Train is full");
         passengerList.add(passenger);
     }
+
+
 
     /**
      *  Get the transit tracker that this train is associated with.
