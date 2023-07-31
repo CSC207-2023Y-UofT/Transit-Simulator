@@ -69,7 +69,7 @@ public class TrainEngineer extends Employee {
         train.setStatus(Train.Status.OUT_OF_SERVICE);
         Random rand = new Random();
         int cost = rand.nextInt(5000 + 1) + 5000;  // Generates a random number between 5000 and 10000
-        // TODO There should be a statistics entry here
+        // TODO: create a sub-handler for maintenance events OR a statistics entry (that uses the cost) on the side of the train or employee
     }
 
 }

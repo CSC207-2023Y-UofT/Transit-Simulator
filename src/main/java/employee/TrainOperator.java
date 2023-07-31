@@ -5,8 +5,8 @@ import employee.Employee;
 public class TrainOperator extends Employee{
 
 
-    public TrainOperator(int num) {
-        super(num);
+    public TrainOperator(int id) {
+        super(id);
 
     }
 

@@ -19,12 +19,16 @@ public class Train {
 
     /**
      * Enum representing the possible statuses of a train.
-     * IN_SERVICE: The train is in service and running properly.
-     * SCHEDULED_MAINTENANCE: The train is still running but will stop for maintenance at the next station (not automatically under maintenance).
-     * UNDER_MAINTENANCE: The train has stopped for maintenance at a station, and staff are assigned to maintain it.
-     * OUT_OF_SERVICE: The train is not running and is out of service.
-     * Precondition: A train in UNDER_MAINTENANCE status cannot be set to IN_SERVICE.
-     * Trains that are running can pass Offline trains, whether on tracks or at stations. In real life, most
+     * <br>
+
+     * IN_SERVICE:            Running properly.
+     * SCHEDULED_MAINTENANCE: still running, will stop for maintenance at the next station. (not automatically under maintenance)
+     * UNDER_MAINTENANCE:     stopped for maintenance at a station and staff assigned to maintain.
+     * OUT_OF_SERVICE:        Not running.
+     * <br>
+
+     * Precondition: Trains UNDER_MAINTENANCE cannot be IN_SERVICE.
+     * Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
      * tracks have spare tracks that others can pass.
      */
     public enum Status {
@@ -33,6 +37,7 @@ public class Train {
         UNDER_MAINTENANCE,
         OUT_OF_SERVICE
     }
+
 
     /**
      * The maximum length of the train in meters.
@@ -103,23 +108,30 @@ public class Train {
     }
 
     /**
-     * Assigns an employee to a job on this train.
-     *
-     * @param job The TrainJob to assign the employee to.
-     * @param employee The Employee to assign to the job.
+     *  Get the employee assigned to a job on this train.
+     *  @param job the job to get the employee for
+     */
+    public Employee getStaff(TrainJob job) {  // This function is overloading for .getStaff()
+        return staff.get(job);
+    }
+
+    /**
+     *  Assign an employee to a job on this train.
+     *  @param the TrainJob to assign the employee to
+     *  @param employee the employee to assign to the job
      */
     public void setStaff(TrainJob job, Employee employee) {
         staff.put(job, employee);
     }
 
     /**
-     * Gets the employee assigned to a job on this train.
-     *
-     * @param job The TrainJob to get the employee for.
-     * @return The Employee assigned to the specified job, or null if no employee is assigned to that job.
+     * Remove and return an employee from a job on this train.
+     * @param the TrainJob to remove the employee from
+     * @return the employee if it was currently assigned to the TrainJob job
+
      */
-    public void getStaff(TrainJob job) {
-        staff.get(job);
+    public Employee removeStaff(TrainJob job) {
+        return this.staff.remove(job);
     }
 
     /**
@@ -161,9 +173,27 @@ public class Train {
     }
 
     /**
-     * Gets the TransitTracker that this train is associated with.
-     *
-     * @return The TransitTracker associated with this train.
+     * Handle the alighting passengers on this train.
+     * @return the number of passengers that alighted
+     */
+    public int handleAlightingPassengers() {
+        int counter = 0;
+        Iterator<Passenger> passengerIterator = passengerList.iterator();
+        while (passengerIterator.hasNext()) {
+            Passenger passenger = passengerIterator.next();
+            if (passenger.willAlight()) {
+                counter++;
+                passengerIterator.remove();  // This is a safe way to remove elements while iterating over a collection
+                                             // without a risk of a ConcurrentModificationException.
+            }
+        }
+
+        return counter;
+    }
+
+    /**
+     *  Get the transit tracker that this train is associated with.
+     *  @return the TransitTracker that this train is associated with
      */
     public TransitTracker getTransitTracker() {
         return transitTracker;
@@ -197,14 +227,16 @@ public class Train {
     }
 
     /**
-     * Gets the next node that this train will move to, excluding the current node if this train is already at a node.
-     *
-     * If this train is not on a track or there is no next node, the returned Optional will be empty.
+     * Get the next node that this train will move to, excluding
+     * the current node if this train is already at a node.
+
+     * If this train is not on a track, or there is no next node,
+     * the returned Optional will be empty.
      *
      * @param direction The direction to look for the next node.
      * @return An Optional containing the next Node that this train will move to, or an empty Optional if there is no next node.
      */
-    public Optional<Node> getNextNode(Direction direction) {
+    public Optional<Node> getNextNode(Direction direction) {  //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
 
@@ -220,13 +252,20 @@ public class Train {
     }
 
     /**
+
+     * Get the distance to the next node that this train will move to, excluding
+     * the current node if this train is already at a node.
+
+     * If this train is not on a track, or there is no next node,
+     * the returned Optional will be empty.
+
      * Gets the distance to the next node that this train will move to, excluding the current node if this train is already at a node.
      * If this train is not on a track or there is no next node, the returned Optional will be empty.
      *
      * @param direction The direction to look for the next node.
      * @return An Optional containing the distance to the next node, or an empty Optional if there is no next node.
      */
-    public Optional<Double> getDistanceToNextNode(Direction direction) {
+    public Optional<Double> getDistanceToNextNode(Direction direction) { //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
 
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
@@ -261,7 +300,23 @@ public class Train {
 
         if (movedPosition == null) return false;
 
+        // Check for arrival at a NodeTrackSegment
+        TrackSegment currTrack = position.getTrack();
+        if (currTrack != movedPosition.getTrack() && currTrack instanceof NodeTrackSegment) { // HELP: instanceof used
+            decrementAllPassengersStationsToTravel();
+        }
+
+        // Then move the train
         position = movedPosition;
         return true;
+    }
+
+    /**
+     *  Decrement the stations to travel for all passengers on this train.
+     */
+    private void decrementAllPassengersStationsToTravel() {
+        for (Passenger passenger : this.passengerList) {
+            passenger.decrementStationsToTravel();
+        }
     }
 }
