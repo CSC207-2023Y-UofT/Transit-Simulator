@@ -117,7 +117,7 @@ public class Train {
 
     /**
      *  Assign an employee to a job on this train.
-     *  @param the TrainJob to assign the employee to
+     *  @param job the TrainJob to assign the employee to
      *  @param employee the employee to assign to the job
      */
     public void setStaff(TrainJob job, Employee employee) {
@@ -126,7 +126,7 @@ public class Train {
 
     /**
      * Remove and return an employee from a job on this train.
-     * @param the TrainJob to remove the employee from
+     * @param job the TrainJob to remove the employee from
      * @return the employee if it was currently assigned to the TrainJob job
 
      */
@@ -170,6 +170,16 @@ public class Train {
     public void addPassenger(Passenger passenger) {
         Preconditions.checkState(passengerList.size() < capacity, "Train is full");
         passengerList.add(passenger);
+    }
+
+    /**
+     * Directly removes and returns the specified passenger from this train.
+     *
+     * @param passenger The passenger to remove.
+     * @return true if the passenger was removed, false if the passenger was not on this train.
+     */
+    public boolean removePassenger(Passenger passenger) {
+        return passengerList.remove(passenger);
     }
 
     /**

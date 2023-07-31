@@ -7,7 +7,9 @@ import ticket.Ticket;
  * It acts as a placeholder class for storing passenger-related information.
  */
 public class Passenger {
-    // TODO: need javadoc here
+    /**
+     * The ticket associated with the passenger.
+     */
     private final Ticket ticket;
   
     /**
@@ -39,7 +41,9 @@ public class Passenger {
         this.stationsToTravelPast--;
     }
 
-    // TODO: need javadocs
+    /**
+     * @return true if the passenger will alight at the next station
+     */
     public boolean willAlight() {
         return stationsToTravelPast <= 0; // <= for safety
     }
@@ -50,7 +54,7 @@ public class Passenger {
      *
      * @param ticket The Ticket object representing the passenger's ticket.
      */
-    public Passenger(Ticket ticket, in StationsToTravel) {
+    public Passenger(Ticket ticket, int stationsToTravel) {
         this.ticket = ticket;
         this.stationsToTravelPast = stationsToTravel;
     }
