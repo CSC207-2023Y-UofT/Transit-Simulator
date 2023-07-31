@@ -43,7 +43,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     }
 
     @Override
-    public <E extends StatEntry> List<E> retrieve(Class<E> clazz, long index) {
+    public <E extends StatEntry> List<E> retrieve(long index, Class<E> clazz) {
         File file = getFile(index, clazz);
         if (!file.exists()) {
             return new ArrayList<>();
