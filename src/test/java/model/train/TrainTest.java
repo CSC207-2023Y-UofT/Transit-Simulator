@@ -64,6 +64,8 @@ public class TrainTest {
         TrackSegment s2b = l1s2.getTrack(Direction.BACKWARD);
         TrackSegment s3b = l1s3.getTrack(Direction.BACKWARD);
 
+        // s: station, t: track, f: forward, b: backward
+
         // Link Forwards
         s1f.linkForward(t1f);
         t1f.linkForward(s2f);
@@ -89,6 +91,20 @@ public class TrainTest {
         engineer = new TrainEngineer(0b0010);
     }
 
+    // Begin testing
+
+    @Test
+    public void testGetTransitTracker() {
+        Assertions.assertSame(transitTracker, trainForwards.getTransitTracker());
+        Assertions.assertSame(transitTracker, trainBackwards.getTransitTracker());
+    }
+
+    @Test
+    public void testGetCapacity() {
+        Assertions.assertEquals(120, trainForwards.getCapacity());
+        Assertions.assertEquals(120, trainBackwards.getCapacity());
+    }
+
     @Test
     public void testGetStatus() {
         Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
@@ -101,10 +117,10 @@ public class TrainTest {
         Assertions.assertEquals(Train.Status.SCHEDULED_MAINTENANCE, trainForwards.getStatus());
         trainForwards.setStatus(Train.Status.UNDER_MAINTENANCE);
         Assertions.assertEquals(Train.Status.UNDER_MAINTENANCE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.OUT_OF_SERVICE);
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
         trainForwards.setStatus(Train.Status.IN_SERVICE);
         Assertions.assertEquals(Train.Status.IN_SERVICE, trainForwards.getStatus());
+        trainForwards.setStatus(Train.Status.OUT_OF_SERVICE);
+        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
     }
 
     @Disabled
@@ -115,7 +131,7 @@ public class TrainTest {
     }
 
     @Test
-    public void testGetStaff() {
+    public void testGetStaffNull() {
         Map<Object, Object> emptyMap = new HashMap<>();
         Assertions.assertEquals(emptyMap, trainForwards.getStaff());
     }
@@ -127,16 +143,25 @@ public class TrainTest {
     }
 
     @Test
+    public void testGetStaffValue() {
+        trainForwards.setStaff(TrainJob.OPERATOR, operator);
+        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainJob.OPERATOR));
+    }
+
+    @Test
     public void testRemoveStaff() {
         Map<Object, Object> emptyMap = new HashMap<>();
         trainForwards.setStaff(TrainJob.ENGINEER, engineer);  // Method was tested above
         Assertions.assertSame(engineer, trainForwards.removeStaff(TrainJob.ENGINEER));
+        trainForwards.removeStaff(TrainJob.OPERATOR);
+        Assertions.assertNull(trainForwards.getStaff().get(TrainJob.OPERATOR));
         Assertions.assertEquals(emptyMap, trainForwards.getStaff());
     }
 
     @Test
     public void testGetStaffOverloadOneParam() {
-        // TODO
+        trainForwards.setStaff(TrainJob.OPERATOR, operator);
+        Assertions.assertSame(operator, trainForwards.getStaff(TrainJob.OPERATOR));
     }
 
 //    @Test
