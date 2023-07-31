@@ -246,7 +246,7 @@ public class Train {
      * @param direction The direction to look for the next node.
      * @return An Optional containing the next Node that this train will move to, or an empty Optional if there is no next node.
      */
-    public Optional<Node> getNextNode(Direction direction) {  //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
+    public Optional<Node> getNextNode(Direction direction) {
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
 
@@ -275,7 +275,7 @@ public class Train {
      * @param direction The direction to look for the next node.
      * @return An Optional containing the distance to the next node, or an empty Optional if there is no next node.
      */
-    public Optional<Double> getDistanceToNextNode(Direction direction) { //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
+    public Optional<Double> getDistanceToNextNode(Direction direction) {
 
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
