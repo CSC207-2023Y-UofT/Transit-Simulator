@@ -104,9 +104,6 @@ public class TrainPosition {
             target -= nextTrackOffset;
 
             currPosition = TrainPosition.entryPoint(next, direction);
-
-            // Handle Passengers' movement
-
         }
 
         return Optional.of(currPosition.withOffset(target));
