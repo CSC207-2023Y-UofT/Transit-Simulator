@@ -6,7 +6,7 @@ import model.train.TrackRepo;
 /**
  * The NodeTrackSegment class represents a track segment associated with a specific node in a track system.
  * It extends the TrackSegment class and inherits its properties and functionality.
- * NodeTrackSegments are used to connect nodes in the track system and form part of the overall track structure.
+ * NodeTrackSegments are used to represent the track segments that nodes hold.
  */
 public class NodeTrackSegment extends TrackSegment {
 
