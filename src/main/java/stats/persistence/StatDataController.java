@@ -13,8 +13,14 @@ import java.util.*;
  */
 public class StatDataController {
 
-
+    /**
+     * DataStore used to persist StatEntry objects.
+     */
     private final StatEntryDataStore entryDataStore;
+
+    /**
+     * DataStore used to persist aggregate statistics.
+     */
     private final StatAggregateDataStore aggregateDataStore;
 
     /**
@@ -24,6 +30,13 @@ public class StatDataController {
      */
     private final Map<Class<? extends StatEntry>, List<StatEntry>> entries = new HashMap<>();
 
+
+    /**
+     * Constructs a StatDataController instance with a given EntryDataStore and AggregateDataStore.
+     *
+     * @param entryDataStore the store for stat entries.
+     * @param aggregateDataStore the store for aggregate statistics.
+     */
     public StatDataController(StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
         this.entryDataStore = entryDataStore;
         this.aggregateDataStore = aggregateDataStore;
@@ -32,10 +45,20 @@ public class StatDataController {
         hierarchy.getAllLeafClasses().forEach(StatEntry.HIERARCHY::map);
     }
 
+    /**
+     * Returns the entry data store.
+     *
+     * @return the entry data store.
+     */
     public StatEntryDataStore getEntryDataStore() {
         return entryDataStore;
     }
 
+    /**
+     * Returns the aggregate data store.
+     *
+     * @return the aggregate data store.
+     */
     public StatAggregateDataStore getAggregateDataStore() {
         return aggregateDataStore;
     }
@@ -150,4 +173,5 @@ public class StatDataController {
 
         return Optional.ofNullable(aggregate);
     }
+
 }
