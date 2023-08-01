@@ -16,6 +16,8 @@ public class BuyTicket extends JFrame {
     private JButton seniorTicketAdd;
     private JButton seniorTicketDel;
     private JLabel buyTicketsLabel;
+    private JButton backButton;
+    private JButton cancelButton;
 
     public BuyTicket() {
         setLocationRelativeTo(null);
