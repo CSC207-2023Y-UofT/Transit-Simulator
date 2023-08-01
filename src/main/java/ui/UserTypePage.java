@@ -8,19 +8,24 @@ import java.awt.event.ActionListener;
 public class UserTypePage {
     private JFrame frame;
     private JPanel panel;
-    private JLabel userTypeLabel;
+    private JLabel headerLabel, userTypeLabel;
     private JButton passengerButton, staffButton;
 
-    public UserTypePage() {
-        frame = new JFrame("User Type Page");
-        panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
+    public UserTypePage() {
+
+        // Create the frame and panel
+        frame = new JFrame("Ticket Buying Page");
+        panel = new JPanel(new GridLayout(0, 3));
+
+        // Add the "Please select your user type." title
         userTypeLabel = new JLabel("Please select your user type.", SwingConstants.CENTER);
         userTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the label
 
+        // Passenger button
         passengerButton = new JButton("Passenger");
         passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
+        passengerButton.setBackground(Color.GREEN);
         passengerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,8 +35,10 @@ public class UserTypePage {
             }
         });
 
+        // Staff button
         staffButton = new JButton("Staff");
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
+        staffButton.setBackground(Color.GREEN);
         staffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,11 +48,22 @@ public class UserTypePage {
         });
 
         // Add components to the panel
+
+        panel.add(new JLabel("  "));
         panel.add(userTypeLabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));  // Add a 20-pixel tall space
+        panel.add(new JLabel("  "));
+
+        panel.add(new JLabel("  "));
         panel.add(passengerButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));  // Add a 10-pixel tall space
+        panel.add(new JLabel("  "));
+
+        panel.add(new JLabel("  "));
         panel.add(staffButton);
+        panel.add(new JLabel("  "));
+
+        for (int i = 0; i < 3; i++) {
+            panel.add(new JLabel("  "));
+        }
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);
