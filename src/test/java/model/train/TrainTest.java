@@ -2,8 +2,8 @@ package model.train;
 
 import model.Direction;
 import model.control.TransitTracker;
-import model.node.NodeLineProfile;
 import model.node.Station;
+import model.node.NodeLineProfile;
 import model.train.track.TrackSegment;
 import employee.TrainOperator;
 import employee.TrainEngineer;
