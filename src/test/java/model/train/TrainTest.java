@@ -29,7 +29,7 @@ public class TrainTest {
         // Create the controller
         transitTracker = new TransitTracker();
 
-        // Refer to images/TrainTest System Construction Diagram for visualization.
+        // Refer to ![](images/TrainTest System Construction Diagram.png) for visualization.
 
         // Create the stations
         Station station1 = new Station(transitTracker, "station1");
@@ -57,7 +57,7 @@ public class TrainTest {
         transitTracker.getTrackRepo().addTrack(t2b);
         transitTracker.getTrackRepo().addTrack(t3b);
 
-        // Get references to the track segments of each station
+        // Get references to the node track segments that belong to each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
         TrackSegment s2f = l1s2.getTrack(Direction.FORWARD);
         TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);
