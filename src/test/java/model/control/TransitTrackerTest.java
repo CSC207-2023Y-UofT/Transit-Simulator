@@ -38,8 +38,8 @@ public class TransitTrackerTest {
         NodeLineProfile l1s3 = station3.createLineProfile(1);
 
         // Create the tracks
-        TrackSegment t1f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s1-for", 100);
-        TrackSegment t2f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s2-for", 100);
+        TrackSegment t1f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s1-t1-for", 100);
+        TrackSegment t2f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s2-t2-for", 100);
 
         // Add the tracks to the repo
         transitTracker.getTrackRepo().addTrack(t1f);
