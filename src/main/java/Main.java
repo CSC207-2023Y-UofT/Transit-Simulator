@@ -1,4 +1,3 @@
-
 import org.json.JSONObject;
 
 import model.control.*;
@@ -36,6 +35,7 @@ public class Main {
      * @param filename The name of the JSON file to read from.
      */
     public static void readModel(String filename) {  // TODO HELP INFO IMPORTANT SUPER DUPER IMPORTANT TODO!!!!!!!
+        // TODO THIS PROGRAM WAS BUILT AROUND that the json file would have a list of stations, and not a reference to the enxt station from the previous one
         NodeLineProfile anchorNodeLineProfile;                      // used as a start point for putting trains in the system
         Station anchorStation;                                      // used as a start point for putting trains in the system
         NodeLineProfile currentNodeLineProfile;                     // used for keeping track of the current station
@@ -54,7 +54,18 @@ public class Main {
         // Create the controller
         transitTracker = new TransitTracker();
 
-        // get the list of lines, which is the only high-level entry in the JSON file
+        // get the list of lines, one of the high-level entries in the JSON file
+
+        // Each line is in the format:
+        // {
+        //     firstStation: "something",
+        //     line: {
+        //         "something": {
+        //             info: information...
+        //             "next": "nextLineName"
+        //          },
+        //          "nextLineName": {...}...
+        // }
 
         // for each line in the list of lines:
             // get the line type (line or circle)
@@ -63,9 +74,9 @@ public class Main {
 
 
 
-            // Create an iterator that reads the list of station names from the json file
+            // Check if there is a firstStation:
+            if
 
-            // Check if the iterator has any stations (something.hasNext() )
             // if not, then throw an exception
             throw new IllegalArgumentException("No stations found for line " + lineNumber + ". Check the JSON file.");
 
@@ -77,7 +88,7 @@ public class Main {
             currentStation = anchorStation;
 
             // create its NodeLineProfile, and record it as the anchorNodeLineProfile
-            anchorNodeLineProfile = new NodeLineProfile(anchorStation, lineNumber);
+            anchorNodeLineProfile = anchorStation.createLineProfile(lineNumber);  // Never instantiate it like "new NodeLineProfile(...)"
             currentNodeLineProfile = anchorNodeLineProfile;
 
             // add it to the list of line profiles
@@ -102,7 +113,14 @@ public class Main {
                 transitTracker.getTrackRepo().addTrack(prevStationTrackForward);
                 transitTracker.getTrackRepo().addTrack(prevStationTrackBackward);
 
+
                 // create the new station
+                currentStation = new Station(transitTracker, stationName);
+
+                // create its NodeLineProfile
+                currentNodeLineProfile = currentStation.createLineProfile(lineNumber);
+
+                // add it to the list of line profiles (or assign it to the variable prevNodeLineProfile)
 
 
 
