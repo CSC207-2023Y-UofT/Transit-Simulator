@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.BuyTicket">
+  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="548" height="289"/>
+    </constraints>
+    <properties>
+      <font size="30" style="1"/>
+      <foreground color="-16777216"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="20741" class="javax.swing.JLabel" binding="buyTicketsLabel" custom-create="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="30" style="1"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Buy Tickets"/>
+        </properties>
+      </component>
+      <component id="55fbc" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="17"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Courier" size="20" style="1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Regular Ticket"/>
+        </properties>
+      </component>
+      <component id="baabc" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="17"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Courier" size="20" style="1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Child Ticket"/>
+        </properties>
+      </component>
+      <component id="b9ddb" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="17"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Courier" size="20" style="1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Adult Ticket"/>
+        </properties>
+      </component>
+      <component id="74e08" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="17"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Courier" size="20" style="1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Senior Ticket"/>
+        </properties>
+      </component>
+      <splitpane id="a02b6">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <dividerLocation value="90"/>
+          <resizeWeight value="0.0"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <splitpane id="c2fd">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <continuousLayout value="false"/>
+              <dividerLocation value="90"/>
+              <resizeWeight value="0.5"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="3c1d1" class="javax.swing.JButton" binding="regTicketAdd">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <text value="+"/>
+                </properties>
+              </component>
+              <component id="16240" class="javax.swing.JButton" binding="regTicketDel">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <text value="-"/>
+                </properties>
+              </component>
+            </children>
+          </splitpane>
+          <component id="6716c" class="javax.swing.JLabel">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </splitpane>
+      <splitpane id="bfc29">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <dividerLocation value="90"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <splitpane id="c6989">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <dividerLocation value="89"/>
+              <resizeWeight value="0.5"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="dd83f" class="javax.swing.JButton" binding="childTicketAdd">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <alignmentX value="0.0"/>
+                  <borderPainted value="true"/>
+                  <contentAreaFilled value="true"/>
+                  <hideActionText value="false"/>
+                  <text value="+"/>
+                </properties>
+              </component>
+              <component id="cf7bb" class="javax.swing.JButton" binding="childTicketDel">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <text value="-"/>
+                </properties>
+              </component>
+            </children>
+          </splitpane>
+          <component id="33a09" class="javax.swing.JLabel">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </splitpane>
+      <splitpane id="f37be">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <dividerLocation value="90"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <splitpane id="a7148">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <dividerLocation value="89"/>
+              <resizeWeight value="0.5"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="8ef99" class="javax.swing.JButton" binding="adultTicketAdd">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <borderPainted value="true"/>
+                  <text value="+"/>
+                </properties>
+              </component>
+              <component id="3a188" class="javax.swing.JButton" binding="adultTicketDel">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <text value="-"/>
+                </properties>
+              </component>
+            </children>
+          </splitpane>
+          <component id="e0eeb" class="javax.swing.JLabel">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </splitpane>
+      <splitpane id="ec81e">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <dividerLocation value="90"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <splitpane id="20299">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <dividerLocation value="89"/>
+              <resizeWeight value="0.5"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="b997e" class="javax.swing.JButton" binding="seniorTicketAdd">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <text value="+"/>
+                </properties>
+              </component>
+              <component id="71480" class="javax.swing.JButton" binding="seniorTicketDel">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <text value="-"/>
+                </properties>
+              </component>
+            </children>
+          </splitpane>
+          <component id="34be2" class="javax.swing.JLabel">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </splitpane>
+      <component id="df1f8" class="javax.swing.JButton" binding="buyButton">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="BUY"/>
+        </properties>
+      </component>
+      <vspacer id="2085c">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>

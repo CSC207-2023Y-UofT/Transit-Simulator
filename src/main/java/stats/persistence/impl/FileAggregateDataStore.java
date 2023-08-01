@@ -36,7 +36,7 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
     }
 
     @Override
-    public <E extends StatEntry, A> Optional<A> retrieve(Class<E> entryClass, Class<A> aggregateClass, long index) {
+    public <E extends StatEntry, A> Optional<A> retrieve(long index, Class<E> entryClass, Class<A> aggregateClass) {
         File file = getFile(index, entryClass, aggregateClass);
         if (!file.exists()) {
             return Optional.empty();
