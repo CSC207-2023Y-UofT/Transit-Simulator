@@ -2,98 +2,95 @@
   "modelName": "Test Model 1",
   "lines": [
     {
-      "firstStation": "Alpha",
-      "line": {
-        "Alpha": {
+      "lineNodeList": [
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Beta"
+          "nodeName": "Alpha",
+          "nodeLength": 15
         },
-        "Beta": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Gamma"
+          "nodeName": "Beta",
+          "nodeLength": 15
         },
-        "Gamma": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Delta"
+          "nodeName": "Gamma",
+          "nodeLength": 15
         },
-        "Delta": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Epsilon"
+          "nodeName": "Delta",
+          "nodeLength": 15
         },
-        "Epsilon": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Alpha"
+          "nodeName": "Epsilon",
+          "nodeLength": 15
         }
-      },
+      ],
       "lineType": "Circle",
-      "lineNumber": 1,
-      "lineName": "City Centre"
+      "lineName": "City Centre",
+      "lineNumber": 1
     },
     {
-      "firstStation": "Beta",
-      "line": {
-        "Beta": {
+      "lineNodeList": [
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Zeta"
+          "nodeName": "Beta",
+          "nodeLength": 15
         },
-        "Zeta": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Eta"
+          "nodeName": "Zeta",
+          "nodeLength": 15
         },
-        "Eta": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Theta"
+          "nodeName": "Eta",
+          "nodeLength": 15
         },
-        "Theta": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Iota"
+          "nodeName": "Theta",
+          "nodeLength": 15
         },
-        "Iota": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": null
+          "nodeName": "Iota",
+          "nodeLength": 15
         }
-      },
+      ],
       "lineType": "Straight",
-      "lineNumber": 2,
-      "lineName": "Radial"
+      "lineName": "Radial",
+      "lineNumber": 2
     },
     {
-      "firstStation": "Delta",
-      "line": {
-        "Delta": {
+      "lineNodeList": [
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Kappa"
+          "nodeName": "Delta",
+          "nodeLength": 15
         },
-        "Kappa": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": "Lambda"
+          "nodeName": "Kappa",
+          "nodeLength": 15
         },
-        "Lambda": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-            "next": "Mu"
+          "nodeName": "Lambda",
+          "nodeLength": 15
         },
-        "Mu": {
+        {
           "nodeType": "Station",
-          "nodeLength": 15,
-          "next": null
+          "nodeName": "Mu",
+          "nodeLength": 15
         }
-      },
+      ],
       "lineType": "Straight",
-      "lineNumber": 3,
-      "lineName": "Star"
+      "lineName": "Star",
+      "lineNumber": 3
     }
   ]
 }
