@@ -32,9 +32,9 @@ public class TrainTest {
         // Refer to ![](images/TrainTest System Construction Diagram.png) for visualization.
 
         // Create the stations
-        Station station1 = new Station(transitTracker, "station1");
-        Station station2 = new Station(transitTracker, "station2");
-        Station station3 = new Station(transitTracker, "station3");
+        Station station1 = new Station(transitTracker, "station1");   // TODO FAULTY TEST, MUST CREATE WITH TransitTracker.createNode()
+        Station station2 = new Station(transitTracker, "station2");   // HELP FAULTY TEST
+        Station station3 = new Station(transitTracker, "station3");   // TODO
 
         // Create the line profiles: l1: Line 1, s1: Station 1
         NodeLineProfile l1s1 = station1.createLineProfile(1);
@@ -56,8 +56,10 @@ public class TrainTest {
         transitTracker.getTrackRepo().addTrack(t1b);
         transitTracker.getTrackRepo().addTrack(t2b);
         transitTracker.getTrackRepo().addTrack(t3b);
+        // TODO HELP do we also have to add the tracksegments belonging to stations to the track repo? I assume so but it wasn't done
+        //           In addition, transittracker already keeps track of all nodes by name
 
-        // Get references to the node track segments that belong to each station  // TODO HELP do we also have to add the tracksegments belonging to stations to the track repo? I assume so but it wasn't done
+        // Get references to the node track segments that belong to each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
         TrackSegment s2f = l1s2.getTrack(Direction.FORWARD);
         TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);

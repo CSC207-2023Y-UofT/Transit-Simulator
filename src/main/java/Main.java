@@ -197,6 +197,7 @@ public class Main {
                     // if the lineType is a line, then we have to handle the builder changing directions
                     // end condition: the reference is back at the anchor station
             }
+        }
     }
 
 
