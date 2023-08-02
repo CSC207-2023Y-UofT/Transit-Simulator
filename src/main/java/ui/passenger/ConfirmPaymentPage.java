@@ -1,5 +1,7 @@
 package ui.passenger;
 
+import ui.round.RoundedButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,18 +17,23 @@ public class ConfirmPaymentPage {
 
         // Create the frame and panel
         frame = new JFrame("Ticket Buying Page");
+        frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
         // Create the header label
         headerLabel = new JLabel("Confirm Payment?", SwingConstants.CENTER);
+        headerLabel.setFont(headerLabel.getFont().deriveFont(20.0f));  // Increase the font size
 
         // Create the total cost label
         // bruh how do i get the total cost from the previous page
         totalCostLabel = new JLabel("Total Cost: $0.00");
+        totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));  // Increase the font size
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create the confirm button
-        confirmButton = new JButton("Confirm");
+        confirmButton = new RoundedButton("Confirm");
+        confirmButton.setFont(confirmButton.getFont().deriveFont(20.0f));  // Increase the font size
+        confirmButton.setPreferredSize(new Dimension(150, 50));  // Resize the button
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmButton.setBackground(new Color(0, 151, 8));
         confirmButton.addActionListener(new ActionListener() {
@@ -39,7 +46,9 @@ public class ConfirmPaymentPage {
         });
 
         // Create the cancel button
-        cancelButton = new JButton("Cancel");
+        cancelButton = new RoundedButton("Cancel");
+        cancelButton.setFont(cancelButton.getFont().deriveFont(20.0f));  // Increase the font size
+        cancelButton.setPreferredSize(new Dimension(150, 50));  // Resize the button
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setBackground(new Color(172, 64, 58));
         cancelButton.addActionListener(new ActionListener() {

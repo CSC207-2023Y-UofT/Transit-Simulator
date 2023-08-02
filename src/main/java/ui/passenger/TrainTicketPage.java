@@ -14,27 +14,27 @@ public class TrainTicketPage extends JFrame {
     public TrainTicketPage() {
 
         setTitle("Train Ticket");
-        setSize(600, 300);
+        setSize(900, 600);
         setLayout(new GridLayout(5,1));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // create components
         JLabel title = new JLabel("TRAIN TICKET", SwingConstants.CENTER);
-        title.setFont(new Font("Serif", Font.BOLD, 24));
+        title.setFont(new Font("Serif", Font.BOLD, 30));
 
         Random rand = new Random();
         int randomId = rand.nextInt(1000000);
         ticketId = new JLabel("Ticket ID: " + randomId, SwingConstants.CENTER);
-        ticketId.setFont(new Font("Serif", Font.PLAIN, 20));
+        ticketId.setFont(new Font("Serif", Font.PLAIN, 25));
 
         validTime = new JLabel("", SwingConstants.CENTER);
-        validTime.setFont(new Font("Serif", Font.PLAIN, 20));
+        validTime.setFont(new Font("Serif", Font.PLAIN, 25));
 
         JLabel passengerName = new JLabel("Passenger: John Doe", SwingConstants.CENTER);
-        passengerName.setFont(new Font("Serif", Font.PLAIN, 20));
+        passengerName.setFont(new Font("Serif", Font.PLAIN, 25));
 
         JLabel destination = new JLabel("Destination: New York City", SwingConstants.CENTER);
-        destination.setFont(new Font("Serif", Font.PLAIN, 20));
+        destination.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // change the background color of the labels to brown (like a paper color)
         Color paperColor = new Color(210, 180, 140);

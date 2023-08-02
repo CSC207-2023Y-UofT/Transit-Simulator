@@ -18,16 +18,19 @@ public class ThankYouPage {
 
         // Create the frame and panel
         frame = new JFrame("Thank You Page");
+        frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(5, 1));
 
         panel.add(new JLabel("  "));
 
         JLabel label = new JLabel("<html><div style='text-align: center;'>Thank you for your purchase.<br/>Your ticket is valid for 2 hours upon activation.</div></html>", SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(12.0f)); // Increase font size
+        label.setFont(label.getFont().deriveFont(20.0f)); // Increase font size
         panel.add(label);
 
         activateButton = new RoundedButton("Activate Ticket");
-        activateButton.setBackground(new Color(255, 134, 36));
+        activateButton.setPreferredSize(new Dimension(200, 50));  // Resize the button
+        activateButton.setFont(activateButton.getFont().deriveFont(20.0f));  // Increase font size
+        activateButton.setBackground(new Color(0, 151, 8));
         activateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,18 +38,13 @@ public class ThankYouPage {
                 frame.dispose();
             }
         });
-
         panel.add(new JLabel("  "));
-
         panel.add(activateButton);
-
-
-        new RoundedButton("Return to Main Menu");
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(400, 200);
+        frame.setSize(900, 600);
         frame.setVisible(true);
 
     }
