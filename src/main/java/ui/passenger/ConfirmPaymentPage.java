@@ -55,7 +55,7 @@ public class ConfirmPaymentPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Go back to the ticket buying page and dispose of the current frame
-                new TicketBuyingPage();
+                new PurchaseTicketPage();
                 frame.dispose();
             }
         });

@@ -8,8 +8,7 @@ import java.util.Random;
 
 public class TrainTicketPage extends JFrame {
 
-    private JLabel ticketId;
-    private JLabel validTime;
+    private JLabel ticketId, validTime, blank1, blank2;
 
     public TrainTicketPage() {
 
@@ -30,31 +29,28 @@ public class TrainTicketPage extends JFrame {
         validTime = new JLabel("", SwingConstants.CENTER);
         validTime.setFont(new Font("Serif", Font.PLAIN, 25));
 
-        JLabel passengerName = new JLabel("Passenger: John Doe", SwingConstants.CENTER);
-        passengerName.setFont(new Font("Serif", Font.PLAIN, 25));
-
-        JLabel destination = new JLabel("Destination: New York City", SwingConstants.CENTER);
-        destination.setFont(new Font("Serif", Font.PLAIN, 25));
+        blank1 = new JLabel("    ");
+        blank2 = new JLabel("    ");
 
         // change the background color of the labels to brown (like a paper color)
-        Color paperColor = new Color(210, 180, 140);
+        Color paperColor = new Color(255, 255, 255);
         title.setOpaque(true);
         title.setBackground(paperColor);
         ticketId.setOpaque(true);
         ticketId.setBackground(paperColor);
         validTime.setOpaque(true);
         validTime.setBackground(paperColor);
-        passengerName.setOpaque(true);
-        passengerName.setBackground(paperColor);
-        destination.setOpaque(true);
-        destination.setBackground(paperColor);
+        blank1.setOpaque(true);
+        blank1.setBackground(paperColor);
+        blank2.setOpaque(true);
+        blank2.setBackground(paperColor);
 
         // add components to frame
         add(title);
         add(ticketId);
         add(validTime);
-        add(passengerName);
-        add(destination);
+        add(blank1);
+        add(blank2);
 
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
