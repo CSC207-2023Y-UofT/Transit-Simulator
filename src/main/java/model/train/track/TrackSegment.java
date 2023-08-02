@@ -181,8 +181,8 @@ public class TrackSegment {
             return;
         }
 
-        Preconditions.checkState(prev.next != null, "prev is linked to a different track!");
-        Preconditions.checkState(next.prev != null, "next is linked to a different track!");
+        Preconditions.checkState(prev.next == null, "prev is linked to a different track!");
+        Preconditions.checkState(next.prev == null, "next is linked to a different track!");
 
         prev.next = next;
         next.prev = prev;
