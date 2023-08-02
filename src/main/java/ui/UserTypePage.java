@@ -1,5 +1,7 @@
 package ui;
 
+import ui.passenger.TicketBuyingPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

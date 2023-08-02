@@ -1,4 +1,8 @@
-package ui;
+package ui.passenger;
+
+import ui.UserTypePage;
+import ui.round.RoundedButton;
+import ui.round.RoundedLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,11 +18,9 @@ public class TicketBuyingPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel adultCount, childCount, seniorCount, studentCount;
+    private JLabel headerLabel, adultCount, childCount, seniorCount, studentCount, totalCostLabel;
     private JButton adultPlus, adultMinus, childPlus, childMinus, seniorPlus, seniorMinus, studentPlus, studentMinus;
     private JButton buyButton, backButton, cancelButton;
-    private JLabel totalCostLabel;
-    private JLabel headerLabel;
 
     public TicketBuyingPage() {
 
