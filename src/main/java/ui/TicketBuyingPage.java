@@ -25,9 +25,9 @@ public class TicketBuyingPage {
         // Create the frame and panel
         frame = new JFrame("Ticket Buying Page");
         panel = new JPanel(new GridLayout(0, 4));
-        headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
 
-        // Add the "Buy Tickets" title
+        headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
+        headerLabel.setFont(headerLabel.getFont().deriveFont(20.0f));
         panel.add(headerLabel);
 
         // 3 empty labels to fill the space
@@ -67,7 +67,7 @@ public class TicketBuyingPage {
 
 
         // Back button
-        backButton = new JButton("Back");
+        backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(0, 151, 8));
         backButton.addActionListener(new ActionListener() {
@@ -82,7 +82,7 @@ public class TicketBuyingPage {
 
 
         // Cancel button
-        cancelButton = new JButton("Cancel");
+        cancelButton = new RoundedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setBackground(new Color(172,64,58));
         cancelButton.addActionListener(new ActionListener() {
@@ -103,12 +103,11 @@ public class TicketBuyingPage {
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
         totalCostLabel.setOpaque(true);
         totalCostLabel.setBackground(new Color(255, 255, 255, 255));
-        panel.add(totalCostLabel);  // Add total cost label
+        panel.add(totalCostLabel);
 
         // Buy button
-        buyButton = new JButton("Buy Tickets");
+        buyButton = new RoundedButton("Buy Tickets");
         buyButton.setBackground(new Color(0, 151, 8));
-        buyButton.setOpaque(true);
         buyButton.setBorderPainted(false);
         buyButton.addActionListener(new ActionListener() {
             @Override
@@ -129,30 +128,24 @@ public class TicketBuyingPage {
         frame.pack();
         frame.setVisible(true);
 
-
-
-
-
-
     }
 
     private JLabel createCountLabel() {
-        JLabel label = new JLabel("0");
+        JLabel label = new RoundedLabel("0");
         label.setHorizontalAlignment(JLabel.CENTER);
-        label.setOpaque(true);
         label.setBackground(new Color(255, 255, 255, 255));
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         return label;
     }
 
     private JButton createMinusButton() {
-        JButton button = new JButton("-");
+        JButton button = new RoundedButton("-");
         button.setBackground(new Color(218, 167, 155));
         return button;
     }
 
     private JButton createPlusButton() {
-        JButton button = new JButton("+");
+        JButton button = new RoundedButton("+");
         button.setBackground(new Color(141, 203, 141));
         return button;
     }
