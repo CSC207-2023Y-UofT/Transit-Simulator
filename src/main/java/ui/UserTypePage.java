@@ -44,8 +44,8 @@ public class UserTypePage {
         staffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Display a message saying "Not implemented yet"
-                JOptionPane.showMessageDialog(frame, "Not implemented yet.");
+                new StaffSelectPage();
+                frame.dispose();
             }
         });
 
