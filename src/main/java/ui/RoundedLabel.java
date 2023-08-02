@@ -6,12 +6,9 @@ import java.awt.*;
 public class RoundedLabel extends JLabel {
     public RoundedLabel(String text) {
         super(text);
-
         setPreferredSize(new Dimension(50, 20));
-
         setOpaque(false);
     }
-
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -25,4 +22,5 @@ public class RoundedLabel extends JLabel {
         g.setColor(getForeground());
         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
     }
+
 }
