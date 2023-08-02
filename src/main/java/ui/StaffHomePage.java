@@ -1,6 +1,5 @@
 package ui;
 
-import employee.TrainOperator;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -8,14 +7,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StaffSelectPage {
+public class StaffHomePage {
     private JFrame frame;
     private JPanel panel;
     private JLabel staffTypeLabel;
     private JButton adminButton, trainEngineerButton, trainOperatorButton, backButton;
 
 
-    public StaffSelectPage() {
+    public StaffHomePage() {
 
         // Create the frame and panel
         frame = new JFrame("Staff Select Page");
@@ -129,6 +128,6 @@ public class StaffSelectPage {
     }
 
     public static void main(String[] args) {
-        new StaffSelectPage();
+        new StaffHomePage();
     }
 }

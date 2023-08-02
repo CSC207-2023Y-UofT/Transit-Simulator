@@ -1,19 +1,17 @@
-package ui;
-
-import ui.passenger.PurchaseTicketPage;
+package ui.passenger;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomePage extends JFrame {
+public class PassengerHomePage extends JFrame {
 
     private JButton buyTicketButton;
     private JButton viewTicketButton;
     private JButton exitButton;
 
-    public HomePage() {
+    public PassengerHomePage() {
         setTitle("Subway Ticket System");
         setSize(900, 600);
         setLayout(new GridLayout(4, 1));
@@ -63,7 +61,7 @@ public class HomePage extends JFrame {
     }
 
     public static void main(String[] args) {
-        new HomePage().setVisible(true);
+        new PassengerHomePage().setVisible(true);
     }
 
 }
