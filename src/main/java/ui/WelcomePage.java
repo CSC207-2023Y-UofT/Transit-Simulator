@@ -1,5 +1,6 @@
 package ui;
 
+import ui.passenger.PassengerHomePage;
 import ui.passenger.PurchaseTicketPage;
 import ui.round.RoundedButton;
 
@@ -41,7 +42,7 @@ public class WelcomePage {
         passengerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PurchaseTicketPage();
+                new PassengerHomePage();
                 frame.dispose();
             }
         });
@@ -60,6 +61,7 @@ public class WelcomePage {
                 frame.dispose();
             }
         });
+
 
         // Add components to the panel
 
@@ -95,10 +97,8 @@ public class WelcomePage {
             panel.add(new JLabel("  "));
         }
 
-
         // Make background color light gray
         panel.setBackground(new Color(220,220,220));
-
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);
@@ -110,4 +110,5 @@ public class WelcomePage {
     public static void main(String[] args) {
         new WelcomePage();
     }
+
 }
