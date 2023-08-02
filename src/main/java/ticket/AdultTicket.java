@@ -1,27 +1,25 @@
 package ticket;
 
-import model.node.Station;
+/**
+ * AdultTicket is a concrete implementation of the AbstractNormalTicket class.
+ * It represents a normal ticket that is specifically for adults.
+ * This ticket has a predetermined type ("Adult"), price (3.35), and a lifetime (1 day).
+ *
+ * @see AbstractNormalTicket
+ */
+public class AdultTicket extends AbstractNormalTicket {
 
-public class AdultTicket extends Ticket {
-    public long validity;
-    public static int price;
-    public Station departure;
-    public Station destination;
+    /**
+     * The lifetime of the ticket in milliseconds.
+     * This is a constant value representing 1 day (24 hours).
+     */
+    public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L;
 
-    public AdultTicket(Station start, Station end) {
-        this.validity = expiration;
-        this.departure = start;
-        this.destination = end;
+    /**
+     * Constructs a new AdultTicket object with the predetermined type, price and ticket lifetime.
+     */
+    public AdultTicket() {
+        super("Adult", 3.35, TICKET_LIFETIME);
     }
 
-    public static void setPrice(int price) {AdultTicket.price = price;
-    }
-
-    public static void setExpiration(long time) {AdultTicket.expiration = time;
-    }
-
-    @Override
-    public String getType() {
-        return "Adult";
-    }
 }

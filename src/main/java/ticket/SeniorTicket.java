@@ -1,41 +1,31 @@
 package ticket;
 
-import model.node.Station;
+/**
+ * SeniorTicket is a concrete implementation of the AbstractNormalTicket class.
+ * It represents a normal ticket that is specifically for seniors.
+ * This ticket has a predetermined type ("Senior"), price (2.30), and a lifetime (1 day).
+ * The class also maintains a minimum age limit for the senior (MIN_AGE = 65).
+ *
+ * @see AbstractNormalTicket
+ */
+public class SeniorTicket extends AbstractNormalTicket {
 
-class SeniorTicket extends Ticket {
-    private static int minAge;
-    public static int price;
-    public static long expiration;
-    public long validity;
-    private int age;
-    public Station departure;
-    public Station destination;
+    /**
+     * The minimum age limit for which this ticket can be used.
+     */
+    public static final int MIN_AGE = 65;
 
-    public SeniorTicket(int age, Station dep, Station des) {
-        if (age >= minAge) {
-            this.validity = expiration;
-            this.age = age;
-            this.departure = dep;
-            this.destination = des;
-        } else {
-            System.out.println("You are not eligible for this ticket");
-        }
+    /**
+     * The lifetime of the ticket in milliseconds.
+     * This is a constant value representing 1 day (24 hours).
+     */
+    public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L;
+
+    /**
+     * Constructs a new SeniorTicket object with the predetermined type, price and ticket lifetime.
+     */
+    public SeniorTicket() {
+        super("Senior", 2.30, TICKET_LIFETIME);
     }
 
-    public static void setMinAge(int age) {
-        SeniorTicket.minAge = age;
-    }
-
-    public static void setExpiration(long time) {
-        SeniorTicket.expiration = time;
-    }
-
-    public static void setPrice(int price) {
-        SeniorTicket.price = price;
-    }
-
-    @Override
-    public String getType() {
-        return "Senior";
-    }
 }

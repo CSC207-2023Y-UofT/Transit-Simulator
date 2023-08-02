@@ -1,37 +1,31 @@
 package ticket;
 
-public class ChildTicket extends Ticket {
-    private static int maxAge;
-    public static int price;
-    public static long expiration;
-    public long validity;
-    public Station departure;
-    public Station destination;
+/**
+ * ChildTicket is a concrete implementation of the AbstractNormalTicket class.
+ * It represents a normal ticket that is specifically for children.
+ * This ticket has a predetermined type ("Child"), price (2.40), and a lifetime (1 day).
+ * The class also maintains a maximum age limit for the child (MAX_AGE = 15).
+ *
+ * @see AbstractNormalTicket
+ */
+public class ChildTicket extends AbstractNormalTicket {
 
-    public ChildTicket(int age, Station start, Station end){
-        if(age <= maxAge){
-            this.validity = expiration;
-            this.departure = start;
-            this.destination = end;
-        }else{
-            System.out.println("You are not eligible for this ticket");
-        }
+    /**
+     * The maximum age limit for which this ticket can be used.
+     */
+    private static final int MAX_AGE = 15;
+
+    /**
+     * The lifetime of the ticket in milliseconds.
+     * This is a constant value representing 1 day (24 hours).
+     */
+    public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L;
+
+    /**
+     * Constructs a new ChildTicket object with the predetermined type, price and ticket lifetime.
+     */
+    public ChildTicket() {
+        super("Child", 2.40, TICKET_LIFETIME);
     }
 
-    public static void setMaxAge(int age){ChildTicket.maxAge = age;
-    }
-
-    public static void setExpiration(long time){
-        ChildTicket.expiration = time;
-    }
-
-    public static void setPrice(int price){
-        ChildTicket.price = price;
-    }
-
-
-    public String getType() {
-        return "Child";
-    }
 }
-

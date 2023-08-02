@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2ce257b1-aa50-4dbf-9d86-4c1c5b129bbf" name="Changes" comment="updated docs">
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/DirectionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/model/train/TrainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="course project the bbc" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="course project the bbc" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="course project the bbc" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="2-feature-2-train-class" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="7b0784a2-bc6a-4191-ba43-07ef2dcb0d09" />
+        <option name="url" value="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2SDgF9TVWqaMiP8dQU99ur7HILv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "train,-node,-plot",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/charl/OneDrive/Documents/University of Toronto Mississauga/Y1S3/CSC207/course project the bbc/src/main/java/TrainOperator.java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2413793",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "two.files.diff.last.used.file": "C:/Users/charl/OneDrive/Documents/University of Toronto Mississauga/Y1S3/CSC207/course project the bbc/src/main/java/TrainOperator.java",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\charl\OneDrive\Documents\University of Toronto Mississauga\Y1S3\CSC207\course project the bbc\src\main\resources" />
+      <recent name="C:\Users\charl\OneDrive\Documents\University of Toronto Mississauga\Y1S3\CSC207\course project the bbc\src\main\java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.DirectionTest">
+    <configuration name="GradleBuildTesting (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tutorial.GradleBuildTesting" />
+      <module name="course_project_the_bbc.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tutorial.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GradleBuildTesting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tutorial.GradleBuildTesting" />
+      <module name="course_project_the_bbc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tutorial.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="course_project_the_bbc.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DirectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;model.DirectionTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="course project the bbc [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="init" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="course project the bbc" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="course project the bbc" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.DirectionTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GradleBuildTesting (1)" />
+        <item itemvalue="Application.GradleBuildTesting" />
+        <item itemvalue="Gradle.course project the bbc [init]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2ce257b1-aa50-4dbf-9d86-4c1c5b129bbf" name="Changes" comment="" />
+      <created>1688686458708</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688686458708</updated>
+      <workItem from="1688686460057" duration="2152000" />
+      <workItem from="1688959201724" duration="7358000" />
+      <workItem from="1689106741732" duration="4702000" />
+      <workItem from="1689153348101" duration="13229000" />
+      <workItem from="1689171046119" duration="384000" />
+      <workItem from="1689289150912" duration="805000" />
+      <workItem from="1689289985262" duration="270000" />
+      <workItem from="1689290281943" duration="2436000" />
+      <workItem from="1689711274898" duration="15016000" />
+      <workItem from="1689846915155" duration="181000" />
+      <workItem from="1689847105315" duration="340000" />
+      <workItem from="1689847455192" duration="9802000" />
+      <workItem from="1689910132453" duration="1579000" />
+      <workItem from="1689975689039" duration="1302000" />
+      <workItem from="1689981813773" duration="373000" />
+      <workItem from="1689982198648" duration="678000" />
+      <workItem from="1690315911484" duration="91000" />
+      <workItem from="1690316528463" duration="2518000" />
+      <workItem from="1690319085534" duration="689000" />
+      <workItem from="1690319817669" duration="355000" />
+      <workItem from="1690320189134" duration="2129000" />
+      <workItem from="1690324078858" duration="104000" />
+      <workItem from="1690324213865" duration="4170000" />
+      <workItem from="1690494751476" duration="237000" />
+      <workItem from="1690494992220" duration="17474000" />
+    </task>
+    <task id="LOCAL-00001" summary="created Main.java and Train.java">
+      <created>1688686738825</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1688686738825</updated>
+    </task>
+    <task id="LOCAL-00002" summary="created Main.java and Train.java">
+      <created>1688687150975</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1688687150975</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed javadocs">
+      <created>1688959706051</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1688959706051</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added set and query functions">
+      <created>1688965785204</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688965785204</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added set and query functions">
+      <created>1688966489594</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688966489594</updated>
+    </task>
+    <task id="LOCAL-00006" summary="modifications">
+      <created>1689109640627</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689109640627</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Created DirectionType enum">
+      <created>1689110367951</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1689110367951</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Optimizations for readability and logic">
+      <created>1689110402065</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689110402065</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added image of model train system map">
+      <created>1689154510254</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1689154510254</updated>
+    </task>
+    <task id="LOCAL-00010" summary="renamed map model image">
+      <created>1689157734847</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1689157734847</updated>
+    </task>
+    <task id="LOCAL-00011" summary="clarified direction and added location updater direction changer">
+      <created>1689157903800</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1689157903800</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added TODO to make a train controller class">
+      <created>1689157981512</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1689157981512</updated>
+    </task>
+    <task id="LOCAL-00013" summary="created the ITrack interface">
+      <created>1689170359245</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1689170359245</updated>
+    </task>
+    <task id="LOCAL-00014" summary="created parent class Node, child classes Station and Track. Rough idea of implementation has been noted down">
+      <created>1689170404443</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1689170404443</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Noted some ideas">
+      <created>1689170516828</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1689170516828</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Renamed Map to Plot and noted pseudopseudocode">
+      <created>1689170555815</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1689170555815</updated>
+    </task>
+    <task id="LOCAL-00017" summary="changed Train to reflect Map refactoring to Plot">
+      <created>1689170590197</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1689170590197</updated>
+    </task>
+    <task id="LOCAL-00018" summary="in-code commented some todos">
+      <created>1689171407262</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1689171407262</updated>
+    </task>
+    <task id="LOCAL-00019" summary="renamed enum values">
+      <created>1689290051941</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1689290051941</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added name variable">
+      <created>1689290412082</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1689290412082</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added TODO">
+      <created>1689290427686</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1689290427686</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added explanation comment">
+      <created>1689290450562</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1689290450562</updated>
+    </task>
+    <task id="LOCAL-00023" summary="some changes">
+      <created>1689801576775</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1689801576775</updated>
+    </task>
+    <task id="LOCAL-00024" summary="some basic changes">
+      <created>1689878240488</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1689878240488</updated>
+    </task>
+    <task id="LOCAL-00025" summary="some mediocre changes">
+      <created>1689909558858</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1689909558858</updated>
+    </task>
+    <task id="LOCAL-00026" summary="added TODO consideration and javadoc">
+      <created>1689910013192</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1689910013192</updated>
+    </task>
+    <task id="LOCAL-00027" summary="updated TODO and clarified model system 1">
+      <created>1689910422628</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1689910422628</updated>
+    </task>
+    <task id="LOCAL-00028" summary="updated model train system json data">
+      <created>1689911280211</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1689911280211</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added TODO">
+      <created>1689911347892</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1689911347892</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added TODO">
+      <created>1689911370210</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1689911370210</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added TODO">
+      <created>1689911666138</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1689911666138</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added READMEs">
+      <created>1689977473568</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1689977473568</updated>
+    </task>
+    <task id="LOCAL-00033" summary="added TODO">
+      <created>1689977532290</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1689977532290</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Refactor Staff references to Employee references">
+      <option name="closed" value="true" />
+      <created>1690317437391</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1690317437391</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Updated Model*.json formatting">
+      <option name="closed" value="true" />
+      <created>1690328466151</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1690328466151</updated>
+    </task>
+    <task id="LOCAL-00036" summary="made cleaner">
+      <option name="closed" value="true" />
+      <created>1690495312372</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1690495312372</updated>
+    </task>
+    <task id="LOCAL-00037" summary="delete comments">
+      <option name="closed" value="true" />
+      <created>1690498476573</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1690498476573</updated>
+    </task>
+    <task id="LOCAL-00038" summary="added MaintenanceEvent instantiation and javadoc fixes">
+      <option name="closed" value="true" />
+      <created>1690500156192</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1690500156192</updated>
+    </task>
+    <task id="LOCAL-00039" summary="got rid of midi.Track import and added javadocs">
+      <option name="closed" value="true" />
+      <created>1690505316417</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1690505316417</updated>
+    </task>
+    <task id="LOCAL-00040" summary="got rid of midi.Track import and added javadocs">
+      <option name="closed" value="true" />
+      <created>1690505324698</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1690505324698</updated>
+    </task>
+    <task id="LOCAL-00041" summary="added model names to .json files">
+      <option name="closed" value="true" />
+      <created>1690506450581</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1690506450581</updated>
+    </task>
+    <task id="LOCAL-00042" summary="moved train staff classes to the upper folder /java">
+      <option name="closed" value="true" />
+      <created>1690506485378</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1690506485378</updated>
+    </task>
+    <task id="LOCAL-00043" summary="updated docs">
+      <option name="closed" value="true" />
+      <created>1690743006603</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1690743006603</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Noted some ideas" />
+    <MESSAGE value="Renamed Map to Plot and noted pseudopseudocode" />
+    <MESSAGE value="changed Train to reflect Map refactoring to Plot" />
+    <MESSAGE value="in-code commented some todos" />
+    <MESSAGE value="renamed enum values" />
+    <MESSAGE value="added name variable" />
+    <MESSAGE value="Added TODO" />
+    <MESSAGE value="Added explanation comment" />
+    <MESSAGE value="some changes" />
+    <MESSAGE value="some basic changes" />
+    <MESSAGE value="some mediocre changes" />
+    <MESSAGE value="added TODO consideration and javadoc" />
+    <MESSAGE value="updated TODO and clarified model system 1" />
+    <MESSAGE value="updated model train system json data" />
+    <MESSAGE value="added READMEs" />
+    <MESSAGE value="added TODO" />
+    <MESSAGE value="Refactor Staff references to Employee references" />
+    <MESSAGE value="Updated Model*.json formatting" />
+    <MESSAGE value="made cleaner" />
+    <MESSAGE value="delete comments" />
+    <MESSAGE value="added MaintenanceEvent instantiation and javadoc fixes" />
+    <MESSAGE value="got rid of midi.Track import and added javadocs" />
+    <MESSAGE value="added model names to .json files" />
+    <MESSAGE value="moved train staff classes to the upper folder /java" />
+    <MESSAGE value="updated docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated docs" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/course_project_the_bbc$HelloWorldTest_HelloWorldNormalNumbers.ic" NAME="HelloWorldTest.HelloWorldNormalNumbers Coverage Results" MODIFIED="1690318153021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tutorial.*</FILTER>
+    </SUITE>
+  </component>
+</project>
