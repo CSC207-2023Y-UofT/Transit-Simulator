@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TicketBuyingPage {
+public class PurchaseTicketPage {
 
     private static final double ADULT_PRICE = 3.35;
     private static final double CHILD_PRICE = 2.40;
@@ -22,7 +22,7 @@ public class TicketBuyingPage {
     private JButton adultPlus, adultMinus, childPlus, childMinus, seniorPlus, seniorMinus, studentPlus, studentMinus;
     private JButton buyButton, backButton, cancelButton;
 
-    public TicketBuyingPage() {
+    public PurchaseTicketPage() {
 
         // Create the frame and panel
         frame = new JFrame("Ticket Buying Page");
@@ -203,7 +203,7 @@ public class TicketBuyingPage {
     }
 
     public static void main(String[] args) {
-        new TicketBuyingPage();
+        new PurchaseTicketPage();
     }
 
 }
