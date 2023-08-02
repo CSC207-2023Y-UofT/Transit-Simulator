@@ -1,6 +1,6 @@
 package ui.passenger;
 
-import ui.UserTypePage;
+import ui.WelcomePage;
 import ui.round.RoundedButton;
 import ui.round.RoundedLabel;
 
@@ -79,7 +79,7 @@ public class PurchaseTicketPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Open the ticket buying page and dispose of the current frame
-                new UserTypePage();
+                new WelcomePage();
                 frame.dispose();
             }
         });

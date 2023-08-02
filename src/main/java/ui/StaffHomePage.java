@@ -70,7 +70,7 @@ public class StaffHomePage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UserTypePage();
+                new WelcomePage();
                 frame.dispose();
             }
         });

@@ -8,14 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserTypePage {
+public class WelcomePage {
     private JFrame frame;
     private JPanel panel;
     private JLabel titleLabel, userTypeLabel;
     private JButton passengerButton, staffButton;
 
 
-    public UserTypePage() {
+    public WelcomePage() {
 
         // Create the frame and panel
         frame = new JFrame("Ticket Buying Page");
@@ -109,6 +109,6 @@ public class UserTypePage {
     }
 
     public static void main(String[] args) {
-        new UserTypePage();
+        new WelcomePage();
     }
 }
