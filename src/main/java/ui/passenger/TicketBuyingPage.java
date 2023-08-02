@@ -29,7 +29,7 @@ public class TicketBuyingPage {
         panel = new JPanel(new GridLayout(0, 4));
 
         headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
-        headerLabel.setFont(headerLabel.getFont().deriveFont(20.0f));
+        headerLabel.setFont(headerLabel.getFont().deriveFont(14.0f));
         panel.add(headerLabel);
 
         // 3 empty labels to fill the space
@@ -191,8 +191,8 @@ public class TicketBuyingPage {
         totalCostLabel.setText("Total: " + totalFormatted);
     }
 
-
     public static void main(String[] args) {
         new TicketBuyingPage();
     }
+
 }

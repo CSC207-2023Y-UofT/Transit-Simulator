@@ -1,6 +1,7 @@
 package ui;
 
 import employee.TrainOperator;
+import ui.round.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class StaffSelectPage {
         staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the label
 
         // Admin button
-        adminButton = new JButton("Admin");
+        adminButton = new RoundedButton("Admin");
         adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
         adminButton.setBackground(new Color(135,156,210));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -38,7 +39,7 @@ public class StaffSelectPage {
         });
 
         // Train Engineer button
-        trainEngineerButton = new JButton("Train Engineer");
+        trainEngineerButton = new RoundedButton("Train Engineer");
         trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
         trainEngineerButton.setBackground(new Color(135,156,210));
         trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -51,7 +52,7 @@ public class StaffSelectPage {
         });
 
         // Train Operator button
-        trainOperatorButton = new JButton("Train Operator");
+        trainOperatorButton = new RoundedButton("Train Operator");
         trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         trainOperatorButton.setBackground(new Color(135,156,210));
         trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -65,11 +66,20 @@ public class StaffSelectPage {
 
         // Back button
         backButton = new JButton("Back");
-
-
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.setBackground(new Color(255, 255, 255));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UserTypePage();
+                frame.dispose();
+            }
+        });
 
 
         // Add components to the panel
+
+        panel.setBackground(new Color(210, 207, 206));
 
         for (int i = 0; i < 3; i++) {
             panel.add(new JLabel("  "));
@@ -106,6 +116,10 @@ public class StaffSelectPage {
         for (int i = 0; i < 6; i++) {
             panel.add(new JLabel("  "));
         }
+
+        panel.add(backButton);
+        panel.add(new JLabel("  "));
+        panel.add(new JLabel("  "));
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);

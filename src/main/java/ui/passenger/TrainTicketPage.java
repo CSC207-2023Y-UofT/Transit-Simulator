@@ -6,14 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class TrainTicket extends JFrame {
+public class TrainTicketPage extends JFrame {
 
     private JLabel ticketId;
     private JLabel validTime;
 
-    public TrainTicket() {
-
-
+    public TrainTicketPage() {
 
         setTitle("Train Ticket");
         setSize(600, 300);
@@ -58,7 +56,6 @@ public class TrainTicket extends JFrame {
         add(passengerName);
         add(destination);
 
-
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
             int remaining = 2 * 60 * 60; // 2 hours in seconds
@@ -78,9 +75,12 @@ public class TrainTicket extends JFrame {
             }
         });
         timer.start();
+
+
     }
 
     public static void main(String[] args) {
-        new TrainTicket().setVisible(true);
+        new TrainTicketPage();
     }
+
 }

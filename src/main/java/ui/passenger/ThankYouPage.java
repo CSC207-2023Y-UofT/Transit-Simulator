@@ -1,23 +1,51 @@
 package ui.passenger;
 
+import ui.round.RoundedButton;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ThankYouPage {
 
     private JFrame frame;
     private JPanel panel;
     private JLabel headerLabel;
-    private JButton nextButton;
+    private JButton activateButton, returnButton;
 
     public ThankYouPage() {
 
-        JFrame frame = new JFrame("Thank You Page");
+        // Create the frame and panel
+        frame = new JFrame("Thank You Page");
+        panel = new JPanel(new GridLayout(5, 1));
+
+        panel.add(new JLabel("  "));
+
+        JLabel label = new JLabel("<html><div style='text-align: center;'>Thank you for your purchase.<br/>Your ticket is valid for 2 hours upon activation.</div></html>", SwingConstants.CENTER);
+        label.setFont(label.getFont().deriveFont(12.0f)); // Increase font size
+        panel.add(label);
+
+        activateButton = new RoundedButton("Activate Ticket");
+        activateButton.setBackground(new Color(255, 134, 36));
+        activateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TrainTicketPage().setVisible(true);
+                frame.dispose();
+            }
+        });
+
+        panel.add(new JLabel("  "));
+
+        panel.add(activateButton);
+
+
+        new RoundedButton("Return to Main Menu");
+
+        frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JLabel label = new JLabel("<html><div style='text-align: center;'>Purchase confirmed.<br/>Ticket valid for 24 hours.<br/>Thank you.</div></html>", SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(20.0f)); // Increase font size
-        frame.getContentPane().add(label);
-
+        frame.pack();
         frame.setSize(400, 200);
         frame.setVisible(true);
 

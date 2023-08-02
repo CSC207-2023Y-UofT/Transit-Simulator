@@ -1,6 +1,7 @@
 package ui;
 
 import ui.passenger.TicketBuyingPage;
+import ui.round.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class UserTypePage {
         userTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the label
 
         // Passenger button
-        passengerButton = new JButton("Passenger");
+        passengerButton = new RoundedButton("Passenger");
         passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
         passengerButton.setBackground(new Color(135,156,210));
         passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -39,7 +40,7 @@ public class UserTypePage {
         });
 
         // Staff button
-        staffButton = new JButton("Staff");
+        staffButton = new RoundedButton("Staff");
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
         staffButton.setBackground(new Color(135,156,210));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));

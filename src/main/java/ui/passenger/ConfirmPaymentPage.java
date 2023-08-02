@@ -54,6 +54,8 @@ public class ConfirmPaymentPage {
 
         // Add components to the panel
 
+        panel.setBackground(new Color(210, 207, 206));
+
         // Line 1: empty
         for (int i = 0; i < 3; i++) {
             panel.add(new JLabel("  "));
