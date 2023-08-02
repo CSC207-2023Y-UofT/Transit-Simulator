@@ -1,4 +1,8 @@
-package ui;
+package ui.passenger;
+
+import ui.UserTypePage;
+import ui.round.RoundedButton;
+import ui.round.RoundedLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,20 +18,19 @@ public class TicketBuyingPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel adultCount, childCount, seniorCount, studentCount;
+    private JLabel headerLabel, adultCount, childCount, seniorCount, studentCount, totalCostLabel;
     private JButton adultPlus, adultMinus, childPlus, childMinus, seniorPlus, seniorMinus, studentPlus, studentMinus;
     private JButton buyButton, backButton, cancelButton;
-    private JLabel totalCostLabel;
-    private JLabel headerLabel;
 
     public TicketBuyingPage() {
 
         // Create the frame and panel
         frame = new JFrame("Ticket Buying Page");
+        frame.setPreferredSize(new Dimension(900, 600));  // Resize the frame
         panel = new JPanel(new GridLayout(0, 4));
-        headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
 
-        // Add the "Buy Tickets" title
+        headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
+        headerLabel.setFont(headerLabel.getFont().deriveFont(28.0f));
         panel.add(headerLabel);
 
         // 3 empty labels to fill the space
@@ -67,8 +70,10 @@ public class TicketBuyingPage {
 
 
         // Back button
-        backButton = new JButton("Back");
+        backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font
+        backButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
         backButton.setBackground(new Color(0, 151, 8));
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -82,8 +87,10 @@ public class TicketBuyingPage {
 
 
         // Cancel button
-        cancelButton = new JButton("Cancel");
+        cancelButton = new RoundedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cancelButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font
+        cancelButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
         cancelButton.setBackground(new Color(172,64,58));
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -100,13 +107,17 @@ public class TicketBuyingPage {
 
         // Total cost label
         totalCostLabel = new JLabel("Total: $0.00");
+        totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f)); // Increase the size
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(totalCostLabel);  // Add total cost label
+        totalCostLabel.setOpaque(true);
+        totalCostLabel.setBackground(new Color(255, 255, 255, 255));
+        panel.add(totalCostLabel);
 
         // Buy button
-        buyButton = new JButton("Buy Tickets");
+        buyButton = new RoundedButton("Buy Tickets");
+        buyButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font
+        buyButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
         buyButton.setBackground(new Color(0, 151, 8));
-        buyButton.setOpaque(true);
         buyButton.setBorderPainted(false);
         buyButton.addActionListener(new ActionListener() {
             @Override
@@ -118,6 +129,9 @@ public class TicketBuyingPage {
 
         panel.add(buyButton);
 
+        // Make background color light gray
+        panel.setBackground(new Color(210, 207, 206));
+
         // Add the header label and panel to the frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,20 +140,25 @@ public class TicketBuyingPage {
     }
 
     private JLabel createCountLabel() {
-        JLabel label = new JLabel("0");
+        JLabel label = new RoundedLabel("0");
+        label.setFont(label.getFont().deriveFont(20.0f)); // Increase the size
         label.setHorizontalAlignment(JLabel.CENTER);
+        label.setBackground(new Color(255, 255, 255, 255));
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         return label;
     }
 
     private JButton createMinusButton() {
-        JButton button = new JButton("-");
-        button.setBackground(new Color(248,180,166));
+        JButton button = new RoundedButton("-");
+        button.setFont(button.getFont().deriveFont(20.0f)); // Increase the size
+        button.setBackground(new Color(218, 167, 155));
         return button;
     }
 
     private JButton createPlusButton() {
-        JButton button = new JButton("+");
-        button.setBackground(new Color(114,217,112));
+        JButton button = new RoundedButton("+");
+        button.setFont(button.getFont().deriveFont(20.0f)); // Increase the size
+        button.setBackground(new Color(141, 203, 141));
         return button;
     }
 
@@ -162,6 +181,7 @@ public class TicketBuyingPage {
 
         String priceFormatted = String.format("$%.2f", price);
         JLabel lab = new JLabel(name + "   " + priceFormatted);
+        lab.setFont(lab.getFont().deriveFont(20.0f)); // Increase the size
         lab.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lab);
         panel.add(minusButton);
@@ -182,8 +202,8 @@ public class TicketBuyingPage {
         totalCostLabel.setText("Total: " + totalFormatted);
     }
 
-
     public static void main(String[] args) {
         new TicketBuyingPage();
     }
+
 }
