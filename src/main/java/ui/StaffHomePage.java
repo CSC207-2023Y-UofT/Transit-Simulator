@@ -72,7 +72,7 @@ public class StaffHomePage {
         });
 
         // Back button
-        backButton = new JButton("Back");
+        backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(backButton.getFont().deriveFont(20.0f));

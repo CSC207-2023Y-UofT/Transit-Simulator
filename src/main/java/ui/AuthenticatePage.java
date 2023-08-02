@@ -49,7 +49,7 @@ public class AuthenticatePage {
         });
 
         // Back button
-        backButton = new JButton("Back");
+        backButton = new RoundedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(backButton.getFont().deriveFont(20.0f));
         backButton.addActionListener(new ActionListener() {
