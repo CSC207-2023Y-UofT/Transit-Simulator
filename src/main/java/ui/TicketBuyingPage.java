@@ -108,14 +108,14 @@ public class TicketBuyingPage {
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setOpaque(true);
         buyButton.setBorderPainted(false);
-        buyButton.addActionListener(e -> {
-            String result = "You have bought: ";
-            result += adultCount.getText() + " Adult tickets, ";
-            result += childCount.getText() + " Child tickets, ";
-            result += seniorCount.getText() + " Senior tickets, ";
-            result += studentCount.getText() + " Student tickets.";
-            JOptionPane.showMessageDialog(frame, result);
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ConfirmPaymentPage();
+                frame.dispose();
+            }
         });
+
         panel.add(buyButton);
 
         // Add the header label and panel to the frame
@@ -169,14 +169,19 @@ public class TicketBuyingPage {
         panel.add(plusButton);
     }
 
-    private void updateTotalCost() {
-        double total = Integer.parseInt(adultCount.getText()) * ADULT_PRICE
+    public double getTotalCost() {
+        return Integer.parseInt(adultCount.getText()) * ADULT_PRICE
                 + Integer.parseInt(childCount.getText()) * CHILD_PRICE
                 + Integer.parseInt(seniorCount.getText()) * SENIOR_PRICE
                 + Integer.parseInt(studentCount.getText()) * STUDENT_PRICE;
-
-        totalCostLabel.setText(String.format("Total: $%.2f", total));
     }
+
+    private void updateTotalCost() {
+        double total = getTotalCost();
+        String totalFormatted = String.format("$%.2f", total);
+        totalCostLabel.setText("Total: " + totalFormatted);
+    }
+
 
     public static void main(String[] args) {
         new TicketBuyingPage();

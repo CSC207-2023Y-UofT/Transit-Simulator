@@ -25,7 +25,8 @@ public class UserTypePage {
         // Passenger button
         passengerButton = new JButton("Passenger");
         passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
-        passengerButton.setBackground(Color.GREEN);
+        passengerButton.setBackground(new Color(135,156,210));
+        passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         passengerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,7 +39,8 @@ public class UserTypePage {
         // Staff button
         staffButton = new JButton("Staff");
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
-        staffButton.setBackground(Color.GREEN);
+        staffButton.setBackground(new Color(135,156,210));
+        staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         staffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,13 +51,25 @@ public class UserTypePage {
 
         // Add components to the panel
 
+        for (int i = 0; i < 3; i++) {
+            panel.add(new JLabel("  "));
+        }
+
         panel.add(new JLabel("  "));
         panel.add(userTypeLabel);
         panel.add(new JLabel("  "));
 
+        for (int i = 0; i < 3; i++) {
+            panel.add(new JLabel("  "));
+        }
+
         panel.add(new JLabel("  "));
         panel.add(passengerButton);
         panel.add(new JLabel("  "));
+
+        for (int i = 0; i < 3; i++) {
+            panel.add(new JLabel("  "));
+        }
 
         panel.add(new JLabel("  "));
         panel.add(staffButton);
