@@ -57,7 +57,7 @@ public class TrainTest {
         transitTracker.getTrackRepo().addTrack(t2b);
         transitTracker.getTrackRepo().addTrack(t3b);
 
-        // Get references to the node track segments that belong to each station
+        // Get references to the node track segments that belong to each station  // TODO HELP do we also have to add the tracksegments belonging to stations to the track repo? I assume so but it wasn't done
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
         TrackSegment s2f = l1s2.getTrack(Direction.FORWARD);
         TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);
