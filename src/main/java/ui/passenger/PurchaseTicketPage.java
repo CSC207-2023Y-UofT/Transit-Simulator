@@ -29,7 +29,7 @@ public class PurchaseTicketPage {
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 4));
 
-        headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
+        headerLabel = new JLabel("Tickets", SwingConstants.CENTER);
         headerLabel.setFont(headerLabel.getFont().deriveFont(28.0f));
         panel.add(headerLabel);
 
@@ -71,7 +71,7 @@ public class PurchaseTicketPage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new WelcomePage();
+                new PassengerHomePage();
                 frame.dispose();
             }
         });
@@ -106,7 +106,7 @@ public class PurchaseTicketPage {
         panel.add(totalCostLabel);
 
         // Buy button
-        buyButton = new RoundedButton("Buy Tickets");
+        buyButton = new RoundedButton("Buy");
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
