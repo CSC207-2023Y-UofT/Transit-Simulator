@@ -79,6 +79,11 @@ public class UserTypePage {
             panel.add(new JLabel("  "));
         }
 
+
+        // Make background color light gray
+        panel.setBackground(new Color(220,220,220));
+
+
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

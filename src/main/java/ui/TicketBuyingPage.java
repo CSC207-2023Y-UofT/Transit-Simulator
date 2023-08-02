@@ -101,6 +101,8 @@ public class TicketBuyingPage {
         // Total cost label
         totalCostLabel = new JLabel("Total: $0.00");
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
+        totalCostLabel.setOpaque(true);
+        totalCostLabel.setBackground(new Color(255, 255, 255, 255));
         panel.add(totalCostLabel);  // Add total cost label
 
         // Buy button
@@ -118,28 +120,40 @@ public class TicketBuyingPage {
 
         panel.add(buyButton);
 
+        // Make background color light gray
+        panel.setBackground(new Color(210, 207, 206));
+
         // Add the header label and panel to the frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+
+
+
+
+
     }
 
     private JLabel createCountLabel() {
         JLabel label = new JLabel("0");
         label.setHorizontalAlignment(JLabel.CENTER);
+        label.setOpaque(true);
+        label.setBackground(new Color(255, 255, 255, 255));
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         return label;
     }
 
     private JButton createMinusButton() {
         JButton button = new JButton("-");
-        button.setBackground(new Color(248,180,166));
+        button.setBackground(new Color(218, 167, 155));
         return button;
     }
 
     private JButton createPlusButton() {
         JButton button = new JButton("+");
-        button.setBackground(new Color(114,217,112));
+        button.setBackground(new Color(141, 203, 141));
         return button;
     }
 
