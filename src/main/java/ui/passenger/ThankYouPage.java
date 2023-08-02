@@ -11,8 +11,8 @@ public class ThankYouPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel headerLabel;
-    private JButton activateButton, returnButton;
+    private JLabel blank1, blank2;
+    private JButton activateButton, homeButton;
 
     public ThankYouPage() {
 
@@ -21,10 +21,15 @@ public class ThankYouPage {
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(5, 1));
 
-        panel.add(new JLabel("  "));
+        blank1 = new JLabel("  ");
+        blank1.setOpaque(true);
+        blank1.setBackground(Color.lightGray);
+        panel.add(blank1);
 
         JLabel label = new JLabel("<html><div style='text-align: center;'>Thank you for your purchase.<br/>Your ticket is valid for 2 hours upon activation.</div></html>", SwingConstants.CENTER);
         label.setFont(label.getFont().deriveFont(20.0f));
+        label.setOpaque(true);
+        label.setBackground(Color.lightGray);
         panel.add(label);
 
         activateButton = new RoundedButton("Activate Ticket");
@@ -38,8 +43,25 @@ public class ThankYouPage {
                 frame.dispose();
             }
         });
-        panel.add(new JLabel("  "));
+        blank2 = new JLabel("  ");
+        blank2.setOpaque(true);
+        blank2.setBackground(Color.lightGray);
+        panel.add(blank2);
         panel.add(activateButton);
+
+
+        homeButton = new RoundedButton("Home");
+        homeButton.setPreferredSize(new Dimension(200, 50));
+        homeButton.setFont(homeButton.getFont().deriveFont(20.0f));
+        homeButton.setBackground(new Color(255, 255, 255));
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PassengerHomePage();
+                frame.dispose();
+            }
+        });
+        panel.add(homeButton);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

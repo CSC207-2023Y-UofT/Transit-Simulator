@@ -1,5 +1,7 @@
 package ui.passenger;
 
+import ui.round.RoundedButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +11,7 @@ import java.util.Random;
 public class TrainTicketPage extends JFrame {
 
     private JLabel ticketId, validTime, blank1, blank2;
+    private RoundedButton homeButton;
 
     public TrainTicketPage() {
 
@@ -32,8 +35,20 @@ public class TrainTicketPage extends JFrame {
         blank1 = new JLabel("    ");
         blank2 = new JLabel("    ");
 
+        homeButton = new RoundedButton("Home");
+        homeButton.setPreferredSize(new Dimension(200, 50));
+        homeButton.setFont(homeButton.getFont().deriveFont(20.0f));
+        homeButton.setBackground(new Color(255, 255, 255));
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PassengerHomePage();
+            }
+        });
+
+
         // change the background color of the labels to brown (like a paper color)
-        Color paperColor = new Color(255, 255, 255);
+        Color paperColor = new Color(173, 133, 124);
         title.setOpaque(true);
         title.setBackground(paperColor);
         ticketId.setOpaque(true);
@@ -51,6 +66,7 @@ public class TrainTicketPage extends JFrame {
         add(validTime);
         add(blank1);
         add(blank2);
+        add(homeButton);
 
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
