@@ -24,12 +24,12 @@ public class ThankYouPage {
         panel.add(new JLabel("  "));
 
         JLabel label = new JLabel("<html><div style='text-align: center;'>Thank you for your purchase.<br/>Your ticket is valid for 2 hours upon activation.</div></html>", SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(20.0f)); // Increase font size
+        label.setFont(label.getFont().deriveFont(20.0f));
         panel.add(label);
 
         activateButton = new RoundedButton("Activate Ticket");
-        activateButton.setPreferredSize(new Dimension(200, 50));  // Resize the button
-        activateButton.setFont(activateButton.getFont().deriveFont(20.0f));  // Increase font size
+        activateButton.setPreferredSize(new Dimension(200, 50));
+        activateButton.setFont(activateButton.getFont().deriveFont(20.0f));
         activateButton.setBackground(new Color(0, 151, 8));
         activateButton.addActionListener(new ActionListener() {
             @Override

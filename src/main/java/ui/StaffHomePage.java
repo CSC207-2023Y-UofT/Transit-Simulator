@@ -22,11 +22,11 @@ public class StaffHomePage {
 
         // Add the "Please select your user type." title
         staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
-        staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the label
+        staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Admin button
         adminButton = new RoundedButton("Admin");
-        adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
+        adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         adminButton.setBackground(new Color(135,156,210));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         adminButton.addActionListener(new ActionListener() {
@@ -39,7 +39,7 @@ public class StaffHomePage {
 
         // Train Engineer button
         trainEngineerButton = new RoundedButton("Train Engineer");
-        trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
+        trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         trainEngineerButton.setBackground(new Color(135,156,210));
         trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         trainEngineerButton.addActionListener(new ActionListener() {

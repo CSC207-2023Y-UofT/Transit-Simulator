@@ -26,7 +26,7 @@ public class PurchaseTicketPage {
 
         // Create the frame and panel
         frame = new JFrame("Ticket Buying Page");
-        frame.setPreferredSize(new Dimension(900, 600));  // Resize the frame
+        frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 4));
 
         headerLabel = new JLabel("Buy Tickets", SwingConstants.CENTER);
@@ -38,47 +38,39 @@ public class PurchaseTicketPage {
             panel.add(new JLabel("  "));
         }
 
-        // First row: Adult tickets
         adultCount = createCountLabel();
         adultMinus = createMinusButton();
         adultPlus = createPlusButton();
         createRow("Adult", adultMinus, adultPlus, adultCount, ADULT_PRICE);
 
-        // Second row: Child tickets
         childCount = createCountLabel();
         childMinus = createMinusButton();
         childPlus = createPlusButton();
         createRow("Child", childMinus, childPlus, childCount, CHILD_PRICE);
 
-        // Third row: Senior tickets
         seniorCount = createCountLabel();
         seniorMinus = createMinusButton();
         seniorPlus = createPlusButton();
         createRow("Senior", seniorMinus, seniorPlus, seniorCount, SENIOR_PRICE);
 
-        // Fourth row: Student tickets
         studentCount = createCountLabel();
         studentMinus = createMinusButton();
         studentPlus = createPlusButton();
         createRow("Student", studentMinus, studentPlus, studentCount, STUDENT_PRICE);
 
-
-        // Add empty labels as spacers. Adjust the second parameter to change spacing.
         for (int i = 0; i < 4; i++) {
             panel.add(new JLabel(" "));
         }
 
-
         // Back button
         backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        backButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font
-        backButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
+        backButton.setFont(new Font("Serif", Font.BOLD, 20));
+        backButton.setPreferredSize(new Dimension(200, 50));
         backButton.setBackground(new Color(0, 151, 8));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Open the ticket buying page and dispose of the current frame
                 new WelcomePage();
                 frame.dispose();
             }
@@ -89,8 +81,8 @@ public class PurchaseTicketPage {
         // Cancel button
         cancelButton = new RoundedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cancelButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font
-        cancelButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
+        cancelButton.setFont(new Font("Serif", Font.BOLD, 20));
+        cancelButton.setPreferredSize(new Dimension(200, 50));
         cancelButton.setBackground(new Color(172,64,58));
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -107,7 +99,7 @@ public class PurchaseTicketPage {
 
         // Total cost label
         totalCostLabel = new JLabel("Total: $0.00");
-        totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f)); // Increase the size
+        totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
         totalCostLabel.setOpaque(true);
         totalCostLabel.setBackground(new Color(255, 255, 255, 255));
@@ -115,8 +107,8 @@ public class PurchaseTicketPage {
 
         // Buy button
         buyButton = new RoundedButton("Buy Tickets");
-        buyButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font
-        buyButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
+        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
+        buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorderPainted(false);
         buyButton.addActionListener(new ActionListener() {
@@ -141,7 +133,7 @@ public class PurchaseTicketPage {
 
     private JLabel createCountLabel() {
         JLabel label = new RoundedLabel("0");
-        label.setFont(label.getFont().deriveFont(20.0f)); // Increase the size
+        label.setFont(label.getFont().deriveFont(20.0f));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBackground(new Color(255, 255, 255, 255));
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -150,14 +142,14 @@ public class PurchaseTicketPage {
 
     private JButton createMinusButton() {
         JButton button = new RoundedButton("-");
-        button.setFont(button.getFont().deriveFont(20.0f)); // Increase the size
+        button.setFont(button.getFont().deriveFont(20.0f));
         button.setBackground(new Color(218, 167, 155));
         return button;
     }
 
     private JButton createPlusButton() {
         JButton button = new RoundedButton("+");
-        button.setFont(button.getFont().deriveFont(20.0f)); // Increase the size
+        button.setFont(button.getFont().deriveFont(20.0f));
         button.setBackground(new Color(141, 203, 141));
         return button;
     }
@@ -168,7 +160,7 @@ public class PurchaseTicketPage {
             if (count > 0) {
                 count--;
                 countLabel.setText(String.valueOf(count));
-                updateTotalCost();  // Update total cost
+                updateTotalCost();
             }
         });
 
@@ -176,12 +168,12 @@ public class PurchaseTicketPage {
             int count = Integer.parseInt(countLabel.getText());
             count++;
             countLabel.setText(String.valueOf(count));
-            updateTotalCost();  // Update total cost
+            updateTotalCost();
         });
 
         String priceFormatted = String.format("$%.2f", price);
         JLabel lab = new JLabel(name + "   " + priceFormatted);
-        lab.setFont(lab.getFont().deriveFont(20.0f)); // Increase the size
+        lab.setFont(lab.getFont().deriveFont(20.0f));
         lab.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lab);
         panel.add(minusButton);

@@ -41,7 +41,6 @@ public class WelcomePage {
         passengerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Open the ticket buying page and dispose of the current frame
                 new PurchaseTicketPage();
                 frame.dispose();
             }
@@ -49,9 +48,9 @@ public class WelcomePage {
 
         // Staff button
         staffButton = new RoundedButton("Staff");
-        staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center align the button
-        staffButton.setFont(new Font("Serif", Font.BOLD, 20)); // Set button font to Serif, bold and size 20
-        staffButton.setPreferredSize(new Dimension(200, 50));   // Set the preferred size of the button
+        staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        staffButton.setFont(new Font("Serif", Font.BOLD, 20));
+        staffButton.setPreferredSize(new Dimension(200, 50));
         staffButton.setBackground(new Color(112,170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         staffButton.addActionListener(new ActionListener() {
