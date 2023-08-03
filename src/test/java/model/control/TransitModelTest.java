@@ -25,7 +25,7 @@ public class TransitModelTest {
         // Create the controller
         transitModel = new TransitModel();
 
-        // Refer to //TODO image here for visualization.
+        // Refer to ![](images/TrainModelTest Setup Diagram.png) for visualization.
 
         // Create the stations
         Station station1 = new Station(transitModel, "station1");
