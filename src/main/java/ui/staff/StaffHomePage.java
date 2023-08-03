@@ -1,5 +1,6 @@
-package ui;
+package ui.staff;
 
+import ui.WelcomePage;
 import ui.round.RoundedButton;
 
 import javax.swing.*;

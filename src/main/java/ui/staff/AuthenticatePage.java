@@ -1,4 +1,4 @@
-package ui;
+package ui.staff;
 
 import ui.round.RoundedButton;
 
