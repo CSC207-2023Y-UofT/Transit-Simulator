@@ -19,7 +19,7 @@ public class TransitModelTest {
     private static TransitModel transitModel;
     private static Train trainForwards;
 
-    @DisplayName("TransitTrackerTest Class Setup")
+    @DisplayName("TransitModelTest Class Setup")
     @BeforeAll
     public static void setup() {
         // Create the controller
@@ -75,7 +75,7 @@ public class TransitModelTest {
     }
 
 
-    @DisplayName("TransitTrackerTest Class Teardown")
+    @DisplayName("TransitModelTest Class Teardown")
     @AfterAll
     public static void teardown() {
         transitModel = null;
