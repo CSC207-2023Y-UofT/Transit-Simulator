@@ -13,7 +13,7 @@ public class PassengerHomePage {
 
     private JFrame frame;
     private JPanel panel;
-    private JButton buyButton, viewButton, backButton;
+    private JButton buyButton, viewButton, loadButton, backButton;
 
     public PassengerHomePage() {
 
@@ -27,7 +27,7 @@ public class PassengerHomePage {
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(112,170, 255));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        buyButton.setFont(new Font("Serif", Font.BOLD, 25));
+        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +41,7 @@ public class PassengerHomePage {
         viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewButton.setBackground(new Color(112,170, 255));
         viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        viewButton.setFont(new Font("Serif", Font.BOLD, 25));
+        viewButton.setFont(new Font("Serif", Font.BOLD, 20));
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,11 +50,26 @@ public class PassengerHomePage {
             }
         });
 
+        // Load
+        loadButton = new RoundedButton("Load Presto");
+        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loadButton.setBackground(new Color(112,170, 255));
+        loadButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        loadButton.setFont(new Font("Serif", Font.BOLD, 20));
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // new LoadPrestoPage();
+                frame.dispose();
+            }
+        });
+
+
         // Back button
         backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(new Font("Serif", Font.BOLD, 25));
+        backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,7 +99,15 @@ public class PassengerHomePage {
         panel.add(viewButton);
         panel.add(new JLabel("  "));
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
+            panel.add(new JLabel("  "));
+        }
+
+        panel.add(new JLabel("  "));
+        panel.add(loadButton);
+        panel.add(new JLabel("  "));
+
+        for (int i = 0; i < 3; i++) {
             panel.add(new JLabel("  "));
         }
 
