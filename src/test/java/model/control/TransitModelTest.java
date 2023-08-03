@@ -1,6 +1,7 @@
 package model.control;
 
 import model.Direction;
+import model.train.TrackRepo;
 import model.train.Train;
 import model.node.Station;
 import model.node.NodeLineProfile;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 
 
 public class TransitModelTest {
@@ -61,9 +63,15 @@ public class TransitModelTest {
         trainForwards = transitModel.createTrain(s1f, 120);
     }
 
+
     @Test
-    public void test() {
-        // TODO: Write tests
+    public void testGetTrackRepo() {
+        Assertions.assertInstanceOf(TrackRepo.class, transitModel.getTrackRepo());
+    }
+
+    @Test
+    public void testTrackRepoSize() {
+        Assertions.assertEquals(transitModel.getTrackRepo().getTracks().size(), 5);  // 3 for stations, 2 for tracks
     }
 
 
