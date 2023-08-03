@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
 
 public class EmployeeTrackerTest {
 
@@ -15,6 +17,7 @@ public class EmployeeTrackerTest {
     private Employee trainOperator;
     private Employee trainEngineer;
 
+
     @BeforeEach
     public void setUp() {
         employeeTracker = new EmployeeTracker();
@@ -22,6 +25,7 @@ public class EmployeeTrackerTest {
         employee2 = new TrainEngineer(102);
         trainOperator = new TrainOperator(201);
         trainEngineer = new TrainEngineer(202);
+
     }
 
     @Test
@@ -37,6 +41,7 @@ public class EmployeeTrackerTest {
         assertTrue(employeeTracker.getEmployeeList().contains(employee1));
         assertTrue(employeeTracker.getEmployeeList().contains(employee2));
         assertTrue(employeeTracker.getEmployeeList().contains(trainOperator));
+
     }
 
     @Test
@@ -60,5 +65,6 @@ public class EmployeeTrackerTest {
         // Verify the updated list of employees
         assertEquals(4, employeeTracker.getEmployeeList().size());
         assertTrue(employeeTracker.getEmployeeList().contains(trainEngineer));
+
     }
 }
