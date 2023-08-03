@@ -33,20 +33,27 @@ public class JsonModelDataStore implements ModelDataStore {
     @Override
     public TransitModel readModel() throws IOException {  // TODO HELP INFO IMPORTANT SUPER DUPER IMPORTANT TODO!!!!!!!
 
+        // Read the json as a string from the file.
         String json = Files.readString(file.toPath());
 
         JSONObject model = new JSONObject(json);
 
+        // Create the transit model
         TransitModel transitModel = new TransitModel();
 
-
-        // Read the stations
+        // Create a station factory for creating stations
         StationFactory factory = new StationFactory();
 
+        // Get the array of stations
         JSONArray stations = model.getJSONArray("stations");
         for (int i = 0; i < stations.length(); i++) {
+
+
+            // Reading stations is very simple, they only have a name
             JSONObject station = stations.getJSONObject(i);
             String name = station.getString("name");
+
+            // Create the station
             transitModel.createNode(factory, name);
         }
 
@@ -56,10 +63,14 @@ public class JsonModelDataStore implements ModelDataStore {
         for (int i = 0; i < lines.length(); i++) {
             JSONObject line = lines.getJSONObject(i);
 
+            // Get the line number
             int lineNum = line.getInt("number");
+
+            // The line number must be unique so far
             Preconditions.checkArgument(!linesMade.contains(lineNum), "Line " + lineNum + " already exists");
             linesMade.add(lineNum);
 
+            // Cyclic stations have their first and last stations connected
             boolean cyclic = line.optBoolean("cyclic", false);
             JSONArray stationsInLine = line.getJSONArray("stations");
             Preconditions.checkArgument(!stationsInLine.isEmpty(), "Line " + lineNum + " has no stations");
@@ -109,6 +120,7 @@ public class JsonModelDataStore implements ModelDataStore {
     }
 
     private void createEdge(int line, Node node1, Node node2, double length) {
+
         Preconditions.checkArgument(node1.getTracker() == node2.getTracker(),
                 "Nodes are not in the same model");
 
