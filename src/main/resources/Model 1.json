@@ -4,27 +4,22 @@
     {
       "lineNodeList": [
         {
-          "nodeType": "Station",
           "nodeName": "Alpha",
           "nodeLength": 15
         },
         {
-          "nodeType": "Station",
           "nodeName": "Beta",
           "nodeLength": 15
         },
         {
-          "nodeType": "Station",
           "nodeName": "Gamma",
           "nodeLength": 15
         },
         {
-          "nodeType": "Station",
           "nodeName": "Delta",
           "nodeLength": 15
         },
         {
-          "nodeType": "Station",
           "nodeName": "Epsilon",
           "nodeLength": 15
         }

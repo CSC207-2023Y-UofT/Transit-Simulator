@@ -1,3 +1,4 @@
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import model.control.*;
@@ -7,14 +8,15 @@ import model.train.track.*;
 import model.Direction;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
-    The Main program that sets up all required classes and executes the program.
-
-    What this should do: TODO
-
-    To-do list:
-    TODO the program
+ * The Main program that sets up all required classes and executes the program.
+ * <p>
+ * What this should do: TODO
+ * <p>
+ * To-do list:
+ * TODO the program
  */
 public class Main {
 
@@ -22,8 +24,9 @@ public class Main {
     int DEFAULT_TRACK_LENGTH = 100;
 
 
-
-    /** The TransitTracker (program controller) that holds all the nodes and trains. */
+    /**
+     * The TransitTracker (program controller) that holds all the nodes and trains.
+     */
     public static TransitTracker transitTracker;
 
     /**
@@ -46,26 +49,35 @@ public class Main {
         transitTracker = new TransitTracker(); // create the controller
 
         // get the list of lines, one of the high-level entries in the JSON file
-        List<Map> lines = model.get("lines");
+        List<JSONObject> lines = model.getJSONArray("lines").toList()
+                .stream()
+                .filter(line -> line instanceof JSONObject)
+                .map(line -> (JSONObject) line)
+                .collect(Collectors.toList());
 
         // for each line in the list of lines:
-        for (Map line : lines) {  //TODO: maps from string to
+        for (JSONObject line : lines) {  //TODO: maps from string to
             // get the line type (line or circle)
-            String lineType = line.get("lineType");
+            String lineType = line.getString("lineType");
 
             // get the line name
-            String lineName = line.get("lineName");
+            String lineName = line.getString("lineName");
 
             // get the line number
-            int lineNumber = line.get("lineNumber");
+            int lineNumber = line.getInt("lineNumber");
 
 
             // get the list of stations for this line and create an iterator for it
             // TODO get list
-            Iterator<Map> something = line.get("lineNodeList").iterator();
+            List<JSONObject> nodeList = line.getJSONArray("lineNodeList")
+                    .toList()
+                    .stream()
+                    .filter(station -> station instanceof JSONObject)
+                    .map(station -> (JSONObject) station)
+                    .collect(Collectors.toList());
 
             // check if the iterator has a station
-            if (!something.hasNext()) {
+            if (nodeList.isEmpty()) {
                 // if not, then throw an exception
                 throw new IllegalArgumentException("No stations found for line " + lineNumber + ". Check the JSON file.");
             }
@@ -75,62 +87,56 @@ public class Main {
             // TODO: how to say Object here is Union[String, int]?
             //       For example, Python has union of type parameters from the native Typing module, like
             //       def function(param: str) -> Union[str, int]:...
-            Map<String, Object> currentJSONStation = something.next();
+            for (JSONObject stationObject : nodeList) {
 
-            String currentNodeName = currentJSONStation.get("nodeName");
-            int currentNodeLength = currentJSONStation.get("nodeLength");  // TODO: decide whether to use this information
-            String currentNodeType = currentJSONStation.get("nodeType");
+                String currentNodeName = stationObject.getString("nodeName");
+                String currentNodeType = stationObject.getString("nodeType");
 
-            // check if the node type is a station
-            if (!currentNodeType.equals("Station")) {
-                throw new IllegalArgumentException("First node in line " + lineNumber + " is not a station. Check the JSON file.");
-            }
+                // create the station, its NodeLineProfile, record it as the anchor NLP, and add it to the list of line profiles
+                anchorStation = new Station(transitTracker, currentNodeName);
+                anchorNodeLineProfile = anchorStation.createLineProfile(lineNumber);  // Never instantiate it like "new NodeLineProfile(...)"
+                lineProfiles.add(anchorNodeLineProfile);
 
+                // create the TrackSegment.s between the previous station and the incoming one
+                TrackSegment prevTrackSegmentForward = anchorNodeLineProfile.getTrack(Direction.FORWARD);
+                TrackSegment prevTrackSegmentBackward = anchorNodeLineProfile.getTrack(Direction.BACKWARD);
 
-            // create the station, its NodeLineProfile, record it as the anchor NLP, and add it to the list of line profiles
-            anchorStation = new Station(transitTracker, currentNodeName);
-            anchorNodeLineProfile = anchorStation.createLineProfile(lineNumber);  // Never instantiate it like "new NodeLineProfile(...)"
-            lineProfiles.add(anchorNodeLineProfile);
+                // Add the TrackSegments to the track repo
+                transitTracker.getTrackRepo().addTrack(prevTrackSegmentForward);
+                transitTracker.getTrackRepo().addTrack(prevTrackSegmentBackward);
 
-            // create the TrackSegment.s between the previous station and the incoming one
-            TrackSegment prevTrackSegmentForward = anchorNodeLineProfile.getTrack(Direction.FORWARD);
-            TrackSegment prevTrackSegmentBackward = anchorNodeLineProfile.getTrack(Direction.BACKWARD);
-
-            // Add the TrackSegment.s to the track repo
-            transitTracker.getTrackRepo().addTrack(prevTrackSegmentForward);
-            transitTracker.getTrackRepo().addTrack(prevTrackSegmentBackward);
-
-            // keep track of the previous station's type and name and tracks since last station
-            String prevNodeType = "Station";
-            String prevStationName = currentNodeName;
-            int tracksSinceLastStation = 0;
+                // keep track of the previous station's type and name and tracks since last station
+                String prevNodeType = "Station";
+                String prevStationName = currentNodeName;
+                int tracksSinceLastStation = 0;
 
 
-            // loop while the iterator has a next station (something.hasNext() )
-            // Precondition: the first station has already been created
-            while (something.hasNext()) {
-                // read the next node from the iterator
-                currentJSONStation = something.next();
+                // loop while the iterator has a next station (something.hasNext() )
+                // Precondition: the first station has already been created
+                while (nodeList.hasNext()) {
+                    // read the next node from the iterator
+                    currentJSONStation = nodeList.next();
 
-                currentNodeName = currentJSONStation.get("nodeName");  // if the node type is a track, then this variable won't be used when connecting the node
-                currentNodeLength = currentJSONStation.get("nodeLength");  // TODO: decide whether to use this information
-                currentNodeType = currentJSONStation.get("nodeType");
+                    currentNodeName = currentJSONStation.get("nodeName");  // if the node type is a track, then this variable won't be used when connecting the node
+                    currentNodeLength = currentJSONStation.get("nodeLength");  // TODO: decide whether to use this information
+                    currentNodeType = currentJSONStation.get("nodeType");
 
-                // calculate the station number for ease of use
-                int stationNumber = lineProfiles.size();
+                    // calculate the station number for ease of use
+                    int stationNumber = lineProfiles.size();
 
-                if (prevNodeType.equals("Track") && currentNodeType.equals("Track")) {  // because == isn't safe
-                    // Create the track segments
-                    TrackSegment currentTrackSegmentForward = new TrackSegment(transitTracker.getTrackRepo(), "line" + lineNumber + , currentNodeLength);
+                    if (prevNodeType.equals("Track") && currentNodeType.equals("Track")) {  // because == isn't safe
+                        // Create the track segments
+                        TrackSegment currentTrackSegmentForward = new TrackSegment(transitTracker.getTrackRepo(), "line" + lineNumber +, currentNodeLength);
 
-                } else if (prevNodeType.equals("Track") && currentNodeType.equals("Track")) {
+                    } else if (prevNodeType.equals("Track") && currentNodeType.equals("Track")) {
 //
-                } else if (prevNodeType.equals("Station") && currentNodeType.equals("Track")) {
+                    } else if (prevNodeType.equals("Station") && currentNodeType.equals("Track")) {
 
-                } else if (prevNodeType.equals("Station") && currentNodeType.equals("Track")) {
+                    } else if (prevNodeType.equals("Station") && currentNodeType.equals("Track")) {
 
-                } else {
+                    } else {
 
+                    }
                 }
 //
 //
@@ -177,11 +183,11 @@ public class Main {
 //                }
 
 
-            // the nodes and trackSegments are connected at this point
+                // the nodes and trackSegments are connected at this point
 
-            // loop through the system from the anchor station and add trains to the system every TRAIN_INTERVAL seconds (or distance)
+                // loop through the system from the anchor station and add trains to the system every TRAIN_INTERVAL seconds (or distance)
 
-            // loop once if lineType = "Line" (and have the builder change direction), and twice if lineType = "Circle" (with second iteration in the backwards direction)
+                // loop once if lineType = "Line" (and have the builder change direction), and twice if lineType = "Circle" (with second iteration in the backwards direction)
                 // create a reference to the anchor station
                 // add the train to the anchor station
                 // record the direction the builder is going
@@ -189,17 +195,16 @@ public class Main {
                 // record the distance away from the last train added to the start of this trackSegment
 
                 // start loop
-                    // if the distance away from the last train added to the start of this trackSegment is greater than TRAIN_INTERVAL
-                        // add a train to the trackSegment at a distance whose length is the difference between the TRAIN_INTERVAL minus the recorded distance
-                        // record the distance away from the last train added to the start of this trackSegment
-                    // if not:
-                        // move the reference to the next connected TrackSegment
-                    // if the lineType is a line, then we have to handle the builder changing directions
-                    // end condition: the reference is back at the anchor station
+                // if the distance away from the last train added to the start of this trackSegment is greater than TRAIN_INTERVAL
+                // add a train to the trackSegment at a distance whose length is the difference between the TRAIN_INTERVAL minus the recorded distance
+                // record the distance away from the last train added to the start of this trackSegment
+                // if not:
+                // move the reference to the next connected TrackSegment
+                // if the lineType is a line, then we have to handle the builder changing directions
+                // end condition: the reference is back at the anchor station
             }
         }
     }
-
 
 
     public static void main(String[] args) {
