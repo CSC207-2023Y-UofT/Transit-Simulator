@@ -24,16 +24,16 @@ public class AuthenticatePage {
 
         // Personnel Number
         label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(20.0f));
+        label.setFont(new Font("Serif", Font.BOLD, 25));
 
         personnelNumberField = new JTextField();
-        personnelNumberField.setFont(personnelNumberField.getFont().deriveFont(20.0f));
+        personnelNumberField.setFont(new Font("Serif", Font.PLAIN , 20));
 
         // Sign In button
         signInButton = new RoundedButton("Sign In");
-        signInButton.setBackground(new Color(135,156,210));
+        signInButton.setBackground(new Color(112,170, 255));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        signInButton.setFont(signInButton.getFont().deriveFont(20.0f));
+        signInButton.setFont(new Font("Serif", Font.BOLD, 20));
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +51,7 @@ public class AuthenticatePage {
         // Back button
         backButton = new RoundedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(backButton.getFont().deriveFont(20.0f));
+        backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

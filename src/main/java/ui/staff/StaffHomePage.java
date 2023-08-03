@@ -24,14 +24,14 @@ public class StaffHomePage {
         // Add the "Please select your user type." title
         staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
         staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        staffTypeLabel.setFont(staffTypeLabel.getFont().deriveFont(20.0f));
+        staffTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // Admin button
         adminButton = new RoundedButton("Admin");
         adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        adminButton.setBackground(new Color(135,156,210));
+        adminButton.setBackground(new Color(112,170, 255));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        adminButton.setFont(adminButton.getFont().deriveFont(20.0f));
+        adminButton.setFont(new Font("Serif", Font.BOLD, 20));
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,9 +45,9 @@ public class StaffHomePage {
         // Train Engineer button
         trainEngineerButton = new RoundedButton("Train Engineer");
         trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainEngineerButton.setBackground(new Color(135,156,210));
+        trainEngineerButton.setBackground(new Color(112,170, 255));
         trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        trainEngineerButton.setFont(trainEngineerButton.getFont().deriveFont(20.0f));
+        trainEngineerButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainEngineerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,9 +60,9 @@ public class StaffHomePage {
         // Train Operator button
         trainOperatorButton = new RoundedButton("Train Operator");
         trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainOperatorButton.setBackground(new Color(135,156,210));
+        trainOperatorButton.setBackground(new Color(112,170, 255));
         trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        trainOperatorButton.setFont(trainOperatorButton.getFont().deriveFont(20.0f));
+        trainOperatorButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainOperatorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class StaffHomePage {
         backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(backButton.getFont().deriveFont(20.0f));
+        backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
