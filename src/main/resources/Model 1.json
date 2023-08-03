@@ -2,34 +2,54 @@
   "modelName": "Test Model 1",
   "stations": [
     {
-      "name": "Station 1"
+      "name": "Station 1",
+      "x": 20,
+      "y": 20
     },
     {
-      "name": "Station 2"
+      "name": "Station 2",
+      "x": 20,
+      "y": 40
     },
     {
-      "name": "Station 3"
+      "name": "Station 3",
+      "x": 20,
+      "y": 60
     },
     {
-      "name": "Station 4"
+      "name": "Station 4",
+      "x": 40,
+      "y": 20
     },
     {
-      "name": "Station 5"
+      "name": "Station 5",
+      "x": 40,
+      "y": 40
     },
     {
-      "name": "Station 6"
+      "name": "Station 6",
+      "x": 40,
+      "y": 60
     },
     {
-      "name": "Station 7"
+      "name": "Station 7",
+      "x": 60,
+      "y": 20
     },
     {
-      "name": "Station 8"
+      "name": "Station 8",
+      "x": 60,
+      "y": 40
     },
     {
-      "name": "Station 9"
+      "name": "Station 9",
+      "x": 60,
+      "y": 60
     },
     {
-      "name": "Station 10"
+      "name": "Station 10",
+      "x": 60,
+      "y": 80
     }
   ],
   "lines": [
