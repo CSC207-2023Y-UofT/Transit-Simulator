@@ -64,7 +64,7 @@ public class TrainTest {
 
         // Station tracks are already added to the repo in the NodeLineProfile constructor
 
-        // Get references to the node track segments that belong to each station
+        // Get references to the track segments that belong to each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
         TrackSegment s2f = l1s2.getTrack(Direction.FORWARD);
         TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);
