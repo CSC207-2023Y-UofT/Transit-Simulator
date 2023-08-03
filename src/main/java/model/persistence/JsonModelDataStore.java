@@ -35,7 +35,7 @@ public class JsonModelDataStore implements ModelDataStore {
 
         String json = Files.readString(file.toPath());
 
-        JSONObject model = JSONRead
+        JSONObject model = new JSONObject(json);
 
         TransitModel transitModel = new TransitModel();
 
