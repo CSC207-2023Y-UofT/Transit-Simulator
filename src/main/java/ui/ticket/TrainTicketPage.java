@@ -1,5 +1,6 @@
-package ui.passenger;
+package ui.ticket;
 
+import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -92,7 +93,7 @@ public class TrainTicketPage extends JFrame {
     }
 
     public static void main(String[] args) {
-        new TrainTicketPage();
+        new TrainTicketPage().setVisible(true);
     }
 
 }

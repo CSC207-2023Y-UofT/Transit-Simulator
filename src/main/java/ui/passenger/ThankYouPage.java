@@ -1,6 +1,7 @@
 package ui.passenger;
 
 import ui.round.RoundedButton;
+import ui.ticket.TrainTicketPage;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,8 +1,8 @@
 package ui.passenger;
 
-import model.train.Train;
 import ui.WelcomePage;
 import ui.round.RoundedButton;
+import ui.ticket.TrainTicketPage;
 
 import javax.swing.*;
 import java.awt.*;
