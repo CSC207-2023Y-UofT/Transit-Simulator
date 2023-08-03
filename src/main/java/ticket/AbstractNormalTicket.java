@@ -12,12 +12,12 @@ public abstract class AbstractNormalTicket extends Ticket {
     /**
      * The ID representing the type of the ticket.
      */
-    private String typeId;
+    private final String typeId;
 
     /**
      * The price of the ticket.
      */
-    private double price;
+    private final double price;
 
     /**
      * Constructs a new AbstractNormalTicket object with the given typeId, price and ticket lifetime.
