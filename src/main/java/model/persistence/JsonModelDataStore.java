@@ -13,7 +13,9 @@ import util.Preconditions;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JsonModelDataStore implements ModelDataStore {
@@ -181,12 +183,31 @@ public class JsonModelDataStore implements ModelDataStore {
 
         // Store each station in a JSONArray
         JSONArray stationsArr = new JSONArray();
+
         for (Node value : model.getNodes().values()) {
+
+            // Node Object
             JSONObject nodeJsonModel = new JSONObject();
             nodeJsonModel.put("name", value.getName());
             nodeJsonModel.put("x", value.getX());
             nodeJsonModel.put("y", value.getY());
             stationsArr.put(nodeJsonModel);
+
         }
+
+        jsonModel.put("stations", stationsArr);
+
+        // Store lines in a JSONArray
+        JSONArray linesArr = new JSONArray();
+
+        Set<Integer> mappedLines = new HashSet<>();
+
+        for (Node node : model.getNodes().values()) {
+        }
+
+    }
+
+    private List<Node> mapNodes(Node node, Set<Integer> mappedLines) {
+
     }
 }
