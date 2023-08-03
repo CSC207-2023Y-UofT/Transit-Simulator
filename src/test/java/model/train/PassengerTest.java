@@ -1,5 +1,4 @@
-package model.train.track;
-import model.train.Passenger;
+package model.train;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
