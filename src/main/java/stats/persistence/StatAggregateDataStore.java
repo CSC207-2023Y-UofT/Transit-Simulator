@@ -41,5 +41,5 @@ public interface StatAggregateDataStore {
      */
     <E extends StatEntry, A> Optional<A> retrieve(long index,
                                                   Class<E> entryClass,
-                                                  Class<A> aggregateClass);
+                                                  Class<A> aggregateClass) throws IOException;
 }
