@@ -25,6 +25,9 @@
 
 .idea/*
 
+test-entries/*
+test-aggregates/*
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
