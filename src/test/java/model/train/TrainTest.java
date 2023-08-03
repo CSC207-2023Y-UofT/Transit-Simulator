@@ -30,11 +30,12 @@ public class TrainTest {
         // Create the controller
         transitModel = new TransitModel();
 
-        // Refer to ![](images/TrainTest System Construction Diagram.png) for visualization.
+        // Refer to ![](images/TrainTest Setup Diagram.png) for visualization.
 
-        // Create the stations
+        // Create the station factory
         StationFactory factory = new StationFactory();
 
+        // Create the stations
         Node station1 = transitModel.createNode(factory, "station1");
         Node station2 = transitModel.createNode(factory, "station2");
         Node station3 = transitModel.createNode(factory, "station3");
@@ -102,7 +103,7 @@ public class TrainTest {
     // Begin testing
 
     @Test
-    public void testGetTransitTracker() {
+    public void testGetTransitModel() {
         Assertions.assertSame(transitModel, trainForwards.getTransitTracker());
         Assertions.assertSame(transitModel, trainBackwards.getTransitTracker());
     }
