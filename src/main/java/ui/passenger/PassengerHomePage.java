@@ -45,7 +45,7 @@ public class PassengerHomePage {
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TrainTicketPage().setVisible(true);
+                new TrainTicketPage();
                 frame.dispose();
             }
         });
