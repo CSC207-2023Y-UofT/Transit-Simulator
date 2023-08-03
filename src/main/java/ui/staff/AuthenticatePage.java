@@ -44,6 +44,10 @@ public class AuthenticatePage {
 
                 // We should know what option they picked earlier and direct them there
 
+                // new AdminHomePage();
+                // new EngineerHomePage();
+                // new OperatorHomePage();
+
                 frame.dispose();
             }
         });
