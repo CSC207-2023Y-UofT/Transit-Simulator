@@ -25,7 +25,7 @@ public class PassengerHomePage {
         // Buy
         buyButton = new RoundedButton("Buy Ticket");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buyButton.setBackground(new Color(135,156,210));
+        buyButton.setBackground(new Color(112,170, 255));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(new ActionListener() {
@@ -39,7 +39,7 @@ public class PassengerHomePage {
         // View
         viewButton = new RoundedButton("View Ticket");
         viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        viewButton.setBackground(new Color(135,156,210));
+        viewButton.setBackground(new Color(112,170, 255));
         viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         viewButton.setFont(new Font("Serif", Font.BOLD, 20));
         viewButton.addActionListener(new ActionListener() {
