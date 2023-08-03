@@ -4,48 +4,67 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 
 public class EmployeeTrackerTest {
 
     private EmployeeTracker employeeTracker;
+    private Employee employee1;
+    private Employee employee2;
+    private Employee trainOperator;
+    private Employee trainEngineer;
+
 
     @BeforeEach
     public void setUp() {
         employeeTracker = new EmployeeTracker();
+        employee1 = new TrainOperator(101);
+        employee2 = new TrainEngineer(102);
+        trainOperator = new TrainOperator(201);
+        trainEngineer = new TrainEngineer(202);
+
     }
 
     @Test
     public void testAddToEmployees() {
-        Employee employee1 = new TrainOperator(327);
-        Employee employee2 = new TrainEngineer(328);
+        assertTrue(employeeTracker.getEmployeeList().isEmpty());
 
-        // Add employees to the list
+        // Add employees to the tracker
         employeeTracker.addToEmployees(employee1);
         employeeTracker.addToEmployees(employee2);
+        employeeTracker.addToEmployees(trainOperator);
 
-        List<Employee> employeeList = employeeTracker.getEmployeeList();
+        assertEquals(3, employeeTracker.getEmployeeList().size());
+        assertTrue(employeeTracker.getEmployeeList().contains(employee1));
+        assertTrue(employeeTracker.getEmployeeList().contains(employee2));
+        assertTrue(employeeTracker.getEmployeeList().contains(trainOperator));
 
-        // Check if the list contains the added employees
-        Assertions.assertTrue(employeeList.contains(employee1));
-        Assertions.assertTrue(employeeList.contains(employee2));
     }
 
     @Test
     public void testGetEmployeeList() {
-        Employee employee1 = new TrainOperator(250);
-        Employee employee2 = new Admin(251);
+        assertTrue(employeeTracker.getEmployeeList().isEmpty());
 
-        // Add employees to the list
+        // Add employees to the tracker
         employeeTracker.addToEmployees(employee1);
         employeeTracker.addToEmployees(employee2);
+        employeeTracker.addToEmployees(trainOperator);
 
-        List<Employee> employeeList = employeeTracker.getEmployeeList();
+        // Verify the list of employees
+        assertEquals(3, employeeTracker.getEmployeeList().size());
+        assertTrue(employeeTracker.getEmployeeList().contains(employee1));
+        assertTrue(employeeTracker.getEmployeeList().contains(employee2));
+        assertTrue(employeeTracker.getEmployeeList().contains(trainOperator));
 
-        // Check if the retrieved list matches the added employees
-        Assertions.assertEquals(2, employeeList.size());
-        Assertions.assertTrue(employeeList.contains(employee1));
-        Assertions.assertTrue(employeeList.contains(employee2));
+        // Add more employees to the tracker
+        employeeTracker.addToEmployees(trainEngineer);
+
+        // Verify the updated list of employees
+        assertEquals(4, employeeTracker.getEmployeeList().size());
+        assertTrue(employeeTracker.getEmployeeList().contains(trainEngineer));
+
     }
 }
