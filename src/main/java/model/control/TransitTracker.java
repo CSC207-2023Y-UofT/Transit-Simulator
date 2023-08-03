@@ -78,12 +78,11 @@ public class TransitTracker implements NodeTracker, TrainTracker {
      *
      * @param nodeFactory The NodeFactory to create the node.
      * @param identifier The identifier of the node.
-     * @param length The length of the node.
      * @return The created Node object.
      * @throws IllegalArgumentException if the node is not created with the correct tracker.
      */
-    public Node createNode(NodeFactory nodeFactory, String identifier, double length) {
-        Node node = nodeFactory.createNode(this, identifier, length);
+    public Node createNode(NodeFactory nodeFactory, String identifier) {
+        Node node = nodeFactory.createNode(this, identifier);
         if (node.getTracker() != this) {
             throw new IllegalArgumentException("Node " + identifier + " created with wrong tracker");
         }

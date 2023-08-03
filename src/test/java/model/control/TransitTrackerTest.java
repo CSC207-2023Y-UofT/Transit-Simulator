@@ -48,7 +48,8 @@ public class TransitTrackerTest {
         // Get references to the track segments of each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
         TrackSegment s2f = l1s2.getTrack(Direction.FORWARD);
-        TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);
+        TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);  // TODO add the tracks of stations to the repo? not clear
+                                                              //      or possible add them to the nodeMap of transitTracker
 
         // s: station, t: track, f: forward, b: backward
 
