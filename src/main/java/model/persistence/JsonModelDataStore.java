@@ -48,13 +48,17 @@ public class JsonModelDataStore implements ModelDataStore {
         JSONArray stations = model.getJSONArray("stations");
         for (int i = 0; i < stations.length(); i++) {
 
-
             // Reading stations is very simple, they only have a name
+            // and coordinates
             JSONObject station = stations.getJSONObject(i);
             String name = station.getString("name");
+            int x = station.getInt("x");
+            int y = station.getInt("y");
 
             // Create the station
-            transitModel.createNode(factory, name);
+            Node node = transitModel.createNode(factory, name);
+            node.setX(x);
+            node.setY(y);
         }
 
         // Read the lines
@@ -121,9 +125,10 @@ public class JsonModelDataStore implements ModelDataStore {
 
     /**
      * Link two nodes by creating edge tracks between them in both directions.
-     * @param line The line number
-     * @param node1 The first node
-     * @param node2 The second node
+     *
+     * @param line   The line number
+     * @param node1  The first node
+     * @param node2  The second node
      * @param length The length of the edge tracks, usually the distance between the nodes
      */
     private void createEdge(int line, Node node1, Node node2, double length) {
@@ -172,6 +177,16 @@ public class JsonModelDataStore implements ModelDataStore {
 
     @Override
     public void writeModel(TransitModel model) {
+        JSONObject jsonModel = new JSONObject();
 
+        // Store each station in a JSONArray
+        JSONArray stationsArr = new JSONArray();
+        for (Node value : model.getNodes().values()) {
+            JSONObject nodeJsonModel = new JSONObject();
+            nodeJsonModel.put("name", value.getName());
+            nodeJsonModel.put("x", value.getX());
+            nodeJsonModel.put("y", value.getY());
+            stationsArr.put(nodeJsonModel);
+        }
     }
 }
