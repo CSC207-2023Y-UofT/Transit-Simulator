@@ -1,3 +1,5 @@
+The model format is screwed up, reference to model 1 for proper formatting
+
 {
   "modelName": "Toronto Subway System",
   "lines": [

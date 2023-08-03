@@ -10,13 +10,13 @@ public enum Direction {
      * The FORWARD direction represents movement in the positive direction along a track segment.
      * When moving forward, distances and movements are positive.
      */
-    FORWARD(-1),
+    FORWARD(1),
 
     /**
      * The BACKWARD direction represents movement in the negative direction along a track segment.
      * When moving backward, distances and movements are negative.
      */
-    BACKWARD(1);
+    BACKWARD(-1);
 
     private final int multiplier;
 

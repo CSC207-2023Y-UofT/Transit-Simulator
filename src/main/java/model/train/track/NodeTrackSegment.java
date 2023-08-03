@@ -3,10 +3,12 @@ package model.train.track;
 import model.node.Node;
 import model.train.TrackRepo;
 
+import java.util.Optional;
+
 /**
  * The NodeTrackSegment class represents a track segment associated with a specific node in a track system.
  * It extends the TrackSegment class and inherits its properties and functionality.
- * NodeTrackSegments are used to connect nodes in the track system and form part of the overall track structure.
+ * NodeTrackSegments are used to represent the track segments that nodes hold.
  */
 public class NodeTrackSegment extends TrackSegment {
 
@@ -20,7 +22,7 @@ public class NodeTrackSegment extends TrackSegment {
      * @param id The unique identifier for the track segment.
      * @param length The length of the track segment in meters.
      */
-    public NodeTrackSegment(TrackRepo repo, Node node, String id, int length) {
+    public NodeTrackSegment(TrackRepo repo, Node node, String id, double length) {
         super(repo, id, length);
         this.node = node;
     }
@@ -30,8 +32,8 @@ public class NodeTrackSegment extends TrackSegment {
      *
      * @return The Node object representing the node associated with this track segment.
      */
-    public Node getNode() {
-        return node;
+    public Optional<Node>  getNode() {
+        return Optional.ofNullable(node);
     }
 
 }

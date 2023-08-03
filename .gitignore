@@ -28,6 +28,11 @@ test-entries/*
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+.idea/*
+
+test-entries/*
+test-aggregates/*
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
