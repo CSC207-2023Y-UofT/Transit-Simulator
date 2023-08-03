@@ -32,7 +32,7 @@ public interface StatEntryDataStore {
      * @param clazz The type of stat entries to retrieve.
      */
     <E extends StatEntry> List<E> retrieve(long index, Class<E> clazz)
-            throws IOException;// Clazz may not be an interface
+            throws IOException; // Clazz may not be an interface
 
     /**
      * Store the entry hierarchy {@code hierarchy}.
