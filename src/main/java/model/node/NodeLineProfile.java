@@ -53,7 +53,7 @@ public class NodeLineProfile {
             );
         }
 
-        tracks.values().forEach(trackRepo::addTrack);
+        tracks.values().forEach(trackRepo::addTrack);  // Similar to lambda expressions
     }
 
     /**
