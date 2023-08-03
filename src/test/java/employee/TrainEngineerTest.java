@@ -1,12 +1,9 @@
 package employee;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import employee.Admin;
-import employee.TrainEngineer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import model.train.Train;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TrainEngineerTest {
 
