@@ -94,6 +94,15 @@ public class Admin extends Employee {
         return null;
     }
 
+    /**
+     * Returns the list of Employees assigned to the specified line.
+     * @param line The line number whose assigned employees are to be returned.
+     * @return The list of Employees assigned to the specified line.
+     */
+    public List<Employee> getEmployeeOnLine(Integer line) {
+        return lineToStaff.get(line);
+    }
+
 
     /**
      * returns lineToStaff which is a HashMap of Lines to List of Employees
