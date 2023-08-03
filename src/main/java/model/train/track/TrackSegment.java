@@ -19,7 +19,7 @@ import java.util.Optional;
 public class TrackSegment {
     private final String id;
     private final TrackRepo repo;
-    private final int length;
+    private final double length;
 
     private TrackSegment next = null;
     private TrackSegment prev = null;
@@ -32,7 +32,7 @@ public class TrackSegment {
      * @param id The unique identifier for the track segment.
      * @param length The length of the track segment in meters.
      */
-    public TrackSegment(TrackRepo repo, String id, int length) {
+    public TrackSegment(TrackRepo repo, String id, double length) {
         this.repo = repo;
         this.id = id;
         this.length = length;
@@ -52,7 +52,7 @@ public class TrackSegment {
      *
      * @return The length of the track segment in meters.
      */
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 

@@ -1,7 +1,6 @@
 package model.control;
 
 import model.Direction;
-import model.control.TransitTracker;
 import model.train.Train;
 import model.node.Station;
 import model.node.NodeLineProfile;
@@ -11,26 +10,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 
 
-public class TransitTrackerTest {
+public class TransitModelTest {
 
-    private static TransitTracker transitTracker;
+    private static TransitModel transitModel;
     private static Train trainForwards;
 
     @DisplayName("TransitTrackerTest Class Setup")
     @BeforeAll
     public static void setup() {
         // Create the controller
-        transitTracker = new TransitTracker();
+        transitModel = new TransitModel();
 
         // Refer to //TODO image here for visualization.
 
         // Create the stations
-        Station station1 = new Station(transitTracker, "station1");
-        Station station2 = new Station(transitTracker, "station2");
-        Station station3 = new Station(transitTracker, "station3");
+        Station station1 = new Station(transitModel, "station1");
+        Station station2 = new Station(transitModel, "station2");
+        Station station3 = new Station(transitModel, "station3");
 
         // Create the line profiles: l1: Line 1, s1: Station 1
         NodeLineProfile l1s1 = station1.createLineProfile(1);
@@ -38,12 +36,12 @@ public class TransitTrackerTest {
         NodeLineProfile l1s3 = station3.createLineProfile(1);
 
         // Create the tracks
-        TrackSegment t1f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s1-t1-for", 100);
-        TrackSegment t2f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s2-t2-for", 100);
+        TrackSegment t1f = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-t1-for", 100);
+        TrackSegment t2f = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-t2-for", 100);
 
         // Add the tracks to the repo
-        transitTracker.getTrackRepo().addTrack(t1f);
-        transitTracker.getTrackRepo().addTrack(t2f);
+        transitModel.getTrackRepo().addTrack(t1f);
+        transitModel.getTrackRepo().addTrack(t2f);
 
         // Get references to the track segments of each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
@@ -60,7 +58,7 @@ public class TransitTrackerTest {
         t2f.linkForward(s3f);
 
         // Create the trains
-        trainForwards = transitTracker.createTrain(s1f, 120);
+        trainForwards = transitModel.createTrain(s1f, 120);
     }
 
     @Test
@@ -72,7 +70,7 @@ public class TransitTrackerTest {
     @DisplayName("TransitTrackerTest Class Teardown")
     @AfterAll
     public static void teardown() {
-        transitTracker = null;
+        transitModel = null;
     }
 
 }

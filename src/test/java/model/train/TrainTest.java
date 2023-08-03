@@ -1,9 +1,8 @@
 package model.train;
 
 import model.Direction;
-import model.control.TransitTracker;
+import model.control.TransitModel;
 import model.node.Node;
-import model.node.Station;
 import model.node.NodeLineProfile;
 import model.node.StationFactory;
 import model.train.track.TrackSegment;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 
 
 public class TrainTest {
-    private static TransitTracker transitTracker;
+    private static TransitModel transitModel;
     private static Train trainForwards;
     private static Train trainBackwards;
     private static TrainOperator operator;
@@ -29,16 +28,16 @@ public class TrainTest {
     @BeforeAll
     public static void setup() {
         // Create the controller
-        transitTracker = new TransitTracker();
+        transitModel = new TransitModel();
 
         // Refer to ![](images/TrainTest System Construction Diagram.png) for visualization.
 
         // Create the stations
         StationFactory factory = new StationFactory();
 
-        Node station1 = transitTracker.createNode(factory, "station1");
-        Node station2 = transitTracker.createNode(factory, "station2");
-        Node station3 = transitTracker.createNode(factory, "station3");
+        Node station1 = transitModel.createNode(factory, "station1");
+        Node station2 = transitModel.createNode(factory, "station2");
+        Node station3 = transitModel.createNode(factory, "station3");
 
 
         // Create the line profiles: l1: Line 1, s1: Station 1
@@ -47,20 +46,20 @@ public class TrainTest {
         NodeLineProfile l1s3 = station3.createLineProfile(1);
 
         // Create the tracks
-        TrackSegment t1f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s1-for", 100);
-        TrackSegment t2f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s2-for", 100);
-        TrackSegment t3f = new TrackSegment(transitTracker.getTrackRepo(), "l1-s3-for", 100);
-        TrackSegment t1b = new TrackSegment(transitTracker.getTrackRepo(), "l1-s1-back", 100);
-        TrackSegment t2b = new TrackSegment(transitTracker.getTrackRepo(), "l1-s2-back", 100);
-        TrackSegment t3b = new TrackSegment(transitTracker.getTrackRepo(), "l1-s3-back", 100);
+        TrackSegment t1f = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-for", 100);
+        TrackSegment t2f = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-for", 100);
+        TrackSegment t3f = new TrackSegment(transitModel.getTrackRepo(), "l1-s3-for", 100);
+        TrackSegment t1b = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-back", 100);
+        TrackSegment t2b = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-back", 100);
+        TrackSegment t3b = new TrackSegment(transitModel.getTrackRepo(), "l1-s3-back", 100);
 
         // Add the tracks to the repo
-        transitTracker.getTrackRepo().addTrack(t1f);
-        transitTracker.getTrackRepo().addTrack(t2f);
-        transitTracker.getTrackRepo().addTrack(t3f);
-        transitTracker.getTrackRepo().addTrack(t1b);
-        transitTracker.getTrackRepo().addTrack(t2b);
-        transitTracker.getTrackRepo().addTrack(t3b);
+        transitModel.getTrackRepo().addTrack(t1f);
+        transitModel.getTrackRepo().addTrack(t2f);
+        transitModel.getTrackRepo().addTrack(t3f);
+        transitModel.getTrackRepo().addTrack(t1b);
+        transitModel.getTrackRepo().addTrack(t2b);
+        transitModel.getTrackRepo().addTrack(t3b);
 
         // Station tracks are already added to the repo in the NodeLineProfile constructor
 
@@ -92,8 +91,8 @@ public class TrainTest {
         t1b.linkForward(s1b);
 
         // Create the trains
-        trainForwards = transitTracker.createTrain(s1f, 120);
-        trainBackwards = transitTracker.createTrain(s1b, 120);
+        trainForwards = transitModel.createTrain(s1f, 120);
+        trainBackwards = transitModel.createTrain(s1b, 120);
 
         // Create the employees
         operator = new TrainOperator(0b0001);
@@ -104,8 +103,8 @@ public class TrainTest {
 
     @Test
     public void testGetTransitTracker() {
-        Assertions.assertSame(transitTracker, trainForwards.getTransitTracker());
-        Assertions.assertSame(transitTracker, trainBackwards.getTransitTracker());
+        Assertions.assertSame(transitModel, trainForwards.getTransitTracker());
+        Assertions.assertSame(transitModel, trainBackwards.getTransitTracker());
     }
 
     @Test
@@ -220,7 +219,7 @@ public class TrainTest {
     @AfterAll
     public static void teardown() {
         // Tearing down the class since we have static variables
-        transitTracker = null;
+        transitModel = null;
         trainForwards = null;
         trainBackwards = null;
         operator = null;

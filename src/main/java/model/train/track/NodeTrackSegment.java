@@ -22,7 +22,7 @@ public class NodeTrackSegment extends TrackSegment {
      * @param id The unique identifier for the track segment.
      * @param length The length of the track segment in meters.
      */
-    public NodeTrackSegment(TrackRepo repo, Node node, String id, int length) {
+    public NodeTrackSegment(TrackRepo repo, Node node, String id, double length) {
         super(repo, id, length);
         this.node = node;
     }
