@@ -2,8 +2,10 @@ package model.train;
 
 import model.Direction;
 import model.control.TransitTracker;
+import model.node.Node;
 import model.node.Station;
 import model.node.NodeLineProfile;
+import model.node.StationFactory;
 import model.train.track.TrackSegment;
 import employee.TrainOperator;
 import employee.TrainEngineer;
@@ -32,9 +34,12 @@ public class TrainTest {
         // Refer to ![](images/TrainTest System Construction Diagram.png) for visualization.
 
         // Create the stations
-        Station station1 = new Station(transitTracker, "station1");   // TODO FAULTY TEST, MUST CREATE WITH TransitTracker.createNode()
-        Station station2 = new Station(transitTracker, "station2");   // HELP FAULTY TEST
-        Station station3 = new Station(transitTracker, "station3");   // TODO
+        StationFactory factory = new StationFactory();
+
+        Node station1 = transitTracker.createNode(factory, "station1");
+        Node station2 = transitTracker.createNode(factory, "station2");
+        Node station3 = transitTracker.createNode(factory, "station3");
+
 
         // Create the line profiles: l1: Line 1, s1: Station 1
         NodeLineProfile l1s1 = station1.createLineProfile(1);
@@ -56,8 +61,8 @@ public class TrainTest {
         transitTracker.getTrackRepo().addTrack(t1b);
         transitTracker.getTrackRepo().addTrack(t2b);
         transitTracker.getTrackRepo().addTrack(t3b);
-        // TODO HELP do we also have to add the tracksegments belonging to stations to the track repo? I assume so but it wasn't done
-        //           In addition, transittracker already keeps track of all nodes by name
+
+        // Station tracks are already added to the repo in the NodeLineProfile constructor
 
         // Get references to the node track segments that belong to each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
