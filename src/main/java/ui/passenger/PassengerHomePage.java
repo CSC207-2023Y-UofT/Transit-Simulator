@@ -2,7 +2,6 @@ package ui.passenger;
 
 import ui.WelcomePage;
 import ui.round.RoundedButton;
-import ui.ticket.TrainTicketPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +22,7 @@ public class PassengerHomePage {
         panel = new JPanel(new GridLayout(0, 3));
 
         // Buy
-        buyButton = new RoundedButton("Buy Tickets");
+        buyButton = new RoundedButton("Buy Ticket");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(112,170, 255));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -37,7 +36,7 @@ public class PassengerHomePage {
         });
 
         // View
-        viewButton = new RoundedButton("View Tickets");
+        viewButton = new RoundedButton("View Ticket");
         viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewButton.setBackground(new Color(112,170, 255));
         viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -45,7 +44,13 @@ public class PassengerHomePage {
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TrainTicketPage();
+
+                // if there is a ticket:
+                    new TrainTicketPage();
+
+                // if there is no ticket:
+                    new NoTicketPage();
+
                 frame.dispose();
             }
         });

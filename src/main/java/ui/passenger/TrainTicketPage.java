@@ -1,6 +1,5 @@
-package ui.ticket;
+package ui.passenger;
 
-import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ public class TrainTicketPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel title, ticketId, validTime;
+    private JLabel title, ticketId, validTime, typeLabel;
     private JButton homeButton;
 
     public TrainTicketPage() {
@@ -38,7 +37,9 @@ public class TrainTicketPage {
         validTime.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket Type
-        // TODO: idk how to do this
+        String ticketType = "Single";   // temporary
+        typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
+        typeLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Home Button
         homeButton = new RoundedButton("Home");
@@ -78,7 +79,9 @@ public class TrainTicketPage {
         panel.add(new JLabel("  "));
         panel.add(title);
         panel.add(ticketId);
+        panel.add(typeLabel);
         panel.add(validTime);
+        panel.add(new JLabel("  "));
         panel.add(homeButton);
         panel.add(new JLabel("  "));
 
