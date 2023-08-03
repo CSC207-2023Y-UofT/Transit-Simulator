@@ -121,6 +121,7 @@ public class JsonModelDataStore implements ModelDataStore {
 
     private void createEdge(int line, Node node1, Node node2, double length) {
 
+        // Check preconditions
         Preconditions.checkArgument(node1.getTracker() == node2.getTracker(),
                 "Nodes are not in the same model");
 
@@ -129,8 +130,10 @@ public class JsonModelDataStore implements ModelDataStore {
         Preconditions.checkArgument(node2.getLineProfile(line).isPresent(),
                 "Node " + node2.getName() + " does not have line " + line);
 
+        // Get the node tracker
         NodeTracker model = node1.getTracker();
 
+        // Create the intermediary tracks in both directions
         TrackSegment dir1 = new TrackSegment(model.getTrackRepo(),
                 node1.getName() + "-" + node2.getName(), length);
         model.getTrackRepo().addTrack(dir1);
@@ -139,6 +142,7 @@ public class JsonModelDataStore implements ModelDataStore {
                 node2.getName() + "-" + node1.getName(), length);
         model.getTrackRepo().addTrack(dir2);
 
+        // Get the tracks for each direction of each node
         TrackSegment n1Dir1 = node1.getLineProfile(line)
                 .get().getTrack(Direction.FORWARD);
         TrackSegment n1Dir2 = node1.getLineProfile(line)
@@ -150,6 +154,7 @@ public class JsonModelDataStore implements ModelDataStore {
         TrackSegment n2Dir2 = node2.getLineProfile(line)
                 .get().getTrack(Direction.BACKWARD);
 
+        // Then link all the tracks together
         n1Dir1.linkForward(dir1);
         dir1.linkForward(n2Dir1);
 
