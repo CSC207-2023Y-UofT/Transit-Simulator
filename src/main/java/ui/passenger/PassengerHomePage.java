@@ -27,7 +27,7 @@ public class PassengerHomePage {
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(135,156,210));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        buyButton.setFont(buyButton.getFont().deriveFont(20.0f));
+        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +41,7 @@ public class PassengerHomePage {
         viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewButton.setBackground(new Color(135,156,210));
         viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        viewButton.setFont(viewButton.getFont().deriveFont(20.0f));
+        viewButton.setFont(new Font("Serif", Font.BOLD, 20));
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class PassengerHomePage {
         backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(backButton.getFont().deriveFont(20.0f));
+        backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

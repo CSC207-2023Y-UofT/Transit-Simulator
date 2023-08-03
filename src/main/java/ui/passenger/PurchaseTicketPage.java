@@ -30,7 +30,7 @@ public class PurchaseTicketPage {
         panel = new JPanel(new GridLayout(0, 4));
 
         headerLabel = new JLabel("Tickets", SwingConstants.CENTER);
-        headerLabel.setFont(headerLabel.getFont().deriveFont(28.0f));
+        headerLabel.setFont(new Font("Serif", Font.BOLD, 35));
         panel.add(headerLabel);
 
         // 3 empty labels to fill the space
@@ -133,7 +133,7 @@ public class PurchaseTicketPage {
 
     private JLabel createCountLabel() {
         JLabel label = new RoundedLabel("0");
-        label.setFont(label.getFont().deriveFont(20.0f));
+        label.setFont(new Font("Serif", Font.BOLD, 20));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBackground(new Color(255, 255, 255, 255));
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -142,14 +142,14 @@ public class PurchaseTicketPage {
 
     private JButton createMinusButton() {
         JButton button = new RoundedButton("-");
-        button.setFont(button.getFont().deriveFont(20.0f));
+        button.setFont(new Font("Serif", Font.BOLD, 20));
         button.setBackground(new Color(218, 167, 155));
         return button;
     }
 
     private JButton createPlusButton() {
         JButton button = new RoundedButton("+");
-        button.setFont(button.getFont().deriveFont(20.0f));
+        button.setFont(new Font("Serif", Font.BOLD, 20));
         button.setBackground(new Color(141, 203, 141));
         return button;
     }
@@ -173,7 +173,7 @@ public class PurchaseTicketPage {
 
         String priceFormatted = String.format("$%.2f", price);
         JLabel lab = new JLabel(name + "   " + priceFormatted);
-        lab.setFont(lab.getFont().deriveFont(20.0f));
+        lab.setFont(new Font("Serif", Font.BOLD, 25));
         lab.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lab);
         panel.add(minusButton);

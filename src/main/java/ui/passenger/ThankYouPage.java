@@ -27,14 +27,14 @@ public class ThankYouPage {
         panel.add(blank1);
 
         JLabel label = new JLabel("<html><div style='text-align: center;'>Thank you for your purchase.<br/>Your ticket is valid for 2 hours upon activation.</div></html>", SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(20.0f));
+        label.setFont(new Font("Serif", Font.BOLD, 28));
         label.setOpaque(true);
         label.setBackground(Color.lightGray);
         panel.add(label);
 
         activateButton = new RoundedButton("Activate Ticket");
         activateButton.setPreferredSize(new Dimension(200, 50));
-        activateButton.setFont(activateButton.getFont().deriveFont(20.0f));
+        activateButton.setFont(new Font("Serif", Font.BOLD, 25));
         activateButton.setBackground(new Color(0, 151, 8));
         activateButton.addActionListener(new ActionListener() {
             @Override
@@ -52,7 +52,7 @@ public class ThankYouPage {
 
         homeButton = new RoundedButton("Home");
         homeButton.setPreferredSize(new Dimension(200, 50));
-        homeButton.setFont(homeButton.getFont().deriveFont(20.0f));
+        homeButton.setFont(new Font("Serif", Font.BOLD, 25));
         homeButton.setBackground(new Color(255, 255, 255));
         homeButton.addActionListener(new ActionListener() {
             @Override

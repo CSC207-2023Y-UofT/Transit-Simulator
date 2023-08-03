@@ -22,17 +22,17 @@ public class ConfirmPaymentPage {
 
         // Create the header label
         headerLabel = new JLabel("Confirm Payment?", SwingConstants.CENTER);
-        headerLabel.setFont(headerLabel.getFont().deriveFont(20.0f));
+        headerLabel.setFont(new Font("Serif", Font.BOLD, 32));
 
         // Create the total cost label
         // bruh how do i get the total cost from the previous page
         totalCostLabel = new JLabel("Total Cost: $0.00");
-        totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));
+        totalCostLabel.setFont(new Font("Serif", Font.BOLD, 28));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create the confirm button
         confirmButton = new RoundedButton("Confirm");
-        confirmButton.setFont(confirmButton.getFont().deriveFont(20.0f));
+        confirmButton.setFont(new Font("Serif", Font.BOLD, 28));
         confirmButton.setPreferredSize(new Dimension(150, 50));
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmButton.setBackground(new Color(0, 151, 8));
@@ -46,7 +46,7 @@ public class ConfirmPaymentPage {
 
         // Create the cancel button
         cancelButton = new RoundedButton("Cancel");
-        cancelButton.setFont(cancelButton.getFont().deriveFont(20.0f));
+        cancelButton.setFont(new Font("Serif", Font.BOLD, 28));
         cancelButton.setPreferredSize(new Dimension(150, 50));
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setBackground(new Color(172, 64, 58));

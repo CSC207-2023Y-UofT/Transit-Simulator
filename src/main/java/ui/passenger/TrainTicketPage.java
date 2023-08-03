@@ -17,7 +17,7 @@ public class TrainTicketPage extends JFrame {
 
         setTitle("Train Ticket");
         setSize(900, 600);
-        setLayout(new GridLayout(5,1));
+        setLayout(new GridLayout(6,1));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // create components
@@ -37,7 +37,7 @@ public class TrainTicketPage extends JFrame {
 
         homeButton = new RoundedButton("Home");
         homeButton.setPreferredSize(new Dimension(200, 50));
-        homeButton.setFont(homeButton.getFont().deriveFont(20.0f));
+        homeButton.setFont(new Font("Serif", Font.BOLD, 25));
         homeButton.setBackground(new Color(255, 255, 255));
         homeButton.addActionListener(new ActionListener() {
             @Override
