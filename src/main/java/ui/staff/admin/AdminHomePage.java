@@ -36,58 +36,58 @@ public class AdminHomePage {
         });
 
 
-
-
-
-        // Buy
-        buyButton = new RoundedButton("Buy Ticket");
-        buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buyButton.setBackground(new Color(112,170, 255));
-        buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new PurchaseTicketPage();
-                frame.dispose();
-            }
-        });
-
-        // View
-        viewButton = new RoundedButton("View Ticket");
-        viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        viewButton.setBackground(new Color(112,170, 255));
-        viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        viewButton.setFont(new Font("Serif", Font.BOLD, 20));
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                // if there is a ticket:
-                new TrainTicketPage();
-
-                // if there is no ticket:
-                new NoTicketPage();
-
-                frame.dispose();
-            }
-        });
-
-        // Map
-        mapButton = new RoundedButton("Open Map");
-        mapButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mapButton.setBackground(new Color(112,170, 255));
-        mapButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        mapButton.setFont(new Font("Serif", Font.BOLD, 20));
-        mapButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // new PassengerMapPage();
-                frame.dispose();
-            }
-        });
-
-
+//
+//
+//
+//        // Buy
+//        buyButton = new RoundedButton("Buy Ticket");
+//        buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        buyButton.setBackground(new Color(112,170, 255));
+//        buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+//        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
+//        buyButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                new PurchaseTicketPage();
+//                frame.dispose();
+//            }
+//        });
+//
+//        // View
+//        viewButton = new RoundedButton("View Ticket");
+//        viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        viewButton.setBackground(new Color(112,170, 255));
+//        viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+//        viewButton.setFont(new Font("Serif", Font.BOLD, 20));
+//        viewButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//                // if there is a ticket:
+//                new TrainTicketPage();
+//
+//                // if there is no ticket:
+//                new NoTicketPage();
+//
+//                frame.dispose();
+//            }
+//        });
+//
+//        // Map
+//        mapButton = new RoundedButton("Open Map");
+//        mapButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        mapButton.setBackground(new Color(112,170, 255));
+//        mapButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+//        mapButton.setFont(new Font("Serif", Font.BOLD, 20));
+//        mapButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                // new PassengerMapPage();
+//                frame.dispose();
+//            }
+//        });
+//
+//
 
 
 
