@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import util.Preconditions;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +31,9 @@ public class JsonModelDataStore implements ModelDataStore {
      * The filepath is assumed to be inside /src/main/resources .
      */
     @Override
-    public TransitModel readModel() {  // TODO HELP INFO IMPORTANT SUPER DUPER IMPORTANT TODO!!!!!!!
+    public TransitModel readModel() throws IOException {  // TODO HELP INFO IMPORTANT SUPER DUPER IMPORTANT TODO!!!!!!!
+
+        String json = Files.readString(file.toPath());
 
         JSONObject model = JSONRead
 

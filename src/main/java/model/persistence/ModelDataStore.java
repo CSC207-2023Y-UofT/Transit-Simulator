@@ -2,7 +2,9 @@ package model.persistence;
 
 import model.control.TransitModel;
 
+import java.io.IOException;
+
 public interface ModelDataStore {
-    TransitModel readModel();
-    void writeModel(TransitModel model);
+    TransitModel readModel() throws IOException;
+    void writeModel(TransitModel model) throws IOException;
 }
