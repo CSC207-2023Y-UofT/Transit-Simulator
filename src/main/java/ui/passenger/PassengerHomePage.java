@@ -2,7 +2,6 @@ package ui.passenger;
 
 import ui.WelcomePage;
 import ui.round.RoundedButton;
-import ui.ticket.TrainTicketPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ public class PassengerHomePage {
 
     private JFrame frame;
     private JPanel panel;
-    private JButton buyButton, viewButton, loadButton, backButton;
+    private JButton buyButton, viewButton, mapButton, backButton;
 
     public PassengerHomePage() {
 
@@ -23,7 +22,7 @@ public class PassengerHomePage {
         panel = new JPanel(new GridLayout(0, 3));
 
         // Buy
-        buyButton = new RoundedButton("Buy Tickets");
+        buyButton = new RoundedButton("Buy Ticket");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(112,170, 255));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -37,7 +36,7 @@ public class PassengerHomePage {
         });
 
         // View
-        viewButton = new RoundedButton("View Tickets");
+        viewButton = new RoundedButton("View Ticket");
         viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         viewButton.setBackground(new Color(112,170, 255));
         viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -45,21 +44,27 @@ public class PassengerHomePage {
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TrainTicketPage();
+
+                // if there is a ticket:
+                    new TrainTicketPage();
+
+                // if there is no ticket:
+                    new NoTicketPage();
+
                 frame.dispose();
             }
         });
 
-        // Load
-        loadButton = new RoundedButton("Load Presto");
-        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loadButton.setBackground(new Color(112,170, 255));
-        loadButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        loadButton.setFont(new Font("Serif", Font.BOLD, 20));
-        loadButton.addActionListener(new ActionListener() {
+        // Map
+        mapButton = new RoundedButton("Open Map");
+        mapButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mapButton.setBackground(new Color(112,170, 255));
+        mapButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        mapButton.setFont(new Font("Serif", Font.BOLD, 20));
+        mapButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // new LoadPrestoPage();
+                // new PassengerMapPage();
                 frame.dispose();
             }
         });
@@ -104,7 +109,7 @@ public class PassengerHomePage {
         }
 
         panel.add(new JLabel("  "));
-        panel.add(loadButton);
+        panel.add(mapButton);
         panel.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {

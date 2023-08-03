@@ -46,11 +46,6 @@ public class FailedAuthenticationPage {
             public void actionPerformed(ActionEvent e) {
                 // Perform sign in here, possibly by passing personnelNumberField.getText() to a method that handles sign in.
 
-
-                // TODO: Add code to check if personnel number is valid
-
-                // We should know what option they picked earlier and direct them there
-
                 frame.dispose();
             }
         });
