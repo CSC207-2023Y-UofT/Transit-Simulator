@@ -92,4 +92,21 @@ public class AdminTest {
         assertNull(admin.getLineToStaff().get(1));
         assertNull(admin.getLineToStaff().get(2));
     }
+
+    @Test
+    public void testGetEmployeeOnLine() {
+        // Add employees to lines
+        admin.addEmployeeToLine(1, employee1);
+        admin.addEmployeeToLine(2, employee2);
+        admin.addEmployeeToLine(1, employee2);
+
+        // get the employees on line 1
+        List<Employee> emp = admin.getEmployeeOnLine(1);
+
+        // verify that the employees on line 1 are correct
+        assertEquals(101, emp.get(0).getStaffNumber());
+        assertEquals(102, emp.get(1).getStaffNumber());
+
+    }
+
 }
