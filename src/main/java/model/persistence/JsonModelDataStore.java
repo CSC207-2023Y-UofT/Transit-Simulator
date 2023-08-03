@@ -119,6 +119,13 @@ public class JsonModelDataStore implements ModelDataStore {
         return transitModel;
     }
 
+    /**
+     * Link two nodes by creating edge tracks between them in both directions.
+     * @param line The line number
+     * @param node1 The first node
+     * @param node2 The second node
+     * @param length The length of the edge tracks, usually the distance between the nodes
+     */
     private void createEdge(int line, Node node1, Node node2, double length) {
 
         // Check preconditions
