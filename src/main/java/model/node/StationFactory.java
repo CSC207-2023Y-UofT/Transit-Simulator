@@ -5,4 +5,4 @@ public class StationFactory implements NodeFactory {
     public Node createNode(NodeTracker transitTracker, String name) {
         return new Station(transitTracker, name);
     }
-    }
+}
