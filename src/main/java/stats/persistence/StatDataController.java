@@ -91,7 +91,7 @@ public class StatDataController {
 
         // Store all entries
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
-            entryDataStore.store(index, entry.getKey(), entry.getValue());
+            entryDataStore.store(index, entry.getKey(), entry.getValue());  // TODO: unhandled IOException
         }
 
         // Clear the entries
