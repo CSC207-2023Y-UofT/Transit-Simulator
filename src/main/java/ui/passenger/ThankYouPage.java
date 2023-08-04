@@ -1,7 +1,6 @@
 package ui.passenger;
 
 import ui.round.RoundedButton;
-import ui.ticket.TrainTicketPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +11,8 @@ public class ThankYouPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel blank1, blank2;
-    private JButton activateButton, homeButton;
+    private JLabel blank1, blank2, blank3;
+    private JButton activateButton;
 
     public ThankYouPage() {
 
@@ -50,25 +49,17 @@ public class ThankYouPage {
         panel.add(blank2);
         panel.add(activateButton);
 
-
-        homeButton = new RoundedButton("Home");
-        homeButton.setPreferredSize(new Dimension(200, 50));
-        homeButton.setFont(new Font("Serif", Font.BOLD, 25));
-        homeButton.setBackground(new Color(255, 255, 255));
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new PassengerHomePage();
-                frame.dispose();
-            }
-        });
-        panel.add(homeButton);
+        blank3 = new JLabel("  ");
+        blank3.setOpaque(true);
+        blank3.setBackground(Color.lightGray);
+        panel.add(blank3);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setSize(900, 600);
         frame.setVisible(true);
+
 
     }
 

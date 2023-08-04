@@ -2,7 +2,6 @@ package ui.passenger;
 
 import ui.WelcomePage;
 import ui.round.RoundedButton;
-import ui.ticket.TrainTicketPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ public class PassengerHomePage {
 
     private JFrame frame;
     private JPanel panel;
-    private JButton buyButton, viewButton, loadButton, backButton;
+    private JButton buyButton, backButton;
 
     public PassengerHomePage() {
 
@@ -22,10 +21,14 @@ public class PassengerHomePage {
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
+
+        // TODO: Map implementation
+
+
         // Buy
-        buyButton = new RoundedButton("Buy Tickets");
+        buyButton = new RoundedButton("Buy Ticket");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buyButton.setBackground(new Color(112,170, 255));
+        buyButton.setBackground(new Color(114, 217, 112));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(new ActionListener() {
@@ -35,35 +38,6 @@ public class PassengerHomePage {
                 frame.dispose();
             }
         });
-
-        // View
-        viewButton = new RoundedButton("View Tickets");
-        viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        viewButton.setBackground(new Color(112,170, 255));
-        viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        viewButton.setFont(new Font("Serif", Font.BOLD, 20));
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new TrainTicketPage();
-                frame.dispose();
-            }
-        });
-
-        // Load
-        loadButton = new RoundedButton("Load Presto");
-        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loadButton.setBackground(new Color(112,170, 255));
-        loadButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        loadButton.setFont(new Font("Serif", Font.BOLD, 20));
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // new LoadPrestoPage();
-                frame.dispose();
-            }
-        });
-
 
         // Back button
         backButton = new RoundedButton("Back");
@@ -83,37 +57,14 @@ public class PassengerHomePage {
 
         panel.setBackground(new Color(210, 207, 206));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 12; i++) {
             panel.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(buyButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(viewButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(loadButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
 
         panel.add(backButton);
         panel.add(new JLabel("  "));
-        panel.add(new JLabel("  "));
+        panel.add(buyButton);
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);
@@ -121,7 +72,6 @@ public class PassengerHomePage {
         frame.pack();
         frame.setVisible(true);
     }
-
 
     public static void main(String[] args) {
         new PassengerHomePage();

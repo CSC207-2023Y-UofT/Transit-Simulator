@@ -1,24 +1,25 @@
 package ui.staff;
 
 import ui.round.RoundedButton;
+import ui.staff.operator.OperatorRoute;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FailedAuthenticationPage {
+public class OperatorLoginPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel label, errorLabel;
+    private JLabel label;
     private JTextField personnelNumberField;
     private JButton signInButton, backButton;
 
-    public FailedAuthenticationPage() {
+    public OperatorLoginPage() {
 
         // Create the frame and panel
-        frame = new JFrame("Staff Sign In");
+        frame = new JFrame("Operator Sign In");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
@@ -26,15 +27,8 @@ public class FailedAuthenticationPage {
         label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
         label.setFont(new Font("Serif", Font.BOLD, 25));
 
-        // Input field
-        personnelNumberField = new JTextField();
+        personnelNumberField = new JPasswordField();
         personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
-        personnelNumberField.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-
-        // Error Message
-        errorLabel = new JLabel("Invalid personnel number", SwingConstants.CENTER);
-        errorLabel.setFont(new Font("Serif", Font.BOLD, 20));
-        errorLabel.setForeground(Color.RED);
 
         // Sign In button
         signInButton = new RoundedButton("Sign In");
@@ -45,6 +39,13 @@ public class FailedAuthenticationPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Perform sign in here, possibly by passing personnelNumberField.getText() to a method that handles sign in.
+
+
+                // TODO: Add code to check if personnel number is valid
+
+                // We should know what option they picked earlier and direct them there
+
+                new OperatorRoute();
 
                 frame.dispose();
             }
@@ -66,13 +67,9 @@ public class FailedAuthenticationPage {
 
         panel.setBackground(new Color(210, 207, 206));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             panel.add(new JLabel("  "));
         }
-
-        panel.add(new JLabel("  "));
-        panel.add(errorLabel);
-        panel.add(new JLabel("  "));
 
         panel.add(label);
         panel.add(personnelNumberField);
@@ -102,7 +99,7 @@ public class FailedAuthenticationPage {
     }
 
     public static void main(String[] args) {
-        new FailedAuthenticationPage();
+        new OperatorLoginPage();
     }
 
 }

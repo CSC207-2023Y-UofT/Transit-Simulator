@@ -19,7 +19,7 @@ public class WelcomePage {
     public WelcomePage() {
 
         // Create the frame and panel
-        frame = new JFrame("Ticket Buying Page");
+        frame = new JFrame("Welcome Page");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
@@ -52,7 +52,7 @@ public class WelcomePage {
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         staffButton.setFont(new Font("Serif", Font.BOLD, 25));
         staffButton.setPreferredSize(new Dimension(200, 50));
-        staffButton.setBackground(new Color(112,170, 255));
+        staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         staffButton.addActionListener(new ActionListener() {
             @Override
@@ -61,7 +61,6 @@ public class WelcomePage {
                 frame.dispose();
             }
         });
-
 
         // Add components to the panel
 
@@ -98,7 +97,7 @@ public class WelcomePage {
         }
 
         // Make background color light gray
-        panel.setBackground(new Color(220,220,220));
+        panel.setBackground(new Color(220, 220, 220));
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);

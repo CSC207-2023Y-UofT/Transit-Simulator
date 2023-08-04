@@ -26,7 +26,7 @@ public class RoundedButton extends JButton {
         }
 
         // Draw a rounded rectangle in the background of the button
-        g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 20, 20);
+        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
         super.paintComponent(g);
     }
 
@@ -34,7 +34,7 @@ public class RoundedButton extends JButton {
     protected void paintBorder(Graphics g) {
         // Draw the border of the button
         g.setColor(getForeground());
-        g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 20, 20);
+        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
     }
 
 }
