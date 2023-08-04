@@ -1,5 +1,4 @@
 package presenter;
 
-public interface TransitMapPresenter {
-    public void
+public class TransitMapPresenter {
 }
