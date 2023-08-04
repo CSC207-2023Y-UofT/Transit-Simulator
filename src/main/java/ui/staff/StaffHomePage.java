@@ -61,7 +61,6 @@ public class StaffHomePage {
             panel.add(new JLabel("  "));
         }
 
-
         panel.add(backButton);
         panel.add(new JLabel("  "));
         panel.add(loginButton);

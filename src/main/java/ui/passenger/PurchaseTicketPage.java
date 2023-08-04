@@ -67,7 +67,7 @@ public class PurchaseTicketPage {
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.setPreferredSize(new Dimension(200, 50));
-        backButton.setBackground(new Color(0, 151, 8));
+        backButton.setBackground(new Color(166, 166, 166));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

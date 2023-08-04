@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AuthenticatePage {
+public class AdminLoginPage {
 
     private JFrame frame;
     private JPanel panel;
@@ -15,7 +15,7 @@ public class AuthenticatePage {
     private JTextField personnelNumberField;
     private JButton signInButton, backButton;
 
-    public AuthenticatePage() {
+    public AdminLoginPage() {
 
         // Create the frame and panel
         frame = new JFrame("Staff Sign In");
@@ -100,7 +100,7 @@ public class AuthenticatePage {
     }
 
     public static void main(String[] args) {
-        new AuthenticatePage();
+        new AdminLoginPage();
     }
 
 }

@@ -35,7 +35,7 @@ public class StaffSelectPage {
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AuthenticatePage();
+                new AdminLoginPage();
                 // STORE admin data somehow
                 // new AdminPage();
                 frame.dispose();
@@ -51,7 +51,7 @@ public class StaffSelectPage {
         trainEngineerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AuthenticatePage();
+                new AdminLoginPage();
                 // new TrainEngineerPage();
                 frame.dispose();
             }
@@ -66,7 +66,7 @@ public class StaffSelectPage {
         trainOperatorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AuthenticatePage();
+                new AdminLoginPage();
                 // new TrainOperatorPage();
                 frame.dispose();
             }

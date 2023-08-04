@@ -28,7 +28,7 @@ public class PassengerHomePage {
         // Buy
         buyButton = new RoundedButton("Buy Ticket");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buyButton.setBackground(new Color(112,170, 255));
+        buyButton.setBackground(new Color(114, 217, 112));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(new ActionListener() {
@@ -72,7 +72,6 @@ public class PassengerHomePage {
         frame.pack();
         frame.setVisible(true);
     }
-
 
     public static void main(String[] args) {
         new PassengerHomePage();
