@@ -17,6 +17,8 @@
 test-aggregates/*
 test-entries/*
 
+model-1.json
+
 .idea/*
 
 # Sensitive or high-churn files
@@ -28,10 +30,6 @@ test-entries/*
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
-.idea/*
-
-test-entries/*
-test-aggregates/*
 
 # Gradle
 .idea/**/gradle.xml

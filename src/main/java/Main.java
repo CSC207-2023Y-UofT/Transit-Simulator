@@ -3,6 +3,7 @@ import model.node.Node;
 import model.node.NodeTracker;
 import model.node.Station;
 import model.node.StationFactory;
+import model.persistence.JsonModelDataStore;
 import model.train.track.TrackSegment;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,6 +11,12 @@ import org.json.JSONObject;
 import model.control.*;
 import util.Preconditions;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,13 +30,18 @@ import java.util.Set;
  */
 public class Main {
 
-    int TRAIN_INTERVAL = 300; // seconds, or distance if you will
-    int DEFAULT_TRACK_LENGTH = 100;
-
 
     public static void main(String[] args) {
 
-        // TODO: Create a scenario (dates, times, fresh instances of Trains, etc) to complete the model
+        InputStream str = Main.class.getResourceAsStream("Model 1.json");
+        File file = new File("model-1.json");
+        try {
+            assert str != null;
+            byte[] bytes = str.readAllBytes();
+            Files.write(file.toPath(), bytes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

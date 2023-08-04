@@ -1,6 +1,9 @@
 package ui.passenger;
 
+import interactor.station.StationInteractor;
+import presenter.TransitMapPassengerPresenter;
 import ui.WelcomePage;
+import ui.map.MapPanel;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -13,6 +16,7 @@ public class PassengerHomePage {
     private JFrame frame;
     private JPanel panel;
     private JButton buyButton, backButton;
+    private MapPanel mapPanel;
 
     public PassengerHomePage() {
 
@@ -52,6 +56,8 @@ public class PassengerHomePage {
             }
         });
 
+//        mapPanel = new MapPanel(new TransitMapPassengerPresenter(stationInteractor));
+//        mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Add components to the panel
 
