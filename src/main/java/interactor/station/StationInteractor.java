@@ -1,4 +1,4 @@
-package interactor;
+package interactor.station;
 
 import model.Direction;
 import model.control.TransitModel;
