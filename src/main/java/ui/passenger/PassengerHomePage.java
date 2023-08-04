@@ -3,6 +3,7 @@ package ui.passenger;
 import bootstrap.InteractorPool;
 import interactor.station.StationInteractor;
 import presenter.TransitMapPassengerPresenter;
+import ui.ScreenController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
 import ui.round.RoundedButton;
@@ -13,11 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PassengerHomePage extends JPanel {
+    private final ScreenController controller;
     private JButton buyButton, backButton;
     private MapPanel mapPanel;
 
-    public PassengerHomePage(InteractorPool pool) {
+    public PassengerHomePage(ScreenController controller) {
         super(new GridLayout(0, 3));
+
+        this.controller = controller;
 
 
         // Buy
@@ -48,7 +52,9 @@ public class PassengerHomePage extends JPanel {
         });
 
         // Map
-        TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(pool.getStationInteractor());
+        TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(
+                controller.getInteractorPool().getStationInteractor()
+        );
         mapPanel = new MapPanel(presenter);
         mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 

@@ -5,15 +5,15 @@ import bootstrap.InteractorPool;
 import javax.swing.*;
 
 public class MainScreen extends JFrame {
-    private final InteractorPool interactorPool;
+    private final ScreenController screenController;
     private JPanel contentPane;
 
-    public MainScreen(InteractorPool interactorPool) {
+    public MainScreen(ScreenController screenController) {
         super("Transit Simulator");
 
-        this.interactorPool = interactorPool;
+        this.screenController = screenController;
 
-        contentPane = new WelcomePage(interactorPool);
+        contentPane = new WelcomePage(screenController);
         setContentPane(contentPane);
 
         pack();

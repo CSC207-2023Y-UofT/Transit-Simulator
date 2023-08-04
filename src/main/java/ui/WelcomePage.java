@@ -12,14 +12,15 @@ import java.awt.event.ActionListener;
 
 public class WelcomePage extends JPanel {
     private final InteractorPool interactors;
+    private final ScreenController controller;
     private JLabel titleLabel, userTypeLabel;
     private JButton passengerButton, staffButton;
 
 
-    public WelcomePage(InteractorPool interactors) {
+    public WelcomePage(ScreenController controller) {
         super(new GridLayout(0, 3));
 
-        this.interactors = interactors;
+        this.controller = controller;
 
         // Title
         titleLabel = new JLabel("Welcome to the TTC", SwingConstants.CENTER);
@@ -38,7 +39,7 @@ public class WelcomePage extends JPanel {
         passengerButton.setBackground(new Color(112, 170, 255));
         passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         passengerButton.addActionListener(e -> {
-            // TODO open new PassengerHomePage();
+            controller.open(new PassengerHomePage(controller));
         });
 
         // Staff button
@@ -49,7 +50,7 @@ public class WelcomePage extends JPanel {
         staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         staffButton.addActionListener(e -> {
-            // TODO open new StaffHomePage();
+            controller.open(new StaffHomePage(controller));
         });
 
         // Add components to the panel
