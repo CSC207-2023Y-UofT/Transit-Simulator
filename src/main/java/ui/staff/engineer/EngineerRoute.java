@@ -40,7 +40,7 @@ public class EngineerRoute {
 
         // id label
         id = 322; // TODO: should be .getId()
-        idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
+        idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Serif", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
@@ -61,12 +61,12 @@ public class EngineerRoute {
         // operator label
         operator = "grace"; // TODO: should be .getOperator()
         operatorLabel = new JLabel("Operator: " + operator);
-        operatorLabel.setFont(new Font("Serif", Font.ITALIC, 25));
+        operatorLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // engineer label
         engineer = "zoey"; // TODO: should be .getEngineer()
         engineerLabel = new JLabel("Engineer: " + engineer);
-        engineerLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        engineerLabel.setFont(new Font("Serif", Font.ITALIC, 25));
 
         for (int i = 0; i < 5; i++) {
             middlePanel.add(new JLabel(""));
