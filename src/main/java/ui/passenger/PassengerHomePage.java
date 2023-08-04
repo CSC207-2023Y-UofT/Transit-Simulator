@@ -1,7 +1,7 @@
 package ui.passenger;
 
 import presenter.TransitMapPassengerPresenter;
-import ui.PageController;
+import ui.UIController;
 import ui.map.MapPanel;
 import ui.round.RoundedButton;
 
@@ -11,11 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PassengerHomePage extends JPanel {
-    private final PageController controller;
+    private final UIController controller;
     private JButton buyButton, backButton;
     private MapPanel mapPanel;
 
-    public PassengerHomePage(PageController controller) {
+    public PassengerHomePage(UIController controller) {
         super(new GridLayout(0, 3));
 
         this.controller = controller;

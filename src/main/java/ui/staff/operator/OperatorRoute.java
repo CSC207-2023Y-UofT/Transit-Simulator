@@ -1,16 +1,14 @@
 package ui.staff.operator;
 
-import ui.PageController;
+import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class OperatorRoute extends JPanel {
-    public OperatorRoute(PageController controller) {
+    public OperatorRoute(UIController controller) {
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -94,13 +92,7 @@ public class OperatorRoute extends JPanel {
         maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
-        maintenanceButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new OperatorMaintenance();
-                frame.dispose();
-            }
-        });
+        maintenanceButton.addActionListener(e -> controller.open(new OperatorMaintenance(controller)));
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);

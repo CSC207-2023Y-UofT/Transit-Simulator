@@ -1,6 +1,8 @@
 package ui.staff;
 
+import ui.UIController;
 import ui.round.RoundedButton;
+import ui.staff.engineer.EngineerRoute;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class LoginPage extends JPanel {
 
-    public LoginPage() {
+    public LoginPage(UIController controller) {
         super(new GridLayout(0, 3));
 
         // Personnel Number
@@ -34,11 +36,7 @@ public class LoginPage extends JPanel {
 
                 // We should know what option they picked earlier and direct them there
 
-                // new AdminHomePage();
-                // new EngineerHomePage();
-                // new OperatorHomePage();
-
-                frame.dispose();
+                controller.open(new EngineerRoute(controller));
             }
         });
 
@@ -46,13 +44,7 @@ public class LoginPage extends JPanel {
         JButton backButton = new RoundedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new StaffSelectPage();
-                frame.dispose();
-            }
-        });
+        backButton.addActionListener(e -> controller.open(new StaffSelectPage(controller)));
 
         // Add components to the panel
 
@@ -81,10 +73,6 @@ public class LoginPage extends JPanel {
         this.add(backButton);
         this.add(new JLabel("  "));
         this.add(new JLabel("  "));
-    }
-
-    public static void main(String[] args) {
-        new LoginPage();
     }
 
 }

@@ -1,6 +1,6 @@
 package ui.passenger;
 
-import ui.PageController;
+import ui.UIController;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class TrainTicketPage extends JPanel {
 
     private final JLabel validTime;
 
-    public TrainTicketPage(PageController controller) {
+    public TrainTicketPage(UIController controller) {
         super(new GridLayout(0, 1));
 
         this.setBackground(new Color(185, 151, 144));

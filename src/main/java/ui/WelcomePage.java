@@ -1,6 +1,5 @@
 package ui;
 
-import bootstrap.InteractorPool;
 import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
@@ -11,7 +10,7 @@ import java.awt.*;
 public class WelcomePage extends JPanel {
 
 
-    public WelcomePage(PageController controller) {
+    public WelcomePage(UIController controller) {
         super(new GridLayout(0, 3));
 
         // Title

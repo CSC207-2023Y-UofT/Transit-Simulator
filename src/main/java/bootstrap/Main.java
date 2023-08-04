@@ -5,6 +5,8 @@ import interactor.train.TrainInteractor;
 import model.persistence.JsonModelDataStore;
 
 import model.control.*;
+import ui.UIController;
+import ui.WelcomePage;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +46,9 @@ public class Main {
                 new TrainInteractor(model)
         );
 
-
+        // Create the ui controller
+        UIController controller = new UIController(pool);
+        controller.open(new WelcomePage(controller));
     }
 }
 

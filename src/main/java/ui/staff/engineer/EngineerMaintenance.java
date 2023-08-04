@@ -1,6 +1,6 @@
 package ui.staff.engineer;
 
-import ui.PageController;
+import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
 
@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class EngineerMaintenance extends JPanel {
 
-    public EngineerMaintenance(PageController controller) {
+    public EngineerMaintenance(UIController controller) {
         super(new BorderLayout());
 
         // Top panel

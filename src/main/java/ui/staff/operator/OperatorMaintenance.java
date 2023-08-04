@@ -1,6 +1,6 @@
 package ui.staff.operator;
 
-import ui.PageController;
+import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
 
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OperatorMaintenance extends JPanel {
-    public OperatorMaintenance(PageController controller) {
+    public OperatorMaintenance(UIController controller) {
         super(new BorderLayout());
 
         // Top panel
