@@ -14,4 +14,20 @@ public class StationState {
         this.x = x;
         this.y = y;
     }
+
+    public List<Integer> getLineProfiles() {
+        return lineProfiles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
