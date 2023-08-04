@@ -101,12 +101,7 @@ public class EngineerRoute extends JPanel {
         maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
-        maintenanceButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EngineerMaintenance();
-            }
-        });
+        maintenanceButton.addActionListener(e -> controller.open(new EngineerMaintenance(controller)));
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);

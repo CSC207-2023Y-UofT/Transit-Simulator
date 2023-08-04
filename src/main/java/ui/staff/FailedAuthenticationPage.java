@@ -84,8 +84,4 @@ public class FailedAuthenticationPage extends JPanel {
         this.add(new JLabel("  "));
     }
 
-    public static void main(String[] args) {
-        new FailedAuthenticationPage();
-    }
-
 }
