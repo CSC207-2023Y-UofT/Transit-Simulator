@@ -9,28 +9,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WelcomePage extends JPanel {
-    private final InteractorPool interactors;
-    private final PageController controller;
-    private JLabel titleLabel, userTypeLabel;
-    private JButton passengerButton, staffButton;
 
 
     public WelcomePage(PageController controller) {
         super(new GridLayout(0, 3));
 
-        this.controller = controller;
-
         // Title
-        titleLabel = new JLabel("Welcome to the TTC", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("Welcome to the TTC", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 30));
 
         // Prompt
-        userTypeLabel = new JLabel("Please select your user type.", SwingConstants.CENTER);
+        JLabel userTypeLabel = new JLabel("Please select your user type.", SwingConstants.CENTER);
         userTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         userTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // Passenger button
-        passengerButton = new RoundedButton("Passenger");
+        JButton passengerButton = new RoundedButton("Passenger");
         passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         passengerButton.setFont(new Font("Serif", Font.BOLD, 25));
         passengerButton.setPreferredSize(new Dimension(200, 50));
@@ -41,7 +35,7 @@ public class WelcomePage extends JPanel {
         });
 
         // Staff button
-        staffButton = new RoundedButton("Staff");
+        JButton staffButton = new RoundedButton("Staff");
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         staffButton.setFont(new Font("Serif", Font.BOLD, 25));
         staffButton.setPreferredSize(new Dimension(200, 50));
