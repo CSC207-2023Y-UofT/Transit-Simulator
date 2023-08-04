@@ -14,7 +14,7 @@ import java.util.*;
  * Represents a line profile for a Node in the transit system.
  * This class is responsible for managing all the TrackSegments that are attached to a specific Node and Line.
  */
-public class NodeLineProfile {
+public class NodeLineProfile implements TransitNodeLineProfile {
 
     /**
      * The Node object this profile is associated with.
@@ -56,6 +56,18 @@ public class NodeLineProfile {
         }
 
         tracks.values().forEach(trackRepo::addTrack);  // Similar to lambda expressions
+    }
+
+    @Override
+    public Optional<Node> getNextNode(Direction direction) {
+        List<TrackSegment> next = getTrack(direction).getNextTrackSegments();
+        if (next.isEmpty()) return Optional.empty();
+
+        for (TrackSegment segment : next) {
+            if (segment.getNode().isPresent()) return segment.getNode();
+        }
+
+        return Optional.empty();
     }
 
     /**
