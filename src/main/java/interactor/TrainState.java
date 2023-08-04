@@ -1,8 +1,7 @@
-package usecase;
+package interactor;
 
 import model.train.TrainJob;
 
-import javax.swing.text.html.Option;
 import java.util.Map;
 import java.util.Optional;
 

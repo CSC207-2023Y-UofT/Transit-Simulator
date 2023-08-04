@@ -1,10 +1,9 @@
-package usecase;
+package interactor;
 
 import employee.Employee;
 import model.Direction;
 import model.control.TransitModel;
 import model.node.Node;
-import model.node.TrainArrival;
 import model.train.Train;
 import model.train.TrainJob;
 
