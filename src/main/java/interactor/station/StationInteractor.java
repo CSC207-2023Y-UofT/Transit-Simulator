@@ -55,7 +55,7 @@ public class StationInteractor {
         return stations;
     }
 
-    public Optional<Long> nextArrival(String stationName, int line, Direction direction) {
+    public Optional<Long> getNextArrival(String stationName, int line, Direction direction) {
         Node node = model.getNode(stationName);
 
         if (node == null) {

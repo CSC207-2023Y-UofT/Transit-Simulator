@@ -14,9 +14,9 @@ public class TransitMapPresenter {
     public static final double MAP_SIZE_X = 4000.0;
     public static final double MAP_SIZE_Y = 4000.0;
 
-    private final StationInteractor stationInteractor;
+    protected final StationInteractor stationInteractor;
 
-    private List<StationState> stations = new ArrayList<>();
+    protected List<StationState> stations = new ArrayList<>();
 
     public TransitMapPresenter(StationInteractor stationInteractor) {
         this.stationInteractor = stationInteractor;
@@ -71,4 +71,30 @@ public class TransitMapPresenter {
             graphics.drawOval(x - 10, y - 10, 20, 20);
         }
     }
+
+    public Optional<StationState> getStationAt(int x, int y) {
+        double scaleX = MAP_SIZE_X / x;
+        double scaleY = MAP_SIZE_Y / y;
+
+        for (StationState station : stations) {
+            int stationX = (int) (station.getX() * scaleX);
+            int stationY = (int) (station.getY() * scaleY);
+
+            if (Math.abs(stationX - x) < 10 && Math.abs(stationY - y) < 10) {
+                return Optional.of(station);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    public void onClick(int x, int y) {
+        Optional<StationState> optStation = getStationAt(x, y);
+        if (optStation.isEmpty()) return;
+        StationState station = optStation.get();
+
+        onClickStation(station);
+    }
+
+    protected void onClickStation(StationState station) {}
 }
