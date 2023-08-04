@@ -2,16 +2,18 @@ package usecase;
 
 import model.train.TrainJob;
 
+import javax.swing.text.html.Option;
 import java.util.Map;
+import java.util.Optional;
 
 public class TrainState {
     private final String name;
     private final int capacity;
     private final int occupation;
     private final Map<TrainJob, Integer> staff;
-    private final String nextNode;
+    private final Optional<String> nextNode;
 
-    public TrainState(String name, int capacity, int occupation, Map<TrainJob, Integer> staff, String nextNode) {
+    public TrainState(String name, int capacity, int occupation, Map<TrainJob, Integer> staff, Optional<String> nextNode) {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
@@ -35,7 +37,7 @@ public class TrainState {
         return staff;
     }
 
-    public String getNextNode() {
+    public Optional<String> getNextNode() {
         return nextNode;
     }
 }

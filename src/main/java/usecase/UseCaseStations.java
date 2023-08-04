@@ -4,16 +4,17 @@ import model.Direction;
 import model.control.TransitModel;
 import model.node.Node;
 import model.node.NodeLineProfile;
+import model.node.TrainArrival;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UseCaseTransitMap {
+public class UseCaseStations {
 
     private final TransitModel model;
 
-    public UseCaseTransitMap(TransitModel model) {
+    public UseCaseStations(TransitModel model) {
         this.model = model;
     }
 
@@ -52,6 +53,26 @@ public class UseCaseTransitMap {
         }
 
         return stations;
+    }
+
+    public Optional<Long> nextArrival(String stationName, int line, Direction direction) {
+        Node node = model.getNode(stationName);
+
+        if (node == null) {
+            return Optional.empty();
+        }
+
+        NodeLineProfile lineProfile = node.getLineProfile(line).orElseThrow();
+        List<TrainArrival> arrivals = lineProfile.nextArrivals(direction, 1);
+
+
+        if (arrivals.isEmpty()) {
+            return Optional.empty();
+        }
+
+        TrainArrival arrival = arrivals.get(0);
+
+        return Optional.of(arrival.getDelay());
     }
 
     private StationState toState(Node node) {

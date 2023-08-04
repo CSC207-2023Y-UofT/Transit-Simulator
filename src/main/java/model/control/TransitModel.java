@@ -113,4 +113,9 @@ public class TransitModel implements NodeTracker, TrainTracker {
         return trainList;
     }
 
+    @Override
+    public Train getTrain(String name) {
+        return trainList.stream().filter(train -> train.getName().equals(name)).findFirst().orElse(null);
+    }
+
 }

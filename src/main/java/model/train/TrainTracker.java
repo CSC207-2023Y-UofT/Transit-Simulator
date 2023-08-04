@@ -25,4 +25,6 @@ public interface TrainTracker {
      * @return A List containing all the Train objects currently present in the train tracker.
      */
     List<Train> getTrainList();
+
+    Train getTrain(String name);
 }
