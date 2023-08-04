@@ -101,7 +101,7 @@ public class PurchaseTicketPage extends JPanel {
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorderPainted(false);
-        buyButton.addActionListener(e -> controller.open(new ConfirmPaymentPage(controller));
+        buyButton.addActionListener(e -> controller.open(new ConfirmPaymentPage(controller)));
 
         this.add(buyButton);
 
