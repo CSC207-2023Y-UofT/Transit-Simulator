@@ -1,5 +1,6 @@
 package ui;
 
+import bootstrap.InteractorPool;
 import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
@@ -9,14 +10,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WelcomePage {
+public class WelcomePage extends JPanel {
+    private final InteractorPool interactors;
     private JFrame frame;
     private JPanel panel;
     private JLabel titleLabel, userTypeLabel;
     private JButton passengerButton, staffButton;
 
 
-    public WelcomePage(Interacto) {
+    public WelcomePage(InteractorPool interactors) {
+        this.interactors = interactors;
 
         // Create the frame and panel
         frame = new JFrame("Welcome Page");
@@ -39,12 +42,9 @@ public class WelcomePage {
         passengerButton.setPreferredSize(new Dimension(200, 50));
         passengerButton.setBackground(new Color(112, 170, 255));
         passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        passengerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new PassengerHomePage();
-                frame.dispose();
-            }
+        passengerButton.addActionListener(e -> {
+            new PassengerHomePage();
+            frame.dispose();
         });
 
         // Staff button
@@ -54,12 +54,9 @@ public class WelcomePage {
         staffButton.setPreferredSize(new Dimension(200, 50));
         staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        staffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
-                frame.dispose();
-            }
+        staffButton.addActionListener(e -> {
+            new StaffHomePage();
+            frame.dispose();
         });
 
         // Add components to the panel
