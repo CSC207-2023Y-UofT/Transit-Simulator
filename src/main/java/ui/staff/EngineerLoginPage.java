@@ -1,7 +1,7 @@
 package ui.staff;
 
 import ui.round.RoundedButton;
-import ui.staff.engineer.Route;
+import ui.staff.engineer.EngineerRoute;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +45,7 @@ public class EngineerLoginPage {
 
                 // We should know what option they picked earlier and direct them there
 
-                new Route();
+                new EngineerRoute();
 
                 frame.dispose();
             }

@@ -1,7 +1,7 @@
 package ui.staff;
 
 import ui.round.RoundedButton;
-import ui.staff.operator.Route;
+import ui.staff.operator.OperatorRoute;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +45,7 @@ public class OperatorLoginPage {
 
                 // We should know what option they picked earlier and direct them there
 
-                new Route();
+                new OperatorRoute();
 
                 frame.dispose();
             }
