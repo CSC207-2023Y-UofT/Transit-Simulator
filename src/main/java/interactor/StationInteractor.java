@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UseCaseStations {
+public class StationInteractor {
 
     private final TransitModel model;
 
-    public UseCaseStations(TransitModel model) {
+    public StationInteractor(TransitModel model) {
         this.model = model;
     }
 

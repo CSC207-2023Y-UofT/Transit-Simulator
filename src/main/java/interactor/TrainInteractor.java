@@ -9,10 +9,10 @@ import model.train.TrainJob;
 
 import java.util.*;
 
-public class UseCaseTransitTrains {
+public class TrainInteractor {
     private final TransitModel model;
 
-    public UseCaseTransitTrains(TransitModel model) {
+    public TrainInteractor(TransitModel model) {
         this.model = model;
     }
 
