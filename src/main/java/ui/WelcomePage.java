@@ -12,19 +12,14 @@ import java.awt.event.ActionListener;
 
 public class WelcomePage extends JPanel {
     private final InteractorPool interactors;
-    private JFrame frame;
-    private JPanel panel;
     private JLabel titleLabel, userTypeLabel;
     private JButton passengerButton, staffButton;
 
 
     public WelcomePage(InteractorPool interactors) {
-        this.interactors = interactors;
+        super(new GridLayout(0, 3));
 
-        // Create the frame and panel
-        frame = new JFrame("Welcome Page");
-        frame.setPreferredSize(new Dimension(900, 600));
-        panel = new JPanel(new GridLayout(0, 3));
+        this.interactors = interactors;
 
         // Title
         titleLabel = new JLabel("Welcome to the TTC", SwingConstants.CENTER);
@@ -43,8 +38,7 @@ public class WelcomePage extends JPanel {
         passengerButton.setBackground(new Color(112, 170, 255));
         passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         passengerButton.addActionListener(e -> {
-            new PassengerHomePage();
-            frame.dispose();
+            // TODO open new PassengerHomePage();
         });
 
         // Staff button
@@ -55,52 +49,46 @@ public class WelcomePage extends JPanel {
         staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         staffButton.addActionListener(e -> {
-            new StaffHomePage();
-            frame.dispose();
+            // TODO open new StaffHomePage();
         });
 
         // Add components to the panel
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(titleLabel);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(titleLabel);
+        this.add(new JLabel("  "));
 
-        panel.add(new JLabel("  "));
-        panel.add(userTypeLabel);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(userTypeLabel);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(passengerButton);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(passengerButton);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(staffButton);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(staffButton);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
         // Make background color light gray
-        panel.setBackground(new Color(220, 220, 220));
+        this.setBackground(new Color(220, 220, 220));
 
-        // Add panel to the frame
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
