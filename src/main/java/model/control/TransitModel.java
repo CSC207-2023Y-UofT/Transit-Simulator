@@ -39,6 +39,8 @@ public class TransitModel implements NodeTracker, TrainTracker {
             throw new IllegalArgumentException("Track " + trackSegment.getId() + " created with wrong tracker");
         }
 
+        if (trainList.stream().anyMatch(train -> train.get))
+
         TrainPosition position = TrainPosition.entryPoint(trackSegment, Direction.FORWARD);
 
         if (!trackSegment.isEmpty()) {

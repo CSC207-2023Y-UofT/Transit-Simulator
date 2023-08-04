@@ -28,7 +28,7 @@ public class TrainArrivalTest {
         lineProfile1 = station1.createLineProfile(1);
         TrackSegment s1f = lineProfile1.getTrack(Direction.FORWARD);
 
-        train = transitModel.createTrain(s1f, 120);
+        train = transitModel.createTrain(s1f, "t3", 120);
     }
 
     @Test

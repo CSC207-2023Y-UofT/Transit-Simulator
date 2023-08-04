@@ -17,7 +17,7 @@ public interface TrainTracker {
      * @param capacity     The maximum capacity of the new train, representing the maximum number of passengers it can carry.
      * @return The newly created Train object representing the new train on the track segment.
      */
-    Train createTrain(TrackSegment trackSegment, int capacity);
+    Train createTrain(TrackSegment trackSegment, String name, int capacity);
 
     /**
      * Retrieves a list of all existing trains in the train tracker.

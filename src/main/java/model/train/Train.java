@@ -104,6 +104,10 @@ public class Train {
         this.capacity = capacity;
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Gets a mapping of TrainJobs to Employees assigned to this train.
      *
