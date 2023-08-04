@@ -3,7 +3,6 @@ package ui;
 import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
-import ui.staff.StaffSelectPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +52,7 @@ public class WelcomePage {
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         staffButton.setFont(new Font("Serif", Font.BOLD, 25));
         staffButton.setPreferredSize(new Dimension(200, 50));
-        staffButton.setBackground(new Color(112,170, 255));
+        staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         staffButton.addActionListener(new ActionListener() {
             @Override
@@ -98,7 +97,7 @@ public class WelcomePage {
         }
 
         // Make background color light gray
-        panel.setBackground(new Color(220,220,220));
+        panel.setBackground(new Color(220, 220, 220));
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);

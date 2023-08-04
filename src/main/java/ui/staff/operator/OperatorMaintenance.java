@@ -28,25 +28,25 @@ public class OperatorMaintenance {
         // Top panel
         topPanel = new JPanel(new GridLayout(0, 2));
 
-            // Home button
-            homeButton = new RoundedButton("Home");
-            homeButton.setBackground(new Color(210, 207, 206));
-            homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-            homeButton.setFont(new Font("Serif", Font.BOLD, 20));
-            homeButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new StaffHomePage();
-                    frame.dispose();
-                }
-            });
+        // Home button
+        homeButton = new RoundedButton("Home");
+        homeButton.setBackground(new Color(210, 207, 206));
+        homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        homeButton.setFont(new Font("Serif", Font.BOLD, 20));
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StaffHomePage();
+                frame.dispose();
+            }
+        });
 
-            // id label
-            id = 322; // TODO: should be .getId()
-            idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
-            idLabel.setFont(new Font("Serif", Font.BOLD, 25));
-            idLabel.setOpaque(true);
-            idLabel.setBackground(new Color(255, 255, 255));
+        // id label
+        id = 322; // TODO: should be .getId()
+        idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
+        idLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        idLabel.setOpaque(true);
+        idLabel.setBackground(new Color(255, 255, 255));
 
         topPanel.add(homeButton);
         topPanel.add(idLabel);
@@ -57,42 +57,42 @@ public class OperatorMaintenance {
         middlePanel = new JPanel();
         middlePanel.setLayout(new BorderLayout());
 
-            // Create column names
-            String[] columnNames = {"Train", "Needs Maintenance?"};
+        // Create column names
+        String[] columnNames = {"Train", "Needs Maintenance?"};
 
-            // Create data
-            Object[][] data = {
-                    {"Train 1", Boolean.TRUE},
-                    {"Train 2", Boolean.TRUE},
-                    {"Train 3", Boolean.TRUE},
-                    {"Train 4", Boolean.TRUE},
-                    {"Train 5", Boolean.TRUE}
-            };
+        // Create data
+        Object[][] data = {
+                {"Train 1", Boolean.TRUE},
+                {"Train 2", Boolean.TRUE},
+                {"Train 3", Boolean.TRUE},
+                {"Train 4", Boolean.TRUE},
+                {"Train 5", Boolean.TRUE}
+        };
 
-            // Create a table model - make the second column Boolean type
-            DefaultTableModel model = new DefaultTableModel(data, columnNames) {
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnIndex == 1 ? Boolean.class : super.getColumnClass(columnIndex);
-                }
-            };
+        // Create a table model - make the second column Boolean type
+        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnIndex == 1 ? Boolean.class : super.getColumnClass(columnIndex);
+            }
+        };
 
-            // Create table with our table model
-            table = new JTable(model);
+        // Create table with our table model
+        table = new JTable(model);
 
-            // Set table properties
-            table.setFont(new Font("Serif", Font.PLAIN, 20));
-            table.setRowHeight(30);
-            table.setGridColor(Color.DARK_GRAY);
-            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-            table.setDefaultRenderer(String.class, centerRenderer);
+        // Set table properties
+        table.setFont(new Font("Serif", Font.PLAIN, 20));
+        table.setRowHeight(30);
+        table.setGridColor(Color.DARK_GRAY);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(String.class, centerRenderer);
 
-            // Ensure only checkboxes can be edited
-            table.setDefaultEditor(Object.class, null);
+        // Ensure only checkboxes can be edited
+        table.setDefaultEditor(Object.class, null);
 
-            JScrollPane scrollPane = new JScrollPane(table);
-            scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
         middlePanel.add(scrollPane, BorderLayout.SOUTH);
         frame.add(middlePanel, BorderLayout.CENTER);
@@ -102,7 +102,7 @@ public class OperatorMaintenance {
 
         // route button
         routeButton = new RoundedButton("Route");
-        routeButton.setBackground(new Color(112,170, 255));
+        routeButton.setBackground(new Color(112, 170, 255));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
         routeButton.addActionListener(new ActionListener() {
@@ -115,7 +115,7 @@ public class OperatorMaintenance {
 
         // maintenance button: does nothing since already on this page
         maintenanceButton = new RoundedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(112,170, 255));
+        maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
 

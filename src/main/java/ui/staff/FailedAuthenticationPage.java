@@ -28,7 +28,7 @@ public class FailedAuthenticationPage {
 
         // Input field
         personnelNumberField = new JTextField();
-        personnelNumberField.setFont(new Font("Serif", Font.PLAIN , 20));
+        personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
         personnelNumberField.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 
         // Error Message
@@ -38,7 +38,7 @@ public class FailedAuthenticationPage {
 
         // Sign In button
         signInButton = new RoundedButton("Sign In");
-        signInButton.setBackground(new Color(112,170, 255));
+        signInButton.setBackground(new Color(112, 170, 255));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         signInButton.setFont(new Font("Serif", Font.BOLD, 20));
         signInButton.addActionListener(new ActionListener() {
@@ -101,6 +101,8 @@ public class FailedAuthenticationPage {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) { new FailedAuthenticationPage(); }
+    public static void main(String[] args) {
+        new FailedAuthenticationPage();
+    }
 
 }

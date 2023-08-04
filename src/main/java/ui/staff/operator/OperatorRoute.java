@@ -101,13 +101,13 @@ public class OperatorRoute {
 
         // route button: does nothing since already on this page
         routeButton = new RoundedButton("Route");
-        routeButton.setBackground(new Color(112,170, 255));
+        routeButton.setBackground(new Color(112, 170, 255));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         // maintenance button
         maintenanceButton = new RoundedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(112,170, 255));
+        maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
         maintenanceButton.addActionListener(new ActionListener() {

@@ -28,11 +28,11 @@ public class EngineerLoginPage {
         label.setFont(new Font("Serif", Font.BOLD, 25));
 
         personnelNumberField = new JPasswordField();
-        personnelNumberField.setFont(new Font("Serif", Font.PLAIN , 20));
+        personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
 
         // Sign In button
         signInButton = new RoundedButton("Sign In");
-        signInButton.setBackground(new Color(112,170, 255));
+        signInButton.setBackground(new Color(112, 170, 255));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         signInButton.setFont(new Font("Serif", Font.BOLD, 20));
         signInButton.addActionListener(new ActionListener() {

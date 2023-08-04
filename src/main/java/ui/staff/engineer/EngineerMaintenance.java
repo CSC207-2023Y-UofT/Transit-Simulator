@@ -13,9 +13,8 @@ import java.awt.event.ActionListener;
 public class EngineerMaintenance {
     private JFrame frame;
     private JPanel topPanel, middlePanel, bottomPanel;
-    private int id, line, train;
-    private String operator, engineer;
-    private JLabel idLabel, routeLabel, operatorLabel, engineerLabel;
+    private int id;
+    private JLabel idLabel;
     private JButton homeButton, routeButton, maintenanceButton;
     private JTable table;
 
@@ -102,7 +101,7 @@ public class EngineerMaintenance {
 
         // route button
         routeButton = new RoundedButton("Route");
-        routeButton.setBackground(new Color(112,170, 255));
+        routeButton.setBackground(new Color(112, 170, 255));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
         routeButton.addActionListener(new ActionListener() {
@@ -115,7 +114,7 @@ public class EngineerMaintenance {
 
         // maintenance button: does nothing since already on this page
         maintenanceButton = new RoundedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(112,170, 255));
+        maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
 

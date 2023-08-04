@@ -27,7 +27,7 @@ public class StaffSelectPage {
         // Admin button
         adminButton = new RoundedButton("Admin");
         adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        adminButton.setBackground(new Color(112,170, 255));
+        adminButton.setBackground(new Color(112, 170, 255));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         adminButton.setFont(new Font("Serif", Font.BOLD, 20));
         adminButton.addActionListener(new ActionListener() {
@@ -38,30 +38,30 @@ public class StaffSelectPage {
             }
         });
 
-        // Train Engineer button
-        trainEngineerButton = new RoundedButton("Train Engineer");
-        trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainEngineerButton.setBackground(new Color(112,170, 255));
-        trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        trainEngineerButton.setFont(new Font("Serif", Font.BOLD, 20));
-        trainEngineerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EngineerLoginPage();
-                frame.dispose();
-            }
-        });
-
         // Train Operator button
         trainOperatorButton = new RoundedButton("Train Operator");
         trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainOperatorButton.setBackground(new Color(112,170, 255));
+        trainOperatorButton.setBackground(new Color(112, 170, 255));
         trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         trainOperatorButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainOperatorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new OperatorLoginPage();
+                frame.dispose();
+            }
+        });
+
+        // Train Engineer button
+        trainEngineerButton = new RoundedButton("Train Engineer");
+        trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        trainEngineerButton.setBackground(new Color(112, 170, 255));
+        trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        trainEngineerButton.setFont(new Font("Serif", Font.BOLD, 20));
+        trainEngineerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new EngineerLoginPage();
                 frame.dispose();
             }
         });
@@ -105,7 +105,7 @@ public class StaffSelectPage {
         }
 
         panel.add(new JLabel("  "));
-        panel.add(trainEngineerButton);
+        panel.add(trainOperatorButton);
         panel.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
@@ -113,7 +113,7 @@ public class StaffSelectPage {
         }
 
         panel.add(new JLabel("  "));
-        panel.add(trainOperatorButton);
+        panel.add(trainEngineerButton);
         panel.add(new JLabel("  "));
 
         for (int i = 0; i < 6; i++) {
