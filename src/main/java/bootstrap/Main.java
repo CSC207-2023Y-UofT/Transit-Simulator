@@ -1,27 +1,18 @@
-import model.Direction;
-import model.node.Node;
-import model.node.NodeTracker;
-import model.node.Station;
-import model.node.StationFactory;
+package bootstrap;
+
+import interactor.station.StationInteractor;
+import interactor.train.TrainInteractor;
 import model.persistence.JsonModelDataStore;
-import model.train.track.TrackSegment;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import model.control.*;
-import util.Preconditions;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * The Main program that sets up all required classes and executes the program.
+ * The bootstrap.Main program that sets up all required classes and executes the program.
  * <p>
  * What this should do: TODO
  * <p>
@@ -31,7 +22,7 @@ import java.util.Set;
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         InputStream str = Main.class.getResourceAsStream("Model 1.json");
         File file = new File("model-1.json");
@@ -42,6 +33,16 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        // Create the model
+        JsonModelDataStore dataStore = new JsonModelDataStore(file);
+        TransitModel model = dataStore.readModel();
+
+        // Create the presenter
+        InteractorPool pool = new InteractorPool(
+                new StationInteractor(model),
+                new TrainInteractor(model)
+        );
     }
 }
 

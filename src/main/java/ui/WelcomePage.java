@@ -16,7 +16,7 @@ public class WelcomePage {
     private JButton passengerButton, staffButton;
 
 
-    public WelcomePage() {
+    public WelcomePage(Interacto) {
 
         // Create the frame and panel
         frame = new JFrame("Welcome Page");
