@@ -28,11 +28,11 @@ public class RoundedButton extends JButton {
         // Draw shadow
         Color c = g.getColor();
         g.setColor(g.getColor().darker());
-        g.fillRoundRect(1, 1, getWidth() - 1, getHeight() - 1, 20, 20);
+        g.fillRoundRect(1, 1, getWidth() - 1, getHeight() - 1, 12, 12);
         g.setColor(c);
 
         // Draw a rounded rectangle in the background of the button
-        g.fillRoundRect(0, 0, getWidth() - 2, getHeight() - 2, 20, 20);
+        g.fillRoundRect(0, 0, getWidth() - 3, getHeight() - 3, 12, 12);
         super.paintComponent(g);
     }
 
