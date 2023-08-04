@@ -1,6 +1,5 @@
 package ui.passenger;
 
-import ui.WelcomePage;
 import ui.round.RoundedButton;
 import ui.round.RoundedLabel;
 

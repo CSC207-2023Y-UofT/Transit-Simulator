@@ -1,4 +1,4 @@
 package ui.staff.operator;
 
-public class maintenence {
+public class Maintenance {
 }
