@@ -26,7 +26,7 @@ public class AuthenticatePage {
         label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
         label.setFont(new Font("Serif", Font.BOLD, 25));
 
-        personnelNumberField = new JTextField();
+        personnelNumberField = new JPasswordField();
         personnelNumberField.setFont(new Font("Serif", Font.PLAIN , 20));
 
         // Sign In button
@@ -59,7 +59,7 @@ public class AuthenticatePage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
+                new StaffSelectPage();
                 frame.dispose();
             }
         });

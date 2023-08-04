@@ -57,7 +57,7 @@ public class FailedAuthenticationPage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
+                new StaffSelectPage();
                 frame.dispose();
             }
         });
