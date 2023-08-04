@@ -1,7 +1,6 @@
 package model.node;
 
 import model.Direction;
-import model.api.TransitNodeLineProfile;
 import model.train.TrackRepo;
 import model.train.Train;
 import model.train.track.NodeTrackSegment;
@@ -14,7 +13,7 @@ import java.util.*;
  * Represents a line profile for a Node in the transit system.
  * This class is responsible for managing all the TrackSegments that are attached to a specific Node and Line.
  */
-public class NodeLineProfile implements TransitNodeLineProfile {
+public class NodeLineProfile {
 
     /**
      * The Node object this profile is associated with.
@@ -58,7 +57,6 @@ public class NodeLineProfile implements TransitNodeLineProfile {
         tracks.values().forEach(trackRepo::addTrack);  // Similar to lambda expressions
     }
 
-    @Override
     public Optional<Node> getNextNode(Direction direction) {
         List<TrackSegment> next = getTrack(direction).getNextTrackSegments();
         if (next.isEmpty()) return Optional.empty();
