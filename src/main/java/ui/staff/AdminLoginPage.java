@@ -18,7 +18,7 @@ public class AdminLoginPage {
     public AdminLoginPage() {
 
         // Create the frame and panel
-        frame = new JFrame("Staff Sign In");
+        frame = new JFrame("Admin Sign In");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 

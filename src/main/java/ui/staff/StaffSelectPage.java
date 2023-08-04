@@ -21,7 +21,6 @@ public class StaffSelectPage {
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
-        // Add the "Please select your user type." title
         staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
         staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         staffTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
@@ -36,8 +35,6 @@ public class StaffSelectPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AdminLoginPage();
-                // STORE admin data somehow
-                // new AdminPage();
                 frame.dispose();
             }
         });
@@ -51,8 +48,7 @@ public class StaffSelectPage {
         trainEngineerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AdminLoginPage();
-                // new TrainEngineerPage();
+                new EngineerLoginPage();
                 frame.dispose();
             }
         });
@@ -66,8 +62,7 @@ public class StaffSelectPage {
         trainOperatorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AdminLoginPage();
-                // new TrainOperatorPage();
+                new OperatorLoginPage();
                 frame.dispose();
             }
         });
@@ -80,7 +75,7 @@ public class StaffSelectPage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new WelcomePage();
+                new StaffHomePage();
                 frame.dispose();
             }
         });
