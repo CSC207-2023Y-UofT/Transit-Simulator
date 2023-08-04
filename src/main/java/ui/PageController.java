@@ -4,11 +4,11 @@ import bootstrap.InteractorPool;
 
 import javax.swing.*;
 
-public class ScreenController {
+public class PageController {
     private final MainScreen mainScreen;
     private final InteractorPool interactorPool;
 
-    public ScreenController(InteractorPool interactorPool) {
+    public PageController(InteractorPool interactorPool) {
         this.interactorPool = interactorPool;
         this.mainScreen = new MainScreen(this);
     }

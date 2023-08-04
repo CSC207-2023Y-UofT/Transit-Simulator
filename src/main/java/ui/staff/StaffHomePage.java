@@ -1,6 +1,6 @@
 package ui.staff;
 
-import ui.ScreenController;
+import ui.PageController;
 import ui.WelcomePage;
 import ui.round.RoundedButton;
 
@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StaffHomePage {
-    private final ScreenController controller;
+    private final PageController controller;
     private JFrame frame;
     private JPanel panel;
     private JButton backButton, loginButton;
 
-    public StaffHomePage(ScreenController controller) {
+    public StaffHomePage(PageController controller) {
         this.controller = controller;
 
         // Create the frame and panel

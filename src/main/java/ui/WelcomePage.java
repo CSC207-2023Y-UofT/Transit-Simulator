@@ -7,17 +7,15 @@ import ui.staff.StaffHomePage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class WelcomePage extends JPanel {
     private final InteractorPool interactors;
-    private final ScreenController controller;
+    private final PageController controller;
     private JLabel titleLabel, userTypeLabel;
     private JButton passengerButton, staffButton;
 
 
-    public WelcomePage(ScreenController controller) {
+    public WelcomePage(PageController controller) {
         super(new GridLayout(0, 3));
 
         this.controller = controller;

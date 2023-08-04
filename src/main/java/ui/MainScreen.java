@@ -1,19 +1,17 @@
 package ui;
 
-import bootstrap.InteractorPool;
-
 import javax.swing.*;
 
 public class MainScreen extends JFrame {
-    private final ScreenController screenController;
+    private final PageController pageController;
     private JPanel contentPane;
 
-    public MainScreen(ScreenController screenController) {
+    public MainScreen(PageController pageController) {
         super("Transit Simulator");
 
-        this.screenController = screenController;
+        this.pageController = pageController;
 
-        contentPane = new WelcomePage(screenController);
+        contentPane = new WelcomePage(pageController);
         setContentPane(contentPane);
 
         pack();
