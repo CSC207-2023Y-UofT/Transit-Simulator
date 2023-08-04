@@ -12,7 +12,7 @@ public class PassengerHomePage {
 
     private JFrame frame;
     private JPanel panel;
-    private JButton buyButton, viewButton, mapButton, backButton;
+    private JButton buyButton, backButton;
 
     public PassengerHomePage() {
 
@@ -20,6 +20,10 @@ public class PassengerHomePage {
         frame = new JFrame("Passenger Home Page");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
+
+
+        // TODO: Map implementation
+
 
         // Buy
         buyButton = new RoundedButton("Buy Ticket");
@@ -34,41 +38,6 @@ public class PassengerHomePage {
                 frame.dispose();
             }
         });
-
-        // View
-        viewButton = new RoundedButton("View Ticket");
-        viewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        viewButton.setBackground(new Color(112,170, 255));
-        viewButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        viewButton.setFont(new Font("Serif", Font.BOLD, 20));
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                // if there is a ticket:
-                    new TrainTicketPage();
-
-                // if there is no ticket:
-                    new NoTicketPage();
-
-                frame.dispose();
-            }
-        });
-
-        // Map
-        mapButton = new RoundedButton("Open Map");
-        mapButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mapButton.setBackground(new Color(112,170, 255));
-        mapButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        mapButton.setFont(new Font("Serif", Font.BOLD, 20));
-        mapButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // new PassengerMapPage();
-                frame.dispose();
-            }
-        });
-
 
         // Back button
         backButton = new RoundedButton("Back");
@@ -88,37 +57,14 @@ public class PassengerHomePage {
 
         panel.setBackground(new Color(210, 207, 206));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 12; i++) {
             panel.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(buyButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(viewButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(mapButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
 
         panel.add(backButton);
         panel.add(new JLabel("  "));
-        panel.add(new JLabel("  "));
+        panel.add(buyButton);
 
         // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);

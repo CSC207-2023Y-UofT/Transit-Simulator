@@ -16,7 +16,7 @@ public class ConfirmPaymentPage {
     public ConfirmPaymentPage() {
 
         // Create the frame and panel
-        frame = new JFrame("Ticket Buying Page");
+        frame = new JFrame("Confirm Payment");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 

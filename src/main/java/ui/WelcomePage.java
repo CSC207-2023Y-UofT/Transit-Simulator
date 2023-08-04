@@ -2,6 +2,7 @@ package ui;
 
 import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
+import ui.staff.StaffHomePage;
 import ui.staff.StaffSelectPage;
 
 import javax.swing.*;
@@ -57,11 +58,10 @@ public class WelcomePage {
         staffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffSelectPage();
+                new StaffHomePage();
                 frame.dispose();
             }
         });
-
 
         // Add components to the panel
 

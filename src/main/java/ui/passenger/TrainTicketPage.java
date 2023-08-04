@@ -50,13 +50,12 @@ public class TrainTicketPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new PassengerHomePage();
-                frame.dispose();
             }
         });
 
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
-            int remaining = 2; // * 60 * 60; // 2 hours in seconds
+            int remaining = 2 * 60 * 60; // 2 hours in seconds
 
             @Override
             public void actionPerformed(ActionEvent e) {
