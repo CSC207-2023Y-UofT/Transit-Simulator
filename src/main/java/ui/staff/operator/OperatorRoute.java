@@ -9,12 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OperatorRoute {
-    private JFrame frame;
-    private JPanel topPanel, middlePanel, bottomPanel;
-    private int id, line, train;
-    private String operator, engineer;
-    private JLabel idLabel, routeLabel, operatorLabel, engineerLabel;
-    private JButton homeButton, routeButton, maintenanceButton;
+    private final JFrame frame;
+    private final JPanel topPanel;
+    private final JPanel middlePanel;
+    private final JPanel bottomPanel;
+    private final int id;
+    private final int line;
+    private final int train;
+    private final String operator;
+    private final String engineer;
+    private final JLabel idLabel;
+    private final JLabel routeLabel;
+    private final JLabel operatorLabel;
+    private final JLabel engineerLabel;
+    private final JButton homeButton;
+    private final JButton routeButton;
+    private final JButton maintenanceButton;
 
     public OperatorRoute() {
 
