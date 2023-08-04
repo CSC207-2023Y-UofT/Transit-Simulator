@@ -153,11 +153,11 @@ public class JsonModelDataStore implements ModelDataStore {
 
         // Create the intermediary tracks in both directions
         TrackSegment dir1 = new TrackSegment(model.getTrackRepo(),
-                node1.getName() + "-" + node2.getName(), length);
+                "Line-" + line + " " + node1.getName() + "-" + node2.getName(), length);
         model.getTrackRepo().addTrack(dir1);
 
         TrackSegment dir2 = new TrackSegment(model.getTrackRepo(),
-                node2.getName() + "-" + node1.getName(), length);
+                "Line-" + line + " " + node2.getName() + "-" + node1.getName(), length);
         model.getTrackRepo().addTrack(dir2);
 
         // Get the tracks for each direction of each node

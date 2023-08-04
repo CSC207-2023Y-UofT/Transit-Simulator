@@ -79,6 +79,17 @@
         "Station 10"
       ],
       "cyclic": true
+    },
+    {
+      "number": 4,
+      "stations": [
+        "Station 2",
+        "Station 5",
+        "Station 8",
+        "Station 9",
+        "Station 6"
+      ],
+      "cyclic": true
     }
   ]
 }
