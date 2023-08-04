@@ -95,7 +95,7 @@ public class NodeLineProfile {
      */
     public List<TrainArrival> nextArrivals(Direction direction, int numTrains) {
         List<TrackSegment> trackSegments = getTrack(direction)
-                .getNextTrackSegments(direction.opposite());
+                .getNextTrackSegments(Direction.BACKWARD);
 
         List<TrainArrival> arrivals = new ArrayList<>();
 

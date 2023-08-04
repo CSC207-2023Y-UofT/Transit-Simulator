@@ -116,6 +116,14 @@ public class TrackSegment {
     }
 
     /**
+     * Gets all the next track segments in the FORWARD direction.
+     * @see TrackSegment#getNextTrackSegments(Direction)
+     */
+    public List<TrackSegment> getNextTrackSegments() {
+        return getNextTrackSegments(Direction.FORWARD);
+    }
+
+    /**
      * Gets all the next track segments in the given direction.
      * This method will return all track segments in the given direction
      * until either an endpoint is reached, or the track becomes cyclic.
