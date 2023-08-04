@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Assertions;
 public class DirectionTest {
     @Test
     public void testGetMultiplier() {
-        Assertions.assertEquals(-1, Direction.FORWARD.getMultiplier());
-        Assertions.assertEquals(1, Direction.BACKWARD.getMultiplier());
+        Assertions.assertEquals(1, Direction.FORWARD.getMultiplier());
+        Assertions.assertEquals(-1, Direction.BACKWARD.getMultiplier());
     }
 
     @Test

@@ -8,14 +8,13 @@ import model.node.Node;
 import model.node.NodeFactory;
 import model.node.NodeTracker;
 
-import javax.sound.midi.Track;
 import java.util.*;
 
 /**
  * The TransitTracker class implements NodeTracker and TrainTracker interfaces.
  * It maintains lists of Train objects and Node objects, and provides functionality to create nodes and trains.
  */
-public class TransitTracker implements NodeTracker, TrainTracker {
+public class TransitModel implements NodeTracker, TrainTracker {
 
     /** List of trains in the transit system */
     private final List<Train> trainList = new ArrayList<>();
@@ -78,12 +77,11 @@ public class TransitTracker implements NodeTracker, TrainTracker {
      *
      * @param nodeFactory The NodeFactory to create the node.
      * @param identifier The identifier of the node.
-     * @param length The length of the node.
      * @return The created Node object.
      * @throws IllegalArgumentException if the node is not created with the correct tracker.
      */
-    public Node createNode(NodeFactory nodeFactory, String identifier, double length) {
-        Node node = nodeFactory.createNode(this, identifier, length);
+    public Node createNode(NodeFactory nodeFactory, String identifier) {
+        Node node = nodeFactory.createNode(this, identifier);
         if (node.getTracker() != this) {
             throw new IllegalArgumentException("Node " + identifier + " created with wrong tracker");
         }

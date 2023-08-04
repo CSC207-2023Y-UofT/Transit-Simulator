@@ -1,7 +1,7 @@
 package model.train;
 
 import model.*;
-import model.control.TransitTracker;
+import model.control.TransitModel;
 import employee.Employee;
 import model.node.Node;
 import model.train.track.NodeTrackSegment;
@@ -57,7 +57,7 @@ public class Train {
     /**
      * The associated TransitTracker for this train.
      */
-    private final TransitTracker transitTracker;
+    private final TransitModel transitModel;
 
     /**
      * The set containing the list of passengers currently on this train.
@@ -88,12 +88,12 @@ public class Train {
     /**
      * Creates a train associated with the given TransitTracker, positioned at the given TrainPosition, and with the given capacity.
      *
-     * @param transitTracker The TransitTracker that this train is associated with.
+     * @param transitModel The TransitTracker that this train is associated with.
      * @param position The position of this train.
      * @param capacity The capacity of this train.
      */
-    public Train(TransitTracker transitTracker, TrainPosition position, int capacity) {
-        this.transitTracker = transitTracker;
+    public Train(TransitModel transitModel, TrainPosition position, int capacity) {
+        this.transitModel = transitModel;
         this.position = position;
         this.capacity = capacity;
     }
@@ -205,8 +205,8 @@ public class Train {
      *  Get the transit tracker that this train is associated with.
      *  @return the TransitTracker that this train is associated with
      */
-    public TransitTracker getTransitTracker() {
-        return transitTracker;
+    public TransitModel getTransitTracker() {
+        return transitModel;
     }
 
     /**
@@ -252,9 +252,9 @@ public class Train {
 
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
         for (TrackSegment nextSegment : nextSegments) {
-            if (nextSegment instanceof NodeTrackSegment) {
-                Node node = ((NodeTrackSegment) nextSegment).getNode();
-                return Optional.of(node);
+            Optional<Node> node = nextSegment.getNode();
+            if (node.isPresent()) {
+                return node;
             }
         }
 
@@ -285,10 +285,12 @@ public class Train {
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
 
         for (TrackSegment nextSegment : nextSegments) {
-            if (nextSegment instanceof NodeTrackSegment) {
+            Optional<Node> node = nextSegment.getNode();
+            if (node.isPresent()) {
                 return Optional.of(distance);
+            } else {
+                distance += nextSegment.getLength();
             }
-            distance += nextSegment.getLength();
         }
 
         return Optional.empty();

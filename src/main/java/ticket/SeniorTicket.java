@@ -20,12 +20,16 @@ public class SeniorTicket extends AbstractNormalTicket {
      * This is a constant value representing 1 day (24 hours).
      */
     public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L;
+    public static double PRICE = 2.30;
 
     /**
      * Constructs a new SeniorTicket object with the predetermined type, price and ticket lifetime.
      */
     public SeniorTicket() {
-        super("Senior", 2.30, TICKET_LIFETIME);
+        super("Senior", PRICE, TICKET_LIFETIME);
     }
 
+    public void updatePrice(double price){
+        SeniorTicket.PRICE = price;
+    }
 }

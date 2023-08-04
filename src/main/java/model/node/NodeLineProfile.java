@@ -55,7 +55,7 @@ public class NodeLineProfile {
             );
         }
 
-        tracks.values().forEach(trackRepo::addTrack);
+        tracks.values().forEach(trackRepo::addTrack);  // Similar to lambda expressions
     }
 
     /**
@@ -109,11 +109,12 @@ public class NodeLineProfile {
             Train train = trackSegment.getTrain();
 
             // Calculate the added wait time
-            if (trackSegment instanceof NodeTrackSegment) {
+            if (trackSegment.getNode().isPresent()) {
                 // The train will probably stop here, so add the extra
                 // time that will be spent at the node/station
                 waitTime += Train.STATION_WAIT_TIME;
             }
+
             waitTime += trackSegment.getLength() / (double) Train.MAX_SPEED;
 
             TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
