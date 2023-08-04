@@ -11,13 +11,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OperatorMaintenance {
-    private JFrame frame;
-    private JPanel topPanel, middlePanel, bottomPanel;
-    private int id, line, train;
+    private final JFrame frame;
+    private final JPanel topPanel;
+    private final JPanel middlePanel;
+    private final JPanel bottomPanel;
+    private final int id;
+    private int line;
+    private int train;
     private String operator, engineer;
-    private JLabel idLabel, routeLabel, operatorLabel, engineerLabel;
-    private JButton homeButton, routeButton, maintenanceButton;
-    private JTable table;
+    private final JLabel idLabel;
+    private JLabel routeLabel;
+    private JLabel operatorLabel;
+    private JLabel engineerLabel;
+    private final JButton homeButton;
+    private final JButton routeButton;
+    private final JButton maintenanceButton;
+    private final JTable table;
 
     public OperatorMaintenance() {
 
