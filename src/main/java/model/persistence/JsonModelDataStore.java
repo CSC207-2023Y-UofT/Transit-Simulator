@@ -208,6 +208,6 @@ public class JsonModelDataStore implements ModelDataStore {
     }
 
     private List<Node> mapNodes(Node node, Set<Integer> mappedLines) {
-
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

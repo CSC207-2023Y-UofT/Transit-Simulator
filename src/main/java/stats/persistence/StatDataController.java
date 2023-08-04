@@ -4,6 +4,7 @@ import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -91,7 +92,11 @@ public class StatDataController {
 
         // Store all entries
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
-            entryDataStore.store(index, entry.getKey(), entry.getValue());  // TODO: unhandled IOException
+            try {
+                entryDataStore.store(index, entry.getKey(), entry.getValue());  // TODO: unhandled IOException
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         // Clear the entries
@@ -114,7 +119,11 @@ public class StatDataController {
         List<E> entries = new ArrayList<>();
 
         for (Class<? extends E> clazz : concreteClasses) {
-            entries.addAll(entryDataStore.retrieve(index, clazz));
+            try {
+                entries.addAll(entryDataStore.retrieve(index, clazz));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return entries;
@@ -133,7 +142,12 @@ public class StatDataController {
      * recorded at the specified time index {@code index}.
      */
     public <E extends StatEntry, A> Optional<A> getAggregate(Class<E> entryClass, Class<A> aggregateClass, long index) {
-        return aggregateDataStore.retrieve(index, entryClass, aggregateClass);
+        try {
+            return aggregateDataStore.retrieve(index, entryClass, aggregateClass);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     /**
@@ -168,7 +182,11 @@ public class StatDataController {
             aggregate = aggregator.aggregate(entries);
 
             // Store the aggregate
-            aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
+            try {
+                aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return Optional.ofNullable(aggregate);

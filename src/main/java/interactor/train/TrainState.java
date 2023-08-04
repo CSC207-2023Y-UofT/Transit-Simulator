@@ -1,4 +1,4 @@
-package interactor;
+package interactor.train;
 
 import model.train.TrainJob;
 
