@@ -1,6 +1,5 @@
 package ui.passenger;
 
-import ui.WelcomePage;
 import ui.round.RoundedButton;
 import ui.round.RoundedLabel;
 
@@ -83,7 +82,7 @@ public class PurchaseTicketPage {
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setFont(new Font("Serif", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
-        cancelButton.setBackground(new Color(172,64,58));
+        cancelButton.setBackground(new Color(172, 64, 58));
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

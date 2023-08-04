@@ -1,4 +1,4 @@
 package ui.staff.admin;
 
-public class management {
+public class Management {
 }

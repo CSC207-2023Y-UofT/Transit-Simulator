@@ -72,7 +72,6 @@ public class StaffHomePage {
         frame.setVisible(true);
 
 
-    // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
