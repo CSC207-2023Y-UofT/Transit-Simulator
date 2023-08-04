@@ -72,7 +72,14 @@ public class TransitMapPresenter {
             int x = (int) (station.getX() * scaleX);
             int y = (int) (station.getY() * scaleY);
 
-            graphics.setColor(Color.GREEN.darker());
+            graphics.setColor(Color.DARK_GRAY);
+            if (highlightedStation != null) {
+                String highlightedName = highlightedStation.getName();
+                if (highlightedName.equals(station.getName())) {
+                    graphics.setColor(Color.GREEN);
+                }
+            }
+
             graphics.fillOval(x - 10, y - 10, 20, 20);
 
             graphics.setColor(Color.BLACK);
@@ -108,7 +115,6 @@ public class TransitMapPresenter {
             return;
         }
 
-        System.out.println(optStation.get().getName());
         highlightedStation = optStation.get();
     }
 
