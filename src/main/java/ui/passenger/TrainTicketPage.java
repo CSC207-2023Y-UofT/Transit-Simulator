@@ -1,6 +1,5 @@
-package ui.ticket;
+package ui.passenger;
 
-import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ public class TrainTicketPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel title, ticketId, validTime;
+    private JLabel title, message, ticketId, validTime, typeLabel;
     private JButton homeButton;
 
     public TrainTicketPage() {
@@ -27,6 +26,10 @@ public class TrainTicketPage {
         title = new JLabel("Train Ticket", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 30));
 
+        // Message
+        message = new JLabel("Do not close this tab. You will lose your ticket.", SwingConstants.CENTER);
+        message.setFont(new Font("Serif", Font.PLAIN, 25));
+
         // Ticket ID
         Random rand = new Random();
         int randomId = rand.nextInt(1000000);
@@ -38,10 +41,12 @@ public class TrainTicketPage {
         validTime.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket Type
-        // TODO: idk how to do this
+        String ticketType = "Single";   // temporary
+        typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
+        typeLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Home Button
-        homeButton = new RoundedButton("Home");
+        homeButton = new RoundedButton("Home (Ticket will stay open)");
         homeButton.setPreferredSize(new Dimension(200, 50));
         homeButton.setFont(new Font("Serif", Font.BOLD, 25));
         homeButton.setBackground(new Color(255, 255, 255));
@@ -49,13 +54,12 @@ public class TrainTicketPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new PassengerHomePage();
-                frame.dispose();
             }
         });
 
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
-            int remaining = 2; // * 60 * 60; // 2 hours in seconds
+            int remaining = 2 * 60 * 60; // 2 hours in seconds
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,8 +81,11 @@ public class TrainTicketPage {
         // Add components to panel
         panel.add(new JLabel("  "));
         panel.add(title);
+        panel.add(message);
         panel.add(ticketId);
+        panel.add(typeLabel);
         panel.add(validTime);
+        panel.add(new JLabel("  "));
         panel.add(homeButton);
         panel.add(new JLabel("  "));
 

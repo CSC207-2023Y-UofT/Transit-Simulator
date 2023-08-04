@@ -3,6 +3,7 @@ package ui;
 import ui.passenger.PassengerHomePage;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
+import ui.staff.StaffSelectPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class WelcomePage {
     public WelcomePage() {
 
         // Create the frame and panel
-        frame = new JFrame("Ticket Buying Page");
+        frame = new JFrame("Welcome Page");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
@@ -61,7 +62,6 @@ public class WelcomePage {
                 frame.dispose();
             }
         });
-
 
         // Add components to the panel
 

@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
 public class StaffHomePage {
     private JFrame frame;
     private JPanel panel;
-    private JLabel staffTypeLabel;
-    private JButton adminButton, trainEngineerButton, trainOperatorButton, backButton;
+    private JButton backButton, loginButton;
 
     public StaffHomePage() {
 
@@ -21,56 +20,24 @@ public class StaffHomePage {
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
-        // Add the "Please select your user type." title
-        staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
-        staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        staffTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        // Implementation of map
 
-        // Admin button
-        adminButton = new RoundedButton("Admin");
-        adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        adminButton.setBackground(new Color(112,170, 255));
-        adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        adminButton.setFont(new Font("Serif", Font.BOLD, 20));
-        adminButton.addActionListener(new ActionListener() {
+        // TODO
+
+
+        // Log in button
+        loginButton = new RoundedButton("Log In");
+        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginButton.setBackground(new Color(114, 217, 112));
+        loginButton.setFont(new Font("Serif", Font.BOLD, 20));
+        loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AuthenticatePage();
-                // STORE admin data somehow
-                // new AdminPage();
+                new StaffSelectPage();
                 frame.dispose();
             }
         });
 
-        // Train Engineer button
-        trainEngineerButton = new RoundedButton("Train Engineer");
-        trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainEngineerButton.setBackground(new Color(112,170, 255));
-        trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        trainEngineerButton.setFont(new Font("Serif", Font.BOLD, 20));
-        trainEngineerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AuthenticatePage();
-                // new TrainEngineerPage();
-                frame.dispose();
-            }
-        });
-
-        // Train Operator button
-        trainOperatorButton = new RoundedButton("Train Operator");
-        trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainOperatorButton.setBackground(new Color(112,170, 255));
-        trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        trainOperatorButton.setFont(new Font("Serif", Font.BOLD, 20));
-        trainOperatorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AuthenticatePage();
-                // new TrainOperatorPage();
-                frame.dispose();
-            }
-        });
 
         // Back button
         backButton = new RoundedButton("Back");
@@ -90,47 +57,22 @@ public class StaffHomePage {
 
         panel.setBackground(new Color(210, 207, 206));
 
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(staffTypeLabel);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(adminButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(trainEngineerButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
-        }
-
-        panel.add(new JLabel("  "));
-        panel.add(trainOperatorButton);
-        panel.add(new JLabel("  "));
-
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 12; i++) {
             panel.add(new JLabel("  "));
         }
 
         panel.add(backButton);
         panel.add(new JLabel("  "));
-        panel.add(new JLabel("  "));
+        panel.add(loginButton);
 
         // Add panel to the frame
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+
+    // Add panel to the frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

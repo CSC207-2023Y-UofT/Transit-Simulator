@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AuthenticatePage {
+public class OperatorLoginPage {
 
     private JFrame frame;
     private JPanel panel;
@@ -15,10 +15,10 @@ public class AuthenticatePage {
     private JTextField personnelNumberField;
     private JButton signInButton, backButton;
 
-    public AuthenticatePage() {
+    public OperatorLoginPage() {
 
         // Create the frame and panel
-        frame = new JFrame("Staff Sign In");
+        frame = new JFrame("Operator Sign In");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 3));
 
@@ -26,7 +26,7 @@ public class AuthenticatePage {
         label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
         label.setFont(new Font("Serif", Font.BOLD, 25));
 
-        personnelNumberField = new JTextField();
+        personnelNumberField = new JPasswordField();
         personnelNumberField.setFont(new Font("Serif", Font.PLAIN , 20));
 
         // Sign In button
@@ -44,6 +44,10 @@ public class AuthenticatePage {
 
                 // We should know what option they picked earlier and direct them there
 
+                // new AdminHomePage();
+                // new EngineerHomePage();
+                // new OperatorHomePage();
+
                 frame.dispose();
             }
         });
@@ -55,7 +59,7 @@ public class AuthenticatePage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
+                new StaffSelectPage();
                 frame.dispose();
             }
         });
@@ -96,7 +100,7 @@ public class AuthenticatePage {
     }
 
     public static void main(String[] args) {
-        new AuthenticatePage();
+        new OperatorLoginPage();
     }
 
 }
