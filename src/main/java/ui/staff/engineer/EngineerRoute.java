@@ -1,5 +1,6 @@
 package ui.staff.engineer;
 
+import ui.PageController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
 
@@ -10,11 +11,8 @@ import java.awt.event.ActionListener;
 
 public class EngineerRoute extends JPanel {
 
-    public EngineerRoute() {
-
-        // Create the frame
-        frame = new JFrame("Engineer Route");
-        frame.setPreferredSize(new Dimension(900, 600));
+    public EngineerRoute(PageController controller) {
+        super(new BorderLayout());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -27,8 +25,7 @@ public class EngineerRoute extends JPanel {
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
-                frame.dispose();
+                controller.open(new StaffHomePage(controller));
             }
         });
 
@@ -41,7 +38,7 @@ public class EngineerRoute extends JPanel {
 
         topPanel.add(homeButton);
         topPanel.add(idLabel);
-        frame.add(topPanel, BorderLayout.NORTH);
+        this.add(topPanel, BorderLayout.NORTH);
 
         // Middle panel
         JPanel middlePanel = new JPanel(new GridLayout(0, 5));
@@ -88,7 +85,7 @@ public class EngineerRoute extends JPanel {
             middlePanel.add(new JLabel(""));
         }
 
-        frame.add(middlePanel, BorderLayout.CENTER);
+        this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
@@ -108,22 +105,13 @@ public class EngineerRoute extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new EngineerMaintenance();
-                frame.dispose();
             }
         });
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);
 
-        frame.add(bottomPanel, BorderLayout.SOUTH);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new EngineerRoute();
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
 }

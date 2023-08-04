@@ -11,12 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EngineerMaintenance {
-    private JFrame frame;
-    private JPanel topPanel, middlePanel, bottomPanel;
-    private int id;
-    private JLabel idLabel;
-    private JButton homeButton, routeButton, maintenanceButton;
-    private JTable table;
+    private final JFrame frame;
+    private final JPanel topPanel;
+    private final JPanel middlePanel;
+    private final JPanel bottomPanel;
+    private final int id;
+    private final JLabel idLabel;
+    private final JButton homeButton;
+    private final JButton routeButton;
+    private final JButton maintenanceButton;
+    private final JTable table;
 
     public EngineerMaintenance() {
 
