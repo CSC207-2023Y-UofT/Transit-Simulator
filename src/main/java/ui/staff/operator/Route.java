@@ -1,4 +1,4 @@
-package ui.staff.engineer;
+package ui.staff.operator;
 
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
@@ -12,14 +12,14 @@ public class Route {
     private JFrame frame;
     private JPanel panel;
     private int id, line, train;
-    private String engineer, operator;
-    private JLabel idLabel, routeLabel, engineerLabel, operatorLabel;
+    private String operator, engineer;
+    private JLabel idLabel, routeLabel, operatorLabel, engineerLabel;
     private JButton homeButton, routeButton, maintenanceButton;
 
     public Route() {
 
         // Create the frame and panel
-        frame = new JFrame("Engineer Route");
+        frame = new JFrame("Operator Route");
         frame.setPreferredSize(new Dimension(900, 600));
         panel = new JPanel(new GridLayout(0, 2));
 
@@ -38,7 +38,7 @@ public class Route {
 
         // id label
         id = 322; // TODO: should be .getId()
-        idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
+        idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Serif", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
@@ -53,13 +53,13 @@ public class Route {
         // operator label
         operator = "grace"; // TODO: should be .getOperator()
         operatorLabel = new JLabel("Operator: " + operator);
-        operatorLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        operatorLabel.setFont(new Font("Serif", Font.ITALIC, 25));
         operatorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         // engineer label
         engineer = "zoey"; // TODO: should be .getEngineer()
         engineerLabel = new JLabel("Engineer: " + engineer);
-        engineerLabel.setFont(new Font("Serif", Font.ITALIC, 25));
+        engineerLabel.setFont(new Font("Serif", Font.PLAIN, 25));
         engineerLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         // route button: does nothing since already on this page
