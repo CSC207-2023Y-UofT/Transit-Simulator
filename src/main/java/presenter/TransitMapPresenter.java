@@ -71,6 +71,10 @@ public class TransitMapPresenter {
 
             graphics.setColor(Color.BLACK);
             graphics.drawOval(x - 10, y - 10, 20, 20);
+
+            // Draw their name to the upper-right
+            graphics.setFont(new Font("Arial", Font.BOLD, 12));
+            graphics.drawString(station.getName(), x + 10, y - 25);
         }
     }
 
