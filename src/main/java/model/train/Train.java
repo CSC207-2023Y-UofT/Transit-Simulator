@@ -60,6 +60,11 @@ public class Train {
     private final TransitModel transitModel;
 
     /**
+     * The name of this train.
+     */
+    private final String name;
+
+    /**
      * The set containing the list of passengers currently on this train.
      */
     private final Set<Passenger> passengerList = new HashSet<>();
@@ -92,8 +97,9 @@ public class Train {
      * @param position The position of this train.
      * @param capacity The capacity of this train.
      */
-    public Train(TransitModel transitModel, TrainPosition position, int capacity) {
+    public Train(TransitModel transitModel, String name, TrainPosition position, int capacity) {
         this.transitModel = transitModel;
+        this.name = name;
         this.position = position;
         this.capacity = capacity;
     }
