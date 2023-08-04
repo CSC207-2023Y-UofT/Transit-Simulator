@@ -29,8 +29,8 @@ public class PassengerHomePage extends JPanel {
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PurchaseTicketPage();
-                frame.dispose();
+//                new PurchaseTicketPage(); TODO
+//                frame.dispose();
             }
         });
 
