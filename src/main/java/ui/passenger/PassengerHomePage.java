@@ -1,5 +1,6 @@
 package ui.passenger;
 
+import bootstrap.InteractorPool;
 import interactor.station.StationInteractor;
 import presenter.TransitMapPassengerPresenter;
 import ui.WelcomePage;
@@ -11,22 +12,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PassengerHomePage {
-
-    private JFrame frame;
-    private JPanel panel;
+public class PassengerHomePage extends JPanel {
     private JButton buyButton, backButton;
     private MapPanel mapPanel;
 
-    public PassengerHomePage() {
-
-        // Create the frame and panel
-        frame = new JFrame("Passenger Home Page");
-        frame.setPreferredSize(new Dimension(900, 600));
-        panel = new JPanel(new GridLayout(0, 3));
-
-
-        // TODO: Map implementation
+    public PassengerHomePage(InteractorPool pool) {
+        super(new GridLayout(0, 3));
 
 
         // Buy
@@ -51,36 +42,29 @@ public class PassengerHomePage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new WelcomePage();
-                frame.dispose();
+//                new WelcomePage(); TODO
+//                frame.dispose();
             }
         });
 
-//        mapPanel = new MapPanel(new TransitMapPassengerPresenter(stationInteractor));
-//        mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Map
+        TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(pool.getStationInteractor());
+        mapPanel = new MapPanel(presenter);
+        mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Add components to the panel
 
-        panel.setBackground(new Color(210, 207, 206));
+        this.setBackground(new Color(210, 207, 206));
 
         for (int i = 0; i < 12; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
 
-        panel.add(backButton);
-        panel.add(new JLabel("  "));
-        panel.add(buyButton);
+        this.add(backButton);
+        this.add(new JLabel("  "));
+        this.add(buyButton);
 
-        // Add panel to the frame
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new PassengerHomePage();
     }
 
 }

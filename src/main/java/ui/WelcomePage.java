@@ -91,8 +91,4 @@ public class WelcomePage extends JPanel {
 
     }
 
-    public static void main(String[] args) {
-        new WelcomePage();
-    }
-
 }
