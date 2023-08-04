@@ -4,19 +4,19 @@ import java.util.List;
 
 public class StationState {
     private final String name;
-    private final List<Integer> lineProfiles;
+    private final List<Integer> lines;
     private final int x;
     private final int y;
 
-    public StationState(String name, List<Integer> lineProfiles, int x, int y) {
+    public StationState(String name, List<Integer> lines, int x, int y) {
         this.name = name;
-        this.lineProfiles = lineProfiles;
+        this.lines = lines;
         this.x = x;
         this.y = y;
     }
 
-    public List<Integer> getLineProfiles() {
-        return lineProfiles;
+    public List<Integer> getLines() {
+        return lines;
     }
 
     public String getName() {

@@ -18,6 +18,8 @@ public class TransitMapPresenter {
 
     protected List<StationState> stations = new ArrayList<>();
 
+    private StationState highlightedStation = null;
+
     public TransitMapPresenter(StationInteractor stationInteractor) {
         this.stationInteractor = stationInteractor;
     }
@@ -41,7 +43,7 @@ public class TransitMapPresenter {
 
         // For each station, get the next station and draw a line between them
         for (StationState station : stations) {
-            for (int line : station.getLineProfiles()) {
+            for (int line : station.getLines()) {
                 Optional<StationState> optNextStation = stationInteractor.getNextStation(line, station.getName(), Direction.FORWARD);
                 if (optNextStation.isEmpty()) continue;
                 StationState nextStation = optNextStation.get();
@@ -86,6 +88,16 @@ public class TransitMapPresenter {
         }
 
         return Optional.empty();
+    }
+
+    public void onMouseMove(int x, int y) {
+        Optional<StationState> optStation = getStationAt(x, y);
+        if (optStation.isEmpty()) {
+            highlightedStation = null;
+            return;
+        }
+
+        highlightedStation = optStation.get();
     }
 
     public void onClick(int x, int y) {
