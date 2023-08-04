@@ -12,7 +12,7 @@ public class TrainTicketPage {
 
     private JFrame frame;
     private JPanel panel;
-    private JLabel title, ticketId, validTime, typeLabel;
+    private JLabel title, message, ticketId, validTime, typeLabel;
     private JButton homeButton;
 
     public TrainTicketPage() {
@@ -25,6 +25,10 @@ public class TrainTicketPage {
 
         title = new JLabel("Train Ticket", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 30));
+
+        // Message
+        message = new JLabel("Do not close this tab. You will lose your ticket.", SwingConstants.CENTER);
+        message.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket ID
         Random rand = new Random();
@@ -42,7 +46,7 @@ public class TrainTicketPage {
         typeLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Home Button
-        homeButton = new RoundedButton("Home");
+        homeButton = new RoundedButton("Home (Ticket will stay open)");
         homeButton.setPreferredSize(new Dimension(200, 50));
         homeButton.setFont(new Font("Serif", Font.BOLD, 25));
         homeButton.setBackground(new Color(255, 255, 255));
@@ -77,6 +81,7 @@ public class TrainTicketPage {
         // Add components to panel
         panel.add(new JLabel("  "));
         panel.add(title);
+        panel.add(message);
         panel.add(ticketId);
         panel.add(typeLabel);
         panel.add(validTime);
