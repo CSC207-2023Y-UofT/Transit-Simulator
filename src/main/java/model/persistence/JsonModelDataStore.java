@@ -89,6 +89,10 @@ public class JsonModelDataStore implements ModelDataStore {
                 Node node = transitModel.getNode(nodeName);
                 Preconditions.checkArgument(node != null, "Node " + nodeName + " does not exist");
 
+                if (node.getLineProfile(lineNum).isEmpty()) {
+                    node.createLineProfile(lineNum);
+                }
+
                 if (firstNode == null) firstNode = node;
 
                 if (previousNode != null) {

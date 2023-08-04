@@ -2,6 +2,7 @@ package ui.passenger;
 
 import presenter.TransitMapPassengerPresenter;
 import ui.UIController;
+import ui.WelcomePage;
 import ui.map.MapPanel;
 import ui.round.RoundedButton;
 
@@ -16,10 +17,9 @@ public class PassengerHomePage extends JPanel {
     private MapPanel mapPanel;
 
     public PassengerHomePage(UIController controller) {
-        super(new GridLayout(0, 3));
+        super(new GridLayout(0, 1));
 
         this.controller = controller;
-
 
         // Buy
         buyButton = new RoundedButton("Buy Ticket");
@@ -27,26 +27,19 @@ public class PassengerHomePage extends JPanel {
         buyButton.setBackground(new Color(114, 217, 112));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                new PurchaseTicketPage(); TODO
-//                frame.dispose();
-            }
-        });
+        buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller)));
 
         // Back button
         backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                new WelcomePage(); TODO
-//                frame.dispose();
-            }
-        });
+        backButton.addActionListener(e -> controller.open(new WelcomePage(controller)));
+
+
+        // Add components to the panel
+
+        this.setBackground(new Color(210, 207, 206));
 
         // Map
         TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(
@@ -54,20 +47,18 @@ public class PassengerHomePage extends JPanel {
         );
         mapPanel = new MapPanel(presenter);
         mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.add(mapPanel);
 
-        // Add components to the panel
+        JPanel bottomPanel = new JPanel(new GridLayout(3, 3));
 
-        this.setBackground(new Color(210, 207, 206));
-
-        for (int i = 0; i < 12; i++) {
-            this.add(new JLabel("  "));
+        for (int i = 0; i < 6; i++) {
+            bottomPanel.add(new JLabel(""));
         }
+        bottomPanel.add(backButton, BorderLayout.WEST);
+        bottomPanel.add(new JLabel(""));
+        bottomPanel.add(buyButton);
 
-
-        this.add(backButton);
-        this.add(new JLabel("  "));
-        this.add(buyButton);
-
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
 }

@@ -3,6 +3,7 @@ package ui;
 import bootstrap.InteractorPool;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class UIController {
     private final MainScreen mainScreen;
@@ -23,6 +24,8 @@ public class UIController {
 
     public void open(JPanel panel) {
         mainScreen.setContentPane(panel);
+        mainScreen.setPreferredSize(new Dimension(900, 600));
+        mainScreen.pack();
         mainScreen.revalidate();
         mainScreen.repaint();
     }

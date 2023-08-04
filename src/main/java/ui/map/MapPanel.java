@@ -21,6 +21,7 @@ public class MapPanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 presenter.onClick(e.getX(), e.getY());
+                repaint();
             }
         });
 
@@ -28,6 +29,7 @@ public class MapPanel extends JPanel {
             @Override
             public void mouseMoved(MouseEvent e) {
                 presenter.onMouseMove(e.getX(), e.getY());
+                repaint();
             }
         });
     }

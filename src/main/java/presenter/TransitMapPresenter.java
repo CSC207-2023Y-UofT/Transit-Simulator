@@ -20,12 +20,18 @@ public class TransitMapPresenter {
 
     private StationState highlightedStation = null;
 
+    private int width = 1;
+    private int height = 1;
+
     public TransitMapPresenter(StationInteractor stationInteractor) {
         this.stationInteractor = stationInteractor;
     }
 
     public void present(Graphics2D graphics, int width, int height) {
+
         this.stations = stationInteractor.getStations();
+        this.width = width;
+        this.height = height;
 
         List<Color> lineColours = new ArrayList<>();
         lineColours.add(Color.YELLOW);
@@ -79,8 +85,8 @@ public class TransitMapPresenter {
     }
 
     public Optional<StationState> getStationAt(int x, int y) {
-        double scaleX = MAP_SIZE_X / x;
-        double scaleY = MAP_SIZE_Y / y;
+        double scaleX = width / MAP_SIZE_X;
+        double scaleY = height / MAP_SIZE_Y;
 
         for (StationState station : stations) {
             int stationX = (int) (station.getX() * scaleX);
@@ -95,12 +101,14 @@ public class TransitMapPresenter {
     }
 
     public void onMouseMove(int x, int y) {
+
         Optional<StationState> optStation = getStationAt(x, y);
         if (optStation.isEmpty()) {
             highlightedStation = null;
             return;
         }
 
+        System.out.println(optStation.get().getName());
         highlightedStation = optStation.get();
     }
 
