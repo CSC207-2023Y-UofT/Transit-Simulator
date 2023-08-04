@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminLoginPage {
+public class LoginPage extends JPanel {
 
     private JFrame frame;
     private JPanel panel;
@@ -15,7 +15,7 @@ public class AdminLoginPage {
     private JTextField personnelNumberField;
     private JButton signInButton, backButton;
 
-    public AdminLoginPage() {
+    public LoginPage() {
 
         // Create the frame and panel
         frame = new JFrame("Admin Sign In");
@@ -100,7 +100,7 @@ public class AdminLoginPage {
     }
 
     public static void main(String[] args) {
-        new AdminLoginPage();
+        new LoginPage();
     }
 
 }

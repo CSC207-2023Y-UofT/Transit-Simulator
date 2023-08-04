@@ -1,5 +1,6 @@
 package ui.staff;
 
+import ui.PageController;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -7,18 +8,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StaffSelectPage {
-    private JFrame frame;
-    private JPanel panel;
+public class StaffSelectPage extends JPanel {
     private JLabel staffTypeLabel;
     private JButton adminButton, trainEngineerButton, trainOperatorButton, backButton;
 
-    public StaffSelectPage() {
-
-        // Create the frame and panel
-        frame = new JFrame("Staff Home Page");
-        frame.setPreferredSize(new Dimension(900, 600));
-        panel = new JPanel(new GridLayout(0, 3));
+    public StaffSelectPage(PageController controller) {
+        super(new GridLayout(0, 3));
 
         staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
         staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -33,7 +28,7 @@ public class StaffSelectPage {
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AdminLoginPage();
+                new LoginPage(controller);
                 frame.dispose();
             }
         });
@@ -47,7 +42,7 @@ public class StaffSelectPage {
         trainOperatorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new OperatorLoginPage();
+                new OperatorLoginPage(controller);
                 frame.dispose();
             }
         });
@@ -61,7 +56,7 @@ public class StaffSelectPage {
         trainEngineerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new EngineerLoginPage();
+                new EngineerLoginPage(controller);
                 frame.dispose();
             }
         });
@@ -74,7 +69,7 @@ public class StaffSelectPage {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
+                new StaffHomePage(controller);
                 frame.dispose();
             }
         });
@@ -82,57 +77,47 @@ public class StaffSelectPage {
 
         // Add components to the panel
 
-        panel.setBackground(new Color(210, 207, 206));
+        this.setBackground(new Color(210, 207, 206));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(staffTypeLabel);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(staffTypeLabel);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(adminButton);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(adminButton);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(trainOperatorButton);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(trainOperatorButton);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(new JLabel("  "));
-        panel.add(trainEngineerButton);
-        panel.add(new JLabel("  "));
+        this.add(new JLabel("  "));
+        this.add(trainEngineerButton);
+        this.add(new JLabel("  "));
 
         for (int i = 0; i < 6; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
-        panel.add(backButton);
-        panel.add(new JLabel("  "));
-        panel.add(new JLabel("  "));
-
-        // Add panel to the frame
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new StaffSelectPage();
+        this.add(backButton);
+        this.add(new JLabel("  "));
+        this.add(new JLabel("  "));
     }
 
 }
