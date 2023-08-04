@@ -20,6 +20,8 @@ public class RoundedButton extends JButton {
         if (getModel().isArmed()) {
             // If button is pressed, use a different color
             g.setColor(Color.lightGray);
+        } else if (getModel().isRollover()) {
+            g.setColor(getBackground().darker());
         } else {
             // Regular color
             g.setColor(getBackground());
