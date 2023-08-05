@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * This interface defines the input boundary for the station interactor.
  */
-public interface StationInputBoundary {
+public interface IStationInteractor {
     /**
      * Returns the state of the station with the given name.
      */

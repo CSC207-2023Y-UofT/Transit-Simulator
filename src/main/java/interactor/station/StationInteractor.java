@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StationInteractor implements StationInputBoundary {
+public class StationInteractor implements IStationInteractor {
 
     private final TransitModel model;
 

@@ -1,22 +1,24 @@
 package main;
 
+import interactor.station.IStationInteractor;
 import interactor.station.StationInteractor;
+import interactor.train.ITrainInteractor;
 import interactor.train.TrainInteractor;
 
 public class InteractorPool {
-    private final StationInteractor stationInteractor;
-    private final TrainInteractor trainInteractor;
+    private final IStationInteractor stationInteractor;
+    private final ITrainInteractor trainInteractor;
 
-    public InteractorPool(StationInteractor stationInteractor, TrainInteractor trainInteractor) {
+    public InteractorPool(IStationInteractor stationInteractor, ITrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
     }
 
-    public StationInteractor getStationInteractor() {
+    public IStationInteractor getStationInteractor() {
         return stationInteractor;
     }
 
-    public TrainInteractor getTrainInteractor() {
+    public ITrainInteractor getTrainInteractor() {
         return trainInteractor;
     }
 }

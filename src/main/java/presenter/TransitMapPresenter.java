@@ -1,7 +1,9 @@
 package presenter;
 
+import interactor.station.IStationInteractor;
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
+import interactor.train.ITrainInteractor;
 import interactor.train.TrainInteractor;
 import interactor.train.TrainNodeDistance;
 import interactor.train.TrainState;
@@ -19,8 +21,8 @@ public class TransitMapPresenter {
 
     private static final int STATION_ICON_SIZE = 10;
 
-    protected final StationInteractor stationInteractor;
-    private final TrainInteractor trainInteractor;
+    protected final IStationInteractor stationInteractor;
+    private final ITrainInteractor trainInteractor;
 
     protected List<StationState> stations = new ArrayList<>();
     protected List<TrainState> trains = new ArrayList<>();
@@ -30,8 +32,8 @@ public class TransitMapPresenter {
     private int width = 1;
     private int height = 1;
 
-    public TransitMapPresenter(StationInteractor stationInteractor,
-                               TrainInteractor trainInteractor) {
+    public TransitMapPresenter(IStationInteractor stationInteractor,
+                               ITrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
     }
