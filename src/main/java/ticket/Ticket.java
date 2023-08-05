@@ -13,17 +13,17 @@ public abstract class Ticket {
     /**
      * The expiry time of the ticket in milliseconds.
      */
-    private final long expiry;
+    private long expiry = -1;
 
     private final int ticketId;
+    private boolean activated = false;
 
     /**
      * Constructs a new Ticket object with the given expiry time.
      *
      * @param expiry the expiry time of the ticket in milliseconds
      */
-    public Ticket(long expiry) {
-        this.expiry = expiry;
+    public Ticket() {
         ticketId = ThreadLocalRandom.current().nextInt(999999999);
     }
 

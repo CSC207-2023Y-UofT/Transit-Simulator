@@ -7,17 +7,39 @@ import ticket.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketInteractor {
+public class TicketInteractor implements ITicketInteractor {
     private final StatDataController stats;
 
     public TicketInteractor(StatDataController stats) {
         this.stats = stats;
     }
 
-    public List<BoughtTicket> buyTicket(int childTickets,
-                                        int adultTickets,
-                                        int seniorTickets,
-                                        int studentTickets) {
+
+    public double getChildTicketPrice() {
+        return new ChildTicket().getPrice();
+    }
+
+    public double getAdultTicketPrice() {
+        return new AdultTicket().getPrice();
+    }
+
+    public double getSeniorTicketPrice() {
+        return new SeniorTicket().getPrice();
+    }
+
+    public double getStudentTicketPrice() {
+        return new StudentTicket().getPrice();
+    }
+
+    @Override
+    public BoughtTicket getTicket(int ticketId) {
+
+    }
+
+    public List<BoughtTicket> buyTickets(int childTickets,
+                                         int adultTickets,
+                                         int seniorTickets,
+                                         int studentTickets) {
 
         List<Ticket> tickets = new ArrayList<>();
 
