@@ -8,8 +8,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * ConfirmPaymentPage is a JPanel that displays the confirm payment page.
+ * It is used by the UIController to display the confirm payment page.
+ *
+ * @see UIController
+ */
 public class ConfirmPaymentPage extends JPanel {
 
+    /**
+     * Constructs a new ConfirmPaymentPage object.
+     *
+     * @param controller the controller used to switch pages
+     */
     public ConfirmPaymentPage(UIController controller) {
         super(new GridLayout(0, 3));
 
@@ -18,7 +29,7 @@ public class ConfirmPaymentPage extends JPanel {
         headerLabel.setFont(new Font("Serif", Font.BOLD, 32));
 
         // Create the total cost label
-        // bruh how do i get the total cost from the previous page
+        // bruh how do i get the total cost from the previous page  // lmfao
         JLabel totalCostLabel = new JLabel("Total Cost: $0.00");
         totalCostLabel.setFont(new Font("Serif", Font.BOLD, 28));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);

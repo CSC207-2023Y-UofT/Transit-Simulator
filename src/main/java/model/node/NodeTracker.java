@@ -1,6 +1,7 @@
 package model.node;
 
 import model.train.TrackRepo;
+
 import java.util.Map;
 
 /**
@@ -28,7 +29,7 @@ public interface NodeTracker {
      * Creates a new node in the track system using the provided NodeFactory.
      *
      * @param factory The NodeFactory instance to use for creating the node.
-     * @param name The name of the new node.
+     * @param name    The name of the new node.
      * @return The newly created Node object.
      */
     Node createNode(NodeFactory factory, String name);

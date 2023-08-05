@@ -3,6 +3,9 @@ package ui.round;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * RoundedLabel is a JLabel that is rounded.
+ */
 public class RoundedLabel extends JLabel {
     public RoundedLabel(String text) {
         super(text);
@@ -10,6 +13,11 @@ public class RoundedLabel extends JLabel {
         setOpaque(false);
     }
 
+    /**
+     * Paints the label.
+     *
+     * @param g the Graphics object
+     */
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
@@ -17,6 +25,11 @@ public class RoundedLabel extends JLabel {
         super.paintComponent(g);
     }
 
+    /**
+     * Paints the border of the label.
+     *
+     * @param g the Graphics object
+     */
     @Override
     protected void paintBorder(Graphics g) {
         g.setColor(getForeground());

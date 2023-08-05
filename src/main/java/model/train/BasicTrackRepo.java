@@ -14,6 +14,9 @@ import java.util.Optional;
  */
 public class BasicTrackRepo implements TrackRepo {
 
+    /**
+     * The map of track segments in the repository, where the keys are the track segment IDs and the values are the corresponding TrackSegment objects.
+     */
     private final Map<String, TrackSegment> tracks = new HashMap<>();
 
     /**

@@ -9,24 +9,55 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * The TransitMapPassengerPresenter class is a presenter class that handles the logic for the transit map view for
+ * passengers.
+ */
 public class TransitMapPassengerPresenter extends TransitMapPresenter {
 
+    /**
+     * The currently selected station.
+     */
     private StationState selectedStation = null;
+    /**
+     * The arrival delays for the currently selected station.
+     */
     private Map<Integer, Map<Direction, Long>> arrivalDelays = null;
 
+    /**
+     * Constructs a new TransitMapPassengerPresenter with the given station and train interactors.
+     *
+     * @param stationInteractor The StationInteractor to use.
+     * @param trainInteractor   The TrainInteractor to use.
+     */
     public TransitMapPassengerPresenter(StationInteractor stationInteractor,
                                         TrainInteractor trainInteractor) {
         super(stationInteractor, trainInteractor);
     }
 
+    /**
+     * Gets the currently selected station.
+     *
+     * @return The currently selected station.
+     */
     public StationState getSelectedStation() {
         return selectedStation;
     }
 
+    /**
+     * Gets the arrival delays for the currently selected station.
+     *
+     * @return The arrival delays for the currently selected station.
+     */
     public Map<Integer, Map<Direction, Long>> getArrivalDelays() {
         return arrivalDelays;
     }
 
+    /**
+     * Retrieves information about the currently selected station.
+     *
+     * @param station The currently selected station's StationState.
+     */
     @Override
     protected void onClickStation(StationState station) {
         super.onClickStation(station);

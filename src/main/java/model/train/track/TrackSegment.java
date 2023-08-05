@@ -14,12 +14,29 @@ import java.util.*;
  * TrackSegments are used to form the track structure and can hold a train on them.
  */
 public class TrackSegment {
+    /**
+     * The unique identifier for the track segment.
+     */
     private final String id;
+    /**
+     * The TrackRepo instance containing information about the tracks in the system.
+     */
     private final TrackRepo repo;
+    /**
+     * The length of the track segment in meters.
+     */
     private final double length;
-
+    /**
+     * The TrackSegment object representing the next track segment in the track.
+     */
     private TrackSegment next = null;
+    /**
+     * The TrackSegment object representing the previous track segment in the track.
+     */
     private TrackSegment prev = null;
+    /**
+     * The Train object representing the train on the track segment.
+     */
     private Train train = null;
 
     /**

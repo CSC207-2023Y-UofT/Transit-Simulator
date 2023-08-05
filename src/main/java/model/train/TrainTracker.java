@@ -26,8 +26,23 @@ public interface TrainTracker {
      */
     List<Train> getTrainList();
 
+    /**
+     * Retrieves the train with the specified name, if it exists in the train tracker.
+     *
+     * @param name The name of the train to retrieve.
+     * @return The Train object with the specified name if found, or null otherwise.
+     */
     Train getTrain(String name);
 
+    /**
+     * Removes the train with the specified name from the train tracker.
+     *
+     * @param name The name of the train to remove.
+     */
     void removeTrain(String name);
+
+    /**
+     * Removes all trains from the train tracker.
+     */
     void clearTrains();
 }

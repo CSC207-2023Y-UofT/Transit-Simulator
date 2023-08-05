@@ -9,19 +9,56 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * PurchaseTicketPage is a JPanel that displays the purchase ticket page.
+ * It is used by the UIController to display the purchase ticket page.
+ *
+ * @see UIController
+ */
 public class PurchaseTicketPage extends JPanel {
-
+    /**
+     * The price of an AdultTicket.
+     */
     private static final double ADULT_PRICE = 3.35;
+    /**
+     * The price of a ChildTicket.
+     */
     private static final double CHILD_PRICE = 2.40;
+    /**
+     * The price of a SeniorTicket.
+     */
     private static final double SENIOR_PRICE = 2.30;
+    /**
+     * The price of a StudentTicket.
+     */
     private static final double STUDENT_PRICE = 2.35;
 
+    /**
+     * The JLabel that displays the count of AdultTickets.
+     */
     private final JLabel adultCount;
+    /**
+     * The JLabel that displays the count of ChildTickets.
+     */
     private final JLabel childCount;
+    /**
+     * The JLabel that displays the count of SeniorTickets.
+     */
     private final JLabel seniorCount;
+    /**
+     * The JLabel that displays the count of StudentTickets.
+     */
     private final JLabel studentCount;
+    /**
+     * The JLabel that displays the total cost of the tickets.
+     */
     private final JLabel totalCostLabel;
 
+    /**
+     * Constructs a new PurchaseTicketPage with the given UIController.
+     *
+     * @param controller the UIController that is used to control the UI
+     */
     public PurchaseTicketPage(UIController controller) {
         super(new GridLayout(0, 4));
 
@@ -109,6 +146,10 @@ public class PurchaseTicketPage extends JPanel {
         this.setBackground(new Color(210, 207, 206));
     }
 
+    /**
+     * Creates a counting JLabel.
+     * @return the counting JLabel
+     */
     private JLabel createCountLabel() {
         JLabel label = new RoundedLabel("0");
         label.setFont(new Font("Serif", Font.BOLD, 20));
@@ -118,6 +159,10 @@ public class PurchaseTicketPage extends JPanel {
         return label;
     }
 
+    /**
+     * Creates a minus button.
+     * @return the minus button
+     */
     private JButton createMinusButton() {
         JButton button = new RoundedButton("-");
         button.setFont(new Font("Serif", Font.BOLD, 20));
@@ -125,6 +170,10 @@ public class PurchaseTicketPage extends JPanel {
         return button;
     }
 
+    /**
+     * Creates a plus button.
+     * @return the plus button
+     */
     private JButton createPlusButton() {
         JButton button = new RoundedButton("+");
         button.setFont(new Font("Serif", Font.BOLD, 20));
@@ -132,6 +181,15 @@ public class PurchaseTicketPage extends JPanel {
         return button;
     }
 
+    /**
+     * Creates a row in the UI for a ticket type.
+     *
+     * @param name the name of the ticket type
+     * @param minusButton the button to decrease the count
+     * @param plusButton the button to increase the count
+     * @param countLabel the label that displays the count
+     * @param price the price of the ticket type
+     */
     private void createRow(String name, JButton minusButton, JButton plusButton, JLabel countLabel, double price) {
         minusButton.addActionListener(e -> {
             int count = Integer.parseInt(countLabel.getText());
@@ -159,6 +217,11 @@ public class PurchaseTicketPage extends JPanel {
         this.add(plusButton);
     }
 
+    /**
+     * Gets the total cost of the tickets.
+     *
+     * @return the total cost
+     */
     public double getTotalCost() {
         return Integer.parseInt(adultCount.getText()) * ADULT_PRICE
                 + Integer.parseInt(childCount.getText()) * CHILD_PRICE
@@ -166,6 +229,9 @@ public class PurchaseTicketPage extends JPanel {
                 + Integer.parseInt(studentCount.getText()) * STUDENT_PRICE;
     }
 
+    /**
+     * Updates the total cost label.
+     */
     private void updateTotalCost() {
         double total = getTotalCost();
         String totalFormatted = String.format("$%.2f", total);

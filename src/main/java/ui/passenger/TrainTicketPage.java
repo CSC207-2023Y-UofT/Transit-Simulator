@@ -9,10 +9,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+/**
+ * TrainTicketPage is a JPanel that displays the purchase ticket page.
+ * It is used by the UIController to display the purchase ticket page.
+ *
+ * @see UIController
+ */
 public class TrainTicketPage extends JPanel {
 
+    /**
+     * The JLabel that displays the valid time of the ticket.
+     */
     private final JLabel validTime;
 
+    /**
+     * Constructs a new TrainTicketPage with the given UIController.
+     *
+     * @param controller the UIController that is used to control the UI
+     */
     public TrainTicketPage(UIController controller) {
         super(new GridLayout(0, 1));
 

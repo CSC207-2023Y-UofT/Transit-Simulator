@@ -11,11 +11,31 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * PassengerHomePage is a JPanel that displays the passenger home page.
+ * It is used by the UIController to display the passenger home page.
+ *
+ * @see UIController
+ */
 public class PassengerHomePage extends JPanel {
+    /**
+     * The UIController that is used to control the UI.
+     */
     private final UIController controller;
+    /**
+     * The buttons on the panel.
+     */
     private JButton buyButton, backButton;
+    /**
+     * The map panel on the panel.
+     */
     private MapPanel mapPanel;
 
+    /**
+     * Constructs a new PassengerHomePage with the given UIController.
+     *
+     * @param controller the UIController that is used to control the UI
+     */
     public PassengerHomePage(UIController controller) {
         super(new BorderLayout(0, 1));
 
