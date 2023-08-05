@@ -68,4 +68,9 @@ public abstract class Employee {
 
     public abstract EmployeeType getEmployeeType();
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Employee)) return false;
+        return ((Employee) obj).staffNumber == this.staffNumber;
+    }
 }
