@@ -43,7 +43,8 @@ public class PassengerHomePage extends JPanel {
 
         // Map
         TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(
-                controller.getInteractorPool().getStationInteractor()
+                controller.getInteractorPool().getStationInteractor(),
+                controller.getInteractorPool().getTrainInteractor()
         );
         mapPanel = new MapPanel(presenter);
         mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);

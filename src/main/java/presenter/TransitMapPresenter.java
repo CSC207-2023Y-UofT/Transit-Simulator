@@ -2,6 +2,9 @@ package presenter;
 
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
+import interactor.train.TrainInteractor;
+import interactor.train.TrainNodeDistance;
+import interactor.train.TrainState;
 import model.Direction;
 
 import java.awt.*;
@@ -17,21 +20,27 @@ public class TransitMapPresenter {
     private static final int STATION_ICON_SIZE = 8;
 
     protected final StationInteractor stationInteractor;
+    private final TrainInteractor trainInteractor;
 
     protected List<StationState> stations = new ArrayList<>();
+    protected List<TrainState> trains = new ArrayList<>();
 
     private StationState highlightedStation = null;
 
     private int width = 1;
     private int height = 1;
 
-    public TransitMapPresenter(StationInteractor stationInteractor) {
+    public TransitMapPresenter(StationInteractor stationInteractor,
+                               TrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
+        this.trainInteractor = trainInteractor;
     }
 
     public void present(Graphics2D graphics, int width, int height) {
 
         this.stations = stationInteractor.getStations();
+        this.trains = trainInteractor.getTrains();
+
         this.width = width;
         this.height = height;
 
@@ -62,8 +71,10 @@ public class TransitMapPresenter {
                 int nextY = (int) (nextStation.getY() * scaleY);
 
                 graphics.setColor(lineColours.get(line));
+                Stroke stroke = graphics.getStroke();
                 graphics.setStroke(new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
                 graphics.drawLine(x, y, nextX, nextY);
+                graphics.setStroke(stroke);
 
                 graphics.setColor(Color.BLACK);
             }
@@ -96,6 +107,49 @@ public class TransitMapPresenter {
             // Draw their name to the upper-right
             graphics.setFont(new Font("Arial", Font.BOLD, 12));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE, y - STATION_ICON_SIZE);
+        }
+
+        // Draw trains
+        for (TrainState train : trains) {
+            TrainNodeDistance nextDistance = train.getNextNodeDistance().orElse(null);
+            if (nextDistance == null) continue;
+
+            TrainNodeDistance prevDistance = train.getPreviousNodeDistance().orElse(null);
+            if (prevDistance == null) continue;
+
+            double nextXO = nextDistance.getStation().getX();
+            double nextYO = nextDistance.getStation().getY();
+
+            double prevXO = prevDistance.getStation().getX();
+            double prevYO = prevDistance.getStation().getY();
+
+            double dx = nextXO - prevXO;
+            double dy = nextYO - prevYO;
+
+            // Normalize
+            double length = Math.sqrt(dx * dx + dy * dy);
+            if (length == 0.0) continue;
+
+            dx /= length;
+            dy /= length;
+
+            double trainX = prevXO + dx * prevDistance.getDistance();
+            double trainY = prevYO + dy * prevDistance.getDistance();
+
+            trainX *= scaleX;
+            trainY *= scaleY;
+
+            // Draw the train as a small red circle
+            graphics.setColor(Color.RED);
+            graphics.fillOval((int) trainX - 2, (int) trainY - 2, 4, 4);
+
+            // Draw a little border
+            graphics.setColor(Color.BLACK);
+            graphics.drawOval((int) trainX - 2, (int) trainY - 2, 4, 4);
+
+            // Train's name
+            graphics.setFont(new Font("Arial", Font.PLAIN, 8));
+            graphics.drawString(train.getName(), (int) trainX + 4, (int) trainY - 4);
         }
     }
 

@@ -54,7 +54,7 @@ public class Train {
     /**
      * The maximum speed of the train in meters per second. This is approximately 115 km/h.
      */
-    public static double MAX_SPEED = 32;
+    public static double MAX_SPEED = 320;
 
     /**
      * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
@@ -319,7 +319,10 @@ public class Train {
         if (movedPosition == null) return false;
 
         // Then move the train
+        position.getTrack().setTrain(null);
         position = movedPosition;
+        position.getTrack().setTrain(this);
+
         return true;
     }
 }
