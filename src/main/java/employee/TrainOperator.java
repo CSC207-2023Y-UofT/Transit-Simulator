@@ -4,10 +4,12 @@ import employee.Employee;
 
 public class TrainOperator extends Employee{
 
-
+    /**
+     * Constructs a new TrainOperator object with the given employee number.
+     * @param id is an Integer
+     */
     public TrainOperator(int id) {
         super(id);
-
     }
 
     /**
