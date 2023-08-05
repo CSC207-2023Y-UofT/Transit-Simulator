@@ -6,10 +6,27 @@ import ui.round.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * StaffSelectPage is a JPanel that displays the staff select page.
+ * It is used by the UIController to display the staff select page.
+ *
+ * @see UIController
+ */
 public class StaffSelectPage extends JPanel {
+    /**
+     * The label that displays the staff types.
+     */
     private JLabel staffTypeLabel;
+    /**
+     * The buttons that allow the user to select their staff type.
+     */
     private JButton adminButton, trainEngineerButton, trainOperatorButton, backButton;
 
+    /**
+     * Constructs a new StaffSelectPage object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public StaffSelectPage(UIController controller) {
         super(new GridLayout(0, 3));
 

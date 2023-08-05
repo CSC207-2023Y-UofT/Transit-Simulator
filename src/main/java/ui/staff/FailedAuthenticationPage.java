@@ -8,8 +8,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * FailedAuthenticationPage is a JPanel that displays an error message when a user fails to sign in.
+ * It is used by the UIController to display an error message when a user fails to sign in.
+ *
+ * @see UIController
+ */
 public class FailedAuthenticationPage extends JPanel {
 
+    /**
+     * Constructs a new FailedAuthenticationPage object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public FailedAuthenticationPage(UIController controller) {
         super(new GridLayout(0, 3));
 

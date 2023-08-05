@@ -9,8 +9,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * LoginPage is a JPanel that displays the login page for staff.
+ * It is used by the UIController to display the login page for staff.
+ *
+ * @see UIController
+ */
 public class LoginPage extends JPanel {
 
+    /**
+     * Constructs a new LoginPage object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public LoginPage(UIController controller) {
         super(new GridLayout(0, 3));
 

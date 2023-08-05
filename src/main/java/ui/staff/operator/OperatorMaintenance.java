@@ -11,7 +11,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * OperatorMaintenance is a JPanel that displays the maintenance status of all trains.
+ * It is used by the UIController to display the maintenance status of all trains.
+ *
+ * @see UIController
+ */
 public class OperatorMaintenance extends JPanel {
+    /**
+     * Constructs a new OperatorMaintenance object.
+     * @param controller the controller used to switch panels
+     */
     public OperatorMaintenance(UIController controller) {
         super(new BorderLayout());
 
