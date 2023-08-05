@@ -25,7 +25,7 @@ public class TrainState {
     /**
      * The station the train is currently at.
      */
-    private final Optional<StationState> currentStation;
+    private final StationState currentStation;
     /**
      * The distance to the next node.
      */
@@ -54,7 +54,7 @@ public class TrainState {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
-        this.currentStation = Optional.ofNullable(currentStation);
+        this.currentStation = currentStation;
         this.nextNodeDistance = nextNodeDistance;
         this.previousNodeDistance = previousNodeDistance;
     }
@@ -92,7 +92,7 @@ public class TrainState {
      * @return The station the train is currently at.
      */
     public Optional<StationState> getCurrentStation() {
-        return currentStation;
+        return Optional.ofNullable(currentStation);
     }
 
     /**
