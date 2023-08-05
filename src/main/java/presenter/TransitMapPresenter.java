@@ -16,15 +16,15 @@ public class TransitMapPresenter {
     /**
      * The size of the map width in metres.
      */
-    public static final double MAP_SIZE_X = 6100.0;
+    public static final double MAP_SIZE_X = 6150.0;
     /**
      * The size of the map height in metres.
      */
-    public static final double MAP_SIZE_Y = 4250.0;
+    public static final double MAP_SIZE_Y = 4500.0;
     /**
      * The size of the station icons in pickles (pixels).
      */
-    private static final int STATION_ICON_SIZE = 10;
+    private static final int STATION_ICON_SIZE = 7;
     /**
      * The station interactor.
      */
@@ -105,7 +105,7 @@ public class TransitMapPresenter {
 
                 graphics.setColor(lineColours.get(line - 1));
                 Stroke stroke = graphics.getStroke();
-                graphics.setStroke(new BasicStroke(7, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                graphics.setStroke(new BasicStroke(11, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
                 graphics.drawLine(x, y, nextX, nextY);
                 graphics.setStroke(stroke);
 
@@ -156,12 +156,12 @@ public class TransitMapPresenter {
                 stationX *= scaleX;
                 stationY *= scaleY;
 
-                graphics.setColor(Color.RED);
-                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+                graphics.setColor(new Color(255, 255, 255));
+                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 8, 8);
 
                 // Draw a little border
                 graphics.setColor(Color.BLACK);
-                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 8, 8);
 
                 // Draw the train's name
                 graphics.setFont(new Font("Serif", Font.PLAIN, 12));
@@ -199,12 +199,12 @@ public class TransitMapPresenter {
             trainY *= scaleY;
 
             // Draw the train as a small red circle
-            graphics.setColor(Color.RED);
-            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 6, 6);
+            graphics.setColor(new Color(255, 255, 255));
+            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 8, 8);
 
             // Draw a little border
             graphics.setColor(Color.BLACK);
-            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 6, 6);
+            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 8, 8);
 
             // Train's name
             graphics.setFont(new Font("Serif", Font.PLAIN, 10));

@@ -1,7 +1,6 @@
 package ui;
 
 import main.InteractorPool;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -53,7 +52,7 @@ public class UIController {
      */
     public void open(JPanel panel) {
         mainScreen.setContentPane(panel);
-        mainScreen.setPreferredSize(new Dimension(1600, 800));
+        mainScreen.setPreferredSize(new Dimension(1500, 800));
         mainScreen.pack();
         mainScreen.revalidate();
         mainScreen.repaint();

@@ -37,7 +37,7 @@ public class PassengerHomePage extends JPanel {
      * @param controller the UIController that is used to control the UI
      */
     public PassengerHomePage(UIController controller) {
-        super(new BorderLayout(0, 1));
+        super(new BorderLayout());
 
         this.controller = controller;
 
@@ -68,9 +68,8 @@ public class PassengerHomePage extends JPanel {
         );
         mapPanel = new MapPanel(presenter);
 
-        JPanel topPanel = new JPanel(new GridLayout(1, 2));
+        JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(mapPanel);
-        topPanel.add(new JLabel(""));
 
         this.add(topPanel);
 

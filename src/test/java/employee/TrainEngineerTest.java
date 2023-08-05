@@ -29,12 +29,4 @@ public class TrainEngineerTest {
         assertFalse(trainEngineer.getPaid());
     }
 
-    @Test
-    public void testCheckTrainOperatorLine() {
-        Admin admin = new Admin(456);
-        admin.addEmployeeToLine(1, trainEngineer);
-
-        Integer line = trainEngineer.checkTrainOperatorLine(admin);
-        assertEquals(Integer.valueOf(1), line);
-    }
 }

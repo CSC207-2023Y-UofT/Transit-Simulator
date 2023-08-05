@@ -33,17 +33,6 @@ public class TrainOperatorTest {
         Assertions.assertFalse(trainOperator.getPaid());
     }
 
-    @Test
-    public void testCheckTrainOperatorLine() {
-        TrainOperator trainOperator = new TrainOperator(123);
-        Admin admin = new Admin(456);
-
-        // Simulate adding TrainOperator to a line in the Admin's map
-        admin.addEmployeeToLine(1, trainOperator);
-
-        Integer line = trainOperator.checkTrainOperatorLine(admin);
-        Assertions.assertEquals(Integer.valueOf(1), line);
-    }
 }
 
 

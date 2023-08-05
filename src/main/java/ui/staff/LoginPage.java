@@ -2,6 +2,7 @@ package ui.staff;
 
 import ui.UIController;
 import ui.round.RoundedButton;
+import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerRoute;
 
 import javax.swing.*;
@@ -47,7 +48,7 @@ public class LoginPage extends JPanel {
 
                 // We should know what option they picked earlier and direct them there
 
-                controller.open(new EngineerRoute(controller));
+                controller.open(new Management(controller));
             }
         });
 
