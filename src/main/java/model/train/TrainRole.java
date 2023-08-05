@@ -1,7 +1,7 @@
 package model.train;
 
 /**
- * The TrainJob enum represents the different jobs that a train can have.
+ * The TrainRole enum represents the different jobs that a train can have.
  */
 public enum TrainRole {
     OPERATOR,

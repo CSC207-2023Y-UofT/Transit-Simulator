@@ -1,7 +1,9 @@
 package presenter;
 
+import interactor.station.IStationInteractor;
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
+import interactor.train.ITrainInteractor;
 import interactor.train.TrainInteractor;
 import interactor.train.TrainNodeDistance;
 import interactor.train.TrainState;
@@ -28,11 +30,11 @@ public class TransitMapPresenter {
     /**
      * The station interactor.
      */
-    protected final StationInteractor stationInteractor;
+    protected final IStationInteractor stationInteractor;
     /**
      * The train interactor.
      */
-    private final TrainInteractor trainInteractor;
+    private final ITrainInteractor trainInteractor;
     /**
      * The list of stations to draw.
      */
@@ -60,8 +62,8 @@ public class TransitMapPresenter {
      * @param stationInteractor The station interactor.
      * @param trainInteractor   The train interactor.
      */
-    public TransitMapPresenter(StationInteractor stationInteractor,
-                               TrainInteractor trainInteractor) {
+    public TransitMapPresenter(IStationInteractor stationInteractor,
+                               ITrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
     }

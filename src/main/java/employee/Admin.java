@@ -1,7 +1,7 @@
 package employee;
 
 import model.train.Train;
-import model.train.TrainJob;
+import model.train.TrainRole;
 
 import java.util.ArrayList;
 import java.util.HashMap;
