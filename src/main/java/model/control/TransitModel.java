@@ -16,23 +16,29 @@ import java.util.*;
  */
 public class TransitModel implements NodeTracker, TrainTracker {
 
-    /** List of trains in the transit system */
+    /**
+     * List of trains in the transit system
+     */
     private final List<Train> trainList = new ArrayList<>();
 
-    /** Map of nodes in the transit system, mapped by their identifiers */
+    /**
+     * Map of nodes in the transit system, mapped by their identifiers
+     */
     private final Map<String, Node> nodeMap = new HashMap<>();
 
-    /** Repository of tracks in the transit system */
+    /**
+     * Repository of tracks in the transit system
+     */
     private final TrackRepo trackRepo = new BasicTrackRepo();
 
     /**
      * Creates a train on the given track in the given direction with the given capacity.
      *
      * @param trackSegment The segment of the track where the train is to be created.
-     * @param capacity The capacity of the train.
+     * @param capacity     The capacity of the train.
      * @return The created Train object.
      * @throws IllegalArgumentException if the track is not a valid track in this tracker's track repo.
-     * @throws IllegalStateException if the track is occupied.
+     * @throws IllegalStateException    if the track is occupied.
      */
     public Train createTrain(TrackSegment trackSegment, String name, int capacity) {
         if (trackRepo.getTrack(trackSegment.getId()).orElse(null) != trackSegment) {
@@ -80,7 +86,7 @@ public class TransitModel implements NodeTracker, TrainTracker {
      * Creates a node with the given identifier and length using the specified NodeFactory.
      *
      * @param nodeFactory The NodeFactory to create the node.
-     * @param identifier The identifier of the node.
+     * @param identifier  The identifier of the node.
      * @return The created Node object.
      * @throws IllegalArgumentException if the node is not created with the correct tracker.
      */
@@ -116,6 +122,16 @@ public class TransitModel implements NodeTracker, TrainTracker {
     @Override
     public Train getTrain(String name) {
         return trainList.stream().filter(train -> train.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Override
+    public void removeTrain(String name) {
+        trainList.removeIf(train -> train.getName().equals(name));
+    }
+
+    @Override
+    public void clearTrains() {
+        trainList.clear();
     }
 
 }
