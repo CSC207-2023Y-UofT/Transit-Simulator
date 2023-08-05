@@ -18,6 +18,12 @@ public class TrainSimulator {
         this.tickSpeed = tickSpeed;
     }
 
+    public void recreateTrains(TransitModel model) {
+        model.clearTrains();
+
+
+    }
+
     public void tick(TransitModel model) {
         for (Train train : model.getTrainList()) {
 
