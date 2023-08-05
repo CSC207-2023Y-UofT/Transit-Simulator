@@ -7,7 +7,6 @@ import model.node.NodeLineProfile;
 import model.train.Passenger;
 import model.train.Train;
 import model.train.track.TrackSegment;
-import ticket.AdultTicket;
 import ticket.Ticket;
 
 import java.util.ArrayList;

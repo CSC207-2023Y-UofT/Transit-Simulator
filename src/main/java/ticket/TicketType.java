@@ -5,7 +5,7 @@ package ticket;
  */
 public enum TicketType {
 
-    CHILD(0.0, 1000 * 60 * 60 * 2),
+    CHILD(2.40, 1000 * 60 * 60 * 2),
     ADULT(3.35, 1000 * 60 * 60 * 2),
     STUDENT(2.35, 1000 * 60 * 60 * 2),
     SENIOR(2.30, 1000 * 60 * 60 * 2);

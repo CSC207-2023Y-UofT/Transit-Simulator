@@ -14,49 +14,13 @@ public class TicketInteractor implements ITicketInteractor {
         this.stats = stats;
     }
 
-
-    public double getChildTicketPrice() {
-        return new ChildTicket().getPrice();
-    }
-
-    public double getAdultTicketPrice() {
-        return new AdultTicket().getPrice();
-    }
-
-    public double getSeniorTicketPrice() {
-        return new SeniorTicket().getPrice();
-    }
-
-    public double getStudentTicketPrice() {
-        return new StudentTicket().getPrice();
-    }
-
-    @Override
-    public BoughtTicket getTicket(int ticketId) {
-
-    }
-
-    public List<BoughtTicket> buyTickets(int childTickets,
-                                         int adultTickets,
-                                         int seniorTickets,
-                                         int studentTickets) {
+    public List<BoughtTicket> buyTickets(List<TicketType> ticketTypes) {
 
         List<Ticket> tickets = new ArrayList<>();
 
-        for (int i = 0; i < childTickets; i++) {
-            tickets.add(new ChildTicket());
-        }
-
-        for (int i = 0; i < adultTickets; i++) {
-            tickets.add(new AdultTicket());
-        }
-
-        for (int i = 0; i < seniorTickets; i++) {
-            tickets.add(new SeniorTicket());
-        }
-
-        for (int i = 0; i < studentTickets; i++) {
-            tickets.add(new StudentTicket());
+        for (TicketType ticketType : ticketTypes) {
+            Ticket ticket = new Ticket(ticketType);
+            tickets.add(ticket);
         }
 
         for (Ticket ticket : tickets) {
@@ -69,13 +33,12 @@ public class TicketInteractor implements ITicketInteractor {
         for (Ticket ticket : tickets) {
             BoughtTicket boughtTicket = new BoughtTicket(
                     ticket.getPrice(),
-                    ticket.getTypeId(),
-                    ticket.getTicketId()
+                    ticket.getType(),
+                    ticket.getId()
             );
             response.add(boughtTicket);
         }
 
         return response;
     }
-
 }
