@@ -1,7 +1,9 @@
 package presenter;
 
+import interactor.station.IStationInteractor;
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
+import interactor.train.ITrainInteractor;
 import interactor.train.TrainInteractor;
 import model.Direction;
 
@@ -30,8 +32,8 @@ public class TransitMapPassengerPresenter extends TransitMapPresenter {
      * @param stationInteractor The StationInteractor to use.
      * @param trainInteractor   The TrainInteractor to use.
      */
-    public TransitMapPassengerPresenter(StationInteractor stationInteractor,
-                                        TrainInteractor trainInteractor) {
+    public TransitMapPassengerPresenter(IStationInteractor stationInteractor,
+                                        ITrainInteractor trainInteractor) {
         super(stationInteractor, trainInteractor);
     }
 

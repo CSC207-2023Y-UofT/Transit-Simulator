@@ -1,7 +1,7 @@
 package interactor.train;
 
 import interactor.station.StationState;
-import model.train.TrainJob;
+import model.train.TrainRole;
 
 import java.util.Map;
 import java.util.Optional;
@@ -23,13 +23,9 @@ public class TrainState {
      */
     private final int occupation;
     /**
-     * The staff on the train.
-     */
-    private final Map<TrainJob, Integer> staff;
-    /**
      * The station the train is currently at.
      */
-    private final Optional<StationState> currentStation;
+    private final StationState currentStation;
     /**
      * The distance to the next node.
      */
@@ -45,7 +41,6 @@ public class TrainState {
      * @param name                 The name of the train.
      * @param capacity             The capacity of the train.
      * @param occupation           The number of passengers on the train.
-     * @param staff                The staff on the train.
      * @param currentStation       The station the train is currently at.
      * @param nextNodeDistance     The distance to the next node.
      * @param previousNodeDistance The distance to the previous node.
@@ -53,15 +48,13 @@ public class TrainState {
     public TrainState(String name,
                       int capacity,
                       int occupation,
-                      Map<TrainJob, Integer> staff,
                       StationState currentStation,
                       TrainNodeDistance nextNodeDistance,
                       TrainNodeDistance previousNodeDistance) {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
-        this.staff = staff;
-        this.currentStation = Optional.ofNullable(currentStation);
+        this.currentStation = currentStation;
         this.nextNodeDistance = nextNodeDistance;
         this.previousNodeDistance = previousNodeDistance;
     }
@@ -94,21 +87,12 @@ public class TrainState {
     }
 
     /**
-     * The getter for the staff on the train.
-     *
-     * @return The staff on the train.
-     */
-    public Map<TrainJob, Integer> getStaff() {
-        return staff;
-    }
-
-    /**
      * The getter for the station the train is currently at.
      *
      * @return The station the train is currently at.
      */
     public Optional<StationState> getCurrentStation() {
-        return currentStation;
+        return Optional.ofNullable(currentStation);
     }
 
     /**

@@ -7,14 +7,14 @@ import model.Direction;
 import model.control.TransitModel;
 import model.node.Node;
 import model.train.Train;
-import model.train.TrainJob;
+import model.train.TrainRole;
 
 import java.util.*;
 
 /**
  * The interactor for the train.
  */
-public class TrainInteractor {
+public class TrainInteractor implements ITrainInteractor {
     /**
      * The transit model.
      */
@@ -62,10 +62,6 @@ public class TrainInteractor {
         int capacity = train.getCapacity();
         int occupation = train.getPassengerList().size();
 
-        Map<TrainJob, Integer> staff = new HashMap<>();
-        for (Map.Entry<TrainJob, Employee> entry : train.getStaff().entrySet()) {
-            staff.put(entry.getKey(), entry.getValue().getStaffNumber());
-        }
 
         // Forwards
         Optional<StationState> nextNode = train.getNextNode(Direction.FORWARD)
@@ -99,7 +95,6 @@ public class TrainInteractor {
         return new TrainState(name,
                 capacity,
                 occupation,
-                staff,
                 currentStation.orElse(null),
                 nextNodeDistance,
                 previousNodeDistance);

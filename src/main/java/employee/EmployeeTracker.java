@@ -31,6 +31,22 @@ public class EmployeeTracker {
         }
     }
 
+    public void removeEmployee(Employee employee){
+        try {
+            dataStore.remove(employee.getStaffNumber());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeEmployee(int staffNumber) {
+        try {
+            dataStore.remove(staffNumber);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Returns the list of all employees.
      *
@@ -41,6 +57,14 @@ public class EmployeeTracker {
             return dataStore.getEmployees();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public Optional<Employee> getEmployee(int employeeNumber) {
+        try {
+            return dataStore.get(employeeNumber);
+        } catch (IOException e) {
+            return Optional.empty();
         }
     }
 

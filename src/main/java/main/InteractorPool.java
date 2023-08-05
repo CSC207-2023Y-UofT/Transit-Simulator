@@ -1,6 +1,8 @@
 package main;
 
+import interactor.station.IStationInteractor;
 import interactor.station.StationInteractor;
+import interactor.train.ITrainInteractor;
 import interactor.train.TrainInteractor;
 
 /**
@@ -10,11 +12,11 @@ public class InteractorPool {
     /**
      * The station interactor.
      */
-    private final StationInteractor stationInteractor;
+    private final IStationInteractor stationInteractor;
     /**
      * The train interactor.
      */
-    private final TrainInteractor trainInteractor;
+    private final ITrainInteractor trainInteractor;
 
     /**
      * Constructs a new InteractorPool with the given station and train interactors.
@@ -22,7 +24,7 @@ public class InteractorPool {
      * @param stationInteractor The StationInteractor.
      * @param trainInteractor   The TrainInteractor.
      */
-    public InteractorPool(StationInteractor stationInteractor, TrainInteractor trainInteractor) {
+    public InteractorPool(IStationInteractor stationInteractor, ITrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
     }
@@ -31,7 +33,7 @@ public class InteractorPool {
      * Gets the station interactor.
      * @return The station interactor.
      */
-    public StationInteractor getStationInteractor() {
+    public IStationInteractor getStationInteractor() {
         return stationInteractor;
     }
 
@@ -39,7 +41,7 @@ public class InteractorPool {
      * Gets the train interactor.
      * @return The train interactor.
      */
-    public TrainInteractor getTrainInteractor() {
+    public ITrainInteractor getTrainInteractor() {
         return trainInteractor;
     }
 }

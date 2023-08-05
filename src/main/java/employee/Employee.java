@@ -1,5 +1,10 @@
 package employee;
 
+import interactor.employee.EmployeeAssignment;
+import interactor.employee.EmployeeType;
+
+import java.util.Optional;
+
 /**
  * The Employee class is an abstract class that represents an employee.
  * Each employee has a unique staff number and a payment status.
@@ -22,6 +27,8 @@ public abstract class Employee {
      * The payment status for this employee. True if the employee has been paid; otherwise false.
      */
     protected boolean isPaid = false;
+
+    private EmployeeAssignment trainAssignment = null;
 
     /**
      * Constructs a new Employee object with the given staff number.
@@ -64,4 +71,19 @@ public abstract class Employee {
         return staffNumber;
     }
 
+    public abstract EmployeeType getEmployeeType();
+
+    public Optional<EmployeeAssignment> getAssignment() {
+        return Optional.ofNullable(trainAssignment);
+    }
+
+    public void setAssignment(EmployeeAssignment trainAssignment) {
+        this.trainAssignment = trainAssignment;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Employee)) return false;
+        return ((Employee) obj).staffNumber == this.staffNumber;
+    }
 }

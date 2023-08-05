@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * The interactor for the station.
  */
-public class StationInteractor {
+public class StationInteractor implements IStationInteractor {
     /**
      * The transit model.
      */

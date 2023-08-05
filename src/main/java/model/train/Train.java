@@ -4,10 +4,7 @@ import model.*;
 import model.control.TransitModel;
 import employee.Employee;
 import model.node.Node;
-import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
-import ticket.AdultTicket;
-import ticket.Ticket;
 import util.Preconditions;
 
 import java.util.*;
@@ -92,11 +89,6 @@ public class Train {
     private TrainPosition position;
 
     /**
-     * A mapping of TrainJobs to Employees assigned to this train.
-     */
-    private final Map<TrainJob, Employee> staff = new HashMap<>();
-
-    /**
      * Creates a train associated with the given TransitTracker, positioned at the given TrainPosition, and with the given capacity.
      *
      * @param transitModel The TransitTracker that this train is associated with.
@@ -117,44 +109,6 @@ public class Train {
 
     public String getName() {
         return name;
-    }
-
-    /**
-     * Gets a mapping of TrainJobs to Employees assigned to this train.
-     *
-     * @return A map containing the TrainJobs as keys and the corresponding Employee objects as values.
-     */
-    public Map<TrainJob, Employee> getStaff() {
-        return staff;
-    }
-
-    /**
-     * Get the employee assigned to a job on this train.
-     *
-     * @param job the job to get the employee for
-     */
-    public Employee getStaff(TrainJob job) {  // This function is overloading for .getStaff()
-        return staff.get(job);
-    }
-
-    /**
-     * Assign an employee to a job on this train.
-     *
-     * @param job      the TrainJob to assign the employee to
-     * @param employee the employee to assign to the job
-     */
-    public void setStaff(TrainJob job, Employee employee) {
-        staff.put(job, employee);
-    }
-
-    /**
-     * Remove and return an employee from a job on this train.
-     *
-     * @param job the TrainJob to remove the employee from
-     * @return the employee if it was currently assigned to the TrainJob job
-     */
-    public Employee removeStaff(TrainJob job) {
-        return this.staff.remove(job);
     }
 
     /**
