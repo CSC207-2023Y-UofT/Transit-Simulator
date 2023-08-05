@@ -5,7 +5,7 @@ package model.node;
  * the creation of Nodes, allowing for different types of Nodes to be created
  * without changing the calling code.
  */
-public interface NodeFactory {
+public interface NodeFactory {  // Factory Method Design pattern used!!!
 
     /**
      * Creates a Node with the specified tracker, name, and length.
