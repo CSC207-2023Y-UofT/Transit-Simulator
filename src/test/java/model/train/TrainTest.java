@@ -146,36 +146,36 @@ public class TrainTest {
 
     @Test
     public void testSetStaff() {
-        trainForwards.setStaff(TrainJob.OPERATOR, operator);
-        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainJob.OPERATOR));
+        trainForwards.setStaff(TrainRole.OPERATOR, operator);
+        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainRole.OPERATOR));
     }
 
     @Test
     public void testGetStaffValue() {
-        trainForwards.setStaff(TrainJob.OPERATOR, operator);
-        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainJob.OPERATOR));
+        trainForwards.setStaff(TrainRole.OPERATOR, operator);
+        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainRole.OPERATOR));
         // teardown
-        trainForwards.removeStaff(TrainJob.OPERATOR);
+        trainForwards.removeStaff(TrainRole.OPERATOR);
     }
 
     @Test
     public void testRemoveStaff() {
         Map<Object, Object> emptyMap = new HashMap<>();
-        trainForwards.setStaff(TrainJob.ENGINEER, engineer);  // Method was tested above
-        Assertions.assertSame(engineer, trainForwards.removeStaff(TrainJob.ENGINEER));
-        Assertions.assertNull(trainForwards.getStaff(TrainJob.ENGINEER));
+        trainForwards.setStaff(TrainRole.ENGINEER, engineer);  // Method was tested above
+        Assertions.assertSame(engineer, trainForwards.removeStaff(TrainRole.ENGINEER));
+        Assertions.assertNull(trainForwards.getStaff(TrainRole.ENGINEER));
         // removing a non-assigned staff
-        trainForwards.removeStaff(TrainJob.OPERATOR);
-        Assertions.assertNull(trainForwards.getStaff().get(TrainJob.OPERATOR));
+        trainForwards.removeStaff(TrainRole.OPERATOR);
+        Assertions.assertNull(trainForwards.getStaff().get(TrainRole.OPERATOR));
         Assertions.assertEquals(emptyMap, trainForwards.getStaff());
     }
 
     @Test
     public void testGetStaffOverloadOneParam() {
-        trainForwards.setStaff(TrainJob.OPERATOR, operator);
-        Assertions.assertSame(operator, trainForwards.getStaff(TrainJob.OPERATOR));
+        trainForwards.setStaff(TrainRole.OPERATOR, operator);
+        Assertions.assertSame(operator, trainForwards.getStaff(TrainRole.OPERATOR));
         // teardown
-        trainForwards.removeStaff(TrainJob.OPERATOR);
+        trainForwards.removeStaff(TrainRole.OPERATOR);
     }
 
     @Test

@@ -1,7 +1,7 @@
 package interactor.train;
 
 import interactor.station.StationState;
-import model.train.TrainJob;
+import model.train.TrainRole;
 
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +10,7 @@ public class TrainState {
     private final String name;
     private final int capacity;
     private final int occupation;
-    private final Map<TrainJob, Integer> staff;
+    private final Map<TrainRole, Integer> staff;
     private final Optional<StationState> currentStation;
     private final TrainNodeDistance nextNodeDistance;
     private final TrainNodeDistance previousNodeDistance;
@@ -18,7 +18,7 @@ public class TrainState {
     public TrainState(String name,
                       int capacity,
                       int occupation,
-                      Map<TrainJob, Integer> staff,
+                      Map<TrainRole, Integer> staff,
                       StationState currentStation,
                       TrainNodeDistance nextNodeDistance,
                       TrainNodeDistance previousNodeDistance) {
@@ -43,7 +43,7 @@ public class TrainState {
         return occupation;
     }
 
-    public Map<TrainJob, Integer> getStaff() {
+    public Map<TrainRole, Integer> getStaff() {
         return staff;
     }
 

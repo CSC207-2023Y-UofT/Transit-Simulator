@@ -4,10 +4,7 @@ import model.*;
 import model.control.TransitModel;
 import employee.Employee;
 import model.node.Node;
-import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
-import ticket.AdultTicket;
-import ticket.Ticket;
 import util.Preconditions;
 
 import java.util.*;
@@ -95,7 +92,7 @@ public class Train {
     /**
      * A mapping of TrainJobs to Employees assigned to this train.
      */
-    private final Map<TrainJob, Employee> staff = new HashMap<>();
+    private final Map<TrainRole, Employee> staff = new HashMap<>();
 
     /**
      * Creates a train associated with the given TransitTracker, positioned at the given TrainPosition, and with the given capacity.
@@ -125,7 +122,7 @@ public class Train {
      *
      * @return A map containing the TrainJobs as keys and the corresponding Employee objects as values.
      */
-    public Map<TrainJob, Employee> getStaff() {
+    public Map<TrainRole, Employee> getStaff() {
         return staff;
     }
 
@@ -134,7 +131,7 @@ public class Train {
      *
      * @param job the job to get the employee for
      */
-    public Employee getStaff(TrainJob job) {  // This function is overloading for .getStaff()
+    public Employee getStaff(TrainRole job) {  // This function is overloading for .getStaff()
         return staff.get(job);
     }
 
@@ -144,7 +141,7 @@ public class Train {
      * @param job      the TrainJob to assign the employee to
      * @param employee the employee to assign to the job
      */
-    public void setStaff(TrainJob job, Employee employee) {
+    public void setStaff(TrainRole job, Employee employee) {
         staff.put(job, employee);
     }
 
@@ -154,7 +151,7 @@ public class Train {
      * @param job the TrainJob to remove the employee from
      * @return the employee if it was currently assigned to the TrainJob job
      */
-    public Employee removeStaff(TrainJob job) {
+    public Employee removeStaff(TrainRole job) {
         return this.staff.remove(job);
     }
 
