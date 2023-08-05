@@ -1,5 +1,7 @@
 package ticket;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Ticket is an abstract class that represents a general ticket.
  * Each ticket has an expiry time and abstract methods to get the type ID and price.
@@ -13,6 +15,8 @@ public abstract class Ticket {
      */
     private final long expiry;
 
+    private final int ticketId;
+
     /**
      * Constructs a new Ticket object with the given expiry time.
      *
@@ -20,6 +24,7 @@ public abstract class Ticket {
      */
     public Ticket(long expiry) {
         this.expiry = expiry;
+        ticketId = ThreadLocalRandom.current().nextInt(999999999);
     }
 
     /**
@@ -29,6 +34,13 @@ public abstract class Ticket {
      */
     public long getExpiry() {
         return expiry;
+    }
+
+    /**
+     * Returns this ticket's id.
+     */
+    public int getTicketId() {
+        return ticketId;
     }
 
     /**
@@ -46,5 +58,4 @@ public abstract class Ticket {
      * @return the price of the ticket
      */
     public abstract double getPrice();
-
 }
