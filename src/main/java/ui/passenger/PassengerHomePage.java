@@ -47,9 +47,12 @@ public class PassengerHomePage extends JPanel {
                 controller.getInteractorPool().getTrainInteractor()
         );
         mapPanel = new MapPanel(presenter);
-        mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        this.add(mapPanel);
+        JPanel topPanel = new JPanel(new GridLayout(1, 2));
+        topPanel.add(mapPanel);
+        topPanel.add(new JLabel(""));
+
+        this.add(topPanel);
 
         JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
 
