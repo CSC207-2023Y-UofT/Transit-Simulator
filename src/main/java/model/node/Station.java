@@ -12,7 +12,7 @@ public class Station extends Node {
      * Constructs a new Station object with the specified name and associates it with the given NodeTracker.
      *
      * @param tracker The NodeTracker instance to associate the station with.
-     * @param name The name of the station.
+     * @param name    The name of the station.
      */
     public Station(NodeTracker tracker, String name) {
         super(tracker, name);

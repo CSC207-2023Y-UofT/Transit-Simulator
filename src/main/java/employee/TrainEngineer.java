@@ -1,5 +1,6 @@
 package employee;
 
+import interactor.employee.EmployeeType;
 import model.train.Train;
 import java.util.Random;
 
@@ -28,6 +29,11 @@ public class TrainEngineer extends Employee {
         return 1.2 * super.getMonthlySalary();
     }
 
+    @Override
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.ENGINEER;
+    }
+
     /**
      * Sets the payment status of this TrainEngineer.
      *
@@ -46,17 +52,6 @@ public class TrainEngineer extends Employee {
     @Override
     public boolean getPaid() {
         return this.isPaid;
-    }
-
-    /**
-     * Returns the line number that this TrainEngineer is assigned to.
-     * This method requires an Admin instance to check the line assignment.
-     *
-     * @param admin The Admin instance that checks the line assignment.
-     * @return The line number that this TrainEngineer is assigned to.
-     */
-    public Integer checkTrainOperatorLine(Admin admin) {
-        return admin.checkLine(this);
     }
 
     /**

@@ -8,8 +8,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * ThankYouPage is a JPanel that displays the thank-you page.
+ * It is used by the UIController to display the thank-you page.
+ *
+ * @see UIController
+ */
 public class ThankYouPage extends JPanel {
 
+    /**
+     * Constructs a new ThankYouPage with the given UIController.
+     *
+     * @param controller the UIController that is used to control the UI
+     */
     public ThankYouPage(UIController controller) {
         super(new GridLayout(5, 1));
 

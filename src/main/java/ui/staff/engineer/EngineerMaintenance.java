@@ -11,8 +11,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * EngineerMaintenance is a JPanel that displays the maintenance status of all trains.
+ * It is used by the UIController to display the maintenance status of all trains.
+ *
+ * @see UIController
+ */
 public class EngineerMaintenance extends JPanel {
 
+    /**
+     * Constructs a new EngineerMaintenance object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public EngineerMaintenance(UIController controller) {
         super(new BorderLayout());
 

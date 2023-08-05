@@ -11,7 +11,7 @@ public class Passenger {
      * The ticket associated with the passenger.
      */
     private final Ticket ticket;
-  
+
     /**
      * The number of stations to pass before the passenger gets off.
      * Precondition: Must be non-negative.
@@ -20,6 +20,7 @@ public class Passenger {
 
     /**
      * Creates a passenger with the given number of stations to travel.
+     *
      * @return the number of stations to travel
      */
     public int getStationsToTravel() {
@@ -28,6 +29,7 @@ public class Passenger {
 
     /**
      * Sets the number of stations to travel.
+     *
      * @param stationsToTravelPast the number of stations to travel
      */
     public void setStationsToTravel(int stationsToTravelPast) {
@@ -49,6 +51,7 @@ public class Passenger {
     }
 
     // Ticket functionality of Passengers
+
     /**
      * Constructs a new Passenger object with the specified ticket.
      *

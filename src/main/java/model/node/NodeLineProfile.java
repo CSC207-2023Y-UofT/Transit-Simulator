@@ -57,6 +57,12 @@ public class NodeLineProfile {
         tracks.values().forEach(trackRepo::addTrack);  // Similar to lambda expressions
     }
 
+    /**
+     * Returns the next Node in the given direction, if it exists.
+     *
+     * @param direction the direction to check for the next Node
+     * @return an Optional containing the next Node, or empty if there is no next Node
+     */
     public Optional<Node> getNextNode(Direction direction) {
         List<TrackSegment> next = getTrack(direction).getNextTrackSegments();
         if (next.isEmpty()) return Optional.empty();

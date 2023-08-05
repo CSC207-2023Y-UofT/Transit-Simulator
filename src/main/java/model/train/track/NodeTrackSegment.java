@@ -12,6 +12,9 @@ import java.util.Optional;
  */
 public class NodeTrackSegment extends TrackSegment {
 
+    /**
+     * The Node object representing the node associated with this track segment.
+     */
     private final Node node;
 
     /**

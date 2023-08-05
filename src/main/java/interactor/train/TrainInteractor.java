@@ -7,21 +7,40 @@ import model.Direction;
 import model.control.TransitModel;
 import model.node.Node;
 import model.train.Train;
-import model.train.TrainJob;
+import model.train.TrainRole;
 
 import java.util.*;
 
-public class TrainInteractor {
+/**
+ * The interactor for the train.
+ */
+public class TrainInteractor implements ITrainInteractor {
+    /**
+     * The transit model.
+     */
     private final TransitModel model;
 
+    /**
+     * Constructs a new TrainInteractor with the given transit model.
+     * @param model The transit model.
+     */
     public TrainInteractor(TransitModel model) {
         this.model = model;
     }
 
+    /**
+     * Gets the train state for the given train name.
+     * @param trainName The train name.
+     * @return The train state.
+     */
     public TrainState getTrainState(String trainName) {
         return toState(model.getTrain(trainName));
     }
 
+    /**
+     * Gets the train states for all trains.
+     * @return The train states.
+     */
     public List<TrainState> getTrains() {
         List<TrainState> trains = new ArrayList<>();
 
@@ -32,16 +51,17 @@ public class TrainInteractor {
         return trains;
     }
 
+    /**
+     * Returns the train state for the given train.
+     * @param train The train.
+     * @return the TrainState.
+     */
     public static TrainState toState(Train train) {
 
         String name = train.getName();
         int capacity = train.getCapacity();
         int occupation = train.getPassengerList().size();
 
-        Map<TrainJob, Integer> staff = new HashMap<>();
-        for (Map.Entry<TrainJob, Employee> entry : train.getStaff().entrySet()) {
-            staff.put(entry.getKey(), entry.getValue().getStaffNumber());
-        }
 
         // Forwards
         Optional<StationState> nextNode = train.getNextNode(Direction.FORWARD)
@@ -75,7 +95,6 @@ public class TrainInteractor {
         return new TrainState(name,
                 capacity,
                 occupation,
-                staff,
                 currentStation.orElse(null),
                 nextNodeDistance,
                 previousNodeDistance);

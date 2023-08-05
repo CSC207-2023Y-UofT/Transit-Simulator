@@ -28,10 +28,10 @@ public abstract class SingletonAggregator<E extends StatEntry, A extends Singlet
     /**
      * Constructor for the SingletonAggregator class.
      *
-     * @param entryClass The class of entries that will be aggregated.
+     * @param entryClass     The class of entries that will be aggregated.
      * @param aggregateClass The class of SingletonAggregate that the entries will be aggregated into.
      * @param entryConverter A function that converts a StatEntry into a SingletonAggregate.
-     * @param aggregator A function that combines two SingletonAggregates into one.
+     * @param aggregator     A function that combines two SingletonAggregates into one.
      */
     protected SingletonAggregator(
             Class<E> entryClass,

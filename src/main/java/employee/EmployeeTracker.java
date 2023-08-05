@@ -1,5 +1,8 @@
 package employee;
 
+import employee.persistence.EmployeeDataStore;
+
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -8,18 +11,40 @@ import java.util.*;
  */
 public class EmployeeTracker {
 
-    /**
-     * The list of employees.
-     */
-    private List<Employee> employees = new ArrayList<>();
+    private final EmployeeDataStore dataStore;
+
+    public EmployeeTracker(EmployeeDataStore dataStore) {
+        this.dataStore = dataStore;
+    }
+
 
     /**
      * Adds the given Employee to the list of employees.
      *
      * @param employee The Employee object to be added.
      */
-    public void addToEmployees(Employee employee) {
-        employees.add(employee);
+    public void addEmployee(Employee employee) {
+        try {
+            dataStore.save(employee);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeEmployee(Employee employee){
+        try {
+            dataStore.remove(employee.getStaffNumber());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeEmployee(int staffNumber) {
+        try {
+            dataStore.remove(staffNumber);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -28,7 +53,19 @@ public class EmployeeTracker {
      * @return The list of all Employee objects.
      */
     public List<Employee> getEmployeeList() {
-        return employees;
+        try {
+            return dataStore.getEmployees();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Optional<Employee> getEmployee(int employeeNumber) {
+        try {
+            return dataStore.get(employeeNumber);
+        } catch (IOException e) {
+            return Optional.empty();
+        }
     }
 
 }

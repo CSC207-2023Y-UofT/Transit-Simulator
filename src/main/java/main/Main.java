@@ -1,4 +1,4 @@
-package bootstrap;
+package main;
 
 import interactor.station.StationInteractor;
 import interactor.train.TrainInteractor;
@@ -24,12 +24,17 @@ import java.nio.file.Files;
  */
 public class Main {
 
-
+    /**
+     * The main method that executes the program.
+     *
+     * @param args The command line arguments.
+     * @throws IOException If there is an error reading the model file.
+     */
     public static void main(String[] args) throws IOException {
 
-        File file = new File("model-1.json");
+        File file = new File("model-2.json");
         try (InputStream str = Main.class.getClassLoader()
-                .getResourceAsStream("Model 1.json")) {
+                .getResourceAsStream("Model 2.json")) {
             assert str != null;
             byte[] bytes = str.readAllBytes();
             Files.write(file.toPath(), bytes);

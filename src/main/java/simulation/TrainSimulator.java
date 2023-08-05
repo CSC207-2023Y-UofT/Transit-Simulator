@@ -15,10 +15,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * A class that simulates the trains in the transit system.
+ */
 public class TrainSimulator {
 
+    /**
+     * The number of ticks per second
+     */
     private final int tickSpeed;
 
+    /**
+     * Creates a new train simulator with the given tick speed.
+     * @param tickSpeed The number of ticks per second
+     */
     public TrainSimulator(int tickSpeed) {
         this.tickSpeed = tickSpeed;
     }
@@ -53,7 +63,6 @@ public class TrainSimulator {
                     mapped.addAll(loop);
 
                     loops.add(loop);
-
                 }
             }
         }
@@ -64,7 +73,7 @@ public class TrainSimulator {
             // loop will never be empty as when it is constructed
             // at least one is always added
 
-            int trainsToSpawn = loop.size() / 4;
+            int trainsToSpawn = loop.size() / 6;
             trainsToSpawn = Math.max(1, trainsToSpawn);
 
             List<TrackSegment> list = new ArrayList<>(loop);

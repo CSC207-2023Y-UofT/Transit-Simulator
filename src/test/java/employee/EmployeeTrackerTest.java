@@ -1,12 +1,10 @@
 package employee;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.util.List;
 
 
 public class EmployeeTrackerTest {
@@ -20,7 +18,7 @@ public class EmployeeTrackerTest {
 
     @BeforeEach
     public void setUp() {
-        employeeTracker = new EmployeeTracker();
+        employeeTracker = new EmployeeTracker(dataStore);
         employee1 = new TrainOperator(101);
         employee2 = new TrainEngineer(102);
         trainOperator = new TrainOperator(201);
@@ -33,9 +31,9 @@ public class EmployeeTrackerTest {
         assertTrue(employeeTracker.getEmployeeList().isEmpty());
 
         // Add employees to the tracker
-        employeeTracker.addToEmployees(employee1);
-        employeeTracker.addToEmployees(employee2);
-        employeeTracker.addToEmployees(trainOperator);
+        employeeTracker.addEmployee(employee1);
+        employeeTracker.addEmployee(employee2);
+        employeeTracker.addEmployee(trainOperator);
 
         assertEquals(3, employeeTracker.getEmployeeList().size());
         assertTrue(employeeTracker.getEmployeeList().contains(employee1));
@@ -49,9 +47,9 @@ public class EmployeeTrackerTest {
         assertTrue(employeeTracker.getEmployeeList().isEmpty());
 
         // Add employees to the tracker
-        employeeTracker.addToEmployees(employee1);
-        employeeTracker.addToEmployees(employee2);
-        employeeTracker.addToEmployees(trainOperator);
+        employeeTracker.addEmployee(employee1);
+        employeeTracker.addEmployee(employee2);
+        employeeTracker.addEmployee(trainOperator);
 
         // Verify the list of employees
         assertEquals(3, employeeTracker.getEmployeeList().size());
@@ -60,7 +58,7 @@ public class EmployeeTrackerTest {
         assertTrue(employeeTracker.getEmployeeList().contains(trainOperator));
 
         // Add more employees to the tracker
-        employeeTracker.addToEmployees(trainEngineer);
+        employeeTracker.addEmployee(trainEngineer);
 
         // Verify the updated list of employees
         assertEquals(4, employeeTracker.getEmployeeList().size());

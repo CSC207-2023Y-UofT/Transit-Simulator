@@ -20,17 +20,17 @@ public class ChildTicket extends AbstractNormalTicket {
      * This is a constant value representing 1 day (24 hours).
      */
     public static final long TICKET_LIFETIME = 1000 * 60 * 60 * 24L;
-    public static double PRICE = 2.40;
+
+    /**
+     * The price of the ChildTicket.
+     */
+    public static final double PRICE = 2.40;
 
     /**
      * Constructs a new ChildTicket object with the predetermined type, price and ticket lifetime.
      */
     public ChildTicket() {
         super("Child", PRICE, TICKET_LIFETIME);
-    }
-
-    public void updatePrice(double price){
-        ChildTicket.PRICE = price;
     }
 
 }

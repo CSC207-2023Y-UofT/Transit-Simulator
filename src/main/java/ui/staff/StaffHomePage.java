@@ -7,7 +7,17 @@ import ui.round.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * StaffHomePage is a JPanel that displays the home page of a staff member.
+ * It is used by the UIController to display the home page of a staff member.
+ *
+ * @see UIController
+ */
 public class StaffHomePage extends JPanel {
+    /**
+     * Constructs a new StaffHomePage object.
+     * @param controller the controller used to switch panels
+     */
     public StaffHomePage(UIController controller) {
         super(new GridLayout(0, 3));
 
