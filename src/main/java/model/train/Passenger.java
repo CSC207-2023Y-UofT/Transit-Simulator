@@ -44,7 +44,7 @@ public class Passenger {
     /**
      * @return true if the passenger will alight at the next station
      */
-    public boolean willAlight() {
+    public boolean shouldAlight() {
         return stationsToTravelPast <= 0; // <= for safety
     }
 

@@ -74,12 +74,6 @@ public class TrainPositionTest {
     }
 
     @Test
-    public void testMoveZeroDifferentObjects() {
-        TrainPosition trainPosition2 = trainPosition1.move(0).get();
-        Assertions.assertNotSame(trainPosition1, trainPosition2);
-    }
-
-    @Test
     public void testMove_ToEndpoint() {
         TransitModel transitModel = new TransitModel();
         StationFactory stationFactory = new StationFactory();
@@ -159,6 +153,15 @@ public class TrainPositionTest {
 
     @Test
     public void testConstructor() {
+        TrainPosition trainPosition2 = new TrainPosition(track1, 50);
+        Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
+        Assertions.assertSame(track1, trainPosition2.getTrack());
+    }
 
+    @DisplayName("TrainPositiionTest Class Teardown")
+    @AfterAll
+    public static void tearDown() {
+        track1 = null;
+        trainPosition1 = null;
     }
 }

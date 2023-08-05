@@ -12,7 +12,7 @@ import java.util.*;
  * A controller for the stat data stores. It handles the seamless
  * recording, retrieval, and aggregation of stat entries and aggregates.
  */
-public class StatDataController {
+public class StatDataController {  // Façade design pattern used!!!
 
     /**
      * DataStore used to persist StatEntry objects.

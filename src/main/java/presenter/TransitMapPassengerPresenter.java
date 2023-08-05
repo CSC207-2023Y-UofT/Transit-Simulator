@@ -2,6 +2,7 @@ package presenter;
 
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
+import interactor.train.TrainInteractor;
 import model.Direction;
 
 import java.util.HashMap;
@@ -13,8 +14,9 @@ public class TransitMapPassengerPresenter extends TransitMapPresenter {
     private StationState selectedStation = null;
     private Map<Integer, Map<Direction, Long>> arrivalDelays = null;
 
-    public TransitMapPassengerPresenter(StationInteractor stationInteractor) {
-        super(stationInteractor);
+    public TransitMapPassengerPresenter(StationInteractor stationInteractor,
+                                        TrainInteractor trainInteractor) {
+        super(stationInteractor, trainInteractor);
     }
 
     public StationState getSelectedStation() {

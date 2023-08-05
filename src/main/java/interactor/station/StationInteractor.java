@@ -75,7 +75,7 @@ public class StationInteractor {
         return Optional.of(arrival.getDelay());
     }
 
-    private StationState toState(Node node) {
+    public static StationState toState(Node node) {
         List<Integer> lineProfiles = new ArrayList<>();
         for (NodeLineProfile profile : node.getLineProfiles()) {
             lineProfiles.add(profile.getLineNumber());
