@@ -37,5 +37,8 @@ public class MapPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         presenter.present((Graphics2D) g, getWidth(), getHeight());
+        if (this.getParent() != null) {
+            repaint(10);
+        }
     }
 }

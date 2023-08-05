@@ -70,7 +70,7 @@ public class TransitMapPresenter {
                 int nextX = (int) (nextStation.getX() * scaleX);
                 int nextY = (int) (nextStation.getY() * scaleY);
 
-                graphics.setColor(lineColours.get(line));
+                graphics.setColor(lineColours.get(line - 1));
                 Stroke stroke = graphics.getStroke();
                 graphics.setStroke(new BasicStroke(7, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
                 graphics.drawLine(x, y, nextX, nextY);
@@ -129,6 +129,10 @@ public class TransitMapPresenter {
                 // Draw a little border
                 graphics.setColor(Color.BLACK);
                 graphics.drawOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+
+                // Draw the train's name
+                graphics.setFont(new Font("Serif", Font.PLAIN, 12));
+                graphics.drawString(train.getName(), (int) stationX + 5, (int) stationY - 5);
 
                 continue;
             }
