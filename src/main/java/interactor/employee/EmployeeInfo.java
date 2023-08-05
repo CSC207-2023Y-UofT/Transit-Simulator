@@ -31,7 +31,7 @@ public class EmployeeInfo {
      * @param trainName   The name of the train they are working on
      * @param assignment  The assignment of the employee, if any
      */
-    public EmployeeInfo(int staffNumber, EmployeeType type, TrainRole job, String trainName, EmployeeAssignment assignment) {
+    public EmployeeInfo(int staffNumber, EmployeeType type, EmployeeAssignment assignment) {
         this.staffNumber = staffNumber;
         this.type = type;
         this.assignment = assignment;

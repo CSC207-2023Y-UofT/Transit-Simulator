@@ -3,7 +3,8 @@ package interactor.employee;
 import employee.*;
 import model.control.TransitModel;
 import model.train.Train;
-import model.train.TrainJob;
+import model.train.TrainRole;
+import model.train.TrainRole;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class EmployeeInteractor implements EmployeeInputBoundary {
+public class EmployeeInteractor implements IEmployeeInteractor {
     private final EmployeeTracker tracker;
     private final TransitModel model;
 
@@ -65,7 +66,7 @@ public class EmployeeInteractor implements EmployeeInputBoundary {
     }
 
     @Override
-    public boolean assignJob(int staffNumber, String trainName, TrainJob job) {
+    public boolean assignJob(int staffNumber, String trainName, TrainRole job) {
         List<Employee> Emplst = tracker.getEmployeeList();
         for(Employee emp: Emplst) {
             if (emp.getStaffNumber() == staffNumber) {
@@ -84,8 +85,8 @@ public class EmployeeInteractor implements EmployeeInputBoundary {
                 .orElse(null);
         if (employee == null) return false;
         for (Train train : model.getTrainList()) {
-            Map<TrainJob, Employee> employeeMap = new HashMap<>(train.getStaff());
-            for (Map.Entry<TrainJob, Employee> entry : employeeMap.entrySet()) {
+            Map<TrainRole, Employee> employeeMap = new HashMap<>(train.getStaff());
+            for (Map.Entry<TrainRole, Employee> entry : employeeMap.entrySet()) {
                 if (entry.getValue().equals(employee)) {
                     train.removeStaff(entry.getKey());
                     return true;

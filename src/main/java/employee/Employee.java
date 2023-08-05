@@ -1,5 +1,6 @@
 package employee;
 
+import interactor.employee.EmployeeAssignment;
 import interactor.employee.EmployeeType;
 
 /**
@@ -24,6 +25,8 @@ public abstract class Employee {
      * The payment status for this employee. True if the employee has been paid; otherwise false.
      */
     protected boolean isPaid = false;
+
+    private EmployeeAssignment trainAssignment = null;
 
     /**
      * Constructs a new Employee object with the given staff number.
@@ -67,6 +70,14 @@ public abstract class Employee {
     }
 
     public abstract EmployeeType getEmployeeType();
+
+    public EmployeeAssignment getAssignment() {
+        return trainAssignment;
+    }
+
+    public void setAssignment(EmployeeAssignment trainAssignment) {
+        this.trainAssignment = trainAssignment;
+    }
 
     @Override
     public boolean equals(Object obj) {
