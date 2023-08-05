@@ -13,10 +13,6 @@ public class EmployeeInfo {
      */
     private final int staffNumber;
     /**
-     * The name of the employee
-     */
-    private final String name;
-    /**
      * The type of the employee
      */
     private final EmployeeType type;
@@ -30,15 +26,13 @@ public class EmployeeInfo {
      * Create a new EmployeeInfo object
      *
      * @param staffNumber The staff number of the employee
-     * @param name        The name of the employee
      * @param type        The type of the employee
      * @param job         The job of the employee
      * @param trainName   The name of the train they are working on
-     * @param assignment
+     * @param assignment  The assignment of the employee, if any
      */
-    public EmployeeInfo(int staffNumber, String name, EmployeeType type, TrainRole job, String trainName, EmployeeAssignment assignment) {
+    public EmployeeInfo(int staffNumber, EmployeeType type, TrainRole job, String trainName, EmployeeAssignment assignment) {
         this.staffNumber = staffNumber;
-        this.name = name;
         this.type = type;
         this.assignment = assignment;
     }
@@ -48,13 +42,6 @@ public class EmployeeInfo {
      */
     public int getStaffNumber() {
         return staffNumber;
-    }
-
-    /**
-     * Get the name of the employee
-     */
-    public String getName() {
-        return name;
     }
 
     /**
