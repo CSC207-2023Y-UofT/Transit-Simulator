@@ -185,8 +185,8 @@ public class JsonModelDataStore implements ModelDataStore {
         n1Dir1.linkForward(dir1);
         dir1.linkForward(n2Dir1);
 
-        n2Dir2.linkBackward(dir2);
-        dir2.linkBackward(n1Dir2);
+        n1Dir2.linkBackward(dir2);
+        dir2.linkBackward(n2Dir2);
 
     }
 

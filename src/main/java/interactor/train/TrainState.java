@@ -1,5 +1,6 @@
 package interactor.train;
 
+import interactor.station.StationState;
 import model.train.TrainJob;
 
 import java.util.Map;
@@ -10,14 +11,24 @@ public class TrainState {
     private final int capacity;
     private final int occupation;
     private final Map<TrainJob, Integer> staff;
-    private final Optional<String> nextNode;
+    private final Optional<StationState> currentStation;
+    private final TrainNodeDistance nextNodeDistance;
+    private final TrainNodeDistance previousNodeDistance;
 
-    public TrainState(String name, int capacity, int occupation, Map<TrainJob, Integer> staff, Optional<String> nextNode) {
+    public TrainState(String name,
+                      int capacity,
+                      int occupation,
+                      Map<TrainJob, Integer> staff,
+                      StationState currentStation,
+                      TrainNodeDistance nextNodeDistance,
+                      TrainNodeDistance previousNodeDistance) {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
         this.staff = staff;
-        this.nextNode = nextNode;
+        this.currentStation = Optional.ofNullable(currentStation);
+        this.nextNodeDistance = nextNodeDistance;
+        this.previousNodeDistance = previousNodeDistance;
     }
 
     public String getName() {
@@ -36,7 +47,15 @@ public class TrainState {
         return staff;
     }
 
-    public Optional<String> getNextNode() {
-        return nextNode;
+    public Optional<StationState> getCurrentStation() {
+        return currentStation;
+    }
+
+    public Optional<TrainNodeDistance> getNextNodeDistance() {
+        return Optional.ofNullable(nextNodeDistance);
+    }
+
+    public Optional<TrainNodeDistance> getPreviousNodeDistance() {
+        return Optional.ofNullable(previousNodeDistance);
     }
 }
