@@ -1,6 +1,5 @@
 package ui.staff.admin;
 
-// TODO javadocs needed
 import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
@@ -12,8 +11,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Management is a JPanel that displays the management page.
+ * It is used by the UIController to display the management page.
+ *
+ * @see UIController
+ */
 public class Management extends JPanel {
 
+    /**
+     * Constructs a new Management object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public Management(UIController controller) {
         super(new BorderLayout());
 
