@@ -73,7 +73,7 @@ public class TrainSimulator {
             // loop will never be empty as when it is constructed
             // at least one is always added
 
-            int trainsToSpawn = loop.size() / 4;
+            int trainsToSpawn = loop.size() / 6;
             trainsToSpawn = Math.max(1, trainsToSpawn);
 
             List<TrackSegment> list = new ArrayList<>(loop);
