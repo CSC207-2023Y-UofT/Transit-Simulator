@@ -1,6 +1,7 @@
 package model.train.track;
 
 import model.Direction;
+import model.node.Node;
 import model.train.TrackRepo;
 import model.train.Train;
 import util.Preconditions;
@@ -8,6 +9,7 @@ import util.Preconditions;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The TrackSegment class represents a segment of a track in a track system.
@@ -17,7 +19,7 @@ import java.util.List;
 public class TrackSegment {
     private final String id;
     private final TrackRepo repo;
-    private final int length;
+    private final double length;
 
     private TrackSegment next = null;
     private TrackSegment prev = null;
@@ -30,7 +32,7 @@ public class TrackSegment {
      * @param id The unique identifier for the track segment.
      * @param length The length of the track segment in meters.
      */
-    public TrackSegment(TrackRepo repo, String id, int length) {
+    public TrackSegment(TrackRepo repo, String id, double length) {
         this.repo = repo;
         this.id = id;
         this.length = length;
@@ -50,7 +52,7 @@ public class TrackSegment {
      *
      * @return The length of the track segment in meters.
      */
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
@@ -61,6 +63,10 @@ public class TrackSegment {
      */
     public String getId() {
         return id;
+    }
+
+    public Optional<Node> getNode() {
+        return Optional.empty();
     }
 
     /**
@@ -107,6 +113,14 @@ public class TrackSegment {
      */
     public void linkBackward(TrackSegment prev) {
         TrackSegment.link(prev, this);
+    }
+
+    /**
+     * Gets all the next track segments in the FORWARD direction.
+     * @see TrackSegment#getNextTrackSegments(Direction)
+     */
+    public List<TrackSegment> getNextTrackSegments() {
+        return getNextTrackSegments(Direction.FORWARD);
     }
 
     /**

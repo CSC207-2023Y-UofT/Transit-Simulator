@@ -56,13 +56,14 @@ public class TrainPosition {
 
 
     /**
-     * Creates a new TrainPosition with an offset from the current position.
+     * Creates a new TrainPosition with an offset from the beginning of the track.
      *
      * @param offset The offset to be added to the current position.
      * @return A new TrainPosition with the specified offset.
      * @throws IllegalArgumentException if the resulting position would be outside the valid range [0, track.getLength()].
      */
     public TrainPosition withOffset(double offset) {
+
         Preconditions.checkArgument(
                 offset >= 0 && offset <= track.getLength(),
                 "Offset must be between 0 and the track's length"
