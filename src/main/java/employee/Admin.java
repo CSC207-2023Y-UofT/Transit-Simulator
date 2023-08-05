@@ -1,5 +1,8 @@
 package employee;
 
+import model.train.Train;
+import model.train.TrainJob;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +14,6 @@ import java.util.Map;
  * The Admin employee earns four times the base monthly salary of a standard Employee.
  */
 public class Admin extends Employee {
-
-    /**
-     * A mapping of line numbers to the list of Employees assigned to each line.
-     */
-    private Map<Integer, List<Employee>> lineToStaff = new HashMap<>();
 
     /**
      * Constructs a new Admin object with the given employee number.
@@ -63,61 +61,5 @@ public class Admin extends Employee {
      */
     public void payEmployee(Employee employee) {
         employee.setPaid(true);
-    }
-
-    /**
-     * Assigns the specified employee to the specified line.
-     *
-     * @param line     The line number to which the employee is to be assigned.
-     * @param employee The Employee to be assigned.
-     */
-    public void addEmployeeToLine(Integer line, Employee employee) {
-        List<Employee> curr = lineToStaff.computeIfAbsent(line, ArrayList::new);
-        curr.add(employee);
-    }
-
-    /**
-     * Returns the line number to which the specified employee is assigned, or null if the employee is not assigned.
-     *
-     * @param employee The Employee whose assignment is to be checked.
-     * @param employee is an Employee
-     * @return The line number to which the employee is assigned, or null if the employee is not assigned.
-     * returns the line that the employee is assigned to
-     * @return line which is an Integer
-     */
-    public Integer checkLine(Employee employee) {
-        for (Integer key : lineToStaff.keySet()) {
-            if (lineToStaff.get(key).contains(employee)) {
-                return key;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Returns the list of Employees assigned to the specified line.
-     * @param line The line number whose assigned employees are to be returned.
-     * @return The list of Employees assigned to the specified line.
-     */
-    public List<Employee> getEmployeeOnLine(Integer line) {
-        return lineToStaff.get(line);
-    }
-
-
-    /**
-     * returns lineToStaff which is a HashMap of Lines to List of Employees
-     *
-     * @return a HashMap of Lines to List of Employees
-     */
-    public Map<Integer, List<Employee>> getLineToStaff() {
-        return lineToStaff;
-    }
-
-    /**
-     * removes all Employees from the lineToStaff HashMap
-     */
-    public void clearLineToStaff() {
-        lineToStaff.clear();
-
     }
 }
