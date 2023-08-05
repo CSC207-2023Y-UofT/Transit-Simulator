@@ -10,7 +10,7 @@ import model.train.TrainRole;
 
 import java.util.*;
 
-public class TrainInteractor {
+public class TrainInteractor implements TrainInputBoundary {
     private final TransitModel model;
 
     public TrainInteractor(TransitModel model) {
