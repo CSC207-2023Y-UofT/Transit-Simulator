@@ -8,8 +8,7 @@ This program is:
 - A group project for CSC207 in Summer 2023.
 - Made with Java.
 - A demonstration of Clean Architecture and design patterns in programming.
-
-This program is licensed under the terms of the MIT license.
+- Licensed under the terms of the MIT license.
 
 ## Examples ##
 
