@@ -3,6 +3,8 @@ package employee;
 import interactor.employee.EmployeeAssignment;
 import interactor.employee.EmployeeType;
 
+import java.util.Optional;
+
 /**
  * The Employee class is an abstract class that represents an employee.
  * Each employee has a unique staff number and a payment status.
@@ -71,8 +73,8 @@ public abstract class Employee {
 
     public abstract EmployeeType getEmployeeType();
 
-    public EmployeeAssignment getAssignment() {
-        return trainAssignment;
+    public Optional<EmployeeAssignment> getAssignment() {
+        return Optional.ofNullable(trainAssignment);
     }
 
     public void setAssignment(EmployeeAssignment trainAssignment) {

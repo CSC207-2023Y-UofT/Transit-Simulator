@@ -2,6 +2,7 @@ package interactor.employee;
 
 import model.train.TrainRole;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -39,8 +40,10 @@ public interface IEmployeeInteractor {
      * @param trainName The name of the train.
      * @param job The job to assign.
      * @return True if the job was assigned successfully, false if the employee does not exist or the job is already assigned.
+     * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.
+     * @throws IllegalStateException If there is already an employee assigned to the job on that train.
      */
-    boolean assignJob(int staffNumber, String trainName, TrainRole job);
+    void assignJob(int staffNumber, String trainName, TrainRole job);
 
     /**
      * Unassign a job from an employee.
@@ -48,5 +51,7 @@ public interface IEmployeeInteractor {
      * @return True if the job was unassigned successfully, false if the employee does not exist or the job is not assigned.
      */
     boolean unassign(int staffNumber);
+
+    List<EmployeeInfo> getAssignedEmployees(String trainName);
 
 }

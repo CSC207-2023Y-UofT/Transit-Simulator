@@ -32,8 +32,16 @@ public class EmployeeTracker {
     }
 
     public void removeEmployee(Employee employee){
-        try{
+        try {
             dataStore.remove(employee.getStaffNumber());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeEmployee(int staffNumber) {
+        try {
+            dataStore.remove(staffNumber);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
