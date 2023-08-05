@@ -16,11 +16,11 @@ public class TransitMapPresenter {
     /**
      * The size of the map width in metres.
      */
-    public static final double MAP_SIZE_X = 4500.0;
+    public static final double MAP_SIZE_X = 6100.0;
     /**
      * The size of the map height in metres.
      */
-    public static final double MAP_SIZE_Y = 3750.0;
+    public static final double MAP_SIZE_Y = 4250.0;
     /**
      * The size of the station icons in pickles (pixels).
      */
