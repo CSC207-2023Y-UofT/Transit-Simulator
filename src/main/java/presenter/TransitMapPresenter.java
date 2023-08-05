@@ -87,7 +87,7 @@ public class TransitMapPresenter {
         lineColours.add(Color.CYAN.darker());
 
         // Background
-        graphics.setColor(Color.LIGHT_GRAY.brighter());
+        graphics.setColor(new Color(200, 180, 180));
         graphics.fillRect(0, 0, width, height);
 
         double scaleX = width / MAP_SIZE_X;
