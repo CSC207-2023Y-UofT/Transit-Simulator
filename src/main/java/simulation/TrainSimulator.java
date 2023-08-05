@@ -72,7 +72,7 @@ public class TrainSimulator {
             for (int i = 0; i < trainsToSpawn; i++) {
                 int index = (int) (Math.random() * list.size());
                 TrackSegment segment = list.get(index);
-                if (!segment.isEmpty()) return;
+                if (!segment.isEmpty()) continue;
                 model.createTrain(segment, "Train " + trainNum++, Train.DEFAULT_CAPACITY);
             }
         }
