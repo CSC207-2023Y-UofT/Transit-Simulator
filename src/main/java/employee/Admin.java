@@ -1,5 +1,8 @@
 package employee;
 
+import model.train.Train;
+import model.train.TrainJob;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,6 +114,21 @@ public class Admin extends Employee {
      */
     public Map<Integer, List<Employee>> getLineToStaff() {
         return lineToStaff;
+    }
+
+    /**
+     * adds an Employee to a Train. should only pass TrainOperator or TrainEngineer
+     * @param train is a train object
+     * @param employee is an employee object
+     */
+    public void addEmployeeToTrain(Train train, Employee employee) {
+
+        if (employee instanceof TrainOperator) {
+            train.setStaff(TrainJob.OPERATOR, employee);
+        }
+        else {
+            train.setStaff(TrainJob.ENGINEER, employee);
+        }
     }
 
     /**
