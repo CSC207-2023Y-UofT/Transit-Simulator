@@ -1,4 +1,4 @@
-package presenter;
+package simulation;
 
 import model.control.TransitModel;
 
