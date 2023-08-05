@@ -9,7 +9,7 @@ This program is :
 - Coded mostly in Java.
 - A demonstration of clean architecture and design patterns in programming.
 
-This program is licensed under the terms of the MIT license
+This program is licensed under the terms of the MIT license.
 
 ## Examples ##
 
@@ -27,7 +27,7 @@ tickets on a given day, model capacities during specific times, analytics, etc.
 - To modify the ticket price: Go to ticket file, locate the ticket class corresponding to the ticket to be modified. Modify the "price" in the class constructor to change the price.
 
 ## Java SDK Version ##
-- Amazon Curretto Version 11.0.19
+- Amazon Corretto Version 11.0.19
 ## Credits ##
 
 Group name: ~~Kotlin Koding Klub~~ The BBC
