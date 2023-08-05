@@ -12,7 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 
 // This class is simply a data class, so there is little to test.
-public class TrainNodeDistanceTest {
+public class TrainArrivalTest {
     public static TransitModel transitModel;
     public static StationFactory stationFactory;
     public static Node station1;
