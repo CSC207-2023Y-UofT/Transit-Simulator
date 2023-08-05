@@ -2,6 +2,9 @@ package presenter;
 
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
+import interactor.train.TrainInteractor;
+import interactor.train.TrainNodeDistance;
+import interactor.train.TrainState;
 import model.Direction;
 
 import java.awt.*;
@@ -11,27 +14,33 @@ import java.util.Optional;
 
 public class TransitMapPresenter {
 
-    public static final double MAP_SIZE_X = 4000.0;
-    public static final double MAP_SIZE_Y = 4000.0;
+    public static final double MAP_SIZE_X = 4500.0;
+    public static final double MAP_SIZE_Y = 3750.0;
 
-    private static final int STATION_ICON_SIZE = 8;
+    private static final int STATION_ICON_SIZE = 10;
 
     protected final StationInteractor stationInteractor;
+    private final TrainInteractor trainInteractor;
 
     protected List<StationState> stations = new ArrayList<>();
+    protected List<TrainState> trains = new ArrayList<>();
 
     private StationState highlightedStation = null;
 
     private int width = 1;
     private int height = 1;
 
-    public TransitMapPresenter(StationInteractor stationInteractor) {
+    public TransitMapPresenter(StationInteractor stationInteractor,
+                               TrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
+        this.trainInteractor = trainInteractor;
     }
 
     public void present(Graphics2D graphics, int width, int height) {
 
         this.stations = stationInteractor.getStations();
+        this.trains = trainInteractor.getTrains();
+
         this.width = width;
         this.height = height;
 
@@ -61,9 +70,11 @@ public class TransitMapPresenter {
                 int nextX = (int) (nextStation.getX() * scaleX);
                 int nextY = (int) (nextStation.getY() * scaleY);
 
-                graphics.setColor(lineColours.get(line));
-                graphics.setStroke(new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                graphics.setColor(lineColours.get(line - 1));
+                Stroke stroke = graphics.getStroke();
+                graphics.setStroke(new BasicStroke(7, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
                 graphics.drawLine(x, y, nextX, nextY);
+                graphics.setStroke(stroke);
 
                 graphics.setColor(Color.BLACK);
             }
@@ -94,8 +105,77 @@ public class TransitMapPresenter {
                     STATION_ICON_SIZE * 2);
 
             // Draw their name to the upper-right
-            graphics.setFont(new Font("Arial", Font.BOLD, 12));
+            graphics.setFont(new Font("Serif", Font.BOLD, 12));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE, y - STATION_ICON_SIZE);
+        }
+
+        // Draw trains
+        for (TrainState train : trains) {
+
+            if (train.getCurrentStation().isPresent()) {
+
+                // At a station,
+                // draw the train at the station
+                StationState station = train.getCurrentStation().get();
+                double stationX = station.getX();
+                double stationY = station.getY();
+
+                stationX *= scaleX;
+                stationY *= scaleY;
+
+                graphics.setColor(Color.RED);
+                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+
+                // Draw a little border
+                graphics.setColor(Color.BLACK);
+                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+
+                // Draw the train's name
+                graphics.setFont(new Font("Serif", Font.PLAIN, 12));
+                graphics.drawString(train.getName(), (int) stationX + 5, (int) stationY - 5);
+
+                continue;
+            }
+
+            TrainNodeDistance nextDistance = train.getNextNodeDistance().orElse(null);
+            if (nextDistance == null) continue;
+
+            TrainNodeDistance prevDistance = train.getPreviousNodeDistance().orElse(null);
+            if (prevDistance == null) continue;
+
+            double nextXO = nextDistance.getStation().getX();
+            double nextYO = nextDistance.getStation().getY();
+
+            double prevXO = prevDistance.getStation().getX();
+            double prevYO = prevDistance.getStation().getY();
+
+            double dx = nextXO - prevXO;
+            double dy = nextYO - prevYO;
+
+            // Normalize
+            double length = Math.sqrt(dx * dx + dy * dy);
+            if (length == 0.0) continue;
+
+            dx /= length;
+            dy /= length;
+
+            double trainX = prevXO + dx * prevDistance.getDistance();
+            double trainY = prevYO + dy * prevDistance.getDistance();
+
+            trainX *= scaleX;
+            trainY *= scaleY;
+
+            // Draw the train as a small red circle
+            graphics.setColor(Color.RED);
+            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 6, 6);
+
+            // Draw a little border
+            graphics.setColor(Color.BLACK);
+            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 6, 6);
+
+            // Train's name
+            graphics.setFont(new Font("Serif", Font.PLAIN, 10));
+            graphics.drawString(train.getName(), (int) trainX + 6, (int) trainY - 6);
         }
     }
 
@@ -134,5 +214,6 @@ public class TransitMapPresenter {
         onClickStation(station);
     }
 
-    protected void onClickStation(StationState station) {}
+    protected void onClickStation(StationState station) {
+    }
 }

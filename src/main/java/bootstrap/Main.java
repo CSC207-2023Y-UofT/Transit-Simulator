@@ -5,6 +5,7 @@ import interactor.train.TrainInteractor;
 import model.persistence.JsonModelDataStore;
 
 import model.control.*;
+import simulation.Simulation;
 import ui.UIController;
 import ui.WelcomePage;
 
@@ -49,6 +50,9 @@ public class Main {
         // Create the ui controller
         UIController controller = new UIController(pool);
         controller.open(new WelcomePage(controller));
+
+        // Start the simulation
+        new Simulation(model).start();
     }
 }
 

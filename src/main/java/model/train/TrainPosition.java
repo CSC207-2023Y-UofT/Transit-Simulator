@@ -126,12 +126,15 @@ public class TrainPosition {
 
         Direction direction = amount < 0.0 ? Direction.BACKWARD : Direction.FORWARD;
 
-        double target = positionOnTrack + amount;
+
+        double movement = amount;
+        double relativeTarget = positionOnTrack + movement;
+
         TrainPosition currPosition = this;
 
         // While the target is not within the bounds of
         // the current track, change which track we are on
-        while (!(target >= 0) || !(target < currPosition.getTrack().getLength())) {
+        while (!(relativeTarget >= 0) || !(relativeTarget < currPosition.getTrack().getLength())) {
 
             TrackSegment next = currPosition.getTrack().getNext(direction);
 
@@ -145,12 +148,13 @@ public class TrainPosition {
 
             double nextTrackOffset = currPosition.trackEndOffset(direction);
 
-            target -= nextTrackOffset;
-
             currPosition = TrainPosition.entryPoint(next, direction);
+
+            movement -= nextTrackOffset;
+            relativeTarget = currPosition.positionOnTrack + movement;
         }
 
-        return Optional.of(currPosition.withOffset(target));
+        return Optional.of(currPosition.withOffset(relativeTarget));
     }
 
     /**

@@ -17,7 +17,7 @@ public class PassengerHomePage extends JPanel {
     private MapPanel mapPanel;
 
     public PassengerHomePage(UIController controller) {
-        super(new GridLayout(0, 1));
+        super(new BorderLayout(0, 1));
 
         this.controller = controller;
 
@@ -43,17 +43,19 @@ public class PassengerHomePage extends JPanel {
 
         // Map
         TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(
-                controller.getInteractorPool().getStationInteractor()
+                controller.getInteractorPool().getStationInteractor(),
+                controller.getInteractorPool().getTrainInteractor()
         );
         mapPanel = new MapPanel(presenter);
-        mapPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.add(mapPanel);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(3, 3));
+        JPanel topPanel = new JPanel(new GridLayout(1, 2));
+        topPanel.add(mapPanel);
+        topPanel.add(new JLabel(""));
 
-        for (int i = 0; i < 6; i++) {
-            bottomPanel.add(new JLabel(""));
-        }
+        this.add(topPanel);
+
+        JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
+
         bottomPanel.add(backButton, BorderLayout.WEST);
         bottomPanel.add(new JLabel(""));
         bottomPanel.add(buyButton);

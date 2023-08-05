@@ -27,4 +27,7 @@ public interface TrainTracker {
     List<Train> getTrainList();
 
     Train getTrain(String name);
+
+    void removeTrain(String name);
+    void clearTrains();
 }

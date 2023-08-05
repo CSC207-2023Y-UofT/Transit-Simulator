@@ -35,9 +35,9 @@ public class PassengerTest {
 
     @Test
     public void testWillAlight() {
-        Assertions.assertFalse(passenger.willAlight());
+        Assertions.assertFalse(passenger.shouldAlight());
         passenger.setStationsToTravel(0);
-        Assertions.assertTrue(passenger.willAlight());
+        Assertions.assertTrue(passenger.shouldAlight());
     }
 
     @Test
