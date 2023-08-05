@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * Input boundary for the employee management use case.
  */
-public interface EmployeeInputBoundary {
+public interface IEmployeeInteractor {
 
     /**
      * Register a new employee.
