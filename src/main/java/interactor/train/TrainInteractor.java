@@ -43,7 +43,13 @@ public class TrainInteractor {
 
         Optional<String> nextNode = train.getNextNode(Direction.FORWARD)
                 .map(Node::getName);
+        Optional<Double> distanceToNextNode = train.getDistanceToNextNode(Direction.FORWARD);
 
-        return new TrainState(name, capacity, occupation, staff, nextNode);
+        return new TrainState(name,
+                capacity,
+                occupation,
+                staff,
+                nextNode.orElse(null),
+                distanceToNextNode.orElse(null));
     }
 }

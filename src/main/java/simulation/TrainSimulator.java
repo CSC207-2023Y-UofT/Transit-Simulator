@@ -23,6 +23,11 @@ public class TrainSimulator {
         this.tickSpeed = tickSpeed;
     }
 
+    /**
+     * Clears the trains in the model provided and creates new trains randomly on
+     * each track loop.
+     * @param model The model to create work on
+     */
     public void recreateTrains(TransitModel model) {
         model.clearTrains();
 

@@ -22,7 +22,28 @@ public class Simulation {
     public Simulation(TransitModel model) {
         this.model = model;
         this.trainSimulator = new TrainSimulator(TICK_SPEED);
-//        createTrains();
+    }
+
+    @SuppressWarnings({"BusyWait", "InfiniteLoopStatement"})
+    public void start() {
+        this.trainSimulator.recreateTrains(model);
+
+        long msPerTick = 1000 / TICK_SPEED;
+
+        while (true) {
+            long ms = System.currentTimeMillis();
+
+            tick();
+
+            long delta = System.currentTimeMillis() - ms;
+            long sleepTime = msPerTick - delta;
+            if (sleepTime <= 0) continue;
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
