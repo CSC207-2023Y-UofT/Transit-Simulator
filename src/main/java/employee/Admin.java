@@ -1,5 +1,6 @@
 package employee;
 
+import interactor.employee.EmployeeType;
 import model.train.Train;
 import model.train.TrainRole;
 
@@ -32,6 +33,11 @@ public class Admin extends Employee {
     @Override
     public double getMonthlySalary() {
         return 4 * super.getMonthlySalary();
+    }
+
+    @Override
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.ADMINISTRATOR;
     }
 
     /**
