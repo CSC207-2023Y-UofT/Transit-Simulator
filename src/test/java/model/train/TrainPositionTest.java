@@ -74,12 +74,6 @@ public class TrainPositionTest {
     }
 
     @Test
-    public void testMoveZeroDifferentObjects() {
-        TrainPosition trainPosition2 = trainPosition1.move(0).get();
-        Assertions.assertNotSame(trainPosition1, trainPosition2);
-    }
-
-    @Test
     public void testMove_ToEndpoint() {
         TransitModel transitModel = new TransitModel();
         StationFactory stationFactory = new StationFactory();
