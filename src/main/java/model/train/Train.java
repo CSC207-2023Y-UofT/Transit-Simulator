@@ -54,7 +54,7 @@ public class Train {
     /**
      * The maximum speed of the train in meters per second. This is approximately 115 km/h.
      */
-    public static double MAX_SPEED = 320 / 4.0;
+    public static double MAX_SPEED = 32;
 
     /**
      * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
