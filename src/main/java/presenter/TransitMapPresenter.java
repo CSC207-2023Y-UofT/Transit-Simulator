@@ -13,29 +13,62 @@ import java.util.List;
 import java.util.Optional;
 
 public class TransitMapPresenter {
-
+    /**
+     * The size of the map width in metres.
+     */
     public static final double MAP_SIZE_X = 4500.0;
+    /**
+     * The size of the map height in metres.
+     */
     public static final double MAP_SIZE_Y = 3750.0;
-
+    /**
+     * The size of the station icons in pickles (pixels).
+     */
     private static final int STATION_ICON_SIZE = 10;
-
+    /**
+     * The station interactor.
+     */
     protected final StationInteractor stationInteractor;
+    /**
+     * The train interactor.
+     */
     private final TrainInteractor trainInteractor;
-
+    /**
+     * The list of stations to draw.
+     */
     protected List<StationState> stations = new ArrayList<>();
+    /**
+     * The list of trains to draw.
+     */
     protected List<TrainState> trains = new ArrayList<>();
-
+    /**
+     * The station that is currently highlighted.
+     */
     private StationState highlightedStation = null;
-
+    /**
+     * The width of the image.
+     */
     private int width = 1;
+    /**
+     * The height of the image.
+     */
     private int height = 1;
 
+    /**
+     * Constructs a new TransitMapPresenter with the given station and train interactors.
+     *
+     * @param stationInteractor The station interactor.
+     * @param trainInteractor   The train interactor.
+     */
     public TransitMapPresenter(StationInteractor stationInteractor,
                                TrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
     }
 
+    /**
+     * Presents (draws) the screen.
+     */
     public void present(Graphics2D graphics, int width, int height) {
 
         this.stations = stationInteractor.getStations();
@@ -179,6 +212,13 @@ public class TransitMapPresenter {
         }
     }
 
+    /**
+     * Returns the station at the given coordinates, if any.
+     *
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @return The station at the given coordinates, if any.
+     */
     public Optional<StationState> getStationAt(int x, int y) {
         double scaleX = width / MAP_SIZE_X;
         double scaleY = height / MAP_SIZE_Y;
@@ -195,8 +235,13 @@ public class TransitMapPresenter {
         return Optional.empty();
     }
 
+    /**
+     * Called when the mouse moves.
+     *
+     * @param x The x-coordinate of the mouse
+     * @param y The y-coordinate of the mouse
+     */
     public void onMouseMove(int x, int y) {
-
         Optional<StationState> optStation = getStationAt(x, y);
         if (optStation.isEmpty()) {
             highlightedStation = null;
@@ -206,6 +251,12 @@ public class TransitMapPresenter {
         highlightedStation = optStation.get();
     }
 
+    /**
+     * Called when the mouse is clicked.
+     *
+     * @param x The x-coordinate of the mouse
+     * @param y The y-coordinate of the mouse
+     */
     public void onClick(int x, int y) {
         Optional<StationState> optStation = getStationAt(x, y);
         if (optStation.isEmpty()) return;
@@ -214,6 +265,11 @@ public class TransitMapPresenter {
         onClickStation(station);
     }
 
+    /**
+     * Called when a station is clicked.
+     *
+     * @param station The station that was clicked.
+     */
     protected void onClickStation(StationState station) {
     }
 }

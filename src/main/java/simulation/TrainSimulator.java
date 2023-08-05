@@ -78,6 +78,10 @@ public class TrainSimulator {
         }
     }
 
+    /**
+     * Simulate the boarding of passengers on this train.
+     * @param model The model to simulate on
+     */
     public void tick(TransitModel model) {
         for (Train train : model.getTrainList()) {
 
