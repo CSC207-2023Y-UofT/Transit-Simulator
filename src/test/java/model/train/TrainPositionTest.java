@@ -153,6 +153,15 @@ public class TrainPositionTest {
 
     @Test
     public void testConstructor() {
+        TrainPosition trainPosition2 = new TrainPosition(track1, 50);
+        Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
+        Assertions.assertSame(track1, trainPosition2.getTrack());
+    }
 
+    @DisplayName("TrainPositiionTest Class Teardown")
+    @AfterAll
+    public static void tearDown() {
+        track1 = null;
+        trainPosition1 = null;
     }
 }
