@@ -13,6 +13,7 @@ public class RoundedButton extends JButton {
         setFocusPainted(false);
         setBorderPainted(false);
         setOpaque(false);
+        setRolloverEnabled(true);
     }
 
     @Override
@@ -20,21 +21,22 @@ public class RoundedButton extends JButton {
         if (getModel().isArmed()) {
             // If button is pressed, use a different color
             g.setColor(Color.lightGray);
+        } else if (getModel().isRollover()) {
+            g.setColor(getBackground().darker());
         } else {
             // Regular color
             g.setColor(getBackground());
         }
 
-        // Draw a rounded rectangle in the background of the button
-        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
-        super.paintComponent(g);
-    }
+        // Draw shadow
+        Color c = g.getColor();
+        g.setColor(g.getColor().darker());
+        g.fillRoundRect(1, 1, getWidth() - 1, getHeight() - 1, 12, 12);
+        g.setColor(c);
 
-    @Override
-    protected void paintBorder(Graphics g) {
-        // Draw the border of the button
-        g.setColor(getForeground());
-        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+        // Draw a rounded rectangle in the background of the button
+        g.fillRoundRect(0, 0, getWidth() - 3, getHeight() - 3, 12, 12);
+        super.paintComponent(g);
     }
 
 }

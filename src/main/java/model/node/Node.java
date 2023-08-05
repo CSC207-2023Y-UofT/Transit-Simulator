@@ -82,6 +82,10 @@ public abstract class Node {
         return Optional.ofNullable(lineProfiles.get(lineNumber));
     }
 
+    public Collection<NodeLineProfile> getLineProfiles() {
+        return lineProfiles.values();
+    }
+
     /**
      * Creates a new NodeLineProfile for a specific line number and associates it with this node.
      *

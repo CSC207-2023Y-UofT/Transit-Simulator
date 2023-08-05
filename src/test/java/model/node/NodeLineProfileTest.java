@@ -68,8 +68,8 @@ public class NodeLineProfileTest {
         s2b.linkForward(t1b);
         t1b.linkForward(s1b);
 
-        train1 = transitModel.createTrain(s1f, 120);
-        train2 = transitModel.createTrain(t2f, 120);
+        train1 = transitModel.createTrain(s1f, "t1", 120);
+        train2 = transitModel.createTrain(t2f, "t2", 120);
     }
 
     @Test

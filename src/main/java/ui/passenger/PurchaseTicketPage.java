@@ -1,5 +1,6 @@
 package ui.passenger;
 
+import ui.UIController;
 import ui.round.RoundedButton;
 import ui.round.RoundedLabel;
 
@@ -8,77 +9,67 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PurchaseTicketPage {
+public class PurchaseTicketPage extends JPanel {
 
     private static final double ADULT_PRICE = 3.35;
     private static final double CHILD_PRICE = 2.40;
     private static final double SENIOR_PRICE = 2.30;
     private static final double STUDENT_PRICE = 2.35;
 
-    private JFrame frame;
-    private JPanel panel;
-    private JLabel headerLabel, adultCount, childCount, seniorCount, studentCount, totalCostLabel;
-    private JButton adultPlus, adultMinus, childPlus, childMinus, seniorPlus, seniorMinus, studentPlus, studentMinus;
-    private JButton buyButton, backButton, cancelButton;
+    private final JLabel adultCount;
+    private final JLabel childCount;
+    private final JLabel seniorCount;
+    private final JLabel studentCount;
+    private final JLabel totalCostLabel;
 
-    public PurchaseTicketPage() {
+    public PurchaseTicketPage(UIController controller) {
+        super(new GridLayout(0, 4));
 
-        // Create the frame and panel
-        frame = new JFrame("Purchase Ticket Page");
-        frame.setPreferredSize(new Dimension(900, 600));
-        panel = new JPanel(new GridLayout(0, 4));
-
-        headerLabel = new JLabel("Tickets", SwingConstants.CENTER);
+        JLabel headerLabel = new JLabel("Tickets", SwingConstants.CENTER);
         headerLabel.setFont(new Font("Serif", Font.BOLD, 35));
-        panel.add(headerLabel);
+        this.add(headerLabel);
 
         // 3 empty labels to fill the space
         for (int i = 0; i < 3; i++) {
-            panel.add(new JLabel("  "));
+            this.add(new JLabel("  "));
         }
 
         adultCount = createCountLabel();
-        adultMinus = createMinusButton();
-        adultPlus = createPlusButton();
+        JButton adultMinus = createMinusButton();
+        JButton adultPlus = createPlusButton();
         createRow("Adult", adultMinus, adultPlus, adultCount, ADULT_PRICE);
 
         childCount = createCountLabel();
-        childMinus = createMinusButton();
-        childPlus = createPlusButton();
+        JButton childMinus = createMinusButton();
+        JButton childPlus = createPlusButton();
         createRow("Child", childMinus, childPlus, childCount, CHILD_PRICE);
 
         seniorCount = createCountLabel();
-        seniorMinus = createMinusButton();
-        seniorPlus = createPlusButton();
+        JButton seniorMinus = createMinusButton();
+        JButton seniorPlus = createPlusButton();
         createRow("Senior", seniorMinus, seniorPlus, seniorCount, SENIOR_PRICE);
 
         studentCount = createCountLabel();
-        studentMinus = createMinusButton();
-        studentPlus = createPlusButton();
+        JButton studentMinus = createMinusButton();
+        JButton studentPlus = createPlusButton();
         createRow("Student", studentMinus, studentPlus, studentCount, STUDENT_PRICE);
 
         for (int i = 0; i < 4; i++) {
-            panel.add(new JLabel(" "));
+            this.add(new JLabel(" "));
         }
 
         // Back button
-        backButton = new RoundedButton("Back");
+        JButton backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.setPreferredSize(new Dimension(200, 50));
         backButton.setBackground(new Color(166, 166, 166));
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new PassengerHomePage();
-                frame.dispose();
-            }
-        });
-        panel.add(backButton);
+        backButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
+        this.add(backButton);
 
 
         // Cancel button
-        cancelButton = new RoundedButton("Cancel");
+        JButton cancelButton = new RoundedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setFont(new Font("Serif", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
@@ -94,7 +85,7 @@ public class PurchaseTicketPage {
                 totalCostLabel.setText("Total: $0.00");
             }
         });
-        panel.add(cancelButton);
+        this.add(cancelButton);
 
         // Total cost label
         totalCostLabel = new JLabel("Total: $0.00");
@@ -102,32 +93,20 @@ public class PurchaseTicketPage {
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
         totalCostLabel.setOpaque(true);
         totalCostLabel.setBackground(new Color(255, 255, 255, 255));
-        panel.add(totalCostLabel);
+        this.add(totalCostLabel);
 
         // Buy button
-        buyButton = new RoundedButton("Buy");
+        JButton buyButton = new RoundedButton("Buy");
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorderPainted(false);
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ConfirmPaymentPage();
-                frame.dispose();
-            }
-        });
+        buyButton.addActionListener(e -> controller.open(new ConfirmPaymentPage(controller)));
 
-        panel.add(buyButton);
+        this.add(buyButton);
 
         // Make background color light gray
-        panel.setBackground(new Color(210, 207, 206));
-
-        // Add the header label and panel to the frame
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        this.setBackground(new Color(210, 207, 206));
     }
 
     private JLabel createCountLabel() {
@@ -174,10 +153,10 @@ public class PurchaseTicketPage {
         JLabel lab = new JLabel(name + "   " + priceFormatted);
         lab.setFont(new Font("Serif", Font.BOLD, 25));
         lab.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(lab);
-        panel.add(minusButton);
-        panel.add(countLabel);
-        panel.add(plusButton);
+        this.add(lab);
+        this.add(minusButton);
+        this.add(countLabel);
+        this.add(plusButton);
     }
 
     public double getTotalCost() {
@@ -191,10 +170,6 @@ public class PurchaseTicketPage {
         double total = getTotalCost();
         String totalFormatted = String.format("$%.2f", total);
         totalCostLabel.setText("Total: " + totalFormatted);
-    }
-
-    public static void main(String[] args) {
-        new PurchaseTicketPage();
     }
 
 }

@@ -32,7 +32,8 @@ public class NodeLineProfile {
 
     /**
      * Constructs a NodeLineProfile for the given Node and line number.
-     * @param node the Node object
+     *
+     * @param node       the Node object
      * @param lineNumber the line number
      */
     public NodeLineProfile(Node node, int lineNumber) {
@@ -56,8 +57,20 @@ public class NodeLineProfile {
         tracks.values().forEach(trackRepo::addTrack);  // Similar to lambda expressions
     }
 
+    public Optional<Node> getNextNode(Direction direction) {
+        List<TrackSegment> next = getTrack(direction).getNextTrackSegments();
+        if (next.isEmpty()) return Optional.empty();
+
+        for (TrackSegment segment : next) {
+            if (segment.getNode().isPresent()) return segment.getNode();
+        }
+
+        return Optional.empty();
+    }
+
     /**
      * Returns the line number for this profile.
+     *
      * @return an int representing the line number
      */
     public int getLineNumber() {
@@ -66,6 +79,7 @@ public class NodeLineProfile {
 
     /**
      * Returns the Node this profile is associated with.
+     *
      * @return the Node object
      */
     public @NotNull Node getNode() {
@@ -74,6 +88,7 @@ public class NodeLineProfile {
 
     /**
      * Returns the TrackSegment that corresponds to a given direction.
+     *
      * @param direction the direction of the track
      * @return the corresponding TrackSegment
      */
@@ -83,13 +98,14 @@ public class NodeLineProfile {
 
     /**
      * Returns a list of TrainArrival objects for the next arriving trains in the given direction.
+     *
      * @param direction the direction to check for arriving trains
      * @param numTrains the number of arriving trains to return
      * @return a List of TrainArrival objects
      */
     public List<TrainArrival> nextArrivals(Direction direction, int numTrains) {
         List<TrackSegment> trackSegments = getTrack(direction)
-                .getNextTrackSegments(direction.opposite());
+                .getNextTrackSegments(Direction.BACKWARD);
 
         List<TrainArrival> arrivals = new ArrayList<>();
 

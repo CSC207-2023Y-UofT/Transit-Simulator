@@ -3,6 +3,7 @@ package model.persistence;
 import model.Direction;
 import model.control.TransitModel;
 import model.node.Node;
+import model.node.NodeLineProfile;
 import model.node.NodeTracker;
 import model.node.StationFactory;
 import model.train.track.TrackSegment;
@@ -89,6 +90,10 @@ public class JsonModelDataStore implements ModelDataStore {
                 Node node = transitModel.getNode(nodeName);
                 Preconditions.checkArgument(node != null, "Node " + nodeName + " does not exist");
 
+                if (node.getLineProfile(lineNum).isEmpty()) {
+                    node.createLineProfile(lineNum);
+                }
+
                 if (firstNode == null) firstNode = node;
 
                 if (previousNode != null) {
@@ -119,6 +124,14 @@ public class JsonModelDataStore implements ModelDataStore {
                 double distance = Math.sqrt(Math.pow(x - otherX, 2) + Math.pow(y - otherY, 2));
 
                 createEdge(lineNum, previousNode, firstNode, distance);
+            } else {
+                // Find the endpoints and link the forward and backward tracks of them
+
+                NodeLineProfile firstProfile = firstNode.getLineProfile(lineNum).orElseThrow();
+                firstProfile.getTrack(Direction.FORWARD).linkBackward(firstProfile.getTrack(Direction.BACKWARD));
+
+                NodeLineProfile secondProfile = previousNode.getLineProfile(lineNum).orElseThrow();
+                secondProfile.getTrack(Direction.FORWARD).linkForward(secondProfile.getTrack(Direction.BACKWARD));
             }
         }
 
@@ -149,11 +162,11 @@ public class JsonModelDataStore implements ModelDataStore {
 
         // Create the intermediary tracks in both directions
         TrackSegment dir1 = new TrackSegment(model.getTrackRepo(),
-                node1.getName() + "-" + node2.getName(), length);
+                "Line-" + line + " " + node1.getName() + "-" + node2.getName(), length);
         model.getTrackRepo().addTrack(dir1);
 
         TrackSegment dir2 = new TrackSegment(model.getTrackRepo(),
-                node2.getName() + "-" + node1.getName(), length);
+                "Line-" + line + " " + node2.getName() + "-" + node1.getName(), length);
         model.getTrackRepo().addTrack(dir2);
 
         // Get the tracks for each direction of each node
@@ -208,6 +221,6 @@ public class JsonModelDataStore implements ModelDataStore {
     }
 
     private List<Node> mapNodes(Node node, Set<Integer> mappedLines) {
-
+        throw new UnsupportedOperationException("Not implemented");
     }
 }

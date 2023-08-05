@@ -1,5 +1,6 @@
 package ui.staff.operator;
 
+import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
 
@@ -10,51 +11,39 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OperatorMaintenance {
-    private JFrame frame;
-    private JPanel topPanel, middlePanel, bottomPanel;
-    private int id, line, train;
-    private String operator, engineer;
-    private JLabel idLabel, routeLabel, operatorLabel, engineerLabel;
-    private JButton homeButton, routeButton, maintenanceButton;
-    private JTable table;
-
-    public OperatorMaintenance() {
-
-        // Create the frame
-        frame = new JFrame("Operator Maintenance");
-        frame.setPreferredSize(new Dimension(900, 600));
+public class OperatorMaintenance extends JPanel {
+    public OperatorMaintenance(UIController controller) {
+        super(new BorderLayout());
 
         // Top panel
-        topPanel = new JPanel(new GridLayout(0, 2));
+        JPanel topPanel = new JPanel(new GridLayout(0, 2));
 
         // Home button
-        homeButton = new RoundedButton("Home");
+        JButton homeButton = new RoundedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
-                frame.dispose();
+                controller.open(new StaffHomePage(controller));
             }
         });
 
         // id label
-        id = 322; // TODO: should be .getId()
-        idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
+        int id = 322; // TODO: should be .getId()
+        JLabel idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Serif", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
 
         topPanel.add(homeButton);
         topPanel.add(idLabel);
-        frame.add(topPanel, BorderLayout.NORTH);
+        this.add(topPanel, BorderLayout.NORTH);
 
 
         // Middle panel
-        middlePanel = new JPanel();
+        JPanel middlePanel = new JPanel();
         middlePanel.setLayout(new BorderLayout());
 
         // Create column names
@@ -78,7 +67,7 @@ public class OperatorMaintenance {
         };
 
         // Create table with our table model
-        table = new JTable(model);
+        JTable table = new JTable(model);
 
         // Set table properties
         table.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -95,26 +84,22 @@ public class OperatorMaintenance {
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
         middlePanel.add(scrollPane, BorderLayout.SOUTH);
-        frame.add(middlePanel, BorderLayout.CENTER);
+        this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
-        bottomPanel = new JPanel(new GridLayout(0, 2));
+        JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         // route button
-        routeButton = new RoundedButton("Route");
+        JButton routeButton = new RoundedButton("Route");
         routeButton.setBackground(new Color(112, 170, 255));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
-        routeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new OperatorRoute();
-                frame.dispose();
-            }
+        routeButton.addActionListener(e -> {
+            controller.open(new OperatorRoute(controller));
         });
 
         // maintenance button: does nothing since already on this page
-        maintenanceButton = new RoundedButton("Maintenance");
+        JButton maintenanceButton = new RoundedButton("Maintenance");
         maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -122,15 +107,7 @@ public class OperatorMaintenance {
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);
 
-        frame.add(bottomPanel, BorderLayout.SOUTH);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new OperatorMaintenance();
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
 }

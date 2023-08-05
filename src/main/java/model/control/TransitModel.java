@@ -34,9 +34,13 @@ public class TransitModel implements NodeTracker, TrainTracker {
      * @throws IllegalArgumentException if the track is not a valid track in this tracker's track repo.
      * @throws IllegalStateException if the track is occupied.
      */
-    public Train createTrain(TrackSegment trackSegment, int capacity) {
+    public Train createTrain(TrackSegment trackSegment, String name, int capacity) {
         if (trackRepo.getTrack(trackSegment.getId()).orElse(null) != trackSegment) {
             throw new IllegalArgumentException("Track " + trackSegment.getId() + " created with wrong tracker");
+        }
+
+        if (trainList.stream().anyMatch(train -> train.getName().equals(name))) {
+            throw new IllegalArgumentException("Train with name " + name + " already exists");
         }
 
         TrainPosition position = TrainPosition.entryPoint(trackSegment, Direction.FORWARD);
@@ -45,7 +49,7 @@ public class TransitModel implements NodeTracker, TrainTracker {
             throw new IllegalStateException("Track " + trackSegment.getId() + " is occupied");
         }
 
-        Train train = new Train(this, position, capacity);
+        Train train = new Train(this, name, position, capacity);
         trainList.add(train);
 
         return train;
@@ -107,6 +111,11 @@ public class TransitModel implements NodeTracker, TrainTracker {
     @Override
     public List<Train> getTrainList() {
         return trainList;
+    }
+
+    @Override
+    public Train getTrain(String name) {
+        return trainList.stream().filter(train -> train.getName().equals(name)).findFirst().orElse(null);
     }
 
 }

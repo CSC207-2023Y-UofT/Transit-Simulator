@@ -1,5 +1,6 @@
 package ui.staff.engineer;
 
+import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
 
@@ -8,64 +9,54 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EngineerRoute {
-    private JFrame frame;
-    private JPanel topPanel, middlePanel, bottomPanel;
-    private int id, line, train;
-    private String operator, engineer;
-    private JLabel idLabel, routeLabel, operatorLabel, engineerLabel;
-    private JButton homeButton, routeButton, maintenanceButton;
+public class EngineerRoute extends JPanel {
 
-    public EngineerRoute() {
-
-        // Create the frame
-        frame = new JFrame("Engineer Route");
-        frame.setPreferredSize(new Dimension(900, 600));
+    public EngineerRoute(UIController controller) {
+        super(new BorderLayout());
 
         // Top panel
-        topPanel = new JPanel(new GridLayout(0, 2));
+        JPanel topPanel = new JPanel(new GridLayout(0, 2));
 
         // Home button
-        homeButton = new RoundedButton("Home");
+        JButton homeButton = new RoundedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new StaffHomePage();
-                frame.dispose();
+                controller.open(new StaffHomePage(controller));
             }
         });
 
         // id label
-        id = 322; // TODO: should be .getId()
-        idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
+        int id = 322; // TODO: should be .getId()
+        JLabel idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Serif", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
 
         topPanel.add(homeButton);
         topPanel.add(idLabel);
-        frame.add(topPanel, BorderLayout.NORTH);
+        this.add(topPanel, BorderLayout.NORTH);
 
         // Middle panel
-        middlePanel = new JPanel(new GridLayout(0, 5));
+        JPanel middlePanel = new JPanel(new GridLayout(0, 5));
 
         // route label
-        line = 1;
-        train = 1; // TODO: should be .getLine() and .getTrain()
-        routeLabel = new JLabel("Line " + line + " Train " + train);
+        int line = 1;
+        int train = 1; // TODO: should be .getLine() and .getTrain()
+        JLabel routeLabel = new JLabel("Line " + line + " Train " + train);
         routeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // operator label
-        operator = "grace"; // TODO: should be .getOperator()
-        operatorLabel = new JLabel("Operator: " + operator);
+        String operator = "grace"; // TODO: should be .getOperator()
+        JLabel operatorLabel = new JLabel("Operator: " + operator);
         operatorLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // engineer label
-        engineer = "zoey"; // TODO: should be .getEngineer()
-        engineerLabel = new JLabel("Engineer: " + engineer);
+        String engineer = "zoey"; // TODO: should be .getEngineer()
+        JLabel engineerLabel = new JLabel("Engineer: " + engineer);
         engineerLabel.setFont(new Font("Serif", Font.ITALIC, 25));
 
         for (int i = 0; i < 5; i++) {
@@ -94,42 +85,28 @@ public class EngineerRoute {
             middlePanel.add(new JLabel(""));
         }
 
-        frame.add(middlePanel, BorderLayout.CENTER);
+        this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
-        bottomPanel = new JPanel(new GridLayout(0, 2));
+        JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         // route button: does nothing since already on this page
-        routeButton = new RoundedButton("Route");
+        JButton routeButton = new RoundedButton("Route");
         routeButton.setBackground(new Color(112, 170, 255));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         // maintenance button
-        maintenanceButton = new RoundedButton("Maintenance");
+        JButton maintenanceButton = new RoundedButton("Maintenance");
         maintenanceButton.setBackground(new Color(112, 170, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
-        maintenanceButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EngineerMaintenance();
-                frame.dispose();
-            }
-        });
+        maintenanceButton.addActionListener(e -> controller.open(new EngineerMaintenance(controller)));
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);
 
-        frame.add(bottomPanel, BorderLayout.SOUTH);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new EngineerRoute();
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
 }

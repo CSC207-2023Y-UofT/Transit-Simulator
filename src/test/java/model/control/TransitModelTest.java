@@ -60,7 +60,7 @@ public class TransitModelTest {
         t2f.linkForward(s3f);
 
         // Create the trains
-        trainForwards = transitModel.createTrain(s1f, 120);
+        trainForwards = transitModel.createTrain(s1f, "tf", 120);
     }
 
 

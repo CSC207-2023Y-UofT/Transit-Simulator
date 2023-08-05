@@ -2,30 +2,24 @@ package ui.staff;
 
 import ui.UIController;
 import ui.round.RoundedButton;
+import ui.staff.engineer.EngineerRoute;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FailedAuthenticationPage extends JPanel {
+public class LoginPage extends JPanel {
 
-    public FailedAuthenticationPage(UIController controller) {
+    public LoginPage(UIController controller) {
         super(new GridLayout(0, 3));
 
         // Personnel Number
         JLabel label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
         label.setFont(new Font("Serif", Font.BOLD, 25));
 
-        // Input field
-        JTextField personnelNumberField = new JTextField();
+        JTextField personnelNumberField = new JPasswordField();
         personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
-        personnelNumberField.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-
-        // Error Message
-        JLabel errorLabel = new JLabel("Invalid personnel number", SwingConstants.CENTER);
-        errorLabel.setFont(new Font("Serif", Font.BOLD, 20));
-        errorLabel.setForeground(Color.RED);
 
         // Sign In button
         JButton signInButton = new RoundedButton("Sign In");
@@ -37,6 +31,12 @@ public class FailedAuthenticationPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // Perform sign in here, possibly by passing personnelNumberField.getText() to a method that handles sign in.
 
+
+                // TODO: Add code to check if personnel number is valid
+
+                // We should know what option they picked earlier and direct them there
+
+                controller.open(new EngineerRoute(controller));
             }
         });
 
@@ -44,24 +44,15 @@ public class FailedAuthenticationPage extends JPanel {
         JButton backButton = new RoundedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.open(new StaffSelectPage(controller));
-            }
-        });
+        backButton.addActionListener(e -> controller.open(new StaffSelectPage(controller)));
 
         // Add components to the panel
 
         this.setBackground(new Color(210, 207, 206));
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             this.add(new JLabel("  "));
         }
-
-        this.add(new JLabel("  "));
-        this.add(errorLabel);
-        this.add(new JLabel("  "));
 
         this.add(label);
         this.add(personnelNumberField);

@@ -92,8 +92,8 @@ public class TrainTest {
         t1b.linkForward(s1b);
 
         // Create the trains
-        trainForwards = transitModel.createTrain(s1f, 120);
-        trainBackwards = transitModel.createTrain(s1b, 120);
+        trainForwards = transitModel.createTrain(s1f, "tf", 120);
+        trainBackwards = transitModel.createTrain(s1b, "tb", 120);
 
         // Create the employees
         operator = new TrainOperator(0b0001);
