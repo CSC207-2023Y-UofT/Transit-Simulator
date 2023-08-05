@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * The interactor for the train.
  */
-public class TrainInteractor {
+public class TrainInteractor implements ITrainInteractor {
     /**
      * The transit model.
      */
