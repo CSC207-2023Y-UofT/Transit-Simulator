@@ -59,7 +59,8 @@
         "Station 1",
         "Station 2",
         "Station 3"
-      ]
+      ],
+      "cyclic": false
     },
     {
       "number": 2,
