@@ -66,10 +66,17 @@ public class TrainInteractor {
             previousNodeDistance = new TrainNodeDistance(previousNode.get(), distanceToPreviousNode.orElseThrow());
         }
 
+        Optional<StationState> currentStation = train
+                .getPosition()
+                .getTrack()
+                .getNode()
+                .map(StationInteractor::toState);
+
         return new TrainState(name,
                 capacity,
                 occupation,
                 staff,
+                currentStation.orElse(null),
                 nextNodeDistance,
                 previousNodeDistance);
     }

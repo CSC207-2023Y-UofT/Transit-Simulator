@@ -11,6 +11,7 @@ public class TrainState {
     private final int capacity;
     private final int occupation;
     private final Map<TrainJob, Integer> staff;
+    private final Optional<StationState> currentStation;
     private final TrainNodeDistance nextNodeDistance;
     private final TrainNodeDistance previousNodeDistance;
 
@@ -18,12 +19,14 @@ public class TrainState {
                       int capacity,
                       int occupation,
                       Map<TrainJob, Integer> staff,
+                      StationState currentStation,
                       TrainNodeDistance nextNodeDistance,
                       TrainNodeDistance previousNodeDistance) {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
         this.staff = staff;
+        this.currentStation = Optional.ofNullable(currentStation);
         this.nextNodeDistance = nextNodeDistance;
         this.previousNodeDistance = previousNodeDistance;
     }
@@ -42,6 +45,10 @@ public class TrainState {
 
     public Map<TrainJob, Integer> getStaff() {
         return staff;
+    }
+
+    public Optional<StationState> getCurrentStation() {
+        return currentStation;
     }
 
     public Optional<TrainNodeDistance> getNextNodeDistance() {

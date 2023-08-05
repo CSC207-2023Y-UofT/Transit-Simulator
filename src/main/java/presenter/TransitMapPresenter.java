@@ -111,6 +111,28 @@ public class TransitMapPresenter {
 
         // Draw trains
         for (TrainState train : trains) {
+
+            if (train.getCurrentStation().isPresent()) {
+
+                // At a station,
+                // draw the train at the station
+                StationState station = train.getCurrentStation().get();
+                double stationX = station.getX();
+                double stationY = station.getY();
+
+                stationX *= scaleX;
+                stationY *= scaleY;
+
+                graphics.setColor(Color.RED);
+                graphics.fillOval((int) stationX - 2, (int) stationY - 2, 4, 4);
+
+                // Draw a little border
+                graphics.setColor(Color.BLACK);
+                graphics.drawOval((int) stationX - 2, (int) stationY - 2, 4, 4);
+
+                continue;
+            }
+
             TrainNodeDistance nextDistance = train.getNextNodeDistance().orElse(null);
             if (nextDistance == null) continue;
 
@@ -188,5 +210,6 @@ public class TransitMapPresenter {
         onClickStation(station);
     }
 
-    protected void onClickStation(StationState station) {}
+    protected void onClickStation(StationState station) {
+    }
 }

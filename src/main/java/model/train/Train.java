@@ -54,7 +54,7 @@ public class Train {
     /**
      * The maximum speed of the train in meters per second. This is approximately 115 km/h.
      */
-    public static double MAX_SPEED = 320;
+    public static double MAX_SPEED = 320 / 4.0;
 
     /**
      * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
@@ -240,7 +240,18 @@ public class Train {
      * @param position The new TrainPosition for this train.
      */
     protected void setPosition(TrainPosition position) {
+
+        if (!position.getTrack().isEmpty()) {
+            if (position.getTrack().getTrain() != this) {
+                throw new IllegalArgumentException(
+                        "Train cannot be placed on a track segment that is already occupied by another train."
+                );
+            }
+        }
+
+        this.position.getTrack().setTrain(null);
         this.position = position;
+        this.position.getTrack().setTrain(this);
     }
 
     /**
@@ -319,9 +330,7 @@ public class Train {
         if (movedPosition == null) return false;
 
         // Then move the train
-        position.getTrack().setTrain(null);
-        position = movedPosition;
-        position.getTrack().setTrain(this);
+        setPosition(movedPosition);
 
         return true;
     }
