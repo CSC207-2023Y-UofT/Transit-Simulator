@@ -14,10 +14,10 @@ import java.util.Optional;
 
 public class TransitMapPresenter {
 
-    public static final double MAP_SIZE_X = 4000.0;
-    public static final double MAP_SIZE_Y = 4000.0;
+    public static final double MAP_SIZE_X = 3500.0;
+    public static final double MAP_SIZE_Y = 3500.0;
 
-    private static final int STATION_ICON_SIZE = 8;
+    private static final int STATION_ICON_SIZE = 10;
 
     protected final StationInteractor stationInteractor;
     private final TrainInteractor trainInteractor;
@@ -72,7 +72,7 @@ public class TransitMapPresenter {
 
                 graphics.setColor(lineColours.get(line));
                 Stroke stroke = graphics.getStroke();
-                graphics.setStroke(new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                graphics.setStroke(new BasicStroke(7, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
                 graphics.drawLine(x, y, nextX, nextY);
                 graphics.setStroke(stroke);
 
@@ -105,7 +105,7 @@ public class TransitMapPresenter {
                     STATION_ICON_SIZE * 2);
 
             // Draw their name to the upper-right
-            graphics.setFont(new Font("Arial", Font.BOLD, 12));
+            graphics.setFont(new Font("Serif", Font.BOLD, 12));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE, y - STATION_ICON_SIZE);
         }
 
@@ -124,11 +124,11 @@ public class TransitMapPresenter {
                 stationY *= scaleY;
 
                 graphics.setColor(Color.RED);
-                graphics.fillOval((int) stationX - 2, (int) stationY - 2, 4, 4);
+                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 6, 6);
 
                 // Draw a little border
                 graphics.setColor(Color.BLACK);
-                graphics.drawOval((int) stationX - 2, (int) stationY - 2, 4, 4);
+                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 6, 6);
 
                 continue;
             }
@@ -163,15 +163,15 @@ public class TransitMapPresenter {
 
             // Draw the train as a small red circle
             graphics.setColor(Color.RED);
-            graphics.fillOval((int) trainX - 2, (int) trainY - 2, 4, 4);
+            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 6, 6);
 
             // Draw a little border
             graphics.setColor(Color.BLACK);
-            graphics.drawOval((int) trainX - 2, (int) trainY - 2, 4, 4);
+            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 6, 6);
 
             // Train's name
-            graphics.setFont(new Font("Arial", Font.PLAIN, 8));
-            graphics.drawString(train.getName(), (int) trainX + 4, (int) trainY - 4);
+            graphics.setFont(new Font("Serif", Font.PLAIN, 10));
+            graphics.drawString(train.getName(), (int) trainX + 6, (int) trainY - 6);
         }
     }
 
