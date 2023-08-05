@@ -85,7 +85,7 @@ public class EngineerMaintenance extends JPanel {
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
         middlePanel.add(scrollPane, BorderLayout.SOUTH);
-        table.add(middlePanel, BorderLayout.CENTER);
+        this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));

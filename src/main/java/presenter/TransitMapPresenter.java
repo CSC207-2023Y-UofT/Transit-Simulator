@@ -14,6 +14,8 @@ public class TransitMapPresenter {
     public static final double MAP_SIZE_X = 4000.0;
     public static final double MAP_SIZE_Y = 4000.0;
 
+    private static final int STATION_ICON_SIZE = 8;
+
     protected final StationInteractor stationInteractor;
 
     protected List<StationState> stations = new ArrayList<>();
@@ -34,14 +36,14 @@ public class TransitMapPresenter {
         this.height = height;
 
         List<Color> lineColours = new ArrayList<>();
-        lineColours.add(Color.YELLOW);
-        lineColours.add(Color.GREEN);
-        lineColours.add(Color.RED);
-        lineColours.add(Color.BLUE);
         lineColours.add(Color.ORANGE);
+        lineColours.add(Color.GREEN.darker());
+        lineColours.add(Color.RED.darker());
+        lineColours.add(Color.BLUE);
+        lineColours.add(Color.CYAN.darker());
 
         // Background
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(Color.LIGHT_GRAY.brighter());
         graphics.fillRect(0, 0, width, height);
 
         double scaleX = width / MAP_SIZE_X;
@@ -80,14 +82,20 @@ public class TransitMapPresenter {
                 }
             }
 
-            graphics.fillOval(x - 10, y - 10, 20, 20);
+            graphics.fillOval(x - STATION_ICON_SIZE,
+                    y - STATION_ICON_SIZE,
+                    STATION_ICON_SIZE * 2,
+                    STATION_ICON_SIZE * 2);
 
             graphics.setColor(Color.BLACK);
-            graphics.drawOval(x - 10, y - 10, 20, 20);
+            graphics.drawOval(x - STATION_ICON_SIZE,
+                    y - STATION_ICON_SIZE,
+                    STATION_ICON_SIZE * 2,
+                    STATION_ICON_SIZE * 2);
 
             // Draw their name to the upper-right
             graphics.setFont(new Font("Arial", Font.BOLD, 12));
-            graphics.drawString(station.getName(), x + 10, y - 25);
+            graphics.drawString(station.getName(), x + STATION_ICON_SIZE, y - STATION_ICON_SIZE);
         }
     }
 
@@ -99,7 +107,7 @@ public class TransitMapPresenter {
             int stationX = (int) (station.getX() * scaleX);
             int stationY = (int) (station.getY() * scaleY);
 
-            if (Math.abs(stationX - x) < 10 && Math.abs(stationY - y) < 10) {
+            if (Math.abs(stationX - x) < STATION_ICON_SIZE && Math.abs(stationY - y) < STATION_ICON_SIZE) {
                 return Optional.of(station);
             }
         }
