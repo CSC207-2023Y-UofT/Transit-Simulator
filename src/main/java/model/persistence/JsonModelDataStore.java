@@ -3,6 +3,7 @@ package model.persistence;
 import model.Direction;
 import model.control.TransitModel;
 import model.node.Node;
+import model.node.NodeLineProfile;
 import model.node.NodeTracker;
 import model.node.StationFactory;
 import model.train.track.TrackSegment;
@@ -123,6 +124,14 @@ public class JsonModelDataStore implements ModelDataStore {
                 double distance = Math.sqrt(Math.pow(x - otherX, 2) + Math.pow(y - otherY, 2));
 
                 createEdge(lineNum, previousNode, firstNode, distance);
+            } else {
+                // Find the endpoints and link the forward and backward tracks of them
+
+                NodeLineProfile firstProfile = firstNode.getLineProfile(lineNum).orElseThrow();
+                firstProfile.getTrack(Direction.FORWARD).linkBackward(firstProfile.getTrack(Direction.BACKWARD));
+
+                NodeLineProfile secondProfile = previousNode.getLineProfile(lineNum).orElseThrow();
+                secondProfile.getTrack(Direction.FORWARD).linkForward(secondProfile.getTrack(Direction.BACKWARD));
             }
         }
 
