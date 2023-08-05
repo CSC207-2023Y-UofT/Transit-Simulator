@@ -38,6 +38,8 @@ public class PassengerTest {
         Assertions.assertFalse(passenger.shouldAlight());
         passenger.setStationsToTravel(0);
         Assertions.assertTrue(passenger.shouldAlight());
+        passenger.setStationsToTravel(-1);
+        Assertions.assertTrue(passenger.shouldAlight());
     }
 
     @Test
