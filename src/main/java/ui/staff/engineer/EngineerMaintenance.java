@@ -98,9 +98,10 @@ public class EngineerMaintenance extends JPanel {
         routeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new EngineerRoute(controller);
+                controller.open(new EngineerRoute(controller));
             }
         });
+
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new RoundedButton("Maintenance");
