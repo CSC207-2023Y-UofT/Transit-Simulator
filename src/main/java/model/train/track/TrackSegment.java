@@ -1,13 +1,12 @@
 package model.train.track;
 
 import model.Direction;
+import model.node.Node;
 import model.train.TrackRepo;
 import model.train.Train;
 import util.Preconditions;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * The TrackSegment class represents a segment of a track in a track system.
@@ -17,7 +16,7 @@ import java.util.List;
 public class TrackSegment {
     private final String id;
     private final TrackRepo repo;
-    private final int length;
+    private final double length;
 
     private TrackSegment next = null;
     private TrackSegment prev = null;
@@ -26,11 +25,11 @@ public class TrackSegment {
     /**
      * Constructs a new TrackSegment object with the specified track repository, ID, and length.
      *
-     * @param repo The TrackRepo instance to associate with the track segment.
-     * @param id The unique identifier for the track segment.
+     * @param repo   The TrackRepo instance to associate with the track segment.
+     * @param id     The unique identifier for the track segment.
      * @param length The length of the track segment in meters.
      */
-    public TrackSegment(TrackRepo repo, String id, int length) {
+    public TrackSegment(TrackRepo repo, String id, double length) {
         this.repo = repo;
         this.id = id;
         this.length = length;
@@ -50,7 +49,7 @@ public class TrackSegment {
      *
      * @return The length of the track segment in meters.
      */
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
@@ -61,6 +60,10 @@ public class TrackSegment {
      */
     public String getId() {
         return id;
+    }
+
+    public Optional<Node> getNode() {
+        return Optional.empty();
     }
 
     /**
@@ -110,6 +113,15 @@ public class TrackSegment {
     }
 
     /**
+     * Gets all the next track segments in the FORWARD direction.
+     *
+     * @see TrackSegment#getNextTrackSegments(Direction)
+     */
+    public List<TrackSegment> getNextTrackSegments() {
+        return getNextTrackSegments(Direction.FORWARD);
+    }
+
+    /**
      * Gets all the next track segments in the given direction.
      * This method will return all track segments in the given direction
      * until either an endpoint is reached, or the track becomes cyclic.
@@ -135,6 +147,21 @@ public class TrackSegment {
      */
     public boolean isEndpoint(Direction direction) {
         return getNext(direction) == null;
+    }
+
+    /**
+     * Get the endpoint of the tracks in the given direction, if it exists.
+     *
+     * @param direction The direction to get the endpoint towards.
+     * @return The endpoint of the tracks in the given direction, if it exists.
+     */
+    public Optional<TrackSegment> getEndpoint(Direction direction) {
+        List<TrackSegment> next = getNextTrackSegments(direction);
+        if (next.isEmpty()) return Optional.empty();
+        int lastIndex = next.size() - 1;
+        TrackSegment last = next.get(lastIndex);
+        if (!last.isEndpoint(direction)) return Optional.empty();
+        return Optional.of(last);
     }
 
     /**
@@ -170,19 +197,68 @@ public class TrackSegment {
     }
 
     /**
+     * Get the distance from this track segment to the other track segment in the
+     * forward direction. This is equivalent to calling {@link #distanceTo(TrackSegment, Direction)}
+     * with the direction argument set to {@link Direction#FORWARD}.
+     *
+     * @param other The other track segment to get the distance to.
+     * @return The distance from this track segment to the other track segment in the
+     * @throws IllegalArgumentException        See {@link #distanceTo(TrackSegment, Direction)}
+     * @throws ConcurrentModificationException See {@link #distanceTo(TrackSegment, Direction)}
+     */
+    public double distanceTo(TrackSegment other) {
+        return distanceTo(other, Direction.FORWARD);
+    }
+
+    /**
+     * Get the distance from this track segment to the other track segment in the
+     * direction specified.
+     *
+     * @param other     The other track segment to get the distance to.
+     * @param direction The direction to get the distance towards.
+     * @return The distance from this track segment to the other track segment in the
+     * @throws IllegalArgumentException        If the other track is not connected to this track by
+     *                                         any amount of other tracks, i.e. if the track is not
+     *                                         contained within the result of a call to
+     *                                         {@link #getNextTrackSegments(Direction)}
+     *                                         with the same argument direction.
+     * @throws ConcurrentModificationException If the track structure is modified while this method is running.
+     */
+    public double distanceTo(TrackSegment other, Direction direction) {
+        List<TrackSegment> nextSegments = getNextTrackSegments(direction);
+        Preconditions.checkArgument(
+                nextSegments.contains(other),
+                "Track is not connected to the other track"
+        );
+
+        double distance = 0;
+        for (TrackSegment segment : nextSegments) {
+            if (segment == other) {
+                return distance;
+            }
+            distance += segment.getLength();
+        }
+
+        throw new ConcurrentModificationException();
+    }
+
+    /**
      * Links two track segments together bidirectionally.
      *
      * @param prev The previous TrackSegment to link.
      * @param next The next TrackSegment to link.
      */
     public static void link(TrackSegment prev, TrackSegment next) {
+
         if (prev.next == next && next.prev == prev) {
             // Already linked
             return;
         }
 
-        Preconditions.checkState(prev.next == null, "prev is linked to a different track!");
-        Preconditions.checkState(next.prev == null, "next is linked to a different track!");
+        Preconditions.checkState(prev.next == null,
+                "prev is linked to a different track!");
+        Preconditions.checkState(next.prev == null,
+                "next is linked to a different track!");
 
         prev.next = next;
         next.prev = prev;

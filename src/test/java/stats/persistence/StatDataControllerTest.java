@@ -63,7 +63,11 @@ class StatDataControllerTest {
     void getAggregate() {
         ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(List.of(new MaintenanceStat(1.0)));
-        controller.getAggregateDataStore().store(0, MaintenanceStat.class, aggregate.getClass(), aggregate);
+        try {
+            controller.getAggregateDataStore().store(0, MaintenanceStat.class, aggregate.getClass(), aggregate);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         ExpenseAggregate aggregate2 = controller.getAggregate(MaintenanceStat.class, ExpenseAggregate.class, 0)
                 .orElseThrow();
         assertEquals(aggregate.getValue(), aggregate2.getValue());

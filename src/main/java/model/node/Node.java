@@ -19,6 +19,9 @@ public abstract class Node {
      */
     private final String name;
 
+    private int x = 0;
+    private int y = 0;
+
     /**
      * Map containing NodeLineProfile instances associated with this node, keyed by line number.
      */
@@ -33,6 +36,22 @@ public abstract class Node {
     public Node(NodeTracker tracker, String name) {
         this.tracker = tracker;
         this.name = name;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     /**
@@ -61,6 +80,10 @@ public abstract class Node {
      */
     public Optional<NodeLineProfile> getLineProfile(int lineNumber) {
         return Optional.ofNullable(lineProfiles.get(lineNumber));
+    }
+
+    public Collection<NodeLineProfile> getLineProfiles() {
+        return lineProfiles.values();
     }
 
     /**

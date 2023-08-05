@@ -29,10 +29,9 @@ public interface NodeTracker {
      *
      * @param factory The NodeFactory instance to use for creating the node.
      * @param name The name of the new node.
-     * @param length The length of the new node.
      * @return The newly created Node object.
      */
-    Node createNode(NodeFactory factory, String name, double length);
+    Node createNode(NodeFactory factory, String name);
 
     /**
      * Retrieves the TrackRepo associated with this NodeTracker.

@@ -1,11 +1,13 @@
 package model.train;
 
 import model.*;
-import model.control.TransitTracker;
+import model.control.TransitModel;
 import employee.Employee;
 import model.node.Node;
 import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
+import ticket.AdultTicket;
+import ticket.Ticket;
 import util.Preconditions;
 
 import java.util.*;
@@ -18,15 +20,20 @@ import java.util.*;
 public class Train {
 
     /**
+     * The default capacity of a train.
+     */
+    public static final int DEFAULT_CAPACITY = 100;
+
+    /**
      * Enum representing the possible statuses of a train.
      * <br>
-
+     * <p>
      * IN_SERVICE:            Running properly.
      * SCHEDULED_MAINTENANCE: still running, will stop for maintenance at the next station. (not automatically under maintenance)
      * UNDER_MAINTENANCE:     stopped for maintenance at a station and staff assigned to maintain.
      * OUT_OF_SERVICE:        Not running.
      * <br>
-
+     * <p>
      * Precondition: Trains UNDER_MAINTENANCE cannot be IN_SERVICE.
      * Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
      * tracks have spare tracks that others can pass.
@@ -47,7 +54,7 @@ public class Train {
     /**
      * The maximum speed of the train in meters per second. This is approximately 115 km/h.
      */
-    public static int MAX_SPEED = 32;
+    public static double MAX_SPEED = 32;
 
     /**
      * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
@@ -57,7 +64,12 @@ public class Train {
     /**
      * The associated TransitTracker for this train.
      */
-    private final TransitTracker transitTracker;
+    private final TransitModel transitModel;
+
+    /**
+     * The name of this train.
+     */
+    private final String name;
 
     /**
      * The set containing the list of passengers currently on this train.
@@ -88,14 +100,24 @@ public class Train {
     /**
      * Creates a train associated with the given TransitTracker, positioned at the given TrainPosition, and with the given capacity.
      *
-     * @param transitTracker The TransitTracker that this train is associated with.
-     * @param position The position of this train.
-     * @param capacity The capacity of this train.
+     * @param transitModel The TransitTracker that this train is associated with.
+     * @param position     The position of this train.
+     * @param capacity     The capacity of this train.
      */
-    public Train(TransitTracker transitTracker, TrainPosition position, int capacity) {
-        this.transitTracker = transitTracker;
+    public Train(TransitModel transitModel, String name, TrainPosition position, int capacity) {
+        this.transitModel = transitModel;
+        this.name = name;
         this.position = position;
         this.capacity = capacity;
+
+        Preconditions.checkArgument(position.getTrack().isEmpty(),
+                "Train cannot be created on a non-empty track segment.");
+
+        position.getTrack().setTrain(this);
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**
@@ -108,17 +130,19 @@ public class Train {
     }
 
     /**
-     *  Get the employee assigned to a job on this train.
-     *  @param job the job to get the employee for
+     * Get the employee assigned to a job on this train.
+     *
+     * @param job the job to get the employee for
      */
     public Employee getStaff(TrainJob job) {  // This function is overloading for .getStaff()
         return staff.get(job);
     }
 
     /**
-     *  Assign an employee to a job on this train.
-     *  @param job the TrainJob to assign the employee to
-     *  @param employee the employee to assign to the job
+     * Assign an employee to a job on this train.
+     *
+     * @param job      the TrainJob to assign the employee to
+     * @param employee the employee to assign to the job
      */
     public void setStaff(TrainJob job, Employee employee) {
         staff.put(job, employee);
@@ -126,9 +150,9 @@ public class Train {
 
     /**
      * Remove and return an employee from a job on this train.
+     *
      * @param job the TrainJob to remove the employee from
      * @return the employee if it was currently assigned to the TrainJob job
-
      */
     public Employee removeStaff(TrainJob job) {
         return this.staff.remove(job);
@@ -182,31 +206,14 @@ public class Train {
         return passengerList.remove(passenger);
     }
 
-    /**
-     * Handle the alighting passengers on this train.
-     * @return the number of passengers that alighted
-     */
-    public int handleAlightingPassengers() {
-        int counter = 0;
-        Iterator<Passenger> passengerIterator = passengerList.iterator();
-        while (passengerIterator.hasNext()) {
-            Passenger passenger = passengerIterator.next();
-            if (passenger.willAlight()) {
-                counter++;
-                passengerIterator.remove();  // This is a safe way to remove elements while iterating over a collection
-                                             // without a risk of a ConcurrentModificationException.
-            }
-        }
-
-        return counter;
-    }
 
     /**
-     *  Get the transit tracker that this train is associated with.
-     *  @return the TransitTracker that this train is associated with
+     * Get the transit tracker that this train is associated with.
+     *
+     * @return the TransitTracker that this train is associated with
      */
-    public TransitTracker getTransitTracker() {
-        return transitTracker;
+    public TransitModel getTransitTracker() {
+        return transitModel;
     }
 
     /**
@@ -233,28 +240,39 @@ public class Train {
      * @param position The new TrainPosition for this train.
      */
     protected void setPosition(TrainPosition position) {
+
+        if (!position.getTrack().isEmpty()) {
+            if (position.getTrack().getTrain() != this) {
+                throw new IllegalArgumentException(
+                        "Train cannot be placed on a track segment that is already occupied by another train."
+                );
+            }
+        }
+
+        this.position.getTrack().setTrain(null);
         this.position = position;
+        this.position.getTrack().setTrain(this);
     }
 
     /**
      * Get the next node that this train will move to, excluding
      * the current node if this train is already at a node.
-
+     * <p>
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
      *
      * @param direction The direction to look for the next node.
      * @return An Optional containing the next Node that this train will move to, or an empty Optional if there is no next node.
      */
-    public Optional<Node> getNextNode(Direction direction) {  //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
+    public Optional<Node> getNextNode(Direction direction) {
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
 
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
         for (TrackSegment nextSegment : nextSegments) {
-            if (nextSegment instanceof NodeTrackSegment) {
-                Node node = ((NodeTrackSegment) nextSegment).getNode();
-                return Optional.of(node);
+            Optional<Node> node = nextSegment.getNode();
+            if (node.isPresent()) {
+                return node;
             }
         }
 
@@ -262,20 +280,19 @@ public class Train {
     }
 
     /**
-
      * Get the distance to the next node that this train will move to, excluding
      * the current node if this train is already at a node.
-
+     * <p>
      * If this train is not on a track, or there is no next node,
      * the returned Optional will be empty.
-
+     * <p>
      * Gets the distance to the next node that this train will move to, excluding the current node if this train is already at a node.
      * If this train is not on a track or there is no next node, the returned Optional will be empty.
      *
      * @param direction The direction to look for the next node.
      * @return An Optional containing the distance to the next node, or an empty Optional if there is no next node.
      */
-    public Optional<Double> getDistanceToNextNode(Direction direction) { //TODO: REFLECT DIRECTION BEHAVIOR CHANGES
+    public Optional<Double> getDistanceToNextNode(Direction direction) {
 
         TrackSegment track = position.getTrack();
         if (track == null) return Optional.empty();
@@ -285,10 +302,12 @@ public class Train {
         List<TrackSegment> nextSegments = track.getNextTrackSegments(direction);
 
         for (TrackSegment nextSegment : nextSegments) {
-            if (nextSegment instanceof NodeTrackSegment) {
+            Optional<Node> node = nextSegment.getNode();
+            if (node.isPresent()) {
                 return Optional.of(distance);
+            } else {
+                distance += nextSegment.getLength();
             }
-            distance += nextSegment.getLength();
         }
 
         return Optional.empty();
@@ -298,7 +317,7 @@ public class Train {
      * Moves the train in the given direction by the given amount.
      *
      * @param direction The direction to move the train.
-     * @param amount The amount to move the train by.
+     * @param amount    The amount to move the train by.
      * @return true if the train was moved, false if the train could not be moved.
      */
     public boolean move(Direction direction, double amount) {
@@ -310,23 +329,9 @@ public class Train {
 
         if (movedPosition == null) return false;
 
-        // Check for arrival at a NodeTrackSegment
-        TrackSegment currTrack = position.getTrack();
-        if (currTrack != movedPosition.getTrack() && currTrack instanceof NodeTrackSegment) { // HELP: instanceof used
-            decrementAllPassengersStationsToTravel();
-        }
-
         // Then move the train
-        position = movedPosition;
-        return true;
-    }
+        setPosition(movedPosition);
 
-    /**
-     *  Decrement the stations to travel for all passengers on this train.
-     */
-    private void decrementAllPassengersStationsToTravel() {
-        for (Passenger passenger : this.passengerList) {
-            passenger.decrementStationsToTravel();
-        }
+        return true;
     }
 }
