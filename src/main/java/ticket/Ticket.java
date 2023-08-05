@@ -8,29 +8,37 @@ import java.util.concurrent.ThreadLocalRandom;
  * The expiry time is given at the creation of the ticket.
  * The type ID and price should be provided by the concrete classes that extend Ticket.
  */
-public abstract class Ticket {
+public class Ticket {
 
+    private final TicketType type;
     /**
      * The expiry time of the ticket in milliseconds.
      */
-    private final long expiry;
+    private long expiry = -1;
 
+    /**
+     * The id of the ticket
+     */
     private final int ticketId;
 
     /**
-     * Constructs a new Ticket object with the given expiry time.
-     *
-     * @param expiry the expiry time of the ticket in milliseconds
+     * Whether the ticket is activated or not.
      */
-    public Ticket(long expiry) {
-        this.expiry = expiry;
+    private boolean activated = false;
+
+    /**
+     * Constructs a new Ticket object. The ticket's id is randomly generated.
+     * The ticket's type is given as a parameter.
+     */
+    public Ticket(TicketType type) {
+        this.type = type;
         ticketId = ThreadLocalRandom.current().nextInt(999999999);
     }
 
     /**
-     * Returns the expiry time of the ticket.
+     * Returns the expiry time of the ticket, or -1 if the ticket is not activated.
      *
-     * @return the expiry time of the ticket in milliseconds
+     * @return the expiry time of the ticket in milliseconds, or -1 if the ticket is not activated
      */
     public long getExpiry() {
         return expiry;
@@ -39,17 +47,13 @@ public abstract class Ticket {
     /**
      * Returns this ticket's id.
      */
-    public int getTicketId() {
+    public int getId() {
         return ticketId;
     }
 
-    /**
-     * Returns the ID of the type of the ticket.
-     * This method should be implemented by the concrete classes that extend Ticket.
-     *
-     * @return the ID of the type of the ticket
-     */
-    public abstract String getTypeId();
+    public TicketType getType() {
+        return type;
+    }
 
     /**
      * Returns the price of the ticket.
@@ -57,5 +61,7 @@ public abstract class Ticket {
      *
      * @return the price of the ticket
      */
-    public abstract double getPrice();
+    public double getPrice() {
+        return getType().getPrice();
+    }
 }

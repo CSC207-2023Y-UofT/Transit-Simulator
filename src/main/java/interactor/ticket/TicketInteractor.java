@@ -6,35 +6,26 @@ import ticket.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class TicketInteractor {
+public class TicketInteractor implements ITicketInteractor {
     private final StatDataController stats;
+    private final TicketDataStore dataStore;
 
-    public TicketInteractor(StatDataController stats) {
+    public TicketInteractor(TicketDataStore dataStore, StatDataController stats) {
+        this.dataStore = dataStore;
         this.stats = stats;
     }
 
-    public List<BoughtTicket> buyTicket(int childTickets,
-                                        int adultTickets,
-                                        int seniorTickets,
-                                        int studentTickets) {
+    public List<BoughtTicket> buyTickets(List<TicketType> ticketTypes) {
 
         List<Ticket> tickets = new ArrayList<>();
 
-        for (int i = 0; i < childTickets; i++) {
-            tickets.add(new ChildTicket());
-        }
+        for (TicketType ticketType : ticketTypes) {
+            Ticket ticket = new Ticket(ticketType);
+            tickets.add(ticket);
 
-        for (int i = 0; i < adultTickets; i++) {
-            tickets.add(new AdultTicket());
-        }
-
-        for (int i = 0; i < seniorTickets; i++) {
-            tickets.add(new SeniorTicket());
-        }
-
-        for (int i = 0; i < studentTickets; i++) {
-            tickets.add(new StudentTicket());
+            dataStore.addTicket(ticket);
         }
 
         for (Ticket ticket : tickets) {
@@ -47,8 +38,8 @@ public class TicketInteractor {
         for (Ticket ticket : tickets) {
             BoughtTicket boughtTicket = new BoughtTicket(
                     ticket.getPrice(),
-                    ticket.getTypeId(),
-                    ticket.getTicketId()
+                    ticket.getType(),
+                    ticket.getId()
             );
             response.add(boughtTicket);
         }
@@ -56,4 +47,10 @@ public class TicketInteractor {
         return response;
     }
 
+    @Override
+    public Optional<BoughtTicket> getTicket(int ticketId) {
+        Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
+        if (ticket == null) return Optional.empty();
+        return Optional.of(new BoughtTicket(ticket.getPrice(), ticket.getType(), ticket.getId()));
+    }
 }

@@ -7,8 +7,8 @@ import model.node.NodeLineProfile;
 import model.train.Passenger;
 import model.train.Train;
 import model.train.track.TrackSegment;
-import ticket.AdultTicket;
 import ticket.Ticket;
+import ticket.TicketType;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -147,7 +147,7 @@ public class TrainSimulator {
         if (train.getPassengerList().size() >= train.getCapacity()) return 0;
         int numPassengersBoarded = 0;
         while (Math.random() < 0.5) {
-            Ticket ticket = new AdultTicket();
+            Ticket ticket = new Ticket(TicketType.ADULT);
             int stationsToTravel = (int) (Math.random() * 5) + 1;
             Passenger passenger = new Passenger(ticket, stationsToTravel);
             train.addPassenger(passenger);

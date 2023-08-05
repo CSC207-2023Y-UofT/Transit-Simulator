@@ -1,11 +1,13 @@
 package interactor.ticket;
 
+import ticket.TicketType;
+
 public class BoughtTicket {
     private final double cost;
-    private final String type;
+    private final TicketType type;
     private final int ticketId;
 
-    public BoughtTicket(double cost, String type, int ticketId) {
+    public BoughtTicket(double cost, TicketType type, int ticketId) {
         this.cost = cost;
         this.type = type;
         this.ticketId = ticketId;
@@ -15,7 +17,7 @@ public class BoughtTicket {
         return cost;
     }
 
-    public String getType() {
+    public TicketType getType() {
         return type;
     }
 

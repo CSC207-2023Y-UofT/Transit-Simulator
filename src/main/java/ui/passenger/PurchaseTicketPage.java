@@ -1,13 +1,17 @@
 package ui.passenger;
 
+import presenter.PurchaseTicketViewModel;
+import ticket.TicketType;
 import ui.UIController;
 import ui.round.RoundedButton;
-import ui.round.RoundedLabel;
+import ui.round.SuppliedLabel;
+import ui.round.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.function.Supplier;
 
 /**
  * PurchaseTicketPage is a JPanel that displays the purchase ticket page.
@@ -16,23 +20,6 @@ import java.awt.event.ActionListener;
  * @see UIController
  */
 public class PurchaseTicketPage extends JPanel {
-    /**
-     * The price of an AdultTicket.
-     */
-    private static final double ADULT_PRICE = 3.35;
-    /**
-     * The price of a ChildTicket.
-     */
-    private static final double CHILD_PRICE = 2.40;
-    /**
-     * The price of a SeniorTicket.
-     */
-    private static final double SENIOR_PRICE = 2.30;
-    /**
-     * The price of a StudentTicket.
-     */
-    private static final double STUDENT_PRICE = 2.35;
-
     /**
      * The JLabel that displays the count of AdultTickets.
      */
@@ -54,6 +41,8 @@ public class PurchaseTicketPage extends JPanel {
      */
     private final JLabel totalCostLabel;
 
+    private final PurchaseTicketViewModel viewModel = new PurchaseTicketViewModel();
+
     /**
      * Constructs a new PurchaseTicketPage with the given UIController.
      *
@@ -71,25 +60,25 @@ public class PurchaseTicketPage extends JPanel {
             this.add(new JLabel("  "));
         }
 
-        adultCount = createCountLabel();
+        adultCount = createCountLabel(() -> viewModel.count(TicketType.ADULT));
         JButton adultMinus = createMinusButton();
         JButton adultPlus = createPlusButton();
-        createRow("Adult", adultMinus, adultPlus, adultCount, ADULT_PRICE);
+        createRow("Adult", adultMinus, adultPlus, adultCount, TicketType.ADULT);
 
-        childCount = createCountLabel();
+        childCount = createCountLabel(() -> viewModel.count(TicketType.CHILD));
         JButton childMinus = createMinusButton();
         JButton childPlus = createPlusButton();
-        createRow("Child", childMinus, childPlus, childCount, CHILD_PRICE);
+        createRow("Child", childMinus, childPlus, childCount, TicketType.CHILD);
 
-        seniorCount = createCountLabel();
+        seniorCount = createCountLabel(() -> viewModel.count(TicketType.SENIOR));
         JButton seniorMinus = createMinusButton();
         JButton seniorPlus = createPlusButton();
-        createRow("Senior", seniorMinus, seniorPlus, seniorCount, SENIOR_PRICE);
+        createRow("Senior", seniorMinus, seniorPlus, seniorCount, TicketType.SENIOR);
 
-        studentCount = createCountLabel();
+        studentCount = createCountLabel(() -> viewModel.count(TicketType.STUDENT));
         JButton studentMinus = createMinusButton();
         JButton studentPlus = createPlusButton();
-        createRow("Student", studentMinus, studentPlus, studentCount, STUDENT_PRICE);
+        createRow("Student", studentMinus, studentPlus, studentCount, TicketType.STUDENT);
 
         for (int i = 0; i < 4; i++) {
             this.add(new JLabel(" "));
@@ -115,17 +104,13 @@ public class PurchaseTicketPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // reset all the values
-                adultCount.setText("0");
-                childCount.setText("0");
-                seniorCount.setText("0");
-                studentCount.setText("0");
-                totalCostLabel.setText("Total: $0.00");
+                viewModel.reset();
             }
         });
         this.add(cancelButton);
 
         // Total cost label
-        totalCostLabel = new JLabel("Total: $0.00");
+        totalCostLabel = new SuppliedLabel(() -> "Total $" + String.format("%.2f", viewModel.getTotalCost()));
         totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
         totalCostLabel.setOpaque(true);
@@ -148,10 +133,11 @@ public class PurchaseTicketPage extends JPanel {
 
     /**
      * Creates a counting JLabel.
+     *
      * @return the counting JLabel
      */
-    private JLabel createCountLabel() {
-        JLabel label = new RoundedLabel("0");
+    private JLabel createCountLabel(Supplier<Integer> countSupplier) {
+        JLabel label = new SuppliedRoundLabel(() -> countSupplier.get().toString());
         label.setFont(new Font("Serif", Font.BOLD, 20));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBackground(new Color(255, 255, 255, 255));
@@ -161,6 +147,7 @@ public class PurchaseTicketPage extends JPanel {
 
     /**
      * Creates a minus button.
+     *
      * @return the minus button
      */
     private JButton createMinusButton() {
@@ -172,6 +159,7 @@ public class PurchaseTicketPage extends JPanel {
 
     /**
      * Creates a plus button.
+     *
      * @return the plus button
      */
     private JButton createPlusButton() {
@@ -184,30 +172,24 @@ public class PurchaseTicketPage extends JPanel {
     /**
      * Creates a row in the UI for a ticket type.
      *
-     * @param name the name of the ticket type
+     * @param name        the name of the ticket type
      * @param minusButton the button to decrease the count
-     * @param plusButton the button to increase the count
-     * @param countLabel the label that displays the count
-     * @param price the price of the ticket type
+     * @param plusButton  the button to increase the count
+     * @param countLabel  the label that displays the count
+     * @param type        the ticket type
      */
-    private void createRow(String name, JButton minusButton, JButton plusButton, JLabel countLabel, double price) {
+    private void createRow(String name, JButton minusButton, JButton plusButton, JLabel countLabel, TicketType type) {
         minusButton.addActionListener(e -> {
-            int count = Integer.parseInt(countLabel.getText());
-            if (count > 0) {
-                count--;
-                countLabel.setText(String.valueOf(count));
-                updateTotalCost();
-            }
+            viewModel.removeTicket(type);
+            repaint();
         });
 
         plusButton.addActionListener(e -> {
-            int count = Integer.parseInt(countLabel.getText());
-            count++;
-            countLabel.setText(String.valueOf(count));
-            updateTotalCost();
+            viewModel.addTicket(type);
+            repaint();
         });
 
-        String priceFormatted = String.format("$%.2f", price);
+        String priceFormatted = String.format("$%.2f", type.getPrice());
         JLabel lab = new JLabel(name + "   " + priceFormatted);
         lab.setFont(new Font("Serif", Font.BOLD, 25));
         lab.setHorizontalAlignment(SwingConstants.CENTER);
@@ -223,19 +205,7 @@ public class PurchaseTicketPage extends JPanel {
      * @return the total cost
      */
     public double getTotalCost() {
-        return Integer.parseInt(adultCount.getText()) * ADULT_PRICE
-                + Integer.parseInt(childCount.getText()) * CHILD_PRICE
-                + Integer.parseInt(seniorCount.getText()) * SENIOR_PRICE
-                + Integer.parseInt(studentCount.getText()) * STUDENT_PRICE;
-    }
-
-    /**
-     * Updates the total cost label.
-     */
-    private void updateTotalCost() {
-        double total = getTotalCost();
-        String totalFormatted = String.format("$%.2f", total);
-        totalCostLabel.setText("Total: " + totalFormatted);
+        return viewModel.getTotalCost();
     }
 
 }
