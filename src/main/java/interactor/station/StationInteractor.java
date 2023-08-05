@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StationInteractor {
+public class StationInteractor implements IStationInteractor {
 
     private final TransitModel model;
 
