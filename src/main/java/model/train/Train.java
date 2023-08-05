@@ -20,6 +20,11 @@ import java.util.*;
 public class Train {
 
     /**
+     * The default capacity of a train.
+     */
+    public static final int DEFAULT_CAPACITY = 100;
+
+    /**
      * Enum representing the possible statuses of a train.
      * <br>
      * <p>
@@ -104,6 +109,11 @@ public class Train {
         this.name = name;
         this.position = position;
         this.capacity = capacity;
+
+        Preconditions.checkArgument(position.getTrack().isEmpty(),
+                "Train cannot be created on a non-empty track segment.");
+
+        position.getTrack().setTrain(this);
     }
 
     public String getName() {

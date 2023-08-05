@@ -150,6 +150,21 @@ public class TrackSegment {
     }
 
     /**
+     * Get the endpoint of the tracks in the given direction, if it exists.
+     *
+     * @param direction The direction to get the endpoint towards.
+     * @return The endpoint of the tracks in the given direction, if it exists.
+     */
+    public Optional<TrackSegment> getEndpoint(Direction direction) {
+        List<TrackSegment> next = getNextTrackSegments(direction);
+        if (next.isEmpty()) return Optional.empty();
+        int lastIndex = next.size() - 1;
+        TrackSegment last = next.get(lastIndex);
+        if (!last.isEndpoint(direction)) return Optional.empty();
+        return Optional.of(last);
+    }
+
+    /**
      * Checks if the track segment is empty (has no train on it).
      *
      * @return true if the track segment is empty, false otherwise.
@@ -234,6 +249,7 @@ public class TrackSegment {
      * @param next The next TrackSegment to link.
      */
     public static void link(TrackSegment prev, TrackSegment next) {
+
         if (prev.next == next && next.prev == prev) {
             // Already linked
             return;

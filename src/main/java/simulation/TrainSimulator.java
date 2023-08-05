@@ -2,13 +2,18 @@ package simulation;
 
 import model.Direction;
 import model.control.TransitModel;
+import model.node.Node;
+import model.node.NodeLineProfile;
 import model.train.Passenger;
 import model.train.Train;
+import model.train.track.TrackSegment;
 import ticket.AdultTicket;
 import ticket.Ticket;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TrainSimulator {
 
@@ -21,7 +26,51 @@ public class TrainSimulator {
     public void recreateTrains(TransitModel model) {
         model.clearTrains();
 
+        // Keep track of mapped track segments
+        Set<TrackSegment> mapped = new HashSet<>();
+        List<Set<TrackSegment>> loops = new ArrayList<>();
 
+        for (Node value : model.getNodes().values()) {
+            for (NodeLineProfile profile : value.getLineProfiles()) {
+                List<TrackSegment> toMap = new ArrayList<>();
+                toMap.add(profile.getTrack(Direction.FORWARD));
+                toMap.add(profile.getTrack(Direction.BACKWARD));
+
+                for (TrackSegment segment : toMap) {
+                    if (mapped.contains(segment)) continue;
+
+                    Set<TrackSegment> loop = new HashSet<>();
+
+                    loop.add(segment);
+                    loop.addAll(segment.getNextTrackSegments(Direction.FORWARD));
+                    loop.addAll(segment.getNextTrackSegments(Direction.BACKWARD));
+
+                    mapped.addAll(loop);
+
+                    loops.add(loop);
+
+                }
+            }
+        }
+
+        int trainNum = 1;
+
+        for (Set<TrackSegment> loop : loops) {
+            // loop will never be empty as when it is constructed
+            // at least one is always added
+
+            int trainsToSpawn = loop.size() / 4;
+            trainsToSpawn = Math.max(1, trainsToSpawn);
+
+            List<TrackSegment> list = new ArrayList<>(loop);
+
+            for (int i = 0; i < trainsToSpawn; i++) {
+                int index = (int) (Math.random() * list.size());
+                TrackSegment segment = list.get(index);
+                if (!segment.isEmpty()) return;
+                model.createTrain(segment, "Train " + trainNum++, Train.DEFAULT_CAPACITY);
+            }
+        }
     }
 
     public void tick(TransitModel model) {

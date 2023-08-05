@@ -55,6 +55,7 @@ public class TransitModel implements NodeTracker, TrainTracker {
             throw new IllegalStateException("Track " + trackSegment.getId() + " is occupied");
         }
 
+        // This also adds the train to the track segment
         Train train = new Train(this, name, position, capacity);
         trainList.add(train);
 
