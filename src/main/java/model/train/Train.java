@@ -196,42 +196,6 @@ public class Train {
         return passengerList.remove(passenger);
     }
 
-    /**
-     * Handle the alighting passengers on this train.
-     *
-     * @return the number of passengers that alighted
-     */
-    public int simulateAlighting() {
-        int counter = 0;
-        Iterator<Passenger> passengerIterator = passengerList.iterator();
-        while (passengerIterator.hasNext()) {
-            Passenger passenger = passengerIterator.next();
-            if (passenger.willAlight()) {
-                counter++;
-                passengerIterator.remove();  // This is a safe way to remove elements while iterating over a collection
-                // without a risk of a ConcurrentModificationException.
-            }
-        }
-
-        return counter;
-    }
-
-    /**
-     * Handling simulating the boarding of passengers onto this train.
-     * @return the number of passengers that boarded
-     */
-    public int simulateBoardingPassenger() {
-        if (passengerList.size() >= capacity) return 0;
-        int numPassengersBoarded = 0;
-        while (Math.random() < 0.5) {
-            Ticket ticket = new AdultTicket();
-            int stationsToTravel = (int) (Math.random() * 5) + 1;
-            Passenger passenger = new Passenger(ticket, stationsToTravel);
-            passengerList.add(passenger);
-            numPassengersBoarded++;
-        }
-        return numPassengersBoarded;
-    }
 
     /**
      * Get the transit tracker that this train is associated with.
