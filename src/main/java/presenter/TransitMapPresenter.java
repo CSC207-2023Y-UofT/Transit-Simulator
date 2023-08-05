@@ -14,8 +14,8 @@ import java.util.Optional;
 
 public class TransitMapPresenter {
 
-    public static final double MAP_SIZE_X = 3500.0;
-    public static final double MAP_SIZE_Y = 3500.0;
+    public static final double MAP_SIZE_X = 4500.0;
+    public static final double MAP_SIZE_Y = 3750.0;
 
     private static final int STATION_ICON_SIZE = 10;
 
