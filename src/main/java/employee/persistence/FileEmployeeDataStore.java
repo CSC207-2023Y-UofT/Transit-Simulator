@@ -4,6 +4,8 @@ import employee.Employee;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class FileEmployeeDataStore implements EmployeeDataStore {
@@ -12,6 +14,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     public FileEmployeeDataStore(File directory) {
         this.directory = directory;
+        directory.mkdirs();
     }
 
     private File getFile(int staffNumber) {
@@ -40,15 +43,34 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     @Override
     public Optional<Employee> get(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
-        if (!file.exists()) {
-            return Optional.empty();
-        }
+        if (!file.exists()) return Optional.empty();
+        return read(file);
+    }
+
+    private Optional<Employee> read(File file) {
         try {
             byte[] data = Files.readAllBytes(file.toPath());
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             return Optional.ofNullable((Employee) new ObjectInputStream(in).readObject());
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<Employee> getEmployees() {
+        File[] files = directory.listFiles();
+        if (files == null) return new ArrayList<>();
+        List<Employee> employees = new ArrayList<>();
+        for (File file : files) {
+            if (!file.getName().endsWith(".staff")) {
+                continue;
+            }
+
+            Optional<Employee> employee = read(file);
+            employee.ifPresent(employees::add);
+        }
+
+        return employees;
     }
 }
