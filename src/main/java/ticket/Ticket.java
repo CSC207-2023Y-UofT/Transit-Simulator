@@ -51,7 +51,9 @@ public class Ticket {
         return ticketId;
     }
 
-    public TicketType getType();
+    public TicketType getType() {
+        return type;
+    }
 
     /**
      * Returns the price of the ticket.

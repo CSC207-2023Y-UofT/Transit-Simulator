@@ -1,13 +1,16 @@
 package ui.passenger;
 
+import presenter.PurchaseTicketViewModel;
 import ui.UIController;
 import ui.round.RoundedButton;
 import ui.round.RoundedLabel;
+import ui.round.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.function.Supplier;
 
 /**
  * PurchaseTicketPage is a JPanel that displays the purchase ticket page.
@@ -16,23 +19,6 @@ import java.awt.event.ActionListener;
  * @see UIController
  */
 public class PurchaseTicketPage extends JPanel {
-    /**
-     * The price of an AdultTicket.
-     */
-    private static final double ADULT_PRICE = 3.35;
-    /**
-     * The price of a ChildTicket.
-     */
-    private static final double CHILD_PRICE = 2.40;
-    /**
-     * The price of a SeniorTicket.
-     */
-    private static final double SENIOR_PRICE = 2.30;
-    /**
-     * The price of a StudentTicket.
-     */
-    private static final double STUDENT_PRICE = 2.35;
-
     /**
      * The JLabel that displays the count of AdultTickets.
      */
@@ -53,6 +39,8 @@ public class PurchaseTicketPage extends JPanel {
      * The JLabel that displays the total cost of the tickets.
      */
     private final JLabel totalCostLabel;
+
+    private final PurchaseTicketViewModel viewModel = new PurchaseTicketViewModel();
 
     /**
      * Constructs a new PurchaseTicketPage with the given UIController.
@@ -150,8 +138,8 @@ public class PurchaseTicketPage extends JPanel {
      * Creates a counting JLabel.
      * @return the counting JLabel
      */
-    private JLabel createCountLabel() {
-        JLabel label = new RoundedLabel("0");
+    private JLabel createCountLabel(Supplier<Integer> countSupplier) {
+        JLabel label = new SuppliedRoundLabel(() -> countSupplier.get().toString());
         label.setFont(new Font("Serif", Font.BOLD, 20));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBackground(new Color(255, 255, 255, 255));

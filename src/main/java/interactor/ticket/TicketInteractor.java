@@ -6,11 +6,14 @@ import ticket.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TicketInteractor implements ITicketInteractor {
     private final StatDataController stats;
+    private final TicketDataStore dataStore;
 
-    public TicketInteractor(StatDataController stats) {
+    public TicketInteractor(TicketDataStore dataStore, StatDataController stats) {
+        this.dataStore = dataStore;
         this.stats = stats;
     }
 
@@ -21,6 +24,8 @@ public class TicketInteractor implements ITicketInteractor {
         for (TicketType ticketType : ticketTypes) {
             Ticket ticket = new Ticket(ticketType);
             tickets.add(ticket);
+
+            dataStore.addTicket(ticket);
         }
 
         for (Ticket ticket : tickets) {
@@ -40,5 +45,12 @@ public class TicketInteractor implements ITicketInteractor {
         }
 
         return response;
+    }
+
+    @Override
+    public Optional<BoughtTicket> getTicket(int ticketId) {
+        Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
+        if (ticket == null) return Optional.empty();
+        return Optional.of(new BoughtTicket(ticket.getPrice(), ticket.getType(), ticket.getId()));
     }
 }
