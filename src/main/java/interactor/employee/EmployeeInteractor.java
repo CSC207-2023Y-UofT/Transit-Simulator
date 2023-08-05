@@ -78,16 +78,8 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         Employee employee = tracker.getEmployee(staffNumber)
                 .orElse(null);
         if (employee == null) return false;
-        for (Train train : model.getTrainList()) {
-            Map<TrainRole, Employee> employeeMap = new HashMap<>(train.getStaff());
-            for (Map.Entry<TrainRole, Employee> entry : employeeMap.entrySet()) {
-                if (entry.getValue().equals(employee)) {
-                    train.removeStaff(entry.getKey());
-                    return true;
-                }
-            }
-        }
-        return false;
+        employee.setAssignment(null);
+        return true;
     }
 
     @Override
