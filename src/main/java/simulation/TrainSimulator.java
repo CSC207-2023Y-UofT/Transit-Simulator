@@ -7,7 +7,8 @@ import model.train.Train;
 import ticket.AdultTicket;
 import ticket.Ticket;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrainSimulator {
 
@@ -49,15 +50,16 @@ public class TrainSimulator {
      *
      * @return the number of passengers that alighted
      */
-    public int simulateAlighting(Train train) {
+    private int simulateAlighting(Train train) {
         int counter = 0;
-        Iterator<Passenger> passengerIterator = train.getPassengerList().iterator();
-        while (passengerIterator.hasNext()) {
-            Passenger passenger = passengerIterator.next();
-            if (passenger.willAlight()) {
+
+        List<Passenger> passengerList = new ArrayList<>(train.getPassengerList());
+        for (Passenger passenger : passengerList) {
+            passenger.decrementStationsToTravel();
+
+            if (passenger.shouldAlight()) {
+                train.removePassenger(passenger);
                 counter++;
-                passengerIterator.remove();  // This is a safe way to remove elements while iterating over a collection
-                // without a risk of a ConcurrentModificationException.
             }
         }
 
@@ -68,7 +70,7 @@ public class TrainSimulator {
      * Handling simulating the boarding of passengers onto this train.
      * @return the number of passengers that boarded
      */
-    public int simulateBoarding(Train train) {
+    private int simulateBoarding(Train train) {
         if (train.getPassengerList().size() >= train.getCapacity()) return 0;
         int numPassengersBoarded = 0;
         while (Math.random() < 0.5) {
