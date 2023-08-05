@@ -185,9 +185,10 @@ public class TrackSegment {
      * Get the distance from this track segment to the other track segment in the
      * forward direction. This is equivalent to calling {@link #distanceTo(TrackSegment, Direction)}
      * with the direction argument set to {@link Direction#FORWARD}.
+     *
      * @param other The other track segment to get the distance to.
      * @return The distance from this track segment to the other track segment in the
-     * @throws IllegalArgumentException See {@link #distanceTo(TrackSegment, Direction)}
+     * @throws IllegalArgumentException        See {@link #distanceTo(TrackSegment, Direction)}
      * @throws ConcurrentModificationException See {@link #distanceTo(TrackSegment, Direction)}
      */
     public double distanceTo(TrackSegment other) {
@@ -201,11 +202,11 @@ public class TrackSegment {
      * @param other     The other track segment to get the distance to.
      * @param direction The direction to get the distance towards.
      * @return The distance from this track segment to the other track segment in the
-     * @throws IllegalArgumentException If the other track is not connected to this track by
-     *                                  any amount of other tracks, i.e. if the track is not
-     *                                  contained within the result of a call to
-     *                                  {@link #getNextTrackSegments(Direction)}
-     *                                  with the same argument direction.
+     * @throws IllegalArgumentException        If the other track is not connected to this track by
+     *                                         any amount of other tracks, i.e. if the track is not
+     *                                         contained within the result of a call to
+     *                                         {@link #getNextTrackSegments(Direction)}
+     *                                         with the same argument direction.
      * @throws ConcurrentModificationException If the track structure is modified while this method is running.
      */
     public double distanceTo(TrackSegment other, Direction direction) {
@@ -238,15 +239,10 @@ public class TrackSegment {
             return;
         }
 
-        try {
-            Preconditions.checkState(prev.next == null,
-                    "prev is linked to a different track!");
-            Preconditions.checkState(next.prev == null,
-                    "next is linked to a different track!");
-        } catch (Exception e) {
-            System.out.println("a");
-            throw e;
-        }
+        Preconditions.checkState(prev.next == null,
+                "prev is linked to a different track!");
+        Preconditions.checkState(next.prev == null,
+                "next is linked to a different track!");
 
         prev.next = next;
         next.prev = prev;
