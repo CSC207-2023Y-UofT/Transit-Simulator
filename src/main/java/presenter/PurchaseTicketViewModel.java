@@ -20,4 +20,26 @@ public class PurchaseTicketViewModel {
         return ticketTypesList;
     }
 
+    public void reset() {
+        ticketTypesList.clear();
+    }
+
+    public int count(TicketType type) {
+        int count = 0;
+        for (TicketType ticketType : ticketTypesList) {
+            if (ticketType.equals(type)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public double getTotalCost() {
+        double totalPrice = 0;
+        for (TicketType ticketType : ticketTypesList) {
+            totalPrice += ticketType.getPrice();
+        }
+        return totalPrice;
+    }
+
 }
