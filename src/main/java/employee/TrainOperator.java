@@ -3,7 +3,7 @@ package employee;
 import employee.Employee;
 import interactor.employee.EmployeeType;
 
-public class TrainOperator extends Employee{
+public class TrainOperator extends Employee {
 
     /**
      * Constructs a new TrainOperator object with the given employee number.
