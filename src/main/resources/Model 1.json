@@ -78,7 +78,7 @@
         "Station 9",
         "Station 10"
       ],
-      "cyclic": true
+      "cyclic": false
     },
     {
       "number": 4,
