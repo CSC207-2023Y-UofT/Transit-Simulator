@@ -1,4 +1,4 @@
-package bootstrap;
+package main;
 
 import interactor.station.StationInteractor;
 import interactor.train.TrainInteractor;

@@ -1,6 +1,6 @@
 package ui;
 
-import bootstrap.InteractorPool;
+import main.InteractorPool;
 
 import javax.swing.*;
 import java.awt.*;
