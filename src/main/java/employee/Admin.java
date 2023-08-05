@@ -1,5 +1,7 @@
 package employee;
 
+import interactor.employee.EmployeeType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,11 @@ public class Admin extends Employee {
     @Override
     public double getMonthlySalary() {
         return 4 * super.getMonthlySalary();
+    }
+
+    @Override
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.ADMINISTRATOR;
     }
 
     /**

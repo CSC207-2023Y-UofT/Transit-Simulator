@@ -1,6 +1,7 @@
 package employee;
 
 import employee.Employee;
+import interactor.employee.EmployeeType;
 
 public class TrainOperator extends Employee{
 
@@ -17,6 +18,11 @@ public class TrainOperator extends Employee{
     @Override
     public double getMonthlySalary() {
         return super.getMonthlySalary();
+    }
+
+    @Override
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.OPERATOR;
     }
 
     /**

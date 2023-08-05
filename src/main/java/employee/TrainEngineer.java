@@ -1,5 +1,6 @@
 package employee;
 
+import interactor.employee.EmployeeType;
 import model.train.Train;
 import java.util.Random;
 
@@ -26,6 +27,11 @@ public class TrainEngineer extends Employee {
     @Override
     public double getMonthlySalary() {
         return 1.2 * super.getMonthlySalary();
+    }
+
+    @Override
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.ENGINEER;
     }
 
     /**

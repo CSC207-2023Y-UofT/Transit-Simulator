@@ -1,5 +1,7 @@
 package employee;
 
+import interactor.employee.EmployeeType;
+
 /**
  * The Employee class is an abstract class that represents an employee.
  * Each employee has a unique staff number and a payment status.
@@ -63,5 +65,7 @@ public abstract class Employee {
     public int getStaffNumber() {
         return staffNumber;
     }
+
+    public abstract EmployeeType getEmployeeType();
 
 }
