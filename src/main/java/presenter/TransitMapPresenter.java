@@ -1,9 +1,7 @@
 package presenter;
 
-import interactor.station.IStationInteractor;
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
-import interactor.train.ITrainInteractor;
 import interactor.train.TrainInteractor;
 import interactor.train.TrainNodeDistance;
 import interactor.train.TrainState;
@@ -15,29 +13,62 @@ import java.util.List;
 import java.util.Optional;
 
 public class TransitMapPresenter {
-
-    public static final double MAP_SIZE_X = 4500.0;
-    public static final double MAP_SIZE_Y = 3750.0;
-
-    private static final int STATION_ICON_SIZE = 10;
-
-    protected final IStationInteractor stationInteractor;
-    private final ITrainInteractor trainInteractor;
-
+    /**
+     * The size of the map width in metres.
+     */
+    public static final double MAP_SIZE_X = 6150.0;
+    /**
+     * The size of the map height in metres.
+     */
+    public static final double MAP_SIZE_Y = 4500.0;
+    /**
+     * The size of the station icons in pickles (pixels).
+     */
+    private static final int STATION_ICON_SIZE = 7;
+    /**
+     * The station interactor.
+     */
+    protected final StationInteractor stationInteractor;
+    /**
+     * The train interactor.
+     */
+    private final TrainInteractor trainInteractor;
+    /**
+     * The list of stations to draw.
+     */
     protected List<StationState> stations = new ArrayList<>();
+    /**
+     * The list of trains to draw.
+     */
     protected List<TrainState> trains = new ArrayList<>();
-
+    /**
+     * The station that is currently highlighted.
+     */
     private StationState highlightedStation = null;
-
+    /**
+     * The width of the image.
+     */
     private int width = 1;
+    /**
+     * The height of the image.
+     */
     private int height = 1;
 
-    public TransitMapPresenter(IStationInteractor stationInteractor,
-                               ITrainInteractor trainInteractor) {
+    /**
+     * Constructs a new TransitMapPresenter with the given station and train interactors.
+     *
+     * @param stationInteractor The station interactor.
+     * @param trainInteractor   The train interactor.
+     */
+    public TransitMapPresenter(StationInteractor stationInteractor,
+                               TrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
     }
 
+    /**
+     * Presents (draws) the screen.
+     */
     public void present(Graphics2D graphics, int width, int height) {
 
         this.stations = stationInteractor.getStations();
@@ -74,7 +105,7 @@ public class TransitMapPresenter {
 
                 graphics.setColor(lineColours.get(line - 1));
                 Stroke stroke = graphics.getStroke();
-                graphics.setStroke(new BasicStroke(7, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                graphics.setStroke(new BasicStroke(11, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
                 graphics.drawLine(x, y, nextX, nextY);
                 graphics.setStroke(stroke);
 
@@ -125,12 +156,12 @@ public class TransitMapPresenter {
                 stationX *= scaleX;
                 stationY *= scaleY;
 
-                graphics.setColor(Color.RED);
-                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+                graphics.setColor(new Color(255, 255, 255));
+                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 8, 8);
 
                 // Draw a little border
                 graphics.setColor(Color.BLACK);
-                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 6, 6);
+                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 8, 8);
 
                 // Draw the train's name
                 graphics.setFont(new Font("Serif", Font.PLAIN, 12));
@@ -168,12 +199,12 @@ public class TransitMapPresenter {
             trainY *= scaleY;
 
             // Draw the train as a small red circle
-            graphics.setColor(Color.RED);
-            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 6, 6);
+            graphics.setColor(new Color(255, 255, 255));
+            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 8, 8);
 
             // Draw a little border
             graphics.setColor(Color.BLACK);
-            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 6, 6);
+            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 8, 8);
 
             // Train's name
             graphics.setFont(new Font("Serif", Font.PLAIN, 10));
@@ -181,6 +212,13 @@ public class TransitMapPresenter {
         }
     }
 
+    /**
+     * Returns the station at the given coordinates, if any.
+     *
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @return The station at the given coordinates, if any.
+     */
     public Optional<StationState> getStationAt(int x, int y) {
         double scaleX = width / MAP_SIZE_X;
         double scaleY = height / MAP_SIZE_Y;
@@ -197,8 +235,13 @@ public class TransitMapPresenter {
         return Optional.empty();
     }
 
+    /**
+     * Called when the mouse moves.
+     *
+     * @param x The x-coordinate of the mouse
+     * @param y The y-coordinate of the mouse
+     */
     public void onMouseMove(int x, int y) {
-
         Optional<StationState> optStation = getStationAt(x, y);
         if (optStation.isEmpty()) {
             highlightedStation = null;
@@ -208,6 +251,12 @@ public class TransitMapPresenter {
         highlightedStation = optStation.get();
     }
 
+    /**
+     * Called when the mouse is clicked.
+     *
+     * @param x The x-coordinate of the mouse
+     * @param y The y-coordinate of the mouse
+     */
     public void onClick(int x, int y) {
         Optional<StationState> optStation = getStationAt(x, y);
         if (optStation.isEmpty()) return;
@@ -216,6 +265,11 @@ public class TransitMapPresenter {
         onClickStation(station);
     }
 
+    /**
+     * Called when a station is clicked.
+     *
+     * @param station The station that was clicked.
+     */
     protected void onClickStation(StationState station) {
     }
 }

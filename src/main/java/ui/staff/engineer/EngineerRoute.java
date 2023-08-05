@@ -9,8 +9,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * EngineerRoute is a JPanel that displays the route of a train.
+ * It is used by the UIController to display the route of a train.
+ *
+ * @see UIController
+ */
 public class EngineerRoute extends JPanel {
 
+    /**
+     * Constructs a new EngineerRoute object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public EngineerRoute(UIController controller) {
         super(new BorderLayout());
 

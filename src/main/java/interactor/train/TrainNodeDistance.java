@@ -3,23 +3,22 @@ package interactor.train;
 import interactor.station.StationState;
 
 /**
- * Data class to represent a train's distance from a station.
+ * The TrainNodeDistance dataclass represents the distance between a station and a train.
  */
 public class TrainNodeDistance {
     /**
-     * The station
+     * The StationState.
      */
     private final StationState station;
     /**
-     * The distance to the station
+     * The distance.
      */
     private final double distance;
 
     /**
-     * Create a new TrainNodeDistance object.
-     *
-     * @param station  The station
-     * @param distance The distance to the station
+     * Constructs a new TrainNodeDistance with the given station and distance.
+     * @param station The StationState.
+     * @param distance The distance.
      */
     public TrainNodeDistance(StationState station, double distance) {
         this.station = station;
@@ -27,16 +26,16 @@ public class TrainNodeDistance {
     }
 
     /**
-     * Get the station
-     * @return The station
+     * Gets the StationState.
+     * @return The StationState.
      */
     public StationState getStation() {
         return station;
     }
 
     /**
-     * Get the distance to the station
-     * @return The distance to the station
+     * Gets the distance.
+     * @return The distance.
      */
     public double getDistance() {
         return distance;

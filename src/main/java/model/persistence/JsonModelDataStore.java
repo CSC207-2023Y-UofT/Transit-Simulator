@@ -21,8 +21,16 @@ import java.util.Set;
 
 public class JsonModelDataStore implements ModelDataStore {
 
+    /**
+     * The file to read the model from.
+     */
     private final File file;
 
+    /**
+     * Creates a new JsonModelDataStore that reads from the specified file.
+     *
+     * @param file the file to read the model from
+     */
     public JsonModelDataStore(File file) {
         this.file = file;
     }
@@ -34,7 +42,7 @@ public class JsonModelDataStore implements ModelDataStore {
      * The filepath is assumed to be inside /src/main/resources .
      */
     @Override
-    public TransitModel readModel() throws IOException {  // TODO HELP INFO IMPORTANT SUPER DUPER IMPORTANT TODO!!!!!!!
+    public TransitModel readModel() throws IOException {
 
         // Read the json as a string from the file.
         String json = Files.readString(file.toPath());
@@ -190,6 +198,11 @@ public class JsonModelDataStore implements ModelDataStore {
 
     }
 
+    /**
+     * Write a model to a JSON file. TODO: we don't need this; we don't support changing the map in the editor
+     *
+     * @param model The model to write
+     */
     @Override
     public void writeModel(TransitModel model) {
         JSONObject jsonModel = new JSONObject();
@@ -215,7 +228,7 @@ public class JsonModelDataStore implements ModelDataStore {
 
         Set<Integer> mappedLines = new HashSet<>();
 
-        for (Node node : model.getNodes().values()) {
+        for (Node node : model.getNodes().values()) { // TODO
         }
 
     }

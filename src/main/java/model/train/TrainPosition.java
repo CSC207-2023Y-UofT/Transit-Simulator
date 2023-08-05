@@ -24,7 +24,8 @@ public class TrainPosition {
 
     /**
      * Constructs a new TrainPosition on the given track at the given position.
-     * @param track the track
+     *
+     * @param track          the track
      * @param positionOnNode the position on the track
      */
     public TrainPosition(TrackSegment track, double positionOnNode) {
@@ -100,9 +101,10 @@ public class TrainPosition {
      * by the given amount. If the amount is negative, the position will be
      * moved backwards. The new position may be on a new track, or the returned
      * Optional may be empty if an endpoint was reached.
+     *
      * @param amount The amount to move by
      * @return A new TrainPosition representing the moved position, or an empty
-     *       Optional if an endpoint was reached.
+     * Optional if an endpoint was reached.
      */
     public Optional<TrainPosition> move(double amount) {
         return move(amount, true);
@@ -118,8 +120,8 @@ public class TrainPosition {
      * @param amount The amount to move by
      * @param noClip Whether to ignore occupied tracks and treat them as unoccupied.
      * @return A new TrainPosition representing the moved position, or an empty
-     *        Optional if an endpoint was reached or if noClip is false and an
-     *        occupied track was encountered.
+     * Optional if an endpoint was reached or if noClip is false and an
+     * occupied track was encountered.
      */
     public Optional<TrainPosition> move(double amount, boolean noClip) {
         if (amount == 0.0) return Optional.of(this);

@@ -5,10 +5,12 @@ import interactor.employee.EmployeeType;
 
 public class TrainOperator extends Employee{
 
-
+    /**
+     * Constructs a new TrainOperator object with the given employee number.
+     * @param id is an Integer
+     */
     public TrainOperator(int id) {
         super(id);
-
     }
 
     /**
@@ -42,17 +44,6 @@ public class TrainOperator extends Employee{
     public boolean getPaid() {
         return this.isPaid;
     }
-
-    /**
-     * returns Line that the current instance of TrainOperator is assigned to, must ask an admin
-     * @param admin is an Admin
-     * @return an Integer
-     */
-    public Integer checkTrainOperatorLine(Admin admin) {
-        return admin.checkLine(this);
-    }
-
-
 
 }
 

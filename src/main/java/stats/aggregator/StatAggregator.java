@@ -14,7 +14,7 @@ import java.util.Optional;
  * @param <E> The type of entries this aggregator operates on, which must extend {@link StatEntry}.
  * @param <A> The type of aggregated data, which must be serializable.
  */
-public abstract class StatAggregator<E extends StatEntry, A extends Serializable> {
+public abstract class StatAggregator<E extends StatEntry, A extends Serializable> { // Visitor Design Pattern used!!!
 
     /**
      * The class of entries this aggregator operates on.
@@ -29,7 +29,7 @@ public abstract class StatAggregator<E extends StatEntry, A extends Serializable
     /**
      * Constructs a StatAggregator that operates on the given entry and aggregate classes.
      *
-     * @param entryClass The class of entries this aggregator operates on.
+     * @param entryClass     The class of entries this aggregator operates on.
      * @param aggregateClass The class of aggregated data.
      */
     protected StatAggregator(Class<E> entryClass, Class<A> aggregateClass) {
@@ -58,9 +58,9 @@ public abstract class StatAggregator<E extends StatEntry, A extends Serializable
     /**
      * Aggregates data from the given data controller into a single aggregate value.
      *
-     * @param data The data controller.
+     * @param data       The data controller.
      * @param startIndex The start index (inclusive) of the range of entries to aggregate.
-     * @param endIndex The end index (inclusive) of the range of entries to aggregate.
+     * @param endIndex   The end index (inclusive) of the range of entries to aggregate.
      * @return An Optional containing the aggregate value, or an empty Optional if no data was found in the given range.
      */
     public final Optional<A> aggregate(StatDataController data, long startIndex, long endIndex) {

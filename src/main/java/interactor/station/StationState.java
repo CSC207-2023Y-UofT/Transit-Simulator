@@ -3,7 +3,7 @@ package interactor.station;
 import java.util.List;
 
 /**
- * This class represents the state of a station.
+ * The StationState dataclass represents the state of a station.
  */
 public class StationState {
     /**
@@ -24,7 +24,7 @@ public class StationState {
     private final int y;
 
     /**
-     * Create a new StationState object.
+     * Constructs a new StationState with the given name, lines, x and y coordinates.
      *
      * @param name  The name of the station.
      * @param lines The lines that the station is on.
@@ -39,7 +39,7 @@ public class StationState {
     }
 
     /**
-     * Get the lines that the station is on.
+     * Gets the lines that the station is on.
      * @return The lines that the station is on.
      */
     public List<Integer> getLines() {
@@ -47,7 +47,7 @@ public class StationState {
     }
 
     /**
-     * Get the name of the station.
+     * Gets the name of the station.
      * @return The name of the station.
      */
     public String getName() {
@@ -55,7 +55,7 @@ public class StationState {
     }
 
     /**
-     * Get the x coordinate of the station.
+     * Gets the x coordinate of the station.
      * @return The x coordinate of the station.
      */
     public int getX() {
@@ -63,7 +63,7 @@ public class StationState {
     }
 
     /**
-     * Get the y coordinate of the station.
+     * Gets the y coordinate of the station.
      * @return The y coordinate of the station.
      */
     public int getY() {

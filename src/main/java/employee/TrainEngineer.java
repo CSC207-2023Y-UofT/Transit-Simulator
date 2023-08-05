@@ -55,17 +55,6 @@ public class TrainEngineer extends Employee {
     }
 
     /**
-     * Returns the line number that this TrainEngineer is assigned to.
-     * This method requires an Admin instance to check the line assignment.
-     *
-     * @param admin The Admin instance that checks the line assignment.
-     * @return The line number that this TrainEngineer is assigned to.
-     */
-    public Integer checkTrainOperatorLine(Admin admin) {
-        return admin.checkLine(this);
-    }
-
-    /**
      * Fixes the specified Train's maintenance issues.
      * The method sets the status of the Train to OUT_OF_SERVICE and generates a random cost for the maintenance.
      *

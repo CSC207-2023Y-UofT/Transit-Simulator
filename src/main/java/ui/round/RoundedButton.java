@@ -3,8 +3,16 @@ package ui.round;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * RoundedButton is a JButton that is rounded.
+ */
 public class RoundedButton extends JButton {
 
+    /**
+     * Constructs a new RoundedButton with the given label.
+     *
+     * @param label the label of the button
+     */
     public RoundedButton(String label) {
         super(label);
 
@@ -16,6 +24,11 @@ public class RoundedButton extends JButton {
         setRolloverEnabled(true);
     }
 
+    /**
+     * Paints the button.
+     *
+     * @param g the Graphics object
+     */
     @Override
     protected void paintComponent(Graphics g) {
         if (getModel().isArmed()) {

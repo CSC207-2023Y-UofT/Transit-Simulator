@@ -1,6 +1,7 @@
 package model.node;
 
 import util.Preconditions;
+
 import java.util.*;
 
 /**
@@ -19,7 +20,14 @@ public abstract class Node {
      */
     private final String name;
 
+    /**
+     * The x coordinate of the node.
+     */
     private int x = 0;
+
+    /**
+     * The y coordinate of the node.
+     */
     private int y = 0;
 
     /**
@@ -31,25 +39,45 @@ public abstract class Node {
      * Constructs a Node with the given tracker and name.
      *
      * @param tracker the NodeTracker for this node
-     * @param name the name of this node
+     * @param name    the name of this node
      */
     public Node(NodeTracker tracker, String name) {
         this.tracker = tracker;
         this.name = name;
     }
 
+    /**
+     * Sets the y coordinates of this node.
+     *
+     * @param x The x-coordinate.
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Sets the x coordinates of this node.
+     *
+     * @param y The y-coordinate.
+     */
     public void setY(int y) {
         this.y = y;
     }
 
+    /**
+     * Gets the x coordinates of this node.
+     *
+     * @return The x-coordinate.
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Gets the y coordinates of this node.
+     *
+     * @return The y-coordinate.
+     */
     public int getY() {
         return y;
     }
@@ -82,6 +110,11 @@ public abstract class Node {
         return Optional.ofNullable(lineProfiles.get(lineNumber));
     }
 
+    /**
+     * Gets all NodeLineProfiles associated with this node.
+     *
+     * @return a Collection of all NodeLineProfiles associated with this node
+     */
     public Collection<NodeLineProfile> getLineProfiles() {
         return lineProfiles.values();
     }

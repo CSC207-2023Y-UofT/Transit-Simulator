@@ -5,22 +5,42 @@ import interactor.station.StationInteractor;
 import interactor.station.StationState;
 import model.Direction;
 import model.control.TransitModel;
+import model.node.Node;
 import model.train.Train;
-import model.train.TrainRole;
+import model.train.TrainJob;
 
 import java.util.*;
 
-public class TrainInteractor implements ITrainInteractor {
+/**
+ * The interactor for the train.
+ */
+public class TrainInteractor {
+    /**
+     * The transit model.
+     */
     private final TransitModel model;
 
+    /**
+     * Constructs a new TrainInteractor with the given transit model.
+     * @param model The transit model.
+     */
     public TrainInteractor(TransitModel model) {
         this.model = model;
     }
 
+    /**
+     * Gets the train state for the given train name.
+     * @param trainName The train name.
+     * @return The train state.
+     */
     public TrainState getTrainState(String trainName) {
         return toState(model.getTrain(trainName));
     }
 
+    /**
+     * Gets the train states for all trains.
+     * @return The train states.
+     */
     public List<TrainState> getTrains() {
         List<TrainState> trains = new ArrayList<>();
 
@@ -31,14 +51,19 @@ public class TrainInteractor implements ITrainInteractor {
         return trains;
     }
 
+    /**
+     * Returns the train state for the given train.
+     * @param train The train.
+     * @return the TrainState.
+     */
     public static TrainState toState(Train train) {
 
         String name = train.getName();
         int capacity = train.getCapacity();
         int occupation = train.getPassengerList().size();
 
-        Map<TrainRole, Integer> staff = new HashMap<>();
-        for (Map.Entry<TrainRole, Employee> entry : train.getStaff().entrySet()) {
+        Map<TrainJob, Integer> staff = new HashMap<>();
+        for (Map.Entry<TrainJob, Employee> entry : train.getStaff().entrySet()) {
             staff.put(entry.getKey(), entry.getValue().getStaffNumber());
         }
 

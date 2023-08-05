@@ -7,7 +7,13 @@ package util;
  * @param <K> the type of the second element in the pair.
  */
 public class Pair<T, K> {
+    /**
+     * The first element of the pair.
+     */
     private final T first;
+    /**
+     * The second element of the pair.
+     */
     private final K second;
 
     /**

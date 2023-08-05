@@ -42,7 +42,6 @@ public class Train {
         OUT_OF_SERVICE
     }
 
-
     /**
      * The maximum length of the train in meters.
      */

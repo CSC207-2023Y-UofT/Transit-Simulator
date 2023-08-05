@@ -7,9 +7,19 @@ import ui.staff.StaffHomePage;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * WelcomePage is a JPanel that displays the welcome page of the TTC.
+ * It is used by the UIController to display the welcome page.
+ *
+ * @see UIController
+ */
 public class WelcomePage extends JPanel {
 
-
+    /**
+     * Constructs a new WelcomePage object.
+     *
+     * @param controller the controller used to switch panels
+     */
     public WelcomePage(UIController controller) {
         super(new GridLayout(0, 3));
 

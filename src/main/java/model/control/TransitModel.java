@@ -120,16 +120,30 @@ public class TransitModel implements NodeTracker, TrainTracker {
         return trainList;
     }
 
+    /**
+     * Returns the train with the given name from the transit system.
+     *
+     * @param name The identifier of the train.
+     * @return The Train object with the given name. Null if no such train exists.
+     */
     @Override
     public Train getTrain(String name) {
         return trainList.stream().filter(train -> train.getName().equals(name)).findFirst().orElse(null);
     }
 
+    /**
+     * Removes the train with the given name from the transit system.
+     *
+     * @param name The identifier of the train.
+     */
     @Override
     public void removeTrain(String name) {
         trainList.removeIf(train -> train.getName().equals(name));
     }
 
+    /**
+     * Removes all trains from the transit system.
+     */
     @Override
     public void clearTrains() {
         trainList.clear();

@@ -19,11 +19,18 @@ public class Simulation {
      */
     private final TrainSimulator trainSimulator;
 
+    /**
+     * Creates a new simulation on the given model.
+     * @param model The model to run the simulation on.
+     */
     public Simulation(TransitModel model) {
         this.model = model;
         this.trainSimulator = new TrainSimulator(TICK_SPEED);
     }
 
+    /**
+     * Starts the simulation.
+     */
     @SuppressWarnings({"BusyWait", "InfiniteLoopStatement"})
     public void start() {
         this.trainSimulator.recreateTrains(model);
@@ -46,7 +53,9 @@ public class Simulation {
         }
     }
 
-
+    /**
+     * Ticks the simulation.
+     */
     public void tick() {
         trainSimulator.tick(model);
     }

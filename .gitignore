@@ -18,6 +18,7 @@ test-aggregates/*
 test-entries/*
 
 model-1.json
+model-2.json
 
 .idea/*
 
