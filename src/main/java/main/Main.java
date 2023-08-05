@@ -32,9 +32,9 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
 
-        File file = new File("model-1.json");
+        File file = new File("model-2.json");
         try (InputStream str = Main.class.getClassLoader()
-                .getResourceAsStream("Model 1.json")) {
+                .getResourceAsStream("Model 2.json")) {
             assert str != null;
             byte[] bytes = str.readAllBytes();
             Files.write(file.toPath(), bytes);
