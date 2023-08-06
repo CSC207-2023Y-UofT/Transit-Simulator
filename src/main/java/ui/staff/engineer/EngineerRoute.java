@@ -6,8 +6,6 @@ import ui.staff.StaffHomePage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * EngineerRoute is a JPanel that displays the route of a train.
@@ -33,12 +31,7 @@ public class EngineerRoute extends JPanel {
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.open(new StaffHomePage(controller));
-            }
-        });
+        homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
         int id = 322; // TODO: should be .getId()
