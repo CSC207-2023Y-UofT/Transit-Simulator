@@ -64,12 +64,4 @@ public class Admin extends Employee {
         return this.isPaid;
     }
 
-    /**
-     * Pays the specified employee, changing their payment status to true.
-     *
-     * @param employee The Employee to be paid.
-     */
-    public void payEmployee(Employee employee) {
-        employee.setPaid(true);
-    }
 }

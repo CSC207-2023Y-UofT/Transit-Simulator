@@ -73,6 +73,10 @@ public abstract class Employee {
 
     public abstract EmployeeType getEmployeeType();
 
+    /**
+     * Returns the assignment of this employee.
+     * @return
+     */
     public Optional<EmployeeAssignment> getAssignment() {
         return Optional.ofNullable(trainAssignment);
     }

@@ -139,46 +139,6 @@ public class TrainTest {
     }
 
     @Test
-    public void testGetStaffNull() {
-        Map<Object, Object> emptyMap = new HashMap<>();
-        Assertions.assertEquals(emptyMap, trainForwards.getStaff());
-    }
-
-    @Test
-    public void testSetStaff() {
-        trainForwards.setStaff(TrainRole.OPERATOR, operator);
-        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainRole.OPERATOR));
-    }
-
-    @Test
-    public void testGetStaffValue() {
-        trainForwards.setStaff(TrainRole.OPERATOR, operator);
-        Assertions.assertSame(operator, trainForwards.getStaff().get(TrainRole.OPERATOR));
-        // teardown
-        trainForwards.removeStaff(TrainRole.OPERATOR);
-    }
-
-    @Test
-    public void testRemoveStaff() {
-        Map<Object, Object> emptyMap = new HashMap<>();
-        trainForwards.setStaff(TrainRole.ENGINEER, engineer);  // Method was tested above
-        Assertions.assertSame(engineer, trainForwards.removeStaff(TrainRole.ENGINEER));
-        Assertions.assertNull(trainForwards.getStaff(TrainRole.ENGINEER));
-        // removing a non-assigned staff
-        trainForwards.removeStaff(TrainRole.OPERATOR);
-        Assertions.assertNull(trainForwards.getStaff().get(TrainRole.OPERATOR));
-        Assertions.assertEquals(emptyMap, trainForwards.getStaff());
-    }
-
-    @Test
-    public void testGetStaffOverloadOneParam() {
-        trainForwards.setStaff(TrainRole.OPERATOR, operator);
-        Assertions.assertSame(operator, trainForwards.getStaff(TrainRole.OPERATOR));
-        // teardown
-        trainForwards.removeStaff(TrainRole.OPERATOR);
-    }
-
-    @Test
     public void testGetPassengerListZero() {
         Assertions.assertEquals(new HashSet<>(), trainForwards.getPassengerList());
         Assertions.assertEquals(0, trainForwards.getPassengerList().size());
@@ -187,10 +147,10 @@ public class TrainTest {
     @Test
     public void testAddAndRemovePassenger() {
         // setup
-        Passenger passengerAdult = new Passenger(new AdultTicket(), 0);
-        Passenger passengerChild = new Passenger(new ChildTicket(), 1);
-        Passenger passengerStudent = new Passenger(new StudentTicket(), 2);
-        Passenger passengerSenior = new Passenger(new SeniorTicket(), 3);
+        Passenger passengerAdult = new Passenger(new Ticket(TicketType.ADULT), 0);
+        Passenger passengerChild = new Passenger(new Ticket(TicketType.CHILD), 1);
+        Passenger passengerStudent = new Passenger(new Ticket(TicketType.STUDENT), 2);
+        Passenger passengerSenior = new Passenger(new Ticket(TicketType.STUDENT), 3);
 
         trainForwards.addPassenger(passengerAdult);
         trainForwards.addPassenger(passengerChild);
