@@ -9,6 +9,9 @@ import java.awt.*;
 public class ShadowedButton extends JButton {
 
     private boolean rounded = true;
+
+    private int shadowThickness = 6;
+
     /**
      * Constructs a new RoundedButton with the given label.
      *
@@ -49,18 +52,28 @@ public class ShadowedButton extends JButton {
         // Draw shadow
         Color c = g.getColor();
         g.setColor(g.getColor().darker());
-        if (rounded) {
-            g.fillRoundRect(1, 1, getWidth() - 1, getHeight() - 1, 12, 12);
-        } else {
-            g.fillRect(1, 1, getWidth() - 1, getHeight() - 1);
+        Color colour = new Color(0, 0, 0, 40);
+        for (int i = 0; i < shadowThickness; i++) {
+            Color edited = new Color(
+                    colour.getRed(),
+                    colour.getGreen(),
+                    colour.getBlue(),
+                    (int) ((double) i / shadowThickness * colour.getAlpha())
+            );
+            g.setColor(edited);
+            if (rounded) {
+                g.fillRoundRect(i, i, getWidth() - i * 2 - 1, getHeight() - i * 2 - 1, 10, 10);
+            } else {
+                g.fillRect(i, i, getWidth() - i * 2 - 1, getHeight() - i * 2 - 1);
+            }
         }
         g.setColor(c);
 
         if (rounded) {
             // Draw a rounded rectangle in the background of the button
-            g.fillRoundRect(0, 0, getWidth() - 3, getHeight() - 3, 10, 10);
+            g.fillRoundRect(shadowThickness, shadowThickness, getWidth() - shadowThickness * 2, getHeight() - shadowThickness * 2, 10, 10);
         } else {
-            g.fillRect(0, 0, getWidth() - 3, getHeight() - 3);
+            g.fillRect(shadowThickness, shadowThickness, getWidth() - shadowThickness * 2, getHeight() - shadowThickness * 2);
         }
 
         super.paintComponent(g);

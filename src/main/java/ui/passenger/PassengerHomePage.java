@@ -44,7 +44,6 @@ public class PassengerHomePage extends JPanel {
         buyButton.setForeground(Color.WHITE);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(0, 151, 8));
-        buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
 
