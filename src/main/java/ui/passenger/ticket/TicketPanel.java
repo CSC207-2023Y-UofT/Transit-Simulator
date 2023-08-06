@@ -1,4 +1,4 @@
-package ui.passenger;
+package ui.passenger.ticket;
 
 import ui.round.RoundedButton;
 
