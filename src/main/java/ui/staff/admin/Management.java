@@ -4,6 +4,7 @@ import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
+import javax.swing.table.JTableHeader;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -64,15 +65,16 @@ public class Management extends JPanel {
 
         // Column Names
         String[] columns = {
-                "Employee Type", "Staff number", "Assigned Train"
+                "Name", "Employee Type", "Staff number", "Assigned Train"
         };
 
         // Row Data
         Object[][] data = {
-                {"Train Operator", 110, 1},
-                {"Train Engineer", 242, 1},
-                {"Train Operator", 550, 2},
-                {"Train Engineer", 666, 2}
+                {"Grace Liu", "Train Engineer", 110, 1},
+                {"Matthew Lack", "Train Operator", 242, 1},
+                {"Zoey Lee", "Train Operator", 550, 2},
+                {"Charles Cheung", "Train Engineer", 392, 2},
+                {"Jarett Jia", "Train Engineer", 101, 3}
         };
 
         // Create Table Model
@@ -82,9 +84,6 @@ public class Management extends JPanel {
         // Centering content
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-
-
-        // Setting the center alignment to all columns
         int columnCount = table.getColumnCount();
         for (int i = 0; i < columnCount; i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
@@ -93,7 +92,17 @@ public class Management extends JPanel {
         // Adjusting the table look
         table.setRowHeight(30);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        Font tableFont = new Font("Serif", Font.PLAIN, 16);
+        table.setFont(tableFont);
+        table.setRowHeight(30);
+        table.setGridColor(new Color(221, 221, 221));
+        table.setShowGrid(true);
+        Font headerFont = new Font("Serif", Font.BOLD, 18);
+        JTableHeader header = table.getTableHeader();
+        header.setFont(headerFont);
 
+
+        // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
@@ -106,7 +115,7 @@ public class Management extends JPanel {
         );
 
         middlePanel.add(addStaffButton, BorderLayout.NORTH);
-        middlePanel.add(scrollPane, BorderLayout.SOUTH);
+        middlePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Middle panel but for stats
