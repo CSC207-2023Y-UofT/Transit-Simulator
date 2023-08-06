@@ -36,11 +36,20 @@ public class PurchaseTicketPage extends JPanel {
      * The JLabel that displays the count of StudentTickets.
      */
     private final JLabel studentCount;
+
     /**
      * The JLabel that displays the total cost of the tickets.
      */
     private final JLabel totalCostLabel;
 
+    /**
+     * The JButton to buy tickets.
+     */
+    private final JButton buyButton;
+
+    /**
+     * The view model for this page.
+     */
     private final PurchaseTicketViewModel viewModel;
 
     /**
@@ -117,7 +126,8 @@ public class PurchaseTicketPage extends JPanel {
         this.add(totalCostLabel);
 
         // Buy button
-        JButton buyButton = new RoundedButton("Buy");
+        buyButton = new RoundedButton("Buy");
+        buyButton.setEnabled(viewModel.getTotalCost() > 0); // Disable buy button if total cost is $0
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
@@ -128,6 +138,13 @@ public class PurchaseTicketPage extends JPanel {
 
         // Make background color light gray
         this.setBackground(new Color(210, 207, 206));
+    }
+
+    /**
+     * Update the button to be enabled or disabled based on the total cost.
+     */
+    private void updateButtonStatus() {
+        buyButton.setEnabled(viewModel.getTotalCost() > 0);
     }
 
     /**
@@ -180,11 +197,13 @@ public class PurchaseTicketPage extends JPanel {
     private void createRow(String name, JButton minusButton, JButton plusButton, JLabel countLabel, TicketType type) {
         minusButton.addActionListener(e -> {
             viewModel.removeTicket(type);
+            updateButtonStatus();
             repaint();
         });
 
         plusButton.addActionListener(e -> {
             viewModel.addTicket(type);
+            updateButtonStatus();
             repaint();
         });
 
