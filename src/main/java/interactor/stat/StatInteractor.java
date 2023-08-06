@@ -18,13 +18,13 @@ public class StatInteractor implements IStatInteractor {
     }
 
     @Override
-    public List<RevenueAggregate> getRevenueLast6Hours() {
+    public List<RevenueAggregate> getRevenue(long horizonMinutes) {
         RevenueAggregator revenueAggregator = new RevenueAggregator();
         long currIndex = System.currentTimeMillis() / 60000;
 
         List<RevenueAggregate> revenueAggregates = new ArrayList<>();
 
-        for (long i = currIndex - 360; i <= currIndex; i++) {
+        for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
             Optional<RevenueAggregate> expenseAggregate = revenueAggregator.aggregate(stats, i, i);
             expenseAggregate.ifPresentOrElse(revenueAggregates::add, () -> revenueAggregates.add(new RevenueAggregate(0)));
         }
@@ -33,13 +33,13 @@ public class StatInteractor implements IStatInteractor {
     }
 
     @Override
-    public List<ExpenseAggregate> getExpensesLast6Hours() {
+    public List<ExpenseAggregate> getExpenses(long horizonMinutes) {
         ExpenseAggregator expenseAggregator = new ExpenseAggregator();
         long currIndex = System.currentTimeMillis() / 60000;
 
         List<ExpenseAggregate> expenseAggregates = new ArrayList<>();
 
-        for (long i = currIndex - 360; i <= currIndex; i++) {
+        for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
             Optional<ExpenseAggregate> expenseAggregate = expenseAggregator.aggregate(stats, i, i);
             expenseAggregate.ifPresentOrElse(expenseAggregates::add, () -> expenseAggregates.add(new ExpenseAggregate(0)));
         }
