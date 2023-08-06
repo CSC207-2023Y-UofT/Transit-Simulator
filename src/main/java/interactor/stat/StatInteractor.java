@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class StatInteractor implements IStatInteractor {
+
     private final StatDataController stats;
 
     public StatInteractor(StatDataController stats) {
@@ -20,7 +21,7 @@ public class StatInteractor implements IStatInteractor {
     @Override
     public List<RevenueAggregate> getRevenue(long horizonMinutes) {
         RevenueAggregator revenueAggregator = new RevenueAggregator();
-        long currIndex = System.currentTimeMillis() / 60000;
+        long currIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
 
         List<RevenueAggregate> revenueAggregates = new ArrayList<>();
 
@@ -35,7 +36,7 @@ public class StatInteractor implements IStatInteractor {
     @Override
     public List<ExpenseAggregate> getExpenses(long horizonMinutes) {
         ExpenseAggregator expenseAggregator = new ExpenseAggregator();
-        long currIndex = System.currentTimeMillis() / 60000;
+        long currIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
 
         List<ExpenseAggregate> expenseAggregates = new ArrayList<>();
 

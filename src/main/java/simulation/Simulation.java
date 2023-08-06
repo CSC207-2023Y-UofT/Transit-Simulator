@@ -1,5 +1,6 @@
 package simulation;
 
+import interactor.stat.IStatInteractor;
 import model.control.TransitModel;
 import model.train.Train;
 import stats.persistence.StatDataController;
@@ -64,8 +65,8 @@ public class Simulation {
     public void tick() {
         trainSimulator.tick(model);
 
-        if (System.currentTimeMillis() - lastStatSave > 60000) {
-            stats.flush(System.currentTimeMillis() / 60000);
+        if (System.currentTimeMillis() - lastStatSave > IStatInteractor.TIME_INTERVAL) {
+            stats.flush(System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL);
             lastStatSave = System.currentTimeMillis();
         }
 

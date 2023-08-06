@@ -65,4 +65,8 @@ public class InteractorPool {
     public IEmployeeInteractor getEmployeeInteractor() {
         return employeeInteractor;
     }
+
+    public IStatInteractor getStatInteractor() {
+        return statInteractor;
+    }
 }
