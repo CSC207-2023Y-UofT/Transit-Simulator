@@ -78,15 +78,18 @@ public class AddStaff extends JPanel {
     }
 
     private void addStaffToManagement() {
-        // Get values from fields
+
         String employeeType = (String) employeeTypeDropdown.getSelectedItem();
         String staffNumber = staffNumberField.getText();
         String assignedTrain = assignedTrainField.getText();
 
-        // Assuming managementPanel contains a method to add this data to its table
-        managementPanel.addStaffRow(new Object[]{employeeType, staffNumber, assignedTrain});
+        // Validate input
+        if (employeeType == null || staffNumber.trim().isEmpty() || assignedTrain.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        // Optionally, clear the fields for another input
+        managementPanel.addStaffRow(new Object[]{employeeType, staffNumber, assignedTrain});
         staffNumberField.setText("");
         assignedTrainField.setText("");
 
