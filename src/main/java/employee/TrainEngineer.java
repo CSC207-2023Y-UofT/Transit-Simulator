@@ -2,6 +2,9 @@ package employee;
 
 import interactor.employee.EmployeeType;
 import model.train.Train;
+import stats.entry.impl.MaintenanceStat;
+import stats.persistence.StatDataController;
+
 import java.util.Random;
 
 /**
@@ -60,11 +63,11 @@ public class TrainEngineer extends Employee {
      *
      * @param train The Train that needs to be fixed.
      */
-    public void fixTrain(Train train) {
+    public void fixTrain(Train train, StatDataController controller) {
         train.setStatus(Train.Status.OUT_OF_SERVICE);
         Random rand = new Random();
         int cost = rand.nextInt(5000 + 1) + 5000;  // Generates a random number between 5000 and 10000
-        // TODO: create a sub-handler for maintenance events OR a statistics entry (that uses the cost) on the side of the train or employee
+        controller.record(new MaintenanceStat(cost));
     }
 
 }
