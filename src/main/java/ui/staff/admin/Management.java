@@ -19,7 +19,14 @@ import java.awt.event.ActionListener;
  */
 public class Management extends JPanel {
 
+    /**
+     * The JPanel that displays the stats.
+     */
     private JPanel statsPanel;
+
+    /**
+     * The JPanel that displays the middle panel.
+     */
     private JPanel middlePanel;
 
     /**

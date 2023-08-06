@@ -1,6 +1,6 @@
 package ui.passenger.ticket;
 
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +51,7 @@ public class TicketPanel extends JPanel {
         });
         
         // Activate button
-        JButton activateButton = new RoundedButton("Activate");
+        JButton activateButton = new ShadowedButton("Activate");
         activateButton.setBackground(new Color(238, 238, 238));
         activateButton.setFont(new Font("Serif", Font.PLAIN, 25));
         activateButton.addActionListener(e -> {
