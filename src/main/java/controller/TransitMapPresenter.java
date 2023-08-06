@@ -1,10 +1,8 @@
-package presenter;
+package controller;
 
 import interactor.station.IStationInteractor;
-import interactor.station.StationInteractor;
 import interactor.station.StationState;
 import interactor.train.ITrainInteractor;
-import interactor.train.TrainInteractor;
 import interactor.train.TrainNodeDistance;
 import interactor.train.TrainState;
 import model.Direction;

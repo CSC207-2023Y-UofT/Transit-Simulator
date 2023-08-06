@@ -1,6 +1,7 @@
 package ui.passenger;
 
-import presenter.TransitMapPassengerPresenter;
+import controller.PurchaseTicketViewModel;
+import controller.TransitMapPassengerPresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -8,8 +9,6 @@ import ui.round.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * PassengerHomePage is a JPanel that displays the passenger home page.
@@ -47,7 +46,7 @@ public class PassengerHomePage extends JPanel {
         buyButton.setBackground(new Color(114, 217, 112));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
-        buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller)));
+        buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
 
         // Back button
         backButton = new RoundedButton("Back");

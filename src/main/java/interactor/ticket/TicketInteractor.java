@@ -25,7 +25,7 @@ public class TicketInteractor implements ITicketInteractor {
             Ticket ticket = new Ticket(ticketType);
             tickets.add(ticket);
 
-            dataStore.addTicket(ticket);
+            dataStore.saveTicket(ticket);
         }
 
         for (Ticket ticket : tickets) {
@@ -36,11 +36,7 @@ public class TicketInteractor implements ITicketInteractor {
         List<BoughtTicket> response = new ArrayList<>();
 
         for (Ticket ticket : tickets) {
-            BoughtTicket boughtTicket = new BoughtTicket(
-                    ticket.getPrice(),
-                    ticket.getType(),
-                    ticket.getId()
-            );
+            BoughtTicket boughtTicket = convertTicket(ticket);
             response.add(boughtTicket);
         }
 
@@ -51,6 +47,28 @@ public class TicketInteractor implements ITicketInteractor {
     public Optional<BoughtTicket> getTicket(int ticketId) {
         Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
         if (ticket == null) return Optional.empty();
-        return Optional.of(new BoughtTicket(ticket.getPrice(), ticket.getType(), ticket.getId()));
+        return Optional.of(convertTicket(ticket));
+    }
+
+    @Override
+    public Optional<BoughtTicket> activateTicket(int ticketId) {
+        Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
+        if (ticket == null) return Optional.empty();
+        if (ticket.isActivated()) return Optional.of(convertTicket(ticket));
+        ticket.activate();
+        dataStore.saveTicket(ticket);
+        return Optional.of(new BoughtTicket(ticket.getPrice(),
+                ticket.getType(),
+                ticket.getId(),
+                ticket.isActivated(),
+                ticket.getExpiry()));
+    }
+
+    private BoughtTicket convertTicket(Ticket ticket) {
+        return new BoughtTicket(ticket.getPrice(),
+                ticket.getType(),
+                ticket.getId(),
+                ticket.isActivated(),
+                ticket.getExpiry());
     }
 }

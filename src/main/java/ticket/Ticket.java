@@ -64,4 +64,21 @@ public class Ticket {
     public double getPrice() {
         return getType().getPrice();
     }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public void setExpiry(long expiry) {
+        this.expiry = expiry;
+    }
+
+    public void activate() {
+        activated = true;
+        this.expiry = System.currentTimeMillis() + type.getLifetime();
+    }
 }

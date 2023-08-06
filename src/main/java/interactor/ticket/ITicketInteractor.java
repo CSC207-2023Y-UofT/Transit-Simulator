@@ -13,4 +13,7 @@ public interface ITicketInteractor {
     List<BoughtTicket> buyTickets(List<TicketType> ticketTypes);
 
     Optional<BoughtTicket> getTicket(int ticketId);
+
+    Optional<BoughtTicket> activateTicket(int ticketId);
+
 }

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import ticket.Ticket;
+import ticket.TicketType;
 
 public class PassengerTest {
     public static Passenger passenger;
@@ -44,8 +46,8 @@ public class PassengerTest {
     @Test
     public void testGetTicket() {
         Assertions.assertNull(passenger.getTicket());
-        passenger = new Passenger(new AdultTicket(), 3);
-        Assertions.assertEquals(new AdultTicket(), passenger.getTicket());
+        passenger = new Passenger(new Ticket(TicketType.ADULT), 3);
+        Assertions.assertEquals(new Ticket(TicketType.ADULT), passenger.getTicket());
     }
 
     @DisplayName("PassengerTest Class Teardown")

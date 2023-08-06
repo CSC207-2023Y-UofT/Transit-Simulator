@@ -1,10 +1,8 @@
-package presenter;
+package controller;
 
 import interactor.station.IStationInteractor;
-import interactor.station.StationInteractor;
 import interactor.station.StationState;
 import interactor.train.ITrainInteractor;
-import interactor.train.TrainInteractor;
 import model.Direction;
 
 import java.util.HashMap;

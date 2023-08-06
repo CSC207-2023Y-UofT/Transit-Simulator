@@ -1,6 +1,6 @@
 package ui.passenger;
 
-import presenter.PurchaseTicketViewModel;
+import controller.PurchaseTicketViewModel;
 import ticket.TicketType;
 import ui.UIController;
 import ui.round.RoundedButton;
@@ -41,15 +41,17 @@ public class PurchaseTicketPage extends JPanel {
      */
     private final JLabel totalCostLabel;
 
-    private final PurchaseTicketViewModel viewModel = new PurchaseTicketViewModel();
+    private final PurchaseTicketViewModel viewModel;
 
     /**
      * Constructs a new PurchaseTicketPage with the given UIController.
      *
      * @param controller the UIController that is used to control the UI
      */
-    public PurchaseTicketPage(UIController controller) {
+    public PurchaseTicketPage(UIController controller, PurchaseTicketViewModel viewModel) {
         super(new GridLayout(0, 4));
+
+        this.viewModel = viewModel;
 
         JLabel headerLabel = new JLabel("Tickets", SwingConstants.CENTER);
         headerLabel.setFont(new Font("Serif", Font.BOLD, 35));
@@ -123,7 +125,7 @@ public class PurchaseTicketPage extends JPanel {
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorderPainted(false);
-        buyButton.addActionListener(e -> controller.open(new ConfirmPaymentPage(controller)));
+        buyButton.addActionListener(e -> controller.open(new ConfirmPaymentPage(controller, viewModel)));
 
         this.add(buyButton);
 
