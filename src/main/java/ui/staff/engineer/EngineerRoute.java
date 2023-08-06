@@ -103,13 +103,13 @@ public class EngineerRoute extends JPanel {
 
         // route button: does nothing since already on this page
         JButton routeButton = new ShadowedButton("Assigned Route");
-        routeButton.setBackground(new Color(80, 148, 255));
+        routeButton.setBackground(new Color(57, 210, 190));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         // maintenance button
         JButton maintenanceButton = new ShadowedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(128, 155, 197));
+        maintenanceButton.setBackground(new Color(136, 203, 194));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
         maintenanceButton.addActionListener(e -> controller.open(new EngineerMaintenance(controller)));
