@@ -141,8 +141,8 @@ public class TransitMapPresenter {
             // Draw their name to the upper-right
             graphics.setFont(new Font("Serif", Font.BOLD, 12));
             AffineTransform transform = graphics.getTransform();
-            graphics.transform(AffineTransform.getRotateInstance(-Math.PI / 4, x - STATION_ICON_SIZE, y));
-            graphics.drawString(station.getName(), x + STATION_ICON_SIZE, y - STATION_ICON_SIZE);
+            graphics.transform(AffineTransform.getRotateInstance(-Math.PI / 4, x, y));
+            graphics.drawString(station.getName(), x + STATION_ICON_SIZE + 5, y);
             graphics.setTransform(transform);
         }
 

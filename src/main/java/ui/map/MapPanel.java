@@ -47,6 +47,21 @@ public class MapPanel extends JPanel {
         });
     }
 
+    private final Timer timer = new Timer(10, e -> this.repaint());
+
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        timer.start();
+    }
+
+    @Override
+    public void removeNotify() {
+        super.removeNotify();
+        timer.stop();
+    }
+
+
     /**
      * Paints the panel.
      * @param g the graphics object
@@ -54,8 +69,5 @@ public class MapPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         presenter.present((Graphics2D) g, getWidth(), getHeight());
-        if (this.getParent() != null) {
-            repaint(10);
-        }
     }
 }
