@@ -17,6 +17,7 @@ import java.awt.*;
  * @see UIController
  */
 public class PassengerHomePage extends JPanel {
+
     /**
      * The UIController that is used to control the UI.
      */
