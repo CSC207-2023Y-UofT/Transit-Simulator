@@ -128,7 +128,7 @@ public class TrainTest {
 
     @Test
     public void testSetStatus() {
-        trainForwards.setStatus(Train.Status.SCHEDULED_MAINTENANCE);  // We were so close to greatness... :( just one space too right
+        trainForwards.setStatus(Train.Status.SCHEDULED_MAINTENANCE);
         Assertions.assertEquals(Train.Status.SCHEDULED_MAINTENANCE, trainForwards.getStatus());
         trainForwards.setStatus(Train.Status.UNDER_MAINTENANCE);
         Assertions.assertEquals(Train.Status.UNDER_MAINTENANCE, trainForwards.getStatus());
