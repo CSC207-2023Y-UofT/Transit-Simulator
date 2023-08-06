@@ -9,6 +9,7 @@ public class PurchaseTicketViewModel {
     private final List<TicketType> ticketTypesList = new ArrayList<>();
 
     public void addTicket(TicketType type) {
+        if (ticketTypesList.size() >= 12) return;
         ticketTypesList.add(type);
     }
 

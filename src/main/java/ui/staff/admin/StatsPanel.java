@@ -32,24 +32,48 @@ public class StatsPanel extends JPanel {
     }
 
     private StatDisplay display = StatDisplay.REVENUE;
-    private TimeHorizon horizon = TimeHorizon.QUARTER_DAY;
+    private TimeHorizon horizon = TimeHorizon.FULL_DAY;
 
     private final SingletonStatViewModel viewModel = new SingletonStatViewModel();
+
+    private Timer timer = new Timer(200, e -> this.refresh());
+
+    public UIController getController() {
+        return controller;
+    }
 
     public StatsPanel(UIController controller) {
         this.controller = controller;
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        StatsController stats = this.controller.getControllerPool().getStatController();
+    public void removeNotify() {
+        super.removeNotify();
+        timer.stop();
+    }
 
-        if (display.equals(StatDisplay.REVENUE)) {
-            viewModel.setAggregates(stats.getRevenue(horizon.getTimeHorizonMinutes()));
-        } else {
-            viewModel.setAggregates(stats.getExpenses(horizon.getTimeHorizonMinutes()));
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        refresh();
+        timer.start();
+    }
+
+    private void refresh() {
+        StatsController controller = getController().getControllerPool().getStatController();
+        switch (display) {
+            case REVENUE:
+                controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
+                break;
+            case EXPENSES:
+                controller.getExpenses(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
+                break;
         }
+        repaint();
+    }
 
+    @Override
+    protected void paintComponent(Graphics g) {
         viewModel.draw((Graphics2D) g, getWidth(), getHeight());
     }
 }

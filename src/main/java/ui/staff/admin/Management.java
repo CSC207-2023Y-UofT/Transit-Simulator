@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
  */
 public class Management extends JPanel {
 
+    private final JPanel middlePanel;
+    private final StatsPanel statsPanel;
     private JPanel middlePanel;
     private JPanel statsPanel;
 
