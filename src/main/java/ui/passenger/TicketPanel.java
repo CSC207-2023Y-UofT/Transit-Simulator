@@ -56,11 +56,11 @@ public class TicketPanel extends JPanel {
     private void updateComponents() {
         BoughtTicket ticket = viewModel.getTicket();
         if (ticket == null) {
-            expired(innerPanel);
+//            expired(innerPanel);
         } else if (ticket.isActivated()) {
             active(innerPanel);
         } else {
-            inactive(innerPanel);
+//            inactive(innerPanel);
         }
     }
 

@@ -124,7 +124,7 @@ public class PurchaseTicketPage extends JPanel {
         this.add(totalCostLabel);
 
         // Buy button
-        JButton buyButton = new ShadowedButton("Buy");
+        buyButton = new ShadowedButton("Buy");
         buyButton.setEnabled(viewModel.getTotalCost() > 0); // Disable buy button if total cost is $0
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.setPreferredSize(new Dimension(200, 50));
