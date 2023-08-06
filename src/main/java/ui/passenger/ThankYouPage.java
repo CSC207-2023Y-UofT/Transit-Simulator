@@ -39,7 +39,7 @@ public class ThankYouPage extends JPanel {
         activateButton.setFont(new Font("Serif", Font.BOLD, 25));
         activateButton.setBackground(new Color(0, 151, 8));
         activateButton.addActionListener(e -> {
-            new TrainTicketPage();
+            new TicketPage();
             controller.open(new PassengerHomePage(controller));
         });
 

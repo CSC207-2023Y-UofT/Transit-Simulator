@@ -1,58 +1,36 @@
 package ui.passenger;
 
-import ui.UIController;
-import ui.round.RoundedButton;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+public class TicketPanel extends JPanel {
 
-public class TrainTicketPage {
+    public TicketPanel() {
 
-    private JFrame frame;
-    private JPanel panel;
-    private JLabel title, message, ticketId, typeLabel;
-
-
-    /**
-     * The JLabel that displays the valid time of the ticket.
-     */
-    private final JLabel validTime;
-
-
-    public TrainTicketPage() {
-
-        frame = new JFrame("Train Ticket");
-        frame.setLayout(new GridLayout(3, 4));
-        frame.setPreferredSize(new Dimension(1500, 900));
-
-        // panel
-        panel = new JPanel(new GridLayout(6, 1));
-        panel.setBackground(new Color(185, 151, 144));
-
-        title = new JLabel("Train Ticket", SwingConstants.CENTER);
+        // Title
+        JLabel title = new JLabel("Train Ticket", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 30));
 
         // Message
-        message = new JLabel("Do not close this tab. You will lose your ticket.", SwingConstants.CENTER);
+        JLabel message = new JLabel("Do not close this tab.", SwingConstants.CENTER);
         message.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket ID
         Random rand = new Random();
         int randomId = rand.nextInt(1000000);
-        ticketId = new JLabel("Ticket ID: " + randomId, SwingConstants.CENTER);
+        JLabel ticketId = new JLabel("Ticket ID: " + randomId, SwingConstants.CENTER);
         ticketId.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Valid Time
-        validTime = new JLabel("", SwingConstants.CENTER);
+        JLabel validTime = new JLabel("", SwingConstants.CENTER);
         validTime.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket Type
         String ticketType = "Single";   // temporary
-        typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
+        JLabel typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
         typeLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Timer code: DO NOT MODIFY!!
@@ -75,20 +53,16 @@ public class TrainTicketPage {
         });
         timer.start();
 
-        // Add components to panel
-        panel.add(title);
-        panel.add(message);
-        panel.add(ticketId);
-        panel.add(typeLabel);
-        panel.add(validTime);
-
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        this.setBackground(new Color(185, 151, 144));
+        this.add(title);
+        this.add(message);
+        this.add(ticketId);
+        this.add(typeLabel);
+        this.add(validTime);
     }
 
     public static void main(String[] args) {
-        new TrainTicketPage();
+        new TicketPanel();
     }
+
 }
