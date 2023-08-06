@@ -12,14 +12,9 @@ public class TicketPanel extends JPanel {
 
     public TicketPanel() {
 
-
         // Title
         JLabel title = new JLabel("Train Ticket", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 30));
-
-        // Message
-        JLabel message = new JLabel("Do not close this tab.", SwingConstants.CENTER);
-        message.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket ID
         Random rand = new Random();
@@ -31,14 +26,13 @@ public class TicketPanel extends JPanel {
         JLabel validTime = new JLabel("", SwingConstants.CENTER);
         validTime.setFont(new Font("Serif", Font.PLAIN, 25));
 
-        // Ticket Type
-        String ticketType = "Single";   // TODO: get ticket type from database
-        JLabel typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
-        typeLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        // Message
+        JLabel messageLabel = new JLabel("Activate before boarding", SwingConstants.CENTER);
+        messageLabel.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
-            int remaining = 2; // * 60 * 60; // 2 hours in seconds
+            int remaining = 2 * 60 * 60; // 2 hours in seconds
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +49,6 @@ public class TicketPanel extends JPanel {
             }
         });
         
-        
         // Activate button
         JButton activateButton = new RoundedButton("Activate");
         activateButton.setBackground(new Color(215, 215, 215));
@@ -70,13 +63,12 @@ public class TicketPanel extends JPanel {
             }
         });
 
-        this.setLayout(new GridLayout(6, 1));
+        this.setLayout(new GridLayout(5, 1));
         this.setBackground(new Color(185, 151, 144));
 
         this.add(title);
-        this.add(message);
         this.add(ticketId);
-        this.add(typeLabel);
+        this.add(messageLabel);
         this.add(validTime);
         this.add(activateButton);
     }
