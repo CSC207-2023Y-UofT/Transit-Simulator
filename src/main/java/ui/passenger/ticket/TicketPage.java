@@ -22,13 +22,12 @@ public class TicketPage {
     /** Panel to represent a single ticket. */
     private JPanel panel;
 
-    public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
-        this.controller = controller;
     /**
      * Constructs a new TicketPage, initializes the UI components,
      * and displays the frame containing the tickets.
      */
-    public TicketPage() {
+    public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
+        this.controller = controller;
 
         frame = new JFrame("Train Tickets");
         frame.setLayout(new GridLayout(3, 4));

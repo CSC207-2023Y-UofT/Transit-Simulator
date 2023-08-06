@@ -64,8 +64,8 @@ public class TicketPanel extends JPanel {
         if (!Objects.equals(ticket.orElse(null), viewModel.getTicket())) {
             viewModel.setTicket(ticket.orElse(null));
             updateComponents();
-            repaint();
         }
+        repaint();
 
     }
 
