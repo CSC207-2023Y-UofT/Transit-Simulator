@@ -1,5 +1,6 @@
 package employee;
 
+import employee.persistence.MemoryEmployeeDataStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ public class EmployeeTrackerTest {
 
     @BeforeEach
     public void setUp() {
-        employeeTracker = new EmployeeTracker(dataStore);
+        employeeTracker = new EmployeeTracker(new MemoryEmployeeDataStore());
         employee1 = new TrainOperator(101);
         employee2 = new TrainEngineer(102);
         trainOperator = new TrainOperator(201);

@@ -32,7 +32,7 @@ public abstract class Employee {
 
     /**
      * Constructs a new Employee object with the given staff number.
-     *
+     * all employee numbers should be 3 digits long.
      * @param id The unique staff number.
      */
     public Employee(int id) {
@@ -51,7 +51,7 @@ public abstract class Employee {
      *
      * @return True if the employee has been paid; otherwise false.
      */
-    abstract boolean getPaid();
+    abstract boolean getPaymentStatus();
 
     /**
      * Returns the monthly salary of this employee, which is the base salary for all employees.
@@ -73,6 +73,10 @@ public abstract class Employee {
 
     public abstract EmployeeType getEmployeeType();
 
+    /**
+     * Returns the assignment of this employee.
+     * @return
+     */
     public Optional<EmployeeAssignment> getAssignment() {
         return Optional.ofNullable(trainAssignment);
     }
