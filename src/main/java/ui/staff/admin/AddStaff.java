@@ -6,15 +6,37 @@ import ui.util.ShadowedButton;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Represents the UI panel for adding new staff members. This JPanel provides
+ * fields for entering details about the staff member and buttons to save the
+ * data or cancel the action.
+ */
 public class AddStaff extends JPanel {
 
+    /** Controller object to handle UI navigation. */
     private UIController controller;
+
+    /** Dropdown menu for selecting the employee type. */
     private JComboBox<String> employeeTypeDropdown;
+
+    /** Text field for entering the staff member's name. */
     private JTextField nameField;
+
+    /** Text field for entering the staff number. */
     private JTextField staffNumberField;
+
+    /** Text field for entering the train assigned to the staff member. */
     private JTextField assignedTrainField;
+
+    /** Panel that displays the management interface. */
     private Management managementPanel;
 
+    /**
+     * Creates a new AddStaff panel.
+     *
+     * @param controller the UI controller
+     * @param managementPanel the management panel
+     */
     public AddStaff(UIController controller, Management managementPanel) {
 
         this.controller = controller;
@@ -106,6 +128,10 @@ public class AddStaff extends JPanel {
         add(cancelButton, cCancel);
     }
 
+    /**
+     * Attempts to add a new staff member to the management panel.
+     * Validates the input fields before proceeding.
+     */
     private void addStaffToManagement() {
 
         String employeeName = nameField.getText();
