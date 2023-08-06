@@ -32,6 +32,8 @@ public class UIController {
         this.interactorPool = interactorPool;
         this.controllerPool = new ControllerPool(interactorPool);
         this.mainScreen = new MainScreen();
+        mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainScreen.setVisible(true);
     }
 
     /**
@@ -60,10 +62,7 @@ public class UIController {
      */
     public void open(JPanel panel) {
 
-        Toolkit tk = Toolkit.getDefaultToolkit();
-
         mainScreen.setContentPane(panel);
-        mainScreen.setPreferredSize(tk.getScreenSize());
         mainScreen.pack();
         mainScreen.revalidate();
         mainScreen.repaint();
