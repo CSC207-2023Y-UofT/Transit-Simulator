@@ -13,7 +13,8 @@ public class TicketPanel extends JPanel {
     public TicketPanel() {
 
         // Title
-        JLabel title = new JLabel("Train Ticket", SwingConstants.CENTER);
+        String type = "Adult"; // TODO: Replace with actual ticket type
+        JLabel title = new JLabel(type + " Ticket", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 30));
 
         // Ticket ID
@@ -51,20 +52,18 @@ public class TicketPanel extends JPanel {
         
         // Activate button
         JButton activateButton = new RoundedButton("Activate");
-        activateButton.setBackground(new Color(215, 215, 215));
+        activateButton.setBackground(new Color(238, 238, 238));
         activateButton.setFont(new Font("Serif", Font.PLAIN, 25));
-        activateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                timer.start();
-                activateButton.setEnabled(false);
-                activateButton.setBackground(new Color(255, 255, 255));
-                activateButton.setText("Active");
-            }
+        activateButton.addActionListener(e -> {
+            timer.start();
+            activateButton.setEnabled(false);
+            activateButton.setBackground(new Color(255, 255, 255));
+            activateButton.setText("Active");
+            this.setBackground(new Color(255, 255, 255));
         });
 
         this.setLayout(new GridLayout(5, 1));
-        this.setBackground(new Color(185, 151, 144));
+        this.setBackground(new Color(206, 184, 180));
 
         this.add(title);
         this.add(ticketId);
