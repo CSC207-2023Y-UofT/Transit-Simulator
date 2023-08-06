@@ -1,4 +1,4 @@
-package ui.passenger.ticket;
+package ui.passenger;
 
 import controller.ticket.TicketViewModel;
 import interactor.ticket.BoughtTicket;
@@ -12,7 +12,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
+
+
 
 public class TicketPanel extends JPanel {
 

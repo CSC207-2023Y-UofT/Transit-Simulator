@@ -1,9 +1,7 @@
 package ui.passenger;
 
 import controller.ticket.TicketViewModel;
-import interactor.ticket.BoughtTicket;
 import ui.UIController;
-import ui.passenger.ticket.TicketPage;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;

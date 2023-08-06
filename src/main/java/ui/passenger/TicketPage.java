@@ -1,8 +1,6 @@
-package ui.passenger.ticket;
+package ui.passenger;
 
 import controller.ticket.TicketViewModel;
-import interactor.ticket.BoughtTicket;
-import ticket.TicketType;
 import ui.UIController;
 
 import javax.swing.*;
@@ -31,7 +29,7 @@ public class TicketPage {
 
         frame = new JFrame("Train Tickets");
         frame.setLayout(new GridLayout(3, 4));
-        frame.setPreferredSize(new Dimension(1100, 600));
+        frame.setPreferredSize(new Dimension(1100, 800));
 
         for (int i = 0; i < 3 * 4; i++) {
 
@@ -41,9 +39,7 @@ public class TicketPage {
             }
 
             TicketViewModel viewModel = viewModels.get(i);
-
             panel = new TicketPanel(controller, viewModel);
-
             frame.add(panel);
         }
 
