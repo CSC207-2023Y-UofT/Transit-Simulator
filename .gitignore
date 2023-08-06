@@ -16,6 +16,8 @@
 
 test-aggregates/*
 test-entries/*
+stat-aggregates/*
+stat-entries/*
 
 model-1.json
 model-2.json
