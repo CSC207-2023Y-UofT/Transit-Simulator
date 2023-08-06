@@ -48,9 +48,8 @@ public class EngineerRoute extends JPanel {
         JPanel middlePanel = new JPanel(new GridLayout(0, 5));
 
         // route label
-        int line = 1;
-        int train = 1; // TODO: should be .getLine() and .getTrain()
-        JLabel routeLabel = new JLabel("Line " + line + " Train " + train);
+        int train = 1; // TODO: should be .getTrain()
+        JLabel routeLabel = new JLabel("Train: " + train);
         routeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // operator label
