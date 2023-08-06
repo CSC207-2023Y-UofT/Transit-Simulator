@@ -1,6 +1,5 @@
 package ui.staff.admin;
 
-// TODO javadocs needed
 import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
@@ -19,6 +18,9 @@ import java.awt.event.ActionListener;
  * @see UIController
  */
 public class Management extends JPanel {
+
+    private JPanel statsPanel;
+    private JPanel middlePanel;
 
     /**
      * Constructs a new Management object.
@@ -98,28 +100,32 @@ public class Management extends JPanel {
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
-        // management button: does nothing since already on this page
         JButton managementButton = new RoundedButton("Manage");
-        managementButton.setBackground(new Color(112, 170, 255));
+        managementButton.setBackground(new Color(80, 148, 255));
         managementButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         managementButton.setFont(new Font("Serif", Font.BOLD, 20));
+
+        JButton statButton = new RoundedButton("Statistics");
+        statButton.setBackground(new Color(128, 155, 197));
+        statButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        statButton.setFont(new Font("Serif", Font.BOLD, 20));
+
         managementButton.addActionListener(e -> {
             remove(statsPanel);
             add(middlePanel, BorderLayout.CENTER);
+            managementButton.setBackground(new Color(80, 148, 255));
+            statButton.setBackground(new Color(128, 155, 197));
             revalidate();
             repaint();
         });
 
-        // stats button
-        JButton statButton = new RoundedButton("Statistics");
-        statButton.setBackground(new Color(112, 170, 255));
-        statButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        statButton.setFont(new Font("Serif", Font.BOLD, 20));
         statButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 remove(middlePanel);
                 add(statsPanel, BorderLayout.CENTER);
+                statButton.setBackground(new Color(80, 148, 255));
+                managementButton.setBackground(new Color(128, 155, 197));
                 revalidate();
                 repaint();
             }

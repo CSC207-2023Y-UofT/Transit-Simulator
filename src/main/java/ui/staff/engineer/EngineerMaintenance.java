@@ -102,8 +102,8 @@ public class EngineerMaintenance extends JPanel {
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         // route button
-        JButton routeButton = new RoundedButton("Route");
-        routeButton.setBackground(new Color(112, 170, 255));
+        JButton routeButton = new RoundedButton("Assigned Route");
+        routeButton.setBackground(new Color(128, 155, 197));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
         routeButton.addActionListener(new ActionListener() {
@@ -115,8 +115,8 @@ public class EngineerMaintenance extends JPanel {
 
 
         // maintenance button: does nothing since already on this page
-        JButton maintenanceButton = new RoundedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(112, 170, 255));
+        JButton maintenanceButton = new RoundedButton("Maintenance Status");
+        maintenanceButton.setBackground(new Color(80, 148, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
 

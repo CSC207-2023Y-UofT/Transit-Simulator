@@ -26,7 +26,10 @@ public class TrainTicketPage {
     public TrainTicketPage() {
 
         frame = new JFrame("Train Ticket");
+        frame.setLayout(new GridLayout(3, 4));
         frame.setPreferredSize(new Dimension(1500, 900));
+
+        // panel
         panel = new JPanel(new GridLayout(6, 1));
         panel.setBackground(new Color(185, 151, 144));
 
@@ -72,7 +75,6 @@ public class TrainTicketPage {
         });
         timer.start();
 
-
         // Add components to panel
         panel.add(title);
         panel.add(message);
@@ -84,7 +86,6 @@ public class TrainTicketPage {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
     }
 
     public static void main(String[] args) {
