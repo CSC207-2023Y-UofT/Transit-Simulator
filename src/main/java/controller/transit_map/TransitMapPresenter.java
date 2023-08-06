@@ -8,6 +8,7 @@ import interactor.train.TrainState;
 import model.Direction;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -139,7 +140,10 @@ public class TransitMapPresenter {
 
             // Draw their name to the upper-right
             graphics.setFont(new Font("Serif", Font.BOLD, 12));
+            AffineTransform transform = graphics.getTransform();
+            graphics.transform(AffineTransform.getRotateInstance(-Math.PI / 4, x - STATION_ICON_SIZE, y));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE, y - STATION_ICON_SIZE);
+            graphics.setTransform(transform);
         }
 
         // Draw trains

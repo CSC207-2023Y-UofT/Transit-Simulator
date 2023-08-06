@@ -51,7 +51,7 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
      * @param <A>            The aggregate class.
      */
     @Override
-    public <E extends StatEntry, A> void store(long index, Class<? extends E> entryClass, Class<? extends A> aggregateClass, A aggregate) {
+    public synchronized <E extends StatEntry, A> void store(long index, Class<? extends E> entryClass, Class<? extends A> aggregateClass, A aggregate) {
         File file = getFile(index, entryClass, aggregateClass);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try (ObjectOutputStream stream = new ObjectOutputStream(baos)) {
@@ -75,7 +75,7 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
      * @return An Optional containing the aggregate value if found, or an empty Optional if not found.
      */
     @Override
-    public <E extends StatEntry, A> Optional<A> retrieve(long index, Class<E> entryClass, Class<A> aggregateClass) {
+    public synchronized <E extends StatEntry, A> Optional<A> retrieve(long index, Class<E> entryClass, Class<A> aggregateClass) {
         File file = getFile(index, entryClass, aggregateClass);
         if (!file.exists()) {
             return Optional.empty();
