@@ -49,7 +49,7 @@ public class LoginPage extends JPanel {
 
                 // We should know what option they picked earlier and direct them there
 
-                controller.open(new EngineerMaintenance(controller));
+                controller.open(new Management(controller));
             }
         });
 

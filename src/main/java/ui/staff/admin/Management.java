@@ -98,6 +98,15 @@ public class Management extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
+
+        // Add staff button
+        JButton addStaffButton = new ShadowedButton("Add Staff");
+        addStaffButton.setBackground(new Color(197, 131, 255));
+        addStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
+        addStaffButton.addActionListener(e -> { controller.open(new StaffHomePage(controller)); }
+        );
+
+        middlePanel.add(addStaffButton, BorderLayout.NORTH);
         middlePanel.add(scrollPane, BorderLayout.SOUTH);
         this.add(middlePanel, BorderLayout.CENTER);
 
