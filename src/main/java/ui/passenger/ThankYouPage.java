@@ -5,8 +5,7 @@ import ui.round.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 /**
  * ThankYouPage is a JPanel that displays the thank-you page.
@@ -39,7 +38,11 @@ public class ThankYouPage extends JPanel {
         activateButton.setPreferredSize(new Dimension(200, 50));
         activateButton.setFont(new Font("Serif", Font.BOLD, 25));
         activateButton.setBackground(new Color(0, 151, 8));
-        activateButton.addActionListener(e -> controller.open(new TrainTicketPage(controller)));
+        activateButton.addActionListener(e -> {
+            new TrainTicketPage();
+            controller.open(new PassengerHomePage(controller));
+        });
+
         JLabel blank2 = new JLabel("  ");
         blank2.setOpaque(true);
         blank2.setBackground(Color.lightGray);

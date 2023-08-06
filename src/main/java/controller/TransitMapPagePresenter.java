@@ -13,7 +13,7 @@ import java.util.Optional;
  * The TransitMapPassengerPresenter class is a presenter class that handles the logic for the transit map view for
  * passengers.
  */
-public class TransitMapPassengerPresenter extends TransitMapPresenter {
+public class TransitMapPagePresenter extends TransitMapPresenter {
 
     /**
      * The currently selected station.
@@ -30,8 +30,8 @@ public class TransitMapPassengerPresenter extends TransitMapPresenter {
      * @param stationInteractor The StationInteractor to use.
      * @param trainInteractor   The TrainInteractor to use.
      */
-    public TransitMapPassengerPresenter(IStationInteractor stationInteractor,
-                                        ITrainInteractor trainInteractor) {
+    public TransitMapPagePresenter(IStationInteractor stationInteractor,
+                                   ITrainInteractor trainInteractor) {
         super(stationInteractor, trainInteractor);
     }
 
