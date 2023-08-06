@@ -8,7 +8,7 @@ import javax.swing.*;
  */
 public class AddStaff extends JPanel {
 
-
+    // variables here
 
     /**
      * Constructs an AddStaff panel.
@@ -17,7 +17,7 @@ public class AddStaff extends JPanel {
      */
     public AddStaff(UIController controller) {
 
-
+        // code here
 
     }
 }

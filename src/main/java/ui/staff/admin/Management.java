@@ -8,8 +8,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Management is a JPanel that displays the management page.
@@ -135,16 +133,13 @@ public class Management extends JPanel {
             repaint();
         });
 
-        statButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                remove(middlePanel);
-                add(statsPanel, BorderLayout.CENTER);
-                statButton.setBackground(new Color(189, 87, 231));
-                managementButton.setBackground(new Color(201, 153, 222));
-                revalidate();
-                repaint();
-            }
+        statButton.addActionListener(e -> {
+            remove(middlePanel);
+            add(statsPanel, BorderLayout.CENTER);
+            statButton.setBackground(new Color(189, 87, 231));
+            managementButton.setBackground(new Color(201, 153, 222));
+            revalidate();
+            repaint();
         });
 
         bottomPanel.add(managementButton);
