@@ -101,7 +101,7 @@ public class Management extends JPanel {
 
         // Add staff button
         JButton addStaffButton = new ShadowedButton("Add Staff");
-        addStaffButton.setBackground(new Color(197, 131, 255));
+        addStaffButton.setBackground(new Color(189, 87, 231));
         addStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
         addStaffButton.addActionListener(e -> { controller.open(new StaffHomePage(controller)); }
         );
@@ -117,20 +117,20 @@ public class Management extends JPanel {
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         JButton managementButton = new ShadowedButton("Manage");
-        managementButton.setBackground(new Color(80, 148, 255));
+        managementButton.setBackground(new Color(189, 87, 231));
         managementButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         managementButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         JButton statButton = new ShadowedButton("Statistics");
-        statButton.setBackground(new Color(128, 155, 197));
+        statButton.setBackground(new Color(201, 153, 222));
         statButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         statButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         managementButton.addActionListener(e -> {
             remove(statsPanel);
             add(middlePanel, BorderLayout.CENTER);
-            managementButton.setBackground(new Color(80, 148, 255));
-            statButton.setBackground(new Color(128, 155, 197));
+            managementButton.setBackground(new Color(189, 87, 231));
+            statButton.setBackground(new Color(201, 153, 222));
             revalidate();
             repaint();
         });
@@ -140,8 +140,8 @@ public class Management extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 remove(middlePanel);
                 add(statsPanel, BorderLayout.CENTER);
-                statButton.setBackground(new Color(80, 148, 255));
-                managementButton.setBackground(new Color(128, 155, 197));
+                statButton.setBackground(new Color(189, 87, 231));
+                managementButton.setBackground(new Color(201, 153, 222));
                 revalidate();
                 repaint();
             }

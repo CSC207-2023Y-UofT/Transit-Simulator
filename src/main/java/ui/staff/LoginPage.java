@@ -36,7 +36,7 @@ public class LoginPage extends JPanel {
 
         // Sign In button
         JButton signInButton = new ShadowedButton("Sign In");
-        signInButton.setBackground(new Color(112, 170, 255));
+        signInButton.setBackground(new Color(0, 151, 8));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         signInButton.setFont(new Font("Serif", Font.BOLD, 20));
         signInButton.addActionListener(new ActionListener() {
@@ -49,7 +49,7 @@ public class LoginPage extends JPanel {
 
                 // We should know what option they picked earlier and direct them there
 
-                controller.open(new Management(controller));
+                controller.open(new EngineerMaintenance(controller));
             }
         });
 
