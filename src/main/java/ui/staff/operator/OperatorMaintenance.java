@@ -101,7 +101,7 @@ public class OperatorMaintenance extends JPanel {
 
         // route button
         JButton routeButton = new ShadowedButton("Assigned Route");
-        routeButton.setBackground(new Color(128, 155, 197));
+        routeButton.setBackground(new Color(222, 175, 119));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
         routeButton.addActionListener(e -> {
@@ -110,7 +110,7 @@ public class OperatorMaintenance extends JPanel {
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(80, 148, 255));
+        maintenanceButton.setBackground(new Color(222, 144, 53));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
 
