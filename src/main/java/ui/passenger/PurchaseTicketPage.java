@@ -3,14 +3,12 @@ package ui.passenger;
 import controller.ticket.PurchaseTicketViewModel;
 import ticket.TicketType;
 import ui.UIController;
-import ui.round.RoundedButton;
-import ui.round.SuppliedLabel;
-import ui.round.SuppliedRoundLabel;
+import ui.util.RoundedButton;
+import ui.util.SuppliedLabel;
+import ui.util.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.function.Supplier;
 
 /**

@@ -5,7 +5,7 @@ import controller.transit_map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
-import ui.round.RoundedButton;
+import ui.util.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

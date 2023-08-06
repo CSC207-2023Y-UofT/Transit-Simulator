@@ -4,7 +4,7 @@ import controller.ticket.PurchaseTicketViewModel;
 import controller.ticket.TicketController;
 import interactor.ticket.BoughtTicket;
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

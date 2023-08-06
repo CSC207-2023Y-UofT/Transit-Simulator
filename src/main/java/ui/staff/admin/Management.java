@@ -1,7 +1,7 @@
 package ui.staff.admin;
 
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.RoundedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
