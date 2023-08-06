@@ -103,7 +103,7 @@ public class Management extends JPanel {
         JButton addStaffButton = new ShadowedButton("Add Staff");
         addStaffButton.setBackground(new Color(189, 87, 231));
         addStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
-        addStaffButton.addActionListener(e -> { controller.open(new StaffHomePage(controller)); }
+        addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller)); }
         );
 
         middlePanel.add(addStaffButton, BorderLayout.NORTH);
