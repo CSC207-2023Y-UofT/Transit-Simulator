@@ -63,7 +63,7 @@ public class UIController {
     public void open(JPanel panel) {
 
         mainScreen.setContentPane(panel);
-        mainScreen.pack();
+        mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainScreen.revalidate();
         mainScreen.repaint();
     }
