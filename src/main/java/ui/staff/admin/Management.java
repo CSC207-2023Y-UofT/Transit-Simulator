@@ -114,8 +114,9 @@ public class Management extends JPanel {
         addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller, this)); }
         );
 
-        middlePanel.add(addStaffButton, BorderLayout.NORTH);
+        middlePanel.add(new JLabel("          "), BorderLayout.NORTH);
         middlePanel.add(scrollPane, BorderLayout.CENTER);
+        middlePanel.add(addStaffButton, BorderLayout.SOUTH);
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Middle panel but for stats
