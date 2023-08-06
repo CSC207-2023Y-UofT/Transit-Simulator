@@ -1,4 +1,4 @@
-package ui.passenger.ticket;
+package ui.passenger;
 
 import controller.ticket.TicketViewModel;
 import interactor.ticket.BoughtTicket;
@@ -12,16 +12,38 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 
+/**
+ * This class represents a UI panel that displays a single train ticket.
+ */
 public class TicketPanel extends JPanel {
 
+    /**
+     * The view model for this panel.
+     */
     private final TicketViewModel viewModel;
+
+    /**
+     * The UIController instance responsible for controlling UI interactions.
+     */
     private final UIController controller;
 
+    /**
+     * The timer that updates the UI.
+     */
     private final Timer timer = new Timer(100, e -> this.update());
+
+    /**
+     * The inner panel that contains the ticket information.
+     */
     private final JPanel innerPanel;
 
+    /**
+     * Constructs a TicketPanel.
+     *
+     * @param controller the UIController instance responsible for controlling UI interactions
+     * @param viewModel the view model for this panel
+     */
     public TicketPanel(UIController controller, TicketViewModel viewModel) {
         super(new GridLayout(1, 1));
 
@@ -52,6 +74,9 @@ public class TicketPanel extends JPanel {
         timer.stop();
     }
 
+    /**
+     * Refreshes the UI.
+     */
     private void update() {
         if (viewModel.getTicket() == null) {
             return;
@@ -69,6 +94,9 @@ public class TicketPanel extends JPanel {
 
     }
 
+    /**
+     * Updates the components in this panel.
+     */
     private void updateComponents() {
         BoughtTicket ticket = viewModel.getTicket();
         if (ticket == null) {
@@ -79,6 +107,11 @@ public class TicketPanel extends JPanel {
         revalidate();
     }
 
+    /**
+     * Displays the ticket as expired.
+     *
+     * @param panel the panel to display the ticket in
+     */
     private void defaultComponents(JPanel panel) {
         panel.removeAll();
 
@@ -156,6 +189,11 @@ public class TicketPanel extends JPanel {
         panel.add(activateButton);
     }
 
+    /**
+     * Displays the ticket as expired.
+     *
+     * @param panel the panel to display the ticket in
+     */
     private void expired(JPanel panel) {
         panel.removeAll();
 
@@ -165,6 +203,6 @@ public class TicketPanel extends JPanel {
         title.setFont(new Font("Serif", Font.BOLD, 25));
 
         panel.add(title);
-
     }
+
 }

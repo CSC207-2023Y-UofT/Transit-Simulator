@@ -1,5 +1,6 @@
 package ui.staff;
 
+import employee.Admin;
 import ui.UIController;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;
@@ -50,7 +51,7 @@ public class LoginPage extends JPanel {
 
                 // We should know what option they picked earlier and direct them there
 
-                controller.open(new OperatorMaintenance(controller));
+                controller.open(new Management(controller));
             }
         });
 
