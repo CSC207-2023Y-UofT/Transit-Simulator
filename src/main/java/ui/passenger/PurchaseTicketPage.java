@@ -9,6 +9,8 @@ import ui.util.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.function.Supplier;
 
 /**
@@ -18,18 +20,22 @@ import java.util.function.Supplier;
  * @see UIController
  */
 public class PurchaseTicketPage extends JPanel {
+
     /**
      * The JLabel that displays the count of AdultTickets.
      */
     private final JLabel adultCount;
+
     /**
      * The JLabel that displays the count of ChildTickets.
      */
     private final JLabel childCount;
+
     /**
      * The JLabel that displays the count of SeniorTickets.
      */
     private final JLabel seniorCount;
+
     /**
      * The JLabel that displays the count of StudentTickets.
      */
@@ -102,16 +108,18 @@ public class PurchaseTicketPage extends JPanel {
         backButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
         this.add(backButton);
 
-
         // Cancel button
         JButton cancelButton = new ShadowedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setFont(new Font("Serif", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
         cancelButton.setBackground(new Color(172, 64, 58));
-        cancelButton.addActionListener(e -> {
-            viewModel.reset();
-            repaint();
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // reset all the values
+                viewModel.reset();
+            }
         });
         this.add(cancelButton);
 
@@ -122,6 +130,7 @@ public class PurchaseTicketPage extends JPanel {
         totalCostLabel.setOpaque(true);
         totalCostLabel.setBackground(new Color(255, 255, 255, 255));
         this.add(totalCostLabel);
+
 
         // Buy button
         buyButton = new ShadowedButton("Buy");
@@ -136,6 +145,13 @@ public class PurchaseTicketPage extends JPanel {
 
         // Make background color light gray
         this.setBackground(new Color(210, 207, 206));
+    }
+
+    /**
+     * Update the button to be enabled or disabled based on the total cost.
+     */
+    private void updateButtonStatus() {
+        buyButton.setEnabled(viewModel.getTotalCost() > 0);
     }
 
     /**
@@ -174,13 +190,6 @@ public class PurchaseTicketPage extends JPanel {
         button.setFont(new Font("Serif", Font.BOLD, 20));
         button.setBackground(new Color(141, 203, 141));
         return button;
-    }
-
-    /**
-     * Update the button to be enabled or disabled based on the total cost.
-     */
-    private void updateButtonStatus() {
-        buyButton.setEnabled(viewModel.getTotalCost() > 0);
     }
 
     /**
