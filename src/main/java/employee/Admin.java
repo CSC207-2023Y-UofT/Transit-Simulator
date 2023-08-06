@@ -18,7 +18,7 @@ public class Admin extends Employee {
 
     /**
      * Constructs a new Admin object with the given employee number.
-     *
+     * all employee numbers should be 3 digits long.
      * @param num The unique employee number.
      */
     public Admin(int num) {

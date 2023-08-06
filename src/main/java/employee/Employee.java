@@ -32,7 +32,7 @@ public abstract class Employee {
 
     /**
      * Constructs a new Employee object with the given staff number.
-     *
+     * all employee numbers should be 3 digits long.
      * @param id The unique staff number.
      */
     public Employee(int id) {
