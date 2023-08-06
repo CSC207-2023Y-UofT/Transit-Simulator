@@ -16,4 +16,5 @@ public interface ITicketInteractor {
 
     Optional<BoughtTicket> activateTicket(int ticketId);
 
+    void cleanTickets();
 }
