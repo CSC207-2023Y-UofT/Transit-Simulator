@@ -37,7 +37,7 @@ public class StaffSelectPage extends JPanel {
         // Admin button
         adminButton = new ShadowedButton("Admin");
         adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        adminButton.setBackground(new Color(112, 170, 255));
+        adminButton.setBackground(new Color(189, 87, 231));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         adminButton.setFont(new Font("Serif", Font.BOLD, 20));
         adminButton.addActionListener(e -> controller.open(new LoginPage(controller)));
@@ -45,7 +45,7 @@ public class StaffSelectPage extends JPanel {
         // Train Operator button
         trainOperatorButton = new ShadowedButton("Train Operator");
         trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainOperatorButton.setBackground(new Color(112, 170, 255));
+        trainOperatorButton.setBackground(new Color(222, 144, 53));
         trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         trainOperatorButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainOperatorButton.addActionListener(e -> controller.open(new LoginPage(controller)));
@@ -53,7 +53,7 @@ public class StaffSelectPage extends JPanel {
         // Train Engineer button
         trainEngineerButton = new ShadowedButton("Train Engineer");
         trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainEngineerButton.setBackground(new Color(112, 170, 255));
+        trainEngineerButton.setBackground(new Color(57, 210, 190));
         trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         trainEngineerButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainEngineerButton.addActionListener(e -> controller.open(new LoginPage(controller)));
