@@ -141,13 +141,6 @@ public class PurchaseTicketPage extends JPanel {
     }
 
     /**
-     * Update the button to be enabled or disabled based on the total cost.
-     */
-    private void updateButtonStatus() {
-        buyButton.setEnabled(viewModel.getTotalCost() > 0);
-    }
-
-    /**
      * Creates a counting JLabel.
      *
      * @return the counting JLabel
@@ -183,6 +176,13 @@ public class PurchaseTicketPage extends JPanel {
         button.setFont(new Font("Serif", Font.BOLD, 20));
         button.setBackground(new Color(141, 203, 141));
         return button;
+    }
+
+    /**
+     * Update the button to be enabled or disabled based on the total cost.
+     */
+    private void updateButtonStatus() {
+        buyButton.setEnabled(viewModel.getTotalCost() > 0);
     }
 
     /**
