@@ -1,6 +1,6 @@
 package ui.passenger;
 
-import controller.PurchaseTicketViewModel;
+import controller.ticket.PurchaseTicketViewModel;
 import ticket.TicketType;
 import ui.UIController;
 import ui.round.RoundedButton;

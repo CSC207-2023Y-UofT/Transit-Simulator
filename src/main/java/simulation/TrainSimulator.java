@@ -7,6 +7,8 @@ import model.node.NodeLineProfile;
 import model.train.Passenger;
 import model.train.Train;
 import model.train.track.TrackSegment;
+import stats.entry.impl.TicketSaleStat;
+import stats.persistence.StatDataController;
 import ticket.Ticket;
 import ticket.TicketType;
 
@@ -24,13 +26,15 @@ public class TrainSimulator {
      * The number of ticks per second
      */
     private final int tickSpeed;
+    private final StatDataController stats;
 
     /**
      * Creates a new train simulator with the given tick speed.
      * @param tickSpeed The number of ticks per second
      */
-    public TrainSimulator(int tickSpeed) {
+    public TrainSimulator(int tickSpeed, StatDataController stats) {
         this.tickSpeed = tickSpeed;
+        this.stats = stats;
     }
 
     /**
@@ -148,6 +152,10 @@ public class TrainSimulator {
         int numPassengersBoarded = 0;
         while (Math.random() < 0.5) {
             Ticket ticket = new Ticket(TicketType.ADULT);
+
+            TicketSaleStat stat = new TicketSaleStat(ticket);
+            stats.record(stat);
+
             int stationsToTravel = (int) (Math.random() * 5) + 1;
             Passenger passenger = new Passenger(ticket, stationsToTravel);
             train.addPassenger(passenger);

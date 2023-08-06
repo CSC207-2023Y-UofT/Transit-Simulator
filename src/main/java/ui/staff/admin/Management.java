@@ -1,5 +1,6 @@
 package ui.staff.admin;
 
+// TODO javadocs needed
 import ui.UIController;
 import ui.round.RoundedButton;
 import ui.staff.StaffHomePage;
@@ -35,12 +36,7 @@ public class Management extends JPanel {
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.open(new StaffHomePage(controller));
-            }
-        });
+        homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
         int id = 322; // TODO: should be .getId()
@@ -55,7 +51,7 @@ public class Management extends JPanel {
 
 
         // Middle panel
-        JPanel middlePanel = new JPanel();
+        middlePanel = new JPanel();
         middlePanel.setLayout(new BorderLayout());
 
         // Column Names
@@ -96,6 +92,9 @@ public class Management extends JPanel {
         middlePanel.add(scrollPane, BorderLayout.SOUTH);
         this.add(middlePanel, BorderLayout.CENTER);
 
+        // Middle panel but for stats
+        statsPanel = new StatsPanel(controller);
+
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
@@ -104,6 +103,12 @@ public class Management extends JPanel {
         managementButton.setBackground(new Color(112, 170, 255));
         managementButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         managementButton.setFont(new Font("Serif", Font.BOLD, 20));
+        managementButton.addActionListener(e -> {
+            remove(statsPanel);
+            add(middlePanel, BorderLayout.CENTER);
+            revalidate();
+            repaint();
+        });
 
         // stats button
         JButton statButton = new RoundedButton("Statistics");
@@ -113,7 +118,10 @@ public class Management extends JPanel {
         statButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // controller.open(new (controller));
+                remove(middlePanel);
+                add(statsPanel, BorderLayout.CENTER);
+                revalidate();
+                repaint();
             }
         });
 

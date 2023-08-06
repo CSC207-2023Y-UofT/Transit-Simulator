@@ -1,7 +1,9 @@
 package simulation;
 
+import interactor.stat.IStatInteractor;
 import model.control.TransitModel;
 import model.train.Train;
+import stats.persistence.StatDataController;
 
 public class Simulation {
     /**
@@ -18,14 +20,18 @@ public class Simulation {
      * The train simulator
      */
     private final TrainSimulator trainSimulator;
+    private final StatDataController stats;
+
+    private long lastStatSave = System.currentTimeMillis();
 
     /**
      * Creates a new simulation on the given model.
      * @param model The model to run the simulation on.
      */
-    public Simulation(TransitModel model) {
+    public Simulation(TransitModel model, StatDataController stats) {
         this.model = model;
-        this.trainSimulator = new TrainSimulator(TICK_SPEED);
+        this.stats = stats;
+        this.trainSimulator = new TrainSimulator(TICK_SPEED, stats);
     }
 
     /**
@@ -58,6 +64,12 @@ public class Simulation {
      */
     public void tick() {
         trainSimulator.tick(model);
+
+        if (System.currentTimeMillis() - lastStatSave > IStatInteractor.TIME_INTERVAL) {
+            stats.flush(System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL);
+            lastStatSave = System.currentTimeMillis();
+        }
+
     }
 
 }

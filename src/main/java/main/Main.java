@@ -4,6 +4,7 @@ import employee.EmployeeTracker;
 import employee.persistence.EmployeeDataStore;
 import employee.persistence.FileEmployeeDataStore;
 import interactor.employee.EmployeeInteractor;
+import interactor.stat.StatInteractor;
 import interactor.station.StationInteractor;
 import interactor.ticket.TicketInteractor;
 import interactor.train.TrainInteractor;
@@ -16,6 +17,7 @@ import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
 import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
+import ticket.JsonTicketDataStore;
 import ticket.TicketDataStore;
 import ui.UIController;
 import ui.WelcomePage;
@@ -64,7 +66,7 @@ public class Main {
         StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
 
         // Ticket data store
-        TicketDataStore store = null;
+        TicketDataStore store = new JsonTicketDataStore(new File("tickets"));
 
         // Employee data store
         EmployeeDataStore employeeDataStore = new FileEmployeeDataStore(new File("employees"));
@@ -75,7 +77,8 @@ public class Main {
                 new StationInteractor(model),
                 new TrainInteractor(model),
                 new TicketInteractor(store, stats),
-                new EmployeeInteractor(employeeTracker, model)
+                new EmployeeInteractor(employeeTracker, model),
+                new StatInteractor(stats)
         );
 
         // Create the ui controller
@@ -83,7 +86,7 @@ public class Main {
         controller.open(new WelcomePage(controller));
 
         // Start the simulation
-        new Simulation(model).start();
+        new Simulation(model, stats).start();
     }
 }
 

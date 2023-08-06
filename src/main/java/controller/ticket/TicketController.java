@@ -1,4 +1,4 @@
-package controller;
+package controller.ticket;
 
 import interactor.ticket.BoughtTicket;
 import interactor.ticket.ITicketInteractor;

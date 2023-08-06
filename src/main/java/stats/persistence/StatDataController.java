@@ -85,7 +85,7 @@ public class StatDataController {  // Façade design pattern used!!!
      * @param index The time index at which the stat entries should be considered
      *              to have been recorded.
      */
-    public void flush(long index) {
+    public synchronized void flush(long index) {
 
         // Store the hierarchy first
         entryDataStore.storeHierarchy(StatEntry.HIERARCHY);
@@ -112,7 +112,7 @@ public class StatDataController {  // Façade design pattern used!!!
      * @param <E>        The type of stat entries to retrieve.
      * @return A list of stat entries of type {@code entryClass} that were
      */
-    public <E extends StatEntry> List<E> getEntries(Class<E> entryClass, long index) {
+    public synchronized <E extends StatEntry> List<E> getEntries(Class<E> entryClass, long index) {
 
         List<Class<? extends E>> concreteClasses = StatEntry.HIERARCHY.getInheritors(entryClass);
 
@@ -141,7 +141,7 @@ public class StatDataController {  // Façade design pattern used!!!
      * @return The aggregate of type {@code aggregateClass} that was
      * recorded at the specified time index {@code index}.
      */
-    public <E extends StatEntry, A> Optional<A> getAggregate(Class<E> entryClass, Class<A> aggregateClass, long index) {
+    public synchronized <E extends StatEntry, A> Optional<A> getAggregate(Class<E> entryClass, Class<A> aggregateClass, long index) {
         try {
             return aggregateDataStore.retrieve(index, entryClass, aggregateClass);
         } catch (IOException e) {
@@ -162,7 +162,7 @@ public class StatDataController {  // Façade design pattern used!!!
      * @param <E>        The type of stat entries to aggregate.
      * @param <A>        The type of aggregate to retrieve.
      */
-    public <E extends StatEntry, A extends Serializable> Optional<A> getOrAggregate(StatAggregator<E, A> aggregator, long index) {
+    public synchronized  <E extends StatEntry, A extends Serializable> Optional<A> getOrAggregate(StatAggregator<E, A> aggregator, long index) {
 
         // Get the classes that are relevant
         Class<E> entryClass = aggregator.getEntryClass();

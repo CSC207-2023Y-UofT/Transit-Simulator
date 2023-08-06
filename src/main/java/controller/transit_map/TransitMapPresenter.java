@@ -1,4 +1,4 @@
-package controller;
+package controller.transit_map;
 
 import interactor.station.IStationInteractor;
 import interactor.station.StationState;

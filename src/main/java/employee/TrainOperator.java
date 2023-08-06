@@ -7,6 +7,7 @@ public class TrainOperator extends Employee {
 
     /**
      * Constructs a new TrainOperator object with the given employee number.
+     * all employee numbers should be 3 digits long.
      * @param id is an Integer
      */
     public TrainOperator(int id) {
@@ -41,7 +42,7 @@ public class TrainOperator extends Employee {
      * @return a boolean
      */
     @Override
-    public boolean getPaid() {
+    public boolean getPaymentStatus() {
         return this.isPaid;
     }
 

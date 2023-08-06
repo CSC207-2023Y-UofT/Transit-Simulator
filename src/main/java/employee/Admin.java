@@ -18,7 +18,7 @@ public class Admin extends Employee {
 
     /**
      * Constructs a new Admin object with the given employee number.
-     *
+     * all employee numbers should be 3 digits long.
      * @param num The unique employee number.
      */
     public Admin(int num) {
@@ -35,6 +35,10 @@ public class Admin extends Employee {
         return 4 * super.getMonthlySalary();
     }
 
+    /**
+     * Returns the type of this Admin.
+     * @return The type of this Admin
+     */
     @Override
     public EmployeeType getEmployeeType() {
         return EmployeeType.ADMINISTRATOR;
@@ -56,16 +60,8 @@ public class Admin extends Employee {
      * @return True if the Admin has been paid; otherwise false.
      */
     @Override
-    boolean getPaid() {
+    boolean getPaymentStatus() {
         return this.isPaid;
     }
 
-    /**
-     * Pays the specified employee, changing their payment status to true.
-     *
-     * @param employee The Employee to be paid.
-     */
-    public void payEmployee(Employee employee) {
-        employee.setPaid(true);
-    }
 }
