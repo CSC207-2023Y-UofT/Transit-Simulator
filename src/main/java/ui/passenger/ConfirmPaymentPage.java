@@ -20,6 +20,9 @@ import java.util.List;
  */
 public class ConfirmPaymentPage extends JPanel {
 
+    /**
+     * The view model for this page.
+     */
     private final PurchaseTicketViewModel viewModel;
 
     /**

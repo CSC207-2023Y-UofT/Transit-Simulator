@@ -9,14 +9,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * This class represents a UI page that displays multiple train tickets in a grid layout.
+ * Each ticket is represented as a panel inside the main frame of the page.
+ */
 public class TicketPage {
 
     private final UIController controller;
+    /** Main frame of the ticket page. */
     private JFrame frame;
+
+    /** Panel to represent a single ticket. */
     private JPanel panel;
 
     public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
         this.controller = controller;
+    /**
+     * Constructs a new TicketPage, initializes the UI components,
+     * and displays the frame containing the tickets.
+     */
+    public TicketPage() {
 
         frame = new JFrame("Train Tickets");
         frame.setLayout(new GridLayout(3, 4));
