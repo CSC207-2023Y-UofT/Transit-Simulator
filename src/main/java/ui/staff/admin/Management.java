@@ -126,7 +126,6 @@ public class Management extends JPanel {
         JPanel editsPanel = new JPanel(new GridLayout(0, 2));
         editsPanel.add(addStaffButton, BorderLayout.WEST);
         editsPanel.add(removeStaffButton, BorderLayout.EAST);
-        editsPanel.add(new JLabel("    "), BorderLayout.SOUTH);
 
         middlePanel.add(editsPanel, BorderLayout.SOUTH);
         this.add(middlePanel, BorderLayout.CENTER);
