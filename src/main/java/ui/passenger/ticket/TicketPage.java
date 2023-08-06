@@ -1,7 +1,13 @@
 package ui.passenger.ticket;
 
+import controller.ticket.TicketViewModel;
+import interactor.ticket.BoughtTicket;
+import ticket.TicketType;
+import ui.UIController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * This class represents a UI page that displays multiple train tickets in a grid layout.
@@ -9,6 +15,7 @@ import java.awt.*;
  */
 public class TicketPage {
 
+    private final UIController controller;
     /** Main frame of the ticket page. */
     private JFrame frame;
 
@@ -19,26 +26,29 @@ public class TicketPage {
      * Constructs a new TicketPage, initializes the UI components,
      * and displays the frame containing the tickets.
      */
-    public TicketPage() {
+    public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
+        this.controller = controller;
 
         frame = new JFrame("Train Tickets");
         frame.setLayout(new GridLayout(3, 4));
         frame.setPreferredSize(new Dimension(1100, 600));
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 3 * 4; i++) {
 
-            // TODO: code to call for the TYPE of ticket
-            panel = new TicketPanel();
-            panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+            if (i >= viewModels.size()) {
+                frame.add(new JPanel());
+                continue;
+            }
+
+            TicketViewModel viewModel = viewModels.get(i);
+
+            panel = new TicketPanel(controller, viewModel);
+
             frame.add(panel);
         }
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new TicketPage();
     }
 }

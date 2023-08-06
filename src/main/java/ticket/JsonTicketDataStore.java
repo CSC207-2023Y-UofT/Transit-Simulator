@@ -81,6 +81,7 @@ public class JsonTicketDataStore implements TicketDataStore {
     @Override
     public void cleanExpiredTickets() {
         for (Ticket ticket : getTickets()) {
+            if (!ticket.isActivated()) continue;
             if (ticket.getExpiry() < System.currentTimeMillis()) {
                 removeTicket(ticket.getId());
             } else if (System.currentTimeMillis() - ticket.getCreatedAt() > 1000 * 60 * 60 * 24 * 7) {

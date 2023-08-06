@@ -9,7 +9,6 @@ import java.awt.*;
 public class ShadowedButton extends JButton {
 
     private boolean rounded = true;
-
     /**
      * Constructs a new RoundedButton with the given label.
      *

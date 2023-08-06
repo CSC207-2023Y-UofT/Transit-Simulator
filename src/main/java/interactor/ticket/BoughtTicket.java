@@ -83,4 +83,17 @@ public class BoughtTicket {
     public int getTicketId() {
         return ticketId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof BoughtTicket) {
+            BoughtTicket other = (BoughtTicket) obj;
+            return other.getTicketId() == this.getTicketId() &&
+                    other.getType().equals(this.getType()) &&
+                    other.getCost() == this.getCost() &&
+                    other.isActivated() == this.isActivated() &&
+                    other.getExpiry() == this.getExpiry();
+        }
+        return false;
+    }
 }

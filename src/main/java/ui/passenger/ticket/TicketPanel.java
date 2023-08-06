@@ -1,79 +1,170 @@
 package ui.passenger.ticket;
 
+import controller.ticket.TicketViewModel;
+import interactor.ticket.BoughtTicket;
+import ui.UIController;
 import ui.util.ShadowedButton;
+import ui.util.ShadowPanel;
+import ui.util.SuppliedLabel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 
 public class TicketPanel extends JPanel {
 
-    public TicketPanel() {
+    private final TicketViewModel viewModel;
+    private final UIController controller;
 
-        // Title
-        String type = "Adult"; // TODO: Replace with actual ticket type
-        JLabel title = new JLabel(type + " Ticket", SwingConstants.CENTER);
-        title.setFont(new Font("Serif", Font.BOLD, 30));
+    private final Timer timer = new Timer(100, e -> this.update());
+    private final JPanel innerPanel;
 
-        // Ticket ID
-        Random rand = new Random();
-        int randomId = rand.nextInt(1000000);
-        JLabel ticketId = new JLabel("Ticket ID: " + randomId, SwingConstants.CENTER);
-        ticketId.setFont(new Font("Serif", Font.PLAIN, 25));
+    public TicketPanel(UIController controller, TicketViewModel viewModel) {
+        super(new GridLayout(1, 1));
 
-        // Valid Time
-        JLabel validTime = new JLabel("", SwingConstants.CENTER);
-        validTime.setFont(new Font("Serif", Font.PLAIN, 25));
+        this.viewModel = viewModel;
+        this.controller = controller;
+
+        // Margin
+        setBorder(new EmptyBorder(8, 8, 8, 8));
+
+        JPanel borderPanel = new ShadowPanel(new GridLayout(1, 1));
+        innerPanel = new JPanel(new GridLayout(0, 1));
+        borderPanel.add(innerPanel);
+
+        add(borderPanel);
+
+        updateComponents();
+    }
+
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        timer.start();
+    }
+
+    @Override
+    public void removeNotify() {
+        super.removeNotify();
+        timer.stop();
+    }
+
+    private void update() {
+        if (viewModel.getTicket() == null) {
+            return;
+        }
+
+        Optional<BoughtTicket> ticket = controller.getControllerPool()
+                .getTicketController()
+                .getTicket(viewModel.getTicket().getTicketId());
+
+        if (!Objects.equals(ticket.orElse(null), viewModel.getTicket())) {
+            viewModel.setTicket(ticket.orElse(null));
+            updateComponents();
+        }
+        repaint();
+
+    }
+
+    private void updateComponents() {
+        BoughtTicket ticket = viewModel.getTicket();
+        if (ticket == null) {
+            expired(innerPanel);
+        } else {
+            defaultComponents(innerPanel);
+        }
+        revalidate();
+    }
+
+    private void defaultComponents(JPanel panel) {
+        panel.removeAll();
+
+        JLabel title = new JLabel("Train Ticket", SwingConstants.CENTER);
+        title.setFont(new Font("Serif", Font.BOLD, 25));
 
         // Message
-        JLabel messageLabel = new JLabel("Activate before boarding", SwingConstants.CENTER);
-        messageLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        JLabel message = new JLabel("Do not close this tab.", SwingConstants.CENTER);
+        message.setFont(new Font("Serif", Font.PLAIN, 20));
 
-        // Timer code: DO NOT MODIFY!!
-        Timer timer = new Timer(1000, new ActionListener() {
-            int remaining = 2 * 60 * 60; // 2 hours in seconds
+        // Ticket ID
+        JLabel ticketId = new JLabel("Ticket ID: " + viewModel.getTicket().getTicketId(), SwingConstants.CENTER);
+        ticketId.setFont(new Font("Serif", Font.PLAIN, 20));
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                remaining--;
-                if (remaining < 0) {
-                    ((Timer) e.getSource()).stop();
-                    validTime.setText("Ticket has expired");
-                } else {
-                    int hours = remaining / 3600;
-                    int minutes = (remaining % 3600) / 60;
-                    int seconds = remaining % 60;
-                    validTime.setText(String.format("Ticket Validity: %02d:%02d:%02d", hours, minutes, seconds));
-                }
+        // Valid Time
+        SuppliedLabel validTime = new SuppliedLabel(() -> {
+            long expiry = viewModel.getTicket().getExpiry();
+            if (expiry != -1) {
+                long timeLeft = expiry - System.currentTimeMillis();
+                long hours = timeLeft / 3600000;
+                long minutes = (timeLeft % 3600000) / 60000;
+                long seconds = (timeLeft % 60000) / 1000;
+
+                return "Ticket Validity: " + hours + ":" + minutes + ":" + seconds;
+            } else {
+                return "";
             }
         });
-        
+
+        validTime.setHorizontalAlignment(SwingConstants.CENTER);
+        validTime.setFont(new Font("Serif", Font.PLAIN, 20));
+
+        // Activate before boarding label
+        JLabel activateLabel = new JLabel("Activate before boarding", SwingConstants.CENTER);
+        activateLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+
+
+        // Ticket Type
+        JLabel typeLabel = new JLabel("Ticket Type: " + viewModel.getTicket().getType(), SwingConstants.CENTER);
+        typeLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+
         // Activate button
-        JButton activateButton = new ShadowedButton("Activate");
+        ShadowedButton activateButton = new ShadowedButton("Activate");
         activateButton.setBackground(new Color(238, 238, 238));
-        activateButton.setFont(new Font("Serif", Font.PLAIN, 25));
-        activateButton.addActionListener(e -> {
-            timer.start();
-            activateButton.setEnabled(false);
+        activateButton.setFont(new Font("Serif", Font.PLAIN, 20));
+
+        if (viewModel.getTicket().isActivated()) {
             activateButton.setBackground(new Color(255, 255, 255));
+            activateButton.setEnabled(false);
             activateButton.setText("Active");
-            this.setBackground(new Color(255, 255, 255));
+            panel.setBackground(Color.WHITE);
+        } else {
+            panel.setBackground(new Color(206, 184, 180));
+        }
+
+        activateButton.addActionListener(e -> {
+            if (viewModel.getTicket().isActivated()) {
+                return;
+            }
+
+            controller.getControllerPool().getTicketController()
+                    .activateTicket(viewModel.getTicket().getTicketId());
+
+            update();
         });
 
-        this.setLayout(new GridLayout(5, 1));
-        this.setBackground(new Color(206, 184, 180));
+        activateButton.setRounded(false);
 
-        this.add(title);
-        this.add(ticketId);
-        this.add(messageLabel);
-        this.add(validTime);
-        this.add(activateButton);
+        panel.add(title);
+        panel.add(message);
+        panel.add(ticketId);
+        panel.add(typeLabel);
+        panel.add(activateLabel);
+        panel.add(validTime);
+        panel.add(activateButton);
     }
 
-    public static void main(String[] args) {
-        new TicketPanel();
-    }
+    private void expired(JPanel panel) {
+        panel.removeAll();
 
+        panel.setBackground(new Color(240, 150, 150));
+
+        JLabel title = new JLabel("Ticket Expired", SwingConstants.CENTER);
+        title.setFont(new Font("Serif", Font.BOLD, 25));
+
+        panel.add(title);
+
+    }
 }
