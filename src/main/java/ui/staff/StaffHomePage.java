@@ -1,7 +1,10 @@
 package ui.staff;
 
+import presenter.TransitMapPagePresenter;
+import presenter.TransitMapPresenter;
 import ui.UIController;
 import ui.WelcomePage;
+import ui.map.MapPanel;
 import ui.round.RoundedButton;
 
 import javax.swing.*;
@@ -14,22 +17,25 @@ import java.awt.*;
  * @see UIController
  */
 public class StaffHomePage extends JPanel {
+
+    private final UIController controller;
+    private JButton loginButton, backButton;
+    private MapPanel mapPanel;
+
     /**
-     * Constructs a new StaffHomePage object.
-     * @param controller the controller used to switch panels
+     * Constructs a new StaffHomePage with the given UIController.
+     *
+     * @param controller the UIController that is used to control the UI
      */
     public StaffHomePage(UIController controller) {
-        super(new GridLayout(0, 3));
+        super(new BorderLayout());
 
-        // Implementation of map
-
-        // TODO
-
+        this.controller = controller;
 
         // Log in button
-        JButton loginButton = new RoundedButton("Log In");
+        loginButton = new RoundedButton("Log In");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loginButton.setBackground(new Color(114, 217, 112));
+        loginButton.setBackground(new Color(0, 151, 8));
         loginButton.setFont(new Font("Serif", Font.BOLD, 20));
         loginButton.addActionListener(e -> {
             controller.open(new StaffSelectPage(controller));
@@ -37,7 +43,7 @@ public class StaffHomePage extends JPanel {
 
 
         // Back button
-        JButton backButton = new RoundedButton("Back");
+        backButton = new RoundedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -50,13 +56,29 @@ public class StaffHomePage extends JPanel {
 
         this.setBackground(new Color(210, 207, 206));
 
-        for (int i = 0; i < 12; i++) {
-            this.add(new JLabel("  "));
-        }
+        // Map
+        TransitMapPagePresenter presenter = new TransitMapPagePresenter(
+                controller.getInteractorPool().getStationInteractor(),
+                controller.getInteractorPool().getTrainInteractor()
+        );
+        mapPanel = new MapPanel(presenter);
 
-        this.add(backButton);
-        this.add(new JLabel("  "));
-        this.add(loginButton);
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(mapPanel);
+
+        this.add(topPanel);
+
+        JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
+
+        bottomPanel.add(backButton, BorderLayout.WEST);
+        bottomPanel.add(new JLabel(""));
+        bottomPanel.add(loginButton, BorderLayout.EAST);
+
+        this.add(bottomPanel, BorderLayout.SOUTH);
+
+
+
+
     }
 
 }

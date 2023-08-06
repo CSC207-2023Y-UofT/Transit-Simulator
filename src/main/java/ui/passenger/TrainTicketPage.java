@@ -9,40 +9,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-/**
- * TrainTicketPage is a JPanel that displays the purchase ticket page.
- * It is used by the UIController to display the purchase ticket page.
- *
- * @see UIController
- */
-public class TrainTicketPage extends JPanel {
+
+public class TrainTicketPage {
+
+    private JFrame frame;
+    private JPanel panel;
+    private JLabel title, message, ticketId, typeLabel;
+
 
     /**
      * The JLabel that displays the valid time of the ticket.
      */
     private final JLabel validTime;
 
-    /**
-     * Constructs a new TrainTicketPage with the given UIController.
-     *
-     * @param controller the UIController that is used to control the UI
-     */
-    public TrainTicketPage(UIController controller) {
-        super(new GridLayout(0, 1));
 
-        this.setBackground(new Color(185, 151, 144));
+    public TrainTicketPage() {
 
-        JLabel title = new JLabel("Train Ticket", SwingConstants.CENTER);
+        frame = new JFrame("Train Ticket");
+        frame.setPreferredSize(new Dimension(1500, 900));
+        panel = new JPanel(new GridLayout(6, 1));
+        panel.setBackground(new Color(185, 151, 144));
+
+        title = new JLabel("Train Ticket", SwingConstants.CENTER);
         title.setFont(new Font("Serif", Font.BOLD, 30));
 
         // Message
-        JLabel message = new JLabel("Do not close this tab. You will lose your ticket.", SwingConstants.CENTER);
+        message = new JLabel("Do not close this tab. You will lose your ticket.", SwingConstants.CENTER);
         message.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Ticket ID
         Random rand = new Random();
         int randomId = rand.nextInt(1000000);
-        JLabel ticketId = new JLabel("Ticket ID: " + randomId, SwingConstants.CENTER);
+        ticketId = new JLabel("Ticket ID: " + randomId, SwingConstants.CENTER);
         ticketId.setFont(new Font("Serif", Font.PLAIN, 25));
 
         // Valid Time
@@ -51,20 +49,8 @@ public class TrainTicketPage extends JPanel {
 
         // Ticket Type
         String ticketType = "Single";   // temporary
-        JLabel typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
+        typeLabel = new JLabel("Ticket Type: " + ticketType, SwingConstants.CENTER);
         typeLabel.setFont(new Font("Serif", Font.PLAIN, 25));
-
-        // Home Button
-        JButton homeButton = new RoundedButton("Home (Ticket will stay open)");
-        homeButton.setPreferredSize(new Dimension(200, 50));
-        homeButton.setFont(new Font("Serif", Font.BOLD, 25));
-        homeButton.setBackground(new Color(255, 255, 255));
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.open(new PassengerHomePage(controller));
-            }
-        });
 
         // Timer code: DO NOT MODIFY!!
         Timer timer = new Timer(1000, new ActionListener() {
@@ -88,16 +74,20 @@ public class TrainTicketPage extends JPanel {
 
 
         // Add components to panel
-        this.add(new JLabel("  "));
-        this.add(title);
-        this.add(message);
-        this.add(ticketId);
-        this.add(typeLabel);
-        this.add(validTime);
-        this.add(new JLabel("  "));
-        this.add(homeButton);
-        this.add(new JLabel("  "));
+        panel.add(title);
+        panel.add(message);
+        panel.add(ticketId);
+        panel.add(typeLabel);
+        panel.add(validTime);
+
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 
+    public static void main(String[] args) {
+        new TrainTicketPage();
+    }
 }

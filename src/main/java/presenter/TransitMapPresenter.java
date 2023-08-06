@@ -80,11 +80,11 @@ public class TransitMapPresenter {
         this.height = height;
 
         List<Color> lineColours = new ArrayList<>();
-        lineColours.add(Color.ORANGE);
-        lineColours.add(Color.GREEN.darker());
-        lineColours.add(Color.RED.darker());
-        lineColours.add(Color.BLUE);
-        lineColours.add(Color.CYAN.darker());
+        lineColours.add(new Color(255, 206, 47));
+        lineColours.add(new Color(113, 194, 113));
+        lineColours.add(new Color(41, 163, 217));
+        lineColours.add(new Color(192, 38, 192));
+        lineColours.add(Color.PINK);
 
         // Background
         graphics.setColor(new Color(200, 180, 180));
