@@ -4,7 +4,7 @@ import controller.ticket.PurchaseTicketViewModel;
 import controller.ticket.TicketController;
 import interactor.ticket.BoughtTicket;
 import ui.UIController;
-import ui.util.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,7 @@ public class ConfirmPaymentPage extends JPanel {
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create the confirm button
-        JButton confirmButton = new RoundedButton("Confirm");
+        JButton confirmButton = new ShadowedButton("Confirm");
         confirmButton.setFont(new Font("Serif", Font.BOLD, 28));
         confirmButton.setPreferredSize(new Dimension(150, 50));
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -53,7 +53,7 @@ public class ConfirmPaymentPage extends JPanel {
         });
 
         // Create the cancel button
-        JButton cancelButton = new RoundedButton("Cancel");
+        JButton cancelButton = new ShadowedButton("Cancel");
         cancelButton.setFont(new Font("Serif", Font.BOLD, 28));
         cancelButton.setPreferredSize(new Dimension(150, 50));
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);

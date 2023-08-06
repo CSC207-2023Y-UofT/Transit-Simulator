@@ -1,7 +1,7 @@
 package ui.staff.admin;
 
 import ui.UIController;
-import ui.util.RoundedButton;
+import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
@@ -34,7 +34,7 @@ public class Management extends JPanel {
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
 
         // Home button
-        JButton homeButton = new RoundedButton("Home");
+        JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -100,12 +100,12 @@ public class Management extends JPanel {
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
-        JButton managementButton = new RoundedButton("Manage");
+        JButton managementButton = new ShadowedButton("Manage");
         managementButton.setBackground(new Color(80, 148, 255));
         managementButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         managementButton.setFont(new Font("Serif", Font.BOLD, 20));
 
-        JButton statButton = new RoundedButton("Statistics");
+        JButton statButton = new ShadowedButton("Statistics");
         statButton.setBackground(new Color(128, 155, 197));
         statButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         statButton.setFont(new Font("Serif", Font.BOLD, 20));

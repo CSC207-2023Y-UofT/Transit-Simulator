@@ -12,15 +12,15 @@ public class ShadowBorder extends AbstractBorder {
     /**
      * The thickness of the border in pixels
      */
-    private final int thickness = 3;
+    private final int thickness = 8;
     /**
      * The colour of the border
      */
     private final Color colour = new Color(0, 0, 0, 55);
 
+
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        super.paintBorder(c, g, x, y, width, height);
 
         Color oldColor = g.getColor();
 

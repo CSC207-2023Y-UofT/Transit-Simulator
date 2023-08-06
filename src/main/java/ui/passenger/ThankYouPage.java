@@ -1,7 +1,7 @@
 package ui.passenger;
 
 import ui.UIController;
-import ui.util.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class ThankYouPage extends JPanel {
         label.setBackground(Color.lightGray);
         this.add(label);
 
-        JButton activateButton = new RoundedButton("Activate Ticket");
+        JButton activateButton = new ShadowedButton("Activate Ticket");
         activateButton.setPreferredSize(new Dimension(200, 50));
         activateButton.setFont(new Font("Serif", Font.BOLD, 25));
         activateButton.setBackground(new Color(0, 151, 8));
