@@ -1,10 +1,14 @@
 package ui.passenger;
 
+import controller.ticket.TicketViewModel;
+import interactor.ticket.BoughtTicket;
 import ui.UIController;
+import ui.passenger.ticket.TicketPage;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 
 /**
@@ -20,7 +24,7 @@ public class ThankYouPage extends JPanel {
      *
      * @param controller the UIController that is used to control the UI
      */
-    public ThankYouPage(UIController controller) {
+    public ThankYouPage(UIController controller, List<TicketViewModel> tickets) {
 
         JLabel label1 = new JLabel("Thank you for your purchase.", SwingConstants.CENTER);
         label1.setFont(new Font("Serif", Font.BOLD, 28));
@@ -41,7 +45,7 @@ public class ThankYouPage extends JPanel {
         openButton.setPreferredSize(new Dimension(200, 50));
         openButton.setFont(new Font("Serif", Font.BOLD, 25));
         openButton.addActionListener(e -> {
-            new TicketPage();
+            new TicketPage(controller, tickets);
             controller.open(new PassengerHomePage(controller));
         });
 

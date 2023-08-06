@@ -2,12 +2,14 @@ package ui.passenger;
 
 import controller.ticket.PurchaseTicketViewModel;
 import controller.ticket.TicketController;
+import controller.ticket.TicketViewModel;
 import interactor.ticket.BoughtTicket;
 import ui.UIController;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,8 +50,12 @@ public class ConfirmPaymentPage extends JPanel {
         confirmButton.addActionListener(e -> {
             TicketController ticketController = controller.getControllerPool().getTicketController();
             List<BoughtTicket> tickets = ticketController.buyTickets(viewModel.getTicketTypesList());
+            List<TicketViewModel> viewModels = new ArrayList<>();
+            for (BoughtTicket ticket : tickets) {
+                viewModels.add(new TicketViewModel(ticket));
+            }
 
-            controller.open(new ThankYouPage(controller));
+            controller.open(new ThankYouPage(controller, viewModels));
         });
 
         // Create the cancel button
