@@ -1,7 +1,7 @@
 package ui.staff.engineer;
 
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
@@ -31,7 +31,7 @@ public class EngineerMaintenance extends JPanel {
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
 
         // Home button
-        JButton homeButton = new RoundedButton("Home");
+        JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -102,7 +102,7 @@ public class EngineerMaintenance extends JPanel {
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         // route button
-        JButton routeButton = new RoundedButton("Assigned Route");
+        JButton routeButton = new ShadowedButton("Assigned Route");
         routeButton.setBackground(new Color(128, 155, 197));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -115,7 +115,7 @@ public class EngineerMaintenance extends JPanel {
 
 
         // maintenance button: does nothing since already on this page
-        JButton maintenanceButton = new RoundedButton("Maintenance Status");
+        JButton maintenanceButton = new ShadowedButton("Maintenance Status");
         maintenanceButton.setBackground(new Color(80, 148, 255));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));

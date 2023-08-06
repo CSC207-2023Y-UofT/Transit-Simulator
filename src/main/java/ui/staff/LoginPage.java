@@ -1,10 +1,10 @@
 package ui.staff;
 
 import ui.UIController;
-import ui.round.RoundedButton;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;
 import ui.staff.engineer.EngineerRoute;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +35,7 @@ public class LoginPage extends JPanel {
         personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
 
         // Sign In button
-        JButton signInButton = new RoundedButton("Sign In");
+        JButton signInButton = new ShadowedButton("Sign In");
         signInButton.setBackground(new Color(112, 170, 255));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         signInButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -54,7 +54,7 @@ public class LoginPage extends JPanel {
         });
 
         // Back button
-        JButton backButton = new RoundedButton("Back");
+        JButton backButton = new ShadowedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.addActionListener(e -> controller.open(new StaffSelectPage(controller)));

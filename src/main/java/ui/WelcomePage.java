@@ -1,6 +1,7 @@
 package ui;
 
-import ui.round.RoundedButton;
+import ui.passenger.PassengerHomePage;
+import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 import ui.passenger.PassengerHomePage;
 
@@ -33,7 +34,7 @@ public class WelcomePage extends JPanel {
         userTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // Passenger button
-        JButton passengerButton = new RoundedButton("Passenger");
+        JButton passengerButton = new ShadowedButton("Passenger");
         passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         passengerButton.setFont(new Font("Serif", Font.BOLD, 25));
         passengerButton.setPreferredSize(new Dimension(200, 50));
@@ -44,7 +45,7 @@ public class WelcomePage extends JPanel {
         });
 
         // Staff button
-        JButton staffButton = new RoundedButton("Staff");
+        JButton staffButton = new ShadowedButton("Staff");
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         staffButton.setFont(new Font("Serif", Font.BOLD, 25));
         staffButton.setPreferredSize(new Dimension(200, 50));

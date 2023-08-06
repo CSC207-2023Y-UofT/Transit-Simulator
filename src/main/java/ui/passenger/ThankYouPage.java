@@ -1,8 +1,7 @@
 package ui.passenger;
 
 import ui.UIController;
-import ui.passenger.ticket.TicketPage;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +37,7 @@ public class ThankYouPage extends JPanel {
         );
         label3.setFont(new Font("Serif", Font.BOLD, 28));
 
-        JButton openButton = new RoundedButton("Open Ticket(s)");
+        JButton openButton = new ShadowedButton("Open Ticket(s)");
         openButton.setPreferredSize(new Dimension(200, 50));
         openButton.setFont(new Font("Serif", Font.BOLD, 25));
         openButton.addActionListener(e -> {

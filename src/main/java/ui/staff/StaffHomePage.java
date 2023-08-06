@@ -4,7 +4,7 @@ import controller.transit_map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +32,7 @@ public class StaffHomePage extends JPanel {
         this.controller = controller;
 
         // Log in button
-        loginButton = new RoundedButton("Log In");
+        loginButton = new ShadowedButton("Log In");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setBackground(new Color(0, 151, 8));
         loginButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -42,7 +42,7 @@ public class StaffHomePage extends JPanel {
 
 
         // Back button
-        backButton = new RoundedButton("Back");
+        backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));

@@ -5,7 +5,7 @@ import controller.transit_map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,7 @@ public class PassengerHomePage extends JPanel {
         this.controller = controller;
 
         // Buy
-        buyButton = new RoundedButton("Buy Tickets");
+        buyButton = new ShadowedButton("Buy Tickets");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -50,7 +50,7 @@ public class PassengerHomePage extends JPanel {
         buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
 
         // Back button
-        backButton = new RoundedButton("Back");
+        backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
