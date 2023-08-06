@@ -1,6 +1,6 @@
 package ui.map;
 
-import presenter.TransitMapPresenter;
+import controller.TransitMapPresenter;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,11 +1,22 @@
 package main;
 
+import employee.EmployeeTracker;
+import employee.persistence.EmployeeDataStore;
+import employee.persistence.FileEmployeeDataStore;
+import interactor.employee.EmployeeInteractor;
 import interactor.station.StationInteractor;
+import interactor.ticket.TicketInteractor;
 import interactor.train.TrainInteractor;
 import model.persistence.JsonModelDataStore;
 
 import model.control.*;
 import simulation.Simulation;
+import stats.persistence.StatAggregateDataStore;
+import stats.persistence.StatDataController;
+import stats.persistence.StatEntryDataStore;
+import stats.persistence.impl.FileAggregateDataStore;
+import stats.persistence.impl.FileEntryDataStore;
+import ticket.TicketDataStore;
 import ui.UIController;
 import ui.WelcomePage;
 
@@ -46,10 +57,25 @@ public class Main {
         JsonModelDataStore dataStore = new JsonModelDataStore(file);
         TransitModel model = dataStore.readModel();
 
+        // Stat data storage
+        StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
+        StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
+
+        StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
+
+        // Ticket data store
+        TicketDataStore store = null;
+
+        // Employee data store
+        EmployeeDataStore employeeDataStore = new FileEmployeeDataStore(new File("employees"));
+        EmployeeTracker employeeTracker = new EmployeeTracker(employeeDataStore);
+
         // Create the presenter
         InteractorPool pool = new InteractorPool(
                 new StationInteractor(model),
-                new TrainInteractor(model)
+                new TrainInteractor(model),
+                new TicketInteractor(store, stats),
+                new EmployeeInteractor(employeeTracker, model)
         );
 
         // Create the ui controller

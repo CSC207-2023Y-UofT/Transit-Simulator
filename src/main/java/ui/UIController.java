@@ -1,5 +1,6 @@
 package ui;
 
+import main.ControllerPool;
 import main.InteractorPool;
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,8 @@ public class UIController {
      */
     private final InteractorPool interactorPool;
 
+    private final ControllerPool controllerPool;
+
     /**
      * Constructs a new MainScreen object.
      *
@@ -27,6 +30,7 @@ public class UIController {
      */
     public UIController(InteractorPool interactorPool) {
         this.interactorPool = interactorPool;
+        this.controllerPool = new ControllerPool(interactorPool);
         this.mainScreen = new MainScreen(this);
     }
 
@@ -36,6 +40,10 @@ public class UIController {
      */
     public InteractorPool getInteractorPool() {
         return interactorPool;
+    }
+
+    public ControllerPool getControllerPool() {
+        return controllerPool;
     }
 
     /**
