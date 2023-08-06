@@ -31,10 +31,6 @@ public class SingletonStatViewModel {
             int y = (int) (height - aggregate.getValue().doubleValue() * (height * 3 / 4.0) / max);
             y = Math.max(4, y);
             polygon.addPoint(x, y);
-
-            if (aggregate.getValue().doubleValue() != 0.0) {
-                System.out.println("Entry #" + i + ": " + aggregate.getValue().doubleValue());
-            }
         }
         polygon.addPoint(width, height);
         Paint oldPaint = g.getPaint();
