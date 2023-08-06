@@ -26,6 +26,7 @@ public class Management extends JPanel {
      * The JPanel that displays the middle panel.
      */
     private JPanel middlePanel;
+    private JTable table;
 
     /**
      * Constructs a new Management object.
@@ -76,7 +77,7 @@ public class Management extends JPanel {
 
         // Create Table Model
         DefaultTableModel model = new DefaultTableModel(data, columns);
-        JTable table = new JTable(model);
+        table = new JTable(model);
 
         // Centering content
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -101,7 +102,7 @@ public class Management extends JPanel {
         JButton addStaffButton = new ShadowedButton("Add Staff");
         addStaffButton.setBackground(new Color(189, 87, 231));
         addStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
-        addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller)); }
+        addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller, this)); }
         );
 
         middlePanel.add(addStaffButton, BorderLayout.NORTH);
@@ -146,5 +147,11 @@ public class Management extends JPanel {
         bottomPanel.add(statButton);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
+
+    public void addStaffRow(Object[] rowData) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(rowData);
+    }
+
 
 }
