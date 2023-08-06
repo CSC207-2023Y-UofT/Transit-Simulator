@@ -41,7 +41,7 @@ public class PassengerHomePage extends JPanel {
         this.controller = controller;
 
         // Buy
-        buyButton = new RoundedButton("Buy Ticket");
+        buyButton = new RoundedButton("Buy Tickets");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
