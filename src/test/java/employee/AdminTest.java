@@ -27,24 +27,29 @@ public class AdminTest {
     }
 
     @Test
+    public void testGetEmployeeType() {
+        assertEquals(EmployeeType.ADMINISTRATOR, admin.getEmployeeType());
+    }
+
+    @Test
     public void testSetPaid() {
         admin.setPaid(true);
-        assertTrue(admin.getPaid());
+        assertTrue(admin.getPaymentStatus());
 
         admin.setPaid(false);
-        assertFalse(admin.getPaid());
+        assertFalse(admin.getPaymentStatus());
     }
 
     @Test
     public void testPayEmployee() {
-        assertFalse(employee1.getPaid());
-        assertFalse(employee2.getPaid());
+        assertFalse(employee1.getPaymentStatus());
+        assertFalse(employee2.getPaymentStatus());
 
         admin.payEmployee(employee1);
         admin.payEmployee(employee2);
 
-        assertTrue(employee1.getPaid());
-        assertTrue(employee2.getPaid());
+        assertTrue(employee1.getPaymentStatus());
+        assertTrue(employee2.getPaymentStatus());
     }
 
     @Test

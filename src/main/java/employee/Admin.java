@@ -35,6 +35,10 @@ public class Admin extends Employee {
         return 4 * super.getMonthlySalary();
     }
 
+    /**
+     * Returns the type of this Admin.
+     * @return The type of this Admin
+     */
     @Override
     public EmployeeType getEmployeeType() {
         return EmployeeType.ADMINISTRATOR;
@@ -56,7 +60,7 @@ public class Admin extends Employee {
      * @return True if the Admin has been paid; otherwise false.
      */
     @Override
-    boolean getPaid() {
+    boolean getPaymentStatus() {
         return this.isPaid;
     }
 

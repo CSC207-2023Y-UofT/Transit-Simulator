@@ -1,8 +1,5 @@
 package employee;
 
-import employee.Admin;
-import employee.Employee;
-import employee.TrainOperator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -27,10 +24,10 @@ public class TrainOperatorTest {
         TrainOperator trainOperator = new TrainOperator(123);
 
         trainOperator.setPaid(true);
-        Assertions.assertTrue(trainOperator.getPaid()); // Assuming isPaid is a boolean field in the Employee class
+        Assertions.assertTrue(trainOperator.getPaymentStatus()); // Assuming isPaid is a boolean field in the Employee class
 
         trainOperator.setPaid(false);
-        Assertions.assertFalse(trainOperator.getPaid());
+        Assertions.assertFalse(trainOperator.getPaymentStatus());
     }
 
 }

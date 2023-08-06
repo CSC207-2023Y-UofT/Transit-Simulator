@@ -51,7 +51,7 @@ public abstract class Employee {
      *
      * @return True if the employee has been paid; otherwise false.
      */
-    abstract boolean getPaid();
+    abstract boolean getPaymentStatus();
 
     /**
      * Returns the monthly salary of this employee, which is the base salary for all employees.

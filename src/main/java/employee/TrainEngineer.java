@@ -50,7 +50,7 @@ public class TrainEngineer extends Employee {
      * @return True if the TrainEngineer has been paid; otherwise false.
      */
     @Override
-    public boolean getPaid() {
+    public boolean getPaymentStatus() {
         return this.isPaid;
     }
 

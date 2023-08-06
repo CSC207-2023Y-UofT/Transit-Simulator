@@ -41,7 +41,7 @@ public class TrainOperator extends Employee {
      * @return a boolean
      */
     @Override
-    public boolean getPaid() {
+    public boolean getPaymentStatus() {
         return this.isPaid;
     }
 
