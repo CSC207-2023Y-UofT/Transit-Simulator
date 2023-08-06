@@ -1,7 +1,7 @@
 package ui.passenger;
 
-import controller.ticket.PurchaseTicketViewModel;
-import controller.transit_map.TransitMapPassengerPresenter;
+import controller.PurchaseTicketViewModel;
+import controller.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -43,7 +43,7 @@ public class PassengerHomePage extends JPanel {
         // Buy
         buyButton = new RoundedButton("Buy Ticket");
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buyButton.setBackground(new Color(114, 217, 112));
+        buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
@@ -61,7 +61,7 @@ public class PassengerHomePage extends JPanel {
         this.setBackground(new Color(210, 207, 206));
 
         // Map
-        TransitMapPassengerPresenter presenter = new TransitMapPassengerPresenter(
+        TransitMapPagePresenter presenter = new TransitMapPagePresenter(
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );
@@ -76,7 +76,7 @@ public class PassengerHomePage extends JPanel {
 
         bottomPanel.add(backButton, BorderLayout.WEST);
         bottomPanel.add(new JLabel(""));
-        bottomPanel.add(buyButton);
+        bottomPanel.add(buyButton, BorderLayout.EAST);
 
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
