@@ -58,7 +58,6 @@ public class Management extends JPanel {
         topPanel.add(idLabel);
         this.add(topPanel, BorderLayout.NORTH);
 
-
         // Middle panel
         middlePanel = new JPanel();
         middlePanel.setLayout(new BorderLayout());
@@ -80,6 +79,7 @@ public class Management extends JPanel {
         // Create Table Model
         DefaultTableModel model = new DefaultTableModel(data, columns);
         table = new JTable(model);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  // Only one row can be selected at a time
 
         // Centering content
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -114,9 +114,21 @@ public class Management extends JPanel {
         addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller, this)); }
         );
 
-        middlePanel.add(new JLabel("          "), BorderLayout.NORTH);
+        // Remove staff button
+        JButton removeStaffButton = new ShadowedButton("Remove Staff");
+        removeStaffButton.setBackground(new Color(220, 80, 70)); // Some reddish color for removal
+        removeStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
+        removeStaffButton.addActionListener(e -> removeSelectedStaff());
+
+        middlePanel.add(new JLabel("    "), BorderLayout.NORTH);
         middlePanel.add(scrollPane, BorderLayout.CENTER);
-        middlePanel.add(addStaffButton, BorderLayout.SOUTH);
+
+        JPanel editsPanel = new JPanel(new GridLayout(0, 2));
+        editsPanel.add(addStaffButton, BorderLayout.WEST);
+        editsPanel.add(removeStaffButton, BorderLayout.EAST);
+        editsPanel.add(new JLabel("    "), BorderLayout.SOUTH);
+
+        middlePanel.add(editsPanel, BorderLayout.SOUTH);
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Middle panel but for stats
@@ -125,12 +137,12 @@ public class Management extends JPanel {
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
-        JButton managementButton = new ShadowedButton("Manage");
+        JButton managementButton = new JButton("Manage");
         managementButton.setBackground(new Color(189, 87, 231));
         managementButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         managementButton.setFont(new Font("Serif", Font.BOLD, 20));
 
-        JButton statButton = new ShadowedButton("Statistics");
+        JButton statButton = new JButton("Statistics");
         statButton.setBackground(new Color(201, 153, 222));
         statButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         statButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -162,6 +174,18 @@ public class Management extends JPanel {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(rowData);
     }
+
+    private void removeSelectedStaff() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) { // If a row is selected
+            model.removeRow(selectedRow);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a staff to remove.");
+        }
+        // table.repaint();
+    }
+
 
 
 }
