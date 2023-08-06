@@ -68,13 +68,25 @@ public class AddStaff extends JPanel {
 
         // Add Button
         JButton addButton = new ShadowedButton("Add");
-        addButton.setBackground(new Color(255, 255, 255));
+        addButton.setBackground(new Color(189, 87, 231));
         addButton.setFont(new Font("Serif", Font.BOLD, 18));  // Making button font slightly bolder
         addButton.addActionListener(e -> addStaffToManagement());
         c.gridx = 0;
         c.gridy = 3;
         c.gridwidth = 2;  // Spanning the button across 2 columns
         add(addButton, c);
+
+        // Cancel Button
+        JButton cancelButton = new ShadowedButton("Cancel");
+        cancelButton.setBackground(new Color(255, 255, 255));
+        cancelButton.setFont(new Font("Serif", Font.BOLD, 18));
+        cancelButton.addActionListener(e -> controller.open(managementPanel));
+
+        GridBagConstraints cCancel = (GridBagConstraints) c.clone(); // clone to keep properties
+        cCancel.gridx = 0;
+        cCancel.gridy = 4;
+        cCancel.gridwidth = 2;
+        add(cancelButton, cCancel);
     }
 
     private void addStaffToManagement() {
