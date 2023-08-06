@@ -31,7 +31,7 @@ public class UIController {
     public UIController(InteractorPool interactorPool) {
         this.interactorPool = interactorPool;
         this.controllerPool = new ControllerPool(interactorPool);
-        this.mainScreen = new MainScreen(this);
+        this.mainScreen = new MainScreen();
     }
 
     /**
@@ -59,8 +59,11 @@ public class UIController {
      * @param panel the panel to open
      */
     public void open(JPanel panel) {
+
+        Toolkit tk = Toolkit.getDefaultToolkit();
+
         mainScreen.setContentPane(panel);
-        mainScreen.setPreferredSize(new Dimension(1500, 800));
+        mainScreen.setPreferredSize(tk.getScreenSize());
         mainScreen.pack();
         mainScreen.revalidate();
         mainScreen.repaint();

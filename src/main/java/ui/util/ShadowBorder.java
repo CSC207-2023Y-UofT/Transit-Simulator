@@ -12,7 +12,7 @@ public class ShadowBorder extends AbstractBorder {
     /**
      * The thickness of the border in pixels
      */
-    private final int thickness = 8;
+    private int thickness = 8;
     /**
      * The colour of the border
      */
@@ -41,5 +41,9 @@ public class ShadowBorder extends AbstractBorder {
     @Override
     public Insets getBorderInsets(Component c) {
         return new Insets(thickness, thickness, thickness, thickness);
+    }
+
+    public void setThickness(int thickness) {
+        this.thickness = thickness;
     }
 }

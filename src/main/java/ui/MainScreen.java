@@ -10,23 +10,12 @@ import javax.swing.*;
  */
 public class MainScreen extends JFrame {
     /**
-     * The UIController that is used to switch panels.
-     */
-    private final UIController UIController;
-    /**
-     * The content pane of the JFrame.
-     */
-    private JPanel contentPane;
-
-    /**
      * Constructs a new MainScreen object.
      *
      * @param UIController the controller used to switch panels
      */
-    public MainScreen(UIController UIController) {
+    public MainScreen() {
         super("Transit Simulator");
-
-        this.UIController = UIController;
 
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
