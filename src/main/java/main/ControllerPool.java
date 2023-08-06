@@ -1,6 +1,6 @@
 package main;
 
-import controller.TicketController;
+import controller.ticket.TicketController;
 
 public class ControllerPool {
     private final TicketController ticketController;

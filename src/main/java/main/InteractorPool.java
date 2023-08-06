@@ -1,6 +1,7 @@
 package main;
 
 import interactor.employee.IEmployeeInteractor;
+import interactor.stat.IStatInteractor;
 import interactor.station.IStationInteractor;
 import interactor.ticket.ITicketInteractor;
 import interactor.train.ITrainInteractor;
@@ -20,6 +21,7 @@ public class InteractorPool {
 
     private final ITicketInteractor ticketInteractor;
     private final IEmployeeInteractor employeeInteractor;
+    private final IStatInteractor statInteractor;
 
     /**
      * Constructs a new InteractorPool with the given station and train interactors.
@@ -28,12 +30,14 @@ public class InteractorPool {
      * @param trainInteractor    The TrainInteractor.
      * @param ticketInteractor   The TicketInteractor.
      * @param employeeInteractor The EmployeeInteractor.
+     * @param statInteractor
      */
-    public InteractorPool(IStationInteractor stationInteractor, ITrainInteractor trainInteractor, ITicketInteractor ticketInteractor, IEmployeeInteractor employeeInteractor) {
+    public InteractorPool(IStationInteractor stationInteractor, ITrainInteractor trainInteractor, ITicketInteractor ticketInteractor, IEmployeeInteractor employeeInteractor, IStatInteractor statInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
         this.ticketInteractor = ticketInteractor;
         this.employeeInteractor = employeeInteractor;
+        this.statInteractor = statInteractor;
     }
 
     /**

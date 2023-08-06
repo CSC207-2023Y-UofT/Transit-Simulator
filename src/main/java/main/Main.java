@@ -4,6 +4,7 @@ import employee.EmployeeTracker;
 import employee.persistence.EmployeeDataStore;
 import employee.persistence.FileEmployeeDataStore;
 import interactor.employee.EmployeeInteractor;
+import interactor.stat.StatInteractor;
 import interactor.station.StationInteractor;
 import interactor.ticket.TicketInteractor;
 import interactor.train.TrainInteractor;
@@ -76,7 +77,8 @@ public class Main {
                 new StationInteractor(model),
                 new TrainInteractor(model),
                 new TicketInteractor(store, stats),
-                new EmployeeInteractor(employeeTracker, model)
+                new EmployeeInteractor(employeeTracker, model),
+                new StatInteractor(stats)
         );
 
         // Create the ui controller
@@ -84,7 +86,7 @@ public class Main {
         controller.open(new WelcomePage(controller));
 
         // Start the simulation
-        new Simulation(model).start();
+        new Simulation(model, stats).start();
     }
 }
 
