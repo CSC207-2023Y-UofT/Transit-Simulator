@@ -16,6 +16,7 @@ import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
 import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
+import ticket.JsonTicketDataStore;
 import ticket.TicketDataStore;
 import ui.UIController;
 import ui.WelcomePage;
@@ -64,7 +65,7 @@ public class Main {
         StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
 
         // Ticket data store
-        TicketDataStore store = null;
+        TicketDataStore store = new JsonTicketDataStore(new File("tickets"));
 
         // Employee data store
         EmployeeDataStore employeeDataStore = new FileEmployeeDataStore(new File("employees"));

@@ -16,10 +16,12 @@ public class Ticket {
      */
     private long expiry = -1;
 
+    private long createdAt = System.currentTimeMillis();
+
     /**
      * The id of the ticket
      */
-    private final int ticketId;
+    private final int id;
 
     /**
      * Whether the ticket is activated or not.
@@ -30,9 +32,13 @@ public class Ticket {
      * Constructs a new Ticket object. The ticket's id is randomly generated.
      * The ticket's type is given as a parameter.
      */
-    public Ticket(TicketType type) {
+    public Ticket(int id, TicketType type) {
         this.type = type;
-        ticketId = ThreadLocalRandom.current().nextInt(999999999);
+        this.id = id;
+    }
+
+    public Ticket(TicketType type) {
+        this(ThreadLocalRandom.current().nextInt(999999999), type);
     }
 
     /**
@@ -48,7 +54,7 @@ public class Ticket {
      * Returns this ticket's id.
      */
     public int getId() {
-        return ticketId;
+        return id;
     }
 
     public TicketType getType() {
@@ -77,8 +83,25 @@ public class Ticket {
         this.expiry = expiry;
     }
 
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
     public void activate() {
         activated = true;
         this.expiry = System.currentTimeMillis() + type.getLifetime();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Ticket) {
+            Ticket other = (Ticket) obj;
+            return other.getId() == getId();
+        }
+        return false;
     }
 }
