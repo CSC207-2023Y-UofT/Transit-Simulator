@@ -1,6 +1,7 @@
 package ui.staff.admin;
 
 import ui.UIController;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,32 +19,62 @@ public class AddStaff extends JPanel {
         this.controller = controller;
         this.managementPanel = managementPanel;
 
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridBagLayout());  // Switching to GridBagLayout for more control
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10, 10, 10, 10);  // Margins around components
+        c.fill = GridBagConstraints.HORIZONTAL;
 
-        // Create and add form components
+        Font font = new Font("Serif", Font.PLAIN, 16);  // Setting a common font
+
+        // Employee Type
         JLabel employeeTypeLabel = new JLabel("Employee Type:");
+        employeeTypeLabel.setFont(font);
+        c.gridx = 0;
+        c.gridy = 0;
+        add(employeeTypeLabel, c);
 
-        // Dropdown menu for employee types
-        String[] employeeTypes = { "Train Engineer", "Train Operator" };
+        String[] employeeTypes = {"Train Engineer", "Train Operator"};
         employeeTypeDropdown = new JComboBox<>(employeeTypes);
+        employeeTypeDropdown.setFont(font);
+        c.gridx = 1;
+        c.gridy = 0;
+        add(employeeTypeDropdown, c);
 
+        // Staff Number
         JLabel staffNumberLabel = new JLabel("Staff Number:");
+        staffNumberLabel.setFont(font);
+        c.gridx = 0;
+        c.gridy = 1;
+        add(staffNumberLabel, c);
+
         staffNumberField = new JTextField(20);
+        staffNumberField.setFont(font);
+        c.gridx = 1;
+        c.gridy = 1;
+        add(staffNumberField, c);
 
+        // Assigned Train
         JLabel assignedTrainLabel = new JLabel("Assigned Train:");
+        assignedTrainLabel.setFont(font);
+        c.gridx = 0;
+        c.gridy = 2;
+        add(assignedTrainLabel, c);
+
         assignedTrainField = new JTextField(20);
+        assignedTrainField.setFont(font);
+        c.gridx = 1;
+        c.gridy = 2;
+        add(assignedTrainField, c);
 
-        JButton addButton = new JButton("Add");
+        // Add Button
+        JButton addButton = new ShadowedButton("Add");
+        addButton.setBackground(new Color(255, 255, 255));
+        addButton.setFont(new Font("Serif", Font.BOLD, 18));  // Making button font slightly bolder
         addButton.addActionListener(e -> addStaffToManagement());
-
-        add(employeeTypeLabel);
-        add(employeeTypeDropdown);
-        add(staffNumberLabel);
-        add(staffNumberField);
-        add(assignedTrainLabel);
-        add(assignedTrainField);
-        add(new JLabel()); // Empty label for alignment
-        add(addButton);
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridwidth = 2;  // Spanning the button across 2 columns
+        add(addButton, c);
     }
 
     private void addStaffToManagement() {
@@ -61,4 +92,5 @@ public class AddStaff extends JPanel {
 
         controller.open(managementPanel);
     }
+
 }
