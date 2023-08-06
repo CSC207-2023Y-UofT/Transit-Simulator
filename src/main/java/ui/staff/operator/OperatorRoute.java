@@ -19,6 +19,7 @@ public class OperatorRoute extends JPanel {
      * @param controller the controller used to switch panels
      */
     public OperatorRoute(UIController controller) {
+        super(new BorderLayout());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));

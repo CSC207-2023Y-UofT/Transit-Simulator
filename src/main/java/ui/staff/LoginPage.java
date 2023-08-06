@@ -4,6 +4,7 @@ import ui.UIController;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;
 import ui.staff.engineer.EngineerRoute;
+import ui.staff.operator.OperatorMaintenance;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
@@ -49,7 +50,7 @@ public class LoginPage extends JPanel {
 
                 // We should know what option they picked earlier and direct them there
 
-                controller.open(new EngineerMaintenance(controller));
+                controller.open(new OperatorMaintenance(controller));
             }
         });
 
