@@ -47,7 +47,6 @@ public class TrainInteractor implements ITrainInteractor {
         for (Train train : model.getTrainList()) {
             trains.add(toState(train));
         }
-
         return trains;
     }
 
