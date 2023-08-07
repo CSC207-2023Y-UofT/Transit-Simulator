@@ -119,6 +119,7 @@ public class PurchaseTicketPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // reset all the values
                 viewModel.reset();
+                repaint();
             }
         });
         this.add(cancelButton);

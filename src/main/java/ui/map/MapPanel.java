@@ -61,7 +61,6 @@ public class MapPanel extends JPanel {
         timer.stop();
     }
 
-
     /**
      * Paints the panel.
      * @param g the graphics object
