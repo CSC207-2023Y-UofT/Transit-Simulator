@@ -21,6 +21,10 @@ public class ShadowPanel extends JPanel {
         setBorder(shadowBorder);
     }
 
+    public void setExtraInset(int extraInset) {
+        shadowBorder.setExtraInsets(extraInset, extraInset, extraInset, extraInset);
+    }
+
     public void setThickness(int thickness) {
         shadowBorder.setThickness(thickness);
     }

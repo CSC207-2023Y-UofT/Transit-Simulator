@@ -1,6 +1,7 @@
 package ui.staff.admin;
 
 import ui.UIController;
+import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
@@ -130,7 +131,20 @@ public class Management extends JPanel {
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Middle panel but for stats
-        statsPanel = new StatsPanel(controller);
+        statsPanel = new JPanel(new GridLayout(0, 2));
+
+        ShadowPanel statPanel1 = new ShadowPanel(new BorderLayout());
+        statPanel1.setExtraInset(10);
+        statPanel1.add(new StatsPanel(controller));
+
+        ShadowPanel statPanel2 = new ShadowPanel(new BorderLayout());
+        statPanel2.setExtraInset(10);
+        StatsPanel stats = new StatsPanel(controller);
+        stats.setDisplay(StatsPanel.StatDisplay.EXPENSES);
+        statPanel2.add(stats);
+
+        statsPanel.add(statPanel1);
+        statsPanel.add(statPanel2);
 
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));

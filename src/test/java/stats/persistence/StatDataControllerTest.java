@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.entry.impl.MaintenanceStat;
-import stats.persistence.impl.FileAggregateDataStore;
+import stats.persistence.impl.FileAggregateDataUtils;
 import stats.persistence.impl.FileEntryDataStore;
 
 import java.io.File;
@@ -44,7 +44,7 @@ class StatDataControllerTest {
 
         controller = new StatDataController(
                 new FileEntryDataStore(entryFolder),
-                new FileAggregateDataStore(aggregateFolder)
+                new FileAggregateDataUtils(aggregateFolder)
         );
 
         controller.record(new MaintenanceStat(1.0));

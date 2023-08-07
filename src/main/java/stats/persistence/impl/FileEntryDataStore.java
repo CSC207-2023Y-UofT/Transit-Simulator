@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A file-based implementation of the {@link StatEntryDataStore} interface.
@@ -20,6 +21,10 @@ public class FileEntryDataStore implements StatEntryDataStore {
      * The directory where the entry data files are stored.
      */
     private final File directory;
+
+    private final int pageSize = 128;
+
+    private static class EntryList extends ArrayList<StatEntry> {}
 
     /**
      * Constructs a FileEntryDataStore instance with a specified directory.
@@ -41,7 +46,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     private File getFile(long index, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
         classFolder.mkdirs();
-        return new File(classFolder, index + ".stat");
+        return new File(classFolder, (index / pageSize) + ".stat");
     }
 
 
@@ -56,18 +61,11 @@ public class FileEntryDataStore implements StatEntryDataStore {
     @Override
     public <E extends StatEntry> void store(long index, Class<? extends StatEntry> clazz, List<E> entries) {
         File file = getFile(index, clazz);
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        baos.write(0x00); // Version
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
-            oos.writeObject(entries);
-            byte[] bytes = baos.toByteArray();
-            Files.write(file.toPath(), bytes, StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        Map<Long, EntryList> existingEntries = PageFileUtils.read(file, EntryList.class);
+        EntryList list = new EntryList();
+        list.addAll(entries);
+        existingEntries.put(index, list);
+        PageFileUtils.write(file, existingEntries);
     }
 
     /**
@@ -85,27 +83,19 @@ public class FileEntryDataStore implements StatEntryDataStore {
         if (!file.exists()) {
             return new ArrayList<>();
         }
-        try {
-            byte[] bytes = Files.readAllBytes(file.toPath());
-            ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-            int version = bais.read(); // Version
-            List<?> entries = (List<?>) new ObjectInputStream(bais).readObject();
 
-            List<E> castedEntries = new ArrayList<>();
-            for (Object entry : entries) {
-                // If this fails, then the file is corrupted or the class has changed,
-                // but it would probably of failed earlier if the class was changed,
-                // so it's probably corrupted.
-
-                // This is just an example branch, so I'm not going to handle it right now
-                // but, we would handle it properly if we chose to use this implementation.
-                castedEntries.add(clazz.cast(entry));
-            }
-
-            return castedEntries;
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        Map<Long, EntryList> existingEntries = PageFileUtils.read(file, EntryList.class);
+        EntryList list = existingEntries.get(index);
+        if (list == null) {
+            return new ArrayList<>();
         }
+
+        List<E> result = new ArrayList<>();
+        for (StatEntry entry : list) {
+            result.add(clazz.cast(entry));
+        }
+
+        return result;
     }
 
     /**

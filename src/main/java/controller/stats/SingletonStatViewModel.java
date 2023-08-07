@@ -14,7 +14,7 @@ public class SingletonStatViewModel {
     }
 
     public void draw(Graphics2D g, int width, int height) {
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 
         // Calculate a vertical scale by taking the max of all the stats
@@ -22,6 +22,8 @@ public class SingletonStatViewModel {
         for (SingletonAggregate<? extends Number> aggregate : aggregates) {
             max = Math.max(max, aggregate.getValue().doubleValue());
         }
+
+        if (max == 0) return;
 
         Polygon polygon = new Polygon();
         polygon.addPoint(0, height);
@@ -34,7 +36,7 @@ public class SingletonStatViewModel {
         }
         polygon.addPoint(width, height);
         Paint oldPaint = g.getPaint();
-        g.setPaint(new LinearGradientPaint(0, 0, 0, height, new float[]{0, 1}, new Color[]{
+        g.setPaint(new LinearGradientPaint(0, (int) (height - max), 0, height, new float[]{0, 1}, new Color[]{
                 new Color(0, 131, 227, 255), new Color(0, 111, 197, 50)
         }));
         g.fillPolygon(polygon);
