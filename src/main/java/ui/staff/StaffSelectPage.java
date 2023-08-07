@@ -1,7 +1,7 @@
 package ui.staff;
 
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,31 +35,31 @@ public class StaffSelectPage extends JPanel {
         staffTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // Admin button
-        adminButton = new RoundedButton("Admin");
+        adminButton = new ShadowedButton("Admin");
         adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        adminButton.setBackground(new Color(112, 170, 255));
+        adminButton.setBackground(new Color(189, 87, 231));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         adminButton.setFont(new Font("Serif", Font.BOLD, 20));
         adminButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Train Operator button
-        trainOperatorButton = new RoundedButton("Train Operator");
+        trainOperatorButton = new ShadowedButton("Train Operator");
         trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainOperatorButton.setBackground(new Color(112, 170, 255));
+        trainOperatorButton.setBackground(new Color(222, 144, 53));
         trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         trainOperatorButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainOperatorButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Train Engineer button
-        trainEngineerButton = new RoundedButton("Train Engineer");
+        trainEngineerButton = new ShadowedButton("Train Engineer");
         trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        trainEngineerButton.setBackground(new Color(112, 170, 255));
+        trainEngineerButton.setBackground(new Color(57, 210, 190));
         trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         trainEngineerButton.setFont(new Font("Serif", Font.BOLD, 20));
         trainEngineerButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Back button
-        backButton = new RoundedButton("Back");
+        backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));

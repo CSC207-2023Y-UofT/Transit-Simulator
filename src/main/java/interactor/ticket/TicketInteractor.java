@@ -64,6 +64,11 @@ public class TicketInteractor implements ITicketInteractor {
                 ticket.getExpiry()));
     }
 
+    @Override
+    public void cleanTickets() {
+        dataStore.cleanExpiredTickets();
+    }
+
     private BoughtTicket convertTicket(Ticket ticket) {
         return new BoughtTicket(ticket.getPrice(),
                 ticket.getType(),

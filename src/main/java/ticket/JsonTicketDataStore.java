@@ -31,6 +31,7 @@ public class JsonTicketDataStore implements TicketDataStore {
             Ticket ticket = new Ticket(id, type);
             ticket.setActivated(json.getBoolean("activated"));
             ticket.setExpiry(json.getLong("expiry"));
+            ticket.setCreatedAt(json.optLong("createdAt", System.currentTimeMillis()));
             return Optional.of(ticket);
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +46,7 @@ public class JsonTicketDataStore implements TicketDataStore {
             json.put("id", ticket.getId());
             json.put("activated", ticket.isActivated());
             json.put("expiry", ticket.getExpiry());
+            json.put("createdAt", ticket.getCreatedAt());
             Files.writeString(file.toPath(), json.toString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +83,7 @@ public class JsonTicketDataStore implements TicketDataStore {
     @Override
     public void cleanExpiredTickets() {
         for (Ticket ticket : getTickets()) {
-            if (ticket.getExpiry() < System.currentTimeMillis()) {
+            if (ticket.getExpiry() != -1 && ticket.getExpiry() < System.currentTimeMillis()) {
                 removeTicket(ticket.getId());
             } else if (System.currentTimeMillis() - ticket.getCreatedAt() > 1000 * 60 * 60 * 24 * 7) {
                 removeTicket(ticket.getId());

@@ -1,11 +1,12 @@
 package ui.passenger;
 
 import controller.ticket.PurchaseTicketViewModel;
-import controller.transit_map.TransitMapPagePresenter;
+import controller.map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
-import ui.round.RoundedButton;
+import ui.util.ShadowPanel;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,7 @@ import java.awt.*;
  * @see UIController
  */
 public class PassengerHomePage extends JPanel {
+
     /**
      * The UIController that is used to control the UI.
      */
@@ -25,10 +27,6 @@ public class PassengerHomePage extends JPanel {
      * The buttons on the panel.
      */
     private JButton buyButton, backButton;
-    /**
-     * The map panel on the panel.
-     */
-    private MapPanel mapPanel;
 
     /**
      * Constructs a new PassengerHomePage with the given UIController.
@@ -41,15 +39,15 @@ public class PassengerHomePage extends JPanel {
         this.controller = controller;
 
         // Buy
-        buyButton = new RoundedButton("Buy Ticket");
+        buyButton = new ShadowedButton("Buy Tickets");
+        buyButton.setForeground(Color.WHITE);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(0, 151, 8));
-        buyButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
 
         // Back button
-        backButton = new RoundedButton("Back");
+        backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -58,19 +56,29 @@ public class PassengerHomePage extends JPanel {
 
         // Add components to the panel
 
-        this.setBackground(new Color(210, 207, 206));
+        this.setBackground(new Color(230, 230, 230));
 
         // Map
         TransitMapPagePresenter presenter = new TransitMapPagePresenter(
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );
-        mapPanel = new MapPanel(presenter);
+        /**
+         * The map panel on the panel.
+         */
+        MapPanel mapPanel = new MapPanel(presenter);
 
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.add(mapPanel);
+        JPanel marginPanel = new JPanel(new BorderLayout());
+        ShadowPanel shadowPanel = new ShadowPanel(new BorderLayout());
+        shadowPanel.setThickness(10);
 
-        this.add(topPanel);
+        marginPanel.setBorder(BorderFactory.createEmptyBorder(35, 35, 35, 35));
+        marginPanel.setBackground(new Color(230, 230, 230));
+
+        shadowPanel.add(mapPanel, BorderLayout.CENTER);
+        marginPanel.add(shadowPanel, BorderLayout.CENTER);
+
+        this.add(marginPanel);
 
         JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
 

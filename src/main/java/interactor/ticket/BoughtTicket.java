@@ -2,13 +2,39 @@ package interactor.ticket;
 
 import ticket.TicketType;
 
+/**
+ * Represents a ticket that has been bought by a user.
+ */
 public class BoughtTicket {
+    /**
+     * The cost of the ticket.
+     */
     private final double cost;
+    /**
+     * The type of the ticket.
+     */
     private final TicketType type;
+    /**
+     * The id of the ticket.
+     */
     private final int ticketId;
-    private boolean activated;
-    private long expiry;
+    /**
+     * Whether the ticket has been activated.
+     */
+    private final boolean activated;
+    /**
+     * The expiry time of the ticket.
+     */
+    private final long expiry;
 
+    /**
+     * Constructs a new BoughtTicket with the given cost, type, ticketId, activated and expiry.
+     * @param cost The cost of the ticket.
+     * @param type The type of the ticket.
+     * @param ticketId The id of the ticket.
+     * @param activated Whether the ticket has been activated.
+     * @param expiry The expiry time of the ticket.
+     */
     public BoughtTicket(double cost, TicketType type, int ticketId,
                         boolean activated, long expiry) {
         this.cost = cost;
@@ -18,23 +44,56 @@ public class BoughtTicket {
         this.expiry = expiry;
     }
 
+    /**
+     * Gets whether the ticket has been activated.
+     * @return Whether the ticket has been activated.
+     */
     public boolean isActivated() {
         return activated;
     }
 
+    /**
+     * Gets the expiry time of the ticket.
+     * @return The expiry time of the ticket.
+     */
     public long getExpiry() {
         return expiry;
     }
 
+    /**
+     * Gets the cost of the ticket.
+     * @return The cost of the ticket.
+     */
     public double getCost() {
         return cost;
     }
 
+    /**
+     * Gets the type of the ticket.
+     * @return The type of the ticket.
+     */
     public TicketType getType() {
         return type;
     }
 
+    /**
+     * Gets the id of the ticket.
+     * @return The id of the ticket.
+     */
     public int getTicketId() {
         return ticketId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof BoughtTicket) {
+            BoughtTicket other = (BoughtTicket) obj;
+            return other.getTicketId() == this.getTicketId() &&
+                    other.getType().equals(this.getType()) &&
+                    other.getCost() == this.getCost() &&
+                    other.isActivated() == this.isActivated() &&
+                    other.getExpiry() == this.getExpiry();
+        }
+        return false;
     }
 }

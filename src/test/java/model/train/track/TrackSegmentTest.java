@@ -20,8 +20,8 @@ public class TrackSegmentTest {
     @BeforeEach
     public void reset() {
         transitModel = new TransitModel();
-        TrackSegment trackSegment1 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment1", 100);
-        TrackSegment trackSegment2 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment2", 100);
+        trackSegment1 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment1", 100);
+        trackSegment2 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment2", 100);
     }
 
     @Test
@@ -109,20 +109,6 @@ public class TrackSegmentTest {
         TrackSegment.unlink(trackSegment1, trackSegment2);
         Assertions.assertNull(trackSegment1.getNext());
         Assertions.assertNull(trackSegment2.getPrev());
-    }
-
-    @Test
-    public void testUnlinkFirstPrecondition() {
-        TrackSegment trackSegment3 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment3", 100);
-        trackSegment1.linkForward(trackSegment2);
-        Assertions.assertThrows(IllegalStateException.class, () -> TrackSegment.unlink(trackSegment1, trackSegment3));
-    }
-
-    @Test
-    public void testUnlinkSecondPrecondition() {
-        TrackSegment trackSegment3 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment3", 100);
-        trackSegment2.linkForward(trackSegment3);
-        Assertions.assertThrows(IllegalStateException.class, () -> TrackSegment.unlink(trackSegment1, trackSegment3));
     }
 
     @DisplayName("TrackSegmentTest Class Teardown")

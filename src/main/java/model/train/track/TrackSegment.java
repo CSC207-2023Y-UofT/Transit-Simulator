@@ -286,6 +286,8 @@ public class TrackSegment {
      *
      * @param prev The previous TrackSegment to unlink.
      * @param next The next TrackSegment to unlink.
+     * @throws IllegalStateException If the track segments are in an inconsistent
+     *                               state, i.e. if one is linked to the other but the other doesn't share that link.
      */
     public static void unlink(TrackSegment prev, TrackSegment next) {
         if (prev.next != next && next.prev != prev) {

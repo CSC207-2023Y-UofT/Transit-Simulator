@@ -8,6 +8,7 @@ import stats.persistence.StatDataController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class StatInteractor implements IStatInteractor {
@@ -25,9 +26,14 @@ public class StatInteractor implements IStatInteractor {
 
         List<RevenueAggregate> revenueAggregates = new ArrayList<>();
 
+        Map<Long, RevenueAggregate> aggregateMap = stats.getOrAggregate(revenueAggregator,
+                currIndex - horizonMinutes,
+                currIndex);
+
         for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
-            Optional<RevenueAggregate> expenseAggregate = revenueAggregator.aggregate(stats, i, i);
-            expenseAggregate.ifPresentOrElse(revenueAggregates::add, () -> revenueAggregates.add(new RevenueAggregate(0)));
+            Optional<RevenueAggregate> revenueAggregate = Optional.ofNullable(aggregateMap.get(i));
+            revenueAggregate.ifPresentOrElse(revenueAggregates::add,
+                    () -> revenueAggregates.add(new RevenueAggregate(0)));
         }
 
         return revenueAggregates;

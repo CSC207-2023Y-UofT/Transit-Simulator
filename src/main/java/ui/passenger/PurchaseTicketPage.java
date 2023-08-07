@@ -3,9 +3,9 @@ package ui.passenger;
 import controller.ticket.PurchaseTicketViewModel;
 import ticket.TicketType;
 import ui.UIController;
-import ui.round.RoundedButton;
-import ui.round.SuppliedLabel;
-import ui.round.SuppliedRoundLabel;
+import ui.util.ShadowedButton;
+import ui.util.SuppliedLabel;
+import ui.util.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,27 +20,40 @@ import java.util.function.Supplier;
  * @see UIController
  */
 public class PurchaseTicketPage extends JPanel {
+
     /**
      * The JLabel that displays the count of AdultTickets.
      */
     private final JLabel adultCount;
+
     /**
      * The JLabel that displays the count of ChildTickets.
      */
     private final JLabel childCount;
+
     /**
      * The JLabel that displays the count of SeniorTickets.
      */
     private final JLabel seniorCount;
+
     /**
      * The JLabel that displays the count of StudentTickets.
      */
     private final JLabel studentCount;
+
     /**
      * The JLabel that displays the total cost of the tickets.
      */
     private final JLabel totalCostLabel;
 
+    /**
+     * The JButton to buy tickets.
+     */
+    private final JButton buyButton;
+
+    /**
+     * The view model for this page.
+     */
     private final PurchaseTicketViewModel viewModel;
 
     /**
@@ -87,7 +100,7 @@ public class PurchaseTicketPage extends JPanel {
         }
 
         // Back button
-        JButton backButton = new RoundedButton("Back");
+        JButton backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.setPreferredSize(new Dimension(200, 50));
@@ -95,9 +108,8 @@ public class PurchaseTicketPage extends JPanel {
         backButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
         this.add(backButton);
 
-
         // Cancel button
-        JButton cancelButton = new RoundedButton("Cancel");
+        JButton cancelButton = new ShadowedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setFont(new Font("Serif", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
@@ -107,7 +119,6 @@ public class PurchaseTicketPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // reset all the values
                 viewModel.reset();
-                repaint();
             }
         });
         this.add(cancelButton);
@@ -120,8 +131,10 @@ public class PurchaseTicketPage extends JPanel {
         totalCostLabel.setBackground(new Color(255, 255, 255, 255));
         this.add(totalCostLabel);
 
+
         // Buy button
-        JButton buyButton = new RoundedButton("Buy");
+        buyButton = new ShadowedButton("Buy");
+        buyButton.setEnabled(viewModel.getTotalCost() > 0); // Disable buy button if total cost is $0
         buyButton.setFont(new Font("Serif", Font.BOLD, 20));
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
@@ -132,6 +145,13 @@ public class PurchaseTicketPage extends JPanel {
 
         // Make background color light gray
         this.setBackground(new Color(210, 207, 206));
+    }
+
+    /**
+     * Update the button to be enabled or disabled based on the total cost.
+     */
+    private void updateButtonStatus() {
+        buyButton.setEnabled(viewModel.getTotalCost() > 0);
     }
 
     /**
@@ -154,7 +174,7 @@ public class PurchaseTicketPage extends JPanel {
      * @return the minus button
      */
     private JButton createMinusButton() {
-        JButton button = new RoundedButton("-");
+        JButton button = new ShadowedButton("-");
         button.setFont(new Font("Serif", Font.BOLD, 20));
         button.setBackground(new Color(218, 167, 155));
         return button;
@@ -166,7 +186,7 @@ public class PurchaseTicketPage extends JPanel {
      * @return the plus button
      */
     private JButton createPlusButton() {
-        JButton button = new RoundedButton("+");
+        JButton button = new ShadowedButton("+");
         button.setFont(new Font("Serif", Font.BOLD, 20));
         button.setBackground(new Color(141, 203, 141));
         return button;
@@ -184,11 +204,13 @@ public class PurchaseTicketPage extends JPanel {
     private void createRow(String name, JButton minusButton, JButton plusButton, JLabel countLabel, TicketType type) {
         minusButton.addActionListener(e -> {
             viewModel.removeTicket(type);
+            updateButtonStatus();
             repaint();
         });
 
         plusButton.addActionListener(e -> {
             viewModel.addTicket(type);
+            updateButtonStatus();
             repaint();
         });
 

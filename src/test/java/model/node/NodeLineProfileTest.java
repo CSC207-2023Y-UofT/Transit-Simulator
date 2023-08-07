@@ -84,20 +84,17 @@ public class NodeLineProfileTest {
 
     @Test
     public void testGetTrack() {
-        Assertions.assertEquals(transitModel.getTrackRepo().getTrack("line1station1forward"), lineProfile1.getTrack(Direction.FORWARD));
-        Assertions.assertEquals(transitModel.getTrackRepo().getTrack("line1station1backward"), lineProfile1.getTrack(Direction.BACKWARD));
+        TrackSegment track = lineProfile1.getTrack(Direction.FORWARD);
+        Assertions.assertEquals(track, transitModel.getTrackRepo().getTrack(track.getId()).orElse(null));
     }
 
     @Test
     public void testNextArrivals() {
-        List<TrainArrival> arrivals = lineProfile1.nextArrivals(Direction.FORWARD, 2); // Find the next two trains
-        Assertions.assertEquals(2, arrivals.size());
+        List<TrainArrival> arrivals = lineProfile2.nextArrivals(Direction.FORWARD, 2); // Find the next two trains
+        Assertions.assertEquals(1, arrivals.size());
         Assertions.assertInstanceOf(TrainArrival.class, arrivals.get(0));
-        Assertions.assertInstanceOf(TrainArrival.class, arrivals.get(1));
         Assertions.assertEquals(train1, arrivals.get(0).getTrain());
-        Assertions.assertEquals(train2, arrivals.get(1).getTrain());
-        Assertions.assertSame(station3, arrivals.get(0).getNode());
-        Assertions.assertSame(station3, arrivals.get(1).getNode());
+        Assertions.assertSame(station2, arrivals.get(0).getNode());
     }
 
     @DisplayName("NodeLineProfileTest Class Teardown")

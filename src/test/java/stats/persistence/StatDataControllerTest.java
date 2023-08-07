@@ -64,12 +64,13 @@ class StatDataControllerTest {
         ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(List.of(new MaintenanceStat(1.0)));
         try {
-            controller.getAggregateDataStore().store(0, MaintenanceStat.class, aggregate.getClass(), aggregate);
+            controller.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ExpenseAggregate aggregate2 = controller.getAggregate(MaintenanceStat.class, ExpenseAggregate.class, 0)
-                .orElseThrow();
+        ExpenseAggregate aggregate2 = controller.getAggregates(MaintenanceStat.class, ExpenseAggregate.class, 0, 0)
+                .get(0L);
+        assertNotNull(aggregate2);
         assertEquals(aggregate.getValue(), aggregate2.getValue());
     }
 

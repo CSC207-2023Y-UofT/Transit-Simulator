@@ -31,7 +31,9 @@ public class UIController {
     public UIController(InteractorPool interactorPool) {
         this.interactorPool = interactorPool;
         this.controllerPool = new ControllerPool(interactorPool);
-        this.mainScreen = new MainScreen(this);
+        this.mainScreen = new MainScreen();
+        mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainScreen.setVisible(true);
     }
 
     /**
@@ -59,9 +61,9 @@ public class UIController {
      * @param panel the panel to open
      */
     public void open(JPanel panel) {
+
         mainScreen.setContentPane(panel);
-        mainScreen.setPreferredSize(new Dimension(1500, 800));
-        mainScreen.pack();
+        mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainScreen.revalidate();
         mainScreen.repaint();
     }

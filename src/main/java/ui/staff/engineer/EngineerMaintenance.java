@@ -1,15 +1,13 @@
 package ui.staff.engineer;
 
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * EngineerMaintenance is a JPanel that displays the maintenance status of all trains.
@@ -31,16 +29,11 @@ public class EngineerMaintenance extends JPanel {
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
 
         // Home button
-        JButton homeButton = new RoundedButton("Home");
+        JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.open(new StaffHomePage(controller));
-            }
-        });
+        homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
         int id = 322; // TODO: should be .getId()
@@ -102,21 +95,15 @@ public class EngineerMaintenance extends JPanel {
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         // route button
-        JButton routeButton = new RoundedButton("Route");
-        routeButton.setBackground(new Color(112, 170, 255));
+        JButton routeButton = new ShadowedButton("Assigned Route");
+        routeButton.setBackground(new Color(136, 203, 194));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
-        routeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.open(new EngineerRoute(controller));
-            }
-        });
-
+        routeButton.addActionListener(e -> controller.open(new EngineerRoute(controller)));
 
         // maintenance button: does nothing since already on this page
-        JButton maintenanceButton = new RoundedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(112, 170, 255));
+        JButton maintenanceButton = new ShadowedButton("Maintenance Status");
+        maintenanceButton.setBackground(new Color(57, 210, 190));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
 

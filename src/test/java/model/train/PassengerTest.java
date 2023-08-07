@@ -45,9 +45,9 @@ public class PassengerTest {
 
     @Test
     public void testGetTicket() {
-        Assertions.assertNull(passenger.getTicket());
-        passenger = new Passenger(new Ticket(TicketType.ADULT), 3);
-        Assertions.assertEquals(new Ticket(TicketType.ADULT), passenger.getTicket());
+        Ticket ticket = new Ticket(TicketType.ADULT);
+        passenger = new Passenger(ticket, 3);
+        Assertions.assertEquals(ticket, passenger.getTicket());
     }
 
     @DisplayName("PassengerTest Class Teardown")

@@ -2,12 +2,14 @@ package ui.passenger;
 
 import controller.ticket.PurchaseTicketViewModel;
 import controller.ticket.TicketController;
+import controller.ticket.TicketViewModel;
 import interactor.ticket.BoughtTicket;
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,9 @@ import java.util.List;
  */
 public class ConfirmPaymentPage extends JPanel {
 
+    /**
+     * The view model for this page.
+     */
     private final PurchaseTicketViewModel viewModel;
 
     /**
@@ -40,7 +45,7 @@ public class ConfirmPaymentPage extends JPanel {
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create the confirm button
-        JButton confirmButton = new RoundedButton("Confirm");
+        JButton confirmButton = new ShadowedButton("Confirm");
         confirmButton.setFont(new Font("Serif", Font.BOLD, 28));
         confirmButton.setPreferredSize(new Dimension(150, 50));
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -48,12 +53,16 @@ public class ConfirmPaymentPage extends JPanel {
         confirmButton.addActionListener(e -> {
             TicketController ticketController = controller.getControllerPool().getTicketController();
             List<BoughtTicket> tickets = ticketController.buyTickets(viewModel.getTicketTypesList());
+            List<TicketViewModel> viewModels = new ArrayList<>();
+            for (BoughtTicket ticket : tickets) {
+                viewModels.add(new TicketViewModel(ticket));
+            }
 
-            controller.open(new ThankYouPage(controller));
+            controller.open(new ThankYouPage(controller, viewModels));
         });
 
         // Create the cancel button
-        JButton cancelButton = new RoundedButton("Cancel");
+        JButton cancelButton = new ShadowedButton("Cancel");
         cancelButton.setFont(new Font("Serif", Font.BOLD, 28));
         cancelButton.setPreferredSize(new Dimension(150, 50));
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);

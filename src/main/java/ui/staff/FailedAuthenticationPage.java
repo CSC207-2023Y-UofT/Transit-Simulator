@@ -1,7 +1,7 @@
 package ui.staff;
 
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class FailedAuthenticationPage extends JPanel {
         errorLabel.setForeground(Color.RED);
 
         // Sign In button
-        JButton signInButton = new RoundedButton("Sign In");
+        JButton signInButton = new ShadowedButton("Sign In");
         signInButton.setBackground(new Color(112, 170, 255));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         signInButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -52,7 +52,7 @@ public class FailedAuthenticationPage extends JPanel {
         });
 
         // Back button
-        JButton backButton = new RoundedButton("Back");
+        JButton backButton = new ShadowedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Serif", Font.BOLD, 20));
         backButton.addActionListener(new ActionListener() {

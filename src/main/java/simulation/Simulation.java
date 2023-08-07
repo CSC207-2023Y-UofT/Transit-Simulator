@@ -1,6 +1,7 @@
 package simulation;
 
 import interactor.stat.IStatInteractor;
+import main.InteractorPool;
 import model.control.TransitModel;
 import model.train.Train;
 import stats.persistence.StatDataController;
@@ -21,16 +22,20 @@ public class Simulation {
      */
     private final TrainSimulator trainSimulator;
     private final StatDataController stats;
+    private final InteractorPool pool;
 
     private long lastStatSave = System.currentTimeMillis();
+
+    private long tickNumber = 0;
 
     /**
      * Creates a new simulation on the given model.
      * @param model The model to run the simulation on.
      */
-    public Simulation(TransitModel model, StatDataController stats) {
+    public Simulation(TransitModel model, InteractorPool pool, StatDataController stats) {
         this.model = model;
         this.stats = stats;
+        this.pool = pool;
         this.trainSimulator = new TrainSimulator(TICK_SPEED, stats);
     }
 
@@ -63,6 +68,7 @@ public class Simulation {
      * Ticks the simulation.
      */
     public void tick() {
+
         trainSimulator.tick(model);
 
         if (System.currentTimeMillis() - lastStatSave > IStatInteractor.TIME_INTERVAL) {
@@ -70,6 +76,11 @@ public class Simulation {
             lastStatSave = System.currentTimeMillis();
         }
 
+        if (tickNumber % 50 == 0) {
+            pool.getTicketInteractor().cleanTickets();
+        }
+
+        tickNumber++;
     }
 
 }

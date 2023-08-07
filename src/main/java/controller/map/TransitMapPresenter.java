@@ -1,4 +1,4 @@
-package controller.transit_map;
+package controller.map;
 
 import interactor.station.IStationInteractor;
 import interactor.station.StationState;
@@ -86,7 +86,7 @@ public class TransitMapPresenter {
         lineColours.add(Color.PINK);
 
         // Background
-        graphics.setColor(new Color(200, 180, 180));
+        graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, width, height);
 
         double scaleX = width / MAP_SIZE_X;

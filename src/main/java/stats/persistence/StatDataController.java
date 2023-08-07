@@ -35,7 +35,7 @@ public class StatDataController {  // Façade design pattern used!!!
     /**
      * Constructs a StatDataController instance with a given EntryDataStore and AggregateDataStore.
      *
-     * @param entryDataStore the store for stat entries.
+     * @param entryDataStore     the store for stat entries.
      * @param aggregateDataStore the store for aggregate statistics.
      */
     public StatDataController(StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
@@ -133,20 +133,21 @@ public class StatDataController {  // Façade design pattern used!!!
      * Retrieve the aggregate of type {@code aggregateClass} that was
      * recorded at the specified time index {@code index}.
      *
-     * @param entryClass     The type of stat entries that were aggregated.
-     * @param aggregateClass The type of aggregate to retrieve.
-     * @param index          The time index at which the aggregate was recorded.
-     * @param <E>            The type of stat entries that were aggregated.
-     * @param <A>            The type of aggregate to retrieve.
+     * @param entryClass       The type of stat entries that were aggregated.
+     * @param aggregateClass   The type of aggregate to retrieve.
+     * @param fromIndex        The beginning  time index at which the stat entries were recorded.
+     * @param toIndexInclusive The ending time index at which the stat entries were recorded.
+     * @param <E>              The type of stat entries that were aggregated.
+     * @param <A>              The type of aggregate to retrieve.
      * @return The aggregate of type {@code aggregateClass} that was
      * recorded at the specified time index {@code index}.
      */
-    public synchronized <E extends StatEntry, A> Optional<A> getAggregate(Class<E> entryClass, Class<A> aggregateClass, long index) {
+    public synchronized <E extends StatEntry, A> Map<Long, A> getAggregates(Class<E> entryClass, Class<A> aggregateClass, long fromIndex, long toIndexInclusive) {
         try {
-            return aggregateDataStore.retrieve(index, entryClass, aggregateClass);
+            return aggregateDataStore.retrieve(fromIndex, toIndexInclusive, entryClass, aggregateClass);
         } catch (IOException e) {
             e.printStackTrace();
-            return Optional.empty();
+            return new HashMap<>();
         }
     }
 
@@ -157,39 +158,47 @@ public class StatDataController {  // Façade design pattern used!!!
      * and if none are found, it will aggregate the data and store the
      * resulting aggregate.
      *
-     * @param aggregator The aggregator to use to aggregate the data.
-     * @param index      The time index at which the data was recorded.
-     * @param <E>        The type of stat entries to aggregate.
-     * @param <A>        The type of aggregate to retrieve.
+     * @param aggregator        The aggregator to use to aggregate the data.
+     * @param startIndex        The beginning  time index at which the stat entries were recorded.
+     * @param endIndexInclusive The ending time index at which the stat entries were recorded.
+     * @param <E>               The type of stat entries to aggregate.
+     * @param <A>               The type of aggregate to retrieve.
      */
-    public synchronized  <E extends StatEntry, A extends Serializable> Optional<A> getOrAggregate(StatAggregator<E, A> aggregator, long index) {
-
+    public synchronized <E extends StatEntry, A extends Serializable> Map<Long, A> getOrAggregate(StatAggregator<E, A> aggregator,
+                                                                                                 long startIndex, long endIndexInclusive) {
         // Get the classes that are relevant
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
 
-        // Check if the aggregate already exists
-        A aggregate = getAggregate(entryClass, aggregateClass, index).orElse(null);
+        // Get all of those aggregates
+        Map<Long, A> aggregates = getAggregates(entryClass, aggregateClass, startIndex, endIndexInclusive);
 
-        // If it doesn't, aggregate the data and store the result
-        if (aggregate == null) {
+        // For each requested index, check if there is an aggregate
+        for (long index = startIndex; index <= endIndexInclusive; index++) {
+            if (!aggregates.containsKey(index)) {
 
-            // Get the data to aggregate
-            List<E> entries = getEntries(entryClass, index);
-            if (entries.isEmpty()) return Optional.empty(); // No data
+                // If there is no aggregate, get the entries
+                List<E> entries = getEntries(entryClass, index);
 
-            // Aggregate the data
-            aggregate = aggregator.aggregate(entries);
+                // If there are entries, aggregate them
+                if (!entries.isEmpty()) {
+                    A aggregate = aggregator.aggregate(entries);
 
-            // Store the aggregate
-            try {
-                aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
-            } catch (IOException e) {
-                e.printStackTrace();
+                    // Store the aggregate
+                    try {
+                        aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Add the aggregate to the map
+                    aggregates.put(index, aggregate);
+
+                }
             }
         }
 
-        return Optional.ofNullable(aggregate);
+        return aggregates;
     }
 
 }

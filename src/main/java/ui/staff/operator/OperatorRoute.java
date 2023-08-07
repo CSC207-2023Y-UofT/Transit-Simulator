@@ -1,7 +1,7 @@
 package ui.staff.operator;
 
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
@@ -19,12 +19,13 @@ public class OperatorRoute extends JPanel {
      * @param controller the controller used to switch panels
      */
     public OperatorRoute(UIController controller) {
+        super(new BorderLayout());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
 
         // Home button
-        JButton homeButton = new RoundedButton("Home");
+        JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         homeButton.setFont(new Font("Serif", Font.BOLD, 20));
@@ -45,9 +46,8 @@ public class OperatorRoute extends JPanel {
         JPanel middlePanel = new JPanel(new GridLayout(0, 5));
 
         // route label
-        int line = 1;
-        int train = 1; // TODO: should be .getLine() and .getTrain()
-        JLabel routeLabel = new JLabel("Line " + line + " Train " + train);
+        int train = 1; // TODO: should be .getTrain()
+        JLabel routeLabel = new JLabel("Train: " + train);
         routeLabel.setFont(new Font("Serif", Font.BOLD, 25));
 
         // operator label
@@ -92,14 +92,14 @@ public class OperatorRoute extends JPanel {
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
 
         // route button: does nothing since already on this page
-        JButton routeButton = new RoundedButton("Route");
-        routeButton.setBackground(new Color(112, 170, 255));
+        JButton routeButton = new ShadowedButton("Assigned Route");
+        routeButton.setBackground(new Color(222, 144, 53));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         // maintenance button
-        JButton maintenanceButton = new RoundedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(112, 170, 255));
+        JButton maintenanceButton = new ShadowedButton("Maintenance");
+        maintenanceButton.setBackground(new Color(222, 175, 119));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
         maintenanceButton.addActionListener(e -> controller.open(new OperatorMaintenance(controller)));

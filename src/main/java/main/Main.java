@@ -86,7 +86,7 @@ public class Main {
         controller.open(new WelcomePage(controller));
 
         // Start the simulation
-        new Simulation(model, stats).start();
+        new Simulation(model, pool, stats).start();
     }
 }
 

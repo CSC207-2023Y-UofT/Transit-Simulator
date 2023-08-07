@@ -1,10 +1,12 @@
 package ui.passenger;
 
+import controller.ticket.TicketViewModel;
 import ui.UIController;
-import ui.round.RoundedButton;
+import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 
 /**
@@ -20,39 +22,39 @@ public class ThankYouPage extends JPanel {
      *
      * @param controller the UIController that is used to control the UI
      */
-    public ThankYouPage(UIController controller) {
-        super(new GridLayout(5, 1));
+    public ThankYouPage(UIController controller, List<TicketViewModel> tickets) {
 
-        JLabel blank1 = new JLabel("  ");
-        blank1.setOpaque(true);
-        blank1.setBackground(Color.lightGray);
-        this.add(blank1);
+        JLabel label1 = new JLabel("Thank you for your purchase.", SwingConstants.CENTER);
+        label1.setFont(new Font("Serif", Font.BOLD, 28));
 
-        JLabel label = new JLabel("<html><div style='text-align: center;'>Thank you for your purchase.<br/>Your ticket is valid for 2 hours upon activation.</div></html>", SwingConstants.CENTER);
-        label.setFont(new Font("Serif", Font.BOLD, 28));
-        label.setOpaque(true);
-        label.setBackground(Color.lightGray);
-        this.add(label);
+        JLabel label2 = new JLabel(
+                "Please activate your ticket(s) before boarding. " +
+                "Tickets are valid for 2 hours upon activation.", SwingConstants.CENTER
+        );
+        label2.setFont(new Font("Serif", Font.BOLD, 28));
 
-        JButton activateButton = new RoundedButton("Activate Ticket");
-        activateButton.setPreferredSize(new Dimension(200, 50));
-        activateButton.setFont(new Font("Serif", Font.BOLD, 25));
-        activateButton.setBackground(new Color(0, 151, 8));
-        activateButton.addActionListener(e -> {
-            new TrainTicketPage();
+        JLabel label3 = new JLabel(
+                "You will be redirected to the home page. Do not close your tickets tab.",
+                SwingConstants.CENTER
+        );
+        label3.setFont(new Font("Serif", Font.BOLD, 28));
+
+        JButton openButton = new ShadowedButton("Open Ticket(s)");
+        openButton.setPreferredSize(new Dimension(200, 50));
+        openButton.setFont(new Font("Serif", Font.BOLD, 25));
+        openButton.addActionListener(e -> {
+            new TicketPage(controller, tickets);
             controller.open(new PassengerHomePage(controller));
         });
 
-        JLabel blank2 = new JLabel("  ");
-        blank2.setOpaque(true);
-        blank2.setBackground(Color.lightGray);
-        this.add(blank2);
-        this.add(activateButton);
+        this.setLayout(new GridLayout(5, 1));
+        this.setBackground(Color.lightGray);
 
-        JLabel blank3 = new JLabel("  ");
-        blank3.setOpaque(true);
-        blank3.setBackground(Color.lightGray);
-        this.add(blank3);
+        this.add(label1);
+        this.add(label2);
+        this.add(label3);
+        this.add(new JLabel("  "));
+        this.add(openButton);
     }
 
 }

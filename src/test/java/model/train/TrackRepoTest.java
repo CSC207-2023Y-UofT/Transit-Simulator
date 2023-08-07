@@ -25,14 +25,14 @@ public class TrackRepoTest {
 
     @Test
     public void testGetTracks() {
-        Assertions.assertEquals(1, basicTrackRepo1.getTracks().size());
-        Assertions.assertEquals(0, basicTrackRepo2.getTracks().size());
+        TrackRepo trackRepo = new BasicTrackRepo();
+        Assertions.assertEquals(0, trackRepo.getTracks().size());
     }
 
     @Test
     public void testGetTrack() {
-        Assertions.assertEquals(trackSegment1, basicTrackRepo1.getTrack("trackSegment1"));
-        Assertions.assertNull(basicTrackRepo1.getTrack("trackSegment2"));
+        Assertions.assertEquals(trackSegment1, basicTrackRepo1.getTrack("trackSegment1").orElse(null));
+        Assertions.assertNull(basicTrackRepo1.getTrack("trackSegment2").orElse(null));
     }
 
     @Test
@@ -52,10 +52,11 @@ public class TrackRepoTest {
     @Test
     public void testAddTrack() {
         TrackSegment trackSegment3 = new TrackSegment(basicTrackRepo1, "trackSegment3", 100);
-        Assertions.assertEquals(1, basicTrackRepo1.getTracks().size());
+        int size = basicTrackRepo1.getTracks().size();
         basicTrackRepo1.addTrack(trackSegment3);
-        Assertions.assertEquals(2, basicTrackRepo1.getTracks().size());
-        Assertions.assertEquals(trackSegment3, basicTrackRepo1.getTrack("trackSegment2"));
+        int newSize = basicTrackRepo1.getTracks().size();
+        Assertions.assertEquals(size + 1, newSize);
+        Assertions.assertEquals(trackSegment3, basicTrackRepo1.getTrack("trackSegment3").orElse(null));
     }
 
     @DisplayName("TrackRepoTest Class Teardown")
