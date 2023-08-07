@@ -11,12 +11,14 @@ import java.awt.*;
  * The StatsPanel class is responsible for displaying statistical information related
  * to revenue and expenses. It includes options to choose the statistical information
  * to be displayed (e.g., REVENUE or EXPENSES) and the time horizon for the data.
- *
+ * <p>
  * The statistics are periodically refreshed and displayed using the SingletonStatViewModel.
  */
 public class StatsPanel extends JPanel {
 
-    /** The UI controller responsible for controlling UI interactions. */
+    /**
+     * The UI controller responsible for controlling UI interactions.
+     */
     private final UIController controller;
 
     /**
@@ -34,7 +36,9 @@ public class StatsPanel extends JPanel {
         HALF_DAY(720),
         FULL_DAY(1440);
 
-        /** The time horizon in minutes. */
+        /**
+         * The time horizon in minutes.
+         */
         private final long timeHorizonMinutes;
 
         /**
@@ -56,17 +60,25 @@ public class StatsPanel extends JPanel {
         }
     }
 
-    /** The type of statistics to be displayed. */
+    /**
+     * The type of statistics to be displayed.
+     */
     private StatDisplay display = StatDisplay.REVENUE;
 
-    /** The time horizon for the statistics. */
+    /**
+     * The time horizon for the statistics.
+     */
     private TimeHorizon horizon = TimeHorizon.QUARTER_DAY;
 
-    /** The view model responsible for managing the statistics data. */
+    /**
+     * The view model responsible for managing the statistics data.
+     */
     private final SingletonStatViewModel viewModel = new SingletonStatViewModel();
 
-    /** Timer to refresh the statistics periodically. */
-    private Timer timer = new Timer(30, e -> this.refresh());
+    /**
+     * Timer to refresh the statistics periodically.
+     */
+    private Timer timer = new Timer(100, e -> this.refresh());
 
     /**
      * Returns the UIController for this panel.
@@ -120,11 +132,19 @@ public class StatsPanel extends JPanel {
         switch (display) {
             case REVENUE:
                 controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates)
-                        .thenAccept(t -> repaint());
+                        .thenAccept(t -> repaint())
+                        .exceptionally(t -> {
+                            t.printStackTrace();
+                            return null;
+                        });
                 break;
             case EXPENSES:
                 controller.getExpenses(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates)
-                        .thenAccept(t -> repaint());
+                        .thenAccept(t -> repaint())
+                        .exceptionally(t -> {
+                            t.printStackTrace();
+                            return null;
+                        });
                 break;
         }
     }

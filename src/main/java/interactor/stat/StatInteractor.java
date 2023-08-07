@@ -53,7 +53,6 @@ public class StatInteractor implements IStatInteractor {
                 currIndex - horizonMinutes,
                 currIndex);
 
-
         stats.aggregateCurrent(expenseAggregator)
                 .ifPresent(a -> aggregateMap.put(currIndex, a));
 

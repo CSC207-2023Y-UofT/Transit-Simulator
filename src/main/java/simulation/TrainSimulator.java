@@ -7,6 +7,7 @@ import model.node.NodeLineProfile;
 import model.train.Passenger;
 import model.train.Train;
 import model.train.track.TrackSegment;
+import stats.entry.impl.ElectricityUsageStat;
 import stats.entry.impl.TicketSaleStat;
 import stats.persistence.StatDataController;
 import ticket.Ticket;
@@ -28,7 +29,8 @@ public class TrainSimulator {
      */
     private final int tickSpeed;
     private final StatDataController stats;
-    private final PerlinNoise perlinNoise = new PerlinNoise(123, 256);
+    private final PerlinNoise passengerNoise = new PerlinNoise(123, 256);
+    private final PerlinNoise electricityNoise = new PerlinNoise(456, 256);
     private final List<Passenger> waitingPassengers = new ArrayList<>();
     private final int maxWaitingPassengers = 100;
     private long tickNumber = 0;
@@ -113,6 +115,17 @@ public class TrainSimulator {
             // Move the train a bit
             train.move(Direction.FORWARD, Train.MAX_SPEED / tickSpeed);
 
+            // Record electric use
+            if (!wasAtStation) {
+
+                ElectricityUsageStat stat = new ElectricityUsageStat(
+                        (passengerNoise.noise(tickNumber / 100.0) + 1.0) * 0.5
+                );
+
+                stats.record(stat);
+
+            }
+
             boolean nowAtStation = train.getPosition().getTrack()
                     .getNode()
                     .isPresent();
@@ -179,11 +192,10 @@ public class TrainSimulator {
 
     private void addWaitingPassengers() {
 
-        double noise = this.perlinNoise.noise(tickNumber / 100.0);
+        double noise = this.passengerNoise.noise(tickNumber / 100.0);
         noise += 1.0;
 
         int numToAdd = (int) (noise * 20);
-        System.out.println(numToAdd + ", " + waitingPassengers.size());
         for (int i = 0; i < numToAdd; i++) {
             if (waitingPassengers.size() >= maxWaitingPassengers) {
                 break;

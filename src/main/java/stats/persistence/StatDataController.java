@@ -90,9 +90,11 @@ public class StatDataController {  // Façade design pattern used!!!
      * Flush all recorded stat entries to the data store.
      */
     public synchronized void flush(long index) {
+        currTimeIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
 
         // Store the hierarchy first
         entryDataStore.storeHierarchy(StatEntry.HIERARCHY);
+
 
         // Store all entries
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
@@ -105,8 +107,6 @@ public class StatDataController {  // Façade design pattern used!!!
 
         // Clear the entries
         entries.clear();
-
-        currTimeIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
     }
 
     public boolean shouldFlush() {
@@ -130,7 +130,8 @@ public class StatDataController {  // Façade design pattern used!!!
 
         for (Class<? extends E> clazz : concreteClasses) {
             try {
-                entries.addAll(entryDataStore.retrieve(index, clazz));
+                entries.addAll(entryDataStore.retrieve(index, index, clazz)
+                        .getOrDefault(index, new ArrayList<>()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -175,7 +176,8 @@ public class StatDataController {  // Façade design pattern used!!!
      * @param <A>               The type of aggregate to retrieve.
      */
     public synchronized <E extends StatEntry, A extends Serializable> Map<Long, A> getOrAggregate(StatAggregator<E, A> aggregator,
-                                                                                                 long startIndex, long endIndexInclusive) {
+                                                                                                  long startIndex, long endIndexInclusive) {
+
         // Get the classes that are relevant
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
@@ -183,29 +185,53 @@ public class StatDataController {  // Façade design pattern used!!!
         // Get all of those aggregates
         Map<Long, A> aggregates = getAggregates(entryClass, aggregateClass, startIndex, endIndexInclusive);
 
-        // For each requested index, check if there is an aggregate
+        // Accumulate all the indices that don't exist
+        List<Long> missingIndices = new ArrayList<>();
         for (long index = startIndex; index <= endIndexInclusive; index++) {
-            if (!aggregates.containsKey(index)) {
+            if (aggregates.containsKey(index)) continue;
+            missingIndices.add(index);
+        }
 
-                // If there is no aggregate, get the entries
-                List<E> entries = getEntries(entryClass, index);
+        // If there are indeed missing indices, aggregate them if
+        // possible and store them
+        if (!missingIndices.isEmpty()) {
 
-                // If there are entries, aggregate them
-                if (!entries.isEmpty()) {
-                    A aggregate = aggregator.aggregate(entries);
+            // Map for the entry lists
+            Map<Long, List<E>> entries = new HashMap<>();
 
-                    // Store the aggregate
-                    try {
-                        aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            // For each inheritor class, retrieve the entries of that class
+            for (Class<? extends E> inheritor : StatEntry.HIERARCHY.getInheritors(entryClass)) {
+                try {
 
-                    // Add the aggregate to the map
-                    aggregates.put(index, aggregate);
+                    // Get the entries
+                    Map<Long, ? extends List<? extends E>> retrievedEntries =
+                            entryDataStore.retrieve(missingIndices, inheritor);
 
+                    // Merge them into the map
+                    retrievedEntries.forEach((index, list) -> {
+                        entries.putIfAbsent(index, new ArrayList<>());
+                        entries.get(index).addAll(list);
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
+
+            // Aggregate each
+            for (long index : missingIndices) {
+                List<E> acc = entries.get(index);
+                if (acc == null || acc.isEmpty()) continue;
+                A aggregate = aggregator.aggregate(acc);
+                aggregates.put(index, aggregate);
+                // Store the aggregate
+                try {
+                    aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         return aggregates;

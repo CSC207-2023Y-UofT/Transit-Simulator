@@ -5,6 +5,7 @@ import stats.entry.StatEntry;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for storing and retrieving stat entries.
@@ -28,11 +29,24 @@ public interface StatEntryDataStore {
      * Retrieve the stat entries that were recorded at the specified
      * time index {@code index} and that are of type {@code clazz}.
      *
-     * @param index The time index at which the stat entries were recorded.
-     * @param clazz The type of stat entries to retrieve.
+     * @param fromIndex        The start of the range of time indices to retrieve.
+     * @param toIndexInclusive The end of the range of time indices to retrieve, inclusive.
+     * @param clazz            The type of stat entries to retrieve.
      */
-    <E extends StatEntry> List<E> retrieve(long index, Class<E> clazz)
-            throws IOException; // Clazz may not be an interface
+    <E extends StatEntry> Map<Long, List<E>> retrieve(long fromIndex, long toIndexInclusive, Class<E> clazz)
+            throws IOException; // clazz may not be an interface
+
+    /**
+     * Retrieve stats from very specific indices. The implementation may
+     * try to optimize this operation by grouping requested indices.
+     *
+     * @param indices The indices to retrieve.
+     * @param clazz The type of stat entries to retrieve.
+     * @param <E> The type of stat entries to retrieve.
+     * @return A map of indices to stat entries.
+     */
+    <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz)
+            throws IOException; // clazz may not be an interface
 
     /**
      * Store the entry hierarchy {@code hierarchy}.

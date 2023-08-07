@@ -145,6 +145,7 @@ public class Management extends JPanel {
         ShadowPanel statPanel2 = new ShadowPanel(new BorderLayout());
         statPanel2.setExtraInset(10);
         statsPanel2 = new StatsPanel(controller);
+        statsPanel2.getViewModel().setGraphColour(SingletonStatViewModel.GraphColour.RED);
         statsPanel2.setDisplay(StatsPanel.StatDisplay.EXPENSES);
         statPanel2.add(statsPanel2);
 

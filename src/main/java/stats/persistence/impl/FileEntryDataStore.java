@@ -8,6 +8,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,8 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
     private final int pageSize = 128;
 
-    private static class EntryList extends ArrayList<StatEntry> {}
+    private static class EntryList extends ArrayList<StatEntry> {
+    }
 
     /**
      * Constructs a FileEntryDataStore instance with a specified directory.
@@ -49,17 +51,31 @@ public class FileEntryDataStore implements StatEntryDataStore {
         return new File(classFolder, (index / pageSize) + ".stat");
     }
 
+    /**
+     * Returns a file instance pointing to the data file for the given page
+     *
+     * @param page The page of the data.
+     * @param clazz The class of the data.
+     * @return A File instance.
+     */
+    private File getPageFile(long page, Class<? extends StatEntry> clazz) {
+        File classFolder = new File(directory, clazz.getSimpleName());
+        classFolder.mkdirs();
+        return new File(classFolder, page + ".stat");
+    }
+
 
     /**
      * Stores the given list of entries into a file for the given index and class.
      *
-     * @param index The index of the data.
-     * @param clazz The class of the data.
+     * @param index   The index of the data.
+     * @param clazz   The class of the data.
      * @param entries The list of entries to store.
-     * @param <E> The class of the entries.
+     * @param <E>     The class of the entries.
      */
     @Override
     public <E extends StatEntry> void store(long index, Class<? extends StatEntry> clazz, List<E> entries) {
+        if (entries.isEmpty()) return;
         File file = getFile(index, clazz);
         Map<Long, EntryList> existingEntries = PageFileUtils.read(file, EntryList.class);
         EntryList list = new EntryList();
@@ -68,31 +84,61 @@ public class FileEntryDataStore implements StatEntryDataStore {
         PageFileUtils.write(file, existingEntries);
     }
 
-    /**
-     * Retrieves a list of entries from a file for the given index and class.
-     * If no data is found, it returns an empty list.
-     *
-     * @param index The index of the data.
-     * @param clazz The class of the data.
-     * @param <E> The class of the entries.
-     * @return A list of entries.
-     */
+    // Inherited javadoc
     @Override
-    public <E extends StatEntry> List<E> retrieve(long index, Class<E> clazz) {
-        File file = getFile(index, clazz);
-        if (!file.exists()) {
-            return new ArrayList<>();
+    public <E extends StatEntry> Map<Long, List<E>> retrieve(long from, long to, Class<E> clazz) {
+        Map<Long, List<E>> result = new HashMap<>();
+
+        Map<Long, EntryList> currPage = null;
+        long currPageNum = -1;
+
+        for (long i = from; i <= to; i++) {
+            long page = i / pageSize;
+            if (currPage == null || page != currPageNum) {
+                currPage = PageFileUtils.read(getPageFile(page, clazz), EntryList.class);
+                currPageNum = page;
+            }
+
+            List<E> converted = new ArrayList<>();
+            for (StatEntry entry : currPage.getOrDefault(i, new EntryList())) {
+                converted.add(clazz.cast(entry));
+            }
+
+            result.put(i, converted);
+
         }
 
-        Map<Long, EntryList> existingEntries = PageFileUtils.read(file, EntryList.class);
-        EntryList list = existingEntries.get(index);
-        if (list == null) {
-            return new ArrayList<>();
+        return result;
+    }
+
+    // Inherited javadoc
+    @Override
+    public <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz) throws IOException {
+
+        // Group by page
+        Map<Long, List<Long>> byPage = new HashMap<>();
+
+        for (long index : indices) {
+            long page = index / pageSize;
+            List<Long> pageIndices = byPage.getOrDefault(page, new ArrayList<>());
+            pageIndices.add(index);
+            byPage.put(page, pageIndices);
         }
 
-        List<E> result = new ArrayList<>();
-        for (StatEntry entry : list) {
-            result.add(clazz.cast(entry));
+        // Read pages
+        Map<Long, List<E>> result = new HashMap<>();
+        for (long page : byPage.keySet()) {
+            Map<Long, EntryList> pageData = PageFileUtils.read(getPageFile(page, clazz), EntryList.class);
+            List<Long> pageIndices = byPage.get(page);
+            for (long index : pageIndices) {
+                EntryList entries = pageData.getOrDefault(index, new EntryList());
+                if (entries.isEmpty()) continue;
+                List<E> converted = new ArrayList<>();
+                for (StatEntry entry : entries) {
+                    converted.add(clazz.cast(entry));
+                }
+                result.put(index, converted);
+            }
         }
 
         return result;

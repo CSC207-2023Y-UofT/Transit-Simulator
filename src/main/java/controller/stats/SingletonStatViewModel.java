@@ -11,7 +11,7 @@ public class SingletonStatViewModel {
     private List<? extends SingletonAggregate<? extends Number>> aggregates = new ArrayList<>();
 
     public enum GraphColour {
-        RED(Color.RED, new Color(255, 100, 80)),
+        RED(new Color(160, 0, 21), new Color(204, 85, 85)),
         GREEN(new Color(0, 130, 21), new Color(85, 204, 85)),
         BLUE(Color.BLUE, new Color(100, 100, 255));
 
