@@ -52,6 +52,11 @@ public interface IEmployeeInteractor {
      */
     boolean unassign(int staffNumber);
 
+    /**
+     * Get a list of employees assigned to a train.
+     * @param trainName The name of the train.
+     * @return A list of employees assigned to the train.
+     */
     List<EmployeeInfo> getAssignedEmployees(String trainName);
 
 }

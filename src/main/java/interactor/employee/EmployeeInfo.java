@@ -8,10 +8,12 @@ import java.util.Optional;
  * Output data class for the employee interactor
  */
 public class EmployeeInfo {
+
     /**
      * The staff number of the employee
      */
     private final int staffNumber;
+
     /**
      * The type of the employee
      */
