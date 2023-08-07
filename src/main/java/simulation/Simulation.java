@@ -1,11 +1,12 @@
 package simulation;
 
-import interactor.stat.IStatInteractor;
 import main.InteractorPool;
 import model.control.TransitModel;
 import model.train.Passenger;
-import model.train.Train;
 import stats.persistence.StatDataController;
+import ticket.Ticket;
+import ticket.TicketType;
+import util.PerlinNoise;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,6 @@ public class Simulation {
     private final TrainSimulator trainSimulator;
     private final StatDataController stats;
     private final InteractorPool pool;
-
-    private final List<Passenger> waitingPassengers = new ArrayList<>();
-    private final int maxWaitingPassengers = 100;
-
     private long tickNumber = 0;
 
     /**
@@ -84,15 +81,7 @@ public class Simulation {
             pool.getTicketInteractor().cleanTickets();
         }
 
-        if (tickNumber % 10 == 0) {
-            addWaitingPassengers();
-        }
-
         tickNumber++;
-
-    }
-
-    private void addWaitingPassengers() {
 
     }
 

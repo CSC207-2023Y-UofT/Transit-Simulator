@@ -11,6 +11,7 @@ import stats.entry.impl.TicketSaleStat;
 import stats.persistence.StatDataController;
 import ticket.Ticket;
 import ticket.TicketType;
+import util.PerlinNoise;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +28,12 @@ public class TrainSimulator {
      */
     private final int tickSpeed;
     private final StatDataController stats;
+    private final PerlinNoise perlinNoise = new PerlinNoise(123, 256);
+    private final List<Passenger> waitingPassengers = new ArrayList<>();
+    private final int maxWaitingPassengers = 100;
+    private long tickNumber = 0;
+
+
 
     /**
      * Creates a new train simulator with the given tick speed.
@@ -96,6 +103,7 @@ public class TrainSimulator {
      * @param model The model to simulate on
      */
     public void tick(TransitModel model) {
+
         for (Train train : model.getTrainList()) {
 
             boolean wasAtStation = train.getPosition().getTrack()
@@ -120,6 +128,12 @@ public class TrainSimulator {
             }
 
         }
+
+        if (tickNumber % 20 == 0) {
+            addWaitingPassengers();
+        }
+
+        tickNumber++;
     }
 
     /**
@@ -148,19 +162,42 @@ public class TrainSimulator {
      * @return the number of passengers that boarded
      */
     private int simulateBoarding(Train train) {
+
         if (train.getPassengerList().size() >= train.getCapacity()) return 0;
         int numPassengersBoarded = 0;
-        while (Math.random() < 0.5) {
-            Ticket ticket = new Ticket(TicketType.ADULT);
+
+        for (int i = 0; i < waitingPassengers.size(); i++) {
+            Passenger passenger = waitingPassengers.get(i);
+            if (train.getPassengerList().size() >= train.getCapacity()) break;
+            train.addPassenger(passenger);
+            waitingPassengers.remove(passenger);
+            numPassengersBoarded++;
+        }
+
+        return numPassengersBoarded;
+    }
+
+    private void addWaitingPassengers() {
+
+        double noise = this.perlinNoise.noise(tickNumber / 100.0);
+        noise += 1.0;
+
+        int numToAdd = (int) (noise * 20);
+        System.out.println(numToAdd + ", " + waitingPassengers.size());
+        for (int i = 0; i < numToAdd; i++) {
+            if (waitingPassengers.size() >= maxWaitingPassengers) {
+                break;
+            }
+
+            Ticket ticket = new Ticket(
+                    TicketType.values()[(int) (Math.random() * TicketType.values().length)]
+            );
 
             TicketSaleStat stat = new TicketSaleStat(ticket);
             stats.record(stat);
 
-            int stationsToTravel = (int) (Math.random() * 5) + 1;
-            Passenger passenger = new Passenger(ticket, stationsToTravel);
-            train.addPassenger(passenger);
-            numPassengersBoarded++;
+            waitingPassengers.add(new Passenger(ticket, (int) (Math.random() * 4)));
         }
-        return numPassengersBoarded;
+
     }
 }
