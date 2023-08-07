@@ -77,9 +77,11 @@ public class StatDataController {  // Façade design pattern used!!!
         Class<? extends StatEntry> clazz = entry.getClass(); // Will always be a concrete class
         StatEntry.HIERARCHY.map(clazz);
 
-        List<StatEntry> list = entries.getOrDefault(clazz, new ArrayList<>());
-        list.add(entry);
-        entries.put(clazz, list);
+        synchronized (entries) {
+            List<StatEntry> list = entries.getOrDefault(clazz, new ArrayList<>());
+            list.add(entry);
+            entries.put(clazz, list);
+        }
     }
 
     public void flush() {
@@ -237,7 +239,7 @@ public class StatDataController {  // Façade design pattern used!!!
         return aggregates;
     }
 
-    public synchronized <E extends StatEntry, A extends Serializable> Optional<A> aggregateCurrent(
+    public <E extends StatEntry, A extends Serializable> Optional<A> aggregateCurrent(
             StatAggregator<E, A> aggregator
     ) {
         Class<E> entryClass = aggregator.getEntryClass();
@@ -246,8 +248,10 @@ public class StatDataController {  // Façade design pattern used!!!
 
         List<Class<? extends E>> inheritors = StatEntry.HIERARCHY.getInheritors(entryClass);
         for (Class<? extends E> inheritor : inheritors) {
-            entries.getOrDefault(inheritor, new ArrayList<>())
-                    .forEach(e -> acc.add(entryClass.cast(e)));
+            synchronized (entries) {
+                entries.getOrDefault(inheritor, new ArrayList<>())
+                        .forEach(e -> acc.add(entryClass.cast(e)));
+            }
         }
 
         if (acc.isEmpty()) return Optional.empty();
