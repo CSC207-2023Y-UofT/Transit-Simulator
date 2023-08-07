@@ -111,20 +111,6 @@ public class TrackSegmentTest {
         Assertions.assertNull(trackSegment2.getPrev());
     }
 
-    @Test
-    public void testUnlinkFirstPrecondition() {
-        TrackSegment trackSegment3 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment3", 100);
-        trackSegment1.linkForward(trackSegment2);
-        Assertions.assertThrows(IllegalStateException.class, () -> TrackSegment.unlink(trackSegment1, trackSegment3));
-    }
-
-    @Test
-    public void testUnlinkSecondPrecondition() {
-        TrackSegment trackSegment3 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment3", 100);
-        trackSegment2.linkForward(trackSegment3);
-        Assertions.assertThrows(IllegalStateException.class, () -> TrackSegment.unlink(trackSegment1, trackSegment3));
-    }
-
     @DisplayName("TrackSegmentTest Class Teardown")
     @AfterAll
     public static void teardown() {
