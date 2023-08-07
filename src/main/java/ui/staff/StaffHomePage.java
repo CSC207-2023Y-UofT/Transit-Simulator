@@ -1,6 +1,5 @@
 package ui.staff;
 
-import controller.map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
