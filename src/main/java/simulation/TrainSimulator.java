@@ -136,7 +136,7 @@ public class TrainSimulator {
 
         }
 
-        if (tickNumber % 20 == 0) {
+        if (tickNumber % 50 == 0) {
             addWaitingPassengers();
 
             ElectricityUsageStat electricityUsageStat = new ElectricityUsageStat(electricityAccumulator);
