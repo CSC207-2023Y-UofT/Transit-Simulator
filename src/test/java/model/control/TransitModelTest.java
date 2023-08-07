@@ -71,7 +71,7 @@ public class TransitModelTest {
 
     @Test
     public void testTrackRepoSize() {
-        Assertions.assertEquals(transitModel.getTrackRepo().getTracks().size(), 5);  // 3 for stations, 2 for tracks
+        Assertions.assertEquals(transitModel.getTrackRepo().getTracks().size(), 8);  // 6 for stations, 2 for tracks
     }
 
 

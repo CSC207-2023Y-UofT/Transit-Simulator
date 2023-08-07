@@ -64,10 +64,7 @@ public abstract class StatAggregator<E extends StatEntry, A extends Serializable
      * @return An Optional containing the aggregate value, or an empty Optional if no data was found in the given range.
      */
     public final Optional<A> aggregate(StatDataController data, long startIndex, long endIndex) {
-        List<A> aggregates = new ArrayList<>();
-        for (long i = startIndex; i <= endIndex; i++) {
-            data.getOrAggregate(this, i).ifPresent(aggregates::add);
-        }
+        List<A> aggregates = new ArrayList<>(data.getOrAggregate(this, startIndex, endIndex).values());
         if (aggregates.isEmpty()) return Optional.empty();
         return Optional.ofNullable(aggregateExisting(aggregates));
     }

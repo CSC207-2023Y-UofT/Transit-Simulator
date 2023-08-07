@@ -107,7 +107,14 @@ public class StatsPanel extends JPanel {
         StatsController controller = getController().getControllerPool().getStatController();
         switch (display) {
             case REVENUE:
-                controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
+                long time = System.currentTimeMillis();
+                controller.getRevenue(horizon.getTimeHorizonMinutes())
+                        .thenApply(it -> {
+                            long elapsed = System.currentTimeMillis() - time;
+                            System.out.println("Time elapsed: " + elapsed);
+                            return it;
+                        })
+                        .thenAccept(viewModel::setAggregates);
                 break;
             case EXPENSES:
                 controller.getExpenses(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);

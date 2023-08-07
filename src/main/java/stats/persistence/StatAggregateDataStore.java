@@ -3,6 +3,7 @@ package stats.persistence;
 import stats.entry.StatEntry;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -23,15 +24,16 @@ public interface StatAggregateDataStore {
      *                       a concrete class, not an interface or abstract class.
      */
     <E extends StatEntry, A> void store(long index,
-                                        Class<? extends E> entryClass,
-                                        Class<? extends A> aggregateClass,
+                                        Class<E> entryClass,
+                                        Class<A> aggregateClass,
                                         A aggregate) throws IOException;
 
     /**
      * Retrieve the stat aggregate that was recorded at the specified
      * time index {@code index} and that is of type {@code clazz}.
      *
-     * @param index          The time index at which the stat aggregate was recorded.
+     * @param startIndex     The start time index of the aggregate to retrieve.
+     * @param endIndex       The end time index of the aggregate to retrieve, inclusive.
      * @param entryClass     The type of stat entry that the aggregate was calculated from.
      * @param aggregateClass The type of stat aggregate to retrieve.
      * @param <E>            The type of stat entry that the aggregate was calculated from.
@@ -39,7 +41,8 @@ public interface StatAggregateDataStore {
      *                       a concrete class, not an interface or abstract class.
      * @return The stat aggregate that was recorded at the specified, if any.
      */
-    <E extends StatEntry, A> Optional<A> retrieve(long index,
-                                                  Class<E> entryClass,
-                                                  Class<A> aggregateClass) throws IOException;
+    <E extends StatEntry, A> Map<Long, A> retrieve(long startIndex,
+                                                                long endIndex,
+                                                                Class<E> entryClass,
+                                                                Class<A> aggregateClass) throws IOException;
 }
