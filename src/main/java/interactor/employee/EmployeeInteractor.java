@@ -10,15 +10,35 @@ import util.Preconditions;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Implementation of the IEmployeeInteractor interface, providing functionalities
+ * to manage employees.
+ */
 public class EmployeeInteractor implements IEmployeeInteractor {
+
+    /** Tracker to track employee activities. */
     private final EmployeeTracker tracker;
+
+    /** Model representation for transit. */
     private final TransitModel model;
 
+    /**
+     * Constructs a new EmployeeInteractor with the specified tracker and model.
+     *
+     * @param track The employee tracker.
+     * @param model The transit model.
+     */
     public EmployeeInteractor(EmployeeTracker track, TransitModel model){
         this.tracker = track;
         this.model = model;
     }
 
+    /**
+     * Registers a new employee based on the given request model.
+     *
+     * @param requestModel The request model for registering the employee.
+     * @return The info of the registered employee.
+     */
     @Override
     public EmployeeInfo registerEmployee(RegisterEmployeeRequest requestModel) {
         switch (requestModel.type){
@@ -38,6 +58,12 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         return null;
     }
 
+    /**
+     * Retrieves the information of an employee given the staff number.
+     *
+     * @param staffNumber The staff number of the employee.
+     * @return Optional containing the employee's info, or empty if not found.
+     */
     @Override
     public Optional<EmployeeInfo> getEmployeeInfo(int staffNumber) {
         Employee employee = tracker.getEmployee(staffNumber)
@@ -46,11 +72,23 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         return Optional.of(toInfo(employee));
     }
 
+    /**
+     * Removes an employee with the specified staff number.
+     *
+     * @param staffNumber The staff number of the employee to be removed.
+     */
     @Override
     public void removeEmployee(int staffNumber) {
         tracker.removeEmployee(staffNumber);
     }
 
+    /**
+     * Assigns a job role to an employee for a specified train.
+     *
+     * @param staffNumber The staff number of the employee.
+     * @param trainName   The name of the train.
+     * @param job         The job role to be assigned.
+     */
     @Override
     public void assignJob(int staffNumber, String trainName, TrainRole job) {
         Employee employee = tracker.getEmployee(staffNumber)
@@ -73,6 +111,12 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         employee.setAssignment(new EmployeeAssignment(trainName, job));
     }
 
+    /**
+     * Unassigns an employee from their current job.
+     *
+     * @param staffNumber The staff number of the employee.
+     * @return True if the unassignment was successful, otherwise false.
+     */
     @Override
     public boolean unassign(int staffNumber) {
         Employee employee = tracker.getEmployee(staffNumber)
@@ -82,6 +126,12 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         return true;
     }
 
+    /**
+     * Retrieves a list of employees assigned to a specific train.
+     *
+     * @param trainName The name of the train.
+     * @return A list of employees assigned to the train.
+     */
     @Override
     public List<EmployeeInfo> getAssignedEmployees(String trainName) {
         Train train = model.getTrain(trainName);
@@ -102,6 +152,12 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         return assigned;
     }
 
+    /**
+     * Converts an Employee object to an EmployeeInfo object.
+     *
+     * @param employee The employee object to be converted.
+     * @return The converted EmployeeInfo object.
+     */
     private EmployeeInfo toInfo(Employee employee) {
         EmployeeAssignment assignment = employee.getAssignment().orElse(null);
         if (assignment != null) {
