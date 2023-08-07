@@ -5,7 +5,13 @@ import model.control.TransitModel;
 import model.train.Train;
 import stats.persistence.StatDataController;
 
+
+/**
+ * Represents a transit simulation, capturing the behavior of various transit entities
+ * like trains over time.
+ */
 public class Simulation {
+
     /**
      * Number of ticks per second
      */
@@ -20,8 +26,15 @@ public class Simulation {
      * The train simulator
      */
     private final TrainSimulator trainSimulator;
+
+    /**
+     * Controller responsible for managing and persisting statistical data.
+     */
     private final StatDataController stats;
 
+    /**
+     * Keeps track of the last time the statistics were saved.
+     */
     private long lastStatSave = System.currentTimeMillis();
 
     /**
