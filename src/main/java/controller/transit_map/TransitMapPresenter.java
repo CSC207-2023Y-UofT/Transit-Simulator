@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Presenter for the transit map.
+ */
 public class TransitMapPresenter {
     /**
      * The size of the map width in metres.
