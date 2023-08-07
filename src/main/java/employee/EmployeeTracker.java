@@ -11,12 +11,17 @@ import java.util.*;
  */
 public class EmployeeTracker {
 
+    /** Data store used to manage Employee persistence. */
     private final EmployeeDataStore dataStore;
 
+    /**
+     * Constructs a new EmployeeTracker with the specified data store.
+     *
+     * @param dataStore The data store used for employee persistence.
+     */
     public EmployeeTracker(EmployeeDataStore dataStore) {
         this.dataStore = dataStore;
     }
-
 
     /**
      * Adds the given Employee to the list of employees.
@@ -31,14 +36,12 @@ public class EmployeeTracker {
         }
     }
 
-    public void removeEmployee(Employee employee){
-        try {
-            dataStore.remove(employee.getStaffNumber());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    /**
+     * Removes the Employee with the specified staff number from the data store.
+     *
+     * @param staffNumber The staff number of the Employee to be removed.
+     * @throws RuntimeException if there's an IO error while removing the employee.
+     */
     public void removeEmployee(int staffNumber) {
         try {
             dataStore.remove(staffNumber);
@@ -60,6 +63,12 @@ public class EmployeeTracker {
         }
     }
 
+    /**
+     * Retrieves an Employee with the specified employee number from the data store.
+     *
+     * @param employeeNumber The number of the Employee to be retrieved.
+     * @return An Optional containing the Employee if found, or empty if not found.
+     */
     public Optional<Employee> getEmployee(int employeeNumber) {
         try {
             return dataStore.get(employeeNumber);
