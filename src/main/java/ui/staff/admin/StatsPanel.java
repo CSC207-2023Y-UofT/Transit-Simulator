@@ -86,6 +86,14 @@ public class StatsPanel extends JPanel {
         this.controller = controller;
     }
 
+    public void setHorizon(TimeHorizon horizon) {
+        this.horizon = horizon;
+    }
+
+    public void setDisplay(StatDisplay display) {
+        this.display = display;
+    }
+
     @Override
     public void removeNotify() {
         super.removeNotify();
@@ -107,14 +115,7 @@ public class StatsPanel extends JPanel {
         StatsController controller = getController().getControllerPool().getStatController();
         switch (display) {
             case REVENUE:
-                long time = System.currentTimeMillis();
-                controller.getRevenue(horizon.getTimeHorizonMinutes())
-                        .thenApply(it -> {
-                            long elapsed = System.currentTimeMillis() - time;
-                            System.out.println("Time elapsed: " + elapsed);
-                            return it;
-                        })
-                        .thenAccept(viewModel::setAggregates);
+                controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
                 break;
             case EXPENSES:
                 controller.getExpenses(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
