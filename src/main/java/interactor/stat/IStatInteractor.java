@@ -5,6 +5,10 @@ import stats.aggregator.revenue.RevenueAggregate;
 
 import java.util.List;
 
+
+/**
+ * Interface representing a statistical interactor for fetching revenue and expense aggregates.
+*/
 public interface IStatInteractor {
     // Technically, Aggregates can be thought of as in the Use-Case/Interactor layer
     List<RevenueAggregate> getRevenue(long horizonMinutes);
