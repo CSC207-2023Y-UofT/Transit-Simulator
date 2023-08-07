@@ -201,4 +201,22 @@ public class StatDataController {  // Façade design pattern used!!!
         return aggregates;
     }
 
+    public synchronized <E extends StatEntry, A extends Serializable> Optional<A> aggregateCurrent(
+            StatAggregator<E, A> aggregator
+    ) {
+        Class<E> entryClass = aggregator.getEntryClass();
+
+        List<E> acc = new ArrayList<>();
+
+        List<Class<? extends E>> inheritors = StatEntry.HIERARCHY.getInheritors(entryClass);
+        for (Class<? extends E> inheritor : inheritors) {
+            entries.getOrDefault(inheritor, new ArrayList<>())
+                    .forEach(e -> acc.add(entryClass.cast(e)));
+        }
+
+        if (acc.isEmpty()) return Optional.empty();
+
+        return Optional.ofNullable(aggregator.aggregate(acc));
+    }
+
 }

@@ -66,7 +66,7 @@ public class StatsPanel extends JPanel {
     private final SingletonStatViewModel viewModel = new SingletonStatViewModel();
 
     /** Timer to refresh the statistics periodically. */
-    private Timer timer = new Timer(200, e -> this.refresh());
+    private Timer timer = new Timer(30, e -> this.refresh());
 
     /**
      * Returns the UIController for this panel.
@@ -119,13 +119,14 @@ public class StatsPanel extends JPanel {
         StatsController controller = getController().getControllerPool().getStatController();
         switch (display) {
             case REVENUE:
-                controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
+                controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates)
+                        .thenAccept(t -> repaint());
                 break;
             case EXPENSES:
-                controller.getExpenses(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates);
+                controller.getExpenses(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates)
+                        .thenAccept(t -> repaint());
                 break;
         }
-        repaint();
     }
 
     @Override
