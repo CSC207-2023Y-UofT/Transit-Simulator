@@ -6,13 +6,32 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a view model for displaying singleton statistics as a graphical representation.
+ * It is designed to render a set of singleton aggregate values using a filled polygon on a Graphics2D canvas.
+ */
 public class SingletonStatViewModel {
+
+    /** A list of aggregates representing the singleton statistics. */
     private List<? extends SingletonAggregate<? extends Number>> aggregates = new ArrayList<>();
 
+
+    /**
+     * Sets the aggregates for the view model.
+     *
+     * @param aggregates A list of aggregates of type SingletonAggregate with values of type Number.
+     */
     public void setAggregates(List<? extends SingletonAggregate<? extends Number>> aggregates) {
         this.aggregates = aggregates;
     }
 
+    /**
+     * Draws the graphical representation of the singleton statistics on a Graphics2D canvas.
+     *
+     * @param g The Graphics2D object on which the representation is to be drawn.
+     * @param width The width of the drawing area.
+     * @param height The height of the drawing area.
+     */
     public void draw(Graphics2D g, int width, int height) {
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, width, height);
