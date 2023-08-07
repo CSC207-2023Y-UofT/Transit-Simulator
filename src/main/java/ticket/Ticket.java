@@ -10,12 +10,18 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Ticket {
 
+    /**
+     * The type of the ticket.
+     */
     private final TicketType type;
     /**
      * The expiry time of the ticket in milliseconds.
      */
     private long expiry = -1;
 
+    /**
+     * The time the ticket was created in milliseconds.
+     */
     private long createdAt = System.currentTimeMillis();
 
     /**
@@ -37,6 +43,10 @@ public class Ticket {
         this.id = id;
     }
 
+    /**
+     * Constructs a new Ticket object. The ticket's id is randomly generated.
+     * The ticket's type is given as a parameter.
+     */
     public Ticket(TicketType type) {
         this(ThreadLocalRandom.current().nextInt(999999999), type);
     }
@@ -57,6 +67,11 @@ public class Ticket {
         return id;
     }
 
+    /**
+     * Returns the type of the ticket.
+     *
+     * @return the type of the ticket
+     */
     public TicketType getType() {
         return type;
     }
@@ -71,31 +86,65 @@ public class Ticket {
         return getType().getPrice();
     }
 
+    /**
+     * Checks if the ticket is activated.
+     *
+     * @return True if activated, false otherwise.
+     */
     public boolean isActivated() {
         return activated;
     }
 
+    /**
+     * Sets the ticket's activation status.
+     *
+     * @param activated The activation status to set.
+     */
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
 
+    /**
+     * Sets the expiry time of the ticket.
+     *
+     * @param expiry The expiry time in milliseconds.
+     */
     public void setExpiry(long expiry) {
         this.expiry = expiry;
     }
 
+    /**
+     * Sets the creation time of the ticket.
+     *
+     * @param createdAt The creation time in milliseconds.
+     */
     public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Gets the creation time of the ticket.
+     *
+     * @return The creation time in milliseconds.
+     */
     public long getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Activates the ticket and sets its expiry time based on its type's lifetime.
+     */
     public void activate() {
         activated = true;
         this.expiry = System.currentTimeMillis() + type.getLifetime();
     }
 
+    /**
+     * Compares this ticket to another object for equality.
+     *
+     * @param obj The object to compare to.
+     * @return True if the object is a Ticket with the same ID, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Ticket) {
@@ -104,4 +153,5 @@ public class Ticket {
         }
         return false;
     }
+
 }
