@@ -60,7 +60,7 @@ public class StatsPanel extends JPanel {
     private StatDisplay display = StatDisplay.REVENUE;
 
     /** The time horizon for the statistics. */
-    private TimeHorizon horizon = TimeHorizon.FULL_DAY;
+    private TimeHorizon horizon = TimeHorizon.QUARTER_DAY;
 
     /** The view model responsible for managing the statistics data. */
     private final SingletonStatViewModel viewModel = new SingletonStatViewModel();

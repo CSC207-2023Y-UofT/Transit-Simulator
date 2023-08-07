@@ -22,7 +22,9 @@ public class Management extends JPanel {
     /**
      * The JPanel that displays the stats.
      */
-    private JPanel statsPanel;
+    private JPanel statsHolderPanel;
+    private StatsPanel statsPanel1;
+    private StatsPanel statsPanel2;
 
     /**
      * The JPanel that displays the middle panel.
@@ -131,20 +133,21 @@ public class Management extends JPanel {
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Middle panel but for stats
-        statsPanel = new JPanel(new GridLayout(0, 2));
+        statsHolderPanel = new JPanel(new GridLayout(0, 2));
 
         ShadowPanel statPanel1 = new ShadowPanel(new BorderLayout());
         statPanel1.setExtraInset(10);
-        statPanel1.add(new StatsPanel(controller));
+        statsPanel1 = new StatsPanel(controller);
+        statPanel1.add(statsPanel1);
 
         ShadowPanel statPanel2 = new ShadowPanel(new BorderLayout());
         statPanel2.setExtraInset(10);
-        StatsPanel stats = new StatsPanel(controller);
-        stats.setDisplay(StatsPanel.StatDisplay.EXPENSES);
-        statPanel2.add(stats);
+        statsPanel2 = new StatsPanel(controller);
+        statsPanel2.setDisplay(StatsPanel.StatDisplay.EXPENSES);
+        statPanel2.add(statsPanel2);
 
-        statsPanel.add(statPanel1);
-        statsPanel.add(statPanel2);
+        statsHolderPanel.add(statPanel1);
+        statsHolderPanel.add(statPanel2);
 
         // Bottom panel
         JPanel bottomPanel = new JPanel(new GridLayout(0, 2));
@@ -160,7 +163,7 @@ public class Management extends JPanel {
         statButton.setFont(new Font("Serif", Font.BOLD, 20));
 
         managementButton.addActionListener(e -> {
-            remove(statsPanel);
+            remove(statsHolderPanel);
             add(middlePanel, BorderLayout.CENTER);
             managementButton.setBackground(new Color(189, 87, 231));
             statButton.setBackground(new Color(224, 224, 224));
@@ -170,7 +173,7 @@ public class Management extends JPanel {
 
         statButton.addActionListener(e -> {
             remove(middlePanel);
-            add(statsPanel, BorderLayout.CENTER);
+            add(statsHolderPanel, BorderLayout.CENTER);
             statButton.setBackground(new Color(189, 87, 231));
             managementButton.setBackground(new Color(224, 224, 224));
             revalidate();
