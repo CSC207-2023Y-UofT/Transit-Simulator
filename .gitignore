@@ -16,6 +16,8 @@
 
 test-aggregates/*
 test-entries/*
+test-tickets/*
+tickets/*
 stat-aggregates/*
 stat-entries/*
 
