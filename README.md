@@ -1,14 +1,13 @@
-# Transit-system-tracker #
+# Transit Simulator #
 
-This program is a (mock) transit system tracker that has offers many functions to a user, from directions and local 
-model schedules to the average customer, as well as offering statistics to the 'local' transit company who 'made' the 
-program.
+This program is a (mock) transit system simulator that offers many functions to the user, from directions and local 
+model schedules to the average customer, as well as providing statistics.
 
 This program is:
 - A group project for CSC207 in Summer 2023.
 - Made with Java.
 - A demonstration of Clean Architecture and design patterns in programming.
-- Licensed under the terms of the MIT license.
+- Licensed under the terms of the provided MIT license.
 
 ## Examples ##
 
@@ -26,7 +25,7 @@ tickets on a given day, model capacities during specific times, analytics, etc.
 - Amazon Corretto Version 11.0.19
 ## Credits ##
 
-Group name: ~~Kotlin Koding Klub~~ The BBC
+Group name: The BBC
 
 GitHub pages: 
 [Binhe Jia](https://github.com/Binhe-Jia "Jarrett's GitHub page"), 
