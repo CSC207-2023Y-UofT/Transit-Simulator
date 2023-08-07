@@ -20,8 +20,8 @@ public class TrackSegmentTest {
     @BeforeEach
     public void reset() {
         transitModel = new TransitModel();
-        TrackSegment trackSegment1 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment1", 100);
-        TrackSegment trackSegment2 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment2", 100);
+        trackSegment1 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment1", 100);
+        trackSegment2 = new TrackSegment(transitModel.getTrackRepo(), "trackSegment2", 100);
     }
 
     @Test

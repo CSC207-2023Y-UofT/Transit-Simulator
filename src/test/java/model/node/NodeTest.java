@@ -64,8 +64,8 @@ public class NodeTest {
 
     @Test
     public void testGetLineProfile() {
-        Assertions.assertSame(lineProfile1, station1.getLineProfile(1));
-        Assertions.assertNull(station1.getLineProfile(2));  // it doesn't exist
+        Assertions.assertSame(lineProfile1, station1.getLineProfile(1).orElse(null));
+        Assertions.assertNull(station1.getLineProfile(2).orElse(null));  // it doesn't exist
     }
 
     @Test
@@ -88,7 +88,7 @@ public class NodeTest {
     @Test
     public void testCreateLineProfile() {
         NodeLineProfile lineProfile2 = station1.createLineProfile(2);
-        Assertions.assertSame(lineProfile2, station1.getLineProfile(2));
+        Assertions.assertSame(lineProfile2, station1.getLineProfile(2).orElse(null));
     }
 
     @DisplayName("StationTest Class Teardown")
