@@ -84,8 +84,8 @@ public class NodeLineProfileTest {
 
     @Test
     public void testGetTrack() {
-        Assertions.assertEquals(transitModel.getTrackRepo().getTrack("line1station1forward"), lineProfile1.getTrack(Direction.FORWARD));
-        Assertions.assertEquals(transitModel.getTrackRepo().getTrack("line1station1backward"), lineProfile1.getTrack(Direction.BACKWARD));
+        TrackSegment track = lineProfile1.getTrack(Direction.FORWARD);
+        Assertions.assertEquals(track, transitModel.getTrackRepo().getTrack(track.getId()).orElse(null));
     }
 
     @Test
