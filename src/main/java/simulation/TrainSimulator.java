@@ -35,7 +35,7 @@ public class TrainSimulator {
     private final int maxWaitingPassengers = 100;
     private long tickNumber = 0;
 
-
+    private double electricityAccumulator = 0.0;
 
     /**
      * Creates a new train simulator with the given tick speed.
@@ -117,13 +117,7 @@ public class TrainSimulator {
 
             // Record electric use
             if (!wasAtStation) {
-
-                ElectricityUsageStat stat = new ElectricityUsageStat(
-                        (passengerNoise.noise(tickNumber / 100.0) + 1.0) * 0.5
-                );
-
-                stats.record(stat);
-
+                electricityAccumulator += (passengerNoise.noise(tickNumber / 100.0) + 1.0) * 0.1;
             }
 
             boolean nowAtStation = train.getPosition().getTrack()
@@ -144,6 +138,10 @@ public class TrainSimulator {
 
         if (tickNumber % 20 == 0) {
             addWaitingPassengers();
+
+            ElectricityUsageStat electricityUsageStat = new ElectricityUsageStat(electricityAccumulator);
+            stats.record(electricityUsageStat);
+            electricityAccumulator = 0.0;
         }
 
         tickNumber++;
