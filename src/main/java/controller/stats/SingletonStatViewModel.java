@@ -92,6 +92,19 @@ public class SingletonStatViewModel {
         int textY = height / 6;
         g.drawString(display, middle - textWidth / 2, textY);
 
+        // Calculate the total
+        double total = 0;
+        for (SingletonAggregate<? extends Number> aggregate : aggregates) {
+            total += aggregate.getValue().doubleValue();
+        }
+
+        g.setFont(new Font("Arial", Font.PLAIN, 18));
+        metrics = g.getFontMetrics();
+        String totalString = String.format("$%,.2f", total);
+        textWidth = metrics.stringWidth(totalString);
+        textY = height / 6 + 30;
+        g.setColor(Color.BLACK);
+        g.drawString(totalString, middle - textWidth / 2, textY);
 
         g.setStroke(oldStroke);
     }
