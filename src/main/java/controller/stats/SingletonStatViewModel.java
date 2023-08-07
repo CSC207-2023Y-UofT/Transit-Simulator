@@ -46,7 +46,7 @@ public class SingletonStatViewModel {
         this.aggregates = aggregates;
     }
 
-    public void draw(UIController controller, Graphics2D g, int width, int height) {
+    public void draw(UIController controller, String display, Graphics2D g, int width, int height) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 
@@ -56,31 +56,43 @@ public class SingletonStatViewModel {
             max = Math.max(max, aggregate.getValue().doubleValue());
         }
 
-        if (max == 0) return;
+        Stroke oldStroke = g.getStroke();
+        if (max != 0) {
 
-        Polygon polygon = new Polygon();
-        polygon.addPoint(0, height);
-        for (int i = 0; i < aggregates.size(); i++) {
-            SingletonAggregate<? extends Number> aggregate = aggregates.get(i);
-            int x = (int) (i * width / (double) aggregates.size());
-            int y = (int) (height - aggregate.getValue().doubleValue() * (height * 3 / 4.0) / max);
-            y = Math.max(4, y);
-            polygon.addPoint(x, y);
+            Polygon polygon = new Polygon();
+            polygon.addPoint(0, height);
+            for (int i = 0; i < aggregates.size(); i++) {
+                SingletonAggregate<? extends Number> aggregate = aggregates.get(i);
+                int x = (int) (i * width / (double) aggregates.size());
+                int y = (int) (height - aggregate.getValue().doubleValue() * (height * 3 / 4.0) / max);
+                y = Math.max(4, y);
+                polygon.addPoint(x, y);
+            }
+
+            polygon.addPoint(width, height);
+            g.setPaint(new LinearGradientPaint(0, (int) (height - max), 0, height, new float[]{0, 1}, new Color[]{
+                    setAlpha(graphColour.getSecondary(), 255), setAlpha(graphColour.getSecondary(), 50)
+            }));
+
+            g.fillPolygon(polygon);
+            g.setColor(graphColour.getPrimary());
+            g.setStroke(new BasicStroke(2.25F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.drawPolygon(polygon);
         }
 
-        polygon.addPoint(width, height);
-        Paint oldPaint = g.getPaint();
-        g.setPaint(new LinearGradientPaint(0, (int) (height - max), 0, height, new float[]{0, 1}, new Color[]{
-                setAlpha(graphColour.getSecondary(), 255), setAlpha(graphColour.getSecondary(), 50)
-        }));
-
-        g.fillPolygon(polygon);
-        g.setPaint(oldPaint);
         g.setColor(graphColour.getPrimary());
-        Stroke oldStroke = g.getStroke();
-        g.setStroke(new BasicStroke(2.25F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.drawPolygon(polygon);
+
+        g.setStroke(new BasicStroke(1.5F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+
+        int middle = width / 2;
+        g.setFont(new Font("Arial", Font.BOLD, 24));
+        FontMetrics metrics = g.getFontMetrics();
+        int textWidth = metrics.stringWidth(display);
+        int textY = height / 6;
+        g.drawString(display, middle - textWidth / 2, textY);
+
+
         g.setStroke(oldStroke);
     }
 

@@ -131,6 +131,6 @@ public class StatsPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        viewModel.draw(controller, (Graphics2D) g, getWidth(), getHeight());
+        viewModel.draw(controller, display.toString(), (Graphics2D) g, getWidth(), getHeight());
     }
 }

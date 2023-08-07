@@ -66,6 +66,7 @@ public class PageFileUtils {
             buffer.flip();
             byte[] bytes = new byte[buffer.remaining()];
             buffer.get(bytes);
+
             Files.write(pageFile.toPath(), bytes);
 
         } catch (IOException e) {

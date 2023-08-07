@@ -24,8 +24,6 @@ public class Simulation {
     private final StatDataController stats;
     private final InteractorPool pool;
 
-    private long lastStatSave = System.currentTimeMillis();
-
     private long tickNumber = 0;
 
     /**
@@ -71,9 +69,8 @@ public class Simulation {
 
         trainSimulator.tick(model);
 
-        if (System.currentTimeMillis() - lastStatSave > IStatInteractor.TIME_INTERVAL) {
-            stats.flush(System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL);
-            lastStatSave = System.currentTimeMillis();
+        if (stats.shouldFlush()) {
+            stats.flush();
         }
 
         if (tickNumber % 50 == 0) {

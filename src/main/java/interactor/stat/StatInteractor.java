@@ -29,14 +29,15 @@ public class StatInteractor implements IStatInteractor {
         Map<Long, RevenueAggregate> aggregateMap = stats.getOrAggregate(revenueAggregator,
                 currIndex - horizonMinutes,
                 currIndex);
-        for (long i = currIndex - horizonMinutes; i < currIndex; i++) {
+
+        stats.aggregateCurrent(revenueAggregator)
+                .ifPresent(a -> aggregateMap.put(currIndex, a));
+
+        for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
             Optional<RevenueAggregate> revenueAggregate = Optional.ofNullable(aggregateMap.get(i));
             revenueAggregate.ifPresentOrElse(revenueAggregates::add,
                     () -> revenueAggregates.add(new RevenueAggregate(0)));
         }
-
-        stats.aggregateCurrent(revenueAggregator)
-                .ifPresent(revenueAggregates::add);
 
         return revenueAggregates;
     }
@@ -52,14 +53,15 @@ public class StatInteractor implements IStatInteractor {
                 currIndex - horizonMinutes,
                 currIndex);
 
-        for (long i = currIndex - horizonMinutes; i < currIndex; i++) {
+
+        stats.aggregateCurrent(expenseAggregator)
+                .ifPresent(a -> aggregateMap.put(currIndex, a));
+
+        for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
             Optional<ExpenseAggregate> expenseAggregate = Optional.ofNullable(aggregateMap.get(i));
             expenseAggregate.ifPresentOrElse(expenseAggregates::add,
                     () -> expenseAggregates.add(new ExpenseAggregate(0)));
         }
-
-        stats.aggregateCurrent(expenseAggregator)
-                .ifPresent(expenseAggregates::add);
 
         return expenseAggregates;
     }

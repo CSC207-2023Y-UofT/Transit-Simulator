@@ -1,5 +1,6 @@
 package stats.persistence;
 
+import interactor.stat.IStatInteractor;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
@@ -23,6 +24,8 @@ public class StatDataController {  // Façade design pattern used!!!
      * DataStore used to persist aggregate statistics.
      */
     private final StatAggregateDataStore aggregateDataStore;
+
+    private long currTimeIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
 
     /**
      * A map of stat entry classes to the stat entries that have been recorded
@@ -79,11 +82,12 @@ public class StatDataController {  // Façade design pattern used!!!
         entries.put(clazz, list);
     }
 
+    public void flush() {
+        flush(currTimeIndex);
+    }
+
     /**
      * Flush all recorded stat entries to the data store.
-     *
-     * @param index The time index at which the stat entries should be considered
-     *              to have been recorded.
      */
     public synchronized void flush(long index) {
 
@@ -101,6 +105,12 @@ public class StatDataController {  // Façade design pattern used!!!
 
         // Clear the entries
         entries.clear();
+
+        currTimeIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
+    }
+
+    public boolean shouldFlush() {
+        return System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL != currTimeIndex;
     }
 
     /**
