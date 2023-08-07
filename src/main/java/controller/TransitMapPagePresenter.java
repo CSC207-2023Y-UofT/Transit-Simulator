@@ -1,5 +1,6 @@
-package controller.transit_map;
+package controller;
 
+import controller.transit_map.TransitMapPresenter;
 import interactor.station.IStationInteractor;
 import interactor.station.StationState;
 import interactor.train.ITrainInteractor;

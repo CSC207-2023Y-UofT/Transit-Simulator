@@ -1,7 +1,7 @@
 package ui.passenger;
 
 import controller.ticket.PurchaseTicketViewModel;
-import controller.transit_map.TransitMapPagePresenter;
+import controller.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -9,7 +9,6 @@ import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
