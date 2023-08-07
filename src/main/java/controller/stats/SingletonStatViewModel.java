@@ -1,6 +1,7 @@
 package controller.stats;
 
 import stats.aggregate.SingletonAggregate;
+import ui.UIController;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,11 +10,43 @@ import java.util.List;
 public class SingletonStatViewModel {
     private List<? extends SingletonAggregate<? extends Number>> aggregates = new ArrayList<>();
 
+    public enum GraphColour {
+        RED(Color.RED, new Color(255, 100, 80)),
+        GREEN(new Color(0, 130, 21), new Color(85, 204, 85)),
+        BLUE(Color.BLUE, new Color(100, 100, 255));
+
+        private final Color primary;
+        private final Color secondary;
+
+        GraphColour(Color primary, Color secondary) {
+            this.primary = primary;
+            this.secondary = secondary;
+        }
+
+        public Color getPrimary() {
+            return primary;
+        }
+
+        public Color getSecondary() {
+            return secondary;
+        }
+    }
+
+    private GraphColour graphColour = GraphColour.BLUE;
+
+    public GraphColour getGraphColour() {
+        return graphColour;
+    }
+
+    public void setGraphColour(GraphColour graphColour) {
+        this.graphColour = graphColour;
+    }
+
     public void setAggregates(List<? extends SingletonAggregate<? extends Number>> aggregates) {
         this.aggregates = aggregates;
     }
 
-    public void draw(Graphics2D g, int width, int height) {
+    public void draw(UIController controller, Graphics2D g, int width, int height) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 
@@ -34,14 +67,24 @@ public class SingletonStatViewModel {
             y = Math.max(4, y);
             polygon.addPoint(x, y);
         }
+
         polygon.addPoint(width, height);
         Paint oldPaint = g.getPaint();
         g.setPaint(new LinearGradientPaint(0, (int) (height - max), 0, height, new float[]{0, 1}, new Color[]{
-                new Color(0, 131, 227, 255), new Color(0, 111, 197, 50)
+                setAlpha(graphColour.getSecondary(), 255), setAlpha(graphColour.getSecondary(), 50)
         }));
+
         g.fillPolygon(polygon);
         g.setPaint(oldPaint);
-        g.setColor(Color.BLUE);
+        g.setColor(graphColour.getPrimary());
+        Stroke oldStroke = g.getStroke();
+        g.setStroke(new BasicStroke(2.25F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.drawPolygon(polygon);
+        g.setStroke(oldStroke);
+    }
+
+    private Color setAlpha(Color color, int alpha) {
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
 }

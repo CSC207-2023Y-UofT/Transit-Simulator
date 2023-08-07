@@ -1,5 +1,6 @@
 package ui.staff.admin;
 
+import controller.stats.SingletonStatViewModel;
 import ui.UIController;
 import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
@@ -138,6 +139,7 @@ public class Management extends JPanel {
         ShadowPanel statPanel1 = new ShadowPanel(new BorderLayout());
         statPanel1.setExtraInset(10);
         statsPanel1 = new StatsPanel(controller);
+        statsPanel1.getViewModel().setGraphColour(SingletonStatViewModel.GraphColour.GREEN);
         statPanel1.add(statsPanel1);
 
         ShadowPanel statPanel2 = new ShadowPanel(new BorderLayout());

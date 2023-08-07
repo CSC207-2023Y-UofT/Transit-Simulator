@@ -78,6 +78,8 @@ public class TransitMapPresenter {
         this.width = width;
         this.height = height;
 
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         List<Color> lineColours = new ArrayList<>();
         lineColours.add(new Color(255, 206, 47));
         lineColours.add(new Color(113, 194, 113));

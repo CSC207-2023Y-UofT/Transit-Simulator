@@ -86,6 +86,10 @@ public class StatsPanel extends JPanel {
         this.controller = controller;
     }
 
+    public SingletonStatViewModel getViewModel() {
+        return viewModel;
+    }
+
     public void setHorizon(TimeHorizon horizon) {
         this.horizon = horizon;
     }
@@ -126,6 +130,6 @@ public class StatsPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        viewModel.draw((Graphics2D) g, getWidth(), getHeight());
+        viewModel.draw(controller, (Graphics2D) g, getWidth(), getHeight());
     }
 }
