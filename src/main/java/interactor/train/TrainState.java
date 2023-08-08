@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * The TrainState dataclass represents the state of a train.
+ * This is a data class representing the state of a train.
  */
 public class TrainState {
     /**

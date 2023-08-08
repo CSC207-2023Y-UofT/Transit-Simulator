@@ -55,6 +55,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     public void assignJob(int staffNumber, String trainName, TrainRole job) {
         Employee employee = tracker.getEmployee(staffNumber)
                 .orElse(null);
+
         Preconditions.checkArgument(employee != null, "Employee does not exist");
 
         Train train = model.getTrain(trainName);

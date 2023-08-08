@@ -35,6 +35,7 @@ public class StatInteractor implements IStatInteractor {
 
         for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
             Optional<RevenueAggregate> revenueAggregate = Optional.ofNullable(aggregateMap.get(i));
+
             revenueAggregate.ifPresentOrElse(revenueAggregates::add,
                     () -> revenueAggregates.add(new RevenueAggregate(0)));
         }
@@ -58,6 +59,7 @@ public class StatInteractor implements IStatInteractor {
 
         for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
             Optional<ExpenseAggregate> expenseAggregate = Optional.ofNullable(aggregateMap.get(i));
+
             expenseAggregate.ifPresentOrElse(expenseAggregates::add,
                     () -> expenseAggregates.add(new ExpenseAggregate(0)));
         }
