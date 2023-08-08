@@ -117,7 +117,7 @@ public class TrainSimulator {
 
             // Record electric use
             if (!wasAtStation) {
-                double noise = (electricityNoise.noise(tickNumber / 100.0) + 1.0) * 0.02;
+                double noise = (electricityNoise.noise(tickNumber / 100.0) + 1.0) * 0.06;
                 electricityAccumulator += noise;
             }
 
@@ -137,9 +137,11 @@ public class TrainSimulator {
 
         }
 
-        if (tickNumber % 50 == 0) {
+        if (tickNumber % 10 == 0) {
             addWaitingPassengers();
+        }
 
+        if (tickNumber % 40 == 0) {
             ElectricityUsageStat electricityUsageStat = new ElectricityUsageStat(electricityAccumulator);
             stats.record(electricityUsageStat);
             electricityAccumulator = 0.0;
@@ -194,7 +196,7 @@ public class TrainSimulator {
         double noise = this.passengerNoise.noise(tickNumber / 100.0);
         noise += 1.0;
 
-        int numToAdd = (int) (noise * 20);
+        int numToAdd = (int) (noise * 10);
         for (int i = 0; i < numToAdd; i++) {
             if (waitingPassengers.size() >= maxWaitingPassengers) {
                 break;

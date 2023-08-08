@@ -10,7 +10,7 @@ public interface IStatInteractor {
     List<RevenueAggregate> getRevenue(long horizonMinutes);
     List<ExpenseAggregate> getExpenses(long horizonMinutes);
 
-    int TIME_INTERVAL = 2500;
+    int TIME_INTERVAL = 4000;
 
     // TODO more stats
 }
