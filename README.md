@@ -4,7 +4,7 @@ This program is a (mock) transit system simulator that offers many functions to 
 model schedules to the average customer, as well as providing statistics.
 
 This program is:
-- A group project for CSC207 in Summer 2023.
+- A group project for CSC207 in Summer 2023 @ UofT.
 - Made with Java.
 - A demonstration of Clean Architecture and design patterns in programming.
 - Licensed under the terms of the provided MIT license.
@@ -23,6 +23,11 @@ tickets on a given day, model capacities during specific times, analytics, etc.
 
 ## Java SDK Version ##
 - Amazon Corretto Version 11.0.19
+
+## Accessibility ##
+- The program is accessible to all users, including those with visual impairments. The map, menu colors and fonts were selected to offer great contrast and readability.
+- Buttons on the menu are enlarged for size and space.
+
 ## Credits ##
 
 Group name: The BBC
