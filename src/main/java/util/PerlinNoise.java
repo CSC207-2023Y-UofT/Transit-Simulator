@@ -66,8 +66,8 @@ public class PerlinNoise {
      * @return Noise value at given point
      */
     public double noise(double position) {
-        int positionInt = (int) position % permutationTable.length;
-        double positionFractional = position - positionInt;
+        int positionInt = (int) position % size;
+        double positionFractional = position - Math.floor(position);
 
         double interpolationValue = fadeFunction(positionFractional);
 

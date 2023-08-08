@@ -62,11 +62,11 @@ public class SingletonStatViewModel {
             Polygon polygon = new Polygon();
             polygon.addPoint(0, height);
 
-            int minY = 0;
+            int minY = height;
             for (int i = 0; i < aggregates.size(); i++) {
                 SingletonAggregate<? extends Number> aggregate = aggregates.get(i);
                 int x = (int) (i * width / (double) aggregates.size());
-                int y = (int) (height - aggregate.getValue().doubleValue() * (height * 3 / 4.0) / max);
+                int y = (int) (height - aggregate.getValue().doubleValue() * (height * 3 / 5.0) / max);
                 y = Math.max(4, y);
                 polygon.addPoint(x, y);
 

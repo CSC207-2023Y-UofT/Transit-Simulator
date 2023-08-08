@@ -33,7 +33,7 @@ public class TrainSimulator {
     private final PerlinNoise electricityNoise = new PerlinNoise(456, 256);
     private final List<Passenger> waitingPassengers = new ArrayList<>();
     private final int maxWaitingPassengers = 100;
-    private long tickNumber = 0;
+    private long tickNumber = 100 * 1000;
 
     private double electricityAccumulator = 0.0;
 
@@ -117,7 +117,8 @@ public class TrainSimulator {
 
             // Record electric use
             if (!wasAtStation) {
-                electricityAccumulator += (passengerNoise.noise(tickNumber / 100.0) + 1.0) * 0.02;
+                double noise = (electricityNoise.noise(tickNumber / 100.0) + 1.0) * 0.02;
+                electricityAccumulator += noise;
             }
 
             boolean nowAtStation = train.getPosition().getTrack()
@@ -209,5 +210,9 @@ public class TrainSimulator {
             waitingPassengers.add(new Passenger(ticket, (int) (Math.random() * 4)));
         }
 
+    }
+
+    public static void main(String[] args) {
+        PerlinNoise noise = new PerlinNoise(123, 256);
     }
 }
