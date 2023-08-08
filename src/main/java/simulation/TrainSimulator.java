@@ -28,13 +28,38 @@ public class TrainSimulator {
      * The number of ticks per second
      */
     private final int tickSpeed;
+    /**
+     * Stat data controller
+     */
     private final StatDataController stats;
+    /**
+     * The noise generator used for passenger simulation
+     */
     private final PerlinNoise passengerNoise = new PerlinNoise(123, 256);
+    /**
+     * The noise generator used for electricity usage simulation
+     */
     private final PerlinNoise electricityNoise = new PerlinNoise(456, 256);
+    /**
+     * A list of waiting passengers that will board the next available train
+     * that arrives at <b>any</b> station.
+     */
     private final List<Passenger> waitingPassengers = new ArrayList<>();
-    private final int maxWaitingPassengers = 100;
-    private long tickNumber = 100 * 1000;
 
+    /**
+     * The maximum number of passengers that can be in the waiting list.
+     */
+    private final int maxWaitingPassengers = 100;
+
+    /**
+     * The current tick number
+     */
+    private long tickNumber = 0;
+
+    /**
+     * An accumulator for electricity usage so that we don't crowd statistics with millions
+     * of ElectricityUsageStat stats. This will be pushed and cleared on an interval.
+     */
     private double electricityAccumulator = 0.0;
 
     /**
@@ -52,39 +77,61 @@ public class TrainSimulator {
      * @param model The model to create work on
      */
     public void recreateTrains(TransitModel model) {
+
+        // Clear any existing trains
         model.clearTrains();
 
-        // Keep track of mapped track segments
+        // The following code will map the transit system and create a list
+        // of track loops that will be used to randomly spawn trains such that
+        // each loop has at least one train on it.
+
+        // This will keep track of what track segments we've already looked at
         Set<TrackSegment> mapped = new HashSet<>();
+
+        // This will keep track of each loop we discover
         List<Set<TrackSegment>> loops = new ArrayList<>();
 
+        // Go through all nodes, so we don't miss any track loops
         for (Node value : model.getNodes().values()) {
-            for (NodeLineProfile profile : value.getLineProfiles()) {
-                List<TrackSegment> toMap = new ArrayList<>();
-                toMap.add(profile.getTrack(Direction.FORWARD));
-                toMap.add(profile.getTrack(Direction.BACKWARD));
 
-                for (TrackSegment segment : toMap) {
+            // For each line profile they have
+            for (NodeLineProfile profile : value.getLineProfiles()) {
+
+                // We will map the forward and backwards parts of this line
+                List<TrackSegment> roots = new ArrayList<>();
+                roots.add(profile.getTrack(Direction.FORWARD));
+                roots.add(profile.getTrack(Direction.BACKWARD));
+
+                for (TrackSegment segment : roots) {
+
+                    // Don't map this if we've already been here
                     if (mapped.contains(segment)) continue;
 
+                    // Keep track of the loop
                     Set<TrackSegment> loop = new HashSet<>();
 
+                    // Add the root
                     loop.add(segment);
+
+                    // Add all segments connected to this one in both directions
                     loop.addAll(segment.getNextTrackSegments(Direction.FORWARD));
                     loop.addAll(segment.getNextTrackSegments(Direction.BACKWARD));
 
+                    // Record all of these track segments as mapped
                     mapped.addAll(loop);
 
+                    // Add the loop to the list
                     loops.add(loop);
                 }
             }
         }
 
+        // The train-number of the next train to be spawned
         int trainNum = 1;
 
         for (Set<TrackSegment> loop : loops) {
             // loop will never be empty as when it is constructed
-            // at least one is always added
+            // at least one is always added (the root)
 
             int trainsToSpawn = loop.size() / 6;
             trainsToSpawn = Math.max(1, trainsToSpawn);
@@ -202,9 +249,9 @@ public class TrainSimulator {
                 break;
             }
 
-            Ticket ticket = new Ticket(
-                    TicketType.values()[(int) (Math.random() * TicketType.values().length)]
-            );
+            // A random ticket type
+            TicketType ticketType = TicketType.values()[(int) (Math.random() * TicketType.values().length)];
+            Ticket ticket = new Ticket(ticketType);
 
             TicketSaleStat stat = new TicketSaleStat(ticket);
             stats.record(stat);

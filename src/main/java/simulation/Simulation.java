@@ -11,6 +11,9 @@ import util.PerlinNoise;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class performs the basic simulation functionalities needed for the program.
+ */
 public class Simulation {
     /**
      * Number of ticks per second
