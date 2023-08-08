@@ -47,13 +47,13 @@ public class AddStaff extends JPanel {
         c.insets = new Insets(10, 10, 10, 10);  // Margins around components
         c.fill = GridBagConstraints.HORIZONTAL;
 
-        Font font = new Font("Serif", Font.PLAIN, 16);  // Setting a common font
+        Font font = new Font("Arial", Font.PLAIN, 16);  // Setting a common font
 
         // Employee Name
         JLabel nameLabel = new JLabel("Name:");
-        nameLabel.setFont(new Font("Serif", Font.BOLD, 18));
+        nameLabel.setFont(new Font("Arial", Font.BOLD, 18));
         nameField = new JTextField(20);
-        nameField.setFont(new Font("Serif", Font.PLAIN, 18));
+        nameField.setFont(new Font("Arial", Font.PLAIN, 18));
 
         GridBagConstraints cName = (GridBagConstraints) c.clone(); // clone to keep properties
         cName.gridx = 0;
@@ -108,7 +108,7 @@ public class AddStaff extends JPanel {
         // Add Button
         JButton addButton = new ShadowedButton("Add");
         addButton.setBackground(new Color(189, 87, 231));
-        addButton.setFont(new Font("Serif", Font.BOLD, 18));  // Making button font slightly bolder
+        addButton.setFont(new Font("Arial", Font.BOLD, 18));  // Making button font slightly bolder
         addButton.addActionListener(e -> addStaffToManagement());
         c.gridx = 0;
         c.gridy = 4;
@@ -118,7 +118,7 @@ public class AddStaff extends JPanel {
         // Cancel Button
         JButton cancelButton = new ShadowedButton("Cancel");
         cancelButton.setBackground(new Color(255, 255, 255));
-        cancelButton.setFont(new Font("Serif", Font.BOLD, 18));
+        cancelButton.setFont(new Font("Arial", Font.BOLD, 18));
         cancelButton.addActionListener(e -> controller.open(managementPanel));
 
         GridBagConstraints cCancel = (GridBagConstraints) c.clone(); // clone to keep properties

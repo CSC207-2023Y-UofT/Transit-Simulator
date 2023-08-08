@@ -30,13 +30,13 @@ public class EngineerRoute extends JPanel {
         JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        homeButton.setFont(new Font("Serif", Font.BOLD, 20));
+        homeButton.setFont(new Font("Arial", Font.BOLD, 20));
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
         int id = 322; // TODO: should be .getId()
         JLabel idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
-        idLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
 
@@ -50,17 +50,17 @@ public class EngineerRoute extends JPanel {
         // route label
         int train = 1; // TODO: should be .getTrain()
         JLabel routeLabel = new JLabel("Train: " + train);
-        routeLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        routeLabel.setFont(new Font("Arial", Font.BOLD, 25));
 
         // operator label
         String operator = "grace"; // TODO: should be .getOperator()
         JLabel operatorLabel = new JLabel("Operator: " + operator);
-        operatorLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        operatorLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         // engineer label
         String engineer = "zoey"; // TODO: should be .getEngineer()
         JLabel engineerLabel = new JLabel("Engineer: " + engineer);
-        engineerLabel.setFont(new Font("Serif", Font.ITALIC, 25));
+        engineerLabel.setFont(new Font("Arial", Font.ITALIC, 25));
 
         for (int i = 0; i < 5; i++) {
             middlePanel.add(new JLabel(""));
@@ -97,13 +97,13 @@ public class EngineerRoute extends JPanel {
         JButton routeButton = new ShadowedButton("Assigned Route");
         routeButton.setBackground(new Color(57, 210, 190));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        routeButton.setFont(new Font("Serif", Font.BOLD, 20));
+        routeButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         // maintenance button
         JButton maintenanceButton = new ShadowedButton("Maintenance");
         maintenanceButton.setBackground(new Color(136, 203, 194));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
+        maintenanceButton.setFont(new Font("Arial", Font.BOLD, 20));
         maintenanceButton.addActionListener(e -> controller.open(new EngineerMaintenance(controller)));
 
         bottomPanel.add(routeButton);

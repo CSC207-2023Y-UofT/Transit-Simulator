@@ -11,8 +11,8 @@ public class SingletonStatViewModel {
     private List<? extends SingletonAggregate<? extends Number>> aggregates = new ArrayList<>();
 
     public enum GraphColour {
-        RED(new Color(160, 0, 21), new Color(204, 85, 85)),
-        GREEN(new Color(0, 130, 21), new Color(85, 204, 85)),
+        RED(new Color(160, 0, 21), new Color(160, 55, 55)),
+        GREEN(new Color(0, 130, 21), new Color(55, 160, 55)),
         BLUE(Color.BLUE, new Color(100, 100, 255));
 
         private final Color primary;
@@ -61,20 +61,26 @@ public class SingletonStatViewModel {
 
             Polygon polygon = new Polygon();
             polygon.addPoint(0, height);
+
+            int minY = 0;
             for (int i = 0; i < aggregates.size(); i++) {
                 SingletonAggregate<? extends Number> aggregate = aggregates.get(i);
                 int x = (int) (i * width / (double) aggregates.size());
                 int y = (int) (height - aggregate.getValue().doubleValue() * (height * 3 / 4.0) / max);
                 y = Math.max(4, y);
                 polygon.addPoint(x, y);
+
+                minY = Math.min(minY, y);
             }
 
             polygon.addPoint(width, height);
-            g.setPaint(new LinearGradientPaint(0, (int) (height - max), 0, height, new float[]{0, 1}, new Color[]{
+
+            g.setPaint(new LinearGradientPaint(0, minY, 0, height, new float[]{0, 1}, new Color[]{
                     setAlpha(graphColour.getSecondary(), 255), setAlpha(graphColour.getSecondary(), 50)
             }));
 
             g.fillPolygon(polygon);
+
             g.setColor(graphColour.getPrimary());
             g.setStroke(new BasicStroke(2.25F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

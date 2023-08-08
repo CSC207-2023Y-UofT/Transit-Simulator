@@ -31,16 +31,16 @@ public class LoginPage extends JPanel {
 
         // Personnel Number
         JLabel label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
-        label.setFont(new Font("Serif", Font.BOLD, 25));
+        label.setFont(new Font("Arial", Font.BOLD, 25));
 
         JTextField personnelNumberField = new JPasswordField();
-        personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
+        personnelNumberField.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Sign In button
         JButton signInButton = new ShadowedButton("Sign In");
         signInButton.setBackground(new Color(0, 151, 8));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        signInButton.setFont(new Font("Serif", Font.BOLD, 20));
+        signInButton.setFont(new Font("Arial", Font.BOLD, 20));
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +58,7 @@ public class LoginPage extends JPanel {
         // Back button
         JButton backButton = new ShadowedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(new Font("Serif", Font.BOLD, 20));
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
         backButton.addActionListener(e -> controller.open(new StaffSelectPage(controller)));
 
         // Add components to the panel

@@ -26,23 +26,23 @@ public class FailedAuthenticationPage extends JPanel {
 
         // Personnel Number
         JLabel label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
-        label.setFont(new Font("Serif", Font.BOLD, 25));
+        label.setFont(new Font("Arial", Font.BOLD, 25));
 
         // Input field
         JTextField personnelNumberField = new JTextField();
-        personnelNumberField.setFont(new Font("Serif", Font.PLAIN, 20));
+        personnelNumberField.setFont(new Font("Arial", Font.PLAIN, 20));
         personnelNumberField.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 
         // Error Message
         JLabel errorLabel = new JLabel("Invalid personnel number", SwingConstants.CENTER);
-        errorLabel.setFont(new Font("Serif", Font.BOLD, 20));
+        errorLabel.setFont(new Font("Arial", Font.BOLD, 20));
         errorLabel.setForeground(Color.RED);
 
         // Sign In button
         JButton signInButton = new ShadowedButton("Sign In");
         signInButton.setBackground(new Color(112, 170, 255));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        signInButton.setFont(new Font("Serif", Font.BOLD, 20));
+        signInButton.setFont(new Font("Arial", Font.BOLD, 20));
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class FailedAuthenticationPage extends JPanel {
         // Back button
         JButton backButton = new ShadowedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(new Font("Serif", Font.BOLD, 20));
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -25,17 +25,17 @@ public class WelcomePage extends JPanel {
 
         // Title
         JLabel titleLabel = new JLabel("Welcome to the TTC", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 30));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
 
         // Prompt
         JLabel userTypeLabel = new JLabel("Please select your user type.", SwingConstants.CENTER);
         userTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        userTypeLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        userTypeLabel.setFont(new Font("Arial", Font.BOLD, 25));
 
         // Passenger button
         JButton passengerButton = new ShadowedButton("Passenger");
         passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        passengerButton.setFont(new Font("Serif", Font.BOLD, 25));
+        passengerButton.setFont(new Font("Arial", Font.BOLD, 25));
         passengerButton.setPreferredSize(new Dimension(200, 50));
         passengerButton.setBackground(new Color(112, 170, 255));
         passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -46,7 +46,7 @@ public class WelcomePage extends JPanel {
         // Staff button
         JButton staffButton = new ShadowedButton("Staff");
         staffButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        staffButton.setFont(new Font("Serif", Font.BOLD, 25));
+        staffButton.setFont(new Font("Arial", Font.BOLD, 25));
         staffButton.setPreferredSize(new Dimension(200, 50));
         staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));

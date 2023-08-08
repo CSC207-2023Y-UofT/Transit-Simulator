@@ -116,15 +116,15 @@ public class TicketPanel extends JPanel {
         panel.removeAll();
 
         JLabel title = new JLabel("Train Ticket", SwingConstants.CENTER);
-        title.setFont(new Font("Serif", Font.BOLD, 25));
+        title.setFont(new Font("Arial", Font.BOLD, 25));
 
         // Message
         JLabel message = new JLabel("Do not close this tab.", SwingConstants.CENTER);
-        message.setFont(new Font("Serif", Font.PLAIN, 20));
+        message.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Ticket ID
         JLabel ticketId = new JLabel("Ticket ID: " + viewModel.getTicket().getTicketId(), SwingConstants.CENTER);
-        ticketId.setFont(new Font("Serif", Font.PLAIN, 20));
+        ticketId.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Valid Time
         SuppliedLabel validTime = new SuppliedLabel(() -> {
@@ -142,21 +142,21 @@ public class TicketPanel extends JPanel {
         });
 
         validTime.setHorizontalAlignment(SwingConstants.CENTER);
-        validTime.setFont(new Font("Serif", Font.PLAIN, 20));
+        validTime.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Activate before boarding label
         JLabel activateLabel = new JLabel("Activate before boarding", SwingConstants.CENTER);
-        activateLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        activateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
 
         // Ticket Type
         JLabel typeLabel = new JLabel("Ticket Type: " + viewModel.getTicket().getType(), SwingConstants.CENTER);
-        typeLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        typeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Activate button
         ShadowedButton activateButton = new ShadowedButton("Activate");
         activateButton.setBackground(new Color(238, 238, 238));
-        activateButton.setFont(new Font("Serif", Font.PLAIN, 20));
+        activateButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
         if (viewModel.getTicket().isActivated()) {
             activateButton.setBackground(new Color(255, 255, 255));
@@ -200,7 +200,7 @@ public class TicketPanel extends JPanel {
         panel.setBackground(new Color(240, 150, 150));
 
         JLabel title = new JLabel("Ticket Expired", SwingConstants.CENTER);
-        title.setFont(new Font("Serif", Font.BOLD, 25));
+        title.setFont(new Font("Arial", Font.BOLD, 25));
 
         panel.add(title);
     }

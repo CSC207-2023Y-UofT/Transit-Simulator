@@ -67,7 +67,7 @@ public class PurchaseTicketPage extends JPanel {
         this.viewModel = viewModel;
 
         JLabel headerLabel = new JLabel("Tickets", SwingConstants.CENTER);
-        headerLabel.setFont(new Font("Serif", Font.BOLD, 35));
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 35));
         this.add(headerLabel);
 
         // 3 empty labels to fill the space
@@ -102,7 +102,7 @@ public class PurchaseTicketPage extends JPanel {
         // Back button
         JButton backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        backButton.setFont(new Font("Serif", Font.BOLD, 20));
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
         backButton.setPreferredSize(new Dimension(200, 50));
         backButton.setBackground(new Color(166, 166, 166));
         backButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
@@ -111,7 +111,7 @@ public class PurchaseTicketPage extends JPanel {
         // Cancel button
         JButton cancelButton = new ShadowedButton("Cancel");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cancelButton.setFont(new Font("Serif", Font.BOLD, 20));
+        cancelButton.setFont(new Font("Arial", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
         cancelButton.setBackground(new Color(172, 64, 58));
         cancelButton.addActionListener(new ActionListener() {
@@ -136,7 +136,7 @@ public class PurchaseTicketPage extends JPanel {
         // Buy button
         buyButton = new ShadowedButton("Buy");
         buyButton.setEnabled(viewModel.getTotalCost() > 0); // Disable buy button if total cost is $0
-        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
+        buyButton.setFont(new Font("Arial", Font.BOLD, 20));
         buyButton.setPreferredSize(new Dimension(200, 50));
         buyButton.setBackground(new Color(0, 151, 8));
         buyButton.setBorderPainted(false);
@@ -162,7 +162,7 @@ public class PurchaseTicketPage extends JPanel {
      */
     private JLabel createCountLabel(Supplier<Integer> countSupplier) {
         JLabel label = new SuppliedRoundLabel(() -> countSupplier.get().toString());
-        label.setFont(new Font("Serif", Font.BOLD, 20));
+        label.setFont(new Font("Arial", Font.BOLD, 20));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBackground(new Color(255, 255, 255, 255));
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -176,7 +176,7 @@ public class PurchaseTicketPage extends JPanel {
      */
     private JButton createMinusButton() {
         JButton button = new ShadowedButton("-");
-        button.setFont(new Font("Serif", Font.BOLD, 20));
+        button.setFont(new Font("Arial", Font.BOLD, 20));
         button.setBackground(new Color(218, 167, 155));
         return button;
     }
@@ -188,7 +188,7 @@ public class PurchaseTicketPage extends JPanel {
      */
     private JButton createPlusButton() {
         JButton button = new ShadowedButton("+");
-        button.setFont(new Font("Serif", Font.BOLD, 20));
+        button.setFont(new Font("Arial", Font.BOLD, 20));
         button.setBackground(new Color(141, 203, 141));
         return button;
     }
@@ -217,7 +217,7 @@ public class PurchaseTicketPage extends JPanel {
 
         String priceFormatted = String.format("$%.2f", type.getPrice());
         JLabel lab = new JLabel(name + "   " + priceFormatted);
-        lab.setFont(new Font("Serif", Font.BOLD, 25));
+        lab.setFont(new Font("Arial", Font.BOLD, 25));
         lab.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(lab);
         this.add(minusButton);

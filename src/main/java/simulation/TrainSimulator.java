@@ -117,7 +117,7 @@ public class TrainSimulator {
 
             // Record electric use
             if (!wasAtStation) {
-                electricityAccumulator += (passengerNoise.noise(tickNumber / 100.0) + 1.0) * 0.1;
+                electricityAccumulator += (passengerNoise.noise(tickNumber / 100.0) + 1.0) * 0.02;
             }
 
             boolean nowAtStation = train.getPosition().getTrack()
