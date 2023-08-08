@@ -29,8 +29,20 @@ public class Simulation {
      * The train simulator
      */
     private final TrainSimulator trainSimulator;
+
+    /**
+     * Stat data controller
+     */
     private final StatDataController stats;
+
+    /**
+     * Pool of interactors
+     */
     private final InteractorPool pool;
+
+    /**
+     * The tick number
+     */
     private long tickNumber = 0;
 
     /**

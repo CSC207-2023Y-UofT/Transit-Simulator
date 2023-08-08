@@ -39,13 +39,13 @@ public class EntryHierarchy {
 
         // Go through the parents, and set the entry class as a child of each
         // parent. Then, recursively, map the parent.
-        for (Class<?> inter : parents) {
+        for (Class<?> parent : parents) {
 
             // Safe cast, we know that the parent is a stat entry
-            Class<? extends StatEntry> interAsStatEntry = inter.asSubclass(StatEntry.class);
+            Class<? extends StatEntry> interAsStatEntry = parent.asSubclass(StatEntry.class);
 
             // Get the existing children of the parent, and add the entry class
-            Set<Class<? extends StatEntry>> existing = hierarchy.getOrDefault(inter, new HashSet<>());
+            Set<Class<? extends StatEntry>> existing = hierarchy.getOrDefault(parent, new HashSet<>());
             existing.add(entryClass);
             hierarchy.put(interAsStatEntry, existing);
 

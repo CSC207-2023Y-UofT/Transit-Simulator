@@ -23,6 +23,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private final File directory;
 
+    /**
+     * The page size, i.e. the number of entries per file.
+     */
     private final int pageSize = 128;
 
     private static class EntryList extends ArrayList<StatEntry> {
