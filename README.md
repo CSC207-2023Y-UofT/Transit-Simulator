@@ -25,7 +25,7 @@ tickets on a given day, model capacities during specific times, analytics, etc.
 - Amazon Corretto Version 11.0.19
 
 ## Accessibility ##
-- The program is accessible to all users, including those with visual impairments. The map, menu colors and fonts were selected to offer great contrast and readability.
+- The program is accessible to users, including those with visual impairments. The map, menu colors and fonts were selected to offer great contrast and readability.
 - Buttons on the menu are enlarged for size and space.
 
 ## Credits ##
