@@ -28,7 +28,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 /**
- * The bootstrap.Main program that sets up all required classes and executes the program.
+ * The main() containing Main class that sets up all required classes and starts the program.
  * <p>
  * What this should do: TODO
  * <p>

@@ -30,7 +30,7 @@ public class InteractorPool {
      * @param trainInteractor    The TrainInteractor.
      * @param ticketInteractor   The TicketInteractor.
      * @param employeeInteractor The EmployeeInteractor.
-     * @param statInteractor
+     * @param statInteractor     The StatInteractor.
      */
     public InteractorPool(IStationInteractor stationInteractor, ITrainInteractor trainInteractor, ITicketInteractor ticketInteractor, IEmployeeInteractor employeeInteractor, IStatInteractor statInteractor) {
         this.stationInteractor = stationInteractor;

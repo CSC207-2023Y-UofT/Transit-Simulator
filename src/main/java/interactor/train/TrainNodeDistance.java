@@ -3,7 +3,7 @@ package interactor.train;
 import interactor.station.StationState;
 
 /**
- * The TrainNodeDistance dataclass represents the distance between a station and a train.
+ * The TrainNodeDistance data class represents the distance between a station and a train.
  */
 public class TrainNodeDistance {
     /**
