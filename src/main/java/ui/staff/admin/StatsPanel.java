@@ -129,12 +129,11 @@ public class StatsPanel extends JPanel {
      */
     private void refresh() {
         StatsController controller = getController().getControllerPool().getStatController();
-        long ms = System.currentTimeMillis();
+
         switch (display) {
             case REVENUE:
                 controller.getRevenue(horizon.getTimeHorizonMinutes()).thenAccept(viewModel::setAggregates)
                         .thenAccept(t -> repaint())
-                        .thenAccept(t -> System.out.println("Refreshed in " + (System.currentTimeMillis() - ms) + "ms"))
                         .exceptionally(t -> {
                             t.printStackTrace();
                             return null;
