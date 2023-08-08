@@ -10,17 +10,28 @@ import java.util.Optional;
 
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
+    /**
+     * The directory where the employee files are stored
+     */
     private final File directory;
 
+    /**
+     * Creates a new file employee data store
+     * @param directory The directory where the employee files are stored
+     */
     public FileEmployeeDataStore(File directory) {
         this.directory = directory;
         directory.mkdirs();
     }
 
+    /**
+     * Returns the file for the given staff number
+     */
     private File getFile(int staffNumber) {
         return new File(directory, staffNumber + ".staff");
     }
 
+    // Java docs for the following methods are in the interface
     @Override
     public void remove(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
