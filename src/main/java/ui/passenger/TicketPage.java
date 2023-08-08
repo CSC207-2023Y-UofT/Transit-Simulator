@@ -13,7 +13,9 @@ import java.util.List;
  */
 public class TicketPage {
 
+    /** The controller used to switch pages. */
     private final UIController controller;
+
     /** Main frame of the ticket page. */
     private final JFrame frame;
 
