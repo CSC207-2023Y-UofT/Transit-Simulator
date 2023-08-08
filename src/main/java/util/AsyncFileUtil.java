@@ -7,10 +7,9 @@ import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.CompletionHandler;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -43,6 +42,8 @@ public class AsyncFileUtil {
      * The file cache.
      */
     private static final Map<File, CachedFile> CACHE = new HashMap<>();
+
+    private static final ExecutorService WRITER = Executors.newSingleThreadExecutor();
 
     /**
      * Store the given data in the cache for this file
@@ -120,8 +121,8 @@ public class AsyncFileUtil {
 
             AsynchronousFileChannel channel = AsynchronousFileChannel
                     .open(file.toPath(),
-                            StandardOpenOption.WRITE,
-                            StandardOpenOption.CREATE);
+                            Set.of(StandardOpenOption.WRITE, StandardOpenOption.CREATE),
+                            WRITER);
 
             channel.write(data, 0, null, newWriteCompletionHandler(channel, file, operationID));
 
