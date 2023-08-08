@@ -23,15 +23,15 @@ public class Management extends JPanel {
     /**
      * The JPanel that displays the stats.
      */
-    private JPanel statsHolderPanel;
-    private StatsPanel statsPanel1;
-    private StatsPanel statsPanel2;
+    private final JPanel statsHolderPanel;
+    private final StatsPanel statsPanel1;
+    private final StatsPanel statsPanel2;
 
     /**
      * The JPanel that displays the middle panel.
      */
-    private JPanel middlePanel;
-    private JTable table;
+    private final JPanel middlePanel;
+    private final JTable table;
 
     /**
      * Constructs a new Management object.

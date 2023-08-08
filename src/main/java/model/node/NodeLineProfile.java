@@ -131,7 +131,7 @@ public class NodeLineProfile {
                 waitTime += Train.STATION_WAIT_TIME;
             }
 
-            waitTime += trackSegment.getLength() / (double) Train.MAX_SPEED;
+            waitTime += trackSegment.getLength() / Train.MAX_SPEED;
 
             TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
             arrivals.add(arrival);

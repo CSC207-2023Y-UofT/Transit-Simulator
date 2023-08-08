@@ -26,7 +26,8 @@ public class PassengerHomePage extends JPanel {
     /**
      * The buttons on the panel.
      */
-    private JButton buyButton, backButton;
+    private final JButton buyButton;
+    private final JButton backButton;
 
     /**
      * Constructs a new PassengerHomePage with the given UIController.

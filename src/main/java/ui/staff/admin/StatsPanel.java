@@ -78,7 +78,7 @@ public class StatsPanel extends JPanel {
     /**
      * Timer to refresh the statistics periodically.
      */
-    private Timer timer = new Timer(100, e -> this.refresh());
+    private final Timer timer = new Timer(100, e -> this.refresh());
 
     /**
      * Returns the UIController for this panel.

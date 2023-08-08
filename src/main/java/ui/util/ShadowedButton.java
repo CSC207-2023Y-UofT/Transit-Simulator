@@ -10,7 +10,7 @@ public class ShadowedButton extends JButton {
 
     private boolean rounded = true;
 
-    private int shadowThickness = 6;
+    private final int shadowThickness = 6;
 
     /**
      * Constructs a new RoundedButton with the given label.

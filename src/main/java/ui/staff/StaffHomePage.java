@@ -19,7 +19,8 @@ import java.awt.*;
 public class StaffHomePage extends JPanel {
 
     private final UIController controller;
-    private JButton loginButton, backButton;
+    private final JButton loginButton;
+    private final JButton backButton;
     private MapPanel mapPanel;
 
     /**

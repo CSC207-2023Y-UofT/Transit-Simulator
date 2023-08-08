@@ -14,22 +14,22 @@ import java.awt.*;
 public class AddStaff extends JPanel {
 
     /** Controller object to handle UI navigation. */
-    private UIController controller;
+    private final UIController controller;
 
     /** Dropdown menu for selecting the employee type. */
-    private JComboBox<String> employeeTypeDropdown;
+    private final JComboBox<String> employeeTypeDropdown;
 
     /** Text field for entering the staff member's name. */
-    private JTextField nameField;
+    private final JTextField nameField;
 
     /** Text field for entering the staff number. */
-    private JTextField staffNumberField;
+    private final JTextField staffNumberField;
 
     /** Text field for entering the train assigned to the staff member. */
-    private JTextField assignedTrainField;
+    private final JTextField assignedTrainField;
 
     /** Panel that displays the management interface. */
-    private Management managementPanel;
+    private final Management managementPanel;
 
     /**
      * Creates a new AddStaff panel.

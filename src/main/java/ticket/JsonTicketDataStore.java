@@ -8,8 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class facilitates the storage and retrieval of ticket data in JSON format.
+ */
 public class JsonTicketDataStore implements TicketDataStore {
 
+    /**
+     * The directory where the ticket data files are stored.
+     */
     private final File directory;
 
     public JsonTicketDataStore(File directory) {
@@ -17,10 +23,20 @@ public class JsonTicketDataStore implements TicketDataStore {
         directory.mkdirs();
     }
 
+    /**
+     * Returns a file instance pointing to the data file for the given id.
+     * @param id The id of the data.
+     * @return A File instance.
+     */
     public File getFile(int id) {
         return new File(directory, id + ".json");
     }
 
+    /**
+     * Read a ticket from a file.
+     * @param file The file to read from.
+     * @return An optional ticket.
+     */
     private Optional<Ticket> read(File file) {
         if (!file.exists()) return Optional.empty();
         try {
@@ -31,7 +47,7 @@ public class JsonTicketDataStore implements TicketDataStore {
             Ticket ticket = new Ticket(id, type);
             ticket.setActivated(json.getBoolean("activated"));
             ticket.setExpiry(json.getLong("expiry"));
-            ticket.setCreatedAt(json.optLong("createdAt", System.currentTimeMillis()));
+            ticket.setCreatedAt(json.optLong("createdAt", 0));
             return Optional.of(ticket);
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,6 +55,11 @@ public class JsonTicketDataStore implements TicketDataStore {
         }
     }
 
+    /**
+     * Write a ticket to a file.
+     * @param file The file to write to.
+     * @param ticket The ticket to write.
+     */
     public void write(File file, Ticket ticket) {
         try {
             JSONObject json = new JSONObject();
@@ -85,7 +106,7 @@ public class JsonTicketDataStore implements TicketDataStore {
         for (Ticket ticket : getTickets()) {
             if (ticket.getExpiry() != -1 && ticket.getExpiry() < System.currentTimeMillis()) {
                 removeTicket(ticket.getId());
-            } else if (System.currentTimeMillis() - ticket.getCreatedAt() > 1000 * 60 * 60 * 24 * 7) {
+            } else if (System.currentTimeMillis() - ticket.getCreatedAt() > 1000 * 60 * 60 * 24) {
                 removeTicket(ticket.getId());
             }
         }

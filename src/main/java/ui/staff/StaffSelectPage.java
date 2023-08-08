@@ -16,11 +16,14 @@ public class StaffSelectPage extends JPanel {
     /**
      * The label that displays the staff types.
      */
-    private JLabel staffTypeLabel;
+    private final JLabel staffTypeLabel;
     /**
      * The buttons that allow the user to select their staff type.
      */
-    private JButton adminButton, trainEngineerButton, trainOperatorButton, backButton;
+    private final JButton adminButton;
+    private final JButton trainEngineerButton;
+    private final JButton trainOperatorButton;
+    private final JButton backButton;
 
     /**
      * Constructs a new StaffSelectPage object.
