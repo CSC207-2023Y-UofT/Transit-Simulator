@@ -1,16 +1,22 @@
 package util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.CompletionHandler;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.zip.DataFormatException;
+import java.util.zip.Deflater;
 
 /**
  * Utility class for asynchronous file writing.
@@ -163,5 +169,40 @@ public class AsyncFileUtil {
         if (cachedFile.isPresent()) return cachedFile.get().data.asReadOnlyBuffer();
         byte[] data = Files.readAllBytes(file.toPath());
         return ByteBuffer.wrap(data).asReadOnlyBuffer();
+    }
+
+    /**
+     * Utility method to compress data using the deflate algorithm.
+     */
+    public static byte[] compress(byte[] data) throws IOException {
+        Deflater deflater = new Deflater();
+        deflater.setInput(data);
+        deflater.finish();
+        byte[] buffer = new byte[1024];
+        int length;
+        try (var out = new ByteArrayOutputStream()) {
+            while (!deflater.finished()) {
+                length = deflater.deflate(buffer);
+                out.write(buffer, 0, length);
+            }
+            return out.toByteArray();
+        }
+    }
+
+    /**
+     * Utility method to decompress data using the deflate algorithm.
+     */
+    public static byte[] decompress(byte[] data) throws IOException, DataFormatException {
+        var inflater = new java.util.zip.Inflater();
+        inflater.setInput(data);
+        byte[] buffer = new byte[1024];
+        int length;
+        try (var out = new ByteArrayOutputStream()) {
+            while (!inflater.finished()) {
+                length = inflater.inflate(buffer);
+                out.write(buffer, 0, length);
+            }
+            return out.toByteArray();
+        }
     }
 }

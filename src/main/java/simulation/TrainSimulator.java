@@ -164,7 +164,7 @@ public class TrainSimulator {
 
             // Record electric use
             if (!wasAtStation) {
-                double noise = (electricityNoise.noise(tickNumber / 10000.0) + 1.0) * 0.06;
+                double noise = (electricityNoise.noise(tickNumber / 12000.0) + 1.0) * 0.06;
                 electricityAccumulator += noise;
             }
 
@@ -240,7 +240,7 @@ public class TrainSimulator {
 
     private void addWaitingPassengers() {
 
-        double noise = this.passengerNoise.noise(tickNumber / 10000.0);
+        double noise = this.passengerNoise.noise(tickNumber / 12000.0);
         noise += 1.0;
 
 

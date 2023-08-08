@@ -8,6 +8,7 @@ import java.nio.LongBuffer;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.DataFormatException;
 
 /**
  * A utility class for reading and writing page files that store a map
@@ -32,6 +33,12 @@ public class PageFileUtils {
         try {
 
             ByteBuffer buffer = AsyncFileUtil.read(pageFile);
+
+            // Decompress the buffer
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+            bytes = AsyncFileUtil.decompress(bytes);
+            buffer = ByteBuffer.wrap(bytes);
 
             // The first 4 bytes make an integer representing the number of elements
             int numElements = buffer.getInt();
@@ -58,7 +65,7 @@ public class PageFileUtils {
                 return map;
             }
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | DataFormatException e) {
             return new HashMap<>();
         }
     }
@@ -91,6 +98,9 @@ public class PageFileUtils {
             buffer.flip();
             byte[] bytes = new byte[buffer.remaining()];
             buffer.get(bytes);
+
+            // Compress
+            bytes = AsyncFileUtil.compress(bytes);
 
             AsyncFileUtil.write(pageFile, ByteBuffer.wrap(bytes));
 
