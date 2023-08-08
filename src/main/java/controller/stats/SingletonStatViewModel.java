@@ -8,16 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingletonStatViewModel {
-    private List<? extends SingletonAggregate<? extends Number>> aggregates = new ArrayList<>();
-
+    /**
+     * Enum for graph colour
+     */
     public enum GraphColour {
         RED(new Color(160, 0, 21), new Color(160, 55, 55)),
         GREEN(new Color(0, 130, 21), new Color(55, 160, 55)),
         BLUE(Color.BLUE, new Color(100, 100, 255));
 
-        private final Color primary;
-        private final Color secondary;
 
+        /**
+         * The primary colour of the graph, this is the colour of the border and the text
+         */
+        private final Color primary;
+        /**
+         * The secondary colour of the graph, this is the colour of the inside of the graph
+         */
+        private final Color secondary;
         GraphColour(Color primary, Color secondary) {
             this.primary = primary;
             this.secondary = secondary;
@@ -30,22 +37,36 @@ public class SingletonStatViewModel {
         public Color getSecondary() {
             return secondary;
         }
+
     }
 
+    /**
+     * The data the graph will display
+     */
+    private List<? extends SingletonAggregate<? extends Number>> aggregates = new ArrayList<>();
+
+    /**
+     * The colour of the graph.
+     */
     private GraphColour graphColour = GraphColour.BLUE;
 
-    public GraphColour getGraphColour() {
-        return graphColour;
-    }
-
+    /**
+     * Sets the colour of the graph.
+     */
     public void setGraphColour(GraphColour graphColour) {
         this.graphColour = graphColour;
     }
 
+    /**
+     * Sets the data to be displayed in the graph.
+     */
     public void setAggregates(List<? extends SingletonAggregate<? extends Number>> aggregates) {
         this.aggregates = aggregates;
     }
 
+    /**
+     * Draws the graph.
+     */
     public void draw(UIController controller, String display, Graphics2D g, int width, int height) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
@@ -115,6 +136,12 @@ public class SingletonStatViewModel {
         g.setStroke(oldStroke);
     }
 
+    /**
+     * Set the alpha value of a color
+     * @param color The color to set the alpha of
+     * @param alpha The alpha value to set
+     * @return The new color with the alpha value set
+     */
     private Color setAlpha(Color color, int alpha) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
