@@ -43,6 +43,10 @@ public class AsyncFileUtil {
      */
     private static final Map<File, CachedFile> CACHE = new HashMap<>();
 
+    /**
+     * The thread for writing to files. This MUST be a single thread with
+     * this implementation, as writes are not otherwise synchronized.
+     */
     private static final ExecutorService WRITER = Executors.newSingleThreadExecutor();
 
     /**
