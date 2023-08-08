@@ -240,8 +240,9 @@ public class TrainSimulator {
 
     private void addWaitingPassengers() {
 
-        double noise = this.passengerNoise.noise(tickNumber / 400.0);
+        double noise = this.passengerNoise.noise(tickNumber / 10000.0);
         noise += 1.0;
+
 
         int numToAdd = (int) (noise * 10);
         for (int i = 0; i < numToAdd; i++) {
