@@ -1,5 +1,7 @@
 package stats.persistence.impl;
 
+import util.AsyncFileUtil;
+
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
@@ -29,11 +31,7 @@ public class PageFileUtils {
 
         try {
 
-            // Read all the bytes from the page file
-            byte[] bytes = Files.readAllBytes(pageFile.toPath());
-
-            // Wrap it in a byte buffer for easy reading
-            ByteBuffer buffer = ByteBuffer.wrap(bytes);
+            ByteBuffer buffer = AsyncFileUtil.read(pageFile);
 
             // The first 4 bytes make an integer representing the number of elements
             int numElements = buffer.getInt();
@@ -94,7 +92,7 @@ public class PageFileUtils {
             byte[] bytes = new byte[buffer.remaining()];
             buffer.get(bytes);
 
-            Files.write(pageFile.toPath(), bytes);
+            AsyncFileUtil.write(pageFile, ByteBuffer.wrap(bytes));
 
         } catch (IOException e) {
             e.printStackTrace();

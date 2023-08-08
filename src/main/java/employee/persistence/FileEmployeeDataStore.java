@@ -1,8 +1,10 @@
 package employee.persistence;
 
 import employee.Employee;
+import util.AsyncFileUtil;
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +50,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         objectOut.writeObject(employee);
         objectOut.close();
         byte[] data = out.toByteArray();
-        Files.write(file.toPath(), data);
+        AsyncFileUtil.write(file, ByteBuffer.wrap(data));
     }
 
     @Override
@@ -60,8 +62,10 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     private Optional<Employee> read(File file) {
         try {
-            byte[] data = Files.readAllBytes(file.toPath());
-            ByteArrayInputStream in = new ByteArrayInputStream(data);
+            ByteBuffer data = AsyncFileUtil.read(file);
+            byte[] bytes = new byte[data.remaining()];
+            data.get(bytes);
+            ByteArrayInputStream in = new ByteArrayInputStream(bytes);
             return Optional.ofNullable((Employee) new ObjectInputStream(in).readObject());
         } catch (ClassNotFoundException | IOException e) {
             return Optional.empty();

@@ -128,10 +128,13 @@ public class SingletonStatViewModel {
         g.setFont(new Font("Arial", Font.PLAIN, 18));
         metrics = g.getFontMetrics();
         String totalString = String.format("$%,.2f", total);
-        textWidth = metrics.stringWidth(totalString);
+        int numberTextWidth = metrics.stringWidth(totalString);
         textY = height / 6 + 30;
         g.setColor(Color.BLACK);
-        g.drawString(totalString, middle - textWidth / 2, textY);
+        g.drawString(totalString, middle - numberTextWidth / 2, textY);
+
+        g.setStroke(new BasicStroke(3.5F, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g.setColor(Color.DARK_GRAY);
 
         g.setStroke(oldStroke);
     }
