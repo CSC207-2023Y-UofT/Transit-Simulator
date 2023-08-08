@@ -3,6 +3,7 @@ package stats.persistence.impl;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 import stats.persistence.StatEntryDataStore;
+import util.Timing;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -128,6 +129,10 @@ public class FileEntryDataStore implements StatEntryDataStore {
             byPage.put(page, pageIndices);
         }
 
+        Timing timing = new Timing("retrieve indexed");
+        timing.start();
+        timing.mark("Pages: " + byPage.keySet().size());
+
         // Read pages
         Map<Long, List<E>> result = new HashMap<>();
         for (long page : byPage.keySet()) {
@@ -142,6 +147,8 @@ public class FileEntryDataStore implements StatEntryDataStore {
                 }
                 result.put(index, converted);
             }
+
+            timing.mark("page read");
         }
 
         return result;

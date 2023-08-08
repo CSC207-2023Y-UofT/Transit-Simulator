@@ -4,6 +4,7 @@ import interactor.stat.IStatInteractor;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
+import util.Timing;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -184,8 +185,13 @@ public class StatDataController {  // Facade design pattern used!!!
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
 
+        Timing timing = new Timing("getOrAggregate");
+        timing.start();
+
         // Get all of those aggregates
         Map<Long, A> aggregates = getAggregates(entryClass, aggregateClass, startIndex, endIndexInclusive);
+
+        timing.mark("getAggregates");
 
         // Accumulate all the indices that don't exist
         List<Long> missingIndices = new ArrayList<>();
@@ -193,6 +199,8 @@ public class StatDataController {  // Facade design pattern used!!!
             if (aggregates.containsKey(index)) continue;
             missingIndices.add(index);
         }
+
+        timing.mark("missingIndices");
 
         // If there are indeed missing indices, aggregate them if
         // possible and store them
@@ -208,6 +216,8 @@ public class StatDataController {  // Facade design pattern used!!!
                     // Get the entries
                     Map<Long, ? extends List<? extends E>> retrievedEntries =
                             entryDataStore.retrieve(missingIndices, inheritor);
+
+                    timing.mark("retrieveEntries");
 
                     // Merge them into the map
                     retrievedEntries.forEach((index, list) -> {
@@ -232,6 +242,7 @@ public class StatDataController {  // Facade design pattern used!!!
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                timing.mark("aggregate + store");
             }
 
         }
