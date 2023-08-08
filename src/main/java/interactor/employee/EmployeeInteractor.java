@@ -14,8 +14,8 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     private final EmployeeTracker tracker;
     private final TransitModel model;
 
-    public EmployeeInteractor(EmployeeTracker track, TransitModel model){
-        this.tracker = track;
+    public EmployeeInteractor(EmployeeTracker tracker, TransitModel model){
+        this.tracker = tracker;
         this.model = model;
     }
 

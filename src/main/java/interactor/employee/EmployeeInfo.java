@@ -27,8 +27,6 @@ public class EmployeeInfo {
      *
      * @param staffNumber The staff number of the employee
      * @param type        The type of the employee
-     * @param job         The job of the employee
-     * @param trainName   The name of the train they are working on
      * @param assignment  The assignment of the employee, if any
      */
     public EmployeeInfo(int staffNumber, EmployeeType type, EmployeeAssignment assignment) {
