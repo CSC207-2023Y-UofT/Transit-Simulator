@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * File data store for employees.
+ */
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
