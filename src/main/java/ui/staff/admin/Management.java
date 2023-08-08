@@ -117,7 +117,6 @@ public class Management extends JPanel {
         JTableHeader header = table.getTableHeader();
         header.setFont(headerFont);
 
-
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
