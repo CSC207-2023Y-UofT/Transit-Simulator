@@ -11,11 +11,10 @@ class EntryHierarchyTest {
     public interface TestEntry extends StatEntry {}
     public interface TestSubEntry extends TestEntry {}
     public interface TestSubEntry2 extends TestEntry {}
-    public class TestEntryImpl implements TestEntry {}
-    public class TestSubEntryImpl implements TestSubEntry {}
-    public class TestSubEntryImpl2 extends TestEntryImpl {}
-
-    public class TestDoubleInheritance implements TestSubEntry, TestSubEntry2 {}
+    public static class TestEntryImpl implements TestEntry {}
+    public static class TestSubEntryImpl implements TestSubEntry {}
+    public static class TestSubEntryImpl2 extends TestEntryImpl {}
+    public static class TestDoubleInheritance implements TestSubEntry, TestSubEntry2 {}
 
     @Test
     public void testHierarchy() {

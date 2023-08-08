@@ -158,7 +158,7 @@ public class TrainPositionTest {
         Assertions.assertSame(track1, trainPosition2.getTrack());
     }
 
-    @DisplayName("TrainPositiionTest Class Teardown")
+    @DisplayName("TrainPositionTest Class Teardown")
     @AfterAll
     public static void tearDown() {
         track1 = null;

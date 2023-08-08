@@ -78,6 +78,8 @@ public class TransitMapPresenter {
         this.width = width;
         this.height = height;
 
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         List<Color> lineColours = new ArrayList<>();
         lineColours.add(new Color(255, 206, 47));
         lineColours.add(new Color(113, 194, 113));
@@ -139,7 +141,7 @@ public class TransitMapPresenter {
                     STATION_ICON_SIZE * 2);
 
             // Draw their name to the upper-right
-            graphics.setFont(new Font("Serif", Font.BOLD, 12));
+            graphics.setFont(new Font("Arial", Font.BOLD, 12));
             AffineTransform transform = graphics.getTransform();
             graphics.transform(AffineTransform.getRotateInstance(-Math.PI / 4, x, y));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE + 5, y + STATION_ICON_SIZE / 2);
@@ -168,7 +170,7 @@ public class TransitMapPresenter {
                 graphics.drawOval((int) stationX - 3, (int) stationY - 3, 8, 8);
 
                 // Draw the train's name
-                graphics.setFont(new Font("Serif", Font.PLAIN, 12));
+                graphics.setFont(new Font("Arial", Font.PLAIN, 12));
                 graphics.drawString(train.getName(), (int) stationX + 5, (int) stationY - 5);
 
                 continue;
@@ -211,7 +213,7 @@ public class TransitMapPresenter {
             graphics.drawOval((int) trainX - 3, (int) trainY - 3, 8, 8);
 
             // Train's name
-            graphics.setFont(new Font("Serif", Font.PLAIN, 10));
+            graphics.setFont(new Font("Arial", Font.PLAIN, 10));
             graphics.drawString(train.getName(), (int) trainX + 6, (int) trainY - 6);
         }
     }

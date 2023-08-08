@@ -1,11 +1,19 @@
 package simulation;
 
-import interactor.stat.IStatInteractor;
 import main.InteractorPool;
 import model.control.TransitModel;
-import model.train.Train;
+import model.train.Passenger;
 import stats.persistence.StatDataController;
+import ticket.Ticket;
+import ticket.TicketType;
+import util.PerlinNoise;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class performs the basic simulation functionalities needed for the program.
+ */
 public class Simulation {
     /**
      * Number of ticks per second
@@ -21,11 +29,20 @@ public class Simulation {
      * The train simulator
      */
     private final TrainSimulator trainSimulator;
+
+    /**
+     * Stat data controller
+     */
     private final StatDataController stats;
+
+    /**
+     * Pool of interactors
+     */
     private final InteractorPool pool;
 
-    private long lastStatSave = System.currentTimeMillis();
-
+    /**
+     * The tick number
+     */
     private long tickNumber = 0;
 
     /**
@@ -71,9 +88,8 @@ public class Simulation {
 
         trainSimulator.tick(model);
 
-        if (System.currentTimeMillis() - lastStatSave > IStatInteractor.TIME_INTERVAL) {
-            stats.flush(System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL);
-            lastStatSave = System.currentTimeMillis();
+        if (stats.shouldFlush()) {
+            stats.flush();
         }
 
         if (tickNumber % 50 == 0) {
@@ -81,6 +97,7 @@ public class Simulation {
         }
 
         tickNumber++;
+
     }
 
 }

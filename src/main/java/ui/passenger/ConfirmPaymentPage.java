@@ -37,16 +37,16 @@ public class ConfirmPaymentPage extends JPanel {
 
         // Create the header label
         JLabel headerLabel = new JLabel("Confirm Payment?", SwingConstants.CENTER);
-        headerLabel.setFont(new Font("Serif", Font.BOLD, 32));
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         // Create the total cost label
         JLabel totalCostLabel = new JLabel("Total Cost: $" + String.format("%.2f", viewModel.getTotalCost()));
-        totalCostLabel.setFont(new Font("Serif", Font.BOLD, 28));
+        totalCostLabel.setFont(new Font("Arial", Font.BOLD, 28));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create the confirm button
         JButton confirmButton = new ShadowedButton("Confirm");
-        confirmButton.setFont(new Font("Serif", Font.BOLD, 28));
+        confirmButton.setFont(new Font("Arial", Font.BOLD, 28));
         confirmButton.setPreferredSize(new Dimension(150, 50));
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmButton.setBackground(new Color(0, 151, 8));
@@ -63,7 +63,7 @@ public class ConfirmPaymentPage extends JPanel {
 
         // Create the cancel button
         JButton cancelButton = new ShadowedButton("Cancel");
-        cancelButton.setFont(new Font("Serif", Font.BOLD, 28));
+        cancelButton.setFont(new Font("Arial", Font.BOLD, 28));
         cancelButton.setPreferredSize(new Dimension(150, 50));
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cancelButton.setBackground(new Color(172, 64, 58));

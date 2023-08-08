@@ -15,7 +15,7 @@ public class TicketPage {
 
     private final UIController controller;
     /** Main frame of the ticket page. */
-    private JFrame frame;
+    private final JFrame frame;
 
     /** Panel to represent a single ticket. */
     private JPanel panel;

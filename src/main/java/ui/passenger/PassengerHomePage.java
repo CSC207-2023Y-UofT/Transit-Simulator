@@ -26,7 +26,8 @@ public class PassengerHomePage extends JPanel {
     /**
      * The buttons on the panel.
      */
-    private JButton buyButton, backButton;
+    private final JButton buyButton;
+    private final JButton backButton;
 
     /**
      * Constructs a new PassengerHomePage with the given UIController.
@@ -43,14 +44,14 @@ public class PassengerHomePage extends JPanel {
         buyButton.setForeground(Color.WHITE);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(0, 151, 8));
-        buyButton.setFont(new Font("Serif", Font.BOLD, 20));
+        buyButton.setFont(new Font("Arial", Font.BOLD, 20));
         buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
 
         // Back button
         backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(new Font("Serif", Font.BOLD, 20));
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
         backButton.addActionListener(e -> controller.open(new WelcomePage(controller)));
 
 
@@ -63,9 +64,6 @@ public class PassengerHomePage extends JPanel {
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );
-        /**
-         * The map panel on the panel.
-         */
         MapPanel mapPanel = new MapPanel(presenter);
 
         JPanel marginPanel = new JPanel(new BorderLayout());

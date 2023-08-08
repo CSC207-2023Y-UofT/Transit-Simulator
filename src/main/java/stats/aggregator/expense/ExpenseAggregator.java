@@ -12,7 +12,7 @@ public class ExpenseAggregator extends SingletonAggregator<ExpenseStat, ExpenseA
     /**
      * Constructor for ExpenseAggregator.
      * This constructs an ExpenseAggregator with defined aggregation and combination logic for ExpenseStat and ExpenseAggregate.
-     *
+     * <p>
      * The aggregation logic is defined by creating a new ExpenseAggregate from an ExpenseStat.
      * The combination logic is defined by adding the values of two ExpenseAggregates.
      */

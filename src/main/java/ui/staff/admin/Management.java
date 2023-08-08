@@ -1,5 +1,6 @@
 package ui.staff.admin;
 
+import controller.stats.SingletonStatViewModel;
 import ui.UIController;
 import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
@@ -22,15 +23,15 @@ public class Management extends JPanel {
     /**
      * The JPanel that displays the stats.
      */
-    private JPanel statsHolderPanel;
-    private StatsPanel statsPanel1;
-    private StatsPanel statsPanel2;
+    private final JPanel statsHolderPanel;
+    private final StatsPanel statsPanel1;
+    private final StatsPanel statsPanel2;
 
     /**
      * The JPanel that displays the middle panel.
      */
-    private JPanel middlePanel;
-    private JTable table;
+    private final JPanel middlePanel;
+    private final JTable table;
 
     /**
      * Constructs a new Management object.
@@ -47,13 +48,13 @@ public class Management extends JPanel {
         JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        homeButton.setFont(new Font("Serif", Font.BOLD, 20));
+        homeButton.setFont(new Font("Arial", Font.BOLD, 20));
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
         int id = 322; // TODO: should be .getId()
         JLabel idLabel = new JLabel("Admin " + id, SwingConstants.CENTER);
-        idLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
 
@@ -95,12 +96,12 @@ public class Management extends JPanel {
         // Adjusting the table look
         table.setRowHeight(30);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        Font tableFont = new Font("Serif", Font.PLAIN, 16);
+        Font tableFont = new Font("Arial", Font.PLAIN, 16);
         table.setFont(tableFont);
         table.setRowHeight(30);
         table.setGridColor(new Color(221, 221, 221));
         table.setShowGrid(true);
-        Font headerFont = new Font("Serif", Font.BOLD, 18);
+        Font headerFont = new Font("Arial", Font.BOLD, 18);
         JTableHeader header = table.getTableHeader();
         header.setFont(headerFont);
 
@@ -112,14 +113,14 @@ public class Management extends JPanel {
         // Add staff button
         JButton addStaffButton = new ShadowedButton("Add Staff");
         addStaffButton.setBackground(new Color(201, 153, 222));
-        addStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
+        addStaffButton.setFont(new Font("Arial", Font.BOLD, 20));
         addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller, this)); }
         );
 
         // Remove staff button
         JButton removeStaffButton = new ShadowedButton("Remove Staff");
         removeStaffButton.setBackground(new Color(201, 153, 222));
-        removeStaffButton.setFont(new Font("Serif", Font.BOLD, 20));
+        removeStaffButton.setFont(new Font("Arial", Font.BOLD, 20));
         removeStaffButton.addActionListener(e -> removeSelectedStaff());
 
         middlePanel.add(new JLabel("    "), BorderLayout.NORTH);
@@ -138,11 +139,13 @@ public class Management extends JPanel {
         ShadowPanel statPanel1 = new ShadowPanel(new BorderLayout());
         statPanel1.setExtraInset(10);
         statsPanel1 = new StatsPanel(controller);
+        statsPanel1.getViewModel().setGraphColour(SingletonStatViewModel.GraphColour.GREEN);
         statPanel1.add(statsPanel1);
 
         ShadowPanel statPanel2 = new ShadowPanel(new BorderLayout());
         statPanel2.setExtraInset(10);
         statsPanel2 = new StatsPanel(controller);
+        statsPanel2.getViewModel().setGraphColour(SingletonStatViewModel.GraphColour.RED);
         statsPanel2.setDisplay(StatsPanel.StatDisplay.EXPENSES);
         statPanel2.add(statsPanel2);
 
@@ -155,12 +158,12 @@ public class Management extends JPanel {
         JButton managementButton = new JButton("Manage");
         managementButton.setBackground(new Color(189, 87, 231));
         managementButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        managementButton.setFont(new Font("Serif", Font.BOLD, 20));
+        managementButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         JButton statButton = new JButton("Statistics");
         statButton.setBackground(new Color(224, 224, 224));
         statButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        statButton.setFont(new Font("Serif", Font.BOLD, 20));
+        statButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         managementButton.addActionListener(e -> {
             remove(statsHolderPanel);

@@ -19,7 +19,8 @@ import java.awt.*;
 public class StaffHomePage extends JPanel {
 
     private final UIController controller;
-    private JButton loginButton, backButton;
+    private final JButton loginButton;
+    private final JButton backButton;
     private MapPanel mapPanel;
 
     /**
@@ -36,7 +37,7 @@ public class StaffHomePage extends JPanel {
         loginButton = new ShadowedButton("Log In");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setBackground(new Color(0, 151, 8));
-        loginButton.setFont(new Font("Serif", Font.BOLD, 20));
+        loginButton.setFont(new Font("Arial", Font.BOLD, 20));
         loginButton.addActionListener(e -> {
             controller.open(new StaffSelectPage(controller));
         });
@@ -46,7 +47,7 @@ public class StaffHomePage extends JPanel {
         backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
-        backButton.setFont(new Font("Serif", Font.BOLD, 20));
+        backButton.setFont(new Font("Arial", Font.BOLD, 20));
         backButton.addActionListener(e -> {
             controller.open(new WelcomePage(controller));
         });

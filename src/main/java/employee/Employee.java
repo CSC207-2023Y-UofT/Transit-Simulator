@@ -28,6 +28,9 @@ public abstract class Employee {
      */
     protected boolean isPaid = false;
 
+    /**
+     * The assignment of this employee.
+     */
     private EmployeeAssignment trainAssignment = null;
 
     /**
@@ -75,12 +78,16 @@ public abstract class Employee {
 
     /**
      * Returns the assignment of this employee.
-     * @return
+     * @return The assignment of this employee.
      */
     public Optional<EmployeeAssignment> getAssignment() {
         return Optional.ofNullable(trainAssignment);
     }
 
+    /**
+     * Sets the assignment of this employee.
+     * @param trainAssignment The new assignment of this employee.
+     */
     public void setAssignment(EmployeeAssignment trainAssignment) {
         this.trainAssignment = trainAssignment;
     }

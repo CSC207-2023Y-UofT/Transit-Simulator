@@ -11,8 +11,8 @@ import model.node.NodeTracker;
 import java.util.*;
 
 /**
- * The TransitTracker class implements NodeTracker and TrainTracker interfaces.
- * It maintains lists of Train objects and Node objects, and provides functionality to create nodes and trains.
+ * This class is the basis for representing the transit system and its state.
+ * It contains the list of trains, the map of nodes, and the track repository.
  */
 public class TransitModel implements NodeTracker, TrainTracker {
 

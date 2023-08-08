@@ -11,8 +11,6 @@ import javax.swing.*;
 public class MainScreen extends JFrame {
     /**
      * Constructs a new MainScreen object.
-     *
-     * @param UIController the controller used to switch panels
      */
     public MainScreen() {
         super("Transit Simulator");

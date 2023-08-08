@@ -54,7 +54,7 @@ public class TransitMapPagePresenter extends TransitMapPresenter {
     }
 
     /**
-     * Retrieves information about the currently selected station.
+     * Stores information about the currently selected station.
      *
      * @param station The currently selected station's StationState.
      */
@@ -66,6 +66,7 @@ public class TransitMapPagePresenter extends TransitMapPresenter {
 
         for (int line : station.getLines()) {
             Map<Direction, Long> delays = new HashMap<>();
+
             Optional<Long> arrivalDelayForward = stationInteractor.getTimeTillNextArrival(
                     station.getName(),
                     line,

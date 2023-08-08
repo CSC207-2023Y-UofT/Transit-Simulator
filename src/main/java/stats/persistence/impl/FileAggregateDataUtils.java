@@ -20,6 +20,9 @@ public class FileAggregateDataUtils implements StatAggregateDataStore {
      */
     private final File directory;
 
+    /**
+     * The page size, i.e. the number of aggregates per file.
+     */
     private final int pageSize = 256;
 
     /**

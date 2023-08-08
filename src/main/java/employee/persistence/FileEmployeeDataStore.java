@@ -1,8 +1,10 @@
 package employee.persistence;
 
 import employee.Employee;
+import util.AsyncFileUtil;
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +12,28 @@ import java.util.Optional;
 
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
+    /**
+     * The directory where the employee files are stored
+     */
     private final File directory;
 
+    /**
+     * Creates a new file employee data store
+     * @param directory The directory where the employee files are stored
+     */
     public FileEmployeeDataStore(File directory) {
         this.directory = directory;
         directory.mkdirs();
     }
 
+    /**
+     * Returns the file for the given staff number
+     */
     private File getFile(int staffNumber) {
         return new File(directory, staffNumber + ".staff");
     }
 
+    // Java docs for the following methods are in the interface
     @Override
     public void remove(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
@@ -37,7 +50,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         objectOut.writeObject(employee);
         objectOut.close();
         byte[] data = out.toByteArray();
-        Files.write(file.toPath(), data);
+        AsyncFileUtil.write(file, ByteBuffer.wrap(data));
     }
 
     @Override
@@ -49,8 +62,10 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     private Optional<Employee> read(File file) {
         try {
-            byte[] data = Files.readAllBytes(file.toPath());
-            ByteArrayInputStream in = new ByteArrayInputStream(data);
+            ByteBuffer data = AsyncFileUtil.read(file);
+            byte[] bytes = new byte[data.remaining()];
+            data.get(bytes);
+            ByteArrayInputStream in = new ByteArrayInputStream(bytes);
             return Optional.ofNullable((Employee) new ObjectInputStream(in).readObject());
         } catch (ClassNotFoundException | IOException e) {
             return Optional.empty();

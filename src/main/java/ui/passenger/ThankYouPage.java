@@ -25,23 +25,23 @@ public class ThankYouPage extends JPanel {
     public ThankYouPage(UIController controller, List<TicketViewModel> tickets) {
 
         JLabel label1 = new JLabel("Thank you for your purchase.", SwingConstants.CENTER);
-        label1.setFont(new Font("Serif", Font.BOLD, 28));
+        label1.setFont(new Font("Arial", Font.BOLD, 28));
 
         JLabel label2 = new JLabel(
                 "Please activate your ticket(s) before boarding. " +
                 "Tickets are valid for 2 hours upon activation.", SwingConstants.CENTER
         );
-        label2.setFont(new Font("Serif", Font.BOLD, 28));
+        label2.setFont(new Font("Arial", Font.BOLD, 28));
 
         JLabel label3 = new JLabel(
                 "You will be redirected to the home page. Do not close your tickets tab.",
                 SwingConstants.CENTER
         );
-        label3.setFont(new Font("Serif", Font.BOLD, 28));
+        label3.setFont(new Font("Arial", Font.BOLD, 28));
 
         JButton openButton = new ShadowedButton("Open Ticket(s)");
         openButton.setPreferredSize(new Dimension(200, 50));
-        openButton.setFont(new Font("Serif", Font.BOLD, 25));
+        openButton.setFont(new Font("Arial", Font.BOLD, 25));
         openButton.addActionListener(e -> {
             new TicketPage(controller, tickets);
             controller.open(new PassengerHomePage(controller));

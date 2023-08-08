@@ -32,13 +32,13 @@ public class EngineerMaintenance extends JPanel {
         JButton homeButton = new ShadowedButton("Home");
         homeButton.setBackground(new Color(210, 207, 206));
         homeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        homeButton.setFont(new Font("Serif", Font.BOLD, 20));
+        homeButton.setFont(new Font("Arial", Font.BOLD, 20));
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
         int id = 322; // TODO: should be .getId()
         JLabel idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
-        idLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
 
@@ -75,7 +75,7 @@ public class EngineerMaintenance extends JPanel {
         JTable table = new JTable(model);
 
         // Set table properties
-        table.setFont(new Font("Serif", Font.PLAIN, 20));
+        table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
         table.setGridColor(Color.DARK_GRAY);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -98,14 +98,14 @@ public class EngineerMaintenance extends JPanel {
         JButton routeButton = new ShadowedButton("Assigned Route");
         routeButton.setBackground(new Color(136, 203, 194));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        routeButton.setFont(new Font("Serif", Font.BOLD, 20));
+        routeButton.setFont(new Font("Arial", Font.BOLD, 20));
         routeButton.addActionListener(e -> controller.open(new EngineerRoute(controller)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance Status");
         maintenanceButton.setBackground(new Color(57, 210, 190));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        maintenanceButton.setFont(new Font("Serif", Font.BOLD, 20));
+        maintenanceButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);

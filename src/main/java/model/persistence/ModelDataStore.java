@@ -19,7 +19,7 @@ public interface ModelDataStore {
      * Writes the model to the data store.  TODO: we don't need this since we do not support changing the model in
      *                                            editor anyways; there wouldn't be any difference to write
      * @param model The TransitModel object representing the model.
-     * @throws IOException
+     * @throws IOException If an I/O error occurs
      */
     void writeModel(TransitModel model) throws IOException;
 }
