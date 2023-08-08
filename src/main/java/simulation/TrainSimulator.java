@@ -193,7 +193,7 @@ public class TrainSimulator {
 
     private void addWaitingPassengers() {
 
-        double noise = this.passengerNoise.noise(tickNumber / 100.0);
+        double noise = this.passengerNoise.noise(tickNumber / 400.0);
         noise += 1.0;
 
         int numToAdd = (int) (noise * 10);
@@ -212,9 +212,5 @@ public class TrainSimulator {
             waitingPassengers.add(new Passenger(ticket, (int) (Math.random() * 4)));
         }
 
-    }
-
-    public static void main(String[] args) {
-        PerlinNoise noise = new PerlinNoise(123, 256);
     }
 }
