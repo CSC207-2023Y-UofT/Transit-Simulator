@@ -64,9 +64,6 @@ public class PassengerHomePage extends JPanel {
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );
-        /**
-         * The map panel on the panel.
-         */
         MapPanel mapPanel = new MapPanel(presenter);
 
         JPanel marginPanel = new JPanel(new BorderLayout());

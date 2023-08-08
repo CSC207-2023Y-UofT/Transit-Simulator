@@ -2,7 +2,7 @@ package util;
 
 /**
  * A utility class that provides methods for precondition checking.
- *
+ * <p>
  * These methods are useful for preventing errors and bugs due to invalid
  * arguments or illegal states.
  */

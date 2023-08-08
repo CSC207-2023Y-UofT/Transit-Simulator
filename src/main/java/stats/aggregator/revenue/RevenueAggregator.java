@@ -12,7 +12,7 @@ public class RevenueAggregator extends SingletonAggregator<RevenueStat, RevenueA
     /**
      * Constructor for RevenueAggregator.
      * This constructs a RevenueAggregator with defined aggregation and combination logic for RevenueStat and RevenueAggregate.
-     *
+     * <p>
      * The aggregation logic is defined by creating a new RevenueAggregate from a RevenueStat.
      * The combination logic is defined by adding the values of two RevenueAggregates.
      */
