@@ -18,10 +18,7 @@ public class EmployeeController {
         return interactor.getEmployeeInfo(staffNumber);
     }
 
-
     public EmployeeDTO registerEmployee(String name, EmployeeType type) throws EmployeeRegistrationException {
-        return interactor.registerEmployee(
-                new RegisterEmployeeRequest(type)
-        );
+        return interactor.registerEmployee(new RegisterEmployeeRequest(type, name));
     }
 }

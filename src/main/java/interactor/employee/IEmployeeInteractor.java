@@ -1,5 +1,6 @@
 package interactor.employee;
 
+import controller.employee.EmployeeRegistrationException;
 import model.train.TrainRole;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public interface IEmployeeInteractor {
      *
      * @param requestModel The request model.
      * @return An EmployeeInfo object representing the newly registered employee.
-     * @throws IllegalArgumentException If an employee with the same staff number already exists.
+     * @throws EmployeeRegistrationException If an employee with the same staff number already exists.
      */
-    EmployeeDTO registerEmployee(RegisterEmployeeRequest requestModel) throws IllegalArgumentException;
+    EmployeeDTO registerEmployee(RegisterEmployeeRequest requestModel) throws EmployeeRegistrationException;
 
     /**
      * Get the employee info of an employee.

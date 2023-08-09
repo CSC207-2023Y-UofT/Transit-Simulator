@@ -11,12 +11,19 @@ public class RegisterEmployeeRequest {
     public final EmployeeType type;
 
     /**
+     * The name of the employee
+     */
+    public final String name;
+
+    /**
      * Create a new RegisterEmployeeRequest object
      *
      * @param type The type of the employee
+     * @param name
      */
-    public RegisterEmployeeRequest(EmployeeType type) {
+    public RegisterEmployeeRequest(EmployeeType type, String name) {
         this.type = type;
+        this.name = name;
     }
 
     /**
@@ -26,5 +33,12 @@ public class RegisterEmployeeRequest {
      */
     public EmployeeType getType() {
         return type;
+    }
+
+    /**
+     * Get the name of the employee
+     */
+    public String getName() {
+        return name;
     }
 }

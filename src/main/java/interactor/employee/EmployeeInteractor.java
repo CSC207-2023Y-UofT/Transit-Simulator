@@ -24,15 +24,15 @@ public class EmployeeInteractor implements IEmployeeInteractor {
             case ENGINEER:
                 TrainEngineer eng = new TrainEngineer(ThreadLocalRandom.current().nextInt(999999999));
                 tracker.addEmployee(eng);
-                return toInfo(eng);
+                return toDTO(eng);
             case OPERATOR:
                 TrainOperator ope = new TrainOperator(ThreadLocalRandom.current().nextInt(999999999));
                 tracker.addEmployee(ope);
-                return toInfo(ope);
+                return toDTO(ope);
             case ADMINISTRATOR:
                 Admin adm = new Admin(ThreadLocalRandom.current().nextInt(999999999));
                 tracker.addEmployee(adm);
-                return toInfo(adm);
+                return toDTO(adm);
         }
         return null;
     }
@@ -42,7 +42,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         Employee employee = tracker.getEmployee(staffNumber)
                 .orElse(null);
         if (employee == null) return Optional.empty();
-        return Optional.of(toInfo(employee));
+        return Optional.of(toDTO(employee));
     }
 
     @Override
@@ -95,14 +95,14 @@ public class EmployeeInteractor implements IEmployeeInteractor {
             if (assignment.isEmpty()) continue;
             String name = assignment.get().getTrainName();
             if (name.equals(trainName)) {
-                assigned.add(toInfo(employee));
+                assigned.add(toDTO(employee));
             }
         }
 
         return assigned;
     }
 
-    private EmployeeDTO toInfo(Employee employee) {
+    private EmployeeDTO toDTO(Employee employee) {
         EmployeeAssignment assignment = employee.getAssignment().orElse(null);
         if (assignment != null) {
             if (model.getTrain(assignment.getTrainName()) == null) {
@@ -110,6 +110,6 @@ public class EmployeeInteractor implements IEmployeeInteractor {
             }
         }
 
-        return new EmployeeDTO(employee.getStaffNumber(), name, employee.getEmployeeType(), assignment);
+        return new EmployeeDTO(employee.getStaffNumber(), employee.getName(), employee.getEmployeeType(), assignment);
     }
 }

@@ -79,6 +79,13 @@ public abstract class Employee {
         return staffNumber;
     }
 
+    /**
+     * Returns the name of this employee.
+     */
+    public String getName() {
+        return name;
+    }
+
     public abstract EmployeeType getEmployeeType();
 
     /**
