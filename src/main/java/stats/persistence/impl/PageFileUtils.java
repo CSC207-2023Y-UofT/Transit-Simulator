@@ -69,8 +69,6 @@ public class PageFileUtils {
 
         try {
 
-            pageFile.createNewFile();
-
             // The reverse of the reading process
 
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();

@@ -136,4 +136,16 @@ public class AsyncWriteIOProvider implements FileIOProvider {
     public String readString(File file) throws IOException {
         return new String(read(file));
     }
+
+    @Override
+    public boolean exists(File file) {
+        boolean cached;
+        LOCK.lock();
+        try {
+             cached = CACHE.containsKey(file);
+        } finally {
+            LOCK.unlock();
+        }
+        return cached || file.exists();
+    }
 }

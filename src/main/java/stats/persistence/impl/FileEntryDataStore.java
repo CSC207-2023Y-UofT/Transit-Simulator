@@ -1,5 +1,6 @@
 package stats.persistence.impl;
 
+import main.DataStorage;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 import stats.persistence.StatEntryDataStore;
@@ -185,7 +186,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     @Override
     public EntryHierarchy retrieveHierarchy() {
         File file = new File(directory, "hierarchy-leaves.txt");
-        if (!file.exists()) {
+        if (!DataStorage.getIO().exists(file)) {
             return new EntryHierarchy();
         }
         try {

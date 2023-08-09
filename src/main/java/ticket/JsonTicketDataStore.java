@@ -41,7 +41,7 @@ public class JsonTicketDataStore implements TicketDataStore {
      * @return An optional ticket.
      */
     private Optional<Ticket> read(File file) {
-        if (!file.exists()) return Optional.empty();
+        if (!DataStorage.getIO().exists(file)) return Optional.empty();
         try {
             String text = DataStorage.getIO().readString(file);
             JSONObject json = new JSONObject(text);
