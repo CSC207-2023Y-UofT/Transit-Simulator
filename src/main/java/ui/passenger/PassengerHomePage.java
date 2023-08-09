@@ -76,18 +76,14 @@ public class PassengerHomePage extends JPanel {
 
         marginPanel.setBorder(BorderFactory.createEmptyBorder(35, 35, 35, 35));
         marginPanel.setBackground(new Color(230, 230, 230));
-
         shadowPanel.add(mapPanel, BorderLayout.CENTER);
         marginPanel.add(shadowPanel, BorderLayout.CENTER);
-
         this.add(marginPanel);
 
         JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
-
         bottomPanel.add(backButton, BorderLayout.WEST);
         bottomPanel.add(new JLabel(""));
         bottomPanel.add(buyButton, BorderLayout.EAST);
-
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
