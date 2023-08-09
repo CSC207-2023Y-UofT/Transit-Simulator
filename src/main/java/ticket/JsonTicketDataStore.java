@@ -25,6 +25,7 @@ public class JsonTicketDataStore implements TicketDataStore {
 
     /**
      * Returns a file instance pointing to the data file for the given id.
+     *
      * @param id The id of the data.
      * @return A File instance.
      */
@@ -34,6 +35,7 @@ public class JsonTicketDataStore implements TicketDataStore {
 
     /**
      * Read a ticket from a file.
+     *
      * @param file The file to read from.
      * @return An optional ticket.
      */
@@ -57,7 +59,8 @@ public class JsonTicketDataStore implements TicketDataStore {
 
     /**
      * Write a ticket to a file.
-     * @param file The file to write to.
+     *
+     * @param file   The file to write to.
      * @param ticket The ticket to write.
      */
     public void write(File file, Ticket ticket) {
