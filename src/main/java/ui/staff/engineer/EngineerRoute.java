@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * EngineerRoute is a JPanel that displays the route that the staff is assigned to.
+ * EngineerRoute is a JPanel that displays the route that the engineer is assigned to.
  * It is used by the UIController.
  *
  * @see UIController
