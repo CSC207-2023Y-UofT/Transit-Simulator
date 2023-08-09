@@ -117,22 +117,14 @@ public class NodeLineProfile {
 
         double waitTime = 0;
 
-
         for (TrackSegment trackSegment : trackSegments) {
-            if (trackSegment.getTrain() == null) continue;
             if (arrivals.size() >= numTrains) break;
 
-            Train train = trackSegment.getTrain();
-
-            // Calculate the added wait time
-            if (trackSegment.getNode().isPresent()) {
-                // The train will probably stop here, so add the extra
-                // time that will be spent at the node/station
-                waitTime += Train.STATION_WAIT_TIME;
-            }
 
             waitTime += trackSegment.getLength() / Train.MAX_SPEED;
+            if (trackSegment.getTrain() == null) continue;
 
+            Train train = trackSegment.getTrain();
             TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
             arrivals.add(arrival);
         }

@@ -242,6 +242,12 @@ public class TransitMapViewModel {
         return Optional.empty();
     }
 
+    public Optional<ArrivalsViewModel> getArrivals(int x, int y) {
+        StationDTO dto = getStationAt(x, y).orElse(null);
+        if (dto == null) return Optional.empty();
+        return Optional.of(new ArrivalsViewModel(dto, stationInteractor));
+    }
+
     /**
      * Called when the mouse moves.
      *
