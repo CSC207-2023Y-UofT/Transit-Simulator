@@ -1,12 +1,12 @@
 package model.control;
 
 import model.Direction;
-import model.train.*;
-import model.train.track.TrackSegment;
-import org.jetbrains.annotations.Nullable;
 import model.node.Node;
 import model.node.NodeFactory;
 import model.node.NodeTracker;
+import model.train.*;
+import model.train.track.TrackSegment;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 

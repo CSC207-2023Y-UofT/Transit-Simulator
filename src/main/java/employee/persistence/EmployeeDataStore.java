@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface EmployeeDataStore {
     /**
      * Removes an employee
+     *
      * @param staffNumber The staff number of the employee to remove
      * @throws IOException If an I/O error occurs
      */
@@ -19,6 +20,7 @@ public interface EmployeeDataStore {
 
     /**
      * Saves an employee
+     *
      * @param employee The employee to save
      * @throws IOException If an I/O error occurs
      */
@@ -26,6 +28,7 @@ public interface EmployeeDataStore {
 
     /**
      * Gets an employee
+     *
      * @param staffNumber The staff number of the employee to get
      * @return The employee, or empty if the employee was not found
      * @throws IOException If an I/O error occurs
@@ -34,6 +37,7 @@ public interface EmployeeDataStore {
 
     /**
      * Gets all employees
+     *
      * @return The list of all employees
      * @throws IOException If an I/O error occurs
      */

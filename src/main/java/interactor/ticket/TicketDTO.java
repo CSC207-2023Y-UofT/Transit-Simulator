@@ -5,7 +5,7 @@ import ticket.TicketType;
 /**
  * Represents a ticket that has been bought by a user.
  */
-public class BoughtTicket {
+public class TicketDTO {
     /**
      * The cost of the ticket.
      */
@@ -29,14 +29,15 @@ public class BoughtTicket {
 
     /**
      * Constructs a new BoughtTicket with the given cost, type, ticketId, activated and expiry.
-     * @param cost The cost of the ticket.
-     * @param type The type of the ticket.
-     * @param ticketId The id of the ticket.
+     *
+     * @param cost      The cost of the ticket.
+     * @param type      The type of the ticket.
+     * @param ticketId  The id of the ticket.
      * @param activated Whether the ticket has been activated.
-     * @param expiry The expiry time of the ticket.
+     * @param expiry    The expiry time of the ticket.
      */
-    public BoughtTicket(double cost, TicketType type, int ticketId,
-                        boolean activated, long expiry) {
+    public TicketDTO(double cost, TicketType type, int ticketId,
+                     boolean activated, long expiry) {
         this.cost = cost;
         this.type = type;
         this.ticketId = ticketId;
@@ -46,6 +47,7 @@ public class BoughtTicket {
 
     /**
      * Gets whether the ticket has been activated.
+     *
      * @return Whether the ticket has been activated.
      */
     public boolean isActivated() {
@@ -54,6 +56,7 @@ public class BoughtTicket {
 
     /**
      * Gets the expiry time of the ticket.
+     *
      * @return The expiry time of the ticket.
      */
     public long getExpiry() {
@@ -62,6 +65,7 @@ public class BoughtTicket {
 
     /**
      * Gets the cost of the ticket.
+     *
      * @return The cost of the ticket.
      */
     public double getCost() {
@@ -70,6 +74,7 @@ public class BoughtTicket {
 
     /**
      * Gets the type of the ticket.
+     *
      * @return The type of the ticket.
      */
     public TicketType getType() {
@@ -78,6 +83,7 @@ public class BoughtTicket {
 
     /**
      * Gets the id of the ticket.
+     *
      * @return The id of the ticket.
      */
     public int getTicketId() {
@@ -86,8 +92,8 @@ public class BoughtTicket {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof BoughtTicket) {
-            BoughtTicket other = (BoughtTicket) obj;
+        if (obj instanceof TicketDTO) {
+            TicketDTO other = (TicketDTO) obj;
             return other.getTicketId() == this.getTicketId() &&
                     other.getType().equals(this.getType()) &&
                     other.getCost() == this.getCost() &&

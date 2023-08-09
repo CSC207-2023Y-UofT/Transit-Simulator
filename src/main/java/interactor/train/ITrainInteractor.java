@@ -11,15 +11,15 @@ public interface ITrainInteractor {
      *
      * @param trainName The name of the train to get the state of
      * @return The state of the train
-     * @see TrainState
+     * @see TrainDTO
      */
-    TrainState getTrainState(String trainName);
+    TrainDTO getTrainState(String trainName);
 
     /**
      * Gets the state of the next train in the given direction
      *
      * @return The state of the next train in the given direction
-     * @see TrainState
+     * @see TrainDTO
      */
-    List<TrainState> getTrains();
+    List<TrainDTO> getTrains();
 }

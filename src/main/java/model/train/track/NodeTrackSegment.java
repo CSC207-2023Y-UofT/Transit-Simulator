@@ -20,9 +20,9 @@ public class NodeTrackSegment extends TrackSegment {
     /**
      * Constructs a new NodeTrackSegment object with the specified track repository, node, ID, and length.
      *
-     * @param repo The TrackRepo instance to associate with the track segment.
-     * @param node The Node object representing the node associated with this track segment.
-     * @param id The unique identifier for the track segment.
+     * @param repo   The TrackRepo instance to associate with the track segment.
+     * @param node   The Node object representing the node associated with this track segment.
+     * @param id     The unique identifier for the track segment.
      * @param length The length of the track segment in meters.
      */
     public NodeTrackSegment(TrackRepo repo, Node node, String id, double length) {
@@ -35,7 +35,7 @@ public class NodeTrackSegment extends TrackSegment {
      *
      * @return The Node object representing the node associated with this track segment.
      */
-    public Optional<Node>  getNode() {
+    public Optional<Node> getNode() {
         return Optional.ofNullable(node);
     }
 

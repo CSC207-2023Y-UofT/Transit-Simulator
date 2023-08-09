@@ -1,10 +1,9 @@
 package employee.persistence;
 
 import employee.Employee;
-import util.AsyncFileUtil;
+import main.DataStorage;
 
 import java.io.*;
-import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
      * Creates a new file employee data store
+     *
      * @param directory The directory where the employee files are stored
      */
     public FileEmployeeDataStore(File directory) {
@@ -48,12 +48,13 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     public void save(Employee employee) throws IOException {
         int staffNumber = employee.getStaffNumber();
         File file = getFile(staffNumber);
+        file.createNewFile();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream objectOut = new ObjectOutputStream(out);
         objectOut.writeObject(employee);
         objectOut.close();
         byte[] data = out.toByteArray();
-        AsyncFileUtil.write(file, ByteBuffer.wrap(data));
+        DataStorage.getIO().write(file, data);
     }
 
     @Override
@@ -65,9 +66,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     private Optional<Employee> read(File file) {
         try {
-            ByteBuffer data = AsyncFileUtil.read(file);
-            byte[] bytes = new byte[data.remaining()];
-            data.get(bytes);
+            byte[] bytes = DataStorage.getIO().read(file);
             ByteArrayInputStream in = new ByteArrayInputStream(bytes);
             return Optional.ofNullable((Employee) new ObjectInputStream(in).readObject());
         } catch (ClassNotFoundException | IOException e) {

@@ -19,6 +19,7 @@ public interface IStatInteractor {
 
     /**
      * Get the revenue aggregates for the last horizonMinutes minutes
+     *
      * @param horizonMinutes The number of minutes to look back
      * @return The revenue aggregates
      */
@@ -26,6 +27,7 @@ public interface IStatInteractor {
 
     /**
      * Get the expense aggregates for the last horizonMinutes minutes
+     *
      * @param horizonMinutes The number of minutes to look back
      * @return The expense aggregates
      */

@@ -17,7 +17,7 @@ public interface IEmployeeInteractor {
      * @return An EmployeeInfo object representing the newly registered employee.
      * @throws IllegalArgumentException If an employee with the same staff number already exists.
      */
-    EmployeeInfo registerEmployee(RegisterEmployeeRequest requestModel) throws IllegalArgumentException;
+    EmployeeDTO registerEmployee(RegisterEmployeeRequest requestModel) throws IllegalArgumentException;
 
     /**
      * Get the employee info of an employee.
@@ -25,7 +25,7 @@ public interface IEmployeeInteractor {
      * @param staffNumber The staff number of the employee.
      * @return An EmployeeInfo object representing the employee, or an empty Optional if the employee does not exist.
      */
-    Optional<EmployeeInfo> getEmployeeInfo(int staffNumber);
+    Optional<EmployeeDTO> getEmployeeInfo(int staffNumber);
 
     /**
      * Remove an employee.
@@ -36,22 +36,24 @@ public interface IEmployeeInteractor {
 
     /**
      * Assign a job to an employee.
+     *
      * @param staffNumber The staff number of the employee.
-     * @param trainName The name of the train.
-     * @param job The job to assign.
+     * @param trainName   The name of the train.
+     * @param job         The job to assign.
      * @return True if the job was assigned successfully, false if the employee does not exist or the job is already assigned.
      * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.
-     * @throws IllegalStateException If there is already an employee assigned to the job on that train.
+     * @throws IllegalStateException    If there is already an employee assigned to the job on that train.
      */
     void assignJob(int staffNumber, String trainName, TrainRole job);
 
     /**
      * Unassign a job from an employee.
+     *
      * @param staffNumber The staff number of the employee.
      * @return True if the job was unassigned successfully, false if the employee does not exist or the job is not assigned.
      */
     boolean unassign(int staffNumber);
 
-    List<EmployeeInfo> getAssignedEmployees(String trainName);
+    List<EmployeeDTO> getAssignedEmployees(String trainName);
 
 }

@@ -12,6 +12,7 @@ public class RegisterEmployeeRequest {
 
     /**
      * Create a new RegisterEmployeeRequest object
+     *
      * @param type The type of the employee
      */
     public RegisterEmployeeRequest(EmployeeType type) {
@@ -20,6 +21,7 @@ public class RegisterEmployeeRequest {
 
     /**
      * Get the type of the employee
+     *
      * @return The type of the employee
      */
     public EmployeeType getType() {

@@ -1,7 +1,7 @@
 package ui.passenger;
 
+import controller.map.TransitMapViewModel;
 import controller.ticket.PurchaseTicketViewModel;
-import controller.map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -65,7 +65,7 @@ public class PassengerHomePage extends JPanel {
         this.setBackground(new Color(230, 230, 230));
 
         // Map
-        TransitMapPagePresenter presenter = new TransitMapPagePresenter(
+        TransitMapViewModel presenter = new TransitMapViewModel(
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );

@@ -4,7 +4,6 @@ import employee.*;
 import model.control.TransitModel;
 import model.train.Train;
 import model.train.TrainRole;
-import model.train.TrainRole;
 import util.Preconditions;
 
 import java.util.*;
@@ -20,7 +19,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     }
 
     @Override
-    public EmployeeInfo registerEmployee(RegisterEmployeeRequest requestModel) {
+    public EmployeeDTO registerEmployee(RegisterEmployeeRequest requestModel) {
         switch (requestModel.type){
             case ENGINEER:
                 TrainEngineer eng = new TrainEngineer(ThreadLocalRandom.current().nextInt(999999999));
@@ -39,7 +38,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     }
 
     @Override
-    public Optional<EmployeeInfo> getEmployeeInfo(int staffNumber) {
+    public Optional<EmployeeDTO> getEmployeeInfo(int staffNumber) {
         Employee employee = tracker.getEmployee(staffNumber)
                 .orElse(null);
         if (employee == null) return Optional.empty();
@@ -62,9 +61,9 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         Preconditions.checkArgument(train != null, "Train does not exist");
 
         // Anyone else on the train with the same job?
-        List<EmployeeInfo> assigned = getAssignedEmployees(trainName);
-        for (EmployeeInfo employeeInfo : assigned) {
-            EmployeeAssignment assignment = employeeInfo.getAssignment().orElse(null);
+        List<EmployeeDTO> assigned = getAssignedEmployees(trainName);
+        for (EmployeeDTO employeeDTO : assigned) {
+            EmployeeAssignment assignment = employeeDTO.getAssignment().orElse(null);
             if (assignment == null) continue;
             if (assignment.getRole() == job) {
                 throw new IllegalStateException("There is already an employee assigned to the job on that train");
@@ -84,12 +83,12 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     }
 
     @Override
-    public List<EmployeeInfo> getAssignedEmployees(String trainName) {
+    public List<EmployeeDTO> getAssignedEmployees(String trainName) {
         Train train = model.getTrain(trainName);
         if (train == null) return new ArrayList<>();
 
         List<Employee> employees = tracker.getEmployeeList();
-        List<EmployeeInfo> assigned = new ArrayList<>();
+        List<EmployeeDTO> assigned = new ArrayList<>();
 
         for (Employee employee : employees) {
             Optional<EmployeeAssignment> assignment = employee.getAssignment();
@@ -103,7 +102,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         return assigned;
     }
 
-    private EmployeeInfo toInfo(Employee employee) {
+    private EmployeeDTO toInfo(Employee employee) {
         EmployeeAssignment assignment = employee.getAssignment().orElse(null);
         if (assignment != null) {
             if (model.getTrain(assignment.getTrainName()) == null) {
@@ -111,6 +110,6 @@ public class EmployeeInteractor implements IEmployeeInteractor {
             }
         }
 
-        return new EmployeeInfo(employee.getStaffNumber(), employee.getEmployeeType(), assignment);
+        return new EmployeeDTO(employee.getStaffNumber(), employee.getEmployeeType(), assignment);
     }
 }

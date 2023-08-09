@@ -1,6 +1,6 @@
 package ui.map;
 
-import controller.map.TransitMapPresenter;
+import controller.map.TransitMapViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,21 +11,21 @@ import java.awt.event.MouseEvent;
  * MapPanel is a JPanel that displays the map of the transit system.
  * It is used by the TransitMapPresenter to display the map.
  *
- * @see TransitMapPresenter
+ * @see TransitMapViewModel
  */
 public class MapPanel extends JPanel {
 
     /**
      * The TransitMapPresenter that is used to present the map.
      */
-    private final TransitMapPresenter presenter;
+    private final TransitMapViewModel presenter;
 
     /**
      * Constructs a new MapPanel object with the given TransitMapPresenter.
      *
      * @param presenter the TransitMapPresenter that is used to present the map
      */
-    public MapPanel(TransitMapPresenter presenter) {
+    public MapPanel(TransitMapViewModel presenter) {
         this.presenter = presenter;
 
         setLayout(new BorderLayout());
@@ -33,7 +33,6 @@ public class MapPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                presenter.onClick(e.getX(), e.getY());
                 repaint();
             }
         });

@@ -1,15 +1,15 @@
 package interactor.train;
 
-import interactor.station.StationState;
+import interactor.station.StationDTO;
 
 /**
  * The TrainNodeDistance data class represents the distance between a station and a train.
  */
-public class TrainNodeDistance {
+public class TrainArrivalDTO {
     /**
      * The StationState.
      */
-    private final StationState station;
+    private final StationDTO station;
     /**
      * The distance.
      */
@@ -17,24 +17,27 @@ public class TrainNodeDistance {
 
     /**
      * Constructs a new TrainNodeDistance with the given station and distance.
-     * @param station The StationState.
+     *
+     * @param station  The StationState.
      * @param distance The distance.
      */
-    public TrainNodeDistance(StationState station, double distance) {
+    public TrainArrivalDTO(StationDTO station, double distance) {
         this.station = station;
         this.distance = distance;
     }
 
     /**
      * Gets the StationState.
+     *
      * @return The StationState.
      */
-    public StationState getStation() {
+    public StationDTO getStation() {
         return station;
     }
 
     /**
      * Gets the distance.
+     *
      * @return The distance.
      */
     public double getDistance() {
