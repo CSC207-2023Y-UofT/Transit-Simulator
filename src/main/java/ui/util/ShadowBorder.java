@@ -5,8 +5,7 @@ import javax.swing.border.AbstractBorder;
 import java.awt.*;
 
 /**
- * Border that puts a shadow on whatever other component
- * it is applied to.
+ * Border that puts a shadow on whatever other component it is applied to.
  */
 public class ShadowBorder extends AbstractBorder {
 
