@@ -1,12 +1,15 @@
 package stats.persistence;
 
+import main.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.entry.impl.MaintenanceStat;
-import stats.persistence.impl.FileAggregateDataUtils;
+import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
+import util.AsyncWriteIOProvider;
+import util.DeflateCompressionProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +40,11 @@ class StatDataControllerTest {
     @BeforeAll
     static void setup() {
 
+        DataStorage.init(
+                new AsyncWriteIOProvider(),
+                new DeflateCompressionProvider()
+        );
+
         File entryFolder = new File("test-entries");
         File aggregateFolder = new File("test-aggregates");
         deleteDirectory(entryFolder);
@@ -44,7 +52,7 @@ class StatDataControllerTest {
 
         controller = new StatDataController(
                 new FileEntryDataStore(entryFolder),
-                new FileAggregateDataUtils(aggregateFolder)
+                new FileAggregateDataStore(aggregateFolder)
         );
 
         controller.record(new MaintenanceStat(1.0));

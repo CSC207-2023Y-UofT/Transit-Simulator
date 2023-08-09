@@ -15,7 +15,7 @@ import simulation.Simulation;
 import stats.persistence.StatAggregateDataStore;
 import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
-import stats.persistence.impl.FileAggregateDataUtils;
+import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
 import ticket.JsonTicketDataStore;
 import ticket.TicketDataStore;
@@ -68,7 +68,7 @@ public class Main {
 
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
-        StatAggregateDataStore statAggregateDataStore = new FileAggregateDataUtils(new File("stat-aggregates"));
+        StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
 
         StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
 

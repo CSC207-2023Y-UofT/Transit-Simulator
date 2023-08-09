@@ -27,10 +27,6 @@ public class PageFileUtils {
      */
     public static <T> Map<Long, T> read(File pageFile, Class<T> typeClass) {
 
-        if (!pageFile.exists()) {
-            return new HashMap<>();
-        }
-
         try {
 
             byte[] bytes = DataStorage.getIO().read(pageFile);
@@ -72,6 +68,8 @@ public class PageFileUtils {
     public static <T> void write(File pageFile, Map<Long, T> map) {
 
         try {
+
+            pageFile.createNewFile();
 
             // The reverse of the reading process
 

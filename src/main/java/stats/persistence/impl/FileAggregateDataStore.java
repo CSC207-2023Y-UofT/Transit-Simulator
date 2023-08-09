@@ -11,7 +11,7 @@ import java.util.Map;
  * A file-based implementation of the {@link StatAggregateDataStore} interface.
  * This class provides methods to store and retrieve aggregated statistic data from a file system.
  */
-public class FileAggregateDataUtils implements StatAggregateDataStore {
+public class FileAggregateDataStore implements StatAggregateDataStore {
 
     /**
      * The directory where the aggregated data files are stored.
@@ -28,7 +28,7 @@ public class FileAggregateDataUtils implements StatAggregateDataStore {
      *
      * @param directory The directory where the aggregated data files are stored.
      */
-    public FileAggregateDataUtils(File directory) {
+    public FileAggregateDataStore(File directory) {
         directory.mkdirs();
         this.directory = directory;
     }

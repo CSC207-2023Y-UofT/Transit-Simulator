@@ -1,7 +1,10 @@
 package ticket;
 
+import main.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import util.AsyncWriteIOProvider;
+import util.DeflateCompressionProvider;
 
 import java.io.File;
 
@@ -14,6 +17,12 @@ class JsonTicketDataStoreTest {
 
     @BeforeAll
     public static void setUp() {
+
+        DataStorage.init(
+                new AsyncWriteIOProvider(),
+                new DeflateCompressionProvider()
+        );
+
         data = new JsonTicketDataStore(new File("test-tickets"));
         ticket = new Ticket(1, TicketType.ADULT);
         data.saveTicket(ticket);

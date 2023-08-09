@@ -48,6 +48,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     public void save(Employee employee) throws IOException {
         int staffNumber = employee.getStaffNumber();
         File file = getFile(staffNumber);
+        file.createNewFile();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream objectOut = new ObjectOutputStream(out);
         objectOut.writeObject(employee);
