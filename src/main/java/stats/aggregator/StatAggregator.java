@@ -14,7 +14,7 @@ import java.util.Optional;
  * @param <E> The type of entries this aggregator operates on, which must extend {@link StatEntry}.
  * @param <A> The type of aggregated data, which must be serializable.
  */
-public abstract class StatAggregator<E extends StatEntry, A extends Serializable> {
+public abstract class StatAggregator<E extends StatEntry, A extends Serializable> { // Visitor Design Pattern used!!!
 
     /**
      * The class of entries this aggregator operates on.
