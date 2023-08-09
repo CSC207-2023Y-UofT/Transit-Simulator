@@ -19,6 +19,11 @@ public class JsonTicketDataStore implements TicketDataStore {
      */
     private final File directory;
 
+    /**
+     * Constructs a new JsonTicketDataStore with the given directory.
+     *
+     * @param directory The directory where the ticket data files are stored.
+     */
     public JsonTicketDataStore(File directory) {
         this.directory = directory;
         directory.mkdirs();
