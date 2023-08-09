@@ -41,18 +41,9 @@ public class LoginPage extends JPanel {
         signInButton.setBackground(new Color(0, 151, 8));
         signInButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         signInButton.setFont(new Font("Arial", Font.BOLD, 20));
-        signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Perform sign in here, possibly by passing personnelNumberField.getText() to a method that handles sign in.
+        signInButton.addActionListener(e -> {
 
-
-                // TODO: Add code to check if personnel number is valid
-
-                // We should know what option they picked earlier and direct them there
-
-                controller.open(new Management(controller));
-            }
+            controller.open(new Management(controller));
         });
 
         // Back button
