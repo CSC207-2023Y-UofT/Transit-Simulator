@@ -6,6 +6,7 @@ import java.util.List;
  * Input boundary for train interactor
  */
 public interface ITrainInteractor {
+
     /**
      * Gets the state of a train
      *
