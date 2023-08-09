@@ -8,14 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The ArrivalsViewModel class is a view model class for a map
- * where when you click on a station it
+ * The ArrivalsViewModel class is a view model class for showing a station's
+ * next arrival time.
  */
 public class ArrivalsViewModel {
     private final IStationInteractor stationInteractor;
     private Map<Integer, Map<Direction, Long>> nextArrivals = new HashMap<>();
     private final StationDTO station;
-
 
     public ArrivalsViewModel(StationDTO station, IStationInteractor stationInteractor) {
         this.station = station;
@@ -50,5 +49,9 @@ public class ArrivalsViewModel {
 
     public Map<Integer, Map<Direction, Long>> getNextArrivals() {
         return nextArrivals;
+    }
+
+    public StationDTO getStation() {
+        return station;
     }
 }
