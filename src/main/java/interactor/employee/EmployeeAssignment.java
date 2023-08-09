@@ -6,10 +6,12 @@ import model.train.TrainRole;
  * Data Class to represent an employee assignment
  */
 public class EmployeeAssignment {
+
     /**
      * The name of the train that the employee is assigned to
      */
     private final String trainName;
+
     /**
      * The role that the employee is assigned to
      */
