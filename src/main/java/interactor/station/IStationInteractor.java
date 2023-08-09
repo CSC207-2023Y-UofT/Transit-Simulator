@@ -12,7 +12,7 @@ public interface IStationInteractor {
     /**
      * Returns the state of the station with the given name.
      */
-    Optional<StationDTO> getStationState(String stationName);
+    Optional<StationDTO> getStation(String stationName);
 
     /**
      * Returns the state of the next station in the given direction.

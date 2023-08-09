@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TransitMapPresenter {
+public class TransitMapViewModel {
     /**
      * The size of the map width in metres.
      */
@@ -61,7 +61,7 @@ public class TransitMapPresenter {
      * @param stationInteractor The station interactor.
      * @param trainInteractor   The train interactor.
      */
-    public TransitMapPresenter(IStationInteractor stationInteractor,
+    public TransitMapViewModel(IStationInteractor stationInteractor,
                                ITrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
@@ -226,7 +226,7 @@ public class TransitMapPresenter {
      * @param y The y-coordinate
      * @return The station at the given coordinates, if any.
      */
-    public Optional<StationDTO> getStationAt(int x, int y) {
+    private Optional<StationDTO> getStationAt(int x, int y) {
         double scaleX = width / MAP_SIZE_X;
         double scaleY = height / MAP_SIZE_Y;
 
@@ -256,20 +256,6 @@ public class TransitMapPresenter {
         }
 
         highlightedStation = optStation.get();
-    }
-
-    /**
-     * Called when the mouse is clicked.
-     *
-     * @param x The x-coordinate of the mouse
-     * @param y The y-coordinate of the mouse
-     */
-    public void onClick(int x, int y) {
-        Optional<StationDTO> optStation = getStationAt(x, y);
-        if (optStation.isEmpty()) return;
-        StationDTO station = optStation.get();
-
-        onClickStation(station);
     }
 
     /**

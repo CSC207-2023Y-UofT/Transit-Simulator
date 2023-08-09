@@ -1,6 +1,6 @@
 package ui.staff;
 
-import controller.map.TransitMapPagePresenter;
+import controller.map.TransitMapViewModel;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -58,7 +58,7 @@ public class StaffHomePage extends JPanel {
         this.setBackground(new Color(210, 207, 206));
 
         // Map
-        TransitMapPagePresenter presenter = new TransitMapPagePresenter(
+        TransitMapViewModel presenter = new TransitMapViewModel(
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );

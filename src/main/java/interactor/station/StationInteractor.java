@@ -34,7 +34,7 @@ public class StationInteractor implements IStationInteractor {
      * @param stationName The station name.
      * @return The station state.
      */
-    public Optional<StationDTO> getStationState(String stationName) {
+    public Optional<StationDTO> getStation(String stationName) {
         Node node = model.getNode(stationName);
         if (node == null) {
             return Optional.empty();
@@ -65,7 +65,7 @@ public class StationInteractor implements IStationInteractor {
             return Optional.empty();
         }
 
-        return getStationState(nextNode.getName());
+        return getStation(nextNode.getName());
     }
 
     /**
