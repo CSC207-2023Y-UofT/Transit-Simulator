@@ -110,6 +110,6 @@ public class EmployeeInteractor implements IEmployeeInteractor {
             }
         }
 
-        return new EmployeeDTO(employee.getStaffNumber(), employee.getEmployeeType(), assignment);
+        return new EmployeeDTO(employee.getStaffNumber(), name, employee.getEmployeeType(), assignment);
     }
 }

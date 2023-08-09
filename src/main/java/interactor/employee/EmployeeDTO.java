@@ -10,6 +10,12 @@ public class EmployeeDTO {
      * The staff number of the employee
      */
     private final int staffNumber;
+
+    /**
+     * What do you think this is?
+     */
+    private final String name;
+
     /**
      * The type of the employee
      */
@@ -24,11 +30,13 @@ public class EmployeeDTO {
      * Create a new EmployeeInfo object
      *
      * @param staffNumber The staff number of the employee
+     * @param name
      * @param type        The type of the employee
      * @param assignment  The assignment of the employee, if any
      */
-    public EmployeeDTO(int staffNumber, EmployeeType type, EmployeeAssignment assignment) {
+    public EmployeeDTO(int staffNumber, String name, EmployeeType type, EmployeeAssignment assignment) {
         this.staffNumber = staffNumber;
+        this.name = name;
         this.type = type;
         this.assignment = assignment;
     }
@@ -38,6 +46,13 @@ public class EmployeeDTO {
      */
     public int getStaffNumber() {
         return staffNumber;
+    }
+
+    /**
+     * Get the name of the employee
+     */
+    public String getName() {
+        return name;
     }
 
     /**
