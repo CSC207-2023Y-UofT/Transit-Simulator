@@ -13,7 +13,9 @@ import java.util.List;
  */
 public class TicketPage {
 
+    /** The UIController instance responsible for controlling UI interactions. */
     private final UIController controller;
+
     /** Main frame of the ticket page. */
     private final JFrame frame;
 
@@ -47,4 +49,5 @@ public class TicketPage {
         frame.pack();
         frame.setVisible(true);
     }
+
 }

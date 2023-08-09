@@ -9,6 +9,7 @@ import javax.swing.*;
  * @see UIController
  */
 public class MainScreen extends JFrame {
+
     /**
      * Constructs a new MainScreen object.
      */
