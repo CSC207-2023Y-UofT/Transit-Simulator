@@ -13,9 +13,13 @@ public class SuppliedLabel extends JLabel {
         this.textSupplier = textSupplier;
     }
 
+    public void update() {
+        setText(textSupplier.get());
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
-        setText(textSupplier.get());
+        update();
         super.paintComponent(g);
     }
 }

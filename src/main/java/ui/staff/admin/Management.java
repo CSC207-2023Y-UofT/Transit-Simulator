@@ -24,13 +24,25 @@ public class Management extends JPanel {
      * The JPanel that displays the stats.
      */
     private final JPanel statsHolderPanel;
+
+    /**
+     * The JPanel that displays the revenue stats.
+     */
     private final StatsPanel statsPanel1;
+
+    /**
+     * The JPanel that displays the expense stats.
+     */
     private final StatsPanel statsPanel2;
 
     /**
      * The JPanel that displays the middle panel.
      */
     private final JPanel middlePanel;
+
+    /**
+     * The JTable that displays the staff.
+     */
     private final JTable table;
 
     /**
@@ -104,7 +116,6 @@ public class Management extends JPanel {
         Font headerFont = new Font("Arial", Font.BOLD, 18);
         JTableHeader header = table.getTableHeader();
         header.setFont(headerFont);
-
 
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);

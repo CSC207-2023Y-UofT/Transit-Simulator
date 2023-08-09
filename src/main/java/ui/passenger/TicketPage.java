@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class TicketPage {
 
-    /** The UIController instance responsible for controlling UI interactions. */
+    /** The controller used to switch pages. */
     private final UIController controller;
 
     /** Main frame of the ticket page. */
