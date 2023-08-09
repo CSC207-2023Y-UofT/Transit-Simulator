@@ -9,21 +9,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class StationPage {
+public class StationPage extends JFrame {
 
     public StationPage(ArrivalsViewModel viewModel) {
 
-        JFrame frame = new JFrame("Station Time");
-        frame.setPreferredSize(new Dimension(400, 400));
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super("Station Time");
+
+        this.setPreferredSize(new Dimension(400, 400));
+
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.setVisible(true);
 
         JPanel panel = new StationPanel(viewModel);
-        frame.setContentPane(panel);
+        this.setContentPane(panel);
 
-        frame.revalidate();
-        frame.pack();
-        frame.setVisible(true);
-        frame.repaint();
+        this.pack();
+
+        this.revalidate();
+        this.repaint();
     }
 
 }

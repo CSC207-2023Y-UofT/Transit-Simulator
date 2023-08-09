@@ -21,6 +21,8 @@ public class MapPanel extends JPanel {
      */
     private final TransitMapViewModel viewModel;
 
+    private volatile StationPage currentStationPage = null;
+
     /**
      * Constructs a new MapPanel object with the given TransitMapPresenter.
      *
@@ -36,7 +38,11 @@ public class MapPanel extends JPanel {
             public void mouseReleased(MouseEvent e) {
                 repaint();
                 var optArrivals = viewModel.getArrivals(e.getX(), e.getY());
-                optArrivals.ifPresent(model -> new StationPage(model));
+                optArrivals.ifPresent(model -> SwingUtilities.invokeLater(() -> {
+                    if (currentStationPage != null) currentStationPage.dispose();
+                    currentStationPage = new StationPage(model);
+                }));
+
             }
         });
 

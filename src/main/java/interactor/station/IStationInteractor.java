@@ -22,7 +22,7 @@ public interface IStationInteractor {
      * @param direction   The direction on the line specified that you want to look in.
      * @return The state of the next station in the given direction.
      */
-    Optional<StationDTO> getNextStation(int line, String stationName, Direction direction);
+    Optional<StationDTO> getNextStation(String stationName, int lineDirection, Direction direction);
 
     /**
      * Returns the time until the next arrival at the given station.

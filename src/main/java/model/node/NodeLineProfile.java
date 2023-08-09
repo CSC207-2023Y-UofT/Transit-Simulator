@@ -3,6 +3,7 @@ package model.node;
 import model.Direction;
 import model.train.TrackRepo;
 import model.train.Train;
+import model.train.TrainPosition;
 import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
 import org.jetbrains.annotations.NotNull;
@@ -121,15 +122,28 @@ public class NodeLineProfile {
             if (arrivals.size() >= numTrains) break;
 
 
-            waitTime += trackSegment.getLength() / Train.MAX_SPEED;
-            if (trackSegment.getTrain() == null) continue;
+            if (trackSegment.getTrain() == null) {
+                waitTime += trackSegment.getLength() / Train.MAX_SPEED;
+            } else {
+                Train train = trackSegment.getTrain();
+                TrainPosition position = train.getPosition();
 
-            Train train = trackSegment.getTrain();
-            TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
-            arrivals.add(arrival);
+                double distanceToGo = position.distanceToEndOfTrack(Direction.FORWARD);
+                waitTime += distanceToGo / Train.MAX_SPEED;
+
+                TrainArrival arrival = new TrainArrival(train, node, (long) (waitTime * 1000));
+                arrivals.add(arrival);
+            }
         }
 
         return arrivals;
     }
+
+    /**
+     * Is this a node at the end of a line?
+     */
+    public boolean isEndNode() {
+        return getTrack(Direction.FORWARD).getNext() == getTrack(Direction.BACKWARD);
+    } // visitor design pattern used
 
 }
