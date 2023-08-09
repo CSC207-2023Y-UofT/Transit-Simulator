@@ -13,17 +13,6 @@ import java.awt.*;
  * @see UIController
  */
 public class StaffSelectPage extends JPanel {
-    /**
-     * The label that displays the staff types.
-     */
-    private final JLabel staffTypeLabel;
-    /**
-     * The buttons that allow the user to select their staff type.
-     */
-    private final JButton adminButton;
-    private final JButton trainEngineerButton;
-    private final JButton trainOperatorButton;
-    private final JButton backButton;
 
     /**
      * Constructs a new StaffSelectPage object.
@@ -33,12 +22,12 @@ public class StaffSelectPage extends JPanel {
     public StaffSelectPage(UIController controller) {
         super(new GridLayout(0, 3));
 
-        staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
+        JLabel staffTypeLabel = new JLabel("Please select your staff type.", SwingConstants.CENTER);
         staffTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         staffTypeLabel.setFont(new Font("Arial", Font.BOLD, 25));
 
         // Admin button
-        adminButton = new ShadowedButton("Admin");
+        JButton adminButton = new ShadowedButton("Admin");
         adminButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         adminButton.setBackground(new Color(189, 87, 231));
         adminButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -46,7 +35,7 @@ public class StaffSelectPage extends JPanel {
         adminButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Train Operator button
-        trainOperatorButton = new ShadowedButton("Train Operator");
+        JButton trainOperatorButton = new ShadowedButton("Train Operator");
         trainOperatorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         trainOperatorButton.setBackground(new Color(222, 144, 53));
         trainOperatorButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -54,7 +43,7 @@ public class StaffSelectPage extends JPanel {
         trainOperatorButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Train Engineer button
-        trainEngineerButton = new ShadowedButton("Train Engineer");
+        JButton trainEngineerButton = new ShadowedButton("Train Engineer");
         trainEngineerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         trainEngineerButton.setBackground(new Color(57, 210, 190));
         trainEngineerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
@@ -62,7 +51,7 @@ public class StaffSelectPage extends JPanel {
         trainEngineerButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Back button
-        backButton = new ShadowedButton("Back");
+        JButton backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Arial", Font.BOLD, 20));
