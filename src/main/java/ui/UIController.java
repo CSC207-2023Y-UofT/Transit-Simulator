@@ -6,20 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * MainScreen is a JFrame that displays the main screen of the application.
- * It is used by the UIController to display the main screen of the application.
- *
- * @see UIController
+ * UIController is a controller that is used to switch panels.
  */
 public class UIController {
+
     /**
-     *
-     * The UIController that is used to switch panels.
+     * The main screen of the application.
      */
     private final MainScreen mainScreen;
 
     /**
-     * The content pane of the JFrame.
+     * The interactor pool of the application.
      */
     private final InteractorPool interactorPool;
 
@@ -29,9 +26,8 @@ public class UIController {
     private final ControllerPool controllerPool;
 
     /**
-     * Constructs a new MainScreen object.
-     *
-     * @param interactorPool the controller used to switch panels
+     * Constructs a new UIController object with the given interactor pool.
+     * @param interactorPool the interactor pool
      */
     public UIController(InteractorPool interactorPool) {
         this.interactorPool = interactorPool;
