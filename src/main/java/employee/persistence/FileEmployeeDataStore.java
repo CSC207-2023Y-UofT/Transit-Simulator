@@ -40,7 +40,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     @Override
     public void remove(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
-        if (!file.exists()) return;
+        if (!DataStorage.getIO().exists(file)) return;
         Files.delete(getFile(staffNumber).toPath());
     }
 
@@ -48,7 +48,6 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     public void save(Employee employee) throws IOException {
         int staffNumber = employee.getStaffNumber();
         File file = getFile(staffNumber);
-        file.createNewFile();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream objectOut = new ObjectOutputStream(out);
         objectOut.writeObject(employee);
@@ -60,7 +59,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     @Override
     public Optional<Employee> get(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
-        if (!file.exists()) return Optional.empty();
+        if (!DataStorage.getIO().exists(file)) return Optional.empty();
         return read(file);
     }
 

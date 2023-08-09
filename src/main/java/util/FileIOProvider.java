@@ -32,4 +32,9 @@ public interface FileIOProvider {
     byte[] read(File file) throws IOException;
 
     String readString(File file) throws IOException;
+
+    /**
+     * Checks if a file exists, or is cached
+     */
+    boolean exists(File file);
 }
