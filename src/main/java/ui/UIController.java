@@ -13,14 +13,19 @@ import java.awt.*;
  */
 public class UIController {
     /**
+     *
      * The UIController that is used to switch panels.
      */
     private final MainScreen mainScreen;
+
     /**
      * The content pane of the JFrame.
      */
     private final InteractorPool interactorPool;
 
+    /**
+     * The controller pool of the application.
+     */
     private final ControllerPool controllerPool;
 
     /**
@@ -44,6 +49,10 @@ public class UIController {
         return interactorPool;
     }
 
+    /**
+     * Returns the controller pool.
+     * @return the controller pool
+     */
     public ControllerPool getControllerPool() {
         return controllerPool;
     }
@@ -67,4 +76,5 @@ public class UIController {
         mainScreen.revalidate();
         mainScreen.repaint();
     }
+
 }

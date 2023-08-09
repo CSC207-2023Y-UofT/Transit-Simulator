@@ -23,10 +23,15 @@ public class PassengerHomePage extends JPanel {
      * The UIController that is used to control the UI.
      */
     private final UIController controller;
+
     /**
-     * The buttons on the panel.
+     * The buy button on the panel.
      */
     private final JButton buyButton;
+
+    /**
+     * The back button on the panel.
+     */
     private final JButton backButton;
 
     /**
