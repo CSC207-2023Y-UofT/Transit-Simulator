@@ -46,6 +46,9 @@ public class MapPanel extends JPanel {
         });
     }
 
+    /**
+     * The timer that is used to repaint the panel.
+     */
     private final Timer timer = new Timer(10, e -> this.repaint());
 
     @Override
