@@ -17,7 +17,7 @@ public interface IEmployeeInteractor {
      * @return An EmployeeInfo object representing the newly registered employee.
      * @throws IllegalArgumentException If an employee with the same staff number already exists.
      */
-    EmployeeInfo registerEmployee(RegisterEmployeeRequest requestModel) throws IllegalArgumentException;
+    EmployeeDTO registerEmployee(RegisterEmployeeRequest requestModel) throws IllegalArgumentException;
 
     /**
      * Get the employee info of an employee.
@@ -25,7 +25,7 @@ public interface IEmployeeInteractor {
      * @param staffNumber The staff number of the employee.
      * @return An EmployeeInfo object representing the employee, or an empty Optional if the employee does not exist.
      */
-    Optional<EmployeeInfo> getEmployeeInfo(int staffNumber);
+    Optional<EmployeeDTO> getEmployeeInfo(int staffNumber);
 
     /**
      * Remove an employee.
@@ -52,6 +52,6 @@ public interface IEmployeeInteractor {
      */
     boolean unassign(int staffNumber);
 
-    List<EmployeeInfo> getAssignedEmployees(String trainName);
+    List<EmployeeDTO> getAssignedEmployees(String trainName);
 
 }

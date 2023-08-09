@@ -1,13 +1,11 @@
 package interactor.employee;
 
-import model.train.TrainRole;
-
 import java.util.Optional;
 
 /**
  * Output data class for the employee interactor
  */
-public class EmployeeInfo {
+public class EmployeeDTO {
     /**
      * The staff number of the employee
      */
@@ -29,7 +27,7 @@ public class EmployeeInfo {
      * @param type        The type of the employee
      * @param assignment  The assignment of the employee, if any
      */
-    public EmployeeInfo(int staffNumber, EmployeeType type, EmployeeAssignment assignment) {
+    public EmployeeDTO(int staffNumber, EmployeeType type, EmployeeAssignment assignment) {
         this.staffNumber = staffNumber;
         this.type = type;
         this.assignment = assignment;

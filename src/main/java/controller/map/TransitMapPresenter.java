@@ -146,6 +146,7 @@ public class TransitMapPresenter {
             graphics.transform(AffineTransform.getRotateInstance(-Math.PI / 4, x, y));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE + 5, y + STATION_ICON_SIZE / 2);
             graphics.setTransform(transform);
+
         }
 
         // Draw trains
