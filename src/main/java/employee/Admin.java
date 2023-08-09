@@ -16,7 +16,7 @@ public class Admin extends Employee {
      * @param num The unique employee number.
      */
     public Admin(int num) {
-        super(num);
+        super(num, name);
     }
 
     /**

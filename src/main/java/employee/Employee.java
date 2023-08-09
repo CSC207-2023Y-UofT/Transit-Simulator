@@ -23,6 +23,8 @@ public abstract class Employee {
      */
     private final int staffNumber;
 
+    private final String name;
+
     /**
      * The payment status for this employee. True if the employee has been paid; otherwise false.
      */
@@ -37,10 +39,12 @@ public abstract class Employee {
      * Constructs a new Employee object with the given staff number.
      * all employee numbers should be 3 digits long.
      *
-     * @param id The unique staff number.
+     * @param id   The unique staff number.
+     * @param name
      */
-    public Employee(int id) {
+    public Employee(int id, String name) {
         this.staffNumber = id;
+        this.name = name;
     }
 
     /**

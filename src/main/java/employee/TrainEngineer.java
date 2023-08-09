@@ -19,7 +19,7 @@ public class TrainEngineer extends Employee {
      * @param num The unique employee number.
      */
     public TrainEngineer(int num) {
-        super(num);
+        super(num, name);
     }
 
     /**

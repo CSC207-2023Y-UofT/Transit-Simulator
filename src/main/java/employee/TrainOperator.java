@@ -11,7 +11,7 @@ public class TrainOperator extends Employee {
      * @param id is an Integer
      */
     public TrainOperator(int id) {
-        super(id);
+        super(id, name);
     }
 
     /**
