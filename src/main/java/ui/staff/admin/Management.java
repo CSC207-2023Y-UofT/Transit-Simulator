@@ -24,17 +24,24 @@ public class Management extends JPanel {
      * The JPanel that displays the stats.
      */
     private final JPanel statsHolderPanel;
-    private final StatsPanel statsPanel1;
-    private final StatsPanel statsPanel2;
+
+    /**
+     * The JPanels that displays the stats.
+     */
+    private final StatsPanel statsPanel1, statsPanel2;
 
     /**
      * The JPanel that displays the middle panel.
      */
     private final JPanel middlePanel;
+
+    /**
+     * The JTable that displays the staff members.
+     */
     private final JTable table;
 
     /**
-     * Constructs a new Management object.
+     * Constructs a new Management object with the given UIController.
      *
      * @param controller the controller used to switch panels
      */
@@ -104,7 +111,6 @@ public class Management extends JPanel {
         Font headerFont = new Font("Arial", Font.BOLD, 18);
         JTableHeader header = table.getTableHeader();
         header.setFont(headerFont);
-
 
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
@@ -188,11 +194,19 @@ public class Management extends JPanel {
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Adds a row to the staff table.
+     *
+     * @param rowData The data to add to the row.
+     */
     public void addStaffRow(Object[] rowData) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(rowData);
     }
 
+    /**
+     * Removes the selected staff from the table.
+     */
     private void removeSelectedStaff() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int selectedRow = table.getSelectedRow();
