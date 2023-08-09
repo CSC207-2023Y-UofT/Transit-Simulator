@@ -21,6 +21,9 @@ public class MapPanel extends JPanel {
      */
     private final TransitMapViewModel viewModel;
 
+    /**
+     * The StationPage that is currently being displayed.
+     */
     private volatile StationPage currentStationPage = null;
 
     private final Timer timer = new Timer(10, e -> this.repaint());
