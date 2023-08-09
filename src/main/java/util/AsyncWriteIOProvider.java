@@ -21,10 +21,24 @@ public class AsyncWriteIOProvider implements FileIOProvider {
      */
     private static class CachedFile {
 
+        /**
+         * The operation ID for this file.
+         */
         UUID operationID = UUID.randomUUID();
+
+        /**
+         * The file.
+         */
         File file;
+
+        /**
+         * The data.
+         */
         byte[] data;
 
+        /**
+         * Constructs a new CachedFile with the given file and data.
+         */
         CachedFile(File file, byte[] data) {
             this.file = file;
             this.data = data;
@@ -35,6 +49,7 @@ public class AsyncWriteIOProvider implements FileIOProvider {
      * Lock to facilitate thread safety of the cache.
      */
     private static final ReentrantLock LOCK = new ReentrantLock();
+
     /**
      * The file cache.
      */
@@ -78,6 +93,9 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         }
     }
 
+    /**
+     * Writes the given data to the given file asynchronously.
+     */
     public CompletableFuture<Void> write(File file, byte[] data) {
         UUID operationID = writeCache(file, data);
         CompletableFuture<Void> future = new CompletableFuture<>();
@@ -148,4 +166,5 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         }
         return cached || file.exists();
     }
+
 }
