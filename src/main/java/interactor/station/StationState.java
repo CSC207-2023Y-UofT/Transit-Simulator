@@ -40,6 +40,7 @@ public class StationState {
 
     /**
      * Gets the lines that the station is on.
+     *
      * @return The lines that the station is on.
      */
     public List<Integer> getLines() {
@@ -48,6 +49,7 @@ public class StationState {
 
     /**
      * Gets the name of the station.
+     *
      * @return The name of the station.
      */
     public String getName() {
@@ -56,6 +58,7 @@ public class StationState {
 
     /**
      * Gets the x coordinate of the station.
+     *
      * @return The x coordinate of the station.
      */
     public int getX() {
@@ -64,6 +67,7 @@ public class StationState {
 
     /**
      * Gets the y coordinate of the station.
+     *
      * @return The y coordinate of the station.
      */
     public int getY() {

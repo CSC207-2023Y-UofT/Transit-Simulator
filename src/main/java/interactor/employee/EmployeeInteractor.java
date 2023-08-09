@@ -4,24 +4,25 @@ import employee.*;
 import model.control.TransitModel;
 import model.train.Train;
 import model.train.TrainRole;
-import model.train.TrainRole;
 import util.Preconditions;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EmployeeInteractor implements IEmployeeInteractor {
     private final EmployeeTracker tracker;
     private final TransitModel model;
 
-    public EmployeeInteractor(EmployeeTracker tracker, TransitModel model){
+    public EmployeeInteractor(EmployeeTracker tracker, TransitModel model) {
         this.tracker = tracker;
         this.model = model;
     }
 
     @Override
     public EmployeeInfo registerEmployee(RegisterEmployeeRequest requestModel) {
-        switch (requestModel.type){
+        switch (requestModel.type) {
             case ENGINEER:
                 TrainEngineer eng = new TrainEngineer(ThreadLocalRandom.current().nextInt(999999999));
                 tracker.addEmployee(eng);

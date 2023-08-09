@@ -36,17 +36,19 @@ public interface IEmployeeInteractor {
 
     /**
      * Assign a job to an employee.
+     *
      * @param staffNumber The staff number of the employee.
-     * @param trainName The name of the train.
-     * @param job The job to assign.
+     * @param trainName   The name of the train.
+     * @param job         The job to assign.
      * @return True if the job was assigned successfully, false if the employee does not exist or the job is already assigned.
      * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.
-     * @throws IllegalStateException If there is already an employee assigned to the job on that train.
+     * @throws IllegalStateException    If there is already an employee assigned to the job on that train.
      */
     void assignJob(int staffNumber, String trainName, TrainRole job);
 
     /**
      * Unassign a job from an employee.
+     *
      * @param staffNumber The staff number of the employee.
      * @return True if the job was unassigned successfully, false if the employee does not exist or the job is not assigned.
      */

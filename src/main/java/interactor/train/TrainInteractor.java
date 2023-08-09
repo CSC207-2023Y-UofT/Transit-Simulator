@@ -1,15 +1,14 @@
 package interactor.train;
 
-import employee.Employee;
 import interactor.station.StationInteractor;
 import interactor.station.StationState;
 import model.Direction;
 import model.control.TransitModel;
-import model.node.Node;
 import model.train.Train;
-import model.train.TrainRole;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The interactor for the train.
@@ -22,6 +21,7 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Constructs a new TrainInteractor with the given transit model.
+     *
      * @param model The transit model.
      */
     public TrainInteractor(TransitModel model) {
@@ -30,6 +30,7 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Gets the train state for the given train name.
+     *
      * @param trainName The train name.
      * @return The train state.
      */
@@ -39,6 +40,7 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Gets the train states for all trains.
+     *
      * @return The train states.
      */
     public List<TrainState> getTrains() {
@@ -53,6 +55,7 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Returns the train state for the given train.
+     *
      * @param train The train.
      * @return the TrainState.
      */

@@ -2,7 +2,9 @@ package interactor.ticket;
 
 import stats.entry.impl.TicketSaleStat;
 import stats.persistence.StatDataController;
-import ticket.*;
+import ticket.Ticket;
+import ticket.TicketDataStore;
+import ticket.TicketType;
 
 import java.util.ArrayList;
 import java.util.List;

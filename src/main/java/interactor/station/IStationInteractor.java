@@ -36,6 +36,7 @@ public interface IStationInteractor {
 
     /**
      * Returns a list of all stations.
+     *
      * @return A list of all stations.
      */
     List<StationState> getStations();

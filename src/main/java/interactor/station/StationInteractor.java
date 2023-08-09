@@ -21,6 +21,7 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Constructs a new StationInteractor with the given transit model.
+     *
      * @param model The transit model.
      */
     public StationInteractor(TransitModel model) {
@@ -29,6 +30,7 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Gets the station state for the given station name.
+     *
      * @param stationName The station name.
      * @return The station state.
      */
@@ -43,9 +45,10 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Gets the next station given the line number, station name and direction.
-     * @param line The line number.
+     *
+     * @param line        The line number.
      * @param stationName The station name.
-     * @param direction The direction.
+     * @param direction   The direction.
      * @return The next station state, if any.
      */
     public Optional<StationState> getNextStation(int line, String stationName, Direction direction) {
@@ -67,6 +70,7 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Gets a list of stations in the transit model.
+     *
      * @return The list of stations.
      */
     public List<StationState> getStations() {
@@ -81,9 +85,10 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Gets the time till the next arrival given the station name, line number and direction.
+     *
      * @param stationName The station name.
-     * @param line The line number.
-     * @param direction The direction.
+     * @param line        The line number.
+     * @param direction   The direction.
      * @return The time till the next arrival, if any. In Epoch Time format.
      */
     public Optional<Long> getTimeTillNextArrival(String stationName, int line, Direction direction) {
@@ -108,6 +113,7 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Converts a node to a station state.
+     *
      * @param node The node.
      * @return The station state.
      */

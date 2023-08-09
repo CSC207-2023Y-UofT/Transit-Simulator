@@ -1,7 +1,5 @@
 package interactor.employee;
 
-import model.train.TrainRole;
-
 import java.util.Optional;
 
 /**

@@ -17,7 +17,8 @@ public class TrainNodeDistance {
 
     /**
      * Constructs a new TrainNodeDistance with the given station and distance.
-     * @param station The StationState.
+     *
+     * @param station  The StationState.
      * @param distance The distance.
      */
     public TrainNodeDistance(StationState station, double distance) {
@@ -27,6 +28,7 @@ public class TrainNodeDistance {
 
     /**
      * Gets the StationState.
+     *
      * @return The StationState.
      */
     public StationState getStation() {
@@ -35,6 +37,7 @@ public class TrainNodeDistance {
 
     /**
      * Gets the distance.
+     *
      * @return The distance.
      */
     public double getDistance() {

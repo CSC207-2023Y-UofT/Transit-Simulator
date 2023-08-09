@@ -1,9 +1,7 @@
 package interactor.train;
 
 import interactor.station.StationState;
-import model.train.TrainRole;
 
-import java.util.Map;
 import java.util.Optional;
 
 /**
