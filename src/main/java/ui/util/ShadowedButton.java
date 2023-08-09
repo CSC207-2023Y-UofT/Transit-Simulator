@@ -4,16 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * RoundedButton is a JButton that is rounded.
+ * Shadowed is a JButton that is rounded and has a shadow.
  */
 public class ShadowedButton extends JButton {
 
+    /**
+     * Whether the button is rounded.
+     */
     private boolean rounded = true;
 
+    /**
+     * The thickness of the shadow.
+     */
     private final int shadowThickness = 6;
 
     /**
-     * Constructs a new RoundedButton with the given label.
+     * Constructs a new ShadowedButton with the given label.
      *
      * @param label the label of the button
      */
@@ -28,6 +34,11 @@ public class ShadowedButton extends JButton {
         setRolloverEnabled(true);
     }
 
+    /**
+     * Sets whether the button is rounded.
+     *
+     * @param rounded whether the button is rounded
+     */
     public void setRounded(boolean rounded) {
         this.rounded = rounded;
     }
@@ -77,7 +88,6 @@ public class ShadowedButton extends JButton {
         }
 
         g.setColor(getForeground());
-
         super.paintComponent(g);
     }
 
