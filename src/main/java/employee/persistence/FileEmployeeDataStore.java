@@ -19,6 +19,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
      * Creates a new file employee data store
+     *
      * @param directory The directory where the employee files are stored
      */
     public FileEmployeeDataStore(File directory) {

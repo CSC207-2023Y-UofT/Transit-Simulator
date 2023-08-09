@@ -36,6 +36,7 @@ public abstract class Employee {
     /**
      * Constructs a new Employee object with the given staff number.
      * all employee numbers should be 3 digits long.
+     *
      * @param id The unique staff number.
      */
     public Employee(int id) {
@@ -78,6 +79,7 @@ public abstract class Employee {
 
     /**
      * Returns the assignment of this employee.
+     *
      * @return The assignment of this employee.
      */
     public Optional<EmployeeAssignment> getAssignment() {
@@ -86,6 +88,7 @@ public abstract class Employee {
 
     /**
      * Sets the assignment of this employee.
+     *
      * @param trainAssignment The new assignment of this employee.
      */
     public void setAssignment(EmployeeAssignment trainAssignment) {

@@ -40,6 +40,7 @@ public class TrainEngineer extends Employee {
     /**
      * Sets the payment status of this TrainEngineer.
      * all employee numbers should be 3 digits long.
+     *
      * @param isPaid The new payment status. True if the TrainEngineer has been paid; otherwise false.
      */
     @Override
