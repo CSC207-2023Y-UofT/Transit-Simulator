@@ -9,9 +9,6 @@ import java.awt.*;
 
 /**
  * WelcomePage is a JPanel that displays the welcome page of the TTC.
- * It is used by the UIController to display the welcome page.
- *
- * @see UIController
  */
 public class WelcomePage extends JPanel {
 

@@ -41,7 +41,6 @@ public class PassengerHomePage extends JPanel {
      */
     public PassengerHomePage(UIController controller) {
         super(new BorderLayout());
-
         this.controller = controller;
 
         // Buy

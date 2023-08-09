@@ -27,6 +27,7 @@ public class UIController {
 
     /**
      * Constructs a new UIController object with the given interactor pool.
+     *
      * @param interactorPool the interactor pool
      */
     public UIController(InteractorPool interactorPool) {
@@ -39,6 +40,7 @@ public class UIController {
 
     /**
      * Returns the interactor pool.
+     *
      * @return the interactor pool
      */
     public InteractorPool getInteractorPool() {
@@ -47,6 +49,7 @@ public class UIController {
 
     /**
      * Returns the controller pool.
+     *
      * @return the controller pool
      */
     public ControllerPool getControllerPool() {
@@ -55,6 +58,7 @@ public class UIController {
 
     /**
      * Returns the main screen.
+     *
      * @return the main screen
      */
     public MainScreen getMainScreen() {
@@ -63,6 +67,7 @@ public class UIController {
 
     /**
      * Opens the given panel.
+     *
      * @param panel the panel to open
      */
     public void open(JPanel panel) {

@@ -52,4 +52,5 @@ public class ShadowPanel extends JPanel {
     public void setThickness(int thickness) {
         shadowBorder.setThickness(thickness);
     }
+
 }
