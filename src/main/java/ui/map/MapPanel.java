@@ -23,6 +23,8 @@ public class MapPanel extends JPanel {
 
     private volatile StationPage currentStationPage = null;
 
+    private final Timer timer = new Timer(10, e -> this.repaint());
+
     /**
      * Constructs a new MapPanel object with the given TransitMapPresenter.
      *
@@ -54,8 +56,6 @@ public class MapPanel extends JPanel {
             }
         });
     }
-
-    private final Timer timer = new Timer(10, e -> this.repaint());
 
     @Override
     public void addNotify() {
