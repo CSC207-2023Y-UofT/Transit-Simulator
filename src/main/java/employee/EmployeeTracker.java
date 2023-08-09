@@ -3,7 +3,8 @@ package employee;
 import employee.persistence.EmployeeDataStore;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The EmployeeTracker class maintains a list of Employee objects.
@@ -31,7 +32,7 @@ public class EmployeeTracker {
         }
     }
 
-    public void removeEmployee(Employee employee){
+    public void removeEmployee(Employee employee) {
         try {
             dataStore.remove(employee.getStaffNumber());
         } catch (IOException e) {

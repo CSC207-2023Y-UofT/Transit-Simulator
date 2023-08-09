@@ -2,14 +2,7 @@ package simulation;
 
 import main.InteractorPool;
 import model.control.TransitModel;
-import model.train.Passenger;
 import stats.persistence.StatDataController;
-import ticket.Ticket;
-import ticket.TicketType;
-import util.PerlinNoise;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class performs the basic simulation functionalities needed for the program.
@@ -47,6 +40,7 @@ public class Simulation {
 
     /**
      * Creates a new simulation on the given model.
+     *
      * @param model The model to run the simulation on.
      */
     public Simulation(TransitModel model, InteractorPool pool, StatDataController stats) {

@@ -1,8 +1,7 @@
 package model.train;
 
-import model.*;
+import model.Direction;
 import model.control.TransitModel;
-import employee.Employee;
 import model.node.Node;
 import model.train.track.TrackSegment;
 import util.Preconditions;

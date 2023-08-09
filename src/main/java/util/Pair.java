@@ -19,7 +19,7 @@ public class Pair<T, K> {
     /**
      * Constructs a new pair with the given elements.
      *
-     * @param first the first element of the pair.
+     * @param first  the first element of the pair.
      * @param second the second element of the pair.
      */
     public Pair(T first, K second) {

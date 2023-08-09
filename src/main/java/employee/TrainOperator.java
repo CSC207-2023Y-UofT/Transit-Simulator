@@ -1,6 +1,5 @@
 package employee;
 
-import employee.Employee;
 import interactor.employee.EmployeeType;
 
 public class TrainOperator extends Employee {
@@ -8,6 +7,7 @@ public class TrainOperator extends Employee {
     /**
      * Constructs a new TrainOperator object with the given employee number.
      * all employee numbers should be 3 digits long.
+     *
      * @param id is an Integer
      */
     public TrainOperator(int id) {
@@ -16,6 +16,7 @@ public class TrainOperator extends Employee {
 
     /**
      * returns what this employee object is being paid
+     *
      * @return a double
      */
     @Override
@@ -30,6 +31,7 @@ public class TrainOperator extends Employee {
 
     /**
      * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
+     *
      * @param isPaid is a boolean
      */
     @Override
@@ -39,6 +41,7 @@ public class TrainOperator extends Employee {
 
     /**
      * returns whether this TrainOperator object has been paid yet
+     *
      * @return a boolean
      */
     @Override

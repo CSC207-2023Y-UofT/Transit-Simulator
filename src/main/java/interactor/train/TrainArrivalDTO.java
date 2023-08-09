@@ -17,7 +17,8 @@ public class TrainArrivalDTO {
 
     /**
      * Constructs a new TrainNodeDistance with the given station and distance.
-     * @param station The StationState.
+     *
+     * @param station  The StationState.
      * @param distance The distance.
      */
     public TrainArrivalDTO(StationDTO station, double distance) {
@@ -27,6 +28,7 @@ public class TrainArrivalDTO {
 
     /**
      * Gets the StationState.
+     *
      * @return The StationState.
      */
     public StationDTO getStation() {
@@ -35,6 +37,7 @@ public class TrainArrivalDTO {
 
     /**
      * Gets the distance.
+     *
      * @return The distance.
      */
     public double getDistance() {

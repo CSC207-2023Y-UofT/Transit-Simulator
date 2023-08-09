@@ -21,6 +21,7 @@ public class EntryHierarchy {
     /**
      * Map the hierarchy of stat entry classes that have this entry class
      * as a descendant.
+     *
      * @param entryClass The stat entry class to map.
      */
     public void map(Class<? extends StatEntry> entryClass) {
@@ -57,9 +58,10 @@ public class EntryHierarchy {
 
     /**
      * Get all the classes that are concrete implementations of the given entry class.
+     *
      * @param entryClass The entry class to get the implementations of.
+     * @param <T>        The type of the entry class.
      * @return A list of all the concrete implementations of the given entry class.
-     * @param <T> The type of the entry class.
      */
     public <T extends StatEntry> List<Class<? extends T>> getInheritors(Class<T> entryClass) {
         map(entryClass);

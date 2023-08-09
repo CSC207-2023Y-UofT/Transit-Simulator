@@ -38,6 +38,7 @@ public class Timing {
 
     /**
      * Marks the timing with the given id
+     *
      * @param id The id to mark
      */
     public void mark(String id) {
