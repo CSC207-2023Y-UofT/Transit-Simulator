@@ -64,6 +64,7 @@ public class TrainSimulator {
 
     /**
      * Creates a new train simulator with the given tick speed.
+     *
      * @param tickSpeed The number of ticks per second
      */
     public TrainSimulator(int tickSpeed, StatDataController stats) {
@@ -74,6 +75,7 @@ public class TrainSimulator {
     /**
      * Clears the trains in the model provided and creates new trains randomly on
      * each track loop.
+     *
      * @param model The model to create work on
      */
     public void recreateTrains(TransitModel model) {
@@ -149,6 +151,7 @@ public class TrainSimulator {
 
     /**
      * Simulate the boarding of passengers on this train.
+     *
      * @param model The model to simulate on
      */
     public void tick(TransitModel model) {
@@ -220,6 +223,7 @@ public class TrainSimulator {
 
     /**
      * Handling simulating the boarding of passengers onto this train.
+     *
      * @return the number of passengers that boarded
      */
     private int simulateBoarding(Train train) {

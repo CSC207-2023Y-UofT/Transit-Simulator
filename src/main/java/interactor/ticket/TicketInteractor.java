@@ -2,7 +2,9 @@ package interactor.ticket;
 
 import stats.entry.impl.TicketSaleStat;
 import stats.persistence.StatDataController;
-import ticket.*;
+import ticket.Ticket;
+import ticket.TicketDataStore;
+import ticket.TicketType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class TicketInteractor implements ITicketInteractor {
         this.stats = stats;
     }
 
-    public List<BoughtTicket> buyTickets(List<TicketType> ticketTypes) {
+    public List<TicketDTO> buyTickets(List<TicketType> ticketTypes) {
 
         List<Ticket> tickets = new ArrayList<>();
 
@@ -33,31 +35,31 @@ public class TicketInteractor implements ITicketInteractor {
             stats.record(saleStat);
         }
 
-        List<BoughtTicket> response = new ArrayList<>();
+        List<TicketDTO> response = new ArrayList<>();
 
         for (Ticket ticket : tickets) {
-            BoughtTicket boughtTicket = convertTicket(ticket);
-            response.add(boughtTicket);
+            TicketDTO ticketDTO = toDTO(ticket);
+            response.add(ticketDTO);
         }
 
         return response;
     }
 
     @Override
-    public Optional<BoughtTicket> getTicket(int ticketId) {
+    public Optional<TicketDTO> getTicket(int ticketId) {
         Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
         if (ticket == null) return Optional.empty();
-        return Optional.of(convertTicket(ticket));
+        return Optional.of(toDTO(ticket));
     }
 
     @Override
-    public Optional<BoughtTicket> activateTicket(int ticketId) {
+    public Optional<TicketDTO> activateTicket(int ticketId) {
         Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
         if (ticket == null) return Optional.empty();
-        if (ticket.isActivated()) return Optional.of(convertTicket(ticket));
+        if (ticket.isActivated()) return Optional.of(toDTO(ticket));
         ticket.activate();
         dataStore.saveTicket(ticket);
-        return Optional.of(new BoughtTicket(ticket.getPrice(),
+        return Optional.of(new TicketDTO(ticket.getPrice(),
                 ticket.getType(),
                 ticket.getId(),
                 ticket.isActivated(),
@@ -69,8 +71,8 @@ public class TicketInteractor implements ITicketInteractor {
         dataStore.cleanExpiredTickets();
     }
 
-    private BoughtTicket convertTicket(Ticket ticket) {
-        return new BoughtTicket(ticket.getPrice(),
+    private TicketDTO toDTO(Ticket ticket) {
+        return new TicketDTO(ticket.getPrice(),
                 ticket.getType(),
                 ticket.getId(),
                 ticket.isActivated(),

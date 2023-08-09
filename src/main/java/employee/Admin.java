@@ -1,13 +1,6 @@
 package employee;
 
 import interactor.employee.EmployeeType;
-import model.train.Train;
-import model.train.TrainRole;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The Admin class extends the Employee class.
@@ -19,6 +12,7 @@ public class Admin extends Employee {
     /**
      * Constructs a new Admin object with the given employee number.
      * all employee numbers should be 3 digits long.
+     *
      * @param num The unique employee number.
      */
     public Admin(int num) {
@@ -37,6 +31,7 @@ public class Admin extends Employee {
 
     /**
      * Returns the type of this Admin.
+     *
      * @return The type of this Admin
      */
     @Override

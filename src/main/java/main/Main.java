@@ -15,12 +15,14 @@ import simulation.Simulation;
 import stats.persistence.StatAggregateDataStore;
 import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
-import stats.persistence.impl.FileAggregateDataUtils;
+import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
 import ticket.JsonTicketDataStore;
 import ticket.TicketDataStore;
 import ui.UIController;
 import ui.WelcomePage;
+import util.AsyncWriteIOProvider;
+import util.DeflateCompressionProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,13 +57,18 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        DataStorage.init(
+                new AsyncWriteIOProvider(),
+                new DeflateCompressionProvider()
+        );
+
         // Create the model
         JsonModelDataStore dataStore = new JsonModelDataStore(file);
         TransitModel model = dataStore.readModel();
 
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
-        StatAggregateDataStore statAggregateDataStore = new FileAggregateDataUtils(new File("stat-aggregates"));
+        StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
 
         StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
 

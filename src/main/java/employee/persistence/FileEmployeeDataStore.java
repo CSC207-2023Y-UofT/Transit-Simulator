@@ -1,15 +1,17 @@
 package employee.persistence;
 
 import employee.Employee;
-import util.AsyncFileUtil;
+import main.DataStorage;
 
 import java.io.*;
-import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * File data store for employees.
+ */
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
@@ -19,6 +21,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
      * Creates a new file employee data store
+     *
      * @param directory The directory where the employee files are stored
      */
     public FileEmployeeDataStore(File directory) {
@@ -37,7 +40,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     @Override
     public void remove(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
-        if (!file.exists()) return;
+        if (!DataStorage.getIO().exists(file)) return;
         Files.delete(getFile(staffNumber).toPath());
     }
 
@@ -50,21 +53,19 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         objectOut.writeObject(employee);
         objectOut.close();
         byte[] data = out.toByteArray();
-        AsyncFileUtil.write(file, ByteBuffer.wrap(data));
+        DataStorage.getIO().write(file, data);
     }
 
     @Override
     public Optional<Employee> get(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
-        if (!file.exists()) return Optional.empty();
+        if (!DataStorage.getIO().exists(file)) return Optional.empty();
         return read(file);
     }
 
     private Optional<Employee> read(File file) {
         try {
-            ByteBuffer data = AsyncFileUtil.read(file);
-            byte[] bytes = new byte[data.remaining()];
-            data.get(bytes);
+            byte[] bytes = DataStorage.getIO().read(file);
             ByteArrayInputStream in = new ByteArrayInputStream(bytes);
             return Optional.ofNullable((Employee) new ObjectInputStream(in).readObject());
         } catch (ClassNotFoundException | IOException e) {

@@ -1,10 +1,10 @@
 package controller.map;
 
 import interactor.station.IStationInteractor;
-import interactor.station.StationState;
+import interactor.station.StationDTO;
 import interactor.train.ITrainInteractor;
-import interactor.train.TrainNodeDistance;
-import interactor.train.TrainState;
+import interactor.train.TrainArrivalDTO;
+import interactor.train.TrainDTO;
 import model.Direction;
 
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TransitMapPresenter {
+public class TransitMapViewModel {
     /**
      * The size of the map width in metres.
      */
@@ -37,15 +37,15 @@ public class TransitMapPresenter {
     /**
      * The list of stations to draw.
      */
-    protected List<StationState> stations = new ArrayList<>();
+    protected List<StationDTO> stations = new ArrayList<>();
     /**
      * The list of trains to draw.
      */
-    protected List<TrainState> trains = new ArrayList<>();
+    protected List<TrainDTO> trains = new ArrayList<>();
     /**
      * The station that is currently highlighted.
      */
-    private StationState highlightedStation = null;
+    private StationDTO highlightedStation = null;
     /**
      * The width of the image.
      */
@@ -61,7 +61,7 @@ public class TransitMapPresenter {
      * @param stationInteractor The station interactor.
      * @param trainInteractor   The train interactor.
      */
-    public TransitMapPresenter(IStationInteractor stationInteractor,
+    public TransitMapViewModel(IStationInteractor stationInteractor,
                                ITrainInteractor trainInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
@@ -95,11 +95,11 @@ public class TransitMapPresenter {
         double scaleY = height / MAP_SIZE_Y;
 
         // For each station, get the next station and draw a line between them
-        for (StationState station : stations) {
+        for (StationDTO station : stations) {
             for (int line : station.getLines()) {
-                Optional<StationState> optNextStation = stationInteractor.getNextStation(line, station.getName(), Direction.FORWARD);
+                Optional<StationDTO> optNextStation = stationInteractor.getNextStation(line, station.getName(), Direction.FORWARD);
                 if (optNextStation.isEmpty()) continue;
-                StationState nextStation = optNextStation.get();
+                StationDTO nextStation = optNextStation.get();
                 int x = (int) (station.getX() * scaleX);
                 int y = (int) (station.getY() * scaleY);
 
@@ -117,7 +117,7 @@ public class TransitMapPresenter {
         }
 
         // Draw each station as a dark green circle with a black border
-        for (StationState station : stations) {
+        for (StationDTO station : stations) {
             int x = (int) (station.getX() * scaleX);
             int y = (int) (station.getY() * scaleY);
 
@@ -146,16 +146,17 @@ public class TransitMapPresenter {
             graphics.transform(AffineTransform.getRotateInstance(-Math.PI / 4, x, y));
             graphics.drawString(station.getName(), x + STATION_ICON_SIZE + 5, y + STATION_ICON_SIZE / 2);
             graphics.setTransform(transform);
+
         }
 
         // Draw trains
-        for (TrainState train : trains) {
+        for (TrainDTO train : trains) {
 
             if (train.getCurrentStation().isPresent()) {
 
                 // At a station,
                 // draw the train at the station
-                StationState station = train.getCurrentStation().get();
+                StationDTO station = train.getCurrentStation().get();
                 double stationX = station.getX();
                 double stationY = station.getY();
 
@@ -176,10 +177,10 @@ public class TransitMapPresenter {
                 continue;
             }
 
-            TrainNodeDistance nextDistance = train.getNextNodeDistance().orElse(null);
+            TrainArrivalDTO nextDistance = train.getNextNodeDistance().orElse(null);
             if (nextDistance == null) continue;
 
-            TrainNodeDistance prevDistance = train.getPreviousNodeDistance().orElse(null);
+            TrainArrivalDTO prevDistance = train.getPreviousNodeDistance().orElse(null);
             if (prevDistance == null) continue;
 
             double nextXO = nextDistance.getStation().getX();
@@ -225,11 +226,11 @@ public class TransitMapPresenter {
      * @param y The y-coordinate
      * @return The station at the given coordinates, if any.
      */
-    public Optional<StationState> getStationAt(int x, int y) {
+    private Optional<StationDTO> getStationAt(int x, int y) {
         double scaleX = width / MAP_SIZE_X;
         double scaleY = height / MAP_SIZE_Y;
 
-        for (StationState station : stations) {
+        for (StationDTO station : stations) {
             int stationX = (int) (station.getX() * scaleX);
             int stationY = (int) (station.getY() * scaleY);
 
@@ -248,7 +249,7 @@ public class TransitMapPresenter {
      * @param y The y-coordinate of the mouse
      */
     public void onMouseMove(int x, int y) {
-        Optional<StationState> optStation = getStationAt(x, y);
+        Optional<StationDTO> optStation = getStationAt(x, y);
         if (optStation.isEmpty()) {
             highlightedStation = null;
             return;
@@ -258,24 +259,10 @@ public class TransitMapPresenter {
     }
 
     /**
-     * Called when the mouse is clicked.
-     *
-     * @param x The x-coordinate of the mouse
-     * @param y The y-coordinate of the mouse
-     */
-    public void onClick(int x, int y) {
-        Optional<StationState> optStation = getStationAt(x, y);
-        if (optStation.isEmpty()) return;
-        StationState station = optStation.get();
-
-        onClickStation(station);
-    }
-
-    /**
      * Called when a station is clicked.
      *
      * @param station The station that was clicked.
      */
-    protected void onClickStation(StationState station) {
+    protected void onClickStation(StationDTO station) {
     }
 }

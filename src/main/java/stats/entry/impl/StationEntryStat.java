@@ -1,7 +1,5 @@
 package stats.entry.impl;
 
-import stats.entry.StatEntry;
-
 /**
  * This class represents a specific type of {@link StationStat} related to station entry statistics.
  * It extends the StationStat class and inherits its properties and methods.

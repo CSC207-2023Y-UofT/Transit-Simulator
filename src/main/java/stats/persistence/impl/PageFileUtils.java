@@ -1,11 +1,11 @@
 package stats.persistence.impl;
 
-import util.AsyncFileUtil;
+import main.DataStorage;
+import util.AsyncWriteIOProvider;
 
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.DataFormatException;
@@ -19,26 +19,21 @@ public class PageFileUtils {
     /**
      * Reads a page file from the file system. If there is a class issue with
      * deserialization, an empty map will be returned.
-     * @param pageFile The page file to read.
+     *
+     * @param pageFile  The page file to read.
      * @param typeClass The type of the data.
+     * @param <T>       The type of the data.
      * @return The map of data read from the file.
-     * @param <T> The type of the data.
      */
     public static <T> Map<Long, T> read(File pageFile, Class<T> typeClass) {
 
-        if (!pageFile.exists()) {
-            return new HashMap<>();
-        }
-
         try {
 
-            ByteBuffer buffer = AsyncFileUtil.read(pageFile);
+            byte[] bytes = DataStorage.getIO().read(pageFile);
 
             // Decompress the buffer
-            byte[] bytes = new byte[buffer.remaining()];
-            buffer.get(bytes);
-            bytes = AsyncFileUtil.decompress(bytes);
-            buffer = ByteBuffer.wrap(bytes);
+            bytes = DataStorage.getCompression().decompress(bytes);
+            ByteBuffer buffer = ByteBuffer.wrap(bytes);
 
             // The first 4 bytes make an integer representing the number of elements
             int numElements = buffer.getInt();
@@ -100,9 +95,9 @@ public class PageFileUtils {
             buffer.get(bytes);
 
             // Compress
-            bytes = AsyncFileUtil.compress(bytes);
+            bytes = DataStorage.getCompression().compress(bytes);
 
-            AsyncFileUtil.write(pageFile, ByteBuffer.wrap(bytes));
+            DataStorage.getIO().write(pageFile, bytes);
 
         } catch (IOException e) {
             e.printStackTrace();

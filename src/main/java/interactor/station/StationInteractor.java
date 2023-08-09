@@ -21,6 +21,7 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Constructs a new StationInteractor with the given transit model.
+     *
      * @param model The transit model.
      */
     public StationInteractor(TransitModel model) {
@@ -29,26 +30,28 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Gets the station state for the given station name.
+     *
      * @param stationName The station name.
      * @return The station state.
      */
-    public Optional<StationState> getStationState(String stationName) {
+    public Optional<StationDTO> getStation(String stationName) {
         Node node = model.getNode(stationName);
         if (node == null) {
             return Optional.empty();
         }
 
-        return Optional.of(toState(node));
+        return Optional.of(toDTO(node));
     }
 
     /**
      * Gets the next station given the line number, station name and direction.
-     * @param line The line number.
+     *
+     * @param line        The line number.
      * @param stationName The station name.
-     * @param direction The direction.
+     * @param direction   The direction.
      * @return The next station state, if any.
      */
-    public Optional<StationState> getNextStation(int line, String stationName, Direction direction) {
+    public Optional<StationDTO> getNextStation(int line, String stationName, Direction direction) {
         Node node = model.getNode(stationName);
 
         if (node == null) {
@@ -62,18 +65,19 @@ public class StationInteractor implements IStationInteractor {
             return Optional.empty();
         }
 
-        return getStationState(nextNode.getName());
+        return getStation(nextNode.getName());
     }
 
     /**
      * Gets a list of stations in the transit model.
+     *
      * @return The list of stations.
      */
-    public List<StationState> getStations() {
-        List<StationState> stations = new ArrayList<>();
+    public List<StationDTO> getStations() {
+        List<StationDTO> stations = new ArrayList<>();
 
         for (Node node : model.getNodes().values()) {
-            stations.add(toState(node));
+            stations.add(toDTO(node));
         }
 
         return stations;
@@ -81,9 +85,10 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Gets the time till the next arrival given the station name, line number and direction.
+     *
      * @param stationName The station name.
-     * @param line The line number.
-     * @param direction The direction.
+     * @param line        The line number.
+     * @param direction   The direction.
      * @return The time till the next arrival, if any. In Epoch Time format.
      */
     public Optional<Long> getTimeTillNextArrival(String stationName, int line, Direction direction) {
@@ -108,16 +113,17 @@ public class StationInteractor implements IStationInteractor {
 
     /**
      * Converts a node to a station state.
+     *
      * @param node The node.
      * @return The station state.
      */
-    public static StationState toState(Node node) {
+    public static StationDTO toDTO(Node node) {
         List<Integer> lineProfiles = new ArrayList<>();
         for (NodeLineProfile profile : node.getLineProfiles()) {
             lineProfiles.add(profile.getLineNumber());
         }
 
-        return new StationState(
+        return new StationDTO(
                 node.getName(),
                 lineProfiles,
                 node.getX(),

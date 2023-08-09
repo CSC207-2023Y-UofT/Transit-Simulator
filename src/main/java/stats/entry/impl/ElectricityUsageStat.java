@@ -12,6 +12,7 @@ public class ElectricityUsageStat implements ExpenseStat {
 
     /**
      * Constructs an ElectricityUsageStat instance with a specified amount of electricity used.
+     *
      * @param amount The amount of electricity used.
      */
     public ElectricityUsageStat(double amount) {
@@ -20,6 +21,7 @@ public class ElectricityUsageStat implements ExpenseStat {
 
     /**
      * Gets the amount of electricity used.
+     *
      * @return The amount of electricity used as a double value.
      */
     public double getAmount() {

@@ -1,15 +1,14 @@
 package interactor.train;
 
-import employee.Employee;
 import interactor.station.StationInteractor;
-import interactor.station.StationState;
+import interactor.station.StationDTO;
 import model.Direction;
 import model.control.TransitModel;
-import model.node.Node;
 import model.train.Train;
-import model.train.TrainRole;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The interactor for the train.
@@ -22,6 +21,7 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Constructs a new TrainInteractor with the given transit model.
+     *
      * @param model The transit model.
      */
     public TrainInteractor(TransitModel model) {
@@ -30,22 +30,24 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Gets the train state for the given train name.
+     *
      * @param trainName The train name.
      * @return The train state.
      */
-    public TrainState getTrainState(String trainName) {
-        return toState(model.getTrain(trainName));
+    public TrainDTO getTrainState(String trainName) {
+        return toDTO(model.getTrain(trainName));
     }
 
     /**
      * Gets the train states for all trains.
+     *
      * @return The train states.
      */
-    public List<TrainState> getTrains() {
-        List<TrainState> trains = new ArrayList<>();
+    public List<TrainDTO> getTrains() {
+        List<TrainDTO> trains = new ArrayList<>();
 
         for (Train train : model.getTrainList()) {
-            trains.add(toState(train));
+            trains.add(toDTO(train));
         }
 
         return trains;
@@ -53,10 +55,11 @@ public class TrainInteractor implements ITrainInteractor {
 
     /**
      * Returns the train state for the given train.
+     *
      * @param train The train.
      * @return the TrainState.
      */
-    public static TrainState toState(Train train) {
+    public static TrainDTO toDTO(Train train) {
 
         String name = train.getName();
         int capacity = train.getCapacity();
@@ -64,35 +67,35 @@ public class TrainInteractor implements ITrainInteractor {
 
 
         // Forwards
-        Optional<StationState> nextNode = train.getNextNode(Direction.FORWARD)
-                .map(StationInteractor::toState);
+        Optional<StationDTO> nextNode = train.getNextNode(Direction.FORWARD)
+                .map(StationInteractor::toDTO);
 
         Optional<Double> distanceToNextNode = train.getDistanceToNextNode(Direction.FORWARD);
 
         // Backwards
-        Optional<StationState> previousNode = train.getNextNode(Direction.BACKWARD)
-                .map(StationInteractor::toState);
+        Optional<StationDTO> previousNode = train.getNextNode(Direction.BACKWARD)
+                .map(StationInteractor::toDTO);
 
         Optional<Double> distanceToPreviousNode = train.getDistanceToNextNode(Direction.BACKWARD);
 
-        TrainNodeDistance nextNodeDistance = null;
-        TrainNodeDistance previousNodeDistance = null;
+        TrainArrivalDTO nextNodeDistance = null;
+        TrainArrivalDTO previousNodeDistance = null;
 
         if (nextNode.isPresent()) {
-            nextNodeDistance = new TrainNodeDistance(nextNode.get(), distanceToNextNode.orElseThrow());
+            nextNodeDistance = new TrainArrivalDTO(nextNode.get(), distanceToNextNode.orElseThrow());
         }
 
         if (previousNode.isPresent()) {
-            previousNodeDistance = new TrainNodeDistance(previousNode.get(), distanceToPreviousNode.orElseThrow());
+            previousNodeDistance = new TrainArrivalDTO(previousNode.get(), distanceToPreviousNode.orElseThrow());
         }
 
-        Optional<StationState> currentStation = train
+        Optional<StationDTO> currentStation = train
                 .getPosition()
                 .getTrack()
                 .getNode()
-                .map(StationInteractor::toState);
+                .map(StationInteractor::toDTO);
 
-        return new TrainState(name,
+        return new TrainDTO(name,
                 capacity,
                 occupation,
                 currentStation.orElse(null),

@@ -49,4 +49,5 @@ public class TicketPage {
         frame.pack();
         frame.setVisible(true);
     }
+
 }

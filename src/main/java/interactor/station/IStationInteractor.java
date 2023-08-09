@@ -12,7 +12,7 @@ public interface IStationInteractor {
     /**
      * Returns the state of the station with the given name.
      */
-    Optional<StationState> getStationState(String stationName);
+    Optional<StationDTO> getStation(String stationName);
 
     /**
      * Returns the state of the next station in the given direction.
@@ -22,7 +22,7 @@ public interface IStationInteractor {
      * @param direction   The direction on the line specified that you want to look in.
      * @return The state of the next station in the given direction.
      */
-    Optional<StationState> getNextStation(int line, String stationName, Direction direction);
+    Optional<StationDTO> getNextStation(int line, String stationName, Direction direction);
 
     /**
      * Returns the time until the next arrival at the given station.
@@ -36,7 +36,8 @@ public interface IStationInteractor {
 
     /**
      * Returns a list of all stations.
+     *
      * @return A list of all stations.
      */
-    List<StationState> getStations();
+    List<StationDTO> getStations();
 }

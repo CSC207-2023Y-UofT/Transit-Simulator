@@ -2,7 +2,10 @@ package model.node;
 
 import util.Preconditions;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Abstract Node class represents a node in a transit system. Each node has a name,

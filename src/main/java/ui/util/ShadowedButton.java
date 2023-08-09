@@ -76,6 +76,8 @@ public class ShadowedButton extends JButton {
             g.fillRect(shadowThickness, shadowThickness, getWidth() - shadowThickness * 2, getHeight() - shadowThickness * 2);
         }
 
+        g.setColor(getForeground());
+
         super.paintComponent(g);
     }
 

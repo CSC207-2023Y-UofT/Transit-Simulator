@@ -1,7 +1,7 @@
 package ui.passenger;
 
+import controller.map.TransitMapViewModel;
 import controller.ticket.PurchaseTicketViewModel;
-import controller.map.TransitMapPagePresenter;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -23,10 +23,15 @@ public class PassengerHomePage extends JPanel {
      * The UIController that is used to control the UI.
      */
     private final UIController controller;
+
     /**
-     * The buttons on the panel.
+     * The buy button on the panel.
      */
     private final JButton buyButton;
+
+    /**
+     * The back button on the panel.
+     */
     private final JButton backButton;
 
     /**
@@ -60,7 +65,7 @@ public class PassengerHomePage extends JPanel {
         this.setBackground(new Color(230, 230, 230));
 
         // Map
-        TransitMapPagePresenter presenter = new TransitMapPagePresenter(
+        TransitMapViewModel presenter = new TransitMapViewModel(
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );

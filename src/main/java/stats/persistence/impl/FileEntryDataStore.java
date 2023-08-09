@@ -1,13 +1,14 @@
 package stats.persistence.impl;
 
+import main.DataStorage;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 import stats.persistence.StatEntryDataStore;
 import util.Timing;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +59,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     /**
      * Returns a file instance pointing to the data file for the given page
      *
-     * @param page The page of the data.
+     * @param page  The page of the data.
      * @param clazz The class of the data.
      * @return A File instance.
      */
@@ -185,7 +186,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
     @Override
     public EntryHierarchy retrieveHierarchy() {
         File file = new File(directory, "hierarchy-leaves.txt");
-        if (!file.exists()) {
+        if (!DataStorage.getIO().exists(file)) {
             return new EntryHierarchy();
         }
         try {

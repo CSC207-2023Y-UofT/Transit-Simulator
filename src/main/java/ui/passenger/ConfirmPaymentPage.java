@@ -3,7 +3,7 @@ package ui.passenger;
 import controller.ticket.PurchaseTicketViewModel;
 import controller.ticket.TicketController;
 import controller.ticket.TicketViewModel;
-import interactor.ticket.BoughtTicket;
+import interactor.ticket.TicketDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 
@@ -52,9 +52,9 @@ public class ConfirmPaymentPage extends JPanel {
         confirmButton.setBackground(new Color(0, 151, 8));
         confirmButton.addActionListener(e -> {
             TicketController ticketController = controller.getControllerPool().getTicketController();
-            List<BoughtTicket> tickets = ticketController.buyTickets(viewModel.getTicketTypesList());
+            List<TicketDTO> tickets = ticketController.buyTickets(viewModel.getTicketTypesList());
             List<TicketViewModel> viewModels = new ArrayList<>();
-            for (BoughtTicket ticket : tickets) {
+            for (TicketDTO ticket : tickets) {
                 viewModels.add(new TicketViewModel(ticket));
             }
 
