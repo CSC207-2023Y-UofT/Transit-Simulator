@@ -142,7 +142,7 @@ public class PurchaseTicketPage extends JPanel {
     }
 
     /**
-     * Creates a counting JLabel.
+     * Creates a ticket counting JLabel.
      *
      * @return the counting JLabel
      */
