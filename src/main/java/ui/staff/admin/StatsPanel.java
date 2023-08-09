@@ -17,7 +17,7 @@ import java.awt.*;
 public class StatsPanel extends JPanel {
 
     /**
-     * The UI controller responsible for controlling UI interactions.
+     * The UI controller.
      */
     private final UIController controller;
 
@@ -32,6 +32,7 @@ public class StatsPanel extends JPanel {
      * Enum representing the time horizon in minutes for the statistics to be displayed.
      */
     public enum TimeHorizon {
+
         QUARTER_DAY(360),
         HALF_DAY(720),
         FULL_DAY(1440);
@@ -92,20 +93,35 @@ public class StatsPanel extends JPanel {
     /**
      * Constructs a new StatsPanel with the given UIController.
      *
-     * @param controller the UIController responsible for controlling UI interactions
+     * @param controller the UIController.
      */
     public StatsPanel(UIController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Gets the view model for this panel.
+     *
+     * @return the view model
+     */
     public SingletonStatViewModel getViewModel() {
         return viewModel;
     }
 
+    /**
+     * Gets the time horizon for the statistics.
+     *
+     * @return the time horizon
+     */
     public void setHorizon(TimeHorizon horizon) {
         this.horizon = horizon;
     }
 
+    /**
+     * Gets the type of statistics to be displayed.
+     *
+     * @param display the type of statistics to be displayed
+     */
     public void setDisplay(StatDisplay display) {
         this.display = display;
     }
