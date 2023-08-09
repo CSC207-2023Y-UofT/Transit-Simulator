@@ -6,22 +6,27 @@ import ticket.TicketType;
  * Represents a ticket that has been bought by a user.
  */
 public class TicketDTO {
+
     /**
      * The cost of the ticket.
      */
     private final double cost;
+
     /**
      * The type of the ticket.
      */
     private final TicketType type;
+
     /**
      * The id of the ticket.
      */
     private final int ticketId;
+
     /**
      * Whether the ticket has been activated.
      */
     private final boolean activated;
+
     /**
      * The expiry time of the ticket.
      */
