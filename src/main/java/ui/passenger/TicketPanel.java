@@ -1,7 +1,7 @@
 package ui.passenger;
 
 import controller.ticket.TicketViewModel;
-import interactor.ticket.BoughtTicket;
+import interactor.ticket.TicketDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.util.ShadowPanel;
@@ -82,7 +82,7 @@ public class TicketPanel extends JPanel {
             return;
         }
 
-        Optional<BoughtTicket> ticket = controller.getControllerPool()
+        Optional<TicketDTO> ticket = controller.getControllerPool()
                 .getTicketController()
                 .getTicket(viewModel.getTicket().getTicketId());
 
@@ -98,7 +98,7 @@ public class TicketPanel extends JPanel {
      * Updates the components in this panel.
      */
     private void updateComponents() {
-        BoughtTicket ticket = viewModel.getTicket();
+        TicketDTO ticket = viewModel.getTicket();
         if (ticket == null) {
             expired(innerPanel);
         } else {

@@ -21,6 +21,8 @@ import ticket.JsonTicketDataStore;
 import ticket.TicketDataStore;
 import ui.UIController;
 import ui.WelcomePage;
+import util.AsyncWriteIOProvider;
+import util.DeflateCompressionProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +56,11 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        DataStorage.init(
+                new AsyncWriteIOProvider(),
+                new DeflateCompressionProvider()
+        );
 
         // Create the model
         JsonModelDataStore dataStore = new JsonModelDataStore(file);

@@ -32,13 +32,13 @@ public class StationInteractor implements IStationInteractor {
      * @param stationName The station name.
      * @return The station state.
      */
-    public Optional<StationState> getStationState(String stationName) {
+    public Optional<StationDTO> getStationState(String stationName) {
         Node node = model.getNode(stationName);
         if (node == null) {
             return Optional.empty();
         }
 
-        return Optional.of(toState(node));
+        return Optional.of(toDTO(node));
     }
 
     /**
@@ -48,7 +48,7 @@ public class StationInteractor implements IStationInteractor {
      * @param direction The direction.
      * @return The next station state, if any.
      */
-    public Optional<StationState> getNextStation(int line, String stationName, Direction direction) {
+    public Optional<StationDTO> getNextStation(int line, String stationName, Direction direction) {
         Node node = model.getNode(stationName);
 
         if (node == null) {
@@ -69,11 +69,11 @@ public class StationInteractor implements IStationInteractor {
      * Gets a list of stations in the transit model.
      * @return The list of stations.
      */
-    public List<StationState> getStations() {
-        List<StationState> stations = new ArrayList<>();
+    public List<StationDTO> getStations() {
+        List<StationDTO> stations = new ArrayList<>();
 
         for (Node node : model.getNodes().values()) {
-            stations.add(toState(node));
+            stations.add(toDTO(node));
         }
 
         return stations;
@@ -111,13 +111,13 @@ public class StationInteractor implements IStationInteractor {
      * @param node The node.
      * @return The station state.
      */
-    public static StationState toState(Node node) {
+    public static StationDTO toDTO(Node node) {
         List<Integer> lineProfiles = new ArrayList<>();
         for (NodeLineProfile profile : node.getLineProfiles()) {
             lineProfiles.add(profile.getLineNumber());
         }
 
-        return new StationState(
+        return new StationDTO(
                 node.getName(),
                 lineProfiles,
                 node.getX(),

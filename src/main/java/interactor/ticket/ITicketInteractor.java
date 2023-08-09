@@ -15,14 +15,14 @@ public interface ITicketInteractor {
      * @param ticketTypes The types of tickets to buy
      * @return The list of bought tickets
      */
-    List<BoughtTicket> buyTickets(List<TicketType> ticketTypes);
+    List<TicketDTO> buyTickets(List<TicketType> ticketTypes);
 
     /**
      * Gets a ticket
      * @param ticketId The id of the ticket to get
      * @return The ticket, or empty if the ticket was not found
      */
-    Optional<BoughtTicket> getTicket(int ticketId);
+    Optional<TicketDTO> getTicket(int ticketId);
 
     /**
      * Activates a ticket
@@ -30,7 +30,7 @@ public interface ITicketInteractor {
      * @return The activated ticket, or empty if the ticket was not found
      * @apiNote This method will still return the bought ticket if it is already active
      */
-    Optional<BoughtTicket> activateTicket(int ticketId);
+    Optional<TicketDTO> activateTicket(int ticketId);
 
     /**
      * Remove expired tickets

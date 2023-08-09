@@ -5,7 +5,7 @@ import ticket.TicketType;
 /**
  * Represents a ticket that has been bought by a user.
  */
-public class BoughtTicket {
+public class TicketDTO {
     /**
      * The cost of the ticket.
      */
@@ -35,8 +35,8 @@ public class BoughtTicket {
      * @param activated Whether the ticket has been activated.
      * @param expiry The expiry time of the ticket.
      */
-    public BoughtTicket(double cost, TicketType type, int ticketId,
-                        boolean activated, long expiry) {
+    public TicketDTO(double cost, TicketType type, int ticketId,
+                     boolean activated, long expiry) {
         this.cost = cost;
         this.type = type;
         this.ticketId = ticketId;
@@ -86,8 +86,8 @@ public class BoughtTicket {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof BoughtTicket) {
-            BoughtTicket other = (BoughtTicket) obj;
+        if (obj instanceof TicketDTO) {
+            TicketDTO other = (TicketDTO) obj;
             return other.getTicketId() == this.getTicketId() &&
                     other.getType().equals(this.getType()) &&
                     other.getCost() == this.getCost() &&

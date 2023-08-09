@@ -1,7 +1,7 @@
 package controller.map;
 
 import interactor.station.IStationInteractor;
-import interactor.station.StationState;
+import interactor.station.StationDTO;
 import interactor.train.ITrainInteractor;
 import model.Direction;
 
@@ -18,7 +18,7 @@ public class TransitMapPagePresenter extends TransitMapPresenter {
     /**
      * The currently selected station.
      */
-    private StationState selectedStation = null;
+    private StationDTO selectedStation = null;
     /**
      * The arrival delays for the currently selected station.
      */
@@ -40,7 +40,7 @@ public class TransitMapPagePresenter extends TransitMapPresenter {
      *
      * @return The currently selected station.
      */
-    public StationState getSelectedStation() {
+    public StationDTO getSelectedStation() {
         return selectedStation;
     }
 
@@ -59,7 +59,7 @@ public class TransitMapPagePresenter extends TransitMapPresenter {
      * @param station The currently selected station's StationState.
      */
     @Override
-    protected void onClickStation(StationState station) {
+    protected void onClickStation(StationDTO station) {
         super.onClickStation(station);
 
         Map<Integer, Map<Direction, Long>> arrivalDelays = new HashMap<>();

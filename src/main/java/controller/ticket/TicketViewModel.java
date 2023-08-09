@@ -1,6 +1,6 @@
 package controller.ticket;
 
-import interactor.ticket.BoughtTicket;
+import interactor.ticket.TicketDTO;
 
 /**
  * View model for a ticket view
@@ -9,26 +9,26 @@ public class TicketViewModel {
     /**
      * The ticket
      */
-    private BoughtTicket ticket;
+    private TicketDTO ticket;
 
     /**
      * Constructor
      */
-    public TicketViewModel(BoughtTicket ticket) {
+    public TicketViewModel(TicketDTO ticket) {
         this.ticket = ticket;
     }
 
     /**
      * Ticket setter
      */
-    public void setTicket(BoughtTicket ticket) {
+    public void setTicket(TicketDTO ticket) {
         this.ticket = ticket;
     }
 
     /**
      * Ticket getter
      */
-    public BoughtTicket getTicket() {
+    public TicketDTO getTicket() {
         return ticket;
     }
 }

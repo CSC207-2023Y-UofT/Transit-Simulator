@@ -1,11 +1,11 @@
 package stats.persistence.impl;
 
-import util.AsyncFileUtil;
+import main.DataStorage;
+import util.AsyncWriteIOProvider;
 
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.DataFormatException;
@@ -32,13 +32,11 @@ public class PageFileUtils {
 
         try {
 
-            ByteBuffer buffer = AsyncFileUtil.read(pageFile);
+            byte[] bytes = DataStorage.getIO().read(pageFile);
 
             // Decompress the buffer
-            byte[] bytes = new byte[buffer.remaining()];
-            buffer.get(bytes);
-            bytes = AsyncFileUtil.decompress(bytes);
-            buffer = ByteBuffer.wrap(bytes);
+            bytes = DataStorage.getCompression().decompress(bytes);
+            ByteBuffer buffer = ByteBuffer.wrap(bytes);
 
             // The first 4 bytes make an integer representing the number of elements
             int numElements = buffer.getInt();
@@ -100,9 +98,9 @@ public class PageFileUtils {
             buffer.get(bytes);
 
             // Compress
-            bytes = AsyncFileUtil.compress(bytes);
+            bytes = DataStorage.getCompression().compress(bytes);
 
-            AsyncFileUtil.write(pageFile, ByteBuffer.wrap(bytes));
+            DataStorage.getIO().write(pageFile, bytes);
 
         } catch (IOException e) {
             e.printStackTrace();

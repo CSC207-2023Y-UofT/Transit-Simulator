@@ -3,7 +3,7 @@ package interactor.employee;
 import model.train.TrainRole;
 
 /**
- * Class to represent an employee assignment
+ * Data Class to represent an employee assignment
  */
 public class EmployeeAssignment {
     /**

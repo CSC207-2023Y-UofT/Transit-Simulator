@@ -1,5 +1,6 @@
 package ticket;
 
+import main.DataStorage;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -40,7 +41,7 @@ public class JsonTicketDataStore implements TicketDataStore {
     private Optional<Ticket> read(File file) {
         if (!file.exists()) return Optional.empty();
         try {
-            String text = Files.readString(file.toPath());
+            String text = DataStorage.getIO().readString(file);
             JSONObject json = new JSONObject(text);
             TicketType type = json.getEnum(TicketType.class, "type");
             int id = json.getInt("id");
@@ -68,7 +69,7 @@ public class JsonTicketDataStore implements TicketDataStore {
             json.put("activated", ticket.isActivated());
             json.put("expiry", ticket.getExpiry());
             json.put("createdAt", ticket.getCreatedAt());
-            Files.writeString(file.toPath(), json.toString());
+            DataStorage.getIO().writeString(file, json.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

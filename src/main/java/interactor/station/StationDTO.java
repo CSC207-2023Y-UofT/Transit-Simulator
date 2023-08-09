@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * The StationState dataclass represents the state of a station.
  */
-public class StationState {
+public class StationDTO {
     /**
      * The name of the station.
      */
@@ -31,7 +31,7 @@ public class StationState {
      * @param x     The x coordinate of the station.
      * @param y     The y coordinate of the station.
      */
-    public StationState(String name, List<Integer> lines, int x, int y) {
+    public StationDTO(String name, List<Integer> lines, int x, int y) {
         this.name = name;
         this.lines = lines;
         this.x = x;

@@ -1,15 +1,13 @@
 package interactor.train;
 
-import interactor.station.StationState;
-import model.train.TrainRole;
+import interactor.station.StationDTO;
 
-import java.util.Map;
 import java.util.Optional;
 
 /**
  * This is a data class representing the state of a train.
  */
-public class TrainState {
+public class TrainDTO {
     /**
      * The name of the train.
      */
@@ -25,15 +23,15 @@ public class TrainState {
     /**
      * The station the train is currently at.
      */
-    private final StationState currentStation;
+    private final StationDTO currentStation;
     /**
      * The distance to the next node.
      */
-    private final TrainNodeDistance nextNodeDistance;
+    private final TrainArrivalDTO nextNodeDistance;
     /**
      * The distance to the previous node.
      */
-    private final TrainNodeDistance previousNodeDistance;
+    private final TrainArrivalDTO previousNodeDistance;
 
     /**
      * The constructor for the TrainState dataclass.
@@ -45,12 +43,12 @@ public class TrainState {
      * @param nextNodeDistance     The distance to the next node.
      * @param previousNodeDistance The distance to the previous node.
      */
-    public TrainState(String name,
-                      int capacity,
-                      int occupation,
-                      StationState currentStation,
-                      TrainNodeDistance nextNodeDistance,
-                      TrainNodeDistance previousNodeDistance) {
+    public TrainDTO(String name,
+                    int capacity,
+                    int occupation,
+                    StationDTO currentStation,
+                    TrainArrivalDTO nextNodeDistance,
+                    TrainArrivalDTO previousNodeDistance) {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
@@ -91,7 +89,7 @@ public class TrainState {
      *
      * @return The station the train is currently at.
      */
-    public Optional<StationState> getCurrentStation() {
+    public Optional<StationDTO> getCurrentStation() {
         return Optional.ofNullable(currentStation);
     }
 
@@ -100,7 +98,7 @@ public class TrainState {
      *
      * @return The distance to the next node.
      */
-    public Optional<TrainNodeDistance> getNextNodeDistance() {
+    public Optional<TrainArrivalDTO> getNextNodeDistance() {
         return Optional.ofNullable(nextNodeDistance);
     }
 
@@ -109,7 +107,7 @@ public class TrainState {
      *
      * @return The distance to the previous node.
      */
-    public Optional<TrainNodeDistance> getPreviousNodeDistance() {
+    public Optional<TrainArrivalDTO> getPreviousNodeDistance() {
         return Optional.ofNullable(previousNodeDistance);
     }
 }
