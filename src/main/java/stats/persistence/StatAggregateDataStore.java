@@ -4,7 +4,6 @@ import stats.entry.StatEntry;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Interface for storing and retrieving stat aggregates.
@@ -42,7 +41,7 @@ public interface StatAggregateDataStore {
      * @return The stat aggregate that was recorded at the specified, if any.
      */
     <E extends StatEntry, A> Map<Long, A> retrieve(long startIndex,
-                                                                long endIndex,
-                                                                Class<E> entryClass,
-                                                                Class<A> aggregateClass) throws IOException;
+                                                   long endIndex,
+                                                   Class<E> entryClass,
+                                                   Class<A> aggregateClass) throws IOException;
 }

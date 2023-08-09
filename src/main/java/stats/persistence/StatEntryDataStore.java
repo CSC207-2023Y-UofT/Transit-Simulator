@@ -41,8 +41,8 @@ public interface StatEntryDataStore {
      * try to optimize this operation by grouping requested indices.
      *
      * @param indices The indices to retrieve.
-     * @param clazz The type of stat entries to retrieve.
-     * @param <E> The type of stat entries to retrieve.
+     * @param clazz   The type of stat entries to retrieve.
+     * @param <E>     The type of stat entries to retrieve.
      * @return A map of indices to stat entries.
      */
     <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz)

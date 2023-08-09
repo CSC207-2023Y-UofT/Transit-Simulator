@@ -5,7 +5,6 @@ import util.AsyncFileUtil;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.DataFormatException;
@@ -19,10 +18,11 @@ public class PageFileUtils {
     /**
      * Reads a page file from the file system. If there is a class issue with
      * deserialization, an empty map will be returned.
-     * @param pageFile The page file to read.
+     *
+     * @param pageFile  The page file to read.
      * @param typeClass The type of the data.
+     * @param <T>       The type of the data.
      * @return The map of data read from the file.
-     * @param <T> The type of the data.
      */
     public static <T> Map<Long, T> read(File pageFile, Class<T> typeClass) {
 
