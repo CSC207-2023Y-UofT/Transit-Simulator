@@ -39,7 +39,7 @@ public class TicketPanel extends JPanel {
     private final JPanel innerPanel;
 
     /**
-     * Constructs a TicketPanel.
+     * Constructs a TicketPanel with the given UIController and view model.
      *
      * @param controller the UIController instance responsible for controlling UI interactions
      * @param viewModel the view model for this panel
@@ -56,9 +56,7 @@ public class TicketPanel extends JPanel {
         JPanel borderPanel = new ShadowPanel(new GridLayout(1, 1));
         innerPanel = new JPanel(new GridLayout(0, 1));
         borderPanel.add(innerPanel);
-
         add(borderPanel);
-
         updateComponents();
     }
 
@@ -75,7 +73,7 @@ public class TicketPanel extends JPanel {
     }
 
     /**
-     * Refreshes the UI.
+     * Updates the UI.
      */
     private void update() {
         if (viewModel.getTicket() == null) {
@@ -148,7 +146,6 @@ public class TicketPanel extends JPanel {
         JLabel activateLabel = new JLabel("Activate before boarding", SwingConstants.CENTER);
         activateLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
-
         // Ticket Type
         JLabel typeLabel = new JLabel("Ticket Type: " + viewModel.getTicket().getType(), SwingConstants.CENTER);
         typeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -190,7 +187,7 @@ public class TicketPanel extends JPanel {
     }
 
     /**
-     * Displays the ticket as expired.
+     * Displays the ticket as expired in the given panel.
      *
      * @param panel the panel to display the ticket in
      */
