@@ -16,11 +16,19 @@ public class ArrivalsViewModel {
     private Map<Integer, Map<Direction, Long>> nextArrivals = new HashMap<>();
     private final StationDTO station;
 
+    /**
+     * Constructs a new ArrivalsViewModel with the given station and station interactor.
+     * @param station The station to show the next arrivals for.
+     * @param stationInteractor The station interactor.
+     */
     public ArrivalsViewModel(StationDTO station, IStationInteractor stationInteractor) {
         this.station = station;
         this.stationInteractor = stationInteractor;
     }
 
+    /**
+     * Updates the next arrivals for the station.
+     */
     public void update() {
 
         nextArrivals.clear();
