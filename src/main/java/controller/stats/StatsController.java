@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
  * Basically just a delegator that does the stuff asynchronously.
  */
 public class StatsController {
+
     /**
      * The interactor
      */

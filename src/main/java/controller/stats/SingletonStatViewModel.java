@@ -8,36 +8,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SingletonStatViewModel {
+
     /**
      * Enum for graph colour
      */
     public enum GraphColour {
+
         RED(new Color(160, 0, 21), new Color(160, 55, 55)),
         GREEN(new Color(0, 130, 21), new Color(55, 160, 55)),
         BLUE(Color.BLUE, new Color(100, 100, 255));
-
 
         /**
          * The primary colour of the graph, this is the colour of the border and the text
          */
         private final Color primary;
+
         /**
          * The secondary colour of the graph, this is the colour of the inside of the graph
          */
         private final Color secondary;
+
+        /**
+         * Constructs a new GraphColour with the given primary and secondary colours
+         *
+         * @param primary The primary colour of the graph
+         * @param secondary The secondary colour of the graph
+         */
         GraphColour(Color primary, Color secondary) {
             this.primary = primary;
             this.secondary = secondary;
         }
 
+        /**
+         * Gets the primary colour of the graph
+         *
+         * @return The primary colour of the graph
+         */
         public Color getPrimary() {
             return primary;
         }
 
+        /**
+         * Gets the secondary colour of the graph
+         *
+         * @return The secondary colour of the graph
+         */
         public Color getSecondary() {
             return secondary;
         }
-
     }
 
     /**
@@ -52,6 +70,8 @@ public class SingletonStatViewModel {
 
     /**
      * Sets the colour of the graph.
+     *
+     * @param graphColour The colour of the graph.
      */
     public void setGraphColour(GraphColour graphColour) {
         this.graphColour = graphColour;
@@ -59,6 +79,8 @@ public class SingletonStatViewModel {
 
     /**
      * Sets the data to be displayed in the graph.
+     *
+     * @param aggregates The data to be displayed in the graph.
      */
     public void setAggregates(List<? extends SingletonAggregate<? extends Number>> aggregates) {
         this.aggregates = aggregates;
@@ -66,6 +88,12 @@ public class SingletonStatViewModel {
 
     /**
      * Draws the graph.
+     *
+     * @param controller The UIController to draw the graph on.
+     * @param display The display to draw the graph on.
+     * @param g The graphics to draw the graph with.
+     * @param width The width of the graph.
+     * @param height The height of the graph.
      */
     public void draw(UIController controller, String display, Graphics2D g, int width, int height) {
         g.setColor(Color.WHITE);
@@ -141,6 +169,7 @@ public class SingletonStatViewModel {
 
     /**
      * Set the alpha value of a color
+     *
      * @param color The color to set the alpha of
      * @param alpha The alpha value to set
      * @return The new color with the alpha value set
