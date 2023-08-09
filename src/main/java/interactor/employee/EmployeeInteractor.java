@@ -22,15 +22,15 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     public EmployeeDTO registerEmployee(RegisterEmployeeRequest requestModel) {
         switch (requestModel.type){
             case ENGINEER:
-                TrainEngineer eng = new TrainEngineer(ThreadLocalRandom.current().nextInt(999999999));
+                TrainEngineer eng = new TrainEngineer(ThreadLocalRandom.current().nextInt(999999999), requestModel.getName());
                 tracker.addEmployee(eng);
                 return toDTO(eng);
             case OPERATOR:
-                TrainOperator ope = new TrainOperator(ThreadLocalRandom.current().nextInt(999999999));
+                TrainOperator ope = new TrainOperator(ThreadLocalRandom.current().nextInt(999999999), requestModel.getName());
                 tracker.addEmployee(ope);
                 return toDTO(ope);
             case ADMINISTRATOR:
-                Admin adm = new Admin(ThreadLocalRandom.current().nextInt(999999999));
+                Admin adm = new Admin(ThreadLocalRandom.current().nextInt(999999999), requestModel.getName());
                 tracker.addEmployee(adm);
                 return toDTO(adm);
         }

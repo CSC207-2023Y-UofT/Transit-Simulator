@@ -3,7 +3,6 @@ package ui;
 import main.ControllerPool;
 import main.InteractorPool;
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * MainScreen is a JFrame that displays the main screen of the application.

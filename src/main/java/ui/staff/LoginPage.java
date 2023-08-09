@@ -1,5 +1,6 @@
 package ui.staff;
 
+import controller.employee.EmployeeController;
 import employee.Admin;
 import ui.UIController;
 import ui.staff.admin.Management;
@@ -43,8 +44,12 @@ public class LoginPage extends JPanel {
         signInButton.setFont(new Font("Arial", Font.BOLD, 20));
         signInButton.addActionListener(e -> {
 
+            EmployeeController employees = controller.getControllerPool().getEmployeeController();
+
+
             controller.open(new Management(controller));
         });
+        
 
         // Back button
         JButton backButton = new ShadowedButton("Back");

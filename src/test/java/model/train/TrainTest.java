@@ -96,8 +96,8 @@ public class TrainTest {
         trainBackwards = transitModel.createTrain(s1b, "tb", 120);
 
         // Create the employees
-        operator = new TrainOperator(0b0001);
-        engineer = new TrainEngineer(0b0010);
+        operator = new TrainOperator(0, "");
+        engineer = new TrainEngineer(1, "");
     }
 
     // Begin testing

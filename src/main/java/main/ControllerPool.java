@@ -1,5 +1,6 @@
 package main;
 
+import controller.employee.EmployeeController;
 import controller.stats.StatsController;
 import controller.ticket.TicketController;
 
@@ -16,14 +17,18 @@ public class ControllerPool {
      */
     private final StatsController statController;
 
+    private final EmployeeController employeeController;
+
     /**
      * Constructs a new ControllerPool with the given ticket and stat controllers.
      *
-     * @param pool The InteractorPool.
+     * @param pool               The InteractorPool.
+     * @param employeeController
      */
     public ControllerPool(InteractorPool pool) {
         this.ticketController = new TicketController(pool.getTicketInteractor());
         this.statController = new StatsController(pool.getStatInteractor());
+        this.employeeController = new EmployeeController(pool.getEmployeeInteractor());
     }
 
     /**
@@ -42,5 +47,12 @@ public class ControllerPool {
      */
     public StatsController getStatController() {
         return statController;
+    }
+
+    /**
+     * Gets the employee controller.
+     */
+    public EmployeeController getEmployeeController() {
+        return employeeController;
     }
 }

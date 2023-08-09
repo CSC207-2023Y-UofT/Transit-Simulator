@@ -10,7 +10,7 @@ public class TrainOperator extends Employee {
      *
      * @param id is an Integer
      */
-    public TrainOperator(int id) {
+    public TrainOperator(int id, String name) {
         super(id, name);
     }
 
