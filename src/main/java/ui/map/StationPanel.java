@@ -8,11 +8,29 @@ import java.awt.*;
 import java.util.Map;
 import java.util.function.Supplier;
 
+/**
+ * Represents a panel that visualizes station information, including line and arrival details.
+ */
 public class StationPanel extends JPanel {
+
+    /** The main panel that hosts all the station details. */
     private final JPanel panel;
+
+    /**
+     * A timer that schedules periodic updates to the panel.
+     * This ensures that station information remains current.
+     */
     private final Timer timer = new Timer(50, e -> this.update());
+
+    /** The view model containing data for station arrivals. */
     private final ArrivalsViewModel viewModel;
 
+    /**
+     * Constructor for the StationPanel. Initializes the panel with the provided
+     * viewModel to display station details, lines, and next arrivals.
+     *
+     * @param viewModel The view model containing data for station arrivals.
+     */
     public StationPanel(ArrivalsViewModel viewModel) {
         this.viewModel = viewModel;
         viewModel.update();
@@ -82,20 +100,31 @@ public class StationPanel extends JPanel {
         }
     }
 
+    /**
+     * Updates the panel by fetching the latest data from the viewModel and repainting.
+     */
     private void update() {
         viewModel.update();
         repaint();
     }
 
+    /**
+     * Called when this component is added to a container and starts the timer
+     * for periodic updates.
+     */
     @Override
     public void addNotify() {
         super.addNotify();
         timer.start();
     }
 
+    /**
+     * Called when this component is removed from a container and stops the timer.
+     */
     @Override
     public void removeNotify() {
         super.removeNotify();
         timer.stop();
     }
+
 }
