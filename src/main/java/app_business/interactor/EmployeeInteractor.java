@@ -133,18 +133,16 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     }
 
     /**
-     * Unassigns any job from an employee.
+     * Unassign any job from an employee.
      *
      * @param staffNumber The unique identifier of the employee.
-     * @return true if the job was successfully unassigned, false otherwise.
      */
     @Override
-    public boolean unassign(int staffNumber) {
+    public void unassign(int staffNumber) {
         Employee employee = tracker.getEmployee(staffNumber)
                 .orElse(null);
-        if (employee == null) return false;
+        if (employee == null) return;
         employee.setAssignment(null);
-        return true;
     }
 
     /**

@@ -1,8 +1,10 @@
 package stats.aggregator;
 
+import main.Main;
 import org.junit.jupiter.api.Test;
 import stats.aggregate.ExpenseAggregate;
 import stats.aggregator.impl.ExpenseAggregator;
+import stats.entry.impl.expense.ElectricityUsageStat;
 import stats.entry.impl.expense.ExpenseStat;
 import stats.entry.impl.expense.MaintenanceStat;
 
@@ -18,7 +20,9 @@ class ExpenseAggregatorTest {
 
         List<ExpenseStat> expenseStats = List.of(
                 new MaintenanceStat(1.0),
-                new MaintenanceStat(1000.0)
+                new MaintenanceStat(1000.0),
+                new MaintenanceStat(),
+                new ElectricityUsageStat(0.0)
         );
 
         ExpenseAggregate singletonAggregate = expenseAggregator.aggregate(expenseStats);

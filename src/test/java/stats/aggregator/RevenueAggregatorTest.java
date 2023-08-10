@@ -1,11 +1,17 @@
 package stats.aggregator;
 
+import entity.ticket.Ticket;
+import entity.ticket.TicketType;
 import org.junit.jupiter.api.Test;
+import stats.aggregate.RevenueAggregate;
 import stats.aggregate.SingletonAggregate;
 import stats.aggregate.ExpenseAggregate;
 import stats.aggregator.impl.ExpenseAggregator;
+import stats.aggregator.impl.RevenueAggregator;
 import stats.entry.impl.expense.ExpenseStat;
 import stats.entry.impl.expense.MaintenanceStat;
+import stats.entry.impl.revenue.RevenueStat;
+import stats.entry.impl.revenue.TicketSaleStat;
 
 import java.util.List;
 
@@ -15,30 +21,30 @@ class RevenueAggregatorTest {
 
     @Test
     void aggregate() {
-        ExpenseAggregator expenseAggregator = new ExpenseAggregator();
+        RevenueAggregator revAggr = new RevenueAggregator();
 
-        List<ExpenseStat> expenseStats = List.of(
-                new MaintenanceStat(1.0),
-                new MaintenanceStat(1000.0)
+        List<RevenueStat> revenueStats = List.of(
+                new TicketSaleStat(new Ticket(TicketType.CHILD)),
+                new TicketSaleStat(new Ticket(TicketType.ADULT))
         );
 
-        SingletonAggregate singletonAggregate = expenseAggregator.aggregate(expenseStats);
-        assertEquals(1001.0, singletonAggregate.getValue());
+        RevenueAggregate aggr = revAggr.aggregate(revenueStats);
+        assert aggr.getValue() == TicketType.CHILD.getPrice() + TicketType.ADULT.getPrice();
     }
 
     @Test
     void aggregateExisting() {
 
-        ExpenseAggregator expenseAggregator = new ExpenseAggregator();
+        RevenueAggregator revAggr = new RevenueAggregator();
 
-        List<ExpenseAggregate> expenseAggregates = List.of(
-                new ExpenseAggregate(1.0),
-                new ExpenseAggregate(1000.0)
+        List<RevenueAggregate> aggregates = List.of(
+                new RevenueAggregate(1.0),
+                new RevenueAggregate(1000.0)
         );
 
-        ExpenseAggregate singletonAggregate = expenseAggregator.aggregateExisting(expenseAggregates);
+        RevenueAggregate aggr = revAggr.aggregateExisting(aggregates);
 
-        assertEquals(1001.0, singletonAggregate.getValue());
+        assertEquals(1001.0, aggr.getValue());
     }
 
 }

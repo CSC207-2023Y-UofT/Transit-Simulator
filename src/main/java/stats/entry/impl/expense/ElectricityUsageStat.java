@@ -19,15 +19,6 @@ public class ElectricityUsageStat implements ExpenseStat {
         this.amount = amount;
     }
 
-    /**
-     * Gets the amount of electricity used.
-     *
-     * @return The amount of electricity used as a double value.
-     */
-    public double getAmount() {
-        return amount;
-    }
-
     @Override
     public double getExpense() {
         return amount;
