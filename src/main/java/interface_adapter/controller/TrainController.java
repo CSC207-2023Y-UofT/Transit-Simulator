@@ -26,4 +26,8 @@ public class TrainController {
     public List<TrainDTO> findAll() {
         return interactor.getTrains();
     }
+
+    public void setNeedsMaintenance(String trainName, boolean needsMaintenance) {
+        interactor.setNeedsMaintenance(trainName, needsMaintenance);
+    }
 }

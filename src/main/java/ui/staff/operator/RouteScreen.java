@@ -1,6 +1,7 @@
 package ui.staff.operator;
 
 import app_business.dto.EmployeeDTO;
+import interface_adapter.viewmodel.RouteViewModel;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -14,14 +15,19 @@ import java.awt.*;
  *
  * @see UIController
  */
-public class OperatorRoute extends JPanel {
+public class RouteScreen extends JPanel {
+
+    private final RouteViewModel routeViewModel;
 
     /**
      * Constructs a new OperatorRoute object.
      * @param controller the controller used to switch panels
      */
-    public OperatorRoute(UIController controller, EmployeeDTO employeeDTO) {
+    public RouteScreen(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
+
+        routeViewModel = new RouteViewModel(employeeDTO,
+                controller.getControllerPool().getEmployeeController());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -34,8 +40,8 @@ public class OperatorRoute extends JPanel {
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
-        int id = 322; // TODO: should be .getId()
-        JLabel idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
+        int id = employeeDTO.getStaffNumber();
+        JLabel idLabel = new JLabel("Employee " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
@@ -45,48 +51,13 @@ public class OperatorRoute extends JPanel {
         this.add(topPanel, BorderLayout.NORTH);
 
         // Middle panel
-        JPanel middlePanel = new JPanel(new GridLayout(0, 5));
+        JPanel middlePanel = new JPanel(new GridLayout(0, 1));
 
         // route label
-        int train = 1; // TODO: should be .getTrain()
-        JLabel routeLabel = new JLabel("Train: " + train);
-        routeLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        JLabel routeLabel = new JLabel(routeViewModel.getWhatToSay());
+        routeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // operator label
-        String operator = "grace"; // TODO: should be .getOperator()
-        JLabel operatorLabel = new JLabel("Operator: " + operator);
-        operatorLabel.setFont(new Font("Arial", Font.ITALIC, 25));
-
-        // engineer label
-        String engineer = "zoey"; // TODO: should be .getEngineer()
-        JLabel engineerLabel = new JLabel("Engineer: " + engineer);
-        engineerLabel.setFont(new Font("Arial", Font.PLAIN, 25));
-
-        for (int i = 0; i < 5; i++) {
-            middlePanel.add(new JLabel(""));
-        }
-
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(new JLabel(""));
         middlePanel.add(routeLabel);
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(new JLabel(""));
-
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(operatorLabel);
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(new JLabel(""));
-
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(engineerLabel);
-        middlePanel.add(new JLabel(""));
-        middlePanel.add(new JLabel(""));
-
-        for (int i = 0; i < 5; i++) {
-            middlePanel.add(new JLabel(""));
-        }
 
         this.add(middlePanel, BorderLayout.CENTER);
 

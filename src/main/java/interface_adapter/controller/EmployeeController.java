@@ -39,6 +39,13 @@ public class EmployeeController {
         return interactor.find(staffNumber);
     }
 
+    /**
+     * Get the list of employees assigned to a train
+     */
+    public List<EmployeeDTO> byAssignment(String trainName) {
+        return interactor.getAssignedEmployees(trainName);
+    }
+
     public List<EmployeeDTO> getEmployees() {
         return interactor.getEmployees();
     }

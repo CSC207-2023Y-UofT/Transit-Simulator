@@ -7,6 +7,7 @@ import app_business.boundary.ITrainInteractor;
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 import entity.model.train.Train;
+import entity.model.train.TrainStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,17 @@ public class TrainInteractor implements ITrainInteractor {
         }
 
         return trains;
+    }
+
+    @Override
+    public void setNeedsMaintenance(String trainName, boolean needsMaintenance) {
+        Train train = model.getTrain(trainName);
+        if (train == null) return;
+        if (needsMaintenance) {
+            train.setStatus(TrainStatus.UNDER_MAINTENANCE);
+        } else {
+            train.setStatus(TrainStatus.IN_SERVICE);
+        }
     }
 
     /**

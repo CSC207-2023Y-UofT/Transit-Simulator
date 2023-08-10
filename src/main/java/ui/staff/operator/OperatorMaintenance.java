@@ -7,6 +7,8 @@ import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -46,7 +48,7 @@ public class OperatorMaintenance extends JPanel {
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
-        int id = 322; // TODO: should be .getId()
+        int id = employeeDTO.getStaffNumber();
         JLabel idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
@@ -88,6 +90,20 @@ public class OperatorMaintenance extends JPanel {
         // Ensure only checkboxes can be edited
         table.setDefaultEditor(Object.class, null);
 
+        model.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                if (column == 1) {
+                    String trainName = (String) model.getValueAt(row, 0);
+                    boolean needsMaintenance = (boolean) model.getValueAt(row, 1);
+                    maintenanceViewModel.setNeedsMaintenance(trainName, needsMaintenance);
+                    updateTable();
+                }
+            }
+        });
+
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
@@ -102,7 +118,7 @@ public class OperatorMaintenance extends JPanel {
         routeButton.setBackground(new Color(222, 175, 119));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        routeButton.addActionListener(e -> controller.open(new OperatorRoute(controller, employeeDTO)));
+        routeButton.addActionListener(e -> controller.open(new RouteScreen(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance");
@@ -116,11 +132,12 @@ public class OperatorMaintenance extends JPanel {
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    public void updateTable() {
+    private void updateTable() {
         maintenanceViewModel.update();
         Object[][] data = maintenanceViewModel.getMaintenanceTable();
         model.setDataVector(data, new String[]{"Train", "Needs Maintenance?"});
         model.fireTableDataChanged();
+        repaint();
     }
 
 }

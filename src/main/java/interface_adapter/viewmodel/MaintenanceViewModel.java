@@ -4,6 +4,7 @@ import app_business.dto.TrainDTO;
 import entity.model.train.TrainStatus;
 import interface_adapter.controller.TrainController;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,12 @@ public class MaintenanceViewModel {
 
     public Object[][] getMaintenanceTable() {
         return maintenanceStatuses.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
                 .map(entry -> new Object[]{entry.getKey(), entry.getValue()})
                 .toArray(Object[][]::new);
+    }
+
+    public void setNeedsMaintenance(String trainName, boolean needsMaintenance) {
+        controller.setNeedsMaintenance(trainName, needsMaintenance);
     }
 }
