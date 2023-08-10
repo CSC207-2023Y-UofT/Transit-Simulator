@@ -1,4 +1,4 @@
-package stats.aggregator.expense;
+package stats.aggregate;
 
 import stats.aggregate.SingletonAggregate;
 

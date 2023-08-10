@@ -1,7 +1,7 @@
-package stats.aggregator.revenue;
+package stats.aggregator.impl;
 
-import stats.aggregator.SingletonAggregator;
-import stats.entry.impl.RevenueStat;
+import stats.aggregate.RevenueAggregate;
+import stats.entry.impl.revenue.RevenueStat;
 
 /**
  * Class for aggregating revenue.

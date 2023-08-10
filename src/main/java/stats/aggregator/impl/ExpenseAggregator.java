@@ -1,7 +1,7 @@
-package stats.aggregator.expense;
+package stats.aggregator.impl;
 
-import stats.aggregator.SingletonAggregator;
-import stats.entry.impl.ExpenseStat;
+import stats.aggregate.ExpenseAggregate;
+import stats.entry.impl.expense.ExpenseStat;
 
 /**
  * Class for aggregating expenses.

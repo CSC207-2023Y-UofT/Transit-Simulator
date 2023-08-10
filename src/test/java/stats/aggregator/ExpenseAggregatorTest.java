@@ -1,10 +1,10 @@
 package stats.aggregator;
 
 import org.junit.jupiter.api.Test;
-import stats.aggregator.expense.ExpenseAggregate;
-import stats.aggregator.expense.ExpenseAggregator;
-import stats.entry.impl.ExpenseStat;
-import stats.entry.impl.MaintenanceStat;
+import stats.aggregate.ExpenseAggregate;
+import stats.aggregator.impl.ExpenseAggregator;
+import stats.entry.impl.expense.ExpenseStat;
+import stats.entry.impl.expense.MaintenanceStat;
 
 import java.util.List;
 

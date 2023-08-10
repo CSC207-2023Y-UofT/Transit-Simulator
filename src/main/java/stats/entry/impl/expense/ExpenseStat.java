@@ -1,4 +1,4 @@
-package stats.entry.impl;
+package stats.entry.impl.expense;
 
 import stats.entry.StatEntry;
 

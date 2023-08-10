@@ -2,6 +2,7 @@ package stats.aggregate;
 
 import java.io.Serializable;
 
+// Entity
 /**
  * This abstract class represents a SingletonAggregate, which holds a single value of any type that implements Serializable interface.
  * This can be used for aggregating a single value from a data stream or any other source.

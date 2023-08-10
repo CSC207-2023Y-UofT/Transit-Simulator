@@ -1,6 +1,6 @@
-package stats.aggregator.station;
+package stats.aggregator.impl;
 
-import stats.entry.impl.StationEntryStat;
+import stats.entry.impl.station.StationEntryStat;
 
 /**
  * The StationEntryAggregator class extends the StationAggregator to manage the aggregation of station entry data.

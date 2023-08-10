@@ -1,4 +1,4 @@
-package stats.entry.impl;
+package stats.entry.impl.station;
 
 /**
  * This class represents a specific type of {@link StationStat} related to station entry statistics.

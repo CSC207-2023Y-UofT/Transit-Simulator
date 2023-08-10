@@ -1,6 +1,7 @@
-package stats.entry.impl;
+package stats.entry.impl.revenue;
 
 import entity.ticket.Ticket;
+import stats.entry.impl.revenue.RevenueStat;
 
 /**
  * This class represents a ticket sale statistic entry that implements the {@link RevenueStat} interface.

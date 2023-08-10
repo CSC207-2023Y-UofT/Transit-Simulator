@@ -1,4 +1,4 @@
-package stats.entry.impl;
+package stats.entry.impl.revenue;
 
 import stats.entry.StatEntry;
 

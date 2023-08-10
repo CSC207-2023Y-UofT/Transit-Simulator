@@ -1,8 +1,8 @@
 package interface_adapter.stats;
 
 import app_business.boundary.IStatInteractor;
-import stats.aggregator.expense.ExpenseAggregate;
-import stats.aggregator.revenue.RevenueAggregate;
+import stats.aggregate.ExpenseAggregate;
+import stats.aggregate.RevenueAggregate;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

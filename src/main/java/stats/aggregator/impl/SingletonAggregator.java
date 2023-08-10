@@ -1,6 +1,7 @@
-package stats.aggregator;
+package stats.aggregator.impl;
 
 import stats.aggregate.SingletonAggregate;
+import stats.aggregator.StatAggregator;
 import stats.entry.StatEntry;
 import util.Preconditions;
 

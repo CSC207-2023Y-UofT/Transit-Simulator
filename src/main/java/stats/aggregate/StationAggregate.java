@@ -1,4 +1,4 @@
-package stats.aggregator.station;
+package stats.aggregate;
 
 import stats.aggregate.SingletonAggregate;
 

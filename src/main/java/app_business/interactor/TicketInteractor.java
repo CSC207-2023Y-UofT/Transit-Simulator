@@ -2,7 +2,7 @@ package app_business.interactor;
 
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
-import stats.entry.impl.TicketSaleStat;
+import stats.entry.impl.revenue.TicketSaleStat;
 import stats.StatDataController;
 import entity.ticket.Ticket;
 import persistence.boundary.TicketDataStore;

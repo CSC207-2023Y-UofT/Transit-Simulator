@@ -1,7 +1,8 @@
-package stats.aggregator.station;
+package stats.aggregator.impl;
 
+import stats.aggregate.StationAggregate;
 import stats.aggregator.StatAggregator;
-import stats.entry.impl.StationStat;
+import stats.entry.impl.station.StationStat;
 
 import java.util.HashMap;
 import java.util.List;

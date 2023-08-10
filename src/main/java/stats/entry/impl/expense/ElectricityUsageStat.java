@@ -1,4 +1,4 @@
-package stats.entry.impl;
+package stats.entry.impl.expense;
 
 /**
  * This class represents a specific type of {@link ExpenseStat} related to electricity usage expenses.

@@ -1,4 +1,4 @@
-package stats.entry.impl;
+package stats.entry.impl.station;
 
 import stats.entry.StatEntry;
 
