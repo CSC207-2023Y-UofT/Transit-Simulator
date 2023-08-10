@@ -1,5 +1,6 @@
 package ui.staff.operator;
 
+import app_business.dto.EmployeeDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -17,13 +18,17 @@ import java.awt.*;
  */
 public class OperatorMaintenance extends JPanel {
 
+    private final EmployeeDTO employeeDTO;
+
     /**
      * Constructs a new OperatorMaintenance object.
      *
      * @param controller the controller used to switch panels
      */
-    public OperatorMaintenance(UIController controller) {
+    public OperatorMaintenance(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
+
+        this.employeeDTO = employeeDTO;
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));

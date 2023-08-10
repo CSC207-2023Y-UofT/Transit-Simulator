@@ -62,9 +62,9 @@ public class LoginPage extends JPanel {
             if (employee.getType() == EmployeeType.ADMINISTRATOR) {
                 controller.open(new Management(controller, employee));
             } else if (employee.getType() == EmployeeType.ENGINEER) {
-                controller.open(new EngineerMaintenance(controller));
+                controller.open(new EngineerMaintenance(controller, employee));
             } else if (employee.getType() == EmployeeType.OPERATOR) {
-                controller.open(new OperatorMaintenance(controller));
+                controller.open(new OperatorMaintenance(controller, employee));
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid personnel type: " +
                         employee.getType(), "Error", JOptionPane.ERROR_MESSAGE);
