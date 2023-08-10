@@ -123,7 +123,7 @@ public class StatDataController {  // Facade design pattern used!!!
         // Store all entries
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
             try {
-                entryDataStore.store(index, entry.getKey(), entry.getValue());  // TODO: unhandled IOException
+                entryDataStore.store(index, entry.getKey(), entry.getValue());
             } catch (IOException e) {
                 e.printStackTrace();
             }
