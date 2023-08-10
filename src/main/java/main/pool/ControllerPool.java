@@ -33,10 +33,10 @@ public class ControllerPool {
     /**
      * Constructs a new ControllerPool with the given ticket and stat controllers.
      *
-     * @param trainController The train controller.
-     * @param ticketController The ticket controller.
+     * @param trainController    The train controller.
+     * @param ticketController   The ticket controller.
      * @param employeeController The employee controller.
-     * @param statController The stat controller.
+     * @param statController     The stat controller.
      */
     public ControllerPool(TrainController trainController, TicketController ticketController, EmployeeController employeeController, StatsController statController) {  // Changed because of dependency injection. Now we can directly inject params in tests.
         this.trainController = trainController;
