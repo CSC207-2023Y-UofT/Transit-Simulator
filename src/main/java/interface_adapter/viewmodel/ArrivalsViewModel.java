@@ -1,4 +1,4 @@
-package interface_adapter.map;
+package interface_adapter.viewmodel;
 
 import app_business.boundary.IStationInteractor;
 import app_business.dto.StationDTO;

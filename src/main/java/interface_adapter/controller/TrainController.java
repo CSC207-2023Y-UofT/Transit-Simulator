@@ -1,4 +1,4 @@
-package interface_adapter.train;
+package interface_adapter.controller;
 
 import app_business.boundary.ITrainInteractor;
 import app_business.dto.TrainDTO;

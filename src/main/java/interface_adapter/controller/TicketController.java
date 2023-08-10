@@ -1,4 +1,4 @@
-package interface_adapter.ticket;
+package interface_adapter.controller;
 
 import app_business.dto.TicketDTO;
 import app_business.boundary.ITicketInteractor;

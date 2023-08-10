@@ -1,4 +1,4 @@
-package interface_adapter.employee;
+package interface_adapter.controller;
 
 import app_business.boundary.IEmployeeInteractor;
 import app_business.common.EmployeeType;

@@ -1,6 +1,6 @@
 package ui.staff;
 
-import interface_adapter.map.TransitMapViewModel;
+import interface_adapter.viewmodel.TransitMapViewModel;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;

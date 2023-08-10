@@ -1,6 +1,7 @@
-package interface_adapter.employee;
+package interface_adapter.viewmodel;
 
 import app_business.dto.EmployeeDTO;
+import interface_adapter.controller.EmployeeController;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package ui.staff.admin;
 
-import interface_adapter.employee.ManageEmployeesViewModel;
-import interface_adapter.stats.SingletonStatViewModel;
+import interface_adapter.viewmodel.ManageEmployeesViewModel;
+import interface_adapter.viewmodel.SingletonStatViewModel;
 import app_business.dto.EmployeeDTO;
 import app_business.common.EmployeeType;
 import ui.UIController;

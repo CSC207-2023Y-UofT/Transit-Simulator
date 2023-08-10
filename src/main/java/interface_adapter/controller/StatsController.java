@@ -1,4 +1,4 @@
-package interface_adapter.stats;
+package interface_adapter.controller;
 
 import app_business.boundary.IStatInteractor;
 import stats.aggregate.ExpenseAggregate;

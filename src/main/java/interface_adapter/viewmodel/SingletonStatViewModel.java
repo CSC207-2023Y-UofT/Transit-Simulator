@@ -1,4 +1,4 @@
-package interface_adapter.stats;
+package interface_adapter.viewmodel;
 
 import stats.aggregate.SingletonAggregate;
 import ui.UIController;

@@ -1,4 +1,4 @@
-package interface_adapter.ticket;
+package interface_adapter.viewmodel;
 
 import app_business.dto.TicketDTO;
 
