@@ -3,6 +3,7 @@ package main;
 import controller.employee.EmployeeController;
 import controller.stats.StatsController;
 import controller.ticket.TicketController;
+import controller.train.TrainController;
 
 /**
  * The ControllerPool dataclass represents a collection of a ticketController and a statController.
@@ -19,16 +20,18 @@ public class ControllerPool {
 
     private final EmployeeController employeeController;
 
+    private final TrainController trainController;
+
     /**
      * Constructs a new ControllerPool with the given ticket and stat controllers.
      *
      * @param pool               The InteractorPool.
-     * @param employeeController
      */
     public ControllerPool(InteractorPool pool) {
         this.ticketController = new TicketController(pool.getTicketInteractor());
         this.statController = new StatsController(pool.getStatInteractor());
         this.employeeController = new EmployeeController(pool.getEmployeeInteractor());
+        this.trainController = new TrainController(pool.getTrainInteractor());
     }
 
     /**
@@ -54,5 +57,9 @@ public class ControllerPool {
      */
     public EmployeeController getEmployeeController() {
         return employeeController;
+    }
+
+    public TrainController getTrainController() {
+        return trainController;
     }
 }

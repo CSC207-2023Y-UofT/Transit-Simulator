@@ -1,6 +1,7 @@
 package interactor.train;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Input boundary for train interactor
@@ -13,7 +14,7 @@ public interface ITrainInteractor {
      * @return The state of the train
      * @see TrainDTO
      */
-    TrainDTO getTrainState(String trainName);
+    Optional<TrainDTO> getTrain(String trainName);
 
     /**
      * Gets the state of the next train in the given direction

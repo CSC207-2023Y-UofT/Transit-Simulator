@@ -11,7 +11,7 @@ public class TrainEngineerTest {
 
     @BeforeEach
     public void setUp() {
-        trainEngineer = new TrainEngineer(123);
+        trainEngineer = new TrainEngineer(123, "");
     }
 
     @Test

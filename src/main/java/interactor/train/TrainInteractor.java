@@ -34,8 +34,10 @@ public class TrainInteractor implements ITrainInteractor {
      * @param trainName The train name.
      * @return The train state.
      */
-    public TrainDTO getTrainState(String trainName) {
-        return toDTO(model.getTrain(trainName));
+    public Optional<TrainDTO> getTrain(String trainName) {
+        Train train = model.getTrain(trainName);
+        if (train == null) return Optional.empty();
+        return Optional.of(toDTO(train));
     }
 
     /**

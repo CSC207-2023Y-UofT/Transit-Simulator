@@ -43,4 +43,9 @@ public class EmployeeAssignment {
     public TrainRole getRole() {
         return role;
     }
+
+    @Override
+    public String toString() {
+        return role + " on " + trainName;
+    }
 }

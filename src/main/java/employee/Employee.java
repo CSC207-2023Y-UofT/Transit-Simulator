@@ -3,6 +3,7 @@ package employee;
 import interactor.employee.EmployeeAssignment;
 import interactor.employee.EmployeeType;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Optional;
  * The base monthly salary for an employee is specified as a static final field (BASE_SALARY).
  * The concrete classes that extend Employee should provide the implementation for setPaid and getPaid methods.
  */
-public abstract class Employee {
+public abstract class Employee implements Serializable {
 
     /**
      * The base salary for all employees.

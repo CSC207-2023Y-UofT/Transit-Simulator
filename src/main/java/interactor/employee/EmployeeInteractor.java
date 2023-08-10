@@ -8,6 +8,7 @@ import util.Preconditions;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 public class EmployeeInteractor implements IEmployeeInteractor {
     private final EmployeeTracker tracker;
@@ -71,6 +72,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         }
 
         employee.setAssignment(new EmployeeAssignment(trainName, job));
+        tracker.addEmployee(employee);
     }
 
     @Override
@@ -100,6 +102,13 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         }
 
         return assigned;
+    }
+
+    @Override
+    public List<EmployeeDTO> getEmployees() {
+        return tracker.getEmployeeList().stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
     private EmployeeDTO toDTO(Employee employee) {

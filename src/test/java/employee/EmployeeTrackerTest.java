@@ -20,10 +20,10 @@ public class EmployeeTrackerTest {
     @BeforeEach
     public void setUp() {
         employeeTracker = new EmployeeTracker(new MemoryEmployeeDataStore());
-        employee1 = new TrainOperator(101);
-        employee2 = new TrainEngineer(102);
-        trainOperator = new TrainOperator(201);
-        trainEngineer = new TrainEngineer(202);
+        employee1 = new TrainOperator(101, "");
+        employee2 = new TrainEngineer(102, "");
+        trainOperator = new TrainOperator(201, "");
+        trainEngineer = new TrainEngineer(202, "");
 
     }
 

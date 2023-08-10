@@ -1,5 +1,6 @@
 package interactor.employee;
 
+import employee.Employee;
 import model.train.TrainRole;
 
 import java.util.List;
@@ -54,5 +55,7 @@ public interface IEmployeeInteractor {
     boolean unassign(int staffNumber);
 
     List<EmployeeDTO> getAssignedEmployees(String trainName);
+
+    List<EmployeeDTO> getEmployees();
 
 }

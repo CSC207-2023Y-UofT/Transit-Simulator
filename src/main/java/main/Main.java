@@ -1,6 +1,9 @@
 package main;
 
+import employee.Admin;
 import employee.EmployeeTracker;
+import employee.TrainEngineer;
+import employee.TrainOperator;
 import employee.persistence.EmployeeDataStore;
 import employee.persistence.FileEmployeeDataStore;
 import interactor.employee.EmployeeInteractor;
@@ -91,6 +94,13 @@ public class Main {
         // Create the ui controller
         UIController controller = new UIController(pool);
         controller.open(new WelcomePage(controller));
+
+        // Default employees
+        employeeTracker.addEmployee(new Admin(123, "Matt"));
+        employeeTracker.addEmployee(new Admin(111, "Grace"));
+        employeeTracker.addEmployee(new TrainEngineer(222, "Charles"));
+        employeeTracker.addEmployee(new TrainEngineer(333, "Zoey"));
+        employeeTracker.addEmployee(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
         new Simulation(model, pool, stats).start();

@@ -2,6 +2,8 @@ package ui.staff;
 
 import controller.employee.EmployeeController;
 import employee.Admin;
+import interactor.employee.EmployeeDTO;
+import interactor.employee.EmployeeType;
 import ui.UIController;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;
@@ -10,9 +12,11 @@ import ui.staff.operator.OperatorMaintenance;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Optional;
 
 /**
  * LoginPage is a JPanel that displays the login page for staff.
@@ -44,12 +48,35 @@ public class LoginPage extends JPanel {
         signInButton.setFont(new Font("Arial", Font.BOLD, 20));
         signInButton.addActionListener(e -> {
 
+            int personnelNumber;
+            try {
+                personnelNumber = Integer.parseInt(personnelNumberField.getText());
+            } catch (NumberFormatException exception) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid personnel number.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             EmployeeController employees = controller.getControllerPool().getEmployeeController();
+            Optional<EmployeeDTO> loginRequest = employees.login(personnelNumber);
+            if (loginRequest.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Invalid personnel number.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
+            EmployeeDTO employee = loginRequest.get();
+            if (employee.getType() == EmployeeType.ADMINISTRATOR) {
+                controller.open(new Management(controller, employee));
+            } else if (employee.getType() == EmployeeType.ENGINEER) {
+                controller.open(new EngineerMaintenance(controller));
+            } else if (employee.getType() == EmployeeType.OPERATOR) {
+                controller.open(new OperatorMaintenance(controller));
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid personnel type: " +
+                        employee.getType(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
-            controller.open(new Management(controller));
         });
-        
+
 
         // Back button
         JButton backButton = new ShadowedButton("Back");
