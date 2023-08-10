@@ -198,41 +198,6 @@ public class JsonModelDataStore implements ModelDataStore {
 
     }
 
-    /**
-     * Write a model to a JSON file. TODO: we don't need this; we don't support changing the map in the editor
-     *
-     * @param model The model to write
-     */
-    @Override
-    public void writeModel(TransitModel model) {
-        JSONObject jsonModel = new JSONObject();
-
-        // Store each station in a JSONArray
-        JSONArray stationsArr = new JSONArray();
-
-        for (Node value : model.getNodes().values()) {
-
-            // Node Object
-            JSONObject nodeJsonModel = new JSONObject();
-            nodeJsonModel.put("name", value.getName());
-            nodeJsonModel.put("x", value.getX());
-            nodeJsonModel.put("y", value.getY());
-            stationsArr.put(nodeJsonModel);
-
-        }
-
-        jsonModel.put("stations", stationsArr);
-
-        // Store lines in a JSONArray
-        JSONArray linesArr = new JSONArray();
-
-        Set<Integer> mappedLines = new HashSet<>();
-
-        for (Node node : model.getNodes().values()) { // TODO
-        }
-
-    }
-
     private List<Node> mapNodes(Node node, Set<Integer> mappedLines) {
         throw new UnsupportedOperationException("Not implemented");
     }
