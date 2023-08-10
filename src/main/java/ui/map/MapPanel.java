@@ -1,6 +1,5 @@
 package ui.map;
 
-import controller.map.ArrivalsViewModel;
 import controller.map.TransitMapViewModel;
 
 import javax.swing.*;
@@ -70,6 +69,7 @@ public class MapPanel extends JPanel {
     public void removeNotify() {
         super.removeNotify();
         timer.stop();
+
     }
 
     /**
