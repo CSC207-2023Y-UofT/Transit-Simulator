@@ -38,6 +38,9 @@ public class Management extends JPanel {
      */
     private final StatsPanel statsPanel2;
 
+    /**
+     * The ManageEmployeesViewModel that handles the employee data.
+     */
     private final ManageEmployeesViewModel manage;
 
     /**

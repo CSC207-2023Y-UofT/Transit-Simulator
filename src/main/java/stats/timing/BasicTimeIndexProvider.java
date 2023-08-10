@@ -11,6 +11,7 @@ public class BasicTimeIndexProvider implements TimeIndexProvider {
 
     /**
      * Create a new BasicTimeIndexProvider.
+     *
      * @param indexLength The size of each time index in ms.
      * @throws IllegalArgumentException if indexSize is not positive.
      */
@@ -19,11 +20,13 @@ public class BasicTimeIndexProvider implements TimeIndexProvider {
         this.indexLength = indexLength;
     }
 
+    // Inherited javadocs
     @Override
     public long getTimeIndex() {
         return getTimeIndex(System.currentTimeMillis());
     }
 
+    // Inherited javadocs
     @Override
     public long getTimeIndex(long epochTime) {
         return epochTime / indexLength;

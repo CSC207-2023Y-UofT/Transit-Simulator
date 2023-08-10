@@ -35,6 +35,9 @@ public class StatDataController {  // Facade design pattern used!!!
      */
     private final StatAggregateDataStore aggregateDataStore;
 
+    /**
+     * The current time index. This is used to determine when to aggregate the stats.
+     */
     private long currTimeIndex;
 
     /**
@@ -105,6 +108,9 @@ public class StatDataController {  // Facade design pattern used!!!
         }
     }
 
+    /**
+     * Flush the current time index.
+     */
     public void flush() {
         flush(currTimeIndex);
     }
@@ -133,6 +139,11 @@ public class StatDataController {  // Facade design pattern used!!!
         entries.clear();
     }
 
+    /**
+     * Returns whether the stat data controller should flush.
+     *
+     * @return True iff the stat data controller should flush.
+     */
     public boolean shouldFlush() {
         return timeIndexProvider.getTimeIndex() != currTimeIndex;
     }
@@ -271,6 +282,20 @@ public class StatDataController {  // Facade design pattern used!!!
         return aggregates;
     }
 
+    /**
+     * Aggregates the current statistics based on a provided aggregator.
+     *
+     * <p>This method fetches all instances of the specified stat entry type and its inheritors
+     * from a predefined entry storage and then aggregates these entries using the given
+     * aggregator. If there are no entries to aggregate, the method will return an empty optional.</p>
+     *
+     * @param <E>        Type of the stat entry, which must extend {@code StatEntry}.
+     * @param <A>        Type of the aggregation result, which must be serializable.
+     * @param aggregator The aggregator responsible for processing the entries.
+     * @return An optional containing the aggregated result if there are entries,
+     * or an empty optional otherwise.
+     * @throws ClassCastException if any of the entries can't be cast to the {@code entryClass}.
+     */
     public <E extends StatEntry, A extends Serializable> Optional<A> aggregateCurrent(
             StatAggregator<E, A> aggregator
     ) {

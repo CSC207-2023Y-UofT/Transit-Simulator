@@ -85,21 +85,25 @@ public class JsonTicketDataStore implements TicketDataStore {
         }
     }
 
+    // Inherited javadoc
     @Override
     public Optional<Ticket> getTicket(int id) {
         return read(getFile(id));
     }
 
+    // Inherited javadoc
     @Override
     public void saveTicket(Ticket ticket) {
         write(getFile(ticket.getId()), ticket);
     }
 
+    // Inherited javadoc
     @Override
     public void removeTicket(int id) {
         getFile(id).delete();
     }
 
+    // Inherited javadoc
     @Override
     public List<Ticket> getTickets() {
         File[] files = directory.listFiles();
@@ -112,6 +116,7 @@ public class JsonTicketDataStore implements TicketDataStore {
         return tickets;
     }
 
+    // Inherited javadoc
     @Override
     public void cleanExpiredTickets() {
         for (Ticket ticket : getTickets()) {

@@ -37,7 +37,7 @@ public interface ITicketInteractor {
     Optional<TicketDTO> activateTicket(int ticketId);
 
     /**
-     * Remove expired tickets
+     * Remove expired tickets.
      */
     void cleanTickets();
 }

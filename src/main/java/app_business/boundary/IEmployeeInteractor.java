@@ -60,8 +60,7 @@ public interface IEmployeeInteractor {
      * @param staffNumber The staff number of the employee.
      * @param trainName   The name of the train.
      * @param job         The job to assign.
-     * @return True if the job was assigned successfully, false if the employee does not exist or the job is already assigned.
-     * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.
+     * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.  // Note: removed boolean return from line between this and above
      * @throws IllegalStateException    If there is already an employee assigned to the job on that train.
      */
     void assignJob(int staffNumber, String trainName, TrainRole job);
@@ -78,10 +77,15 @@ public interface IEmployeeInteractor {
      * Get a list of employees assigned to a train.
      *
      * @param trainName The name of the train.
-     * @return A list of employees assigned to the train.
+     * @return A list of employees assigned to the train in Data Transfer Object format.
      */
     List<EmployeeDTO> getAssignedEmployees(String trainName);
 
+    /**
+     * Get a list of employees.
+     *
+     * @return A list of employees in Data Transfer Object format.
+     */
     List<EmployeeDTO> getEmployees();
 
 }

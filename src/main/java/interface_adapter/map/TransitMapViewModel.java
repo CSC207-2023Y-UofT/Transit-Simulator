@@ -254,6 +254,13 @@ public class TransitMapViewModel {
         return Optional.empty();
     }
 
+    /**
+     * Returns the arrivals view model for the station at the given coordinates, if any.
+     *
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @return The arrivals view model for the station at the given coordinates, if any.
+     */
     public Optional<ArrivalsViewModel> getArrivals(int x, int y) {
         StationDTO dto = getStationAt(x, y).orElse(null);
         if (dto == null) return Optional.empty();

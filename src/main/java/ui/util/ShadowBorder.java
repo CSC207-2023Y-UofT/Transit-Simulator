@@ -24,6 +24,7 @@ public class ShadowBorder extends AbstractBorder {
      */
     private int extraInset, extraInset1, extraInset2, extraInset3;
 
+    // Inherited javadoc
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
 
@@ -46,6 +47,7 @@ public class ShadowBorder extends AbstractBorder {
         g.setColor(oldColor);
     }
 
+    // Inherited javadoc
     @Override
     public Insets getBorderInsets(Component c) {
         return new Insets(thickness + extraInset,

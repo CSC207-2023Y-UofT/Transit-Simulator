@@ -20,14 +20,20 @@ public class ControllerPool {
      */
     private final StatsController statController;
 
+    /**
+     * The employee controller.
+     */
     private final EmployeeController employeeController;
 
+    /**
+     * The train controller.
+     */
     private final TrainController trainController;
 
     /**
      * Constructs a new ControllerPool with the given ticket and stat controllers.
      *
-     * @param pool               The InteractorPool.
+     * @param pool The InteractorPool.
      */
     public ControllerPool(InteractorPool pool) {
         this.ticketController = new TicketController(pool.getTicketInteractor());
@@ -61,6 +67,9 @@ public class ControllerPool {
         return employeeController;
     }
 
+    /**
+     * Gets the train controller.
+     */
     public TrainController getTrainController() {
         return trainController;
     }
