@@ -69,7 +69,7 @@ public class MapPanel extends JPanel {
     public void removeNotify() {
         super.removeNotify();
         timer.stop();
-
+        if (currentStationPage != null) currentStationPage.dispose();
     }
 
     /**
