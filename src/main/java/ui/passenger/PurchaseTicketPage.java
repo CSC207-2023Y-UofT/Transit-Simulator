@@ -1,7 +1,7 @@
 package ui.passenger;
 
-import controller.ticket.PurchaseTicketViewModel;
-import ticket.TicketType;
+import interface_adapter.ticket.PurchaseTicketViewModel;
+import entity.ticket.TicketType;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.util.SuppliedLabel;

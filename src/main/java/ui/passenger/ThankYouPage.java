@@ -1,6 +1,6 @@
 package ui.passenger;
 
-import controller.ticket.TicketViewModel;
+import interface_adapter.ticket.TicketViewModel;
 import ui.UIController;
 import ui.util.ShadowedButton;
 

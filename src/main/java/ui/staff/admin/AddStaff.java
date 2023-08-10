@@ -1,10 +1,15 @@
 package ui.staff.admin;
 
+import app_business.employee.EmployeeDTO;
+import app_business.employee.EmployeeType;
+import app_business.train.TrainDTO;
+import entity.model.train.TrainRole;
 import ui.UIController;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Optional;
 
 /**
  * Represents the UI panel for adding new staff members. This JPanel provides
@@ -13,28 +18,35 @@ import java.awt.*;
  */
 public class AddStaff extends JPanel {
 
-    /** Controller object to handle UI navigation. */
+    /**
+     * Controller object to handle UI navigation.
+     */
     private final UIController controller;
 
-    /** Dropdown menu for selecting the employee type. */
+    /**
+     * Dropdown menu for selecting the employee type.
+     */
     private final JComboBox<String> employeeTypeDropdown;
 
-    /** Text field for entering the staff member's name. */
+    /**
+     * Text field for entering the staff member's name.
+     */
     private final JTextField nameField;
 
-    /** Text field for entering the staff number. */
-    private final JTextField staffNumberField;
-
-    /** Text field for entering the train assigned to the staff member. */
+    /**
+     * Text field for entering the train assigned to the staff member.
+     */
     private final JTextField assignedTrainField;
 
-    /** Panel that displays the management interface. */
+    /**
+     * Panel that displays the management interface.
+     */
     private final Management managementPanel;
 
     /**
      * Creates a new AddStaff panel.
      *
-     * @param controller the UI controller
+     * @param controller      the UI controller
      * @param managementPanel the management panel
      */
     public AddStaff(UIController controller, Management managementPanel) {
@@ -78,19 +90,6 @@ public class AddStaff extends JPanel {
         c.gridx = 1;
         c.gridy = 1;
         add(employeeTypeDropdown, c);
-
-        // Staff Number
-        JLabel staffNumberLabel = new JLabel("Staff Number:");
-        staffNumberLabel.setFont(font);
-        c.gridx = 0;
-        c.gridy = 2;
-        add(staffNumberLabel, c);
-
-        staffNumberField = new JTextField(20);
-        staffNumberField.setFont(font);
-        c.gridx = 1;
-        c.gridy = 2;
-        add(staffNumberField, c);
 
         // Assigned Train
         JLabel assignedTrainLabel = new JLabel("Assigned Train:");
@@ -136,18 +135,52 @@ public class AddStaff extends JPanel {
 
         String employeeName = nameField.getText();
         String employeeType = (String) employeeTypeDropdown.getSelectedItem();
-        String staffNumber = staffNumberField.getText();
+
         String assignedTrain = assignedTrainField.getText();
 
+        // Confirm this is indeed a train
+        Optional<TrainDTO> train = controller.getControllerPool().getTrainController()
+                .find(assignedTrain);
+
+        if (train.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid train number!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        EmployeeType type;
+        try {
+            if ("Train Operator".equals(employeeType)) {
+                type = EmployeeType.OPERATOR;
+            } else if ("Train Engineer".equals(employeeType)) {
+                type = EmployeeType.ENGINEER;
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid employee type!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Validate input
-        if (employeeName.trim().isEmpty() || employeeType == null || staffNumber.trim().isEmpty() || assignedTrain.trim().isEmpty()) {
+        if (employeeName.trim().isEmpty() || assignedTrain.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all the fields!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        managementPanel.addStaffRow(new Object[]{employeeName, employeeType, staffNumber, assignedTrain});
-        staffNumberField.setText("");
-        assignedTrainField.setText("");
+        // Add staff member
+        EmployeeDTO dto = controller.getControllerPool().getEmployeeController()
+                        .registerEmployee(employeeName, type);
+
+        // Assign them
+        try {
+            controller.getControllerPool().getEmployeeController()
+                    .assignEmployee(dto.getStaffNumber(), assignedTrain, type == EmployeeType.ENGINEER ? TrainRole.ENGINEER : TrainRole.OPERATOR);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        managementPanel.updateTable();
 
         controller.open(managementPanel);
     }

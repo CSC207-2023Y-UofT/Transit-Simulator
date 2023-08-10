@@ -1,7 +1,7 @@
 package stats.aggregator;
 
 import stats.entry.StatEntry;
-import stats.persistence.StatDataController;
+import stats.StatDataController;
 
 import java.io.Serializable;
 import java.util.ArrayList;

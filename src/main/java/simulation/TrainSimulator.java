@@ -1,17 +1,17 @@
 package simulation;
 
-import model.Direction;
-import model.control.TransitModel;
-import model.node.Node;
-import model.node.NodeLineProfile;
-import model.train.Passenger;
-import model.train.Train;
-import model.train.track.TrackSegment;
+import entity.model.Direction;
+import entity.model.control.TransitModel;
+import entity.model.node.Node;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.train.Passenger;
+import entity.model.train.Train;
+import entity.model.train.track.TrackSegment;
 import stats.entry.impl.ElectricityUsageStat;
 import stats.entry.impl.TicketSaleStat;
-import stats.persistence.StatDataController;
-import ticket.Ticket;
-import ticket.TicketType;
+import stats.StatDataController;
+import entity.ticket.Ticket;
+import entity.ticket.TicketType;
 import util.PerlinNoise;
 
 import java.util.ArrayList;

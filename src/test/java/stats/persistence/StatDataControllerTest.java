@@ -1,13 +1,14 @@
 package stats.persistence;
 
-import main.DataStorage;
+import persistence.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import stats.StatDataController;
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.entry.impl.MaintenanceStat;
-import stats.persistence.impl.FileAggregateDataStore;
-import stats.persistence.impl.FileEntryDataStore;
+import persistence.impl.FileAggregateDataStore;
+import persistence.impl.FileEntryDataStore;
 import util.AsyncWriteIOProvider;
 import util.DeflateCompressionProvider;
 

@@ -1,6 +1,6 @@
 package ui.map;
 
-import controller.map.ArrivalsViewModel;
+import interface_adapter.map.ArrivalsViewModel;
 import ui.util.SuppliedLabel;
 
 import javax.swing.*;
@@ -79,7 +79,7 @@ public class StationPanel extends JPanel {
                     Long updatedArrival = updated.get(dir);
                     if (updatedArrival == null) return "N/A";
 
-                    return String.format("%ds", updatedArrival / 1000);
+                    return String.format("%.1fs", updatedArrival / 1000.0);
                 };
 
                 SuppliedLabel label = new SuppliedLabel(supplier);

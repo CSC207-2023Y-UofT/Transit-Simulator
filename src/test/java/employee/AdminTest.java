@@ -1,10 +1,11 @@
 package employee;
 
-import interactor.employee.EmployeeType;
+import app_business.employee.EmployeeType;
+import entity.employee.Admin;
+import entity.employee.Employee;
+import entity.employee.TrainOperator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,9 +17,9 @@ public class AdminTest {
 
     @BeforeAll
     public static void setUp() {
-        admin = new Admin(100);
-        employee1 = new TrainOperator(101);
-        employee2 = new TrainOperator(102);
+        admin = new Admin(100, "");
+        employee1 = new TrainOperator(101, "");
+        employee2 = new TrainOperator(102, "");
     }
 
     @Test
@@ -35,10 +36,10 @@ public class AdminTest {
     @Test
     public void testSetPaid() {
         admin.setPaid(true);
-        assertTrue(admin.getPaymentStatus());
+        assertTrue(admin.isPaid());
 
         admin.setPaid(false);
-        assertFalse(admin.getPaymentStatus());
+        assertFalse(admin.isPaid());
     }
 
 }

@@ -1,6 +1,8 @@
 package model.train;
 
-import model.train.track.TrackSegment;
+import entity.model.train.BasicTrackRepo;
+import entity.model.train.TrackRepo;
+import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;

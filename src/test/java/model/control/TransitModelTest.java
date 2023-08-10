@@ -1,11 +1,12 @@
 package model.control;
 
-import model.Direction;
-import model.train.TrackRepo;
-import model.train.Train;
-import model.node.Station;
-import model.node.NodeLineProfile;
-import model.train.track.TrackSegment;
+import entity.model.Direction;
+import entity.model.control.TransitModel;
+import entity.model.train.TrackRepo;
+import entity.model.train.Train;
+import entity.model.node.station.Station;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.train.track.TrackSegment;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

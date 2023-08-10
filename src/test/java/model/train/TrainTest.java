@@ -1,20 +1,22 @@
 package model.train;
 
-import model.Direction;
-import model.control.TransitModel;
-import model.node.Node;
-import model.node.NodeLineProfile;
-import model.node.StationFactory;
-import model.train.track.TrackSegment;
-import employee.TrainOperator;
-import employee.TrainEngineer;
+import entity.model.Direction;
+import entity.model.control.TransitModel;
+import entity.model.node.Node;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.node.station.StationFactory;
+import entity.model.train.Passenger;
+import entity.model.train.Train;
+import entity.model.train.TrainPosition;
+import entity.model.train.track.TrackSegment;
+import entity.employee.TrainOperator;
+import entity.employee.TrainEngineer;
 
+import entity.ticket.Ticket;
+import entity.ticket.TicketType;
 import org.junit.jupiter.api.*;
-import ticket.*;
 
 import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
 
 
 public class TrainTest {
@@ -96,8 +98,8 @@ public class TrainTest {
         trainBackwards = transitModel.createTrain(s1b, "tb", 120);
 
         // Create the employees
-        operator = new TrainOperator(0b0001);
-        engineer = new TrainEngineer(0b0010);
+        operator = new TrainOperator(0, "");
+        engineer = new TrainEngineer(1, "");
     }
 
     // Begin testing
