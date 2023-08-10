@@ -1,6 +1,7 @@
 package entity.employee;
 
-import app_business.employee.EmployeeType;
+import app_business.common.EmployeeType;
+import entity.model.train.TrainStatus;
 import entity.model.train.Train;
 import stats.entry.impl.MaintenanceStat;
 import stats.StatDataController;
@@ -44,7 +45,7 @@ public class TrainEngineer extends Employee {
      * @param train The Train that needs to be fixed.
      */
     public void fixTrain(Train train, StatDataController controller) {
-        train.setStatus(Train.Status.OUT_OF_SERVICE);
+        train.setStatus(TrainStatus.OUT_OF_SERVICE);
         Random rand = new Random();
         int cost = rand.nextInt(5000 + 1) + 5000;  // Generates a random number between 5000 and 10000
         controller.record(new MaintenanceStat(cost));

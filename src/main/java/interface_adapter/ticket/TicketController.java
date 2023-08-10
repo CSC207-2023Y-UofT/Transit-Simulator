@@ -1,7 +1,7 @@
 package interface_adapter.ticket;
 
-import app_business.ticket.TicketDTO;
-import app_business.ticket.ITicketInteractor;
+import app_business.dto.TicketDTO;
+import app_business.boundary.ITicketInteractor;
 import entity.ticket.TicketType;
 
 import java.util.List;

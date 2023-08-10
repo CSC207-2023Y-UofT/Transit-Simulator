@@ -1,6 +1,6 @@
 package entity.employee;
 
-import app_business.employee.EmployeeType;
+import app_business.common.EmployeeType;
 
 /**
  * The Admin class extends the Employee class.

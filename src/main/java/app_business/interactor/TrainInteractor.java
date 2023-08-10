@@ -1,7 +1,9 @@
-package app_business.train;
+package app_business.interactor;
 
-import app_business.station.StationInteractor;
-import app_business.station.StationDTO;
+import app_business.dto.TrainArrivalDTO;
+import app_business.dto.TrainDTO;
+import app_business.dto.StationDTO;
+import app_business.boundary.ITrainInteractor;
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 import entity.model.train.Train;
@@ -103,6 +105,7 @@ public class TrainInteractor implements ITrainInteractor {
                 occupation,
                 currentStation.orElse(null),
                 nextNodeDistance,
-                previousNodeDistance);
+                previousNodeDistance,
+                train.getStatus());
     }
 }

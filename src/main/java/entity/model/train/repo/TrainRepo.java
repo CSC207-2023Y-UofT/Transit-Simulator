@@ -1,5 +1,6 @@
-package entity.model.train;
+package entity.model.train.repo;
 
+import entity.model.train.Train;
 import entity.model.train.track.TrackSegment;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  * The TrainTracker interface represents a system for managing trains and their positions on track segments.
  * It provides methods for creating new trains and retrieving a list of existing trains.
  */
-public interface TrainTracker {
+public interface TrainRepo {
 
     /**
      * Creates a new train on the specified track segment with the given capacity.

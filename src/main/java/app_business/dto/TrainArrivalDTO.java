@@ -1,6 +1,4 @@
-package app_business.train;
-
-import app_business.station.StationDTO;
+package app_business.dto;
 
 /**
  * The TrainNodeDistance data class represents the distance between a station and a train.

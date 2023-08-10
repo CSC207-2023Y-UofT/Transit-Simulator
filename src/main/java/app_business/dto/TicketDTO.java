@@ -1,4 +1,4 @@
-package app_business.ticket;
+package app_business.dto;
 
 import entity.ticket.TicketType;
 

@@ -1,6 +1,6 @@
 package entity.model.node;
 
-import entity.model.train.TrackRepo;
+import entity.model.train.repo.TrackRepo;
 
 import java.util.Map;
 

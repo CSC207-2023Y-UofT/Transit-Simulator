@@ -1,5 +1,9 @@
-package app_business.employee;
+package app_business.interactor;
 
+import app_business.boundary.IEmployeeInteractor;
+import app_business.dto.EmployeeDTO;
+import app_business.common.EmployeeAssignment;
+import app_business.common.EmployeeType;
 import entity.employee.*;
 import entity.model.control.TransitModel;
 import entity.model.train.Train;

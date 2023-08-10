@@ -1,6 +1,6 @@
 package interface_adapter.employee;
 
-import app_business.employee.EmployeeDTO;
+import app_business.dto.EmployeeDTO;
 
 import java.util.List;
 

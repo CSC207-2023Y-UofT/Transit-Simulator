@@ -1,6 +1,6 @@
 package interface_adapter.ticket;
 
-import app_business.ticket.TicketDTO;
+import app_business.dto.TicketDTO;
 
 /**
  * View model for a ticket view

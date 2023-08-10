@@ -1,5 +1,7 @@
-package app_business.employee;
+package app_business.boundary;
 
+import app_business.dto.EmployeeDTO;
+import app_business.common.EmployeeType;
 import entity.model.train.TrainRole;
 
 import java.util.List;

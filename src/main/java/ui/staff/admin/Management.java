@@ -2,8 +2,8 @@ package ui.staff.admin;
 
 import interface_adapter.employee.ManageEmployeesViewModel;
 import interface_adapter.stats.SingletonStatViewModel;
-import app_business.employee.EmployeeDTO;
-import app_business.employee.EmployeeType;
+import app_business.dto.EmployeeDTO;
+import app_business.common.EmployeeType;
 import ui.UIController;
 import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;

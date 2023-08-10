@@ -2,7 +2,7 @@ package model.control;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
-import entity.model.train.TrackRepo;
+import entity.model.train.repo.TrackRepo;
 import entity.model.train.Train;
 import entity.model.node.station.Station;
 import entity.model.node.line.NodeLineProfile;

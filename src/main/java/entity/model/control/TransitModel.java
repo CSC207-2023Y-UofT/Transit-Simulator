@@ -5,6 +5,8 @@ import entity.model.node.NodeFactory;
 import entity.model.node.NodeTracker;
 import entity.model.Direction;
 import entity.model.train.*;
+import entity.model.train.repo.TrackRepo;
+import entity.model.train.repo.TrainRepo;
 import entity.model.train.track.TrackSegment;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,7 +16,7 @@ import java.util.*;
  * This class is the basis for representing the transit system and its state.
  * It contains the list of trains, the map of nodes, and the track repository.
  */
-public class TransitModel implements NodeTracker, TrainTracker {
+public class TransitModel implements NodeTracker, TrainRepo {
 
     /**
      * List of trains in the transit system
@@ -29,7 +31,7 @@ public class TransitModel implements NodeTracker, TrainTracker {
     /**
      * Repository of tracks in the transit system
      */
-    private final TrackRepo trackRepo = new BasicTrackRepo();
+    private final TrackRepo trackRepo = new MemoryTrackRepo();
 
     /**
      * Creates a train on the given track in the given direction with the given capacity.

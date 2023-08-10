@@ -2,7 +2,7 @@ package entity.model.node.line;
 
 import entity.model.Direction;
 import entity.model.node.Node;
-import entity.model.train.TrackRepo;
+import entity.model.train.repo.TrackRepo;
 import entity.model.train.Train;
 import entity.model.train.TrainPosition;
 import entity.model.train.track.NodeTrackSegment;

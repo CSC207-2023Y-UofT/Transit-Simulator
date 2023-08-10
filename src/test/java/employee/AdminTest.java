@@ -1,6 +1,6 @@
 package employee;
 
-import app_business.employee.EmployeeType;
+import app_business.common.EmployeeType;
 import entity.employee.Admin;
 import entity.employee.Employee;
 import entity.employee.TrainOperator;

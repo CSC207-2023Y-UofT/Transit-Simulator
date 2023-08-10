@@ -1,8 +1,8 @@
 package ui.staff;
 
 import interface_adapter.employee.EmployeeController;
-import app_business.employee.EmployeeDTO;
-import app_business.employee.EmployeeType;
+import app_business.dto.EmployeeDTO;
+import app_business.common.EmployeeType;
 import ui.UIController;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;

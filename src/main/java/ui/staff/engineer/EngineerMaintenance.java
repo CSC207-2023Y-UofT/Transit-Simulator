@@ -1,5 +1,6 @@
 package ui.staff.engineer;
 
+import app_business.dto.EmployeeDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -17,13 +18,17 @@ import java.awt.*;
  */
 public class EngineerMaintenance extends JPanel {
 
+    private final EmployeeDTO employeeDTO;
+
     /**
      * Constructs a new EngineerMaintenance object.
      *
      * @param controller the controller used to switch panels
      */
-    public EngineerMaintenance(UIController controller) {
+    public EngineerMaintenance(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
+
+        this.employeeDTO = employeeDTO;
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -36,7 +41,7 @@ public class EngineerMaintenance extends JPanel {
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
-        int id = 322; // TODO: should be .getId()
+        int id = employeeDTO.getStaffNumber();
         JLabel idLabel = new JLabel("Engineer " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
@@ -55,7 +60,7 @@ public class EngineerMaintenance extends JPanel {
 
         // Create data
         Object[][] data = {
-                {"Train 1", Boolean.TRUE},
+                {"Train 1", true},
                 {"Train 2", Boolean.TRUE},
                 {"Train 3", Boolean.TRUE},
                 {"Train 4", Boolean.TRUE},
