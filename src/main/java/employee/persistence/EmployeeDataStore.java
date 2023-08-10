@@ -10,6 +10,7 @@ import java.util.Optional;
  * Data store interface for employees
  */
 public interface EmployeeDataStore {
+
     /**
      * Removes an employee
      *

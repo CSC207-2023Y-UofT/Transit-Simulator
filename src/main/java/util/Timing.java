@@ -7,24 +7,24 @@ import java.util.Map;
  * Utility class to time certain operations for analysis
  */
 public class Timing {
-    /**
-     * The name of the timing
-     */
+
+    /** The name of the timing */
     private final String name;
-    /**
-     * Map of timings for each id
-     */
+
+    /** Map of timings for each id */
     private final Map<String, Long> timings = new HashMap<>();
-    /**
-     * Map of counts for each id
-     */
+
+    /** Map of counts for each id */
     private final Map<String, Integer> counts = new HashMap<>();
 
-    /**
-     * The current mark, or -1 if not started
-     */
+    /** The current mark, or -1 if not started */
     private long mark = -1;
 
+    /**
+     * Creates a new timing with the given name
+     *
+     * @param name The name of the timing
+     */
     public Timing(String name) {
         this.name = name;
     }
@@ -61,4 +61,5 @@ public class Timing {
             System.out.println(entry.getKey() + ": " + entry.getValue() + "ms (" + counts.get(entry.getKey()) + ")");
         }
     }
+
 }

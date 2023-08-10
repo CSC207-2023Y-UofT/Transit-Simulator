@@ -9,6 +9,7 @@ import stats.entry.impl.ExpenseStat;
  * This class provides methods to aggregate individual ExpenseStat objects into an ExpenseAggregate.
  */
 public class ExpenseAggregator extends SingletonAggregator<ExpenseStat, ExpenseAggregate> {
+
     /**
      * Constructor for ExpenseAggregator.
      * This constructs an ExpenseAggregator with defined aggregation and combination logic for ExpenseStat and ExpenseAggregate.
@@ -22,4 +23,5 @@ public class ExpenseAggregator extends SingletonAggregator<ExpenseStat, ExpenseA
                 s -> new ExpenseAggregate(s.getExpense()),
                 (a1, a2) -> new ExpenseAggregate(a1.getValue() + a2.getValue()));
     }
+
 }

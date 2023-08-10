@@ -21,45 +21,32 @@ import java.util.function.Supplier;
  */
 public class PurchaseTicketPage extends JPanel {
 
-    /**
-     * The JLabel that displays the count of AdultTickets.
-     */
+    /** The JLabel that displays the count of adult tickets. */
     private final JLabel adultCount;
 
-    /**
-     * The JLabel that displays the count of ChildTickets.
-     */
+    /** The JLabel that displays the count of child tickets. */
     private final JLabel childCount;
 
-    /**
-     * The JLabel that displays the count of SeniorTickets.
-     */
+    /** The JLabel that displays the count of senior tickets. */
     private final JLabel seniorCount;
 
-    /**
-     * The JLabel that displays the count of StudentTickets.
-     */
+    /** The JLabel that displays the count of student tickets. */
     private final JLabel studentCount;
 
-    /**
-     * The JLabel that displays the total cost of the tickets.
-     */
+    /** The JLabel that displays the total cost of the tickets. */
     private final JLabel totalCostLabel;
 
-    /**
-     * The JButton to buy tickets.
-     */
+    /** The JButton to buy tickets. */
     private final JButton buyButton;
 
-    /**
-     * The view model for this page.
-     */
+    /** The view model for this page. */
     private final PurchaseTicketViewModel viewModel;
 
     /**
-     * Constructs a new PurchaseTicketPage with the given UIController.
+     * Constructs a new PurchaseTicketPage with the given UIController and view model.
      *
      * @param controller the UIController that is used to control the UI
+     * @param viewModel the view model for this page
      */
     public PurchaseTicketPage(UIController controller, PurchaseTicketViewModel viewModel) {
         super(new GridLayout(0, 4));
@@ -132,7 +119,6 @@ public class PurchaseTicketPage extends JPanel {
         totalCostLabel.setBackground(new Color(255, 255, 255, 255));
         this.add(totalCostLabel);
 
-
         // Buy button
         buyButton = new ShadowedButton("Buy");
         buyButton.setEnabled(viewModel.getTotalCost() > 0); // Disable buy button if total cost is $0
@@ -142,7 +128,6 @@ public class PurchaseTicketPage extends JPanel {
         buyButton.setForeground(Color.BLACK);
         buyButton.setBorderPainted(false);
         buyButton.addActionListener(e -> controller.open(new ConfirmPaymentPage(controller, viewModel)));
-
         this.add(buyButton);
 
         // Make background color light gray
@@ -157,7 +142,7 @@ public class PurchaseTicketPage extends JPanel {
     }
 
     /**
-     * Creates a counting JLabel.
+     * Creates a ticket counting JLabel.
      *
      * @return the counting JLabel
      */

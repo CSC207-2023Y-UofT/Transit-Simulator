@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Provides file IO operations asynchronously.
+ */
 public interface FileIOProvider {
 
     /**
@@ -31,6 +34,11 @@ public interface FileIOProvider {
      */
     byte[] read(File file) throws IOException;
 
+    /**
+     * Read a file synchronously, if the file is cached, the cached data will be returned.
+     * @param file The file to read from.
+     * @return A string containing the file data.
+     */
     String readString(File file) throws IOException;
 
     /**

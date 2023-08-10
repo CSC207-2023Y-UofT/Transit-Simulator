@@ -6,10 +6,12 @@ import interactor.station.StationDTO;
  * The TrainNodeDistance data class represents the distance between a station and a train.
  */
 public class TrainArrivalDTO {
+
     /**
      * The StationState.
      */
     private final StationDTO station;
+
     /**
      * The distance.
      */

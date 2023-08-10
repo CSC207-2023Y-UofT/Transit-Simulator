@@ -9,8 +9,13 @@ import java.util.stream.IntStream;
  */
 public class PerlinNoise {
 
+    /** Permutation table */
     private final int[] permutationTable;
+
+    /** Gradient values */
     private final double[] gradientValues;
+
+    /** Size of the table */
     private final int size;
 
     /**
@@ -33,8 +38,6 @@ public class PerlinNoise {
         for (int i = 0; i < size; i++) {
             this.gradientValues[i] = rand.nextDouble() * 2 - 1;
         }
-
-
     }
 
     /**

@@ -7,6 +7,12 @@ import java.awt.*;
  * RoundedLabel is a JLabel that is rounded.
  */
 public class RoundedLabel extends JLabel {
+
+    /**
+     * Constructs a new RoundedLabel object with the given text.
+     *
+     * @param text the text of the label
+     */
     public RoundedLabel(String text) {
         super(text);
         setPreferredSize(new Dimension(50, 20));

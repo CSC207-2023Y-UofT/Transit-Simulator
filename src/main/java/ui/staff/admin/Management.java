@@ -46,7 +46,7 @@ public class Management extends JPanel {
     private final JTable table;
 
     /**
-     * Constructs a new Management object.
+     * Constructs a new Management object with the given UIController.
      *
      * @param controller the controller used to switch panels
      */
@@ -199,11 +199,19 @@ public class Management extends JPanel {
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Adds a row to the staff table.
+     *
+     * @param rowData The data to add to the row.
+     */
     public void addStaffRow(Object[] rowData) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(rowData);
     }
 
+    /**
+     * Removes the selected staff from the table.
+     */
     private void removeSelectedStaff() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int selectedRow = table.getSelectedRow();

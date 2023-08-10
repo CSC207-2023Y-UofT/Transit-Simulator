@@ -6,7 +6,11 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+/**
+ * Provides file compression using the deflate algorithm.
+ */
 public class DeflateCompressionProvider implements FileCompressionProvider {
+
     @Override
     public byte[] compress(byte[] data) {
         Deflater deflater = new Deflater();

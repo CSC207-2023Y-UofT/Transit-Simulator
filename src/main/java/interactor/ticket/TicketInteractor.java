@@ -10,15 +10,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interactor class for ticket operations.
+ * Implements the {@link ITicketInteractor} interface for ticket-related actions.
+ */
 public class TicketInteractor implements ITicketInteractor {
+
+    /** Controller for statistics data. */
     private final StatDataController stats;
+
+    /** Data storage for tickets. */
     private final TicketDataStore dataStore;
 
+    /**
+     * Constructs a TicketInteractor instance.
+     *
+     * @param dataStore The ticket data store.
+     * @param stats The statistics data controller.
+     */
     public TicketInteractor(TicketDataStore dataStore, StatDataController stats) {
         this.dataStore = dataStore;
         this.stats = stats;
     }
 
+    /**
+     * Purchase a list of tickets based on given ticket types.
+     * Records the sale of each ticket for statistical purposes.
+     *
+     * @param ticketTypes The list of ticket types to purchase.
+     * @return A list of {@link TicketDTO} objects representing purchased tickets.
+     */
     public List<TicketDTO> buyTickets(List<TicketType> ticketTypes) {
 
         List<Ticket> tickets = new ArrayList<>();
@@ -45,6 +66,12 @@ public class TicketInteractor implements ITicketInteractor {
         return response;
     }
 
+    /**
+     * Fetches the details of a specific ticket by its ID.
+     *
+     * @param ticketId The ID of the ticket to retrieve.
+     * @return An optional {@link TicketDTO} containing ticket details, if found.
+     */
     @Override
     public Optional<TicketDTO> getTicket(int ticketId) {
         Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
@@ -52,6 +79,12 @@ public class TicketInteractor implements ITicketInteractor {
         return Optional.of(toDTO(ticket));
     }
 
+    /**
+     * Activates a specific ticket by its ID.
+     *
+     * @param ticketId The ID of the ticket to activate.
+     * @return An optional {@link TicketDTO} containing updated ticket details, if successful.
+     */
     @Override
     public Optional<TicketDTO> activateTicket(int ticketId) {
         Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
@@ -66,11 +99,20 @@ public class TicketInteractor implements ITicketInteractor {
                 ticket.getExpiry()));
     }
 
+    /**
+     * Cleans expired tickets from the data store.
+     */
     @Override
     public void cleanTickets() {
         dataStore.cleanExpiredTickets();
     }
 
+    /**
+     * Converts a Ticket object into its corresponding DTO format.
+     *
+     * @param ticket The ticket to convert.
+     * @return The {@link TicketDTO} representation of the ticket.
+     */
     private TicketDTO toDTO(Ticket ticket) {
         return new TicketDTO(ticket.getPrice(),
                 ticket.getType(),
@@ -78,4 +120,5 @@ public class TicketInteractor implements ITicketInteractor {
                 ticket.isActivated(),
                 ticket.getExpiry());
     }
+
 }

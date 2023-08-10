@@ -8,12 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * OperatorRoute is a JPanel that displays the route of a train.
- * It is used by the UIController to display the route of a train.
+ * OperatorRoute is a JPanel that displays the route that the operator is assigned to.
+ * It is used by the UIController.
  *
  * @see UIController
  */
 public class OperatorRoute extends JPanel {
+
     /**
      * Constructs a new OperatorRoute object.
      * @param controller the controller used to switch panels

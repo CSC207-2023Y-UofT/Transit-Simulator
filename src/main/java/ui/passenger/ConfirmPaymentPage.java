@@ -29,6 +29,7 @@ public class ConfirmPaymentPage extends JPanel {
      * Constructs a new ConfirmPaymentPage object.
      *
      * @param controller the controller used to switch pages
+     * @param viewModel  the view model for this page
      */
     public ConfirmPaymentPage(UIController controller, PurchaseTicketViewModel viewModel) {
         super(new GridLayout(0, 3));

@@ -8,26 +8,32 @@ import java.util.Optional;
  * This is a data class representing the state of a train.
  */
 public class TrainDTO {
+
     /**
      * The name of the train.
      */
     private final String name;
+
     /**
      * The capacity of the train.
      */
     private final int capacity;
+
     /**
      * The number of passengers on the train.
      */
     private final int occupation;
+
     /**
      * The station the train is currently at.
      */
     private final StationDTO currentStation;
+
     /**
      * The distance to the next node.
      */
     private final TrainArrivalDTO nextNodeDistance;
+
     /**
      * The distance to the previous node.
      */
