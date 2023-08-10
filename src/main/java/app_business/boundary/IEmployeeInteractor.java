@@ -34,6 +34,7 @@ public interface IEmployeeInteractor {
      *
      * @param name The name of the employee.
      * @param type The type of the employee.
+     * @param id   The ID of the employee.
      * @return An EmployeeInfo object representing the newly registered employee.
      */
     EmployeeDTO registerEmployee(String name, EmployeeType type, int id);

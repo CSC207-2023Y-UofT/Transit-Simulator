@@ -40,7 +40,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         this.model = model;
     }
 
-    // Javadocs are in the interface.
+    // Javadocs are in the interface. This method overload only exists as default value for the bound.
     public int idGenerator() {
         return idGenerator(999999);
     }
