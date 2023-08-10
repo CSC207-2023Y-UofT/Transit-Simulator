@@ -26,9 +26,14 @@ public class Management extends JPanel {
     private final JPanel statsHolderPanel;
 
     /**
-     * The JPanels that displays the stats.
+     * The JPanel that displays the revenue stats.
      */
-    private final StatsPanel statsPanel1, statsPanel2;
+    private final StatsPanel statsPanel1;
+
+    /**
+     * The JPanel that displays the expense stats.
+     */
+    private final StatsPanel statsPanel2;
 
     /**
      * The JPanel that displays the middle panel.
@@ -36,7 +41,7 @@ public class Management extends JPanel {
     private final JPanel middlePanel;
 
     /**
-     * The JTable that displays the staff members.
+     * The JTable that displays the staff.
      */
     private final JTable table;
 

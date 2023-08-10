@@ -1,5 +1,6 @@
 package ui.map;
 
+import controller.map.ArrivalsViewModel;
 import controller.map.TransitMapViewModel;
 
 import javax.swing.*;
@@ -18,15 +19,25 @@ public class MapPanel extends JPanel {
     /**
      * The TransitMapViewModel that is used to present the map.
      */
-    private final TransitMapViewModel presenter;
+    private final TransitMapViewModel viewModel;
+
+    /**
+     * The StationPage that is currently being displayed.
+     */
+    private volatile StationPage currentStationPage = null;
+
+    /**
+     * The timer that is used to repaint the panel.
+     */
+    private final Timer timer = new Timer(10, e -> this.repaint());
 
     /**
      * Constructs a new MapPanel object with the given TransitMapViewModel.
      *
-     * @param presenter the TransitMapViewModel that is used to present the map
+     * @param viewModel the TransitMapPresenter that is used to present the map
      */
-    public MapPanel(TransitMapViewModel presenter) {
-        this.presenter = presenter;
+    public MapPanel(TransitMapViewModel viewModel) {
+        this.viewModel = viewModel;
 
         setLayout(new BorderLayout());
 
@@ -34,22 +45,23 @@ public class MapPanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 repaint();
+                var optArrivals = viewModel.getArrivals(e.getX(), e.getY());
+                optArrivals.ifPresent(model -> SwingUtilities.invokeLater(() -> {
+                    if (currentStationPage != null) currentStationPage.dispose();
+                    currentStationPage = new StationPage(model);
+                }));
+
             }
         });
 
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                presenter.onMouseMove(e.getX(), e.getY());
+                viewModel.onMouseMove(e.getX(), e.getY());
                 repaint();
             }
         });
     }
-
-    /**
-     * The timer that is used to repaint the panel.
-     */
-    private final Timer timer = new Timer(10, e -> this.repaint());
 
     @Override
     public void addNotify() {
@@ -70,7 +82,7 @@ public class MapPanel extends JPanel {
      */
     @Override
     protected void paintComponent(Graphics g) {
-        presenter.present((Graphics2D) g, getWidth(), getHeight());
+        viewModel.present((Graphics2D) g, getWidth(), getHeight());
     }
 
 }

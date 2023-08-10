@@ -110,7 +110,7 @@ public class TransitMapViewModel {
         // For each station, get the next station and draw a line between them
         for (StationDTO station : stations) {
             for (int line : station.getLines()) {
-                Optional<StationDTO> optNextStation = stationInteractor.getNextStation(line, station.getName(), Direction.FORWARD);
+                Optional<StationDTO> optNextStation = stationInteractor.getNextStation(station.getName(), line, Direction.FORWARD);
                 if (optNextStation.isEmpty()) continue;
                 StationDTO nextStation = optNextStation.get();
                 int x = (int) (station.getX() * scaleX);
@@ -252,6 +252,12 @@ public class TransitMapViewModel {
             }
         }
         return Optional.empty();
+    }
+
+    public Optional<ArrivalsViewModel> getArrivals(int x, int y) {
+        StationDTO dto = getStationAt(x, y).orElse(null);
+        if (dto == null) return Optional.empty();
+        return Optional.of(new ArrivalsViewModel(dto, stationInteractor));
     }
 
     /**

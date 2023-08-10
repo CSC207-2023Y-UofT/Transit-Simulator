@@ -6,6 +6,7 @@ import model.Direction;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * The ArrivalsViewModel class is a view model class for showing a station's
@@ -23,7 +24,7 @@ public class ArrivalsViewModel {
      * A map storing the next arrival times for each line and direction.
      * The outer key is the line number and the inner key is the direction.
      */
-    private Map<Integer, Map<Direction, Long>> nextArrivals = new HashMap<>();
+    private Map<Integer, Map<String, Long>> nextArrivals = new HashMap<>();
 
     /**
      * The station for which the view model provides the next arrival data.
@@ -50,7 +51,9 @@ public class ArrivalsViewModel {
 
         // For each line the station is part of
         for (int lineNumber : station.getLines()) {
-            Map<Direction, Long> arrivals = new HashMap<>();
+
+            // Get the next arrivals for the station
+            Map<String, Long> arrivals = new HashMap<>();
 
             // Get the next arrivals in both directions
             var forward = stationInteractor.getTimeTillNextArrival(station.getName(),
@@ -60,9 +63,17 @@ public class ArrivalsViewModel {
                     lineNumber,
                     Direction.BACKWARD);
 
+            var forwardStation = stationInteractor.getNextStation(station.getName(),
+                    lineNumber,
+                    Direction.FORWARD);
+
+            var backwardStation = stationInteractor.getNextStation(station.getName(),
+                    lineNumber,
+                    Direction.BACKWARD);
+
             // Add to temp inner map
-            forward.ifPresent(time -> arrivals.put(Direction.FORWARD, time));
-            backward.ifPresent(time -> arrivals.put(Direction.BACKWARD, time));
+            forwardStation.ifPresent(next -> forward.ifPresent(time -> arrivals.put(next.getName(), time)));
+            backwardStation.ifPresent(prev -> backward.ifPresent(time -> arrivals.put(prev.getName(), time)));
 
             // Add the next arrivals to the map
             nextArrivals.put(lineNumber, arrivals);
@@ -74,7 +85,7 @@ public class ArrivalsViewModel {
      *
      * @return The map of next arrivals.
      */
-    public Map<Integer, Map<Direction, Long>> getNextArrivals() {
+    public Map<Integer, Map<String, Long>> getNextArrivals() {
         return nextArrivals;
     }
 

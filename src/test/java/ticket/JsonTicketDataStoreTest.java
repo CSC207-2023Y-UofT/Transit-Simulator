@@ -74,6 +74,7 @@ class JsonTicketDataStoreTest {
 
         Ticket expired = new Ticket(10, TicketType.CHILD);
         expired.setExpiry(System.currentTimeMillis() - 1000);
+        expired.setActivated(true);
 
         data.saveTicket(expired);
 

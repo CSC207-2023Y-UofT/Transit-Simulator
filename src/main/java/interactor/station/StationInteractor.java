@@ -52,7 +52,7 @@ public class StationInteractor implements IStationInteractor {
      * @param direction   The direction.
      * @return The next station state, if any.
      */
-    public Optional<StationDTO> getNextStation(int line, String stationName, Direction direction) {
+    public Optional<StationDTO> getNextStation(String stationName, int line, Direction direction) {
         Node node = model.getNode(stationName);
 
         if (node == null) {
@@ -90,7 +90,7 @@ public class StationInteractor implements IStationInteractor {
      * @param stationName The station name.
      * @param line        The line number.
      * @param direction   The direction.
-     * @return The time till the next arrival, if any. In Epoch Time format.
+     * @return The time till the next arrival, if any. In milliseconds
      */
     public Optional<Long> getTimeTillNextArrival(String stationName, int line, Direction direction) {
         Node node = model.getNode(stationName);
