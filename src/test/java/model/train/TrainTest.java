@@ -1,20 +1,23 @@
 package model.train;
 
-import model.Direction;
-import model.control.TransitModel;
-import model.node.Node;
-import model.node.NodeLineProfile;
-import model.node.StationFactory;
-import model.train.track.TrackSegment;
-import employee.TrainOperator;
-import employee.TrainEngineer;
+import entity.model.Direction;
+import entity.model.control.TransitModel;
+import entity.model.node.Node;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.node.station.StationFactory;
+import entity.model.train.Passenger;
+import entity.model.train.TrainStatus;
+import entity.model.train.Train;
+import entity.model.train.TrainPosition;
+import entity.model.train.track.TrackSegment;
+import entity.employee.TrainOperator;
+import entity.employee.TrainEngineer;
 
+import entity.ticket.Ticket;
+import entity.ticket.TicketType;
 import org.junit.jupiter.api.*;
-import ticket.*;
 
 import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
 
 
 public class TrainTest {
@@ -96,8 +99,8 @@ public class TrainTest {
         trainBackwards = transitModel.createTrain(s1b, "tb", 120);
 
         // Create the employees
-        operator = new TrainOperator(0b0001);
-        engineer = new TrainEngineer(0b0010);
+        operator = new TrainOperator(0, "");
+        engineer = new TrainEngineer(1, "");
     }
 
     // Begin testing
@@ -122,20 +125,20 @@ public class TrainTest {
 
     @Test
     public void testGetStatus() {
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainBackwards.getStatus());
+        Assertions.assertEquals(TrainStatus.OUT_OF_SERVICE, trainForwards.getStatus());
+        Assertions.assertEquals(TrainStatus.OUT_OF_SERVICE, trainBackwards.getStatus());
     }
 
     @Test
     public void testSetStatus() {
-        trainForwards.setStatus(Train.Status.SCHEDULED_MAINTENANCE);
-        Assertions.assertEquals(Train.Status.SCHEDULED_MAINTENANCE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.UNDER_MAINTENANCE);
-        Assertions.assertEquals(Train.Status.UNDER_MAINTENANCE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.IN_SERVICE);
-        Assertions.assertEquals(Train.Status.IN_SERVICE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.OUT_OF_SERVICE);
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.SCHEDULED_MAINTENANCE);
+        Assertions.assertEquals(TrainStatus.SCHEDULED_MAINTENANCE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.UNDER_MAINTENANCE);
+        Assertions.assertEquals(TrainStatus.UNDER_MAINTENANCE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.IN_SERVICE);
+        Assertions.assertEquals(TrainStatus.IN_SERVICE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.OUT_OF_SERVICE);
+        Assertions.assertEquals(TrainStatus.OUT_OF_SERVICE, trainForwards.getStatus());
     }
 
     @Test

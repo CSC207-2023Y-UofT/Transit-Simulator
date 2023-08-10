@@ -1,24 +1,31 @@
 package main;
 
-import employee.EmployeeTracker;
-import employee.persistence.EmployeeDataStore;
-import employee.persistence.FileEmployeeDataStore;
-import interactor.employee.EmployeeInteractor;
-import interactor.stat.StatInteractor;
-import interactor.station.StationInteractor;
-import interactor.ticket.TicketInteractor;
-import interactor.train.TrainInteractor;
-import model.persistence.JsonModelDataStore;
+import entity.employee.Admin;
+import entity.employee.EmployeeTracker;
+import entity.employee.TrainEngineer;
+import entity.employee.TrainOperator;
+import persistence.boundary.EmployeeDataStore;
+import persistence.impl.FileEmployeeDataStore;
+import app_business.interactor.EmployeeInteractor;
+import app_business.interactor.StatInteractor;
+import app_business.interactor.StationInteractor;
+import app_business.interactor.TicketInteractor;
+import app_business.interactor.TrainInteractor;
+import entity.model.control.TransitModel;
+import persistence.impl.JsonModelDataStore;
 
-import model.control.*;
+import main.pool.InteractorPool;
+import persistence.DataStorage;
 import simulation.Simulation;
-import stats.persistence.StatAggregateDataStore;
-import stats.persistence.StatDataController;
-import stats.persistence.StatEntryDataStore;
-import stats.persistence.impl.FileAggregateDataStore;
-import stats.persistence.impl.FileEntryDataStore;
-import ticket.JsonTicketDataStore;
-import ticket.TicketDataStore;
+import persistence.boundary.StatAggregateDataStore;
+import stats.StatDataController;
+import persistence.boundary.StatEntryDataStore;
+import persistence.impl.FileAggregateDataStore;
+import persistence.impl.FileEntryDataStore;
+import persistence.impl.JsonTicketDataStore;
+import persistence.boundary.TicketDataStore;
+import stats.timing.BasicTimeIndexProvider;
+import stats.timing.TimeIndexProvider;
 import ui.UIController;
 import ui.WelcomePage;
 import util.AsyncWriteIOProvider;
@@ -69,8 +76,9 @@ public class Main {
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
         StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
+        TimeIndexProvider timeIndexProvider = new BasicTimeIndexProvider(4000);
 
-        StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
+        StatDataController stats = new StatDataController(timeIndexProvider, statDataStore, statAggregateDataStore);
 
         // Ticket data store
         TicketDataStore store = new JsonTicketDataStore(new File("tickets"));
@@ -91,6 +99,13 @@ public class Main {
         // Create the ui controller
         UIController controller = new UIController(pool);
         controller.open(new WelcomePage(controller));
+
+        // Default employees
+        employeeTracker.saveEmployee(new Admin(123, "Matt"));
+        employeeTracker.saveEmployee(new Admin(111, "Grace"));
+        employeeTracker.saveEmployee(new TrainEngineer(222, "Charles"));
+        employeeTracker.saveEmployee(new TrainEngineer(333, "Zoey"));
+        employeeTracker.saveEmployee(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
         new Simulation(model, pool, stats).start();

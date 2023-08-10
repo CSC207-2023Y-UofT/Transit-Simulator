@@ -1,6 +1,9 @@
 package ui.staff.admin;
 
-import controller.stats.SingletonStatViewModel;
+import interface_adapter.employee.ManageEmployeesViewModel;
+import interface_adapter.stats.SingletonStatViewModel;
+import app_business.dto.EmployeeDTO;
+import app_business.common.EmployeeType;
 import ui.UIController;
 import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
@@ -35,6 +38,8 @@ public class Management extends JPanel {
      */
     private final StatsPanel statsPanel2;
 
+    private final ManageEmployeesViewModel manage;
+
     /**
      * The JPanel that displays the middle panel.
      */
@@ -44,14 +49,18 @@ public class Management extends JPanel {
      * The JTable that displays the staff.
      */
     private final JTable table;
+    private final UIController controller;
 
     /**
      * Constructs a new Management object with the given UIController.
      *
      * @param controller the controller used to switch panels
      */
-    public Management(UIController controller) {
+    public Management(UIController controller, EmployeeDTO employee) {
         super(new BorderLayout());
+        this.controller = controller;
+
+        this.manage = new ManageEmployeesViewModel(controller.getControllerPool().getEmployeeController());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -64,7 +73,7 @@ public class Management extends JPanel {
         homeButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // id label
-        int id = 322; // TODO: should be .getId()
+        int id = employee.getStaffNumber();
         JLabel idLabel = new JLabel("Admin " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
@@ -84,16 +93,16 @@ public class Management extends JPanel {
         };
 
         // Row Data
-        Object[][] data = {
-                {"Grace Liu", "Train Engineer", 110, 1},
-                {"Matthew Lack", "Train Operator", 242, 1},
-                {"Zoey Lee", "Train Operator", 550, 2},
-                {"Charles Cheung", "Train Engineer", 392, 2},
-                {"Jarett Jia", "Train Engineer", 101, 3}
-        };
+        Object[][] data = {};
 
         // Create Table Model
-        DefaultTableModel model = new DefaultTableModel(data, columns);
+        DefaultTableModel model = new DefaultTableModel(data, columns) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  // Only one row can be selected at a time
 
@@ -117,6 +126,8 @@ public class Management extends JPanel {
         JTableHeader header = table.getTableHeader();
         header.setFont(headerFont);
 
+        updateTable();
+
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
@@ -125,8 +136,7 @@ public class Management extends JPanel {
         JButton addStaffButton = new ShadowedButton("Add Staff");
         addStaffButton.setBackground(new Color(201, 153, 222));
         addStaffButton.setFont(new Font("Arial", Font.BOLD, 20));
-        addStaffButton.addActionListener(e -> { controller.open(new AddStaff(controller, this)); }
-        );
+        addStaffButton.addActionListener(e -> controller.open(new AddStaff(controller, this)));
 
         // Remove staff button
         JButton removeStaffButton = new ShadowedButton("Remove Staff");
@@ -199,15 +209,20 @@ public class Management extends JPanel {
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    /**
-     * Adds a row to the staff table.
-     *
-     * @param rowData The data to add to the row.
-     */
-    public void addStaffRow(Object[] rowData) {
+    public void updateTable() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(rowData);
+
+        Object[][] data = manage.getTableData();
+
+        while (model.getRowCount() > 0) model.removeRow(0);
+
+        for (Object[] datum : data) {
+            model.addRow(datum);
+        }
+
+        model.fireTableDataChanged();
     }
+
 
     /**
      * Removes the selected staff from the table.
@@ -216,11 +231,25 @@ public class Management extends JPanel {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int selectedRow = table.getSelectedRow();
         if (selectedRow != -1) { // If a row is selected
-            model.removeRow(selectedRow);
+            int staffNumber = (int) model.getValueAt(selectedRow, 2);
+
+            var employees = controller.getControllerPool().getEmployeeController();
+
+            var employee = employees.find(staffNumber)
+                            .orElse(null);
+            if (employee == null) return;
+
+            if (employee.getType() == EmployeeType.ADMINISTRATOR) {
+                JOptionPane.showMessageDialog(this, "Cannot remove an administrator.");
+                return;
+            }
+
+            employees.removeEmployee(staffNumber);
+
+            updateTable();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a staff to remove.");
         }
-        // table.repaint();
     }
 
 

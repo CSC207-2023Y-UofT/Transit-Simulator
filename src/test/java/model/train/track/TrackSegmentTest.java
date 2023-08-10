@@ -1,16 +1,14 @@
 package model.train.track;
 
-import model.Direction;
-import model.control.TransitModel;
+import entity.model.Direction;
+import entity.model.control.TransitModel;
 
+import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-
-import javax.sound.midi.Track;
 
 public class TrackSegmentTest {
     public static TransitModel transitModel;

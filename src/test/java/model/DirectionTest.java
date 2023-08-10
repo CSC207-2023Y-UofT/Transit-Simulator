@@ -1,5 +1,6 @@
 package model;
 
+import entity.model.Direction;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 

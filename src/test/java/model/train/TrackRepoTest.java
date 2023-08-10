@@ -1,6 +1,8 @@
 package model.train;
 
-import model.train.track.TrackSegment;
+import entity.model.train.MemoryTrackRepo;
+import entity.model.train.repo.TrackRepo;
+import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,8 +17,8 @@ public class TrackRepoTest {
     @DisplayName("TrackRepoTest Class Setup")
     @BeforeAll
     public static void setup() {
-        basicTrackRepo1 = new BasicTrackRepo();
-        basicTrackRepo2 = new BasicTrackRepo();
+        basicTrackRepo1 = new MemoryTrackRepo();
+        basicTrackRepo2 = new MemoryTrackRepo();
         trackSegment1 = new TrackSegment(basicTrackRepo1, "trackSegment1", 100);
         trackSegment2 = new TrackSegment(basicTrackRepo2, "trackSegment2", 100);
 
@@ -25,7 +27,7 @@ public class TrackRepoTest {
 
     @Test
     public void testGetTracks() {
-        TrackRepo trackRepo = new BasicTrackRepo();
+        TrackRepo trackRepo = new MemoryTrackRepo();
         Assertions.assertEquals(0, trackRepo.getTracks().size());
     }
 

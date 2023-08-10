@@ -1,7 +1,7 @@
 package ui.staff.admin;
 
-import controller.stats.SingletonStatViewModel;
-import controller.stats.StatsController;
+import interface_adapter.stats.SingletonStatViewModel;
+import interface_adapter.stats.StatsController;
 import ui.UIController;
 
 import javax.swing.*;

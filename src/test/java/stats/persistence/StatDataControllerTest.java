@@ -1,13 +1,15 @@
 package stats.persistence;
 
-import main.DataStorage;
+import persistence.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import stats.StatDataController;
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.entry.impl.MaintenanceStat;
-import stats.persistence.impl.FileAggregateDataStore;
-import stats.persistence.impl.FileEntryDataStore;
+import persistence.impl.FileAggregateDataStore;
+import persistence.impl.FileEntryDataStore;
+import stats.timing.BasicTimeIndexProvider;
 import util.AsyncWriteIOProvider;
 import util.DeflateCompressionProvider;
 
@@ -22,16 +24,20 @@ class StatDataControllerTest {
     private static StatDataController controller;
 
 
-    private static void deleteDirectory(File file) {
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
+    /**
+     * Utility method to delete a directory recursively.
+     * @param directory The directory to delete.
+     */
+    private static void deleteDirectory(File directory) {
+        if (directory.isDirectory()) {
+            File[] files = directory.listFiles();
             if (files != null) {
                 for (File f : files)
                     deleteDirectory(f);
             }
         }
         try {
-            Files.delete(file.toPath());
+            Files.delete(directory.toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +57,7 @@ class StatDataControllerTest {
         deleteDirectory(aggregateFolder);
 
         controller = new StatDataController(
-                new FileEntryDataStore(entryFolder),
+                new BasicTimeIndexProvider(1000), new FileEntryDataStore(entryFolder),
                 new FileAggregateDataStore(aggregateFolder)
         );
 
