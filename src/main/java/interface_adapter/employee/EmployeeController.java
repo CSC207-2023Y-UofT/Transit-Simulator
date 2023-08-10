@@ -1,6 +1,8 @@
 package interface_adapter.employee;
 
-import app_business.employee.*;
+import app_business.boundary.IEmployeeInteractor;
+import app_business.common.EmployeeType;
+import app_business.dto.EmployeeDTO;
 import entity.model.train.TrainRole;
 
 import java.util.List;

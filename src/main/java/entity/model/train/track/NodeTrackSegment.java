@@ -1,7 +1,7 @@
 package entity.model.train.track;
 
 import entity.model.node.Node;
-import entity.model.train.TrackRepo;
+import entity.model.train.repo.TrackRepo;
 
 import java.util.Optional;
 

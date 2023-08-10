@@ -1,5 +1,6 @@
-package app_business.station;
+package app_business.boundary;
 
+import app_business.dto.StationDTO;
 import entity.model.Direction;
 
 import java.util.List;

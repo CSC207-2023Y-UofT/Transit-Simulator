@@ -1,6 +1,6 @@
-package app_business.train;
+package app_business.dto;
 
-import app_business.station.StationDTO;
+import entity.model.train.TrainStatus;
 
 import java.util.Optional;
 
@@ -40,6 +40,11 @@ public class TrainDTO {
     private final TrainArrivalDTO previousNodeDistance;
 
     /**
+     * The status of the train.
+     */
+    private final TrainStatus status;
+
+    /**
      * The constructor for the TrainState dataclass.
      *
      * @param name                 The name of the train.
@@ -48,19 +53,29 @@ public class TrainDTO {
      * @param currentStation       The station the train is currently at.
      * @param nextNodeDistance     The distance to the next node.
      * @param previousNodeDistance The distance to the previous node.
+     * @param status               The status of the train.
      */
     public TrainDTO(String name,
                     int capacity,
                     int occupation,
                     StationDTO currentStation,
                     TrainArrivalDTO nextNodeDistance,
-                    TrainArrivalDTO previousNodeDistance) {
+                    TrainArrivalDTO previousNodeDistance,
+                    TrainStatus status) {
         this.name = name;
         this.capacity = capacity;
         this.occupation = occupation;
         this.currentStation = currentStation;
         this.nextNodeDistance = nextNodeDistance;
         this.previousNodeDistance = previousNodeDistance;
+        this.status = status;
+    }
+
+    /**
+     * The getter for the status of the train.
+     */
+    public TrainStatus getStatus() {
+        return status;
     }
 
     /**

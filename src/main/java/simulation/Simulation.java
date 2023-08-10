@@ -5,6 +5,7 @@ import entity.model.control.TransitModel;
 import stats.StatDataController;
 
 /**
+ * Technically part of the use-case/interactor layer
  * This class performs the basic simulation functionalities needed for the program.
  */
 public class Simulation {

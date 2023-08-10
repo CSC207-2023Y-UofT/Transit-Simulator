@@ -1,8 +1,8 @@
 package ui.staff.admin;
 
-import app_business.employee.EmployeeDTO;
-import app_business.employee.EmployeeType;
-import app_business.train.TrainDTO;
+import app_business.dto.EmployeeDTO;
+import app_business.common.EmployeeType;
+import app_business.dto.TrainDTO;
 import entity.model.train.TrainRole;
 import ui.UIController;
 import ui.util.ShadowedButton;

@@ -1,4 +1,4 @@
-package entity.model.train;
+package entity.model.train.repo;
 
 import entity.model.train.track.TrackSegment;
 

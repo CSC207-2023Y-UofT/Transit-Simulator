@@ -1,5 +1,6 @@
 package ui.staff.operator;
 
+import app_business.dto.EmployeeDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -17,13 +18,17 @@ import java.awt.*;
  */
 public class OperatorMaintenance extends JPanel {
 
+    private final EmployeeDTO employeeDTO;
+
     /**
      * Constructs a new OperatorMaintenance object.
      *
      * @param controller the controller used to switch panels
      */
-    public OperatorMaintenance(UIController controller) {
+    public OperatorMaintenance(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
+
+        this.employeeDTO = employeeDTO;
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -96,9 +101,7 @@ public class OperatorMaintenance extends JPanel {
         routeButton.setBackground(new Color(222, 175, 119));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        routeButton.addActionListener(e -> {
-            controller.open(new OperatorRoute(controller));
-        });
+        routeButton.addActionListener(e -> controller.open(new OperatorRoute(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance");

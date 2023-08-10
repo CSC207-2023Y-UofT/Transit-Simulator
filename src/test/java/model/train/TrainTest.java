@@ -6,6 +6,7 @@ import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.station.StationFactory;
 import entity.model.train.Passenger;
+import entity.model.train.TrainStatus;
 import entity.model.train.Train;
 import entity.model.train.TrainPosition;
 import entity.model.train.track.TrackSegment;
@@ -124,20 +125,20 @@ public class TrainTest {
 
     @Test
     public void testGetStatus() {
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainBackwards.getStatus());
+        Assertions.assertEquals(TrainStatus.OUT_OF_SERVICE, trainForwards.getStatus());
+        Assertions.assertEquals(TrainStatus.OUT_OF_SERVICE, trainBackwards.getStatus());
     }
 
     @Test
     public void testSetStatus() {
-        trainForwards.setStatus(Train.Status.SCHEDULED_MAINTENANCE);
-        Assertions.assertEquals(Train.Status.SCHEDULED_MAINTENANCE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.UNDER_MAINTENANCE);
-        Assertions.assertEquals(Train.Status.UNDER_MAINTENANCE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.IN_SERVICE);
-        Assertions.assertEquals(Train.Status.IN_SERVICE, trainForwards.getStatus());
-        trainForwards.setStatus(Train.Status.OUT_OF_SERVICE);
-        Assertions.assertEquals(Train.Status.OUT_OF_SERVICE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.SCHEDULED_MAINTENANCE);
+        Assertions.assertEquals(TrainStatus.SCHEDULED_MAINTENANCE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.UNDER_MAINTENANCE);
+        Assertions.assertEquals(TrainStatus.UNDER_MAINTENANCE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.IN_SERVICE);
+        Assertions.assertEquals(TrainStatus.IN_SERVICE, trainForwards.getStatus());
+        trainForwards.setStatus(TrainStatus.OUT_OF_SERVICE);
+        Assertions.assertEquals(TrainStatus.OUT_OF_SERVICE, trainForwards.getStatus());
     }
 
     @Test

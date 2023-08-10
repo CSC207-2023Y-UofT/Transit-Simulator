@@ -21,27 +21,6 @@ public class Train {
     public static final int DEFAULT_CAPACITY = 100;
 
     /**
-     * Enum representing the possible statuses of a train.
-     * <br>
-     * <p>
-     * IN_SERVICE:            Running properly.
-     * SCHEDULED_MAINTENANCE: still running, will stop for maintenance at the next station. (not automatically under maintenance)
-     * UNDER_MAINTENANCE:     stopped for maintenance at a station and staff assigned to maintain.
-     * OUT_OF_SERVICE:        Not running.
-     * <br>
-     * <p>
-     * Precondition: Trains UNDER_MAINTENANCE cannot be IN_SERVICE.
-     * Trains that are running can pass Offline trains whether at tracks or at stations. IRL justification: most
-     * tracks have spare tracks that others can pass.
-     */
-    public enum Status {
-        IN_SERVICE,
-        SCHEDULED_MAINTENANCE,
-        UNDER_MAINTENANCE,
-        OUT_OF_SERVICE
-    }
-
-    /**
      * The maximum length of the train in meters.
      */
     public static int LENGTH = 100;
@@ -80,7 +59,7 @@ public class Train {
      * The current status of this train (IN_SERVICE, SCHEDULED_MAINTENANCE, UNDER_MAINTENANCE, OUT_OF_SERVICE).
      * Default status is OUT_OF_SERVICE.
      */
-    private Status status = Status.OUT_OF_SERVICE;
+    private TrainStatus status = TrainStatus.OUT_OF_SERVICE;
 
     /**
      * The current position of this train represented by a TrainPosition object.
@@ -115,7 +94,7 @@ public class Train {
      *
      * @return The current status of this train.
      */
-    public Status getStatus() {
+    public TrainStatus getStatus() {
         return status;
     }
 
@@ -124,7 +103,7 @@ public class Train {
      *
      * @param status The new status of this train.
      */
-    public void setStatus(Status status) {
+    public void setStatus(TrainStatus status) {
         this.status = status;
     }
 

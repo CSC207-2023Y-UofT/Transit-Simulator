@@ -1,5 +1,6 @@
 package entity.model.train;
 
+import entity.model.train.repo.TrackRepo;
 import entity.model.train.track.TrackSegment;
 import util.Preconditions;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
  * The BasicTrackRepo class represents a basic implementation of the TrackRepo interface.
  * It maintains a collection of track segments and provides methods to interact with them.
  */
-public class BasicTrackRepo implements TrackRepo {
+public class MemoryTrackRepo implements TrackRepo {
 
     /**
      * The map of track segments in the repository, where the keys are the track segment IDs and the values are the corresponding TrackSegment objects.

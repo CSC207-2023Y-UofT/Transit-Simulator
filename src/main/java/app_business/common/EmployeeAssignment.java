@@ -1,11 +1,11 @@
-package app_business.employee;
+package app_business.common;
 
 import entity.model.train.TrainRole;
 
 import java.io.Serializable;
 
 /**
- * Data Class to represent an employee assignment
+ * Immutable Data Class to represent an employee assignment
  */
 public class EmployeeAssignment implements Serializable {
 

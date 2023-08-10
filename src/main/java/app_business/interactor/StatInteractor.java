@@ -1,5 +1,6 @@
-package app_business.stat;
+package app_business.interactor;
 
+import app_business.boundary.IStatInteractor;
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.aggregator.revenue.RevenueAggregate;
@@ -38,7 +39,7 @@ public class StatInteractor implements IStatInteractor {
     @Override
     public List<RevenueAggregate> getRevenue(long horizonMinutes) {
         RevenueAggregator revenueAggregator = new RevenueAggregator();
-        long currIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
+        long currIndex = stats.getTimeIndexProvider().getTimeIndex();
 
         List<RevenueAggregate> revenueAggregates = new ArrayList<>();
 
@@ -67,7 +68,7 @@ public class StatInteractor implements IStatInteractor {
     @Override
     public List<ExpenseAggregate> getExpenses(long horizonMinutes) {
         ExpenseAggregator expenseAggregator = new ExpenseAggregator();
-        long currIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
+        long currIndex = stats.getTimeIndexProvider().getTimeIndex();
 
         List<ExpenseAggregate> expenseAggregates = new ArrayList<>();
 

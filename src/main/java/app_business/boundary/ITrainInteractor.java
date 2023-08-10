@@ -1,4 +1,6 @@
-package app_business.train;
+package app_business.boundary;
+
+import app_business.dto.TrainDTO;
 
 import java.util.List;
 import java.util.Optional;

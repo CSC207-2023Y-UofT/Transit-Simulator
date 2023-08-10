@@ -3,7 +3,7 @@ package ui.passenger;
 import interface_adapter.ticket.PurchaseTicketViewModel;
 import interface_adapter.ticket.TicketController;
 import interface_adapter.ticket.TicketViewModel;
-import app_business.ticket.TicketDTO;
+import app_business.dto.TicketDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 

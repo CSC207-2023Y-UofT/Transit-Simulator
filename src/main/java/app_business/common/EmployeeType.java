@@ -1,4 +1,4 @@
-package app_business.employee;
+package app_business.common;
 
 /**
  * An enum used to represent a certain type of employee

@@ -6,11 +6,11 @@ import entity.employee.TrainEngineer;
 import entity.employee.TrainOperator;
 import persistence.boundary.EmployeeDataStore;
 import persistence.impl.FileEmployeeDataStore;
-import app_business.employee.EmployeeInteractor;
-import app_business.stat.StatInteractor;
-import app_business.station.StationInteractor;
-import app_business.ticket.TicketInteractor;
-import app_business.train.TrainInteractor;
+import app_business.interactor.EmployeeInteractor;
+import app_business.interactor.StatInteractor;
+import app_business.interactor.StationInteractor;
+import app_business.interactor.TicketInteractor;
+import app_business.interactor.TrainInteractor;
 import entity.model.control.TransitModel;
 import persistence.impl.JsonModelDataStore;
 
@@ -24,6 +24,8 @@ import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
 import persistence.impl.JsonTicketDataStore;
 import persistence.boundary.TicketDataStore;
+import stats.timing.BasicTimeIndexProvider;
+import stats.timing.TimeIndexProvider;
 import ui.UIController;
 import ui.WelcomePage;
 import util.AsyncWriteIOProvider;
@@ -74,8 +76,9 @@ public class Main {
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
         StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
+        TimeIndexProvider timeIndexProvider = new BasicTimeIndexProvider(4000);
 
-        StatDataController stats = new StatDataController(statDataStore, statAggregateDataStore);
+        StatDataController stats = new StatDataController(timeIndexProvider, statDataStore, statAggregateDataStore);
 
         // Ticket data store
         TicketDataStore store = new JsonTicketDataStore(new File("tickets"));

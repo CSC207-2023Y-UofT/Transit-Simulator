@@ -1,11 +1,12 @@
 package stats;
 
-import app_business.stat.IStatInteractor;
+import app_business.boundary.IStatInteractor;
 import persistence.boundary.StatAggregateDataStore;
 import persistence.boundary.StatEntryDataStore;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
+import stats.timing.TimeIndexProvider;
 import util.Timing;
 
 import java.io.IOException;
@@ -18,6 +19,12 @@ import java.util.*;
  */
 public class StatDataController {  // Facade design pattern used!!!
 
+
+    /**
+     * Provides time indices for keeping track of stats.
+     */
+    private final TimeIndexProvider timeIndexProvider;
+
     /**
      * DataStore used to persist StatEntry objects.
      */
@@ -28,7 +35,7 @@ public class StatDataController {  // Facade design pattern used!!!
      */
     private final StatAggregateDataStore aggregateDataStore;
 
-    private long currTimeIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
+    private long currTimeIndex;
 
     /**
      * A map of stat entry classes to the stat entries that have been recorded
@@ -41,12 +48,16 @@ public class StatDataController {  // Facade design pattern used!!!
     /**
      * Constructs a StatDataController instance with a given EntryDataStore and AggregateDataStore.
      *
+     * @param timeIndexProvider  the time index provider, used for calculating time indices.
      * @param entryDataStore     the store for stat entries.
      * @param aggregateDataStore the store for aggregate statistics.
      */
-    public StatDataController(StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
+    public StatDataController(TimeIndexProvider timeIndexProvider, StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
+        this.timeIndexProvider = timeIndexProvider;
         this.entryDataStore = entryDataStore;
         this.aggregateDataStore = aggregateDataStore;
+
+        currTimeIndex = timeIndexProvider.getTimeIndex();
 
         EntryHierarchy hierarchy = entryDataStore.retrieveHierarchy();
         hierarchy.getAllLeafClasses().forEach(StatEntry.HIERARCHY::map);
@@ -68,6 +79,13 @@ public class StatDataController {  // Facade design pattern used!!!
      */
     public StatAggregateDataStore getAggregateDataStore() {
         return aggregateDataStore;
+    }
+
+    /**
+     * Returns the time index provider.
+     */
+    public TimeIndexProvider getTimeIndexProvider() {
+        return timeIndexProvider;
     }
 
     /**
@@ -95,7 +113,8 @@ public class StatDataController {  // Facade design pattern used!!!
      * Flush all recorded stat entries to the data store.
      */
     public synchronized void flush(long index) {
-        currTimeIndex = System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL;
+        // Update the current time index
+        currTimeIndex = timeIndexProvider.getTimeIndex();
 
         // Store the hierarchy first
         entryDataStore.storeHierarchy(StatEntry.HIERARCHY);
@@ -115,7 +134,7 @@ public class StatDataController {  // Facade design pattern used!!!
     }
 
     public boolean shouldFlush() {
-        return System.currentTimeMillis() / IStatInteractor.TIME_INTERVAL != currTimeIndex;
+        return timeIndexProvider.getTimeIndex() != currTimeIndex;
     }
 
     /**

@@ -1,5 +1,7 @@
-package app_business.station;
+package app_business.interactor;
 
+import app_business.boundary.IStationInteractor;
+import app_business.dto.StationDTO;
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 import entity.model.node.Node;

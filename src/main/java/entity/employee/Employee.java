@@ -1,7 +1,7 @@
 package entity.employee;
 
-import app_business.employee.EmployeeAssignment;
-import app_business.employee.EmployeeType;
+import app_business.common.EmployeeAssignment;
+import app_business.common.EmployeeType;
 
 import java.io.Serializable;
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package interface_adapter.train;
 
-import app_business.train.ITrainInteractor;
-import app_business.train.TrainDTO;
+import app_business.boundary.ITrainInteractor;
+import app_business.dto.TrainDTO;
 
 import java.util.Optional;
 

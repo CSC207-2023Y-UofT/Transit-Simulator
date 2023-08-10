@@ -1,5 +1,6 @@
-package app_business.ticket;
+package app_business.boundary;
 
+import app_business.dto.TicketDTO;
 import entity.ticket.TicketType;
 
 import java.util.List;

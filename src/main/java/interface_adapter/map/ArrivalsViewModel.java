@@ -1,7 +1,7 @@
 package interface_adapter.map;
 
-import app_business.station.IStationInteractor;
-import app_business.station.StationDTO;
+import app_business.boundary.IStationInteractor;
+import app_business.dto.StationDTO;
 import entity.model.Direction;
 
 import java.util.HashMap;

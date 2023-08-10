@@ -1,4 +1,4 @@
-package app_business.stat;
+package app_business.boundary;
 
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.revenue.RevenueAggregate;

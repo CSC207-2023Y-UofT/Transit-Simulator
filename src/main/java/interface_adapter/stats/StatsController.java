@@ -1,6 +1,6 @@
 package interface_adapter.stats;
 
-import app_business.stat.IStatInteractor;
+import app_business.boundary.IStatInteractor;
 import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.revenue.RevenueAggregate;
 
