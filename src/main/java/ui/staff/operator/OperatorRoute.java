@@ -1,5 +1,6 @@
 package ui.staff.operator;
 
+import app_business.dto.EmployeeDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -19,7 +20,7 @@ public class OperatorRoute extends JPanel {
      * Constructs a new OperatorRoute object.
      * @param controller the controller used to switch panels
      */
-    public OperatorRoute(UIController controller) {
+    public OperatorRoute(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
         // Top panel
@@ -103,7 +104,7 @@ public class OperatorRoute extends JPanel {
         maintenanceButton.setBackground(new Color(222, 175, 119));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Arial", Font.BOLD, 20));
-        maintenanceButton.addActionListener(e -> controller.open(new OperatorMaintenance(controller)));
+        maintenanceButton.addActionListener(e -> controller.open(new OperatorMaintenance(controller, employeeDTO)));
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);

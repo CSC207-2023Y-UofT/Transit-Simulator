@@ -1,5 +1,6 @@
 package ui.staff.engineer;
 
+import app_business.dto.EmployeeDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -20,7 +21,7 @@ public class EngineerRoute extends JPanel {
      *
      * @param controller the controller used to switch panels
      */
-    public EngineerRoute(UIController controller) {
+    public EngineerRoute(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
         // Top panel
@@ -104,7 +105,7 @@ public class EngineerRoute extends JPanel {
         maintenanceButton.setBackground(new Color(136, 203, 194));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Arial", Font.BOLD, 20));
-        maintenanceButton.addActionListener(e -> controller.open(new EngineerMaintenance(controller)));
+        maintenanceButton.addActionListener(e -> controller.open(new EngineerMaintenance(controller, employeeDTO)));
 
         bottomPanel.add(routeButton);
         bottomPanel.add(maintenanceButton);

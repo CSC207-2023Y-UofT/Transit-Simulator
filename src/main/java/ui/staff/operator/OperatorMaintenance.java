@@ -101,9 +101,7 @@ public class OperatorMaintenance extends JPanel {
         routeButton.setBackground(new Color(222, 175, 119));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        routeButton.addActionListener(e -> {
-            controller.open(new OperatorRoute(controller));
-        });
+        routeButton.addActionListener(e -> controller.open(new OperatorRoute(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance");

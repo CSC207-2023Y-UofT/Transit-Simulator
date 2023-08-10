@@ -99,7 +99,7 @@ public class EngineerMaintenance extends JPanel {
         routeButton.setBackground(new Color(136, 203, 194));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        routeButton.addActionListener(e -> controller.open(new EngineerRoute(controller)));
+        routeButton.addActionListener(e -> controller.open(new EngineerRoute(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance Status");

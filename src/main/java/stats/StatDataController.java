@@ -20,6 +20,9 @@ import java.util.*;
 public class StatDataController {  // Facade design pattern used!!!
 
 
+    /**
+     * Provides time indices for keeping track of stats.
+     */
     private final TimeIndexProvider timeIndexProvider;
 
     /**
