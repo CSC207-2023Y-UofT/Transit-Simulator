@@ -77,7 +77,7 @@ public class LoginPage extends JPanel {
         JButton backButton = new ShadowedButton("Back");
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Arial", Font.BOLD, 20));
-        backButton.addActionListener(e -> controller.open(new StaffSelectPage(controller)));
+        backButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // Add components to the panel
 
