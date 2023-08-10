@@ -33,6 +33,11 @@ public class TrainEngineer extends Employee {
         return 1.2 * super.getMonthlySalary();
     }
 
+    /**
+     * Returns the type of this employee.
+     *
+     * @return The type of this employee.
+     */
     @Override
     public EmployeeType getEmployeeType() {
         return EmployeeType.ENGINEER;

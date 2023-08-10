@@ -62,12 +62,14 @@ public class MapPanel extends JPanel {
         });
     }
 
+    // Inherited javadoc
     @Override
     public void addNotify() {
         super.addNotify();
         timer.start();
     }
 
+    // Inherited javadoc
     @Override
     public void removeNotify() {
         super.removeNotify();

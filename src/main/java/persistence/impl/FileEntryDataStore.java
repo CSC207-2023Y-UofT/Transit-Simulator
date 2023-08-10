@@ -31,6 +31,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private final int pageSize = 64;
 
+    /**
+     * A list of entries.
+     */
     private static class EntryList extends ArrayList<StatEntry> {
     }
 

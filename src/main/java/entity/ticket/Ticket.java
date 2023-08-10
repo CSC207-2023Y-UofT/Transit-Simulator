@@ -139,6 +139,12 @@ public class Ticket {
         this.expiry = System.currentTimeMillis() + type.getLifetime();
     }
 
+    /**
+     * Checks whether this ticket is equal to obj.
+     *
+     * @param obj The object to compare to.
+     * @return True iff obj is a Ticket with the same id as this ticket.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Ticket) {

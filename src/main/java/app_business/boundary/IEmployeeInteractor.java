@@ -13,13 +13,31 @@ import java.util.Optional;
 public interface IEmployeeInteractor {
 
     /**
+     * Generate a random ID for an employee, as well as checking if the id is already taken.
+     * The default upper bound for the random number is 999999.
+     *
+     * @return The generated ID.
+     */
+    int idGenerator();
+
+    /**
+     * Generate a random ID for an employee, as well as checking if the id is already taken.
+     * The bound specified overwrites the default value of 999999.
+     *
+     * @param bound The upper bound for the random number.
+     * @return The generated ID.
+     */
+    int idGenerator(int bound);
+
+    /**
      * Register a new employee.
      *
      * @param name The name of the employee.
      * @param type The type of the employee.
+     * @param id   The ID of the employee.
      * @return An EmployeeInfo object representing the newly registered employee.
      */
-    EmployeeDTO registerEmployee(String name, EmployeeType type);
+    EmployeeDTO registerEmployee(String name, EmployeeType type, int id);
 
     /**
      * Get the employee info of an employee.
@@ -42,7 +60,7 @@ public interface IEmployeeInteractor {
      * @param staffNumber The staff number of the employee.
      * @param trainName   The name of the train.
      * @param job         The job to assign.
-     * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.
+     * @throws IllegalArgumentException If the train does not exist, or the employee does not exist.  // Note: removed boolean return from line between this and above
      * @throws IllegalStateException    If there is already an employee assigned to the job on that train.
      */
     void assignJob(int staffNumber, String trainName, TrainRole job);
@@ -58,10 +76,15 @@ public interface IEmployeeInteractor {
      * Get a list of employees assigned to a train.
      *
      * @param trainName The name of the train.
-     * @return A list of employees assigned to the train.
+     * @return A list of employees assigned to the train in Data Transfer Object format.
      */
     List<EmployeeDTO> getAssignedEmployees(String trainName);
 
+    /**
+     * Get a list of employees.
+     *
+     * @return A list of employees in Data Transfer Object format.
+     */
     List<EmployeeDTO> getEmployees();
 
 }

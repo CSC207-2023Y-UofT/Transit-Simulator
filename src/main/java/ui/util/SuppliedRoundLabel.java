@@ -23,6 +23,7 @@ public class SuppliedRoundLabel extends RoundedLabel {
         this.textSupplier = textSupplier;
     }
 
+    // Inherited javadoc
     @Override
     protected void paintComponent(Graphics g) {
         setText(textSupplier.get());

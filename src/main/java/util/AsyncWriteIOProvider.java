@@ -150,11 +150,13 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         return Files.readAllBytes(file.toPath());
     }
 
+    // Inherited javadoc
     @Override
     public String readString(File file) throws IOException {
         return new String(read(file));
     }
 
+    // Inherited javadoc
     @Override
     public boolean exists(File file) {
         boolean cached;

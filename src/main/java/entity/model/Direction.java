@@ -18,6 +18,9 @@ public enum Direction {
      */
     BACKWARD(-1);
 
+    /**
+     * The multiplier associated with the direction.
+     */
     private final int multiplier;
 
     /**

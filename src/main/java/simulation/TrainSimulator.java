@@ -246,6 +246,9 @@ public class TrainSimulator {
         return numPassengersBoarded;
     }
 
+    /**
+     * Add waiting passengers to the station.
+     */
     private void addWaitingPassengers() {
 
         double noise = this.passengerNoise.noise(tickNumber / 12000.0);

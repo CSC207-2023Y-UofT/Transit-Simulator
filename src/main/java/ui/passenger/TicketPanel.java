@@ -60,12 +60,14 @@ public class TicketPanel extends JPanel {
         updateComponents();
     }
 
+    // Inherited javadoc
     @Override
     public void addNotify() {
         super.addNotify();
         timer.start();
     }
 
+    // Inherited javadoc
     @Override
     public void removeNotify() {
         super.removeNotify();

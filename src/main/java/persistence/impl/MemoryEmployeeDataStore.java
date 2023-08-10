@@ -18,18 +18,20 @@ public class MemoryEmployeeDataStore implements EmployeeDataStore {
      */
     private final List<Employee> employeeList = new ArrayList<>();
 
-    // Javadocs in the interface
+    // Inherited javadocs
     @Override
     public void remove(int staffNumber) throws IOException {
         employeeList.removeIf(employee -> employee.getStaffNumber() == staffNumber);
     }
 
+    // Inherited javadocs
     @Override
     public void save(Employee employee) throws IOException {
         remove(employee.getStaffNumber());
         employeeList.add(employee);
     }
 
+    // Inherited javadocs
     @Override
     public Optional<Employee> get(int staffNumber) throws IOException {
         return employeeList.stream()
@@ -37,6 +39,7 @@ public class MemoryEmployeeDataStore implements EmployeeDataStore {
                 .findFirst();
     }
 
+    // Inherited javadocs
     @Override
     public List<Employee> getEmployees() throws IOException {
         return employeeList;
