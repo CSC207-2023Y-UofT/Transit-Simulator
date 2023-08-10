@@ -40,23 +40,32 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         this.model = model;
     }
 
+    // Javadocs are in the interface.
+    public int idGenerator() {
+        return idGenerator(999999);
+    }
+
+    // Javadocs are in the interface.
+    public int idGenerator(int bound) {
+        int id;
+        int tries = 0;
+        Random random = new Random();
+        do {
+            id = random.nextInt(bound);
+            if (tries++ >= 10) throw new IllegalStateException("Could not generate a unique ID");
+        } while (tracker.getEmployee(id).isPresent());
+        return id;
+    };
+
     /**
      * Registers a new employee based on the given request model.
      *
-     * @param requestModel The request model containing the type of employee to be registered.
+     * @param name The name of the employee.
+     * @param type The type of the employee.
      * @return The newly created {@link EmployeeDTO} object.
      */
     @Override
-    public EmployeeDTO registerEmployee(String name, EmployeeType type) {
-
-        int id;
-        int trys = 0;
-        Random random = new Random();
-        do {
-            id = random.nextInt(999999);
-            if (trys++ >= 10) throw new IllegalStateException("Could not generate a unique ID");
-        } while (tracker.getEmployee(id).isPresent());
-
+    public EmployeeDTO registerEmployee(String name, EmployeeType type, int id) {
         switch (type) {
             case ENGINEER:
                 TrainEngineer eng = new TrainEngineer(id, name);

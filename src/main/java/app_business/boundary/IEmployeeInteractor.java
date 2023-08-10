@@ -13,12 +13,30 @@ import java.util.Optional;
 public interface IEmployeeInteractor {
 
     /**
+     * Generate a random ID for an employee, as well as checking if the id is already taken.
+     * The default upper bound for the random number is 999999.
+     *
+     * @return The generated ID.
+     */
+    int idGenerator();
+
+    /**
+     * Generate a random ID for an employee, as well as checking if the id is already taken.
+     * The bound specified overwrites the default value of 999999.
+     *
+     * @param bound The upper bound for the random number.
+     * @return The generated ID.
+     */
+    int idGenerator(int bound);
+
+    /**
      * Register a new employee.
      *
-     * @param requestModel The request model.
+     * @param name The name of the employee.
+     * @param type The type of the employee.
      * @return An EmployeeInfo object representing the newly registered employee.
      */
-    EmployeeDTO registerEmployee(String name, EmployeeType type);
+    EmployeeDTO registerEmployee(String name, EmployeeType type, int id);
 
     /**
      * Get the employee info of an employee.

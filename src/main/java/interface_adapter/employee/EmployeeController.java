@@ -20,7 +20,7 @@ public class EmployeeController {
     }
 
     public EmployeeDTO registerEmployee(String name, EmployeeType type) {
-        return interactor.registerEmployee(name, type);
+        return interactor.registerEmployee(name, type, interactor.idGenerator());  // idGenerator as default value 999999 from overloading
     }
 
     public void assignEmployee(int staffNumber, String trainName, TrainRole role) {
