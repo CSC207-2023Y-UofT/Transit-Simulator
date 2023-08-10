@@ -1,5 +1,9 @@
 package ui;
 
+import interface_adapter.employee.EmployeeController;
+import interface_adapter.stats.StatsController;
+import interface_adapter.ticket.TicketController;
+import interface_adapter.train.TrainController;
 import main.pool.ControllerPool;
 import main.pool.InteractorPool;
 import javax.swing.*;
@@ -31,7 +35,12 @@ public class UIController {
      */
     public UIController(InteractorPool interactorPool) {
         this.interactorPool = interactorPool;
-        this.controllerPool = new ControllerPool(interactorPool);
+        this.controllerPool = new ControllerPool(
+                new TrainController(interactorPool.getTrainInteractor()),
+                new TicketController(interactorPool.getTicketInteractor()),
+                new EmployeeController(interactorPool.getEmployeeInteractor()),
+                new StatsController(interactorPool.getStatInteractor())
+        );  // Changed for better dep. injection.
         this.mainScreen = new MainScreen();
         mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainScreen.setVisible(true);
