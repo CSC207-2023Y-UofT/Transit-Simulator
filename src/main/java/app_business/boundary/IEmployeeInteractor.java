@@ -69,9 +69,8 @@ public interface IEmployeeInteractor {
      * Unassign a job from an employee.
      *
      * @param staffNumber The staff number of the employee.
-     * @return True if the job was unassigned successfully, false if the employee does not exist or the job is not assigned.
      */
-    boolean unassign(int staffNumber);
+    void unassign(int staffNumber);
 
     /**
      * Get a list of employees assigned to a train.

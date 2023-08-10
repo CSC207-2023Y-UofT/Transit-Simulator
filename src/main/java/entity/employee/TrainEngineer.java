@@ -3,7 +3,7 @@ package entity.employee;
 import app_business.common.EmployeeType;
 import entity.model.train.TrainStatus;
 import entity.model.train.Train;
-import stats.entry.impl.MaintenanceStat;
+import stats.entry.impl.expense.MaintenanceStat;
 import stats.StatDataController;
 
 import java.util.Random;

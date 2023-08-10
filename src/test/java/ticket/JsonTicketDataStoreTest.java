@@ -83,6 +83,12 @@ class JsonTicketDataStoreTest {
 
         assertTrue(data.getTicket(10).isPresent());
 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         data.cleanExpiredTickets();
 
         assertFalse(data.getTicket(10).isPresent());

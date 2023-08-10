@@ -1,6 +1,6 @@
 package ui.passenger;
 
-import interface_adapter.ticket.TicketViewModel;
+import interface_adapter.viewmodel.TicketViewModel;
 import app_business.dto.TicketDTO;
 import ui.UIController;
 import ui.util.ShadowedButton;

@@ -1,6 +1,6 @@
 package ui.map;
 
-import interface_adapter.map.ArrivalsViewModel;
+import interface_adapter.viewmodel.ArrivalsViewModel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
 package ui.map;
 
-import interface_adapter.map.TransitMapViewModel;
+import interface_adapter.viewmodel.TransitMapViewModel;
 
 import javax.swing.*;
 import java.awt.*;

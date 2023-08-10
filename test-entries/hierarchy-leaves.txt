@@ -1,1 +1,1 @@
-stats.entry.impl.MaintenanceStat
+stats.entry.impl.expense.MaintenanceStat
