@@ -6,6 +6,7 @@ import interface_adapter.ticket.TicketController;
 import interface_adapter.train.TrainController;
 import main.pool.ControllerPool;
 import main.pool.InteractorPool;
+
 import javax.swing.*;
 
 /**
@@ -79,7 +80,6 @@ public class UIController {
      * @param panel the panel to open
      */
     public void open(JPanel panel) {
-
         mainScreen.setContentPane(panel);
         mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainScreen.revalidate();
