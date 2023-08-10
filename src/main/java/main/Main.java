@@ -38,11 +38,6 @@ import java.nio.file.Files;
 
 /**
  * The main() containing Main class that sets up all required classes and starts the program.
- * <p>
- * What this should do: TODO
- * <p>
- * To-do list:
- * TODO the program
  */
 public class Main {
 
