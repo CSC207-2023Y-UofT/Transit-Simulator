@@ -1,4 +1,4 @@
-package main;
+package main.pool;
 
 import app_business.employee.IEmployeeInteractor;
 import app_business.stat.IStatInteractor;

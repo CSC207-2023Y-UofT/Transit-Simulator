@@ -26,10 +26,10 @@ public class TrainOperatorTest {
         TrainOperator trainOperator = new TrainOperator(123, "");
 
         trainOperator.setPaid(true);
-        Assertions.assertTrue(trainOperator.getPaymentStatus()); // Assuming isPaid is a boolean field in the Employee class
+        Assertions.assertTrue(trainOperator.isPaid()); // Assuming isPaid is a boolean field in the Employee class
 
         trainOperator.setPaid(false);
-        Assertions.assertFalse(trainOperator.getPaymentStatus());
+        Assertions.assertFalse(trainOperator.isPaid());
     }
 
 }

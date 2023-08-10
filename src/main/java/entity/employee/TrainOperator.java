@@ -29,26 +29,6 @@ public class TrainOperator extends Employee {
         return EmployeeType.OPERATOR;
     }
 
-    /**
-     * sets the isPaid boolean to true or false depending on if this TrainOperator was paid
-     *
-     * @param isPaid is a boolean
-     */
-    @Override
-    public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
-
-    /**
-     * returns whether this TrainOperator object has been paid yet
-     *
-     * @return a boolean
-     */
-    @Override
-    public boolean getPaymentStatus() {
-        return this.isPaid;
-    }
-
 }
 
 

@@ -1,8 +1,8 @@
 package simulation;
 
-import main.InteractorPool;
+import main.pool.InteractorPool;
 import entity.model.control.TransitModel;
-import stats.persistence.StatDataController;
+import stats.StatDataController;
 
 /**
  * This class performs the basic simulation functionalities needed for the program.

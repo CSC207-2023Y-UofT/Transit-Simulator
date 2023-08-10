@@ -24,10 +24,10 @@ public class TrainEngineerTest {
     @Test
     public void testSetPaid() {
         trainEngineer.setPaid(true);
-        assertTrue(trainEngineer.getPaymentStatus());
+        assertTrue(trainEngineer.isPaid());
 
         trainEngineer.setPaid(false);
-        assertFalse(trainEngineer.getPaymentStatus());
+        assertFalse(trainEngineer.isPaid());
     }
 
 }

@@ -1,7 +1,6 @@
-package stats.persistence.impl;
+package persistence;
 
-import main.DataStorage;
-import util.AsyncWriteIOProvider;
+import persistence.DataStorage;
 
 import java.io.*;
 import java.nio.ByteBuffer;

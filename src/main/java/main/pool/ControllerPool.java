@@ -1,4 +1,4 @@
-package main;
+package main.pool;
 
 import interface_adapter.employee.EmployeeController;
 import interface_adapter.stats.StatsController;

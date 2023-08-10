@@ -3,8 +3,8 @@ package app_business.station;
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 import entity.model.node.Node;
-import entity.model.node.NodeLineProfile;
-import entity.model.node.TrainArrival;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.node.line.TrainArrival;
 
 import java.util.ArrayList;
 import java.util.List;

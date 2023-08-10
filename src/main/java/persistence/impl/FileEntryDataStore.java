@@ -1,9 +1,10 @@
-package stats.persistence.impl;
+package persistence.impl;
 
-import main.DataStorage;
+import persistence.DataStorage;
+import persistence.PageFileUtils;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
-import stats.persistence.StatEntryDataStore;
+import persistence.boundary.StatEntryDataStore;
 import util.Timing;
 
 import java.io.File;

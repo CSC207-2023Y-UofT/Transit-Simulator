@@ -1,7 +1,8 @@
-package entity.employee.persistence;
+package persistence.impl;
 
 import entity.employee.Employee;
-import main.DataStorage;
+import persistence.DataStorage;
+import persistence.boundary.EmployeeDataStore;
 
 import java.io.*;
 import java.nio.file.Files;

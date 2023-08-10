@@ -1,5 +1,6 @@
-package entity.model.node;
+package entity.model.node.line;
 
+import entity.model.node.Node;
 import entity.model.train.Train;
 
 /**

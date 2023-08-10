@@ -1,6 +1,6 @@
 package entity.employee;
 
-import entity.employee.persistence.EmployeeDataStore;
+import persistence.boundary.EmployeeDataStore;
 
 import java.io.IOException;
 import java.util.List;

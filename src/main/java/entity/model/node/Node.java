@@ -1,5 +1,6 @@
 package entity.model.node;
 
+import entity.model.node.line.NodeLineProfile;
 import util.Preconditions;
 
 import java.util.Collection;

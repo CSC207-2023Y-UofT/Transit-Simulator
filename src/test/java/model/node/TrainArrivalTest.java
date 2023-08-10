@@ -2,9 +2,9 @@ package model.node;
 
 import entity.model.control.TransitModel;
 import entity.model.node.Node;
-import entity.model.node.NodeLineProfile;
-import entity.model.node.StationFactory;
-import entity.model.node.TrainArrival;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.node.station.StationFactory;
+import entity.model.node.line.TrainArrival;
 import entity.model.train.Train;
 import entity.model.Direction;
 

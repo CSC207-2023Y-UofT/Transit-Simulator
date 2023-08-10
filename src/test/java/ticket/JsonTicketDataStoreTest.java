@@ -1,9 +1,9 @@
 package ticket;
 
-import entity.ticket.JsonTicketDataStore;
+import persistence.impl.JsonTicketDataStore;
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
-import main.DataStorage;
+import persistence.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import util.AsyncWriteIOProvider;

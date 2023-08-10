@@ -2,7 +2,7 @@ package model.train.track;
 
 import entity.model.control.TransitModel;
 import entity.model.node.NodeFactory;
-import entity.model.node.StationFactory;
+import entity.model.node.station.StationFactory;
 
 import entity.model.train.track.NodeTrackSegment;
 import org.junit.jupiter.api.Test;

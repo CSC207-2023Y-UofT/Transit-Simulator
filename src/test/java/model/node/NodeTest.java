@@ -3,9 +3,9 @@ package model.node;
 import entity.model.control.TransitModel;
 
 import entity.model.node.Node;
-import entity.model.node.NodeLineProfile;
-import entity.model.node.Station;
-import entity.model.node.StationFactory;
+import entity.model.node.line.NodeLineProfile;
+import entity.model.node.station.Station;
+import entity.model.node.station.StationFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;

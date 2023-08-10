@@ -4,7 +4,7 @@ import stats.aggregator.expense.ExpenseAggregate;
 import stats.aggregator.expense.ExpenseAggregator;
 import stats.aggregator.revenue.RevenueAggregate;
 import stats.aggregator.revenue.RevenueAggregator;
-import stats.persistence.StatDataController;
+import stats.StatDataController;
 
 import java.util.ArrayList;
 import java.util.List;

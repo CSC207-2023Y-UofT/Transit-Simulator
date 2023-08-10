@@ -36,10 +36,10 @@ public class AdminTest {
     @Test
     public void testSetPaid() {
         admin.setPaid(true);
-        assertTrue(admin.getPaymentStatus());
+        assertTrue(admin.isPaid());
 
         admin.setPaid(false);
-        assertFalse(admin.getPaymentStatus());
+        assertFalse(admin.isPaid());
     }
 
 }

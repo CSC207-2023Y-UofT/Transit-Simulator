@@ -39,24 +39,4 @@ public class Admin extends Employee {
         return EmployeeType.ADMINISTRATOR;
     }
 
-    /**
-     * Sets the payment status of this Admin.
-     *
-     * @param isPaid The new payment status. True if the Admin has been paid; otherwise false.
-     */
-    @Override
-    public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
-
-    /**
-     * Returns the payment status of this Admin.
-     *
-     * @return True if the Admin has been paid; otherwise false.
-     */
-    @Override
-    boolean getPaymentStatus() {
-        return this.isPaid;
-    }
-
 }

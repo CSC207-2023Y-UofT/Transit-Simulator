@@ -1,4 +1,7 @@
-package entity.model.node;
+package entity.model.node.station;
+
+import entity.model.node.Node;
+import entity.model.node.NodeTracker;
 
 /**
  * The Station class represents a station node in a track system.

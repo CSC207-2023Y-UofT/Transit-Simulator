@@ -1,4 +1,4 @@
-package entity.employee.persistence;
+package persistence.boundary;
 
 import entity.employee.Employee;
 

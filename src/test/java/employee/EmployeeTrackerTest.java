@@ -4,7 +4,7 @@ import entity.employee.Employee;
 import entity.employee.EmployeeTracker;
 import entity.employee.TrainEngineer;
 import entity.employee.TrainOperator;
-import entity.employee.persistence.MemoryEmployeeDataStore;
+import persistence.impl.MemoryEmployeeDataStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

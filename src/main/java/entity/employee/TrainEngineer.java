@@ -3,7 +3,7 @@ package entity.employee;
 import app_business.employee.EmployeeType;
 import entity.model.train.Train;
 import stats.entry.impl.MaintenanceStat;
-import stats.persistence.StatDataController;
+import stats.StatDataController;
 
 import java.util.Random;
 
@@ -35,27 +35,6 @@ public class TrainEngineer extends Employee {
     @Override
     public EmployeeType getEmployeeType() {
         return EmployeeType.ENGINEER;
-    }
-
-    /**
-     * Sets the payment status of this TrainEngineer.
-     * all employee numbers should be 3 digits long.
-     *
-     * @param isPaid The new payment status. True if the TrainEngineer has been paid; otherwise false.
-     */
-    @Override
-    public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
-
-    /**
-     * Returns the payment status of this TrainEngineer.
-     *
-     * @return True if the TrainEngineer has been paid; otherwise false.
-     */
-    @Override
-    public boolean getPaymentStatus() {
-        return this.isPaid;
     }
 
     /**

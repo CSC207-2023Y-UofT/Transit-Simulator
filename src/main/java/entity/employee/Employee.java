@@ -29,7 +29,7 @@ public abstract class Employee implements Serializable {
     /**
      * The payment status for this employee. True if the employee has been paid; otherwise false.
      */
-    protected boolean isPaid = false;
+    private boolean paid = false;
 
     /**
      * The assignment of this employee.
@@ -53,14 +53,18 @@ public abstract class Employee implements Serializable {
      *
      * @param isPaid The new payment status. True if the employee has been paid; otherwise false.
      */
-    abstract void setPaid(boolean isPaid);
+    public void setPaid(boolean isPaid) {
+        this.paid = isPaid;
+    }
 
     /**
      * Returns the payment status of this employee.
      *
      * @return True if the employee has been paid; otherwise false.
      */
-    abstract boolean getPaymentStatus();
+    public boolean isPaid() {
+        return paid;
+    }
 
     /**
      * Returns the monthly salary of this employee, which is the base salary for all employees.

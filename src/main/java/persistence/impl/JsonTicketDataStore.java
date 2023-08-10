@@ -1,6 +1,9 @@
-package entity.ticket;
+package persistence.impl;
 
-import main.DataStorage;
+import entity.ticket.Ticket;
+import persistence.boundary.TicketDataStore;
+import entity.ticket.TicketType;
+import persistence.DataStorage;
 import org.json.JSONObject;
 
 import java.io.File;

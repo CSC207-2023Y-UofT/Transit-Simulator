@@ -1,6 +1,8 @@
-package stats.persistence;
+package stats;
 
 import app_business.stat.IStatInteractor;
+import persistence.boundary.StatAggregateDataStore;
+import persistence.boundary.StatEntryDataStore;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;

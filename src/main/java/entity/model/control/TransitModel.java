@@ -5,7 +5,6 @@ import entity.model.node.NodeFactory;
 import entity.model.node.NodeTracker;
 import entity.model.Direction;
 import entity.model.train.*;
-import model.train.*;
 import entity.model.train.track.TrackSegment;
 import org.jetbrains.annotations.Nullable;
 

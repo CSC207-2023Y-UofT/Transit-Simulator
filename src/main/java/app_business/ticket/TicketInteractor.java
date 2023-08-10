@@ -1,9 +1,9 @@
 package app_business.ticket;
 
 import stats.entry.impl.TicketSaleStat;
-import stats.persistence.StatDataController;
+import stats.StatDataController;
 import entity.ticket.Ticket;
-import entity.ticket.TicketDataStore;
+import persistence.boundary.TicketDataStore;
 import entity.ticket.TicketType;
 
 import java.util.ArrayList;

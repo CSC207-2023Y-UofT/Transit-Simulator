@@ -1,4 +1,4 @@
-package entity.model.persistence;
+package persistence.boundary;
 
 import entity.model.control.TransitModel;
 

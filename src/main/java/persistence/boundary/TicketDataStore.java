@@ -1,4 +1,6 @@
-package entity.ticket;
+package persistence.boundary;
+
+import entity.ticket.Ticket;
 
 import java.util.List;
 import java.util.Optional;

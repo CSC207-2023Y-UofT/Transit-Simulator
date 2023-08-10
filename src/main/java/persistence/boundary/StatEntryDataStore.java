@@ -1,4 +1,4 @@
-package stats.persistence;
+package persistence.boundary;
 
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;

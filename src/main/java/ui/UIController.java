@@ -1,7 +1,7 @@
 package ui;
 
-import main.ControllerPool;
-import main.InteractorPool;
+import main.pool.ControllerPool;
+import main.pool.InteractorPool;
 import javax.swing.*;
 
 /**

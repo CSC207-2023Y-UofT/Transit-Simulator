@@ -1,4 +1,4 @@
-package main;
+package persistence;
 
 import util.FileCompressionProvider;
 import util.FileIOProvider;
