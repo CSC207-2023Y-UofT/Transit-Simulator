@@ -44,7 +44,7 @@ public class StaffHomePage extends JPanel {
         loginButton.setBackground(new Color(0, 151, 8));
         loginButton.setFont(new Font("Arial", Font.BOLD, 20));
         loginButton.addActionListener(e -> {
-            controller.open(new StaffSelectPage(controller));
+            controller.open(new LoginPage(controller));
         });
 
         // Back button
