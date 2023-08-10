@@ -1,5 +1,7 @@
 package employee;
 
+import entity.employee.Employee;
+import entity.employee.TrainOperator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 

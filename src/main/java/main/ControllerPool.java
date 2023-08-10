@@ -1,9 +1,9 @@
 package main;
 
-import controller.employee.EmployeeController;
-import controller.stats.StatsController;
-import controller.ticket.TicketController;
-import controller.train.TrainController;
+import interface_adapter.employee.EmployeeController;
+import interface_adapter.stats.StatsController;
+import interface_adapter.ticket.TicketController;
+import interface_adapter.train.TrainController;
 
 /**
  * The ControllerPool dataclass represents a collection of a ticketController and a statController.

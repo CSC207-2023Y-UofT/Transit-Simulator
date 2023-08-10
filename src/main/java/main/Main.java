@@ -1,17 +1,18 @@
 package main;
 
-import employee.Admin;
-import employee.EmployeeTracker;
-import employee.TrainEngineer;
-import employee.TrainOperator;
-import employee.persistence.EmployeeDataStore;
-import employee.persistence.FileEmployeeDataStore;
-import interactor.employee.EmployeeInteractor;
-import interactor.stat.StatInteractor;
-import interactor.station.StationInteractor;
-import interactor.ticket.TicketInteractor;
-import interactor.train.TrainInteractor;
-import model.persistence.JsonModelDataStore;
+import entity.employee.Admin;
+import entity.employee.EmployeeTracker;
+import entity.employee.TrainEngineer;
+import entity.employee.TrainOperator;
+import entity.employee.persistence.EmployeeDataStore;
+import entity.employee.persistence.FileEmployeeDataStore;
+import app_business.employee.EmployeeInteractor;
+import app_business.stat.StatInteractor;
+import app_business.station.StationInteractor;
+import app_business.ticket.TicketInteractor;
+import app_business.train.TrainInteractor;
+import entity.model.control.TransitModel;
+import entity.model.persistence.JsonModelDataStore;
 
 import model.control.*;
 import simulation.Simulation;
@@ -20,8 +21,8 @@ import stats.persistence.StatDataController;
 import stats.persistence.StatEntryDataStore;
 import stats.persistence.impl.FileAggregateDataStore;
 import stats.persistence.impl.FileEntryDataStore;
-import ticket.JsonTicketDataStore;
-import ticket.TicketDataStore;
+import entity.ticket.JsonTicketDataStore;
+import entity.ticket.TicketDataStore;
 import ui.UIController;
 import ui.WelcomePage;
 import util.AsyncWriteIOProvider;
@@ -96,11 +97,11 @@ public class Main {
         controller.open(new WelcomePage(controller));
 
         // Default employees
-        employeeTracker.addEmployee(new Admin(123, "Matt"));
-        employeeTracker.addEmployee(new Admin(111, "Grace"));
-        employeeTracker.addEmployee(new TrainEngineer(222, "Charles"));
-        employeeTracker.addEmployee(new TrainEngineer(333, "Zoey"));
-        employeeTracker.addEmployee(new TrainOperator(444, "Jarret"));
+        employeeTracker.saveEmployee(new Admin(123, "Matt"));
+        employeeTracker.saveEmployee(new Admin(111, "Grace"));
+        employeeTracker.saveEmployee(new TrainEngineer(222, "Charles"));
+        employeeTracker.saveEmployee(new TrainEngineer(333, "Zoey"));
+        employeeTracker.saveEmployee(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
         new Simulation(model, pool, stats).start();

@@ -1,12 +1,13 @@
 package model.train;
 
+import entity.model.train.Passenger;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import ticket.Ticket;
-import ticket.TicketType;
+import entity.ticket.Ticket;
+import entity.ticket.TicketType;
 
 public class PassengerTest {
     public static Passenger passenger;

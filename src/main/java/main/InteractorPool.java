@@ -1,10 +1,10 @@
 package main;
 
-import interactor.employee.IEmployeeInteractor;
-import interactor.stat.IStatInteractor;
-import interactor.station.IStationInteractor;
-import interactor.ticket.ITicketInteractor;
-import interactor.train.ITrainInteractor;
+import app_business.employee.IEmployeeInteractor;
+import app_business.stat.IStatInteractor;
+import app_business.station.IStationInteractor;
+import app_business.ticket.ITicketInteractor;
+import app_business.train.ITrainInteractor;
 
 /**
  * The {@code InteractorPool} data class centralizes access to various interactors

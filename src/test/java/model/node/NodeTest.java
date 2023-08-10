@@ -1,7 +1,11 @@
 package model.node;
 
-import model.control.TransitModel;
+import entity.model.control.TransitModel;
 
+import entity.model.node.Node;
+import entity.model.node.NodeLineProfile;
+import entity.model.node.Station;
+import entity.model.node.StationFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;

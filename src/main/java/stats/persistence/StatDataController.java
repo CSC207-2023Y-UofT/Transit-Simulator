@@ -1,6 +1,6 @@
 package stats.persistence;
 
-import interactor.stat.IStatInteractor;
+import app_business.stat.IStatInteractor;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;

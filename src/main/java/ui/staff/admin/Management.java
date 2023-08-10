@@ -1,8 +1,9 @@
 package ui.staff.admin;
 
-import controller.employee.ManageEmployeesViewModel;
-import controller.stats.SingletonStatViewModel;
-import interactor.employee.EmployeeDTO;
+import interface_adapter.employee.ManageEmployeesViewModel;
+import interface_adapter.stats.SingletonStatViewModel;
+import app_business.employee.EmployeeDTO;
+import app_business.employee.EmployeeType;
 import ui.UIController;
 import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
@@ -232,9 +233,18 @@ public class Management extends JPanel {
         if (selectedRow != -1) { // If a row is selected
             int staffNumber = (int) model.getValueAt(selectedRow, 2);
 
-            controller.getControllerPool()
-                    .getEmployeeController()
-                    .removeEmployee(staffNumber);
+            var employees = controller.getControllerPool().getEmployeeController();
+
+            var employee = employees.find(staffNumber)
+                            .orElse(null);
+            if (employee == null) return;
+
+            if (employee.getType() == EmployeeType.ADMINISTRATOR) {
+                JOptionPane.showMessageDialog(this, "Cannot remove an administrator.");
+                return;
+            }
+
+            employees.removeEmployee(staffNumber);
 
             updateTable();
         } else {

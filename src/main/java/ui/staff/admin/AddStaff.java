@@ -1,9 +1,9 @@
 package ui.staff.admin;
 
-import interactor.employee.EmployeeDTO;
-import interactor.employee.EmployeeType;
-import interactor.train.TrainDTO;
-import model.train.TrainRole;
+import app_business.employee.EmployeeDTO;
+import app_business.employee.EmployeeType;
+import app_business.train.TrainDTO;
+import entity.model.train.TrainRole;
 import ui.UIController;
 import ui.util.ShadowedButton;
 
@@ -140,7 +140,7 @@ public class AddStaff extends JPanel {
 
         // Confirm this is indeed a train
         Optional<TrainDTO> train = controller.getControllerPool().getTrainController()
-                .getTrain(assignedTrain);
+                .find(assignedTrain);
 
         if (train.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a valid train number!", "Error", JOptionPane.ERROR_MESSAGE);

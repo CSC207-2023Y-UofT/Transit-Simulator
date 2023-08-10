@@ -1,21 +1,16 @@
 package ui.staff;
 
-import controller.employee.EmployeeController;
-import employee.Admin;
-import interactor.employee.EmployeeDTO;
-import interactor.employee.EmployeeType;
+import interface_adapter.employee.EmployeeController;
+import app_business.employee.EmployeeDTO;
+import app_business.employee.EmployeeType;
 import ui.UIController;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;
-import ui.staff.engineer.EngineerRoute;
 import ui.staff.operator.OperatorMaintenance;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
-import javax.swing.text.AbstractDocument;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Optional;
 
 /**

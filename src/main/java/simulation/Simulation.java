@@ -1,7 +1,7 @@
 package simulation;
 
 import main.InteractorPool;
-import model.control.TransitModel;
+import entity.model.control.TransitModel;
 import stats.persistence.StatDataController;
 
 /**

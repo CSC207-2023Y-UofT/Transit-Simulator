@@ -1,10 +1,14 @@
 package model.node;
 
-import model.control.TransitModel;
-import model.train.Train;
-import model.Direction;
+import entity.model.control.TransitModel;
+import entity.model.node.Node;
+import entity.model.node.NodeLineProfile;
+import entity.model.node.StationFactory;
+import entity.model.node.TrainArrival;
+import entity.model.train.Train;
+import entity.model.Direction;
 
-import model.train.track.TrackSegment;
+import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
