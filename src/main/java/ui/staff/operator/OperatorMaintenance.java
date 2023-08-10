@@ -1,6 +1,7 @@
 package ui.staff.operator;
 
 import app_business.dto.EmployeeDTO;
+import interface_adapter.viewmodel.MaintenanceViewModel;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -19,6 +20,9 @@ import java.awt.*;
 public class OperatorMaintenance extends JPanel {
 
     private final EmployeeDTO employeeDTO;
+    private final MaintenanceViewModel maintenanceViewModel;
+    private final JTable table;
+    private final DefaultTableModel model;
 
     /**
      * Constructs a new OperatorMaintenance object.
@@ -29,6 +33,7 @@ public class OperatorMaintenance extends JPanel {
         super(new BorderLayout());
 
         this.employeeDTO = employeeDTO;
+        this.maintenanceViewModel = new MaintenanceViewModel(controller.getControllerPool().getTrainController());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -58,17 +63,13 @@ public class OperatorMaintenance extends JPanel {
         // Create column names
         String[] columnNames = {"Train", "Needs Maintenance?"};
 
+        maintenanceViewModel.update();
+
         // Create data
-        Object[][] data = {
-                {"Train 1", Boolean.TRUE},
-                {"Train 2", Boolean.TRUE},
-                {"Train 3", Boolean.TRUE},
-                {"Train 4", Boolean.TRUE},
-                {"Train 5", Boolean.TRUE}
-        };
+        Object[][] data = maintenanceViewModel.getMaintenanceTable();
 
         // Create a table model
-        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+        model = new DefaultTableModel(data, columnNames) {
             @Override
             public Class<?> getColumnClass(int columnIndex) {
                 return columnIndex == 1 ? Boolean.class : super.getColumnClass(columnIndex);
@@ -76,7 +77,7 @@ public class OperatorMaintenance extends JPanel {
         };
 
         // Create table with our table model and set table properties
-        JTable table = new JTable(model);
+        table = new JTable(model);
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
         table.setGridColor(Color.DARK_GRAY);
@@ -113,6 +114,13 @@ public class OperatorMaintenance extends JPanel {
         bottomPanel.add(maintenanceButton);
 
         this.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    public void updateTable() {
+        maintenanceViewModel.update();
+        Object[][] data = maintenanceViewModel.getMaintenanceTable();
+        model.setDataVector(data, new String[]{"Train", "Needs Maintenance?"});
+        model.fireTableDataChanged();
     }
 
 }

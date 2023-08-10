@@ -20,7 +20,7 @@ public class MaintenanceViewModel {
     public void update() {
         List<TrainDTO> dtoList = controller.findAll();
         for (TrainDTO dto : dtoList) {
-            boolean needsMaintenance = dto.getStatus() == TrainStatus.NEEDS_MAINTENANCE;
+            boolean needsMaintenance = dto.getStatus() == TrainStatus.UNDER_MAINTENANCE;
             maintenanceStatuses.put(dto.getName(), needsMaintenance);
         }
     }
