@@ -15,10 +15,14 @@ import util.FileIOProvider;
  */
 public class DataStorage {
 
-    /** The file I/O provider. */
+    /**
+     * The file I/O provider.
+     */
     private static FileIOProvider io;
 
-    /** The file compression provider. */
+    /**
+     * The file compression provider.
+     */
     private static FileCompressionProvider compression;
 
     /**
@@ -43,8 +47,8 @@ public class DataStorage {
      * Initializes the data storage with the provided file I/O and
      * file compression providers.
      *
-     * @param io           the file I/O provider to set
-     * @param compression  the file compression provider to set
+     * @param io          the file I/O provider to set
+     * @param compression the file compression provider to set
      */
     public static void init(FileIOProvider io, FileCompressionProvider compression) {
         DataStorage.io = io;
@@ -54,5 +58,6 @@ public class DataStorage {
     /**
      * Private constructor to prevent instantiation of this utility class.
      */
-    private DataStorage() {}
+    private DataStorage() {
+    }
 }

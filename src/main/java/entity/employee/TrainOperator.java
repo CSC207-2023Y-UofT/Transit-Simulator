@@ -24,6 +24,10 @@ public class TrainOperator extends Employee {
         return super.getMonthlySalary();
     }
 
+    /**
+     * Return the type of this employee.
+     * @return
+     */
     @Override
     public EmployeeType getEmployeeType() {
         return EmployeeType.OPERATOR;

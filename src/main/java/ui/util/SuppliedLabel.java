@@ -24,10 +24,14 @@ public class SuppliedLabel extends JLabel {
         this.textSupplier = textSupplier;
     }
 
+    /**
+     * Updates the text of the label.
+     */
     public void update() {
         setText(textSupplier.get());
     }
 
+    // Inherited javadoc
     @Override
     protected void paintComponent(Graphics g) {
         update();

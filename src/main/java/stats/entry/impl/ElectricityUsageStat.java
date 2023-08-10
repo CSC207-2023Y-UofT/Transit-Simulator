@@ -28,6 +28,7 @@ public class ElectricityUsageStat implements ExpenseStat {
         return amount;
     }
 
+    // inherited javadocs
     @Override
     public double getExpense() {
         return amount;

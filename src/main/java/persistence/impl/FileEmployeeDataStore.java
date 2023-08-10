@@ -37,6 +37,12 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         return new File(directory, staffNumber + ".staff");
     }
 
+    /**
+     * Removes an employee from
+     *
+     * @param staffNumber The staff number of the employee to remove
+     * @throws IOException If an I/O error occurs
+     */
     // Java docs for the following methods are in the interface
     @Override
     public void remove(int staffNumber) throws IOException {
@@ -45,6 +51,12 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         Files.delete(getFile(staffNumber).toPath());
     }
 
+    /**
+     * Saves an employee
+     *
+     * @param employee The employee to save
+     * @throws IOException If an I/O error occurs
+     */
     @Override
     public void save(Employee employee) throws IOException {
         int staffNumber = employee.getStaffNumber();
@@ -58,6 +70,13 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         DataStorage.getIO().write(file, data);
     }
 
+    /**
+     * Gets an employee
+     *
+     * @param staffNumber The staff number of the employee to get
+     * @return The employee, or empty if the employee was not found
+     * @throws IOException If an I/O error occurs
+     */
     @Override
     public Optional<Employee> get(int staffNumber) throws IOException {
         File file = getFile(staffNumber);
@@ -81,6 +100,12 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
+    /**
+     * Gets all employees
+     *
+     * @return The list of all employees
+     * @throws IOException If an I/O error occurs
+     */
     @Override
     public List<Employee> getEmployees() {
         File[] files = directory.listFiles();

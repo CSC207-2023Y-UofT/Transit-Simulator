@@ -19,9 +19,9 @@ public interface IStationInteractor {
     /**
      * Returns the state of the next station in the given direction.
      *
-     * @param line        The line number you are looking for data on.
-     * @param stationName The name of the station you are looking for data on.
-     * @param direction   The direction on the line specified that you want to look in.
+     * @param stationName   The name of the station you are looking for data on.
+     * @param lineDirection The line number you are looking for data on.
+     * @param direction     The direction on the line specified that you want to look in.
      * @return The state of the next station in the given direction.
      */
     Optional<StationDTO> getNextStation(String stationName, int lineDirection, Direction direction);
