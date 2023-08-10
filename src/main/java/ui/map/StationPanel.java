@@ -14,7 +14,6 @@ public class StationPanel extends JPanel {
     private final JPanel panel;
     private final Timer timer = new Timer(50, e -> this.update());
     private final ArrivalsViewModel viewModel;
-    private final List<SuppliedLabel> arrivalsLabels = new ArrayList<>();
 
     public StationPanel(ArrivalsViewModel viewModel) {
         this.viewModel = viewModel;
