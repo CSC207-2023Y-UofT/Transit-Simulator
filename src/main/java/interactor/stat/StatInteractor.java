@@ -11,14 +11,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Interactor class responsible for operations related to statistics.
+ * Implements the {@link IStatInteractor} interface.
+ */
 public class StatInteractor implements IStatInteractor {
 
+    /** Data controller responsible for stats-related data management. */
     private final StatDataController stats;
 
+    /**
+     * Constructs a StatInteractor instance.
+     *
+     * @param stats The statistics data controller.
+     */
     public StatInteractor(StatDataController stats) {
         this.stats = stats;
     }
 
+    /**
+     * Retrieves a list of revenue aggregates based on a given time horizon.
+     *
+     * @param horizonMinutes The time horizon in minutes for which the revenue aggregates are to be fetched.
+     * @return A list of {@link RevenueAggregate} objects representing the aggregated revenue data.
+     */
     @Override
     public List<RevenueAggregate> getRevenue(long horizonMinutes) {
         RevenueAggregator revenueAggregator = new RevenueAggregator();
@@ -39,10 +55,15 @@ public class StatInteractor implements IStatInteractor {
             revenueAggregate.ifPresentOrElse(revenueAggregates::add,
                     () -> revenueAggregates.add(new RevenueAggregate(0)));
         }
-
         return revenueAggregates;
     }
 
+    /**
+     * Retrieves a list of expense aggregates based on a given time horizon.
+     *
+     * @param horizonMinutes The time horizon in minutes for which the expense aggregates are to be fetched.
+     * @return A list of {@link ExpenseAggregate} objects representing the aggregated expense data.
+     */
     @Override
     public List<ExpenseAggregate> getExpenses(long horizonMinutes) {
         ExpenseAggregator expenseAggregator = new ExpenseAggregator();

@@ -13,43 +13,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The transit map view model.
+ */
 public class TransitMapViewModel {
+
     /**
      * The size of the map width in metres.
      */
     public static final double MAP_SIZE_X = 6150.0;
+
     /**
      * The size of the map height in metres.
      */
     public static final double MAP_SIZE_Y = 4500.0;
+
     /**
      * The size of the station icons in pickles (pixels).
      */
     private static final int STATION_ICON_SIZE = 7;
+
     /**
      * The station interactor.
      */
     protected final IStationInteractor stationInteractor;
+
     /**
      * The train interactor.
      */
     private final ITrainInteractor trainInteractor;
+
     /**
      * The list of stations to draw.
      */
     protected List<StationDTO> stations = new ArrayList<>();
+
     /**
      * The list of trains to draw.
      */
     protected List<TrainDTO> trains = new ArrayList<>();
+
     /**
      * The station that is currently highlighted.
      */
     private StationDTO highlightedStation = null;
+
     /**
      * The width of the image.
      */
     private int width = 1;
+
     /**
      * The height of the image.
      */
@@ -97,7 +110,7 @@ public class TransitMapViewModel {
         // For each station, get the next station and draw a line between them
         for (StationDTO station : stations) {
             for (int line : station.getLines()) {
-                Optional<StationDTO> optNextStation = stationInteractor.getNextStation(line, station.getName(), Direction.FORWARD);
+                Optional<StationDTO> optNextStation = stationInteractor.getNextStation(station.getName(), line, Direction.FORWARD);
                 if (optNextStation.isEmpty()) continue;
                 StationDTO nextStation = optNextStation.get();
                 int x = (int) (station.getX() * scaleX);
@@ -238,8 +251,13 @@ public class TransitMapViewModel {
                 return Optional.of(station);
             }
         }
-
         return Optional.empty();
+    }
+
+    public Optional<ArrivalsViewModel> getArrivals(int x, int y) {
+        StationDTO dto = getStationAt(x, y).orElse(null);
+        if (dto == null) return Optional.empty();
+        return Optional.of(new ArrivalsViewModel(dto, stationInteractor));
     }
 
     /**
@@ -265,4 +283,5 @@ public class TransitMapViewModel {
      */
     protected void onClickStation(StationDTO station) {
     }
+
 }

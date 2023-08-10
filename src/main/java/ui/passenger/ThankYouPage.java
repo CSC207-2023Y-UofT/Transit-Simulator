@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-
 /**
  * ThankYouPage is a JPanel that displays the thank-you page.
  * It is used by the UIController to display the thank-you page.
@@ -18,9 +17,10 @@ import java.util.List;
 public class ThankYouPage extends JPanel {
 
     /**
-     * Constructs a new ThankYouPage with the given UIController.
+     * Constructs a new ThankYouPage with the given UIController and tickets.
      *
      * @param controller the UIController that is used to control the UI
+     * @param tickets the tickets that were purchased
      */
     public ThankYouPage(UIController controller, List<TicketViewModel> tickets) {
 

@@ -6,6 +6,7 @@ import interactor.ticket.TicketDTO;
  * View model for a ticket view
  */
 public class TicketViewModel {
+
     /**
      * The ticket
      */

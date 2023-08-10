@@ -26,7 +26,15 @@ public class Management extends JPanel {
      * The JPanel that displays the stats.
      */
     private final JPanel statsHolderPanel;
+
+    /**
+     * The JPanel that displays the revenue stats.
+     */
     private final StatsPanel statsPanel1;
+
+    /**
+     * The JPanel that displays the expense stats.
+     */
     private final StatsPanel statsPanel2;
 
     private final ManageEmployeesViewModel manage;
@@ -35,11 +43,15 @@ public class Management extends JPanel {
      * The JPanel that displays the middle panel.
      */
     private final JPanel middlePanel;
+
+    /**
+     * The JTable that displays the staff.
+     */
     private final JTable table;
     private final UIController controller;
 
     /**
-     * Constructs a new Management object.
+     * Constructs a new Management object with the given UIController.
      *
      * @param controller the controller used to switch panels
      */
@@ -211,6 +223,9 @@ public class Management extends JPanel {
     }
 
 
+    /**
+     * Removes the selected staff from the table.
+     */
     private void removeSelectedStaff() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int selectedRow = table.getSelectedRow();

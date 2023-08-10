@@ -28,18 +28,22 @@ public class TrainSimulator {
      * The number of ticks per second
      */
     private final int tickSpeed;
+
     /**
      * Stat data controller
      */
     private final StatDataController stats;
+
     /**
      * The noise generator used for passenger simulation
      */
     private final PerlinNoise passengerNoise = new PerlinNoise(123, 256);
+
     /**
      * The noise generator used for electricity usage simulation
      */
     private final PerlinNoise electricityNoise = new PerlinNoise(456, 256);
+
     /**
      * A list of waiting passengers that will board the next available train
      * that arrives at <b>any</b> station.
@@ -263,6 +267,6 @@ public class TrainSimulator {
 
             waitingPassengers.add(new Passenger(ticket, (int) (Math.random() * 4)));
         }
-
     }
+
 }

@@ -8,6 +8,7 @@ import stats.persistence.StatDataController;
  * This class performs the basic simulation functionalities needed for the program.
  */
 public class Simulation {
+
     /**
      * Number of ticks per second
      */

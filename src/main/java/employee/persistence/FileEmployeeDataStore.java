@@ -64,6 +64,12 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         return read(file);
     }
 
+    /**
+     * Reads an employee from a file
+     *
+     * @param file The file to read from
+     * @return The employee, or empty if the employee could not be read
+     */
     private Optional<Employee> read(File file) {
         try {
             byte[] bytes = DataStorage.getIO().read(file);

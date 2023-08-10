@@ -6,18 +6,22 @@ import java.util.List;
  * The StationState dataclass represents the state of a station.
  */
 public class StationDTO {
+
     /**
      * The name of the station.
      */
     private final String name;
+
     /**
      * The lines that the station is on.
      */
     private final List<Integer> lines;
+
     /**
      * The x coordinate of the station.
      */
     private final int x;
+
     /**
      * The y coordinate of the station.
      */

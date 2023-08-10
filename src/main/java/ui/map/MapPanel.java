@@ -9,24 +9,34 @@ import java.awt.event.MouseEvent;
 
 /**
  * MapPanel is a JPanel that displays the map of the transit system.
- * It is used by the TransitMapPresenter to display the map.
+ * It is used by the TransitMapViewModel to display the map.
  *
  * @see TransitMapViewModel
  */
 public class MapPanel extends JPanel {
 
     /**
-     * The TransitMapPresenter that is used to present the map.
+     * The TransitMapViewModel that is used to present the map.
      */
-    private final TransitMapViewModel presenter;
+    private final TransitMapViewModel viewModel;
 
     /**
-     * Constructs a new MapPanel object with the given TransitMapPresenter.
-     *
-     * @param presenter the TransitMapPresenter that is used to present the map
+     * The StationPage that is currently being displayed.
      */
-    public MapPanel(TransitMapViewModel presenter) {
-        this.presenter = presenter;
+    private volatile StationPage currentStationPage = null;
+
+    /**
+     * The timer that is used to repaint the panel.
+     */
+    private final Timer timer = new Timer(10, e -> this.repaint());
+
+    /**
+     * Constructs a new MapPanel object with the given TransitMapViewModel.
+     *
+     * @param viewModel the TransitMapPresenter that is used to present the map
+     */
+    public MapPanel(TransitMapViewModel viewModel) {
+        this.viewModel = viewModel;
 
         setLayout(new BorderLayout());
 
@@ -34,19 +44,23 @@ public class MapPanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 repaint();
+                var optArrivals = viewModel.getArrivals(e.getX(), e.getY());
+                optArrivals.ifPresent(model -> SwingUtilities.invokeLater(() -> {
+                    if (currentStationPage != null) currentStationPage.dispose();
+                    currentStationPage = new StationPage(model);
+                }));
+
             }
         });
 
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                presenter.onMouseMove(e.getX(), e.getY());
+                viewModel.onMouseMove(e.getX(), e.getY());
                 repaint();
             }
         });
     }
-
-    private final Timer timer = new Timer(10, e -> this.repaint());
 
     @Override
     public void addNotify() {
@@ -58,14 +72,17 @@ public class MapPanel extends JPanel {
     public void removeNotify() {
         super.removeNotify();
         timer.stop();
+        if (currentStationPage != null) currentStationPage.dispose();
     }
 
     /**
      * Paints the panel.
+     *
      * @param g the graphics object
      */
     @Override
     protected void paintComponent(Graphics g) {
-        presenter.present((Graphics2D) g, getWidth(), getHeight());
+        viewModel.present((Graphics2D) g, getWidth(), getHeight());
     }
+
 }

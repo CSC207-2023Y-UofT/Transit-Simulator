@@ -16,8 +16,10 @@ import java.awt.*;
  * @see UIController
  */
 public class OperatorMaintenance extends JPanel {
+
     /**
      * Constructs a new OperatorMaintenance object.
+     *
      * @param controller the controller used to switch panels
      */
     public OperatorMaintenance(UIController controller) {
@@ -44,7 +46,6 @@ public class OperatorMaintenance extends JPanel {
         topPanel.add(idLabel);
         this.add(topPanel, BorderLayout.NORTH);
 
-
         // Middle panel
         JPanel middlePanel = new JPanel();
         middlePanel.setLayout(new BorderLayout());
@@ -61,7 +62,7 @@ public class OperatorMaintenance extends JPanel {
                 {"Train 5", Boolean.TRUE}
         };
 
-        // Create a table model - make the second column Boolean type
+        // Create a table model
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public Class<?> getColumnClass(int columnIndex) {
@@ -69,10 +70,8 @@ public class OperatorMaintenance extends JPanel {
             }
         };
 
-        // Create table with our table model
+        // Create table with our table model and set table properties
         JTable table = new JTable(model);
-
-        // Set table properties
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
         table.setGridColor(Color.DARK_GRAY);

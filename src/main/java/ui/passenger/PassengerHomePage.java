@@ -20,32 +20,16 @@ import java.awt.*;
 public class PassengerHomePage extends JPanel {
 
     /**
-     * The UIController that is used to control the UI.
-     */
-    private final UIController controller;
-
-    /**
-     * The buy button on the panel.
-     */
-    private final JButton buyButton;
-
-    /**
-     * The back button on the panel.
-     */
-    private final JButton backButton;
-
-    /**
      * Constructs a new PassengerHomePage with the given UIController.
      *
      * @param controller the UIController that is used to control the UI
      */
     public PassengerHomePage(UIController controller) {
+
         super(new BorderLayout());
 
-        this.controller = controller;
-
-        // Buy
-        buyButton = new ShadowedButton("Buy Tickets");
+        // Buy tickets button
+        JButton buyButton = new ShadowedButton("Buy Tickets");
         buyButton.setForeground(Color.WHITE);
         buyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buyButton.setBackground(new Color(0, 151, 8));
@@ -53,7 +37,7 @@ public class PassengerHomePage extends JPanel {
         buyButton.addActionListener(e -> controller.open(new PurchaseTicketPage(controller, new PurchaseTicketViewModel())));
 
         // Back button
-        backButton = new ShadowedButton("Back");
+        JButton backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -77,18 +61,14 @@ public class PassengerHomePage extends JPanel {
 
         marginPanel.setBorder(BorderFactory.createEmptyBorder(35, 35, 35, 35));
         marginPanel.setBackground(new Color(230, 230, 230));
-
         shadowPanel.add(mapPanel, BorderLayout.CENTER);
         marginPanel.add(shadowPanel, BorderLayout.CENTER);
-
         this.add(marginPanel);
 
         JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
-
         bottomPanel.add(backButton, BorderLayout.WEST);
         bottomPanel.add(new JLabel(""));
         bottomPanel.add(buyButton, BorderLayout.EAST);
-
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 

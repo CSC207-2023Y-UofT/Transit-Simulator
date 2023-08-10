@@ -46,7 +46,6 @@ public class EngineerMaintenance extends JPanel {
         topPanel.add(idLabel);
         this.add(topPanel, BorderLayout.NORTH);
 
-
         // Middle panel
         JPanel middlePanel = new JPanel();
         middlePanel.setLayout(new BorderLayout());
@@ -71,10 +70,8 @@ public class EngineerMaintenance extends JPanel {
             }
         };
 
-        // Create table with our table model
+        // Create table and set table properties
         JTable table = new JTable(model);
-
-        // Set table properties
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
         table.setGridColor(Color.DARK_GRAY);
@@ -84,10 +81,8 @@ public class EngineerMaintenance extends JPanel {
 
         // Ensure only checkboxes can be edited
         table.setDefaultEditor(Object.class, null);
-
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
-
         middlePanel.add(scrollPane, BorderLayout.SOUTH);
         this.add(middlePanel, BorderLayout.CENTER);
 

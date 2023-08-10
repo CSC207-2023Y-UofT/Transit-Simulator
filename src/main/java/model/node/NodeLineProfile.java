@@ -3,6 +3,7 @@ package model.node;
 import model.Direction;
 import model.train.TrackRepo;
 import model.train.Train;
+import model.train.TrainPosition;
 import model.train.track.NodeTrackSegment;
 import model.train.track.TrackSegment;
 import org.jetbrains.annotations.NotNull;
@@ -117,27 +118,32 @@ public class NodeLineProfile {
 
         double waitTime = 0;
 
-
         for (TrackSegment trackSegment : trackSegments) {
-            if (trackSegment.getTrain() == null) continue;
             if (arrivals.size() >= numTrains) break;
 
-            Train train = trackSegment.getTrain();
 
-            // Calculate the added wait time
-            if (trackSegment.getNode().isPresent()) {
-                // The train will probably stop here, so add the extra
-                // time that will be spent at the node/station
-                waitTime += Train.STATION_WAIT_TIME;
+            if (trackSegment.getTrain() == null) {
+                waitTime += trackSegment.getLength() / Train.MAX_SPEED;
+            } else {
+                Train train = trackSegment.getTrain();
+                TrainPosition position = train.getPosition();
+
+                double distanceToGo = position.distanceToEndOfTrack(Direction.FORWARD);
+                waitTime += distanceToGo / Train.MAX_SPEED;
+
+                TrainArrival arrival = new TrainArrival(train, node, (long) (waitTime * 1000));
+                arrivals.add(arrival);
             }
-
-            waitTime += trackSegment.getLength() / Train.MAX_SPEED;
-
-            TrainArrival arrival = new TrainArrival(train, node, (long) waitTime);
-            arrivals.add(arrival);
         }
 
         return arrivals;
     }
+
+    /**
+     * Is this a node at the end of a line?
+     */
+    public boolean isEndNode() {
+        return getTrack(Direction.FORWARD).getNext() == getTrack(Direction.BACKWARD);
+    } // visitor design pattern used
 
 }

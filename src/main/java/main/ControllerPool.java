@@ -9,10 +9,12 @@ import controller.train.TrainController;
  * The ControllerPool dataclass represents a collection of a ticketController and a statController.
  */
 public class ControllerPool {
+
     /**
      * The ticket controller.
      */
     private final TicketController ticketController;
+
     /**
      * The stat controller.
      */

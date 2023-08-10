@@ -18,9 +18,14 @@ import java.awt.*;
  */
 public class StaffHomePage extends JPanel {
 
+    /**
+     * The UIController that is used to control the UI.
+     */
     private final UIController controller;
-    private final JButton loginButton;
-    private final JButton backButton;
+
+    /**
+     * The JPanel that displays the map.
+     */
     private MapPanel mapPanel;
 
     /**
@@ -34,7 +39,7 @@ public class StaffHomePage extends JPanel {
         this.controller = controller;
 
         // Log in button
-        loginButton = new ShadowedButton("Log In");
+        JButton loginButton = new ShadowedButton("Log In");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setBackground(new Color(0, 151, 8));
         loginButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -42,16 +47,14 @@ public class StaffHomePage extends JPanel {
             controller.open(new StaffSelectPage(controller));
         });
 
-
         // Back button
-        backButton = new ShadowedButton("Back");
+        JButton backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Arial", Font.BOLD, 20));
         backButton.addActionListener(e -> {
             controller.open(new WelcomePage(controller));
         });
-
 
         // Add components to the panel
 
@@ -67,26 +70,17 @@ public class StaffHomePage extends JPanel {
         JPanel marginPanel = new JPanel(new BorderLayout());
         ShadowPanel shadowPanel = new ShadowPanel(new BorderLayout());
         shadowPanel.setThickness(10);
-
         marginPanel.setBorder(BorderFactory.createEmptyBorder(35, 35, 35, 35));
         marginPanel.setBackground(new Color(230, 230, 230));
-
         shadowPanel.add(mapPanel, BorderLayout.CENTER);
         marginPanel.add(shadowPanel, BorderLayout.CENTER);
-
         this.add(marginPanel);
 
         JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
-
         bottomPanel.add(backButton, BorderLayout.WEST);
         bottomPanel.add(new JLabel(""));
         bottomPanel.add(loginButton, BorderLayout.EAST);
-
         this.add(bottomPanel, BorderLayout.SOUTH);
-
-
-
-
     }
 
 }

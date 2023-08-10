@@ -9,6 +9,7 @@ import stats.entry.impl.RevenueStat;
  * This class provides methods to aggregate individual RevenueStat objects into a RevenueAggregate.
  */
 public class RevenueAggregator extends SingletonAggregator<RevenueStat, RevenueAggregate> {
+
     /**
      * Constructor for RevenueAggregator.
      * This constructs a RevenueAggregator with defined aggregation and combination logic for RevenueStat and RevenueAggregate.
@@ -22,4 +23,5 @@ public class RevenueAggregator extends SingletonAggregator<RevenueStat, RevenueA
                 s -> new RevenueAggregate(s.getRevenue()),
                 (a1, a2) -> new RevenueAggregate(a1.getValue() + a2.getValue()));
     }
+
 }

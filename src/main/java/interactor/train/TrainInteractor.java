@@ -15,6 +15,7 @@ import java.util.Optional;
  */
 public class TrainInteractor implements ITrainInteractor {
     /**
+     *
      * The transit model.
      */
     private final TransitModel model;

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class TicketPage {
 
-    /** The UIController instance responsible for controlling UI interactions. */
+    /** The controller used to switch pages. */
     private final UIController controller;
 
     /** Main frame of the ticket page. */
@@ -23,8 +23,10 @@ public class TicketPage {
     private JPanel panel;
 
     /**
-     * Constructs a new TicketPage, initializes the UI components,
-     * and displays the frame containing the tickets.
+     * Constructs a new TicketPage with the given UIController and list of ticket view models.
+     *
+     * @param controller the UIController instance responsible for controlling UI interactions
+     * @param viewModels the list of ticket view models to be displayed
      */
     public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
         this.controller = controller;
