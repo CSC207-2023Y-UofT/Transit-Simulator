@@ -10,25 +10,35 @@ import app_business.boundary.ITrainInteractor;
  * The {@code InteractorPool} data class centralizes access to various interactors
  * responsible for different system operations like station management,
  * train operations, ticketing, employee administration, and statistics collection.
- *
+ * <p>
  * This design pattern allows easy retrieval of interactors, ensuring that
  * components dependent on these services can easily obtain them.
  */
 public class InteractorPool {
 
-    /** Interactor for station-related operations. */
+    /**
+     * Interactor for station-related operations.
+     */
     private final IStationInteractor stationInteractor;
 
-    /** Interactor for train-related operations. */
+    /**
+     * Interactor for train-related operations.
+     */
     private final ITrainInteractor trainInteractor;
 
-    /** Interactor for ticket-related operations. */
+    /**
+     * Interactor for ticket-related operations.
+     */
     private final ITicketInteractor ticketInteractor;
 
-    /** Interactor for employee-related operations. */
+    /**
+     * Interactor for employee-related operations.
+     */
     private final IEmployeeInteractor employeeInteractor;
 
-    /** Interactor for statistics-related operations. */
+    /**
+     * Interactor for statistics-related operations.
+     */
     private final IStatInteractor statInteractor;
 
     /**

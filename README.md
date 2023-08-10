@@ -28,11 +28,11 @@ As staff:
 - Manage, add and remove staff across the system.
 - View which staff are working on which trains, their staff types, names, numbers.
 
-## Arhcitecture ##
-[Class-Responsability-Collaborator Cards](https://1drv.ms/o/s!AsmO3TTchzhwgv4tpGIJJfhWGQZ0uw?e=o4QCpp "CRC cards")
+## Architecture ##
+[Class-Responsibility-Collaborator Cards](https://1drv.ms/o/s!AsmO3TTchzhwgv4tpGIJJfhWGQZ0uw?e=o4QCpp "CRC cards")
 
 ## Installation ##
-To install the this application, 
+To install this application, 
 - Clone the repository to your desired directory with the following commands in terminal:
 ```
 cd "Your-desired-file-path"
