@@ -62,15 +62,18 @@ public class Simulation {
         long msPerTick = 1000 / TICK_SPEED;
 
         while (true) {
-            long ms = System.currentTimeMillis();
+            long ns = System.nanoTime();
 
             tick();
 
-            long delta = System.currentTimeMillis() - ms;
-            long sleepTime = msPerTick - delta;
+            long delta = System.nanoTime() - ns;
+            long sleepTime = (msPerTick * 1000000) - delta;
             if (sleepTime <= 0) continue;
+            System.out.println("Sleeping for " + sleepTime + " nanoseconds");
             try {
-                Thread.sleep(sleepTime);
+                long sleepMs = sleepTime / 1000000;
+                int sleepNs = (int) (sleepTime % 1000000);
+                Thread.sleep(sleepMs, sleepNs);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
