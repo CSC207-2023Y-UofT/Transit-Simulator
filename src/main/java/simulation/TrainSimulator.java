@@ -51,11 +51,6 @@ public class TrainSimulator {
     private final List<Passenger> waitingPassengers = new ArrayList<>();
 
     /**
-     * The maximum number of passengers that can be in the waiting list.
-     */
-    private final int maxWaitingPassengers = 100;
-
-    /**
      * The current tick number
      */
     private long tickNumber = 0;
@@ -206,10 +201,8 @@ public class TrainSimulator {
 
     /**
      * Handle the alighting passengers on this train.
-     *
-     * @return the number of passengers that alighted
      */
-    private int simulateAlighting(Train train) {
+    private void simulateAlighting(Train train) {
         int counter = 0;
 
         List<Passenger> passengerList = new ArrayList<>(train.getPassengerList());
@@ -222,17 +215,14 @@ public class TrainSimulator {
             }
         }
 
-        return counter;
     }
 
     /**
      * Handling simulating the boarding of passengers onto this train.
-     *
-     * @return the number of passengers that boarded
      */
-    private int simulateBoarding(Train train) {
+    private void simulateBoarding(Train train) {
 
-        if (train.getPassengerList().size() >= train.getCapacity()) return 0;
+        if (train.getPassengerList().size() >= train.getCapacity()) return;
         int numPassengersBoarded = 0;
 
         for (int i = 0; i < waitingPassengers.size(); i++) {
@@ -243,7 +233,6 @@ public class TrainSimulator {
             numPassengersBoarded++;
         }
 
-        return numPassengersBoarded;
     }
 
     /**
@@ -257,6 +246,10 @@ public class TrainSimulator {
 
         int numToAdd = (int) (noise * 10);
         for (int i = 0; i < numToAdd; i++) {
+            /**
+             * The maximum number of passengers that can be in the waiting list.
+             */
+            int maxWaitingPassengers = 100;
             if (waitingPassengers.size() >= maxWaitingPassengers) {
                 break;
             }

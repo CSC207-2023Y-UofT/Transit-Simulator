@@ -24,8 +24,6 @@ public class TrainTest {
     private static TransitModel transitModel;
     private static Train trainForwards;
     private static Train trainBackwards;
-    private static TrainOperator operator;
-    private static TrainEngineer engineer;
 
     @DisplayName("TrainTest Class Setup")
     @BeforeAll
@@ -186,7 +184,5 @@ public class TrainTest {
         transitModel = null;
         trainForwards = null;
         trainBackwards = null;
-        operator = null;
-        engineer = null;
     }
   }

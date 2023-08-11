@@ -12,7 +12,7 @@ import java.util.Map;
 public class MaintenanceViewModel {
     private final TrainController controller;
 
-    private Map<String, Boolean> maintenanceStatuses = new HashMap<>();
+    private final Map<String, Boolean> maintenanceStatuses = new HashMap<>();
 
     public MaintenanceViewModel(TrainController controller) {
         this.controller = controller;

@@ -197,8 +197,4 @@ public class JsonModelDataStore implements ModelDataStore {
         dir2.linkBackward(n2Dir2);
 
     }
-
-    private List<Node> mapNodes(Node node, Set<Integer> mappedLines) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
 }

@@ -20,11 +20,6 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
     private final File directory;
 
     /**
-     * The page size, i.e. the number of aggregates per file.
-     */
-    private final int pageSize = 256;
-
-    /**
      * Constructs a FileAggregateDataStore instance with a specified directory.
      *
      * @param directory The directory where the aggregated data files are stored.
@@ -77,6 +72,10 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
     }
 
     private long toPage(long index) {
+        /**
+         * The page size, i.e. the number of aggregates per file.
+         */
+        int pageSize = 256;
         return index / pageSize;
     }
 

@@ -24,17 +24,17 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         /**
          * The operation ID for this file.
          */
-        UUID operationID = UUID.randomUUID();
+        final UUID operationID = UUID.randomUUID();
 
         /**
          * The file.
          */
-        File file;
+        final File file;
 
         /**
          * The data.
          */
-        byte[] data;
+        final byte[] data;
 
         /**
          * Constructs a new CachedFile with the given file and data.

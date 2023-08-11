@@ -67,15 +67,6 @@ public class StatDataController {  // Facade design pattern used!!!
     }
 
     /**
-     * Returns the entry data store.
-     *
-     * @return the entry data store.
-     */
-    public StatEntryDataStore getEntryDataStore() {
-        return entryDataStore;
-    }
-
-    /**
      * Returns the aggregate data store.
      *
      * @return the aggregate data store.
@@ -128,11 +119,7 @@ public class StatDataController {  // Facade design pattern used!!!
 
         // Store all entries
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
-            try {
-                entryDataStore.store(index, entry.getKey(), entry.getValue());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            entryDataStore.store(index, entry.getKey(), entry.getValue());
         }
 
         // Clear the entries
@@ -164,12 +151,8 @@ public class StatDataController {  // Facade design pattern used!!!
         List<E> entries = new ArrayList<>();
 
         for (Class<? extends E> clazz : concreteClasses) {
-            try {
-                entries.addAll(entryDataStore.retrieve(index, index, clazz)
-                        .getOrDefault(index, new ArrayList<>()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            entries.addAll(entryDataStore.retrieve(index, index, clazz)
+                    .getOrDefault(index, new ArrayList<>()));
         }
 
         return entries;
@@ -189,12 +172,7 @@ public class StatDataController {  // Facade design pattern used!!!
      * recorded at the specified time index {@code index}.
      */
     public synchronized <E extends StatEntry, A> Map<Long, A> getAggregates(Class<E> entryClass, Class<A> aggregateClass, long fromIndex, long toIndexInclusive) {
-        try {
-            return aggregateDataStore.retrieve(fromIndex, toIndexInclusive, entryClass, aggregateClass);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new HashMap<>();
-        }
+        return aggregateDataStore.retrieve(fromIndex, toIndexInclusive, entryClass, aggregateClass);
     }
 
     /**
@@ -243,23 +221,19 @@ public class StatDataController {  // Facade design pattern used!!!
 
             // For each inheritor class, retrieve the entries of that class
             for (Class<? extends E> inheritor : StatEntry.HIERARCHY.getInheritors(entryClass)) {
-                try {
 
-                    // Get the entries
-                    Map<Long, ? extends List<? extends E>> retrievedEntries =
-                            entryDataStore.retrieve(missingIndices, inheritor);
+                // Get the entries
+                Map<Long, ? extends List<? extends E>> retrievedEntries =
+                        entryDataStore.retrieve(missingIndices, inheritor);
 
-                    timing.mark("retrieveEntries");
+                timing.mark("retrieveEntries");
 
-                    // Merge them into the map
-                    retrievedEntries.forEach((index, list) -> {
-                        entries.putIfAbsent(index, new ArrayList<>());
-                        entries.get(index).addAll(list);
-                    });
+                // Merge them into the map
+                retrievedEntries.forEach((index, list) -> {
+                    entries.putIfAbsent(index, new ArrayList<>());
+                    entries.get(index).addAll(list);
+                });
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
 
             // Aggregate each
@@ -269,11 +243,7 @@ public class StatDataController {  // Facade design pattern used!!!
                 A aggregate = aggregator.aggregate(acc);
                 aggregates.put(index, aggregate);
                 // Store the aggregate
-                try {
-                    aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
                 timing.mark("aggregate + store");
             }
 

@@ -5,11 +5,11 @@ import app_business.dto.EmployeeDTO;
 import app_business.interactor.EmployeeInteractor;
 import entity.employee.*;
 import entity.model.control.TransitModel;
-import entity.model.train.MemoryTrackRepo;
 import entity.model.train.Train;
 import entity.model.train.TrainPosition;
 import entity.model.train.TrainRole;
 import entity.model.train.repo.TrackRepo;
+import entity.model.train.repo.impl.MemoryTrackRepo;
 import entity.model.train.track.TrackSegment;
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,7 +38,7 @@ public class EmployeeInteractorTest {
     }
 
     @Test
-    public void testFind() throws IOException {
+    public void testFind() {
         TransitModel model = new TransitModel();
         MemoryEmployeeDataStore data = new MemoryEmployeeDataStore();
         Employee emp = new TrainEngineer(101, "Hill");
@@ -50,7 +50,7 @@ public class EmployeeInteractorTest {
     }
 
     @Test
-    public void testRemove() throws IOException {
+    public void testRemove() {
         TransitModel model = new TransitModel();
         MemoryEmployeeDataStore data = new MemoryEmployeeDataStore();
         Employee emp = new TrainEngineer(101, "Hill");

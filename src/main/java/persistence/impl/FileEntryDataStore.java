@@ -122,7 +122,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
     // Inherited javadoc
     @Override
-    public <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz) throws IOException {
+    public <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz) {
 
         // Group by page
         Map<Long, List<Long>> byPage = new HashMap<>();

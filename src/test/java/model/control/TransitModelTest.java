@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Assertions;
 public class TransitModelTest {
 
     private static TransitModel transitModel;
-    private static Train trainForwards;
 
     @DisplayName("TransitModelTest Class Setup")
     @BeforeAll
@@ -60,7 +59,7 @@ public class TransitModelTest {
         t2f.linkForward(s3f);
 
         // Create the trains
-        trainForwards = transitModel.createTrain(s1f, "tf", 120);
+        Train trainForwards = transitModel.createTrain(s1f, "tf", 120);
     }
 
 

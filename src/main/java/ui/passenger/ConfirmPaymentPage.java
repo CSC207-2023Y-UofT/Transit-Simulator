@@ -21,11 +21,6 @@ import java.util.List;
 public class ConfirmPaymentPage extends JPanel {
 
     /**
-     * The view model for this page.
-     */
-    private final PurchaseTicketViewModel viewModel;
-
-    /**
      * Constructs a new ConfirmPaymentPage object.
      *
      * @param controller the controller used to switch pages
@@ -34,7 +29,9 @@ public class ConfirmPaymentPage extends JPanel {
     public ConfirmPaymentPage(UIController controller, PurchaseTicketViewModel viewModel) {
         super(new GridLayout(0, 3));
 
-        this.viewModel = viewModel;
+        /**
+         * The view model for this page.
+         */
 
         // Create the header label
         JLabel headerLabel = new JLabel("Confirm Payment?", SwingConstants.CENTER);

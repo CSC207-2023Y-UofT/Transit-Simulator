@@ -25,7 +25,7 @@ public interface StatAggregateDataStore {
     <E extends StatEntry, A> void store(long index,
                                         Class<E> entryClass,
                                         Class<A> aggregateClass,
-                                        A aggregate) throws IOException;
+                                        A aggregate);
 
     /**
      * Retrieve the stat aggregate that was recorded at the specified
@@ -43,5 +43,5 @@ public interface StatAggregateDataStore {
     <E extends StatEntry, A> Map<Long, A> retrieve(long startIndex,
                                                    long endIndex,
                                                    Class<E> entryClass,
-                                                   Class<A> aggregateClass) throws IOException;
+                                                   Class<A> aggregateClass);
 }

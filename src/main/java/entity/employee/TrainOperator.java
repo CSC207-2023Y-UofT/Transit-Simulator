@@ -15,16 +15,6 @@ public class TrainOperator extends Employee {
     }
 
     /**
-     * returns what this employee object is being paid
-     *
-     * @return a double
-     */
-    @Override
-    public double getMonthlySalary() {
-        return super.getMonthlySalary();
-    }
-
-    /**
      * Return the type of this employee.
      * @return
      */

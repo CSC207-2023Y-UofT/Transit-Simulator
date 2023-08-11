@@ -23,7 +23,7 @@ public interface StatEntryDataStore {
      *                a concrete class, not an interface or abstract class.
      */
     <E extends StatEntry> void store(long index, Class<? extends StatEntry> clazz, List<E> entries)
-            throws IOException;
+    ;
 
     /**
      * Retrieve the stat entries that were recorded at the specified
@@ -34,7 +34,7 @@ public interface StatEntryDataStore {
      * @param clazz            The type of stat entries to retrieve.
      */
     <E extends StatEntry> Map<Long, List<E>> retrieve(long fromIndex, long toIndexInclusive, Class<E> clazz)
-            throws IOException; // clazz may not be an interface
+    ; // clazz may not be an interface
 
     /**
      * Retrieve stats from very specific indices. The implementation may
@@ -46,7 +46,7 @@ public interface StatEntryDataStore {
      * @return A map of indices to stat entries.
      */
     <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz)
-            throws IOException; // clazz may not be an interface
+    ; // clazz may not be an interface
 
     /**
      * Store the entry hierarchy {@code hierarchy}.

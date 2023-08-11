@@ -17,8 +17,6 @@ import java.awt.*;
  */
 public class OperatorRoutePage extends JPanel {
 
-    private final RouteViewModel routeViewModel;
-
     /**
      * Constructs a new OperatorRoute object.
      * @param controller the controller used to switch panels
@@ -26,7 +24,7 @@ public class OperatorRoutePage extends JPanel {
     public OperatorRoutePage(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
-        routeViewModel = new RouteViewModel(employeeDTO,
+        RouteViewModel routeViewModel = new RouteViewModel(employeeDTO,
                 controller.getControllerPool().getEmployeeController());
 
         // Top panel

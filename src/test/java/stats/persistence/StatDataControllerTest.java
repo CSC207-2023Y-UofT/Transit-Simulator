@@ -77,11 +77,7 @@ class StatDataControllerTest {
     void getAggregate() {
         ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(List.of(new MaintenanceStat(1.0)));
-        try {
-            controller.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        controller.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
         ExpenseAggregate aggregate2 = controller.getAggregates(MaintenanceStat.class, ExpenseAggregate.class, 0, 0)
                 .get(0L);
         assertNotNull(aggregate2);

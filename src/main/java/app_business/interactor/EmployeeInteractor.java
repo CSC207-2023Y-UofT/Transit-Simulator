@@ -55,7 +55,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
             if (tries++ >= 10) throw new IllegalStateException("Could not generate a unique ID");
         } while (tracker.getEmployee(id).isPresent());
         return id;
-    };
+    }
 
     /**
      * Registers a new employee based on the given request model.
@@ -187,7 +187,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
      * @param employee The employee to be converted.
      * @return An {@link EmployeeDTO} representation of the provided employee.
      */
-    private EmployeeDTO toDTO(Employee employee) {
+    public EmployeeDTO toDTO(Employee employee) {
         EmployeeAssignment assignment = employee.getAssignment().orElse(null);
         if (assignment != null) {
             if (model.getTrain(assignment.getTrainName()) == null) {

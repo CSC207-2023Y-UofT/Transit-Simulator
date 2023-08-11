@@ -23,7 +23,7 @@ public class ArrivalsViewModel {
      * A map storing the next arrival times for each line and direction.
      * The outer key is the line number and the inner key is the direction.
      */
-    private Map<Integer, Map<String, Long>> nextArrivals = new HashMap<>();
+    private final Map<Integer, Map<String, Long>> nextArrivals = new HashMap<>();
 
     /**
      * The station for which the view model provides the next arrival data.
