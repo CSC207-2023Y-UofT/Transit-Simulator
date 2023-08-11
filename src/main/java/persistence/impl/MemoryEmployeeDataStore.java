@@ -26,7 +26,7 @@ public class MemoryEmployeeDataStore implements EmployeeDataStore {
 
     @Override
     public void deleteAll() {
-
+        employeeList.clear();
     }
 
     // Inherited javadocs
