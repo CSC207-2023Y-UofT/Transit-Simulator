@@ -77,7 +77,7 @@ public class TicketControllerTest {
 
         @Override
         public void cleanTickets() {
-            ;  // Do nothing
+            // Do nothing
         }
     }
 
