@@ -3,7 +3,7 @@ package ui.staff.engineer;
 import app_business.dto.EmployeeDTO;
 import interface_adapter.viewmodel.MaintenanceViewModel;
 import ui.UIController;
-import ui.staff.operator.RouteScreen;
+import ui.staff.RouteScreen;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
@@ -103,7 +103,7 @@ public class EngineerMaintenance extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
-        middlePanel.add(scrollPane, BorderLayout.SOUTH);
+        middlePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
@@ -111,14 +111,14 @@ public class EngineerMaintenance extends JPanel {
 
         // route button
         JButton routeButton = new ShadowedButton("Assigned Route");
-        routeButton.setBackground(new Color(222, 175, 119));
+        routeButton.setBackground(new Color(136, 203, 194));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
         routeButton.addActionListener(e -> controller.open(new RouteScreen(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance");
-        maintenanceButton.setBackground(new Color(222, 144, 53));
+        maintenanceButton.setBackground(new Color(57, 210, 190));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Arial", Font.BOLD, 20));
 

@@ -3,6 +3,7 @@ package ui.staff.operator;
 import app_business.dto.EmployeeDTO;
 import interface_adapter.viewmodel.MaintenanceViewModel;
 import ui.UIController;
+import ui.staff.RouteScreen;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
@@ -107,7 +108,7 @@ public class OperatorMaintenance extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
 
-        middlePanel.add(scrollPane, BorderLayout.SOUTH);
+        middlePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
