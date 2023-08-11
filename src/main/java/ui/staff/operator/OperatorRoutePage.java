@@ -15,7 +15,7 @@ import java.awt.*;
  *
  * @see UIController
  */
-public class RouteScreen extends JPanel {
+public class OperatorRoutePage extends JPanel {
 
     private final RouteViewModel routeViewModel;
 
@@ -23,7 +23,7 @@ public class RouteScreen extends JPanel {
      * Constructs a new OperatorRoute object.
      * @param controller the controller used to switch panels
      */
-    public RouteScreen(UIController controller, EmployeeDTO employeeDTO) {
+    public OperatorRoutePage(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
         routeViewModel = new RouteViewModel(employeeDTO,
@@ -41,7 +41,7 @@ public class RouteScreen extends JPanel {
 
         // id label
         int id = employeeDTO.getStaffNumber();
-        JLabel idLabel = new JLabel("Employee " + id, SwingConstants.CENTER);
+        JLabel idLabel = new JLabel("Operator " + id, SwingConstants.CENTER);
         idLabel.setFont(new Font("Arial", Font.BOLD, 25));
         idLabel.setOpaque(true);
         idLabel.setBackground(new Color(255, 255, 255));
@@ -56,6 +56,9 @@ public class RouteScreen extends JPanel {
         // route label
         JLabel routeLabel = new JLabel(routeViewModel.getWhatToSay());
         routeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        routeLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        routeLabel.setOpaque(true);
+        routeLabel.setBackground(new Color(255, 255, 255));
 
         middlePanel.add(routeLabel);
 

@@ -6,7 +6,9 @@ import app_business.common.EmployeeType;
 import ui.UIController;
 import ui.staff.admin.Management;
 import ui.staff.engineer.EngineerMaintenance;
+import ui.staff.engineer.EngineerRoutePage;
 import ui.staff.operator.OperatorMaintenance;
+import ui.staff.operator.OperatorRoutePage;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
@@ -62,9 +64,9 @@ public class LoginPage extends JPanel {
             if (employee.getType() == EmployeeType.ADMINISTRATOR) {
                 controller.open(new Management(controller, employee));
             } else if (employee.getType() == EmployeeType.ENGINEER) {
-                controller.open(new EngineerMaintenance(controller, employee));
+                controller.open(new EngineerRoutePage(controller, employee));
             } else if (employee.getType() == EmployeeType.OPERATOR) {
-                controller.open(new OperatorMaintenance(controller, employee));
+                controller.open(new OperatorRoutePage(controller, employee));
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid personnel type: " +
                         employee.getType(), "Error", JOptionPane.ERROR_MESSAGE);
