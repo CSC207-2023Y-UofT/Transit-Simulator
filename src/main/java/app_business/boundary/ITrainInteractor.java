@@ -26,4 +26,12 @@ public interface ITrainInteractor {
      * @see TrainDTO
      */
     List<TrainDTO> getTrains();
+
+    /**
+     * Sets the needs maintenance flag of a train
+     *
+     * @param trainName        The name of the train to set the needs maintenance flag of
+     * @param needsMaintenance The value to set the needs maintenance flag to
+     */
+    void setNeedsMaintenance(String trainName, boolean needsMaintenance);
 }

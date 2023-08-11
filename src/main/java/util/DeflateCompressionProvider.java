@@ -11,6 +11,7 @@ import java.util.zip.Inflater;
  */
 public class DeflateCompressionProvider implements FileCompressionProvider {
 
+    // Inherited javadoc
     @Override
     public byte[] compress(byte[] data) {
         Deflater deflater = new Deflater();
@@ -29,6 +30,7 @@ public class DeflateCompressionProvider implements FileCompressionProvider {
         }
     }
 
+    // Inherited javadoc
     @Override
     public byte[] decompress(byte[] data) throws DataFormatException {
         Inflater inflater = new Inflater();

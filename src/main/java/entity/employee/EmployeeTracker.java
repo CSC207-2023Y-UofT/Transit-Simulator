@@ -30,11 +30,7 @@ public class EmployeeTracker {
      * @param employee The Employee object to be added.
      */
     public void saveEmployee(Employee employee) {
-        try {
-            dataStore.save(employee);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        dataStore.save(employee);
     }
 
     /**
@@ -43,11 +39,7 @@ public class EmployeeTracker {
      * @param employee The Employee object to be removed.
      */
     public void removeEmployee(Employee employee) {
-        try {
-            dataStore.remove(employee.getStaffNumber());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        dataStore.delete(employee.getStaffNumber());
     }
 
     /**
@@ -56,11 +48,7 @@ public class EmployeeTracker {
      * @param staffNumber The staff number of the employee to be removed.
      */
     public void removeEmployee(int staffNumber) {
-        try {
-            dataStore.remove(staffNumber);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        dataStore.delete(staffNumber);
     }
 
     /**
@@ -69,11 +57,7 @@ public class EmployeeTracker {
      * @return The list of all Employee objects.
      */
     public List<Employee> getEmployeeList() {
-        try {
-            return dataStore.getEmployees();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return dataStore.findAll();
     }
 
     /**
@@ -83,11 +67,7 @@ public class EmployeeTracker {
      * @return The Employee object with the given staff number, or null if no such employee exists.
      */
     public Optional<Employee> getEmployee(int employeeNumber) {
-        try {
-            return dataStore.get(employeeNumber);
-        } catch (IOException e) {
-            return Optional.empty();
-        }
+        return dataStore.find(employeeNumber);
     }
 
 }

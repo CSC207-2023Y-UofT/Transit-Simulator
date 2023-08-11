@@ -1,7 +1,7 @@
 package app_business.boundary;
 
-import stats.aggregator.expense.ExpenseAggregate;
-import stats.aggregator.revenue.RevenueAggregate;
+import stats.aggregate.ExpenseAggregate;
+import stats.aggregate.RevenueAggregate;
 
 import java.util.List;
 

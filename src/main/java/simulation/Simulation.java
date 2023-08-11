@@ -61,14 +61,19 @@ public class Simulation {
 
         long msPerTick = 1000 / TICK_SPEED;
 
+        long lastTick = System.currentTimeMillis() - msPerTick;
+
         while (true) {
-            long ms = System.currentTimeMillis();
 
-            tick();
+            long delta = System.currentTimeMillis() - lastTick;
+            tick((double) delta / msPerTick);
 
-            long delta = System.currentTimeMillis() - ms;
+            delta = System.currentTimeMillis() - lastTick;
+            lastTick = System.currentTimeMillis();
+
             long sleepTime = msPerTick - delta;
             if (sleepTime <= 0) continue;
+
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
@@ -80,9 +85,9 @@ public class Simulation {
     /**
      * Ticks the simulation.
      */
-    public void tick() {
+    public void tick(double delta) {
 
-        trainSimulator.tick(model);
+        trainSimulator.tick(model, delta);
 
         if (stats.shouldFlush()) {
             stats.flush();
