@@ -1,12 +1,17 @@
 package app_business.interactor;
 
 import app_business.boundary.IStatInteractor;
-import stats.aggregate.ExpenseAggregate;
-import stats.aggregator.impl.ExpenseAggregator;
-import stats.aggregate.RevenueAggregate;
-import stats.aggregator.impl.RevenueAggregator;
 import stats.StatDataController;
+import stats.aggregate.ExpenseAggregate;
+import stats.aggregate.RevenueAggregate;
+import stats.aggregator.StatAggregator;
+import stats.aggregator.impl.ExpenseAggregator;
+import stats.aggregator.impl.RevenueAggregator;
+import stats.entry.StatEntry;
+import util.Preconditions;
+import util.Timing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +23,9 @@ import java.util.Optional;
  */
 public class StatInteractor implements IStatInteractor {
 
-    /** Data controller responsible for stats-related data management. */
+    /**
+     * Data controller responsible for stats-related data management.
+     */
     private final StatDataController stats;
 
     /**
@@ -31,61 +38,43 @@ public class StatInteractor implements IStatInteractor {
     }
 
     /**
-     * Retrieves a list of revenue aggregates based on a given time horizon.
+     * Returns a list of aggregates of the given type, one for each minute in the given horizon.
      *
-     * @param horizonMinutes The time horizon in minutes for which the revenue aggregates are to be fetched.
-     * @return A list of {@link RevenueAggregate} objects representing the aggregated revenue data.
+     * @param horizonMinutes   The horizon in minutes.
+     * @param aggregator       The aggregator to use.
+     * @param defaultAggregate The default aggregate to use if no aggregate is found for a given minute.
+     * @param <A>              The type of entries this aggregator operates on, which must extend {@link StatEntry}.
+     * @param <B>              The type of aggregates this aggregator produces, which must be {@link Serializable}.
+     * @return A list of aggregates.
      */
-    @Override
-    public List<RevenueAggregate> getRevenue(long horizonMinutes) {
-        RevenueAggregator revenueAggregator = new RevenueAggregator();
+    private <A extends StatEntry, B extends Serializable> List<B> getAggregates(long horizonMinutes,
+                                                                                StatAggregator<A, B> aggregator,
+                                                                                B defaultAggregate) {
         long currIndex = stats.getTimeIndexProvider().getTimeIndex();
 
-        List<RevenueAggregate> revenueAggregates = new ArrayList<>();
+        List<B> aggregatesList = new ArrayList<>();
 
-        Map<Long, RevenueAggregate> aggregateMap = stats.getOrAggregate(revenueAggregator,
+        Map<Long, B> aggregateMap = stats.getOrAggregate(aggregator,
                 currIndex - horizonMinutes,
                 currIndex);
 
-        stats.aggregateCurrent(revenueAggregator)
-                .ifPresent(a -> aggregateMap.put(currIndex, a));
+        stats.aggregateCurrent(aggregator).ifPresent(a -> aggregateMap.put(currIndex, a));
 
         for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
-            Optional<RevenueAggregate> revenueAggregate = Optional.ofNullable(aggregateMap.get(i));
+            Optional<B> aggregate = Optional.ofNullable(aggregateMap.get(i));
 
-            revenueAggregate.ifPresentOrElse(revenueAggregates::add,
-                    () -> revenueAggregates.add(new RevenueAggregate(0)));
+            aggregate.ifPresentOrElse(aggregatesList::add, () -> aggregatesList.add(defaultAggregate));
         }
-        return revenueAggregates;
+        return aggregatesList;
     }
 
-    /**
-     * Retrieves a list of expense aggregates based on a given time horizon.
-     *
-     * @param horizonMinutes The time horizon in minutes for which the expense aggregates are to be fetched.
-     * @return A list of {@link ExpenseAggregate} objects representing the aggregated expense data.
-     */
     @Override
-    public List<ExpenseAggregate> getExpenses(long horizonMinutes) {
-        ExpenseAggregator expenseAggregator = new ExpenseAggregator();
-        long currIndex = stats.getTimeIndexProvider().getTimeIndex();
+    public List<RevenueAggregate> getRevenue(long horizon) {
+        return getAggregates(horizon, new RevenueAggregator(), new RevenueAggregate(0));
+    }
 
-        List<ExpenseAggregate> expenseAggregates = new ArrayList<>();
-
-        Map<Long, ExpenseAggregate> aggregateMap = stats.getOrAggregate(expenseAggregator,
-                currIndex - horizonMinutes,
-                currIndex);
-
-        stats.aggregateCurrent(expenseAggregator)
-                .ifPresent(a -> aggregateMap.put(currIndex, a));
-
-        for (long i = currIndex - horizonMinutes; i <= currIndex; i++) {
-            Optional<ExpenseAggregate> expenseAggregate = Optional.ofNullable(aggregateMap.get(i));
-
-            expenseAggregate.ifPresentOrElse(expenseAggregates::add,
-                    () -> expenseAggregates.add(new ExpenseAggregate(0)));
-        }
-
-        return expenseAggregates;
+    @Override
+    public List<ExpenseAggregate> getExpenses(long horizon) {
+        return getAggregates(horizon, new ExpenseAggregator(), new ExpenseAggregate(0));
     }
 }

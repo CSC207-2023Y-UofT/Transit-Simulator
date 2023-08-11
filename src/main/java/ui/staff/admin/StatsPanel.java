@@ -59,7 +59,12 @@ public class StatsPanel extends JPanel {
         public long getTimeHorizonMinutes() {
             return timeHorizonMinutes;
         }
+
     }
+    /**
+     * The view model responsible for managing the statistics data.
+     */
+    private final SingletonStatViewModel viewModel = new SingletonStatViewModel();
 
     /**
      * The type of statistics to be displayed.
@@ -71,10 +76,6 @@ public class StatsPanel extends JPanel {
      */
     private TimeHorizon horizon = TimeHorizon.QUARTER_DAY;
 
-    /**
-     * The view model responsible for managing the statistics data.
-     */
-    private final SingletonStatViewModel viewModel = new SingletonStatViewModel();
 
     /**
      * Timer to refresh the statistics periodically.
@@ -110,8 +111,6 @@ public class StatsPanel extends JPanel {
 
     /**
      * Gets the time horizon for the statistics.
-     *
-     * @return the time horizon
      */
     public void setHorizon(TimeHorizon horizon) {
         this.horizon = horizon;
