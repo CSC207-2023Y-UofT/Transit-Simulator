@@ -1,4 +1,4 @@
-package interface_adapter.employee;
+package interface_adapter.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -146,12 +146,13 @@ public class EmployeeControllerTest {
 
 
 
-    public class MockEmployeeInteractor implements IEmployeeInteractor {
+    public class MockEmployeeInteractor implements IEmployeeInteractor {  // TODO must update test in line with updated classes
+                                                                          //      For this class, a simple idGenerator is needed
         private final Map<Integer, EmployeeDTO> employeeDatabase = new HashMap<>();
         private final Map<Integer, String> employeeAssignments = new HashMap<>();
 
         @Override
-        public EmployeeDTO registerEmployee(String name, EmployeeType type) {
+        public EmployeeDTO registerEmployee(String name, EmployeeType type) {  // here needs the new third param
             int newStaffNumber = employeeDatabase.size() + 1;
             EmployeeDTO newEmployee = new EmployeeDTO(newStaffNumber, name, type, null);
             employeeDatabase.put(newStaffNumber, newEmployee);
@@ -179,7 +180,7 @@ public class EmployeeControllerTest {
             }
 
             // Check if another employee is already assigned to this job on the train
-            if (employeeAssignments.values().contains(trainName + job.name())) {
+            if (employeeAssignments.containsValue(trainName + job.name())) {
                 throw new IllegalArgumentException("Job is already assigned to another employee");
             }
 
@@ -187,7 +188,7 @@ public class EmployeeControllerTest {
         }
 
         @Override
-        public boolean unassign(int staffNumber) {
+        public boolean unassign(int staffNumber) {  // TODO update to changed return type
             return employeeAssignments.remove(staffNumber) != null;
         }
 
@@ -213,7 +214,7 @@ public class EmployeeControllerTest {
     /**
      * An in-memory implementation of the EmployeeDataStore interface.
      */
-    public class MemoryEmployeeDataStore implements EmployeeDataStore {
+    public class MemoryEmployeeDataStore implements EmployeeDataStore {  // TODO must update according to updated class
 
         // In-memory store using a HashMap
         private final HashMap<Integer, Employee> employeeMap = new HashMap<>();
