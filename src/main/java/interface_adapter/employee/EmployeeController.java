@@ -52,6 +52,8 @@ public class EmployeeController {
      * @param staffNumber The unique identifier of the employee.
      * @param trainName   The name of the train.
      * @param role        The role to be assigned, represented by {@link TrainRole}.
+     * @throws IllegalArgumentException If the train does not exist.
+     * @throws IllegalStateException    If there is already an employee assigned to the job on that train.
      */
     public void assignEmployee(int staffNumber, String trainName, TrainRole role) {
         interactor.assignJob(staffNumber, trainName, role);
