@@ -1,10 +1,9 @@
 package main.pool;
 
-import interface_adapter.train.TrainController;
-import interface_adapter.ticket.TicketController;
-import interface_adapter.employee.EmployeeController;
-import interface_adapter.stats.StatsController;
-
+import interface_adapter.controller.EmployeeController;
+import interface_adapter.controller.StatsController;
+import interface_adapter.controller.TicketController;
+import interface_adapter.controller.TrainController;
 import org.junit.jupiter.api.*;
 
 /**

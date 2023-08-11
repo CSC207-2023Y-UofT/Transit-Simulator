@@ -7,6 +7,7 @@ import app_business.common.EmployeeType;
 import app_business.dto.EmployeeDTO;
 import entity.employee.Employee;
 import entity.model.train.TrainRole;
+import interface_adapter.controller.EmployeeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.boundary.EmployeeDataStore;
@@ -35,43 +36,39 @@ public class EmployeeControllerTest {
 
     @Test
     public void testAssignJobTwiceToSameEmployee() {
-        controller.registerEmployee("John", EmployeeType.OPERATOR);
-        controller.assignEmployee(1, "Train 1", TrainRole.OPERATOR);
+        EmployeeDTO dto = controller.registerEmployee("John", EmployeeType.OPERATOR);
+        controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(1, "Train 1", TrainRole.OPERATOR);
+            controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
         }, "Expected IllegalArgumentException when assigning same job twice to the same employee");
     }
 
     @Test
     public void testAssignSameJobToDifferentEmployees() {
-        controller.registerEmployee("John", EmployeeType.OPERATOR);
-        controller.registerEmployee("Doe", EmployeeType.OPERATOR);
-        controller.assignEmployee(1, "Train 1", TrainRole.OPERATOR);
+        EmployeeDTO dto1 = controller.registerEmployee("John", EmployeeType.OPERATOR);
+        EmployeeDTO dto2 = controller.registerEmployee("Doe", EmployeeType.OPERATOR);
+        controller.assignEmployee(dto1.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(2, "Train 1", TrainRole.OPERATOR);
+            controller.assignEmployee(dto2.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
         }, "Expected IllegalArgumentException when assigning same job to different employees");
     }
 
     @Test
     public void testSuccessfulUnassign() {
-        controller.registerEmployee("John", EmployeeType.OPERATOR);
-        controller.assignEmployee(1, "Train 1", TrainRole.OPERATOR);
+        EmployeeDTO dto = controller.registerEmployee("John", EmployeeType.OPERATOR);
+        controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
 
-        assertDoesNotThrow(() -> {
-            controller.unassignEmployee(1);
-        });
+        assertDoesNotThrow(() -> controller.unassignEmployee(dto.getStaffNumber()));
 
         // After unassignment, the same employee should be able to be assigned again
-        assertDoesNotThrow(() -> {
-            controller.assignEmployee(1, "Train 1", TrainRole.OPERATOR);
-        });
+        assertDoesNotThrow(() -> controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR));
     }
 
     @Test
     public void testLoginWithValidStaffNumber() {
-        EmployeeDTO dto = interactor.registerEmployee("Alice", EmployeeType.ADMINISTRATOR);
+        EmployeeDTO dto = interactor.registerEmployee("Alice", EmployeeType.ADMINISTRATOR, 1);
         assertEquals(Optional.of(dto), controller.login(dto.getStaffNumber()));
     }
 
@@ -89,7 +86,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void testAssignEmployee() {
-        EmployeeDTO dto = interactor.registerEmployee("Alice", EmployeeType.ADMINISTRATOR);
+        EmployeeDTO dto = interactor.registerEmployee("Alice", EmployeeType.ADMINISTRATOR, 1);
         controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
         assertTrue(interactor.find(dto.getStaffNumber()).map(EmployeeDTO::getAssignment).isPresent());
     }
@@ -102,7 +99,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void testRemoveEmployee() {
-        EmployeeDTO dto = interactor.registerEmployee("Charlie", EmployeeType.OPERATOR);
+        EmployeeDTO dto = interactor.registerEmployee("Charlie", EmployeeType.OPERATOR, 1);
         controller.removeEmployee(dto.getStaffNumber());
         assertFalse(controller.find(dto.getStaffNumber()).isPresent());
     }
@@ -151,10 +148,19 @@ public class EmployeeControllerTest {
         private final Map<Integer, String> employeeAssignments = new HashMap<>();
 
         @Override
-        public EmployeeDTO registerEmployee(String name, EmployeeType type) {
-            int newStaffNumber = employeeDatabase.size() + 1;
-            EmployeeDTO newEmployee = new EmployeeDTO(newStaffNumber, name, type, null);
-            employeeDatabase.put(newStaffNumber, newEmployee);
+        public int idGenerator() {
+            return new Random().nextInt();
+        }
+
+        @Override
+        public int idGenerator(int bound) {
+            return new Random().nextInt(bound);
+        }
+
+        @Override
+        public EmployeeDTO registerEmployee(String name, EmployeeType type, int id) {
+            EmployeeDTO newEmployee = new EmployeeDTO(id, name, type, null);
+            employeeDatabase.put(id, newEmployee);
             return newEmployee;
         }
 
@@ -187,8 +193,8 @@ public class EmployeeControllerTest {
         }
 
         @Override
-        public boolean unassign(int staffNumber) {
-            return employeeAssignments.remove(staffNumber) != null;
+        public void unassign(int staffNumber) {
+            employeeAssignments.remove(staffNumber);
         }
 
         @Override
@@ -206,42 +212,6 @@ public class EmployeeControllerTest {
         @Override
         public List<EmployeeDTO> getEmployees() {
             return new ArrayList<>(employeeDatabase.values());
-        }
-    }
-
-
-    /**
-     * An in-memory implementation of the EmployeeDataStore interface.
-     */
-    public class MemoryEmployeeDataStore implements EmployeeDataStore {
-
-        // In-memory store using a HashMap
-        private final HashMap<Integer, Employee> employeeMap = new HashMap<>();
-
-        @Override
-        public void remove(int staffNumber) throws IOException {
-            employeeMap.remove(staffNumber);
-        }
-
-        @Override
-        public void save(Employee employee) throws IOException {
-            if(employee == null) {
-                throw new IOException("Invalid employee data");
-            }
-            employeeMap.put(employee.getStaffNumber(), employee);
-        }
-
-        @Override
-        public Optional<Employee> get(int staffNumber) throws IOException {
-            if(!employeeMap.containsKey(staffNumber)) {
-                return Optional.empty();
-            }
-            return Optional.ofNullable(employeeMap.get(staffNumber));
-        }
-
-        @Override
-        public List<Employee> getEmployees() throws IOException {
-            return new ArrayList<>(employeeMap.values());
         }
     }
 }
