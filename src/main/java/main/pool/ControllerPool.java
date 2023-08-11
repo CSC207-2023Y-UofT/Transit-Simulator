@@ -38,7 +38,11 @@ public class ControllerPool {
      * @param employeeController The employee controller.
      * @param statController     The stat controller.
      */
-    public ControllerPool(TrainController trainController, TicketController ticketController, EmployeeController employeeController, StatsController statController) {  // Changed because of dependency injection. Now we can directly inject params in tests.
+    public ControllerPool(
+            TrainController trainController,
+            TicketController ticketController,
+            EmployeeController employeeController,
+            StatsController statController) {  // Changed because of dependency injection. Now we can directly inject params in tests.
         this.trainController = trainController;
         this.ticketController = ticketController;
         this.employeeController = employeeController;
@@ -48,7 +52,7 @@ public class ControllerPool {
     /**
      * Gets the ticket controller.
      *
-     * @return The ticket controller.
+     * @return The {@link TicketController}.
      */
     public TicketController getTicketController() {
         return ticketController;
@@ -57,7 +61,7 @@ public class ControllerPool {
     /**
      * Gets the stat controller.
      *
-     * @return The stat controller.
+     * @return The {@link StatsController}.
      */
     public StatsController getStatController() {
         return statController;
@@ -65,6 +69,8 @@ public class ControllerPool {
 
     /**
      * Gets the employee controller.
+     *
+     * @return The {@link EmployeeController}.
      */
     public EmployeeController getEmployeeController() {
         return employeeController;
@@ -72,6 +78,8 @@ public class ControllerPool {
 
     /**
      * Gets the train controller.
+     *
+     * @return The {@link TrainController}.
      */
     public TrainController getTrainController() {
         return trainController;
