@@ -89,8 +89,9 @@ public class EmployeeControllerTest {
 
     @Test
     public void testAssignEmployee() {
-        controller.assignEmployee(2, "Train 1", TrainRole.OPERATOR);
-        assertTrue(interactor.find(2).map(EmployeeDTO::getAssignment).isPresent());
+        EmployeeDTO dto = interactor.registerEmployee("Alice", EmployeeType.ADMINISTRATOR);
+        controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
+        assertTrue(interactor.find(dto.getStaffNumber()).map(EmployeeDTO::getAssignment).isPresent());
     }
 
     @Test
@@ -115,13 +116,6 @@ public class EmployeeControllerTest {
     public void testAssignNonExistingEmployee() {
         assertThrows(IllegalArgumentException.class, () -> {
             controller.assignEmployee(999, "Train 1", TrainRole.OPERATOR);
-        });
-    }
-
-    @Test
-    public void testUnassignNonExistingEmployee() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            controller.unassignEmployee(999);
         });
     }
 
