@@ -1,10 +1,10 @@
 package app_business.interactor;
 
 import app_business.boundary.IStatInteractor;
-import stats.aggregator.expense.ExpenseAggregate;
-import stats.aggregator.expense.ExpenseAggregator;
-import stats.aggregator.revenue.RevenueAggregate;
-import stats.aggregator.revenue.RevenueAggregator;
+import stats.aggregate.ExpenseAggregate;
+import stats.aggregator.impl.ExpenseAggregator;
+import stats.aggregate.RevenueAggregate;
+import stats.aggregator.impl.RevenueAggregator;
 import stats.StatDataController;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package ui.map;
 
-import interface_adapter.map.TransitMapViewModel;
+import interface_adapter.viewmodel.TransitMapViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,12 +62,14 @@ public class MapPanel extends JPanel {
         });
     }
 
+    // Inherited javadoc
     @Override
     public void addNotify() {
         super.addNotify();
         timer.start();
     }
 
+    // Inherited javadoc
     @Override
     public void removeNotify() {
         super.removeNotify();

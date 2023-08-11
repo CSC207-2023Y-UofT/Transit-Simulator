@@ -95,6 +95,12 @@ public class TicketDTO {
         return ticketId;
     }
 
+    /**
+     * Checks whether this ticket is equal to another object.
+     *
+     * @param obj The object to compare to.
+     * @return Whether this ticket is equal to the other object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof TicketDTO) {

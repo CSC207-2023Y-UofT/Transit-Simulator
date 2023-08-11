@@ -3,6 +3,7 @@ package app_business.dto;
 import app_business.common.EmployeeAssignment;
 import app_business.common.EmployeeType;
 
+import java.util.List;
 import java.util.Optional;
 
 /**

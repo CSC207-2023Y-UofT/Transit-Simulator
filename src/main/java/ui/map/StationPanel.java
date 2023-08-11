@@ -1,6 +1,6 @@
 package ui.map;
 
-import interface_adapter.map.ArrivalsViewModel;
+import interface_adapter.viewmodel.ArrivalsViewModel;
 import ui.util.SuppliedLabel;
 
 import javax.swing.*;

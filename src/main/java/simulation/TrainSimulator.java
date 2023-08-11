@@ -7,8 +7,8 @@ import entity.model.node.line.NodeLineProfile;
 import entity.model.train.Passenger;
 import entity.model.train.Train;
 import entity.model.train.track.TrackSegment;
-import stats.entry.impl.ElectricityUsageStat;
-import stats.entry.impl.TicketSaleStat;
+import stats.entry.impl.expense.ElectricityUsageStat;
+import stats.entry.impl.revenue.TicketSaleStat;
 import stats.StatDataController;
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
@@ -158,7 +158,7 @@ public class TrainSimulator {
      *
      * @param model The model to simulate on
      */
-    public void tick(TransitModel model) {
+    public void tick(TransitModel model, double delta) {
 
         for (Train train : model.getTrainList()) {
 
@@ -167,7 +167,7 @@ public class TrainSimulator {
                     .isPresent();
 
             // Move the train a bit
-            train.move(Direction.FORWARD, Train.MAX_SPEED / tickSpeed);
+            train.move(Direction.FORWARD, Train.MAX_SPEED / tickSpeed * delta);
 
             // Record electric use
             if (!wasAtStation) {
@@ -246,6 +246,9 @@ public class TrainSimulator {
         return numPassengersBoarded;
     }
 
+    /**
+     * Add waiting passengers to the station.
+     */
     private void addWaitingPassengers() {
 
         double noise = this.passengerNoise.noise(tickNumber / 12000.0);

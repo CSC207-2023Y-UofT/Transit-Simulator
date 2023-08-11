@@ -48,6 +48,11 @@ public class EmployeeAssignment implements Serializable {
         return role;
     }
 
+    /**
+     * Return a string representation of the employee assignment.
+     *
+     * @return A string representation of the employee assignment.
+     */
     @Override
     public String toString() {
         return role + " on " + trainName;
