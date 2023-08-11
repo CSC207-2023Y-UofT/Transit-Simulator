@@ -5,7 +5,7 @@ import interface_adapter.controller.*;
 import org.junit.jupiter.api.*;
 
 /**
- * The ControllerPoolTest class contains tests for the ControllerPool class. A trivial test for a data class.
+ * The ControllerPoolTest class contains tests for the ControllerPool class. A test for a data class.
  */
 public class ControllerPoolTest {
     static ControllerPool controllerPool;

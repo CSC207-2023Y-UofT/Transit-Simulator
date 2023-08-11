@@ -4,7 +4,7 @@ import app_business.interactor.*;
 import org.junit.jupiter.api.*;
 
 /**
- * The InteractorPoolTest class contains tests for the InteractorPool class. A trivial test for a data class.
+ * The InteractorPoolTest class contains tests for the InteractorPool class. A test for a data class.
  */
 public class InteractorPoolTest {
     static InteractorPool interactorPool;
