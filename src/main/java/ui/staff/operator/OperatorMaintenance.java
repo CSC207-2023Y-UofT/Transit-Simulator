@@ -3,7 +3,6 @@ package ui.staff.operator;
 import app_business.dto.EmployeeDTO;
 import interface_adapter.viewmodel.MaintenanceViewModel;
 import ui.UIController;
-import ui.staff.RouteScreen;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
@@ -119,7 +118,7 @@ public class OperatorMaintenance extends JPanel {
         routeButton.setBackground(new Color(222, 175, 119));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        routeButton.addActionListener(e -> controller.open(new RouteScreen(controller, employeeDTO)));
+        routeButton.addActionListener(e -> controller.open(new OperatorRoutePage(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
         JButton maintenanceButton = new ShadowedButton("Maintenance");
