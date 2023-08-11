@@ -50,21 +50,21 @@ public class ControllerPool {
     }
 
     /**
+     * Gets the train controller.
+     *
+     * @return The {@link TrainController}.
+     */
+    public TrainController getTrainController() {
+        return trainController;
+    }
+
+    /**
      * Gets the ticket controller.
      *
      * @return The {@link TicketController}.
      */
     public TicketController getTicketController() {
         return ticketController;
-    }
-
-    /**
-     * Gets the stat controller.
-     *
-     * @return The {@link StatsController}.
-     */
-    public StatsController getStatController() {
-        return statController;
     }
 
     /**
@@ -77,11 +77,12 @@ public class ControllerPool {
     }
 
     /**
-     * Gets the train controller.
+     * Gets the stat controller.
      *
-     * @return The {@link TrainController}.
+     * @return The {@link StatsController}.
      */
-    public TrainController getTrainController() {
-        return trainController;
+    public StatsController getStatController() {
+        return statController;
     }
+
 }
