@@ -69,7 +69,9 @@ class JsonTicketDataStoreTest {
         data.saveTicket(new Ticket(8, TicketType.SENIOR));
         data.saveTicket(new Ticket(9, TicketType.ADULT));
 
-        assertTrue(data.getTickets().size() >= 6);
+        assertTrue(data.getTickets().size() >= 6);  // Note: Since data is static and shared between tests and
+        // tests aren't necessarily run in order, we can't be sure how many tickets are in the data store. Make sure
+        // proper teardown is done after other tests; Or change @BeforeAll to @BeforeEach.
     }
 
     @Test
