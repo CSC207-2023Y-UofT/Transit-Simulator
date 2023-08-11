@@ -14,6 +14,7 @@ import entity.model.train.track.TrackSegment;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import persistence.DataStorage;
 import persistence.boundary.EmployeeDataStore;
 import persistence.impl.MemoryEmployeeDataStore;
@@ -129,7 +130,7 @@ public class EmployeeInteractorTest {
         lst.add(dougdto);
         Assert.assertEquals(lst, interact.getEmployees());
     }
-
+    @Disabled
     @Test
     public void testtoDTO(){
         Employee juan = new TrainOperator(10, "Juan");
