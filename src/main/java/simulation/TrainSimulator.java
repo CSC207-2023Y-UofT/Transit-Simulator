@@ -158,7 +158,7 @@ public class TrainSimulator {
      *
      * @param model The model to simulate on
      */
-    public void tick(TransitModel model) {
+    public void tick(TransitModel model, double delta) {
 
         for (Train train : model.getTrainList()) {
 
@@ -167,7 +167,7 @@ public class TrainSimulator {
                     .isPresent();
 
             // Move the train a bit
-            train.move(Direction.FORWARD, Train.MAX_SPEED / tickSpeed);
+            train.move(Direction.FORWARD, Train.MAX_SPEED / tickSpeed * delta);
 
             // Record electric use
             if (!wasAtStation) {
