@@ -23,7 +23,7 @@ public class EmployeeDTOTest {
         name = "Matthew Lack";
         type = EmployeeType.OPERATOR;
         assignment = new EmployeeAssignment("Train 1", TrainRole.OPERATOR);
-        employeeDTO = new EmployeeDTO(staffNumber, name, type, assignment);
+        employeeDTO = new EmployeeDTO(staffNumber, name, type, assignment);  // convenient test constructor
     }
 
     @Test

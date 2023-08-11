@@ -22,7 +22,7 @@ public class StationDTOTest {
         lines = List.of(1, 2, 3);
         x = 1;
         y = 2;
-        stationDTO = new StationDTO(name, lines, x, y);
+        stationDTO = new StationDTO(name, lines, x, y);  // convenient test constructor
     }
 
     @Test
