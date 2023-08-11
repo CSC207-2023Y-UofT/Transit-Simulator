@@ -67,9 +67,8 @@ public class Simulation {
             tick();
 
             long delta = System.nanoTime() - ns;
-            long sleepTime = (msPerTick * 1000000) - delta;
+            long sleepTime = (msPerTick * 1000000) - delta; // TODO get rid of debugging code
             if (sleepTime <= 0) continue;
-            System.out.println("Sleeping for " + sleepTime + " nanoseconds");
             try {
                 long sleepMs = sleepTime / 1000000;
                 int sleepNs = (int) (sleepTime % 1000000);
