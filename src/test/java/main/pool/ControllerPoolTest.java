@@ -51,5 +51,9 @@ public class ControllerPoolTest {
     @AfterAll
     static void teardown() {
         controllerPool = null;
+        trainController = null;
+        ticketController = null;
+        employeeController = null;
+        statsController = null;
     }
 }
