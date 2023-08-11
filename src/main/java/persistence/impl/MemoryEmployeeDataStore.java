@@ -20,20 +20,25 @@ public class MemoryEmployeeDataStore implements EmployeeDataStore {
 
     // Inherited javadocs
     @Override
-    public void remove(int staffNumber) throws IOException {
+    public void delete(int staffNumber) {
         employeeList.removeIf(employee -> employee.getStaffNumber() == staffNumber);
+    }
+
+    @Override
+    public void deleteAll() {
+
     }
 
     // Inherited javadocs
     @Override
-    public void save(Employee employee) throws IOException {
-        remove(employee.getStaffNumber());
+    public void save(Employee employee) {
+        delete(employee.getStaffNumber());
         employeeList.add(employee);
     }
 
     // Inherited javadocs
     @Override
-    public Optional<Employee> get(int staffNumber) throws IOException {
+    public Optional<Employee> find(int staffNumber) {
         return employeeList.stream()
                 .filter(employee -> employee.getStaffNumber() == staffNumber)
                 .findFirst();
@@ -41,7 +46,12 @@ public class MemoryEmployeeDataStore implements EmployeeDataStore {
 
     // Inherited javadocs
     @Override
-    public List<Employee> getEmployees() throws IOException {
+    public List<Employee> findAll()  {
         return employeeList;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return employeeList.stream().anyMatch(employee -> employee.getStaffNumber() == id);
     }
 }

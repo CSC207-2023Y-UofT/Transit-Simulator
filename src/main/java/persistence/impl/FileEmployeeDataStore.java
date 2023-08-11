@@ -45,29 +45,41 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      */
     // Java docs for the following methods are in the interface
     @Override
-    public void remove(int staffNumber) throws IOException {
+    public void delete(int staffNumber) {
         File file = getFile(staffNumber);
         if (!DataStorage.getIO().exists(file)) return;
-        Files.delete(getFile(staffNumber).toPath());
+        try {
+            Files.delete(getFile(staffNumber).toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+
     }
 
     /**
      * Saves an employee
      *
      * @param employee The employee to save
-     * @throws IOException If an I/O error occurs
      */
     @Override
-    public void save(Employee employee) throws IOException {
-        int staffNumber = employee.getStaffNumber();
-        File file = getFile(staffNumber);
-        boolean unused = file.createNewFile(); // So no warning
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream objectOut = new ObjectOutputStream(out);
-        objectOut.writeObject(employee);
-        objectOut.close();
-        byte[] data = out.toByteArray();
-        DataStorage.getIO().write(file, data);
+    public void save(Employee employee) {
+        try {
+            int staffNumber = employee.getStaffNumber();
+            File file = getFile(staffNumber);
+            boolean unused = file.createNewFile(); // So no warning
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ObjectOutputStream objectOut = new ObjectOutputStream(out);
+            objectOut.writeObject(employee);
+            objectOut.close();
+            byte[] data = out.toByteArray();
+            DataStorage.getIO().write(file, data);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -78,7 +90,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      * @throws IOException If an I/O error occurs
      */
     @Override
-    public Optional<Employee> get(int staffNumber) throws IOException {
+    public Optional<Employee> find(int staffNumber) {
         File file = getFile(staffNumber);
         if (!DataStorage.getIO().exists(file)) return Optional.empty();
         return read(file);
@@ -104,10 +116,9 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      * Gets all employees
      *
      * @return The list of all employees
-     * @throws IOException If an I/O error occurs
      */
     @Override
-    public List<Employee> getEmployees() {
+    public List<Employee> findAll() {
         File[] files = directory.listFiles();
         if (files == null) return new ArrayList<>();
         List<Employee> employees = new ArrayList<>();
@@ -121,5 +132,10 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
 
         return employees;
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return DataStorage.getIO().exists(getFile(id));
     }
 }
