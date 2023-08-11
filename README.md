@@ -23,7 +23,6 @@ schedules to assessing average customer statistics.
 - **Course Assignment**: CSC207, Summer 2023 session at the University of Toronto (UofT).
 - **Programming Language**: Java.
 - **Architectural Highlights**: The software serves as a testament to the implementation of Clean Architecture principles and various design patterns in programming.
-- **Licensing**: The project is licensed under the terms specified by the MIT license.
 
 
 ## Examples ##
@@ -76,7 +75,6 @@ git clone https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git
 - Buttons on the menu are enlarged for size and space.
 
 
----
 ## Team ##
 ***
 
@@ -87,5 +85,11 @@ Group name: The BBC
 - [Grace Liu](https://github.com/gracelliu "Grace's GitHub page")
 - [Matthew Lack](https://github.com/mattlack15 "Matt's GitHub page")
 - [Zoey Lee](https://github.com/zoeyzlee "Zoey's GitHub page")
+
+
+## License ##
+***
+
+This project is licensed under the MIT License; see the [LICENSE.md](LICENSE.md) file for details.
 
 
