@@ -2,6 +2,7 @@ package persistence;
 
 import util.FileCompressionProvider;
 import util.FileIOProvider;
+import util.Preconditions;
 
 /**
  * The {@code DataStorage} class provides static methods to manage
@@ -51,6 +52,9 @@ public class DataStorage {
      * @param compression the file compression provider to set
      */
     public static void init(FileIOProvider io, FileCompressionProvider compression) {
+        Preconditions.checkArgument(io != null, "File I/O provider cannot be null.");
+        Preconditions.checkArgument(compression != null, "FileCompressionProvider cannot be null.");
+
         DataStorage.io = io;
         DataStorage.compression = compression;
     }
