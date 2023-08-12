@@ -42,14 +42,14 @@ class TransitMapViewModelTest {
     }
 
 // matt pls help fix this test
-//    @Test
-//    void testGetArrivalsWithStation() {
-//        StationDTO station = new StationDTO("Station A", Arrays.asList(1), 1000, 1000); // Corrected here
-//        when(stationInteractor.getStations()).thenReturn(Arrays.asList(station));
-//        viewModel.present(mock(Graphics2D.class), 1920, 1080); // Ensure the stations list is populated
-//        Optional<ArrivalsViewModel> viewModelOptional = viewModel.getArrivals(1000, 1000); // Using the known station's position
-//        assertTrue(viewModelOptional.isPresent());
-//    }
+    @Test
+    void testGetArrivalsWithStation() {
+        StationDTO station = new StationDTO("Station A", Arrays.asList(1), 1000, 1000); // Corrected here
+        when(stationInteractor.getStations()).thenReturn(Arrays.asList(station));
+        viewModel.present(mock(Graphics2D.class), 1920, 1080); // Ensure the stations list is populated
+        Optional<ArrivalsViewModel> viewModelOptional = viewModel.getArrivals(1000, 1000); // Using the known station's position
+        assertTrue(viewModelOptional.isPresent());
+    }
 
 
     @Test
