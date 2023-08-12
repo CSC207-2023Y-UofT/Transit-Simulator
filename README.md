@@ -87,9 +87,10 @@ Group name: The BBC
 - [Zoey Lee](https://github.com/zoeyzlee "Zoey's GitHub page")
 
 ## code coverage ##
+<img width="1512" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/97990b34-39aa-4150-b862-c08680552842">
+<img width="1511" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/722cc50f-be82-4379-a476-c850a5f8970d">
 
-<img width="1507" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/b1446993-61de-4309-b7d9-877d630ee308">
-<img width="1110" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/da3719e8-bf5d-4481-b200-5635a3a28407">
+
 
 
 ## License ##
