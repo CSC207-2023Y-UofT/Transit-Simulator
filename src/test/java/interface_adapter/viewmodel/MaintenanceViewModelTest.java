@@ -35,8 +35,8 @@ public class MaintenanceViewModelTest {
     @Test
     void testUpdateForTrainUnderMaintenance() {
         List<TrainDTO> trains = Arrays.asList(
-                new TrainDTO("Train A", 100, 50, null, null, null, TrainStatus.UNDER_MAINTENANCE),
-                new TrainDTO("Train B", 100, 75, null, null, null, TrainStatus.IN_SERVICE)
+                new TrainDTO("Train 1", 100, 50, null, null, null, TrainStatus.UNDER_MAINTENANCE),
+                new TrainDTO("Train 2", 100, 75, null, null, null, TrainStatus.IN_SERVICE)
         );
 
         when(trainInteractor.getTrains()).thenReturn(trains);
