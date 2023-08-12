@@ -89,7 +89,8 @@ Group name: The BBC
 ## code coverage ##
 
 <img width="699" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/ebee4905-6c4d-457d-8bc8-63046bc07b0f">
-<img width="1113" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/f51b8b43-c4f9-4e7f-8426-893177fcec0e">
+<img width="1110" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/da3719e8-bf5d-4481-b200-5635a3a28407">
+
 
 ## License ##
 ***
