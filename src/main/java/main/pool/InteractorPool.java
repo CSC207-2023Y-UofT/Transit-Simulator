@@ -50,7 +50,12 @@ public class InteractorPool {
      * @param employeeInteractor Responsible for employee-related operations.
      * @param statInteractor     Responsible for statistics-related operations.
      */
-    public InteractorPool(IStationInteractor stationInteractor, ITrainInteractor trainInteractor, ITicketInteractor ticketInteractor, IEmployeeInteractor employeeInteractor, IStatInteractor statInteractor) {
+    public InteractorPool(
+            IStationInteractor stationInteractor,
+            ITrainInteractor trainInteractor,
+            ITicketInteractor ticketInteractor,
+            IEmployeeInteractor employeeInteractor,
+            IStatInteractor statInteractor) {
         this.stationInteractor = stationInteractor;
         this.trainInteractor = trainInteractor;
         this.ticketInteractor = ticketInteractor;

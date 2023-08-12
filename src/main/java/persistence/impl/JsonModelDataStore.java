@@ -104,14 +104,7 @@ public class JsonModelDataStore implements ModelDataStore {
                 if (firstNode == null) firstNode = node;
 
                 if (previousNode != null) {
-                    int x = node.getX();
-                    int y = node.getY();
-
-                    int otherX = previousNode.getX();
-                    int otherY = previousNode.getY();
-
-                    double distance = Math.sqrt(Math.pow(x - otherX, 2) + Math.pow(y - otherY, 2));
-
+                    double distance = calculateDistance(node, previousNode);
                     createEdge(lineNum, previousNode, node, distance);
                 }
 
@@ -122,14 +115,7 @@ public class JsonModelDataStore implements ModelDataStore {
             assert firstNode != null;
 
             if (cyclic) {
-                int x = firstNode.getX();
-                int y = firstNode.getY();
-
-                int otherX = previousNode.getX();
-                int otherY = previousNode.getY();
-
-                double distance = Math.sqrt(Math.pow(x - otherX, 2) + Math.pow(y - otherY, 2));
-
+                double distance = calculateDistance(firstNode, previousNode);
                 createEdge(lineNum, previousNode, firstNode, distance);
             } else {
                 // Find the endpoints and link the forward and backward tracks of them
@@ -143,6 +129,23 @@ public class JsonModelDataStore implements ModelDataStore {
         }
 
         return transitModel;
+    }
+
+    /**
+     * Calculates the distance between two nodes.
+     *
+     * @param node1 The first node
+     * @param node2 The second node
+     * @return The distance between the two nodes
+     */
+    private double calculateDistance(Node node1, Node node2) {
+        int x = node1.getX();
+        int y = node1.getY();
+
+        int otherX = node2.getX();
+        int otherY = node2.getY();
+
+        return Math.sqrt(Math.pow(x - otherX, 2) + Math.pow(y - otherY, 2));
     }
 
     /**

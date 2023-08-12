@@ -33,6 +33,7 @@ public class EmployeeDTO {
      * Create a new EmployeeInfo object
      *
      * @param staffNumber The staff number of the employee
+     * @param name        The name of the employee
      * @param type        The type of the employee
      * @param assignment  The assignment of the employee, if any
      */
@@ -45,6 +46,8 @@ public class EmployeeDTO {
 
     /**
      * Get the staff number of the employee
+     *
+     * @return The staff number of the employee
      */
     public int getStaffNumber() {
         return staffNumber;
@@ -52,6 +55,8 @@ public class EmployeeDTO {
 
     /**
      * Get the name of the employee
+     *
+     * @return The name of the employee
      */
     public String getName() {
         return name;
@@ -59,6 +64,8 @@ public class EmployeeDTO {
 
     /**
      * Get the type of the employee
+     *
+     * @return The type of the employee
      */
     public EmployeeType getType() {
         return type;
@@ -66,6 +73,8 @@ public class EmployeeDTO {
 
     /**
      * Get the assignment of the employee, if any
+     *
+     * @return The assignment of the employee, if any
      */
     public Optional<EmployeeAssignment> getAssignment() {
         return Optional.ofNullable(assignment);

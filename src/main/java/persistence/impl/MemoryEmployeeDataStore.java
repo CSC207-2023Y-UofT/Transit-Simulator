@@ -23,9 +23,10 @@ public class MemoryEmployeeDataStore implements EmployeeDataStore {
         employeeList.removeIf(employee -> employee.getStaffNumber() == staffNumber);
     }
 
+    // Inherited javadocs
     @Override
     public void deleteAll() {
-
+        employeeList.clear();
     }
 
     // Inherited javadocs

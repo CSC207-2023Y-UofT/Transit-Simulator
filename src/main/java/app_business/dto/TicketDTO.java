@@ -39,7 +39,7 @@ public class TicketDTO {
      * @param type      The type of the ticket.
      * @param ticketId  The id of the ticket.
      * @param activated Whether the ticket has been activated.
-     * @param expiry    The expiry time of the ticket.
+     * @param expiry    The expiry time of the ticket in ms.
      */
     public TicketDTO(double cost, TicketType type, int ticketId,
                      boolean activated, long expiry) {

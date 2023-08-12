@@ -13,6 +13,7 @@ import java.util.Optional;
 /**
  * File data store for employees.
  */
+@SuppressWarnings()
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
@@ -27,9 +28,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      */
     public FileEmployeeDataStore(File directory) {
         this.directory = directory;
-        if (!directory.mkdirs()) {
-            throw new RuntimeException("Could not create directory");
-        }
+        directory.mkdirs();
     }
 
     /**
@@ -39,11 +38,6 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         return new File(directory, staffNumber + ".staff");
     }
 
-    /**
-     * Removes an employee from
-     *
-     * @param staffNumber The staff number of the employee to remove
-     */
     // Java docs for the following methods are in the interface
     @Override
     public void delete(int staffNumber) {
@@ -56,21 +50,19 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
+    // Inherited javadoc
     @Override
     public void deleteAll() {
 
     }
 
-    /**
-     * Saves an employee
-     *
-     * @param employee The employee to save
-     */
+    // Inherited javadoc
     @Override
     public void save(Employee employee) {
         try {
             int staffNumber = employee.getStaffNumber();
             File file = getFile(staffNumber);
+            file.createNewFile();
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             ObjectOutputStream objectOut = new ObjectOutputStream(out);
             objectOut.writeObject(employee);
@@ -82,12 +74,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
-    /**
-     * Gets an employee
-     *
-     * @param staffNumber The staff number of the employee to get
-     * @return The employee, or empty if the employee was not found
-     */
+    // Inherited javadoc
     @Override
     public Optional<Employee> find(int staffNumber) {
         File file = getFile(staffNumber);
@@ -111,11 +98,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
-    /**
-     * Gets all employees
-     *
-     * @return The list of all employees
-     */
+    // Inherited javadoc
     @Override
     public List<Employee> findAll() {
         File[] files = directory.listFiles();
@@ -133,6 +116,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         return employees;
     }
 
+    // Inherited javadoc
     @Override
     public boolean existsById(int id) {
         return DataStorage.getIO().exists(getFile(id));

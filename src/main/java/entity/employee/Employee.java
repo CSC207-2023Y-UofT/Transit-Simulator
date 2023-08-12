@@ -38,9 +38,10 @@ public abstract class Employee implements Serializable {
 
     /**
      * Constructs a new Employee object with the given staff number.
-     * all employee numbers should be 3 digits long.
+     * All employee numbers should be 3 digits long.
      *
      * @param id   The unique staff number.
+     * @param name The name of the employee.
      */
     public Employee(int id, String name) {
         this.staffNumber = id;
@@ -90,6 +91,11 @@ public abstract class Employee implements Serializable {
         return name;
     }
 
+    /**
+     * Returns the type of this employee.
+     *
+     * @return The type of this employee.
+     */
     public abstract EmployeeType getEmployeeType();
 
     /**
