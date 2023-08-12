@@ -104,7 +104,6 @@ public class StationInteractor implements IStationInteractor {
         NodeLineProfile lineProfile = node.getLineProfile(line).orElseThrow();
         List<TrainArrival> arrivals = lineProfile.nextArrivals(direction, 1);
 
-
         if (arrivals.isEmpty()) {
             return Optional.empty();
         }

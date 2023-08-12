@@ -138,11 +138,11 @@ public class Train {
 
 
     /**
-     * Get the transit tracker that this train is associated with.
+     * Get the transit model that this train is associated with.
      *
-     * @return the TransitTracker that this train is associated with
+     * @return the TransitModel that this train is associated with
      */
-    public TransitModel getTransitTracker() {
+    public TransitModel getTransitModel() {
         return transitModel;
     }
 

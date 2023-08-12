@@ -45,7 +45,7 @@ public class TransitModel implements NodeTracker, TrainRepo {
      */
     public Train createTrain(TrackSegment trackSegment, String name, int capacity) {
         if (trackRepo.getTrack(trackSegment.getId()).orElse(null) != trackSegment) {
-            throw new IllegalArgumentException("Track " + trackSegment.getId() + " created with wrong tracker");
+            throw new IllegalArgumentException("Track " + trackSegment.getId() + " created with wrong model");
         }
 
         if (trainList.stream().anyMatch(train -> train.getName().equals(name))) {
