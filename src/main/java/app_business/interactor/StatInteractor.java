@@ -1,7 +1,7 @@
 package app_business.interactor;
 
 import app_business.boundary.IStatInteractor;
-import stats.StatDataController;
+import stats.StatTracker;
 import stats.aggregate.ExpenseAggregate;
 import stats.aggregate.RevenueAggregate;
 import stats.aggregator.StatAggregator;
@@ -24,14 +24,14 @@ public class StatInteractor implements IStatInteractor {
     /**
      * Data controller responsible for stats-related data management.
      */
-    private final StatDataController stats;
+    private final StatTracker stats;
 
     /**
      * Constructs a StatInteractor instance.
      *
      * @param stats The statistics data controller.
      */
-    public StatInteractor(StatDataController stats) {
+    public StatInteractor(StatTracker stats) {
         this.stats = stats;
     }
 
@@ -48,7 +48,7 @@ public class StatInteractor implements IStatInteractor {
     private <A extends StatEntry, B extends Serializable> List<B> getAggregates(long horizonMinutes,
                                                                                 StatAggregator<A, B> aggregator,
                                                                                 B defaultAggregate) {
-        long currIndex = stats.getTimeIndexProvider().getTimeIndex();
+        long currIndex = stats.getIndexingStrategy().getTimeIndex();
 
         List<B> aggregatesList = new ArrayList<>();
 

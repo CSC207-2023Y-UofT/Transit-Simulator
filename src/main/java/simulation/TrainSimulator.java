@@ -9,7 +9,7 @@ import entity.model.train.Train;
 import entity.model.train.track.TrackSegment;
 import stats.entry.impl.expense.ElectricityUsageStat;
 import stats.entry.impl.revenue.TicketSaleStat;
-import stats.StatDataController;
+import stats.StatTracker;
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
 import util.PerlinNoise;
@@ -32,7 +32,7 @@ public class TrainSimulator {
     /**
      * Stat data controller
      */
-    private final StatDataController stats;
+    private final StatTracker stats;
 
     /**
      * The noise generator used for passenger simulation
@@ -66,7 +66,7 @@ public class TrainSimulator {
      *
      * @param tickSpeed The number of ticks per second
      */
-    public TrainSimulator(int tickSpeed, StatDataController stats) {
+    public TrainSimulator(int tickSpeed, StatTracker stats) {
         this.tickSpeed = tickSpeed;
         this.stats = stats;
     }

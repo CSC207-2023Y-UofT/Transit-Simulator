@@ -59,6 +59,14 @@ public class EmployeeController {
     }
 
     /**
+     * Unassigns an employee.
+     * @param staffNumber the staff number of the employee.
+     */
+    public void unassignEmployee(int staffNumber) {
+        interactor.unassign(staffNumber);
+    }
+
+    /**
      * Removes an employee from the system.
      *
      * @param staffNumber the staff number of the employee

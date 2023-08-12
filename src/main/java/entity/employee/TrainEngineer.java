@@ -4,7 +4,7 @@ import app_business.common.EmployeeType;
 import entity.model.train.TrainStatus;
 import entity.model.train.Train;
 import stats.entry.impl.expense.MaintenanceStat;
-import stats.StatDataController;
+import stats.StatTracker;
 
 import java.util.Random;
 
@@ -50,7 +50,7 @@ public class TrainEngineer extends Employee {
      *
      * @param train The Train that needs to be fixed.
      */
-    public void fixTrain(Train train, StatDataController controller) {
+    public void fixTrain(Train train, StatTracker controller) {
         train.setStatus(TrainStatus.OUT_OF_SERVICE);
         Random rand = new Random();
         int cost = rand.nextInt(5000 + 1) + 5000;  // Generates a random number between 5000 and 10000

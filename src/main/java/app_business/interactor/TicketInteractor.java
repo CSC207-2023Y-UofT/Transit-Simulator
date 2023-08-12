@@ -2,8 +2,8 @@ package app_business.interactor;
 
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
+import stats.StatTracker;
 import stats.entry.impl.revenue.TicketSaleStat;
-import stats.StatDataController;
 import entity.ticket.Ticket;
 import persistence.boundary.TicketDataStore;
 import entity.ticket.TicketType;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class TicketInteractor implements ITicketInteractor {
 
     /** Controller for statistics data. */
-    private final StatDataController stats;
+    private final StatTracker stats;
 
     /** Data storage for tickets. */
     private final TicketDataStore dataStore;
@@ -30,7 +30,7 @@ public class TicketInteractor implements ITicketInteractor {
      * @param dataStore The ticket data store.
      * @param stats The statistics data controller.
      */
-    public TicketInteractor(TicketDataStore dataStore, StatDataController stats) {
+    public TicketInteractor(TicketDataStore dataStore, StatTracker stats) {
         this.dataStore = dataStore;
         this.stats = stats;
     }

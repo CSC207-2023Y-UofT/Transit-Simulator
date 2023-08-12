@@ -2,12 +2,14 @@ package interface_adapter.controller;
 
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
+import app_business.interactor.TicketInteractor;
 import entity.ticket.TicketType;
+import org.junit.jupiter.api.*;
+import persistence.impl.MemoryTicketDataStore;
+import stats.StatTracker;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.junit.jupiter.api.*;
 
 
 /**
@@ -22,7 +24,12 @@ public class TicketControllerTest {
     @DisplayName("TicketControllerTest Class Setup")
     @BeforeAll
     public static void setup() {
-        ITicketInteractor mockTicketInteractor = new MockTicketInteractor();
+
+        ITicketInteractor mockTicketInteractor = new TicketInteractor(
+                new MemoryTicketDataStore(),
+                new DummyStatTracker()
+        );
+
         ticketController = new TicketController(mockTicketInteractor);
     }
 
@@ -67,8 +74,8 @@ public class TicketControllerTest {
         }
 
         @Override
-        public Optional<TicketDTO> activateTicket(int ticketId) {
-            return Optional.of(new TicketDTO(5, TicketType.ADULT, ticketId, true, 7200000));
+        public void activateTicket(int ticketId) {
+            // Do nothing
         }
 
         @Override

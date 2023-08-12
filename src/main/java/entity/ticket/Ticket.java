@@ -10,6 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Ticket {
 
+    public static final long HARD_EXPIRY_TIME = 1000 * 60 * 60 * 24; // 1 day
+
     /**
      * The type of the ticket.
      */
@@ -152,6 +154,12 @@ public class Ticket {
             return other.getId() == getId();
         }
         return false;
+    }
+
+    public boolean isExpired() {
+        long now = System.currentTimeMillis();
+        if (expiry != -1 && now > expiry) return true;
+        return createdAt != -1 && now > createdAt + Ticket.HARD_EXPIRY_TIME;
     }
 
 }

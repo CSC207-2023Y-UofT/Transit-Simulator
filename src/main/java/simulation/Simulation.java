@@ -2,7 +2,7 @@ package simulation;
 
 import main.pool.InteractorPool;
 import entity.model.control.TransitModel;
-import stats.StatDataController;
+import stats.StatTracker;
 
 /**
  * Technically part of the use-case/interactor layer
@@ -28,7 +28,7 @@ public class Simulation {
     /**
      * Stat data controller
      */
-    private final StatDataController stats;
+    private final StatTracker stats;
 
     /**
      * Pool of interactors
@@ -45,7 +45,7 @@ public class Simulation {
      *
      * @param model The model to run the simulation on.
      */
-    public Simulation(TransitModel model, InteractorPool pool, StatDataController stats) {
+    public Simulation(TransitModel model, InteractorPool pool, StatTracker stats) {
         this.model = model;
         this.stats = stats;
         this.pool = pool;

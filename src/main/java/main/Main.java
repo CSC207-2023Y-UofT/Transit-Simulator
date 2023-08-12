@@ -17,12 +17,13 @@ import persistence.impl.JsonModelDataStore;
 import main.pool.InteractorPool;
 import persistence.DataStorage;
 import simulation.Simulation;
-import stats.StatDataController;
+import stats.StatDataControllerImpl;
+import stats.StatTracker;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
 import persistence.impl.JsonTicketDataStore;
-import stats.timing.BasicTimeIndexProvider;
-import stats.timing.TimeIndexProvider;
+import stats.timing.BasicIndexingStrategy;
+import stats.timing.IndexingStrategy;
 import ui.UIController;
 import ui.WelcomePage;
 import util.AsyncWriteIOProvider;
@@ -68,9 +69,9 @@ public class Main {
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
         StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
-        TimeIndexProvider timeIndexProvider = new BasicTimeIndexProvider(4000);
+        IndexingStrategy indexStrategy = new BasicIndexingStrategy(4000);
 
-        StatDataController stats = new StatDataController(timeIndexProvider, statDataStore, statAggregateDataStore);
+        StatTracker stats = new StatDataControllerImpl(indexStrategy, statDataStore, statAggregateDataStore);
 
         // Ticket data store
         TicketDataStore store = new JsonTicketDataStore(new File("tickets"));

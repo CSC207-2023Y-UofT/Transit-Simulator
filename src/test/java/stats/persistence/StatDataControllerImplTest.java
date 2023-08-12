@@ -3,13 +3,14 @@ package stats.persistence;
 import persistence.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import stats.StatDataController;
+import stats.StatDataControllerImpl;
+import stats.StatTracker;
 import stats.aggregate.ExpenseAggregate;
 import stats.aggregator.impl.ExpenseAggregator;
 import stats.entry.impl.expense.MaintenanceStat;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
-import stats.timing.BasicTimeIndexProvider;
+import stats.timing.BasicIndexingStrategy;
 import util.AsyncWriteIOProvider;
 import util.DeflateCompressionProvider;
 
@@ -20,8 +21,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StatDataControllerTest {
-    private static StatDataController controller;
+class StatTrackerTest {
+    private static StatTracker controller;
+    private static StatDataControllerImpl controllerImpl;
 
 
     /**
@@ -56,10 +58,11 @@ class StatDataControllerTest {
         deleteDirectory(entryFolder);
         deleteDirectory(aggregateFolder);
 
-        controller = new StatDataController(
-                new BasicTimeIndexProvider(1000), new FileEntryDataStore(entryFolder),
+        controllerImpl = new StatDataControllerImpl(
+                new BasicIndexingStrategy(1000), new FileEntryDataStore(entryFolder),
                 new FileAggregateDataStore(aggregateFolder)
         );
+        controller = controllerImpl;
 
         controller.record(new MaintenanceStat(1.0));
     }
@@ -77,7 +80,7 @@ class StatDataControllerTest {
     void getAggregate() {
         ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(List.of(new MaintenanceStat(1.0)));
-        controller.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
+        controllerImpl.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
         ExpenseAggregate aggregate2 = controller.getAggregates(MaintenanceStat.class, ExpenseAggregate.class, 0, 0)
                 .get(0L);
         assertNotNull(aggregate2);

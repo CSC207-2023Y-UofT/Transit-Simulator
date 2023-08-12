@@ -3,7 +3,7 @@ package stats.timing;
 /**
  * An interface that represents a time index provider.
  */
-public interface TimeIndexProvider {
+public interface IndexingStrategy {
     /**
      * Get the current time index.
      *

@@ -139,7 +139,8 @@ public class TrackSegmentTest {
         trackSegment1.linkForward(trackSegment2);
         trackSegment2.linkForward(trackSegment3);
 
-        assert trackSegment1.getEndpoint(Direction.FORWARD) == trackSegment3;
+        assert trackSegment1.getEndpoint(Direction.FORWARD)
+                .orElse(null) == trackSegment3;
 
 
         trackSegment3.linkForward(trackSegment1);

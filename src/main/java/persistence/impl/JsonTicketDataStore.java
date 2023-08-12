@@ -144,15 +144,8 @@ public class JsonTicketDataStore implements TicketDataStore {
     // Inherited javadoc
     @Override
     public void cleanExpiredTickets() {
-        for (Ticket ticket : findAll()) {
-            long timeSinceCreation = System.currentTimeMillis() - ticket.getCreatedAt();
-            if (timeSinceCreation > 1000 * 60 * 60 * 24) {
-                delete(ticket.getId());
-                continue;
-            }
-            if (ticket.getExpiry() == -1) continue;
-            if (ticket.getExpiry() > System.currentTimeMillis()) continue;
-            delete(ticket.getId());
-        }
+        findAll().stream()
+                .filter(Ticket::isExpired)
+                .forEach(ticket -> delete(ticket.getId()));
     }
 }
