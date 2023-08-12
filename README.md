@@ -86,6 +86,9 @@ Group name: The BBC
 - [Matthew Lack](https://github.com/mattlack15 "Matt's GitHub page")
 - [Zoey Lee](https://github.com/zoeyzlee "Zoey's GitHub page")
 
+## code coverage ##
+
+<img width="699" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/ebee4905-6c4d-457d-8bc8-63046bc07b0f">
 
 ## License ##
 ***
