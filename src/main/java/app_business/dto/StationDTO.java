@@ -43,21 +43,21 @@ public class StationDTO {
     }
 
     /**
-     * Gets the lines that the station is on.
-     *
-     * @return The lines that the station is on.
-     */
-    public List<Integer> getLines() {
-        return lines;
-    }
-
-    /**
      * Gets the name of the station.
      *
      * @return The name of the station.
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Gets the lines that the station is on.
+     *
+     * @return The lines that the station is on.
+     */
+    public List<Integer> getLines() {
+        return lines;
     }
 
     /**

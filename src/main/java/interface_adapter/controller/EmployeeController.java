@@ -44,7 +44,7 @@ public class EmployeeController {
      * @return the employee
      */
     public EmployeeDTO registerEmployee(String name, EmployeeType type) {
-        return interactor.registerEmployee(name, type, interactor.idGenerator());  // idGenerator as default value 999999 from overloading
+        return interactor.registerEmployee(name, type, interactor.idGenerator());  // idGenerator has default value 999999 from overloading
     }
 
     /**

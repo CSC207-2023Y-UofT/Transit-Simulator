@@ -37,12 +37,6 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         return new File(directory, staffNumber + ".staff");
     }
 
-    /**
-     * Removes an employee from
-     *
-     * @param staffNumber The staff number of the employee to remove
-     * @throws IOException If an I/O error occurs
-     */
     // Java docs for the following methods are in the interface
     @Override
     public void delete(int staffNumber) {
@@ -55,16 +49,13 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
+    // Inherited javadoc
     @Override
     public void deleteAll() {
 
     }
 
-    /**
-     * Saves an employee
-     *
-     * @param employee The employee to save
-     */
+    // Inherited javadoc
     @Override
     public void save(Employee employee) {
         try {
@@ -82,13 +73,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
-    /**
-     * Gets an employee
-     *
-     * @param staffNumber The staff number of the employee to get
-     * @return The employee, or empty if the employee was not found
-     * @throws IOException If an I/O error occurs
-     */
+    // Inherited javadoc
     @Override
     public Optional<Employee> find(int staffNumber) {
         File file = getFile(staffNumber);
@@ -112,11 +97,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         }
     }
 
-    /**
-     * Gets all employees
-     *
-     * @return The list of all employees
-     */
+    // Inherited javadoc
     @Override
     public List<Employee> findAll() {
         File[] files = directory.listFiles();
@@ -134,6 +115,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         return employees;
     }
 
+    // Inherited javadoc
     @Override
     public boolean existsById(int id) {
         return DataStorage.getIO().exists(getFile(id));
