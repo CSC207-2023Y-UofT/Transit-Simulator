@@ -16,6 +16,7 @@ import java.util.Optional;
 /**
  * This class facilitates the storage and retrieval of ticket data in JSON format.
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class JsonTicketDataStore implements TicketDataStore {
 
     /**

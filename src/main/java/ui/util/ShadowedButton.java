@@ -59,9 +59,6 @@ public class ShadowedButton extends JButton {
         Color c = g.getColor();
         g.setColor(g.getColor().darker());
         Color colour = new Color(0, 0, 0, 40);
-        /**
-         * The thickness of the shadow.
-         */
         int shadowThickness = 6;
         for (int i = 0; i < shadowThickness; i++) {
             Color edited = new Color(

@@ -3,7 +3,6 @@ package app_business.dto;
 import app_business.common.EmployeeAssignment;
 import app_business.common.EmployeeType;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -34,7 +33,6 @@ public class EmployeeDTO {
      * Create a new EmployeeInfo object
      *
      * @param staffNumber The staff number of the employee
-     * @param name
      * @param type        The type of the employee
      * @param assignment  The assignment of the employee, if any
      */

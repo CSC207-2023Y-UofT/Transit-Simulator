@@ -31,10 +31,9 @@ public interface ITicketInteractor {
      * Activates a ticket
      *
      * @param ticketId The id of the ticket to activate
-     * @return The activated ticket, or empty if the ticket was not found
      * @apiNote This method will still return the bought ticket if it is already active
      */
-    Optional<TicketDTO> activateTicket(int ticketId);
+    void activateTicket(int ticketId);
 
     /**
      * Remove expired tickets.

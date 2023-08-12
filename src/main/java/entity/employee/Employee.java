@@ -41,7 +41,6 @@ public abstract class Employee implements Serializable {
      * all employee numbers should be 3 digits long.
      *
      * @param id   The unique staff number.
-     * @param name
      */
     public Employee(int id, String name) {
         this.staffNumber = id;

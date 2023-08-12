@@ -27,7 +27,9 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      */
     public FileEmployeeDataStore(File directory) {
         this.directory = directory;
-        directory.mkdirs();
+        if (!directory.mkdirs()) {
+            throw new RuntimeException("Could not create directory");
+        }
     }
 
     /**
@@ -41,7 +43,6 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      * Removes an employee from
      *
      * @param staffNumber The staff number of the employee to remove
-     * @throws IOException If an I/O error occurs
      */
     // Java docs for the following methods are in the interface
     @Override
@@ -86,7 +87,6 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
      *
      * @param staffNumber The staff number of the employee to get
      * @return The employee, or empty if the employee was not found
-     * @throws IOException If an I/O error occurs
      */
     @Override
     public Optional<Employee> find(int staffNumber) {

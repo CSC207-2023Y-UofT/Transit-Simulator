@@ -43,7 +43,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
      * @param directory The directory where the entry data files are stored.
      */
     public FileEntryDataStore(File directory) {
-        directory.mkdirs();
+        if (!directory.mkdirs()) {
+            throw new RuntimeException("Failed to create directory: " + directory);
+        }
         this.directory = directory;
     }
 
@@ -56,7 +58,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private File getFile(long index, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
-        classFolder.mkdirs();
+        if (!classFolder.mkdirs()) {
+            throw new RuntimeException("Failed to create directory: " + classFolder);
+        }
         return new File(classFolder, (index / pageSize) + ".stat");
     }
 
@@ -69,7 +73,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private File getPageFile(long page, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
-        classFolder.mkdirs();
+        if (!classFolder.mkdirs()) {
+            throw new RuntimeException("Failed to create directory: " + classFolder);
+        }
         return new File(classFolder, page + ".stat");
     }
 
@@ -134,7 +140,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
             byPage.put(page, pageIndices);
         }
 
-        Timing timing = new Timing("retrieve indexed");
+        Timing timing = new Timing();
         timing.start();
         timing.mark("Pages: " + byPage.keySet().size());
 

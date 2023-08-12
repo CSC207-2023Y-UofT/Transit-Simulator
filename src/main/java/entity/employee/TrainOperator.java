@@ -16,7 +16,6 @@ public class TrainOperator extends Employee {
 
     /**
      * Return the type of this employee.
-     * @return
      */
     @Override
     public EmployeeType getEmployeeType() {

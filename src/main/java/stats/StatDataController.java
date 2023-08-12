@@ -1,6 +1,5 @@
 package stats;
 
-import app_business.boundary.IStatInteractor;
 import persistence.boundary.StatAggregateDataStore;
 import persistence.boundary.StatEntryDataStore;
 import stats.aggregator.StatAggregator;
@@ -9,7 +8,6 @@ import stats.entry.StatEntry;
 import stats.timing.TimeIndexProvider;
 import util.Timing;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -195,7 +193,7 @@ public class StatDataController {  // Facade design pattern used!!!
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
 
-        Timing timing = new Timing("getOrAggregate");
+        Timing timing = new Timing();
         timing.start();
 
         // Get all of those aggregates

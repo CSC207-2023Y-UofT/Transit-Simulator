@@ -174,7 +174,7 @@ public class TrackSegment {
      */
     public Optional<TrackSegment> getEndpoint(Direction direction) {
         List<TrackSegment> next = getNextTrackSegments(direction);
-        if (next.isEmpty()) return Optional.empty();
+        if (next.isEmpty()) return Optional.of(this);
         int lastIndex = next.size() - 1;
         TrackSegment last = next.get(lastIndex);
         if (!last.isEndpoint(direction)) return Optional.empty();
@@ -238,10 +238,14 @@ public class TrackSegment {
      *                                         any amount of other tracks, i.e. if the track is not
      *                                         contained within the result of a call to
      *                                         {@link #getNextTrackSegments(Direction)}
-     *                                         with the same argument direction.
+     *                                         with the same argument direction, and is not equal to
+     *                                         this track itself.
      * @throws ConcurrentModificationException If the track structure is modified while this method is running.
      */
     public double distanceTo(TrackSegment other, Direction direction) {
+
+        if (other.equals(this)) return 0;
+
         List<TrackSegment> nextSegments = getNextTrackSegments(direction);
         Preconditions.checkArgument(
                 nextSegments.contains(other),

@@ -25,7 +25,9 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
      * @param directory The directory where the aggregated data files are stored.
      */
     public FileAggregateDataStore(File directory) {
-        directory.mkdirs();
+        if (!directory.mkdirs()) {
+            throw new RuntimeException("Failed to create directory: " + directory);
+        }
         this.directory = directory;
     }
 
@@ -72,9 +74,6 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
     }
 
     private long toPage(long index) {
-        /**
-         * The page size, i.e. the number of aggregates per file.
-         */
         int pageSize = 256;
         return index / pageSize;
     }

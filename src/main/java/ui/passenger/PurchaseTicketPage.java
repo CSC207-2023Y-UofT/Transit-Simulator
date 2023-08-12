@@ -9,8 +9,6 @@ import ui.util.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.function.Supplier;
 
 /**
@@ -47,25 +45,21 @@ public class PurchaseTicketPage extends JPanel {
             this.add(new JLabel("  "));
         }
 
-        /** The JLabel that displays the count of adult tickets. */
         JLabel adultCount = createCountLabel(() -> viewModel.count(TicketType.ADULT));
         JButton adultMinus = createMinusButton();
         JButton adultPlus = createPlusButton();
         createRow("Adult", adultMinus, adultPlus, adultCount, TicketType.ADULT);
 
-        /** The JLabel that displays the count of child tickets. */
         JLabel childCount = createCountLabel(() -> viewModel.count(TicketType.CHILD));
         JButton childMinus = createMinusButton();
         JButton childPlus = createPlusButton();
         createRow("Child", childMinus, childPlus, childCount, TicketType.CHILD);
 
-        /** The JLabel that displays the count of senior tickets. */
         JLabel seniorCount = createCountLabel(() -> viewModel.count(TicketType.SENIOR));
         JButton seniorMinus = createMinusButton();
         JButton seniorPlus = createPlusButton();
         createRow("Senior", seniorMinus, seniorPlus, seniorCount, TicketType.SENIOR);
 
-        /** The JLabel that displays the count of student tickets. */
         JLabel studentCount = createCountLabel(() -> viewModel.count(TicketType.STUDENT));
         JButton studentMinus = createMinusButton();
         JButton studentPlus = createPlusButton();
@@ -90,18 +84,14 @@ public class PurchaseTicketPage extends JPanel {
         cancelButton.setFont(new Font("Arial", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
         cancelButton.setBackground(new Color(172, 64, 58));
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // reset all the values
-                viewModel.reset();
-                repaint();
-            }
+        cancelButton.addActionListener(e -> {
+            // reset all the values
+            viewModel.reset();
+            repaint();
         });
         this.add(cancelButton);
 
         // Total cost label
-        /** The JLabel that displays the total cost of the tickets. */
         JLabel totalCostLabel = new SuppliedLabel(() -> "Total $" + String.format("%.2f", viewModel.getTotalCost()));
         totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);

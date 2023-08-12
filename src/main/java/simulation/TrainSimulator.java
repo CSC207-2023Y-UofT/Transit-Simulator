@@ -246,9 +246,6 @@ public class TrainSimulator {
 
         int numToAdd = (int) (noise * 10);
         for (int i = 0; i < numToAdd; i++) {
-            /**
-             * The maximum number of passengers that can be in the waiting list.
-             */
             int maxWaitingPassengers = 100;
             if (waitingPassengers.size() >= maxWaitingPassengers) {
                 break;

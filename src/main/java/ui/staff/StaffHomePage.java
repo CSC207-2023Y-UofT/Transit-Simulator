@@ -33,27 +33,19 @@ public class StaffHomePage extends JPanel {
     public StaffHomePage(UIController controller) {
         super(new BorderLayout());
 
-        /**
-         * The UIController that is used to control the UI.
-         */
-
         // Log in button
         JButton loginButton = new ShadowedButton("Log In");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setBackground(new Color(0, 151, 8));
         loginButton.setFont(new Font("Arial", Font.BOLD, 20));
-        loginButton.addActionListener(e -> {
-            controller.open(new LoginPage(controller));
-        });
+        loginButton.addActionListener(e -> controller.open(new LoginPage(controller)));
 
         // Back button
         JButton backButton = new ShadowedButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setBackground(new Color(255, 255, 255));
         backButton.setFont(new Font("Arial", Font.BOLD, 20));
-        backButton.addActionListener(e -> {
-            controller.open(new WelcomePage(controller));
-        });
+        backButton.addActionListener(e -> controller.open(new WelcomePage(controller)));
 
         // Add components to the panel
 

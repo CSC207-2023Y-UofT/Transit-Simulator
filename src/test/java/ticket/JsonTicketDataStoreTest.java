@@ -1,5 +1,8 @@
 package ticket;
 
+import app_business.interactor.TicketInteractor;
+import entity.model.control.TransitModel;
+import persistence.boundary.TicketDataStore;
 import persistence.impl.JsonTicketDataStore;
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
@@ -15,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JsonTicketDataStoreTest {
 
-    private static JsonTicketDataStore data;
+    private static TicketDataStore data;
     private static Ticket ticket;
 
     @BeforeAll
@@ -92,5 +95,14 @@ class JsonTicketDataStoreTest {
         data.cleanExpiredTickets();
 
         assertFalse(data.find(10).isPresent());
+    }
+
+    @Test
+    public void testDelete() {
+        Ticket ticket = new Ticket(1, TicketType.ADULT);
+        data.save(ticket);
+        assert data.existsById(1);
+        data.delete(1);
+        assert !data.existsById(1);
     }
 }

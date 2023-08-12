@@ -4,12 +4,7 @@ import entity.ticket.Ticket;
 import entity.ticket.TicketType;
 import org.junit.jupiter.api.Test;
 import stats.aggregate.RevenueAggregate;
-import stats.aggregate.SingletonAggregate;
-import stats.aggregate.ExpenseAggregate;
-import stats.aggregator.impl.ExpenseAggregator;
 import stats.aggregator.impl.RevenueAggregator;
-import stats.entry.impl.expense.ExpenseStat;
-import stats.entry.impl.expense.MaintenanceStat;
 import stats.entry.impl.revenue.RevenueStat;
 import stats.entry.impl.revenue.TicketSaleStat;
 

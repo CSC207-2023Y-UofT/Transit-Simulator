@@ -152,18 +152,12 @@ public class Management extends JPanel {
 
         ShadowPanel statPanel1 = new ShadowPanel(new BorderLayout());
         statPanel1.setExtraInset(10);
-        /**
-         * The JPanel that displays the revenue stats.
-         */
         StatsPanel statsPanel1 = new StatsPanel(controller);
         statsPanel1.getViewModel().setGraphColour(SingletonStatViewModel.GraphColour.GREEN);
         statPanel1.add(statsPanel1);
 
         ShadowPanel statPanel2 = new ShadowPanel(new BorderLayout());
         statPanel2.setExtraInset(10);
-        /**
-         * The JPanel that displays the expense stats.
-         */
         StatsPanel statsPanel2 = new StatsPanel(controller);
         statsPanel2.getViewModel().setGraphColour(SingletonStatViewModel.GraphColour.RED);
         statsPanel2.setDisplay(StatsPanel.StatDisplay.EXPENSES);

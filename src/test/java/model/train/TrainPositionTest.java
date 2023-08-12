@@ -33,9 +33,7 @@ public class TrainPositionTest {
 
     @Test
     public void testWithOffsetFirstPrecondition() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            trainPosition1.withOffset(-1);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> trainPosition1.withOffset(-1));
     }
 
     @Test
@@ -47,9 +45,7 @@ public class TrainPositionTest {
     @Test
     public void testConstructorFirstPrecondition() {
         TrackSegment track = new TrackSegment(null, "track", 100);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new TrainPosition(track, -1);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new TrainPosition(track, -1));
     }
 
     @Test
@@ -57,7 +53,7 @@ public class TrainPositionTest {
         TrainPosition trainPosition2 = new TrainPosition(track1, 50);
         Assertions.assertEquals(50, trainPosition2.trackEndOffset(Direction.FORWARD));
         Assertions.assertEquals(-50, trainPosition2.trackEndOffset(Direction.BACKWARD));
-        trainPosition2 = trainPosition2.move(1).get();
+        trainPosition2 = trainPosition2.move(1).orElseThrow();
         Assertions.assertEquals(49, trainPosition2.trackEndOffset(Direction.FORWARD));
         Assertions.assertEquals(-51, trainPosition2.trackEndOffset(Direction.BACKWARD));
     }
@@ -71,7 +67,7 @@ public class TrainPositionTest {
 
     @Test
     public void testMoveZero() {
-        TrainPosition trainPosition2 = trainPosition1.move(0).get();
+        TrainPosition trainPosition2 = trainPosition1.move(0).orElseThrow();
         Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
     }
 
@@ -91,7 +87,7 @@ public class TrainPositionTest {
         t1f.linkForward(s2f);
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
-        trainPosition2 = trainPosition2.move(10, false).get();
+        trainPosition2 = trainPosition2.move(10, false).orElseThrow();
         Assertions.assertEquals(10, trainPosition2.getPositionOnTrack());
         Assertions.assertSame(s1f, trainPosition2.getTrack());
         trainPosition2 = trainPosition2.move(100, false).get();
@@ -120,7 +116,7 @@ public class TrainPositionTest {
         Train trainForward = transitModel.createTrain(s2f, "trainForward", 120);
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
-        trainPosition2 = trainPosition2.move(150, false).get();
+        trainPosition2 = trainPosition2.move(150, false).orElseThrow();
         Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
         Assertions.assertSame(t1f, trainPosition2.getTrack());
         Assertions.assertFalse(trainPosition2.move(100, false).isPresent());

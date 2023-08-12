@@ -8,9 +8,6 @@ import java.util.Map;
  */
 public class Timing {
 
-    /** The name of the timing */
-    private final String name;
-
     /** Map of timings for each id */
     private final Map<String, Long> timings = new HashMap<>();
 
@@ -19,15 +16,6 @@ public class Timing {
 
     /** The current mark, or -1 if not started */
     private long mark = -1;
-
-    /**
-     * Creates a new timing with the given name
-     *
-     * @param name The name of the timing
-     */
-    public Timing(String name) {
-        this.name = name;
-    }
 
     /**
      * Starts the timing

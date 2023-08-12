@@ -10,8 +10,6 @@ import entity.model.train.TrainStatus;
 import entity.model.train.Train;
 import entity.model.train.TrainPosition;
 import entity.model.train.track.TrackSegment;
-import entity.employee.TrainOperator;
-import entity.employee.TrainEngineer;
 
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;

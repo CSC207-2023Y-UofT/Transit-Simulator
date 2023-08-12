@@ -7,8 +7,6 @@ import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
 
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -87,17 +85,14 @@ public class OperatorMaintenance extends JPanel {
         // Ensure only checkboxes can be edited
         table.setDefaultEditor(Object.class, null);
 
-        model.addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                int row = e.getFirstRow();
-                int column = e.getColumn();
-                if (column == 1) {
-                    String trainName = (String) model.getValueAt(row, 0);
-                    boolean needsMaintenance = (boolean) model.getValueAt(row, 1);
-                    maintenanceViewModel.setNeedsMaintenance(trainName, needsMaintenance);
-                    updateTable();
-                }
+        model.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (column == 1) {
+                String trainName = (String) model.getValueAt(row, 0);
+                boolean needsMaintenance = (boolean) model.getValueAt(row, 1);
+                maintenanceViewModel.setNeedsMaintenance(trainName, needsMaintenance);
+                updateTable();
             }
         });
 

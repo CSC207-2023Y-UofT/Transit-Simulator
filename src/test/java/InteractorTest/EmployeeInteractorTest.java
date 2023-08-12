@@ -5,25 +5,17 @@ import app_business.dto.EmployeeDTO;
 import app_business.interactor.EmployeeInteractor;
 import entity.employee.*;
 import entity.model.control.TransitModel;
-import entity.model.train.Train;
-import entity.model.train.TrainPosition;
 import entity.model.train.TrainRole;
-import entity.model.train.repo.TrackRepo;
 import entity.model.train.repo.impl.MemoryTrackRepo;
 import entity.model.train.track.TrackSegment;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
-import persistence.DataStorage;
-import persistence.boundary.EmployeeDataStore;
 import persistence.impl.MemoryEmployeeDataStore;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import java.io.IOException;
 
 public class EmployeeInteractorTest {
     @Test
@@ -144,7 +136,6 @@ public class EmployeeInteractorTest {
         track.saveEmployee(juan);
         track.saveEmployee(doug);
         EmployeeAssignment assignJuan = new EmployeeAssignment("IC580", TrainRole.OPERATOR);
-        EmployeeAssignment assignDoug = new EmployeeAssignment("IC580", TrainRole.ENGINEER);
         EmployeeDTO juandto = new EmployeeDTO(10, "Juan", EmployeeType.OPERATOR, assignJuan);
         Assert.assertEquals(juandto, interact.toDTO(juan));
     }

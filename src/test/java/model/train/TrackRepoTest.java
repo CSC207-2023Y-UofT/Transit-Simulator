@@ -39,16 +39,12 @@ public class TrackRepoTest {
 
     @Test
     public void testAddTrackFirstPrecondition() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            basicTrackRepo1.addTrack(trackSegment1);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> basicTrackRepo1.addTrack(trackSegment1));
     }
 
     @Test
     public void testAddTrackSecondPrecondition() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            basicTrackRepo1.addTrack(trackSegment2);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> basicTrackRepo1.addTrack(trackSegment2));
     }
 
     @Test

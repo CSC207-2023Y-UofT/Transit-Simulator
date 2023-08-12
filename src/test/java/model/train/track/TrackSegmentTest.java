@@ -3,6 +3,7 @@ package model.train.track;
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 
+import entity.model.train.repo.impl.MemoryTrackRepo;
 import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -107,6 +108,41 @@ public class TrackSegmentTest {
         TrackSegment.unlink(trackSegment1, trackSegment2);
         Assertions.assertNull(trackSegment1.getNext());
         Assertions.assertNull(trackSegment2.getPrev());
+    }
+
+    @Test
+    public void testDistance() {
+
+        MemoryTrackRepo trackRepo = new MemoryTrackRepo();
+        TrackSegment trackSegment1 = new TrackSegment(trackRepo, "trackSegment1", 100);
+        TrackSegment trackSegment2 = new TrackSegment(trackRepo, "trackSegment2", 100);
+        TrackSegment trackSegment3 = new TrackSegment(trackRepo, "trackSegment3", 100);
+
+        trackSegment1.linkForward(trackSegment2);
+        trackSegment2.linkForward(trackSegment3);
+        trackSegment3.linkForward(trackSegment1);
+
+        assert trackSegment1.distanceTo(trackSegment2) == 0;
+        assert trackSegment1.distanceTo(trackSegment3) == 100;
+        assert trackSegment1.distanceTo(trackSegment1) == 0;
+        assert trackSegment1.distanceTo(trackSegment3, Direction.BACKWARD) == 0;
+        assert trackSegment1.distanceTo(trackSegment2, Direction.BACKWARD) == 100;
+    }
+
+    @Test
+    public void testGetEndpoint() {
+        MemoryTrackRepo trackRepo = new MemoryTrackRepo();
+        TrackSegment trackSegment1 = new TrackSegment(trackRepo, "trackSegment1", 100);
+        TrackSegment trackSegment2 = new TrackSegment(trackRepo, "trackSegment2", 100);
+        TrackSegment trackSegment3 = new TrackSegment(trackRepo, "trackSegment3", 100);
+
+        trackSegment1.linkForward(trackSegment2);
+        trackSegment2.linkForward(trackSegment3);
+
+        assert trackSegment1.getEndpoint(Direction.FORWARD) == trackSegment3;
+
+
+        trackSegment3.linkForward(trackSegment1);
     }
 
     @DisplayName("TrackSegmentTest Class Teardown")

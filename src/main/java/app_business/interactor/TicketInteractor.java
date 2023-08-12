@@ -85,20 +85,22 @@ public class TicketInteractor implements ITicketInteractor {
      * Activates a specific ticket by its ID.
      *
      * @param ticketId The ID of the ticket to activate.
-     * @return An optional {@link TicketDTO} containing updated ticket details, if successful.
      */
     @Override
-    public Optional<TicketDTO> activateTicket(int ticketId) {
+    public void activateTicket(int ticketId) {
         Ticket ticket = dataStore.find(ticketId).orElse(null);
-        if (ticket == null) return Optional.empty();
-        if (ticket.isActivated()) return Optional.of(toDTO(ticket));
+        if (ticket == null) return;
+        if (ticket.isActivated()) {
+            toDTO(ticket);
+            return;
+        }
         ticket.activate();
         dataStore.save(ticket);
-        return Optional.of(new TicketDTO(ticket.getPrice(),
+        new TicketDTO(ticket.getPrice(),
                 ticket.getType(),
                 ticket.getId(),
                 ticket.isActivated(),
-                ticket.getExpiry()));
+                ticket.getExpiry());
     }
 
     /**
