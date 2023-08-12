@@ -177,4 +177,24 @@ public class SingletonStatViewModel {
     private Color setAlpha(Color color, int alpha) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
+
+    /**
+     * Retrieves the data that the graph will display.
+     *
+     * @return A list of aggregates representing the data to be displayed on the graph.
+     */
+    public List<? extends SingletonAggregate<? extends Number>> getAggregates() {
+        return aggregates;
+    }
+
+    /**
+     * Retrieves the current colour of the graph.
+     *
+     * @return The {@link GraphColour} representing the colour of the graph.
+     */
+    public GraphColour getGraphColour() {
+        return graphColour;
+    }
+
+
 }
