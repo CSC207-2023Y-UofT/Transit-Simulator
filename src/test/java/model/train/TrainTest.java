@@ -46,12 +46,12 @@ public class TrainTest {
         NodeLineProfile l1s3 = station3.createLineProfile(1);
 
         // Create the tracks
-        TrackSegment t1f = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-for", 100);
-        TrackSegment t2f = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-for", 100);
-        TrackSegment t3f = new TrackSegment(transitModel.getTrackRepo(), "l1-s3-for", 100);
-        TrackSegment t1b = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-back", 100);
-        TrackSegment t2b = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-back", 100);
-        TrackSegment t3b = new TrackSegment(transitModel.getTrackRepo(), "l1-s3-back", 100);
+        TrackSegment t1f = new TrackSegment(transitModel.getTrackRepo(), "t1f", 100);
+        TrackSegment t2f = new TrackSegment(transitModel.getTrackRepo(), "t2f", 100);
+        TrackSegment t3f = new TrackSegment(transitModel.getTrackRepo(), "t3f", 100);
+        TrackSegment t1b = new TrackSegment(transitModel.getTrackRepo(), "t1b", 100);
+        TrackSegment t2b = new TrackSegment(transitModel.getTrackRepo(), "t2b", 100);
+        TrackSegment t3b = new TrackSegment(transitModel.getTrackRepo(), "t3b", 100);
 
         // Add the tracks to the repo
         transitModel.getTrackRepo().addTrack(t1f);
