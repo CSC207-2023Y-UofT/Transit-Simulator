@@ -90,10 +90,7 @@ public class TicketInteractor implements ITicketInteractor {
     public void activateTicket(int ticketId) {
         Ticket ticket = dataStore.find(ticketId).orElse(null);
         if (ticket == null) return;
-        if (ticket.isActivated()) {
-            toDTO(ticket);
-            return;
-        }
+        if (ticket.isActivated()) return;
         ticket.activate();
         dataStore.save(ticket);
         new TicketDTO(ticket.getPrice(),
