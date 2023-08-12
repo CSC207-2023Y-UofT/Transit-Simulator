@@ -10,6 +10,7 @@ import app_business.dto.EmployeeDTO;
 import entity.model.train.TrainRole;
 import interface_adapter.controller.EmployeeController;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -36,7 +37,7 @@ public class RouteViewModelTest {
         EmployeeDTO employeeDTO = new EmployeeDTO(1, "John", EmployeeType.OPERATOR, assignment);
         routeViewModel = new RouteViewModel(employeeDTO, employeeControllerMock);
 
-        when(employeeControllerMock.byAssignment("TrainX")).thenReturn(Arrays.asList(employeeDTO));
+        when(employeeControllerMock.byAssignment("TrainX")).thenReturn(List.of(employeeDTO));
 
         assertEquals("You are assigned to TrainX as OPERATOR with no one", routeViewModel.getWhatToSay());
     }

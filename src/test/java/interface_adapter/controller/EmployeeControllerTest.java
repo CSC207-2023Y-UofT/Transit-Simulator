@@ -143,7 +143,7 @@ public class EmployeeControllerTest {
 
 
 
-    public class MockEmployeeInteractor implements IEmployeeInteractor {
+    public static class MockEmployeeInteractor implements IEmployeeInteractor {
         private final Map<Integer, EmployeeDTO> employeeDatabase = new HashMap<>();
         private final Map<Integer, String> employeeAssignments = new HashMap<>();
 

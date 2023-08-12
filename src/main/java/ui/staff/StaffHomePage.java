@@ -33,10 +33,6 @@ public class StaffHomePage extends JPanel {
     public StaffHomePage(UIController controller) {
         super(new BorderLayout());
 
-        /**
-         * The UIController that is used to control the UI.
-         */
-
         // Log in button
         JButton loginButton = new ShadowedButton("Log In");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);

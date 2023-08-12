@@ -11,6 +11,8 @@ import entity.model.train.track.TrackSegment;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Optional;
+
 public class TrainPositionTest {
     public static TrackSegment track1;
     public static TrainPosition trainPosition1;
@@ -57,6 +59,7 @@ public class TrainPositionTest {
         TrainPosition trainPosition2 = new TrainPosition(track1, 50);
         Assertions.assertEquals(50, trainPosition2.trackEndOffset(Direction.FORWARD));
         Assertions.assertEquals(-50, trainPosition2.trackEndOffset(Direction.BACKWARD));
+        Assertions.assertTrue(trainPosition2.move(1).isPresent());
         trainPosition2 = trainPosition2.move(1).get();
         Assertions.assertEquals(49, trainPosition2.trackEndOffset(Direction.FORWARD));
         Assertions.assertEquals(-51, trainPosition2.trackEndOffset(Direction.BACKWARD));
@@ -71,7 +74,9 @@ public class TrainPositionTest {
 
     @Test
     public void testMoveZero() {
-        TrainPosition trainPosition2 = trainPosition1.move(0).get();
+        Optional<TrainPosition> testVariable = trainPosition1.move(0);
+        Assertions.assertTrue(testVariable.isPresent());
+        TrainPosition trainPosition2 = testVariable.get();
         Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
     }
 
