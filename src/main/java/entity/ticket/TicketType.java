@@ -1,7 +1,7 @@
 package entity.ticket;
 
 /**
- * Represents the different ticket types
+ * Represents the different ticket types. Can be CHILD, ADULT, STUDENT or SENIOR.
  */
 public enum TicketType {
 

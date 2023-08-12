@@ -25,7 +25,7 @@ public interface ITrainInteractor {
      * @return The state of the next train in the given direction
      * @see TrainDTO
      */
-    List<TrainDTO> getTrains();
+    List<TrainDTO> getTrains();  // TODO javadoc inconsistent with TrainInteractor.java
 
     /**
      * Sets the needs maintenance flag of a train

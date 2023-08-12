@@ -20,9 +20,7 @@ public class TicketPage {
      * @param viewModels the list of ticket view models to be displayed
      */
     public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
-        /** The controller used to switch pages. */
 
-        /** Main frame of the ticket page. */
         JFrame frame = new JFrame("Train Tickets");
         frame.setLayout(new GridLayout(3, 4));
         frame.setPreferredSize(new Dimension(1100, 800));
@@ -35,7 +33,6 @@ public class TicketPage {
             }
 
             TicketViewModel viewModel = viewModels.get(i);
-            /** Panel to represent a single ticket. */
             JPanel panel = new TicketPanel(controller, viewModel);
             frame.add(panel);
         }
