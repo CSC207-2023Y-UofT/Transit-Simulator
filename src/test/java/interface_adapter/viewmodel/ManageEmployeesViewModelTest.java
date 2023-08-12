@@ -34,6 +34,7 @@ public class ManageEmployeesViewModelTest {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);  // Initialization for Mockito in JUnit 5
+        reset(controller);
     }
 
     @Test
@@ -43,6 +44,8 @@ public class ManageEmployeesViewModelTest {
         Object[][] result = viewModel.getTableData();
 
         assertEquals(0, result.length);
+
+        verify(controller, times(1)).getEmployees();
     }
 
     @Test
@@ -63,6 +66,8 @@ public class ManageEmployeesViewModelTest {
         assertEquals("Bob", result[1][0]);
         assertEquals(EmployeeType.ENGINEER, result[1][1]);
         assertEquals(TrainRole.OPERATOR + " on Train 1", result[1][3].toString());
+
+        verify(controller, times(1)).getEmployees();
     }
 
     @Test
@@ -73,6 +78,7 @@ public class ManageEmployeesViewModelTest {
         );
         when(controller.getEmployees()).thenReturn(mockEmployees);
 
+
         Object[][] result = viewModel.getTableData();
 
         assertEquals("Charlie", result[0][0]);
@@ -82,5 +88,7 @@ public class ManageEmployeesViewModelTest {
         assertEquals("David", result[1][0]);
         assertEquals(EmployeeType.OPERATOR, result[1][1]);
         assertNull(result[1][3]);
+
+        verify(controller, times(1)).getEmployees();
     }
 }
