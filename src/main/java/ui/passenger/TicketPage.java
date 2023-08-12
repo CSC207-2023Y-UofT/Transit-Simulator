@@ -13,15 +13,6 @@ import java.util.List;
  */
 public class TicketPage {
 
-    /** The controller used to switch pages. */
-    private final UIController controller;
-
-    /** Main frame of the ticket page. */
-    private final JFrame frame;
-
-    /** Panel to represent a single ticket. */
-    private JPanel panel;
-
     /**
      * Constructs a new TicketPage with the given UIController and list of ticket view models.
      *
@@ -29,9 +20,8 @@ public class TicketPage {
      * @param viewModels the list of ticket view models to be displayed
      */
     public TicketPage(UIController controller, List<TicketViewModel> viewModels) {
-        this.controller = controller;
 
-        frame = new JFrame("Train Tickets");
+        JFrame frame = new JFrame("Train Tickets");
         frame.setLayout(new GridLayout(3, 4));
         frame.setPreferredSize(new Dimension(1100, 800));
 
@@ -43,7 +33,7 @@ public class TicketPage {
             }
 
             TicketViewModel viewModel = viewModels.get(i);
-            panel = new TicketPanel(controller, viewModel);
+            JPanel panel = new TicketPanel(controller, viewModel);
             frame.add(panel);
         }
 

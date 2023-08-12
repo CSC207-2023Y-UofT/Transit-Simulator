@@ -35,7 +35,8 @@ public class TicketControllerTest {
 
     @Test
     public void testActivateTicket() {
-        Optional<TicketDTO> ticket = ticketController.activateTicket(123);
+        ticketController.activateTicket(123);
+        Optional<TicketDTO> ticket = ticketController.getTicket(123);
 
         Assertions.assertTrue(ticket.isPresent());
         Assertions.assertTrue(ticket.get().isActivated());

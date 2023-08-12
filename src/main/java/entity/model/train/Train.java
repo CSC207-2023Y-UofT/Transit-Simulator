@@ -23,12 +23,12 @@ public class Train {
     /**
      * The maximum length of the train in meters.
      */
-    public static int LENGTH = 100;
+    public static final int LENGTH = 100;
 
     /**
      * The maximum speed of the train in meters per second. This is approximately 115 km/h.
      */
-    public static double MAX_SPEED = 45;
+    public static final double MAX_SPEED = 45;
 
     /**
      * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
@@ -131,19 +131,18 @@ public class Train {
      * Directly removes and returns the specified passenger from this train.
      *
      * @param passenger The passenger to remove.
-     * @return true if the passenger was removed, false if the passenger was not on this train.
      */
-    public boolean removePassenger(Passenger passenger) {
-        return passengerList.remove(passenger);
+    public void removePassenger(Passenger passenger) {
+        passengerList.remove(passenger);
     }
 
 
     /**
-     * Get the transit tracker that this train is associated with.
+     * Get the transit model that this train is associated with.
      *
-     * @return the TransitTracker that this train is associated with
+     * @return the TransitModel that this train is associated with
      */
-    public TransitModel getTransitTracker() {
+    public TransitModel getTransitModel() {
         return transitModel;
     }
 
@@ -249,20 +248,18 @@ public class Train {
      *
      * @param direction The direction to move the train.
      * @param amount    The amount to move the train by.
-     * @return true if the train was moved, false if the train could not be moved.
      */
-    public boolean move(Direction direction, double amount) {
+    public void move(Direction direction, double amount) {
         Preconditions.checkArgument(amount >= 0, "amount must be non-negative");
         amount = amount * direction.getMultiplier();
 
         TrainPosition movedPosition = position.move(amount, false)
                 .orElse(null);
 
-        if (movedPosition == null) return false;
+        if (movedPosition == null) return;
 
         // Then move the train
         setPosition(movedPosition);
 
-        return true;
     }
 }

@@ -21,8 +21,6 @@ public class EngineerMaintenance extends JPanel {
 
     private final MaintenanceViewModel maintenanceViewModel;
     private final DefaultTableModel model;
-    private final JTable table;
-    private final EmployeeDTO employeeDTO;
 
     /**
      * Constructs a new EngineerMaintenance object.
@@ -32,7 +30,6 @@ public class EngineerMaintenance extends JPanel {
     public EngineerMaintenance(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
-        this.employeeDTO = employeeDTO;
         this.maintenanceViewModel = new MaintenanceViewModel(controller.getControllerPool().getTrainController());
 
         // Top panel
@@ -76,7 +73,7 @@ public class EngineerMaintenance extends JPanel {
         };
 
         // Create table with our table model and set table properties
-        table = new JTable(model);
+        JTable table = new JTable(model);
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
         table.setGridColor(Color.DARK_GRAY);

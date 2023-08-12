@@ -16,11 +16,12 @@ public class TrainEngineer extends Employee {
 
     /**
      * Constructs a new TrainEngineer object with the given employee number.
+     * All employee numbers should be 3 digits long.
      *
-     * @param num The unique employee number.
+     * @param id is an Integer
      */
-    public TrainEngineer(int num, String name) {
-        super(num, name);
+    public TrainEngineer(int id, String name) {
+        super(id, name);
     }
 
     /**

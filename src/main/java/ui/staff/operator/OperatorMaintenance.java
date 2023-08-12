@@ -21,9 +21,7 @@ import java.awt.*;
  */
 public class OperatorMaintenance extends JPanel {
 
-    private final EmployeeDTO employeeDTO;
     private final MaintenanceViewModel maintenanceViewModel;
-    private final JTable table;
     private final DefaultTableModel model;
 
     /**
@@ -34,7 +32,6 @@ public class OperatorMaintenance extends JPanel {
     public OperatorMaintenance(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
-        this.employeeDTO = employeeDTO;
         this.maintenanceViewModel = new MaintenanceViewModel(controller.getControllerPool().getTrainController());
 
         // Top panel
@@ -79,7 +76,7 @@ public class OperatorMaintenance extends JPanel {
         };
 
         // Create table with our table model and set table properties
-        table = new JTable(model);
+        JTable table = new JTable(model);
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
         table.setGridColor(Color.DARK_GRAY);

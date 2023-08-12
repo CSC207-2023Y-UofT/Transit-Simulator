@@ -12,14 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AdminTest {
 
     private static Admin admin;
-    private static Employee employee1;
-    private static Employee employee2;
 
     @BeforeAll
     public static void setUp() {
         admin = new Admin(100, "");
-        employee1 = new TrainOperator(101, "");
-        employee2 = new TrainOperator(102, "");
+        Employee employee1 = new TrainOperator(101, "");
+        Employee employee2 = new TrainOperator(102, "");
     }
 
     @Test

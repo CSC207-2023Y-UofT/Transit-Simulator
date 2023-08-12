@@ -22,7 +22,7 @@ public enum TicketType {
      * @param price the price of the ticket
      * @param lifetime the lifetime of the ticket in milliseconds
      */
-    TicketType(double price, long lifetime) {
+    TicketType(double price, @SuppressWarnings("SameParameterValue") long lifetime) {
         this.price = price;
         this.lifetime = lifetime;
     }

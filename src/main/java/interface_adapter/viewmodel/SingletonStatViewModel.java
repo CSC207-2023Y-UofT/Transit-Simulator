@@ -1,7 +1,6 @@
 package interface_adapter.viewmodel;
 
 import stats.aggregate.SingletonAggregate;
-import ui.UIController;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -89,13 +88,12 @@ public class SingletonStatViewModel {
     /**
      * Draws the graph.
      *
-     * @param controller The UIController to draw the graph on.
      * @param display The display to draw the graph on.
      * @param g The graphics to draw the graph with.
      * @param width The width of the graph.
      * @param height The height of the graph.
      */
-    public void draw(UIController controller, String display, Graphics2D g, int width, int height) {
+    public void draw(String display, Graphics2D g, int width, int height) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 

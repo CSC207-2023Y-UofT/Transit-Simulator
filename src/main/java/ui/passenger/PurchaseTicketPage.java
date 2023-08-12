@@ -21,21 +21,6 @@ import java.util.function.Supplier;
  */
 public class PurchaseTicketPage extends JPanel {
 
-    /** The JLabel that displays the count of adult tickets. */
-    private final JLabel adultCount;
-
-    /** The JLabel that displays the count of child tickets. */
-    private final JLabel childCount;
-
-    /** The JLabel that displays the count of senior tickets. */
-    private final JLabel seniorCount;
-
-    /** The JLabel that displays the count of student tickets. */
-    private final JLabel studentCount;
-
-    /** The JLabel that displays the total cost of the tickets. */
-    private final JLabel totalCostLabel;
-
     /** The JButton to buy tickets. */
     private final JButton buyButton;
 
@@ -62,22 +47,26 @@ public class PurchaseTicketPage extends JPanel {
             this.add(new JLabel("  "));
         }
 
-        adultCount = createCountLabel(() -> viewModel.count(TicketType.ADULT));
+        /** The JLabel that displays the count of adult tickets. */
+        JLabel adultCount = createCountLabel(() -> viewModel.count(TicketType.ADULT));
         JButton adultMinus = createMinusButton();
         JButton adultPlus = createPlusButton();
         createRow("Adult", adultMinus, adultPlus, adultCount, TicketType.ADULT);
 
-        childCount = createCountLabel(() -> viewModel.count(TicketType.CHILD));
+        /** The JLabel that displays the count of child tickets. */
+        JLabel childCount = createCountLabel(() -> viewModel.count(TicketType.CHILD));
         JButton childMinus = createMinusButton();
         JButton childPlus = createPlusButton();
         createRow("Child", childMinus, childPlus, childCount, TicketType.CHILD);
 
-        seniorCount = createCountLabel(() -> viewModel.count(TicketType.SENIOR));
+        /** The JLabel that displays the count of senior tickets. */
+        JLabel seniorCount = createCountLabel(() -> viewModel.count(TicketType.SENIOR));
         JButton seniorMinus = createMinusButton();
         JButton seniorPlus = createPlusButton();
         createRow("Senior", seniorMinus, seniorPlus, seniorCount, TicketType.SENIOR);
 
-        studentCount = createCountLabel(() -> viewModel.count(TicketType.STUDENT));
+        /** The JLabel that displays the count of student tickets. */
+        JLabel studentCount = createCountLabel(() -> viewModel.count(TicketType.STUDENT));
         JButton studentMinus = createMinusButton();
         JButton studentPlus = createPlusButton();
         createRow("Student", studentMinus, studentPlus, studentCount, TicketType.STUDENT);
@@ -112,7 +101,8 @@ public class PurchaseTicketPage extends JPanel {
         this.add(cancelButton);
 
         // Total cost label
-        totalCostLabel = new SuppliedLabel(() -> "Total $" + String.format("%.2f", viewModel.getTotalCost()));
+        /** The JLabel that displays the total cost of the tickets. */
+        JLabel totalCostLabel = new SuppliedLabel(() -> "Total $" + String.format("%.2f", viewModel.getTotalCost()));
         totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
         totalCostLabel.setOpaque(true);
@@ -209,15 +199,6 @@ public class PurchaseTicketPage extends JPanel {
         this.add(minusButton);
         this.add(countLabel);
         this.add(plusButton);
-    }
-
-    /**
-     * Gets the total cost of the tickets.
-     *
-     * @return the total cost
-     */
-    public double getTotalCost() {
-        return viewModel.getTotalCost();
     }
 
 }

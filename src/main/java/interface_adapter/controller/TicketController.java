@@ -35,11 +35,11 @@ public class TicketController {
 
     /**
      * Activates a ticket
+     *
      * @param ticketId The id of the ticket to activate
-     * @return The activated ticket, or empty if the ticket was not found
      */
-    public Optional<TicketDTO> activateTicket(int ticketId) {
-        return interactor.activateTicket(ticketId);
+    public void activateTicket(int ticketId) {
+        interactor.activateTicket(ticketId);
     }
 
     /**

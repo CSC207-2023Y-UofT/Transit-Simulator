@@ -66,15 +66,6 @@ public class UIController {
     }
 
     /**
-     * Returns the main screen.
-     *
-     * @return the main screen
-     */
-    public MainScreen getMainScreen() {
-        return mainScreen;
-    }
-
-    /**
      * Opens the given panel.
      *
      * @param panel the panel to open

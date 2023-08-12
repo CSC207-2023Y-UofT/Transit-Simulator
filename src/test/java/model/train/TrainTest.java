@@ -10,8 +10,6 @@ import entity.model.train.TrainStatus;
 import entity.model.train.Train;
 import entity.model.train.TrainPosition;
 import entity.model.train.track.TrackSegment;
-import entity.employee.TrainOperator;
-import entity.employee.TrainEngineer;
 
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
@@ -24,8 +22,6 @@ public class TrainTest {
     private static TransitModel transitModel;
     private static Train trainForwards;
     private static Train trainBackwards;
-    private static TrainOperator operator;
-    private static TrainEngineer engineer;
 
     @DisplayName("TrainTest Class Setup")
     @BeforeAll
@@ -50,12 +46,12 @@ public class TrainTest {
         NodeLineProfile l1s3 = station3.createLineProfile(1);
 
         // Create the tracks
-        TrackSegment t1f = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-for", 100);
-        TrackSegment t2f = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-for", 100);
-        TrackSegment t3f = new TrackSegment(transitModel.getTrackRepo(), "l1-s3-for", 100);
-        TrackSegment t1b = new TrackSegment(transitModel.getTrackRepo(), "l1-s1-back", 100);
-        TrackSegment t2b = new TrackSegment(transitModel.getTrackRepo(), "l1-s2-back", 100);
-        TrackSegment t3b = new TrackSegment(transitModel.getTrackRepo(), "l1-s3-back", 100);
+        TrackSegment t1f = new TrackSegment(transitModel.getTrackRepo(), "t1f", 100);
+        TrackSegment t2f = new TrackSegment(transitModel.getTrackRepo(), "t2f", 100);
+        TrackSegment t3f = new TrackSegment(transitModel.getTrackRepo(), "t3f", 100);
+        TrackSegment t1b = new TrackSegment(transitModel.getTrackRepo(), "t1b", 100);
+        TrackSegment t2b = new TrackSegment(transitModel.getTrackRepo(), "t2b", 100);
+        TrackSegment t3b = new TrackSegment(transitModel.getTrackRepo(), "t3b", 100);
 
         // Add the tracks to the repo
         transitModel.getTrackRepo().addTrack(t1f);
@@ -98,17 +94,14 @@ public class TrainTest {
         trainForwards = transitModel.createTrain(s1f, "tf", 120);
         trainBackwards = transitModel.createTrain(s1b, "tb", 120);
 
-        // Create the employees
-        operator = new TrainOperator(0, "");
-        engineer = new TrainEngineer(1, "");
     }
 
     // Begin testing
 
     @Test
     public void testGetTransitModel() {
-        Assertions.assertSame(transitModel, trainForwards.getTransitTracker());
-        Assertions.assertSame(transitModel, trainBackwards.getTransitTracker());
+        Assertions.assertSame(transitModel, trainForwards.getTransitModel());
+        Assertions.assertSame(transitModel, trainBackwards.getTransitModel());
     }
 
     @Test
@@ -186,7 +179,5 @@ public class TrainTest {
         transitModel = null;
         trainForwards = null;
         trainBackwards = null;
-        operator = null;
-        engineer = null;
     }
   }

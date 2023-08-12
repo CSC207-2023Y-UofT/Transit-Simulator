@@ -283,12 +283,4 @@ public class TransitMapViewModel {
         highlightedStation = optStation.get();
     }
 
-    /**
-     * Called when a station is clicked.
-     *
-     * @param station The station that was clicked.
-     */
-    protected void onClickStation(StationDTO station) {
-    }
-
 }

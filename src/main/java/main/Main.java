@@ -4,7 +4,7 @@ import entity.employee.Admin;
 import entity.employee.EmployeeTracker;
 import entity.employee.TrainEngineer;
 import entity.employee.TrainOperator;
-import persistence.boundary.EmployeeDataStore;
+import persistence.boundary.*;
 import persistence.impl.FileEmployeeDataStore;
 import app_business.interactor.EmployeeInteractor;
 import app_business.interactor.StatInteractor;
@@ -17,13 +17,10 @@ import persistence.impl.JsonModelDataStore;
 import main.pool.InteractorPool;
 import persistence.DataStorage;
 import simulation.Simulation;
-import persistence.boundary.StatAggregateDataStore;
 import stats.StatDataController;
-import persistence.boundary.StatEntryDataStore;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
 import persistence.impl.JsonTicketDataStore;
-import persistence.boundary.TicketDataStore;
 import stats.timing.BasicTimeIndexProvider;
 import stats.timing.TimeIndexProvider;
 import ui.UIController;
@@ -65,7 +62,7 @@ public class Main {
         );
 
         // Create the model
-        JsonModelDataStore dataStore = new JsonModelDataStore(file);
+        ModelDataStore dataStore = new JsonModelDataStore(file);
         TransitModel model = dataStore.readModel();
 
         // Stat data storage

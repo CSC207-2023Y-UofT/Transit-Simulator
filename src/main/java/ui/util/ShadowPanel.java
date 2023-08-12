@@ -16,20 +16,10 @@ public class ShadowPanel extends JPanel {
     /**
      * Constructs a new ShadowPanel object with the given LayoutManager.
      *
-     * @param layoutManager the LayoutManager that is used to layout the components
+     * @param layoutManager the LayoutManager that is used to lay out the components
      */
     public ShadowPanel(LayoutManager layoutManager) {
         super(layoutManager);
-        setBackground(new Color(0, 0, 0, 0));
-        shadowBorder = new ShadowBorder();
-        setBorder(shadowBorder);
-    }
-
-    /**
-     * Constructs a new ShadowPanel object with the default FlowLayout.
-     */
-    public ShadowPanel() {
-        super();
         setBackground(new Color(0, 0, 0, 0));
         shadowBorder = new ShadowBorder();
         setBorder(shadowBorder);
@@ -47,7 +37,7 @@ public class ShadowPanel extends JPanel {
     /**
      * Sets the thickness of the shadow border.
      *
-     * @param thickness the thickeness of the shadow border.
+     * @param thickness the thickness of the shadow border.
      */
     public void setThickness(int thickness) {
         shadowBorder.setThickness(thickness);
