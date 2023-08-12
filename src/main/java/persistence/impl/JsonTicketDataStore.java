@@ -102,7 +102,11 @@ public class JsonTicketDataStore implements TicketDataStore {
     // Inherited javadoc
     @Override
     public void delete(int id) {
-        getFile(id).delete();
+        try {
+            Files.delete(getFile(id).toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

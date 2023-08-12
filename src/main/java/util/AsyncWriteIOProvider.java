@@ -27,11 +27,6 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         final UUID operationID = UUID.randomUUID();
 
         /**
-         * The file.
-         */
-        final File file;
-
-        /**
          * The data.
          */
         final byte[] data;
@@ -39,8 +34,7 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         /**
          * Constructs a new CachedFile with the given file and data.
          */
-        CachedFile(File file, byte[] data) {
-            this.file = file;
+        CachedFile(byte[] data) {
             this.data = data;
         }
     }
@@ -67,7 +61,7 @@ public class AsyncWriteIOProvider implements FileIOProvider {
     private static UUID writeCache(File file, byte[] data) {
         LOCK.lock();
         try {
-            CachedFile cachedFile = new CachedFile(file, data);
+            CachedFile cachedFile = new CachedFile(data);
             CACHE.put(file, cachedFile);
             return cachedFile.operationID;
         } finally {

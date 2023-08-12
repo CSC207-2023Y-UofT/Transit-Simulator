@@ -52,14 +52,4 @@ public class Timing {
         mark = now;
     }
 
-    /**
-     * Prints the timing to stdout
-     */
-    public void print() {
-        System.out.println("Timing for " + name);
-        for (Map.Entry<String, Long> entry : timings.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue() + "ms (" + counts.get(entry.getKey()) + ")");
-        }
-    }
-
 }

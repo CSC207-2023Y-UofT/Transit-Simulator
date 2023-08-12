@@ -34,15 +34,6 @@ public class EmployeeTracker {
     }
 
     /**
-     * Removes the given Employee from the list of employees.
-     *
-     * @param employee The Employee object to be removed.
-     */
-    public void removeEmployee(Employee employee) {
-        dataStore.delete(employee.getStaffNumber());
-    }
-
-    /**
      * Removes the employee with the given staff number from the list of employees.
      *
      * @param staffNumber The staff number of the employee to be removed.

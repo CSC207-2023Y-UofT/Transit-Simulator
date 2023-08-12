@@ -16,8 +16,6 @@ public class AdminTest {
     @BeforeAll
     public static void setUp() {
         admin = new Admin(100, "");
-        Employee employee1 = new TrainOperator(101, "");
-        Employee employee2 = new TrainOperator(102, "");
     }
 
     @Test

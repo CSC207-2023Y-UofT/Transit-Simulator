@@ -31,11 +31,6 @@ public class Train {
     public static final double MAX_SPEED = 45;
 
     /**
-     * The waiting time in milliseconds at a station before the train departs. This is set to 20 seconds.
-     */
-    public static long STATION_WAIT_TIME = 1000 * 20; // 20 seconds
-
-    /**
      * The associated TransitTracker for this train.
      */
     private final TransitModel transitModel;

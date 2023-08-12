@@ -65,7 +65,6 @@ public class EmployeeInteractorTest {
     public void testAssignJob() {
         MemoryTrackRepo repo = new MemoryTrackRepo();
         TrackSegment segment = new TrackSegment(repo, "23", 10);
-        TrainPosition position = new TrainPosition(segment, 3);
         TransitModel transit = new TransitModel();
         transit.createTrain(segment, "ICE10151", 500);
         MemoryEmployeeDataStore data = new MemoryEmployeeDataStore();
@@ -147,7 +146,6 @@ public class EmployeeInteractorTest {
         EmployeeAssignment assignJuan = new EmployeeAssignment("IC580", TrainRole.OPERATOR);
         EmployeeAssignment assignDoug = new EmployeeAssignment("IC580", TrainRole.ENGINEER);
         EmployeeDTO juandto = new EmployeeDTO(10, "Juan", EmployeeType.OPERATOR, assignJuan);
-        EmployeeDTO dougdto = new EmployeeDTO(21, "Doug", EmployeeType.ENGINEER, assignDoug);
         Assert.assertEquals(juandto, interact.toDTO(juan));
     }
 }

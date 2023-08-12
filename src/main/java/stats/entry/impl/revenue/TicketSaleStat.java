@@ -30,15 +30,6 @@ public class TicketSaleStat implements RevenueStat {
     }
 
     /**
-     * Returns the type of the ticket for this statistic entry.
-     *
-     * @return The ticket type as a String.
-     */
-    public String getTicketType() {
-        return ticketType;
-    }
-
-    /**
      * Returns the price of the ticket, which represents the revenue.
      *
      * @return The price of the ticket as a double value.
