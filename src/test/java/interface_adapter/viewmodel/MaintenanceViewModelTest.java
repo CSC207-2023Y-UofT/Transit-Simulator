@@ -28,7 +28,7 @@ public class MaintenanceViewModelTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         viewModel = new MaintenanceViewModel(trainController);
     }
 

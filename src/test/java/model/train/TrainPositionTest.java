@@ -96,7 +96,9 @@ public class TrainPositionTest {
         t1f.linkForward(s2f);
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
-        trainPosition2 = trainPosition2.move(10, false).get();
+        var testVariable = trainPosition2.move(10, false);
+        Assertions.assertTrue(testVariable.isPresent());
+        trainPosition2 = testVariable.get();
         Assertions.assertEquals(10, trainPosition2.getPositionOnTrack());
         Assertions.assertSame(s1f, trainPosition2.getTrack());
         trainPosition2 = trainPosition2.move(100, false).get();
@@ -125,7 +127,9 @@ public class TrainPositionTest {
         Train trainForward = transitModel.createTrain(s2f, "trainForward", 120);
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
-        trainPosition2 = trainPosition2.move(150, false).get();
+        var testVariable = trainPosition2.move(150, false);
+        Assertions.assertTrue(testVariable.isPresent());
+        trainPosition2 = testVariable.get();
         Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
         Assertions.assertSame(t1f, trainPosition2.getTrack());
         Assertions.assertFalse(trainPosition2.move(100, false).isPresent());

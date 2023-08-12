@@ -45,7 +45,7 @@ As a customer:
 As staff:
 - Record statistics and display them in graphs that update in realtime.
 - Manage, add and remove staff across the system.
-- View which staff are working on which trains, their staff types, names, numbers.
+- View which staff are working on which trains, their staff types, name, numbers.
 
 ## Architecture ##
 ***

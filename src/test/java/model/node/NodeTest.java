@@ -47,6 +47,7 @@ public class NodeTest {
     @Test
     public void testGetTracker() {
         Assertions.assertSame(transitModel, station1.getTracker());
+        Assertions.assertSame(transitModel, station2.getTracker());
     }
 
     @Test

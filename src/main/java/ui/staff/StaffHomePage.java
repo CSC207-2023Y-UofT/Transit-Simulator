@@ -18,12 +18,10 @@ import java.awt.*;
  */
 public class StaffHomePage extends JPanel {
 
-// --Commented out by Inspection START (2023-08-11, 3:14 p.m.):
-//    /**
-//     * The JPanel that displays the map.
-//     */
-//    private MapPanel mapPanel;
-// --Commented out by Inspection STOP (2023-08-11, 3:14 p.m.)
+    /**
+     * The JPanel that displays the map.
+     */
+    private MapPanel mapPanel;
 
     /**
      * Constructs a new StaffHomePage with the given UIController.
@@ -60,7 +58,7 @@ public class StaffHomePage extends JPanel {
                 controller.getInteractorPool().getStationInteractor(),
                 controller.getInteractorPool().getTrainInteractor()
         );
-        MapPanel mapPanel = new MapPanel(presenter);
+        mapPanel = new MapPanel(presenter);
 
         JPanel marginPanel = new JPanel(new BorderLayout());
         ShadowPanel shadowPanel = new ShadowPanel(new BorderLayout());

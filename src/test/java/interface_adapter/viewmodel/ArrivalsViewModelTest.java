@@ -27,7 +27,7 @@ public class ArrivalsViewModelTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
 
         sampleStation = new StationDTO("Station 99", List.of(1, 2), 1, 2);
         viewModel = new ArrivalsViewModel(sampleStation, stationInteractor);
