@@ -22,6 +22,7 @@ public class StationInteractorTest {
     Node station2;
     Node station3;
     StationInteractor interactor;
+    @DisplayName("StationInteractorTest Class SetUp")
     @BeforeEach
     public void setUp() {
         model = new TransitModel();
