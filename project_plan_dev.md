@@ -87,7 +87,7 @@ must be reviewed and approved by other team members before merging.** :warning: 
 7. (Optional) If the feature is not completed or you want to continue working on the feature, you can reopen the issue and create new pull requests. Remember to change the status of the issue to **In Progress**.
 
 
-## More Project Management and Other Resoruces (Optional)
+## More Project Management and Other Resources (Optional)
 
 - Use issues to keep track of bugs, tasks and other things that need to be done by selecting the appropriate labels.
 

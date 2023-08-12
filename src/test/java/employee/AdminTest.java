@@ -2,8 +2,6 @@ package employee;
 
 import app_business.common.EmployeeType;
 import entity.employee.Admin;
-import entity.employee.Employee;
-import entity.employee.TrainOperator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

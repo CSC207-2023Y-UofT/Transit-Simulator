@@ -15,7 +15,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 
 
-public class TransitModelTest {
+public class TransitModelTest {  // TODO: DEPRECATED TEST CLASS!!!!!! REWRITE THE THING
 
     private static TransitModel transitModel;
 

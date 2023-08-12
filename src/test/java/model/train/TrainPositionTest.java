@@ -124,7 +124,7 @@ public class TrainPositionTest {
         TrackSegment s2f = lineProfile2.getTrack(Direction.FORWARD);
         s1f.linkForward(t1f);
         t1f.linkForward(s2f);
-        Train trainForward = transitModel.createTrain(s2f, "trainForward", 120);
+        transitModel.createTrain(s2f, "trainForward", 120);  // Don't need the returned Train object
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
         var testVariable = trainPosition2.move(150, false);
