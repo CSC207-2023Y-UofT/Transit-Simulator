@@ -66,7 +66,7 @@ class SingletonStatViewModelTest {
         viewModel.setGraphColour(SingletonStatViewModel.GraphColour.GREEN);
 
         // Calling the draw method
-        viewModel.draw(controller, "Test Display", graphics, 100, 100);
+        viewModel.draw("Test Display", graphics, 100, 100);
 
         // Check that the setColor method of Graphics2D was called (for simplicity, we'll check it for any color)
         verify(graphics, atLeastOnce()).setColor(any(Color.class));
