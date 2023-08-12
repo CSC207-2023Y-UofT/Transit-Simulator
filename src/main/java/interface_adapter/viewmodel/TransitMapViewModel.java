@@ -81,6 +81,23 @@ public class TransitMapViewModel {
     }
 
     /**
+     * Draws the train at the given coordinates.
+     * This method exists as an extraction of dupe code.
+     *
+     * @param x The x-coordinate of the station
+     * @param y The y-coordinate of the station
+     */
+    private void drawTrain(Graphics2D graphics, double x, double y) {
+        // Draw the train as a small white circle
+        graphics.setColor(Color.WHITE);
+        graphics.fillOval((int) x - 3, (int) y - 3, 8, 8);
+
+        // Draw a little border
+        graphics.setColor(Color.BLACK);
+        graphics.drawOval((int) x - 3, (int) y - 3, 8, 8);
+    }
+
+    /**
      * Presents (draws) the screen.
      */
     public void present(Graphics2D graphics, int width, int height) {
@@ -176,12 +193,8 @@ public class TransitMapViewModel {
                 stationX *= scaleX;
                 stationY *= scaleY;
 
-                graphics.setColor(new Color(255, 255, 255));
-                graphics.fillOval((int) stationX - 3, (int) stationY - 3, 8, 8);
-
-                // Draw a little border
-                graphics.setColor(Color.BLACK);
-                graphics.drawOval((int) stationX - 3, (int) stationY - 3, 8, 8);
+                // Draw the train at the station
+                drawTrain(graphics, stationX, stationY);
 
                 // Draw the train's name
                 graphics.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -218,13 +231,8 @@ public class TransitMapViewModel {
             trainX *= scaleX;
             trainY *= scaleY;
 
-            // Draw the train as a small red circle
-            graphics.setColor(new Color(255, 255, 255));
-            graphics.fillOval((int) trainX - 3, (int) trainY - 3, 8, 8);
-
-            // Draw a little border
-            graphics.setColor(Color.BLACK);
-            graphics.drawOval((int) trainX - 3, (int) trainY - 3, 8, 8);
+            // Draw the train at its coordinates
+            drawTrain(graphics, trainX, trainY);
 
             // Train's name
             graphics.setFont(new Font("Arial", Font.PLAIN, 10));

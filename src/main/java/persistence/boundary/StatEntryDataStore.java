@@ -3,7 +3,6 @@ package persistence.boundary;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 

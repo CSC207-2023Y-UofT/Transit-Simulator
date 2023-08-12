@@ -10,14 +10,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdminTest {
+    static Employee employee1;
+    static Employee employee2;
 
     private static Admin admin;
 
     @BeforeAll
     public static void setUp() {
         admin = new Admin(100, "");
-        Employee employee1 = new TrainOperator(101, "");
-        Employee employee2 = new TrainOperator(102, "");
+        employee1 = new TrainOperator(101, "");
+        employee2 = new TrainOperator(102, "");
     }
 
     @Test

@@ -2,7 +2,6 @@ package persistence.boundary;
 
 import stats.entry.StatEntry;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**

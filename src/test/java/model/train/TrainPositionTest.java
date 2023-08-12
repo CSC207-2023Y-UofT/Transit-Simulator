@@ -35,9 +35,9 @@ public class TrainPositionTest {
 
     @Test
     public void testWithOffsetFirstPrecondition() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            trainPosition1.withOffset(-1);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+            trainPosition1.withOffset(-1)
+        );
     }
 
     @Test
@@ -49,9 +49,9 @@ public class TrainPositionTest {
     @Test
     public void testConstructorFirstPrecondition() {
         TrackSegment track = new TrackSegment(null, "track", 100);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new TrainPosition(track, -1);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+            new TrainPosition(track, -1)
+        );
     }
 
     @Test

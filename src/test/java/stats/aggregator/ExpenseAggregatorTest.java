@@ -1,6 +1,5 @@
 package stats.aggregator;
 
-import main.Main;
 import org.junit.jupiter.api.Test;
 import stats.aggregate.ExpenseAggregate;
 import stats.aggregator.impl.ExpenseAggregator;
