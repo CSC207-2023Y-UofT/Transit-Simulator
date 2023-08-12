@@ -4,6 +4,7 @@ import app_business.dto.EmployeeDTO;
 import app_business.common.EmployeeType;
 import app_business.dto.TrainDTO;
 import entity.model.train.TrainRole;
+import interface_adapter.controller.EmployeeController;
 import ui.UIController;
 import ui.util.ShadowedButton;
 
@@ -167,15 +168,16 @@ public class AddStaff extends JPanel {
             return;
         }
 
+        EmployeeController employees = controller.getControllerPool().getEmployeeController();
+
         // Add staff member
-        EmployeeDTO dto = controller.getControllerPool().getEmployeeController()
-                        .registerEmployee(employeeName, type);
+        EmployeeDTO dto = employees.registerEmployee(employeeName, type);
 
         // Assign them
         try {
-            controller.getControllerPool().getEmployeeController()
-                    .assignEmployee(dto.getStaffNumber(), assignedTrain, type == EmployeeType.ENGINEER ? TrainRole.ENGINEER : TrainRole.OPERATOR);
+            employees.assignEmployee(dto.getStaffNumber(), assignedTrain, type == EmployeeType.ENGINEER ? TrainRole.ENGINEER : TrainRole.OPERATOR);
         } catch (Exception e) {
+            employees.removeEmployee(dto.getStaffNumber());
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

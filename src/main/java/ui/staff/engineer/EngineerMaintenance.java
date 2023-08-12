@@ -1,6 +1,7 @@
 package ui.staff.engineer;
 
 import app_business.dto.EmployeeDTO;
+import interface_adapter.viewmodel.MaintenanceViewModel;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.staff.StaffHomePage;
@@ -18,7 +19,8 @@ import java.awt.*;
  */
 public class EngineerMaintenance extends JPanel {
 
-    private final EmployeeDTO employeeDTO;
+    private final MaintenanceViewModel maintenanceViewModel;
+    private final DefaultTableModel model;
 
     /**
      * Constructs a new EngineerMaintenance object.
@@ -28,7 +30,7 @@ public class EngineerMaintenance extends JPanel {
     public EngineerMaintenance(UIController controller, EmployeeDTO employeeDTO) {
         super(new BorderLayout());
 
-        this.employeeDTO = employeeDTO;
+        this.maintenanceViewModel = new MaintenanceViewModel(controller.getControllerPool().getTrainController());
 
         // Top panel
         JPanel topPanel = new JPanel(new GridLayout(0, 2));
@@ -57,25 +59,20 @@ public class EngineerMaintenance extends JPanel {
 
         // Create column names
         String[] columnNames = {"Train", "Needs Maintenance?"};
+        maintenanceViewModel.update();
 
         // Create data
-        Object[][] data = {
-                {"Train 1", true},
-                {"Train 2", Boolean.TRUE},
-                {"Train 3", Boolean.TRUE},
-                {"Train 4", Boolean.TRUE},
-                {"Train 5", Boolean.TRUE}
-        };
+        Object[][] data = maintenanceViewModel.getMaintenanceTable();
 
-        // Create a table model - make the second column Boolean type
-        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+        // Create a table model
+        model = new DefaultTableModel(data, columnNames) {
             @Override
             public Class<?> getColumnClass(int columnIndex) {
                 return columnIndex == 1 ? Boolean.class : super.getColumnClass(columnIndex);
             }
         };
 
-        // Create table and set table properties
+        // Create table with our table model and set table properties
         JTable table = new JTable(model);
         table.setFont(new Font("Arial", Font.PLAIN, 20));
         table.setRowHeight(30);
@@ -86,9 +83,22 @@ public class EngineerMaintenance extends JPanel {
 
         // Ensure only checkboxes can be edited
         table.setDefaultEditor(Object.class, null);
+
+        model.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (column == 1) {
+                String trainName = (String) model.getValueAt(row, 0);
+                boolean needsMaintenance = (boolean) model.getValueAt(row, 1);
+                maintenanceViewModel.setNeedsMaintenance(trainName, needsMaintenance);
+                updateTable();
+            }
+        });
+
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.getViewport().setPreferredSize(new Dimension(500, 300)); // Adjust to desired size
-        middlePanel.add(scrollPane, BorderLayout.SOUTH);
+
+        middlePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
@@ -99,10 +109,10 @@ public class EngineerMaintenance extends JPanel {
         routeButton.setBackground(new Color(136, 203, 194));
         routeButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         routeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        routeButton.addActionListener(e -> controller.open(new EngineerRoute(controller, employeeDTO)));
+        routeButton.addActionListener(e -> controller.open(new EngineerRoutePage(controller, employeeDTO)));
 
         // maintenance button: does nothing since already on this page
-        JButton maintenanceButton = new ShadowedButton("Maintenance Status");
+        JButton maintenanceButton = new ShadowedButton("Maintenance");
         maintenanceButton.setBackground(new Color(57, 210, 190));
         maintenanceButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         maintenanceButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -111,6 +121,14 @@ public class EngineerMaintenance extends JPanel {
         bottomPanel.add(maintenanceButton);
 
         this.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    private void updateTable() {
+        maintenanceViewModel.update();
+        Object[][] data = maintenanceViewModel.getMaintenanceTable();
+        model.setDataVector(data, new String[]{"Train", "Needs Maintenance?"});
+        model.fireTableDataChanged();
+        repaint();
     }
 
 }

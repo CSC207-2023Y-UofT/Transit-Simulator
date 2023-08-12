@@ -31,6 +31,9 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private final int pageSize = 64;
 
+    /**
+     * A list of entries.
+     */
     private static class EntryList extends ArrayList<StatEntry> {
     }
 
@@ -119,7 +122,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
 
     // Inherited javadoc
     @Override
-    public <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz) throws IOException {
+    public <E extends StatEntry> Map<Long, List<E>> retrieve(List<Long> indices, Class<E> clazz) {
 
         // Group by page
         Map<Long, List<Long>> byPage = new HashMap<>();

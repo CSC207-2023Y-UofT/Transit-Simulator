@@ -2,7 +2,7 @@ package app_business.interactor;
 
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
-import stats.entry.impl.TicketSaleStat;
+import stats.entry.impl.revenue.TicketSaleStat;
 import stats.StatDataController;
 import entity.ticket.Ticket;
 import persistence.boundary.TicketDataStore;
@@ -50,7 +50,7 @@ public class TicketInteractor implements ITicketInteractor {
             Ticket ticket = new Ticket(ticketType);
             tickets.add(ticket);
 
-            dataStore.saveTicket(ticket);
+            dataStore.save(ticket);
         }
 
         for (Ticket ticket : tickets) {
@@ -76,7 +76,7 @@ public class TicketInteractor implements ITicketInteractor {
      */
     @Override
     public Optional<TicketDTO> getTicket(int ticketId) {
-        Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
+        Ticket ticket = dataStore.find(ticketId).orElse(null);
         if (ticket == null) return Optional.empty();
         return Optional.of(toDTO(ticket));
     }
@@ -89,11 +89,11 @@ public class TicketInteractor implements ITicketInteractor {
      */
     @Override
     public Optional<TicketDTO> activateTicket(int ticketId) {
-        Ticket ticket = dataStore.getTicket(ticketId).orElse(null);
+        Ticket ticket = dataStore.find(ticketId).orElse(null);
         if (ticket == null) return Optional.empty();
         if (ticket.isActivated()) return Optional.of(toDTO(ticket));
         ticket.activate();
-        dataStore.saveTicket(ticket);
+        dataStore.save(ticket);
         return Optional.of(new TicketDTO(ticket.getPrice(),
                 ticket.getType(),
                 ticket.getId(),

@@ -24,8 +24,6 @@ public class TrainTest {
     private static TransitModel transitModel;
     private static Train trainForwards;
     private static Train trainBackwards;
-    private static TrainOperator operator;
-    private static TrainEngineer engineer;
 
     @DisplayName("TrainTest Class Setup")
     @BeforeAll
@@ -98,9 +96,6 @@ public class TrainTest {
         trainForwards = transitModel.createTrain(s1f, "tf", 120);
         trainBackwards = transitModel.createTrain(s1b, "tb", 120);
 
-        // Create the employees
-        operator = new TrainOperator(0, "");
-        engineer = new TrainEngineer(1, "");
     }
 
     // Begin testing
@@ -186,7 +181,5 @@ public class TrainTest {
         transitModel = null;
         trainForwards = null;
         trainBackwards = null;
-        operator = null;
-        engineer = null;
     }
   }

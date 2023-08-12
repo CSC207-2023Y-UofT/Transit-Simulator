@@ -24,17 +24,17 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         /**
          * The operation ID for this file.
          */
-        UUID operationID = UUID.randomUUID();
+        final UUID operationID = UUID.randomUUID();
 
         /**
          * The file.
          */
-        File file;
+        final File file;
 
         /**
          * The data.
          */
-        byte[] data;
+        final byte[] data;
 
         /**
          * Constructs a new CachedFile with the given file and data.
@@ -150,11 +150,13 @@ public class AsyncWriteIOProvider implements FileIOProvider {
         return Files.readAllBytes(file.toPath());
     }
 
+    // Inherited javadoc
     @Override
     public String readString(File file) throws IOException {
         return new String(read(file));
     }
 
+    // Inherited javadoc
     @Override
     public boolean exists(File file) {
         boolean cached;

@@ -1,7 +1,7 @@
 package ui.passenger;
 
-import interface_adapter.map.TransitMapViewModel;
-import interface_adapter.ticket.PurchaseTicketViewModel;
+import interface_adapter.viewmodel.TransitMapViewModel;
+import interface_adapter.viewmodel.PurchaseTicketViewModel;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;

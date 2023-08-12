@@ -1,7 +1,7 @@
 package ui.staff.admin;
 
-import interface_adapter.stats.SingletonStatViewModel;
-import interface_adapter.stats.StatsController;
+import interface_adapter.viewmodel.SingletonStatViewModel;
+import interface_adapter.controller.StatsController;
 import ui.UIController;
 
 import javax.swing.*;
@@ -126,12 +126,14 @@ public class StatsPanel extends JPanel {
         this.display = display;
     }
 
+    // Inherited javadoc
     @Override
     public void removeNotify() {
         super.removeNotify();
         timer.stop();
     }
 
+    // Inherited javadoc
     @Override
     public void addNotify() {
         super.addNotify();
@@ -166,8 +168,9 @@ public class StatsPanel extends JPanel {
         }
     }
 
+    // Inherited javadoc
     @Override
     protected void paintComponent(Graphics g) {
-        viewModel.draw(controller, display.toString(), (Graphics2D) g, getWidth(), getHeight());
+        viewModel.draw(display.toString(), (Graphics2D) g, getWidth(), getHeight());
     }
 }

@@ -4,9 +4,9 @@ import persistence.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import stats.StatDataController;
-import stats.aggregator.expense.ExpenseAggregate;
-import stats.aggregator.expense.ExpenseAggregator;
-import stats.entry.impl.MaintenanceStat;
+import stats.aggregate.ExpenseAggregate;
+import stats.aggregator.impl.ExpenseAggregator;
+import stats.entry.impl.expense.MaintenanceStat;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
 import stats.timing.BasicTimeIndexProvider;
@@ -77,11 +77,7 @@ class StatDataControllerTest {
     void getAggregate() {
         ExpenseAggregator aggregator = new ExpenseAggregator();
         ExpenseAggregate aggregate = aggregator.aggregate(List.of(new MaintenanceStat(1.0)));
-        try {
-            controller.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        controller.getAggregateDataStore().store(0, MaintenanceStat.class, ExpenseAggregate.class, aggregate);
         ExpenseAggregate aggregate2 = controller.getAggregates(MaintenanceStat.class, ExpenseAggregate.class, 0, 0)
                 .get(0L);
         assertNotNull(aggregate2);

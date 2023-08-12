@@ -35,6 +35,9 @@ public class StatDataController {  // Facade design pattern used!!!
      */
     private final StatAggregateDataStore aggregateDataStore;
 
+    /**
+     * The current time index. This is used to determine when to aggregate the stats.
+     */
     private long currTimeIndex;
 
     /**
@@ -61,15 +64,6 @@ public class StatDataController {  // Facade design pattern used!!!
 
         EntryHierarchy hierarchy = entryDataStore.retrieveHierarchy();
         hierarchy.getAllLeafClasses().forEach(StatEntry.HIERARCHY::map);
-    }
-
-    /**
-     * Returns the entry data store.
-     *
-     * @return the entry data store.
-     */
-    public StatEntryDataStore getEntryDataStore() {
-        return entryDataStore;
     }
 
     /**
@@ -105,6 +99,9 @@ public class StatDataController {  // Facade design pattern used!!!
         }
     }
 
+    /**
+     * Flush the current time index.
+     */
     public void flush() {
         flush(currTimeIndex);
     }
@@ -122,17 +119,18 @@ public class StatDataController {  // Facade design pattern used!!!
 
         // Store all entries
         for (Map.Entry<Class<? extends StatEntry>, List<StatEntry>> entry : entries.entrySet()) {
-            try {
-                entryDataStore.store(index, entry.getKey(), entry.getValue());  // TODO: unhandled IOException
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            entryDataStore.store(index, entry.getKey(), entry.getValue());
         }
 
         // Clear the entries
         entries.clear();
     }
 
+    /**
+     * Returns whether the stat data controller should flush.
+     *
+     * @return True iff the stat data controller should flush.
+     */
     public boolean shouldFlush() {
         return timeIndexProvider.getTimeIndex() != currTimeIndex;
     }
@@ -153,12 +151,8 @@ public class StatDataController {  // Facade design pattern used!!!
         List<E> entries = new ArrayList<>();
 
         for (Class<? extends E> clazz : concreteClasses) {
-            try {
-                entries.addAll(entryDataStore.retrieve(index, index, clazz)
-                        .getOrDefault(index, new ArrayList<>()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            entries.addAll(entryDataStore.retrieve(index, index, clazz)
+                    .getOrDefault(index, new ArrayList<>()));
         }
 
         return entries;
@@ -178,12 +172,7 @@ public class StatDataController {  // Facade design pattern used!!!
      * recorded at the specified time index {@code index}.
      */
     public synchronized <E extends StatEntry, A> Map<Long, A> getAggregates(Class<E> entryClass, Class<A> aggregateClass, long fromIndex, long toIndexInclusive) {
-        try {
-            return aggregateDataStore.retrieve(fromIndex, toIndexInclusive, entryClass, aggregateClass);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new HashMap<>();
-        }
+        return aggregateDataStore.retrieve(fromIndex, toIndexInclusive, entryClass, aggregateClass);
     }
 
     /**
@@ -232,23 +221,19 @@ public class StatDataController {  // Facade design pattern used!!!
 
             // For each inheritor class, retrieve the entries of that class
             for (Class<? extends E> inheritor : StatEntry.HIERARCHY.getInheritors(entryClass)) {
-                try {
 
-                    // Get the entries
-                    Map<Long, ? extends List<? extends E>> retrievedEntries =
-                            entryDataStore.retrieve(missingIndices, inheritor);
+                // Get the entries
+                Map<Long, ? extends List<? extends E>> retrievedEntries =
+                        entryDataStore.retrieve(missingIndices, inheritor);
 
-                    timing.mark("retrieveEntries");
+                timing.mark("retrieveEntries");
 
-                    // Merge them into the map
-                    retrievedEntries.forEach((index, list) -> {
-                        entries.putIfAbsent(index, new ArrayList<>());
-                        entries.get(index).addAll(list);
-                    });
+                // Merge them into the map
+                retrievedEntries.forEach((index, list) -> {
+                    entries.putIfAbsent(index, new ArrayList<>());
+                    entries.get(index).addAll(list);
+                });
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
 
             // Aggregate each
@@ -258,11 +243,7 @@ public class StatDataController {  // Facade design pattern used!!!
                 A aggregate = aggregator.aggregate(acc);
                 aggregates.put(index, aggregate);
                 // Store the aggregate
-                try {
-                    aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                aggregateDataStore.store(index, entryClass, aggregateClass, aggregate);
                 timing.mark("aggregate + store");
             }
 
@@ -271,6 +252,20 @@ public class StatDataController {  // Facade design pattern used!!!
         return aggregates;
     }
 
+    /**
+     * Aggregates the current statistics based on a provided aggregator.
+     *
+     * <p>This method fetches all instances of the specified stat entry type and its inheritors
+     * from a predefined entry storage and then aggregates these entries using the given
+     * aggregator. If there are no entries to aggregate, the method will return an empty optional.</p>
+     *
+     * @param <E>        Type of the stat entry, which must extend {@code StatEntry}.
+     * @param <A>        Type of the aggregation result, which must be serializable.
+     * @param aggregator The aggregator responsible for processing the entries.
+     * @return An optional containing the aggregated result if there are entries,
+     * or an empty optional otherwise.
+     * @throws ClassCastException if any of the entries can't be cast to the {@code entryClass}.
+     */
     public <E extends StatEntry, A extends Serializable> Optional<A> aggregateCurrent(
             StatAggregator<E, A> aggregator
     ) {

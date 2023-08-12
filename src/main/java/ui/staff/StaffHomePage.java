@@ -1,6 +1,6 @@
 package ui.staff;
 
-import interface_adapter.map.TransitMapViewModel;
+import interface_adapter.viewmodel.TransitMapViewModel;
 import ui.UIController;
 import ui.WelcomePage;
 import ui.map.MapPanel;
@@ -18,15 +18,12 @@ import java.awt.*;
  */
 public class StaffHomePage extends JPanel {
 
-    /**
-     * The UIController that is used to control the UI.
-     */
-    private final UIController controller;
-
-    /**
-     * The JPanel that displays the map.
-     */
-    private MapPanel mapPanel;
+// --Commented out by Inspection START (2023-08-11, 3:14 p.m.):
+//    /**
+//     * The JPanel that displays the map.
+//     */
+//    private MapPanel mapPanel;
+// --Commented out by Inspection STOP (2023-08-11, 3:14 p.m.)
 
     /**
      * Constructs a new StaffHomePage with the given UIController.
@@ -36,7 +33,9 @@ public class StaffHomePage extends JPanel {
     public StaffHomePage(UIController controller) {
         super(new BorderLayout());
 
-        this.controller = controller;
+        /**
+         * The UIController that is used to control the UI.
+         */
 
         // Log in button
         JButton loginButton = new ShadowedButton("Log In");
@@ -44,7 +43,7 @@ public class StaffHomePage extends JPanel {
         loginButton.setBackground(new Color(0, 151, 8));
         loginButton.setFont(new Font("Arial", Font.BOLD, 20));
         loginButton.addActionListener(e -> {
-            controller.open(new StaffSelectPage(controller));
+            controller.open(new LoginPage(controller));
         });
 
         // Back button

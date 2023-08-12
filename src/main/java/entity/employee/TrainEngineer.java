@@ -3,7 +3,7 @@ package entity.employee;
 import app_business.common.EmployeeType;
 import entity.model.train.TrainStatus;
 import entity.model.train.Train;
-import stats.entry.impl.MaintenanceStat;
+import stats.entry.impl.expense.MaintenanceStat;
 import stats.StatDataController;
 
 import java.util.Random;
@@ -33,6 +33,11 @@ public class TrainEngineer extends Employee {
         return 1.2 * super.getMonthlySalary();
     }
 
+    /**
+     * Returns the type of this employee.
+     *
+     * @return The type of this employee.
+     */
     @Override
     public EmployeeType getEmployeeType() {
         return EmployeeType.ENGINEER;

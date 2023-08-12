@@ -1,6 +1,6 @@
 package model.train;
 
-import entity.model.train.MemoryTrackRepo;
+import entity.model.train.repo.impl.MemoryTrackRepo;
 import entity.model.train.repo.TrackRepo;
 import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;

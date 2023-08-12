@@ -111,6 +111,12 @@ public abstract class Employee implements Serializable {
         this.trainAssignment = trainAssignment;
     }
 
+    /**
+     * Checks whether this employee is equal to obj.
+     *
+     * @param obj The object to compare this employee to.
+     * @return True if and only if this employee is equal to obj.
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Employee)) return false;

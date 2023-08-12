@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Assertions;
 public class TransitModelTest {
 
     private static TransitModel transitModel;
-    private static Train trainForwards;
 
     @DisplayName("TransitModelTest Class Setup")
     @BeforeAll
@@ -49,8 +48,7 @@ public class TransitModelTest {
         // Get references to the track segments of each station
         TrackSegment s1f = l1s1.getTrack(Direction.FORWARD);
         TrackSegment s2f = l1s2.getTrack(Direction.FORWARD);
-        TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);  // TODO add the tracks of stations to the repo? not clear
-                                                              //      or possible add them to the nodeMap of transitTracker
+        TrackSegment s3f = l1s3.getTrack(Direction.FORWARD);
 
         // s: station, t: track, f: forward, b: backward
 
@@ -61,7 +59,7 @@ public class TransitModelTest {
         t2f.linkForward(s3f);
 
         // Create the trains
-        trainForwards = transitModel.createTrain(s1f, "tf", 120);
+        Train trainForwards = transitModel.createTrain(s1f, "tf", 120);
     }
 
 
