@@ -1,11 +1,8 @@
 package interface_adapter.viewmodel;
 
 import app_business.common.EmployeeAssignment;
-import app_business.common.EmployeeType;
 import app_business.dto.EmployeeDTO;
-import app_business.dto.TrainDTO;
 import interface_adapter.controller.EmployeeController;
-import interface_adapter.controller.TrainController;
 
 public class RouteViewModel {
     private EmployeeDTO employee;

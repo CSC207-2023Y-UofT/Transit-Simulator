@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import entity.ticket.TicketType;
-import interface_adapter.viewmodel.PurchaseTicketViewModel;
-
 public class PurchaseTicketViewModelTest {
 
     private PurchaseTicketViewModel viewModel;
