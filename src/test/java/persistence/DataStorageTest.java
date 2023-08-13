@@ -22,7 +22,6 @@ class DataStorageTest {
     void setUp() {
         mockIOProvider = Mockito.mock(FileIOProvider.class);
         mockCompressionProvider = Mockito.mock(FileCompressionProvider.class);
-        mockFile = Mockito.mock(File.class);
     }
 
     @Test
