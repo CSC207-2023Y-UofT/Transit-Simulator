@@ -5,8 +5,6 @@ import entity.model.control.TransitModel;
 import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.station.StationFactory;
-import entity.model.train.Train;
-import entity.model.train.TrainPosition;
 import entity.model.train.track.TrackSegment;
 
 import org.junit.jupiter.api.*;

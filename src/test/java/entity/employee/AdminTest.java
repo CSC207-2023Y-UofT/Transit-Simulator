@@ -1,7 +1,6 @@
 package entity.employee;
 
 import app_business.common.EmployeeType;
-import entity.employee.Admin;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
