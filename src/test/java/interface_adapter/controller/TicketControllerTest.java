@@ -4,6 +4,7 @@ import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
 import entity.ticket.TicketType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,12 +18,13 @@ import org.junit.jupiter.api.*;
  * values; that's why we skip the logic inside the interactor and assume it gives valid results.
  */
 public class TicketControllerTest {
-    static TicketController ticketController;
+    TicketController ticketController;
+    MockTicketInteractor mockTicketInteractor;
 
     @DisplayName("TicketControllerTest Class Setup")
-    @BeforeAll
-    public static void setup() {
-        ITicketInteractor mockTicketInteractor = new MockTicketInteractor();
+    @BeforeEach
+    public void setup() {
+        mockTicketInteractor = new MockTicketInteractor();
         ticketController = new TicketController(mockTicketInteractor);
     }
 
@@ -36,10 +38,8 @@ public class TicketControllerTest {
     @Test
     public void testActivateTicket() {
         ticketController.activateTicket(123);
-        Optional<TicketDTO> ticket = ticketController.getTicket(123);
 
-        Assertions.assertTrue(ticket.isPresent());
-        Assertions.assertTrue(ticket.get().isActivated());
+        Assertions.assertTrue(mockTicketInteractor.wasTicketActivated(123));
     }
 
     @Test
@@ -50,14 +50,9 @@ public class TicketControllerTest {
         Assertions.assertEquals(123, ticket.get().getTicketId());
     }
 
-    @DisplayName("TicketControllerTest Class Teardown")
-    @AfterAll
-    public static void teardown() {
-        ticketController = null;
-    }
-
 
     private static class MockTicketInteractor implements ITicketInteractor {
+        List<Integer> wasActivated = new ArrayList<>();
         @Override
         public List<TicketDTO> buyTickets(List<TicketType> ticketTypes) {
             return List.of(
@@ -68,6 +63,7 @@ public class TicketControllerTest {
 
         @Override
         public Optional<TicketDTO> activateTicket(int ticketId) {
+            wasActivated.add(ticketId);  // record that the ticket with id ticketId was activated
             return Optional.of(new TicketDTO(5, TicketType.ADULT, ticketId, true, 7200000));
         }
 
@@ -79,6 +75,10 @@ public class TicketControllerTest {
         @Override
         public void cleanTickets() {
             // Do nothing
+        }
+
+        public boolean wasTicketActivated(int ticketId) {
+            return wasActivated.contains(ticketId);
         }
     }
 
