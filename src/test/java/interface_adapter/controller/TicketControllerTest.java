@@ -52,7 +52,7 @@ public class TicketControllerTest {
 
 
     private static class MockTicketInteractor implements ITicketInteractor {
-        List<Integer> wasActivated = new ArrayList<>();
+        final List<Integer> wasActivated = new ArrayList<>();
         @Override
         public List<TicketDTO> buyTickets(List<TicketType> ticketTypes) {
             return List.of(

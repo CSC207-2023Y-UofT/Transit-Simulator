@@ -1,7 +1,6 @@
 package interface_adapter.viewmodel;
 
 import entity.ticket.TicketType;
-import util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;

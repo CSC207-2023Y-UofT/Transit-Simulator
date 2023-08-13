@@ -1,9 +1,8 @@
-package model.train.track;
+package entity.model.train.track;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 
-import entity.model.train.track.TrackSegment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
