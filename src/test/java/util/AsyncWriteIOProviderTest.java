@@ -50,4 +50,26 @@ class AsyncWriteIOProviderTest {
         ioProvider.delete(file).join();
         assert !file.exists();
     }
+
+    @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    void listFiles() {
+        FileIOProvider ioProvider = new AsyncWriteIOProvider();
+        File directory = new File("test-directory");
+        directory.mkdirs();
+        directory.deleteOnExit();
+        File file1 = new File(directory, "test.txt");
+        File file2 = new File(directory, "test2.txt");
+        ioProvider.write(file1, "Hello world!".getBytes()).join();
+        ioProvider.write(file2, "Hello world!".getBytes()).join();
+
+        var files = ioProvider.listFiles(directory);
+        assert files.size() == 2;
+
+        assert ioProvider.exists(file1);
+        assert ioProvider.exists(file2);
+
+        file1.deleteOnExit();
+        file2.deleteOnExit();
+    }
 }
