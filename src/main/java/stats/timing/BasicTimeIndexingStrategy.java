@@ -27,8 +27,7 @@ public class BasicTimeIndexingStrategy implements TimeIndexingStrategy {
     }
 
     // Inherited javadocs
-    @Override
-    public long getTimeIndex(long epochTime) {
+    private long getTimeIndex(long epochTime) {
         return epochTime / indexLength;
     }
 }

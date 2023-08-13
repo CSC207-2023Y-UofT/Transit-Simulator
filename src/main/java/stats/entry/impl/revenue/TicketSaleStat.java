@@ -20,7 +20,6 @@ public class TicketSaleStat implements RevenueStat {
      * @param ticket The ticket for which the statistic is applicable.
      */
     public TicketSaleStat(Ticket ticket) {
-        String ticketType = ticket.getType().name();
         price = ticket.getPrice();
     }
 

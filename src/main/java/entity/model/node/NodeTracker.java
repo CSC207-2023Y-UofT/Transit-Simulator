@@ -8,6 +8,7 @@ import java.util.Map;
  * The NodeTracker interface represents a collection of nodes in a track system.
  * It provides methods to interact with the nodes and the track repository.
  */
+@SuppressWarnings("unused")
 public interface NodeTracker {
 
     /**

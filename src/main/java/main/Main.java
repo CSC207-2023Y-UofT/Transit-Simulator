@@ -38,6 +38,7 @@ import java.nio.file.Files;
 /**
  * The main() containing Main class that sets up all required classes and starts the program.
  */
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class Main {
 
     /**

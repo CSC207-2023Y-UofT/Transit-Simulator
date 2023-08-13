@@ -19,7 +19,7 @@ import java.util.Map;
  * A file-based implementation of the {@link StatEntryDataStore} interface.
  * This class provides methods to store and retrieve statistic entry data from a file system.
  */
-@SuppressWarnings("ResultOfMethodCallIgnored")
+@SuppressWarnings({"ResultOfMethodCallIgnored", "BlockingMethodInNonBlockingContext"})
 public class FileEntryDataStore implements StatEntryDataStore {
 
     /**

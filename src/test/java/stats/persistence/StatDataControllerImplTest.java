@@ -21,6 +21,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 class StatTrackerTest {
     private static StatTracker controller;
     private static StatDataControllerImpl controllerImpl;

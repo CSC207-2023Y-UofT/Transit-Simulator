@@ -12,6 +12,7 @@ import java.util.List;
  * Technically part of the use-case/interactor layer
  * This class performs the basic simulation functionalities needed for the program.
  */
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class Simulation {
 
     /**

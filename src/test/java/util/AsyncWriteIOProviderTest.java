@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 class AsyncWriteIOProviderTest {
 
     @Test

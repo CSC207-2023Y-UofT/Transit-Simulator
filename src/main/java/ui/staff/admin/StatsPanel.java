@@ -31,6 +31,7 @@ public class StatsPanel extends JPanel {
     /**
      * Enum representing the time horizon in minutes for the statistics to be displayed.
      */
+    @SuppressWarnings("unused")
     public enum TimeHorizon {
 
         QUARTER_DAY(360),
@@ -114,6 +115,7 @@ public class StatsPanel extends JPanel {
      *
      * @param horizon the time horizon
      */
+    @SuppressWarnings("unused")
     public void setHorizon(TimeHorizon horizon) {
         this.horizon = horizon;
     }

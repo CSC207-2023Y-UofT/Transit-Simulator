@@ -1,5 +1,6 @@
 package app_business.interactor;
 
+import app_business.boundary.IStationInteractor;
 import app_business.dto.StationDTO;
 import entity.model.Direction;
 import entity.model.control.TransitModel;
@@ -21,7 +22,7 @@ public class StationInteractorTest {
     Node station1;
     Node station2;
     Node station3;
-    StationInteractor interactor;
+    IStationInteractor interactor;
     @DisplayName("StationInteractorTest Class SetUp")
     @BeforeEach
     public void setUp() {
@@ -133,4 +134,5 @@ public class StationInteractorTest {
         Assertions.assertEquals(100, testVariable_1.getX());
         Assertions.assertEquals(150, testVariable_1.getY());
     }
+
 }

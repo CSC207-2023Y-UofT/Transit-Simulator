@@ -9,6 +9,7 @@ import java.util.List;
  * The TrainTracker interface represents a system for managing trains and their positions on track segments.
  * It provides methods for creating new trains and retrieving a list of existing trains.
  */
+@SuppressWarnings("unused")
 public interface TrainRepo {
 
     /**

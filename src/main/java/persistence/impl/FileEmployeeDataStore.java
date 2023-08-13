@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * File data store for employees.
  */
-@SuppressWarnings("ResultOfMethodCallIgnored")
+@SuppressWarnings({"ResultOfMethodCallIgnored", "BlockingMethodInNonBlockingContext"})
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**

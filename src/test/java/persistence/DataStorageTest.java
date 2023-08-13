@@ -5,13 +5,7 @@ import org.mockito.Mockito;
 import util.FileCompressionProvider;
 import util.FileIOProvider;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
-import java.util.zip.DataFormatException;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class DataStorageTest {
 

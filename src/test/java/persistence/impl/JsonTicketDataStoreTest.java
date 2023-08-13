@@ -16,6 +16,7 @@ import java.nio.file.Files;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 class JsonTicketDataStoreTest {
 
     private static TicketDataStore data;

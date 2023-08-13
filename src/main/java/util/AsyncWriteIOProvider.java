@@ -16,6 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * Reads are still performed synchronously, but data may be read from a cache
  * if the file is currently being written to for consistency.
  */
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class AsyncWriteIOProvider implements FileIOProvider {
 
     private enum Operation {
