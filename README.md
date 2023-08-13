@@ -85,10 +85,13 @@ Group name: The BBC
 
 
 ## Code Coverage ##
-<img width="1512" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/97990b34-39aa-4150-b862-c08680552842">
-<img width="1511" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/722cc50f-be82-4379-a476-c850a5f8970d">
-<!-- TODO: need image of percentages -->
+<img width="431" alt="testing coverage" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/53711531/d40488fb-0243-47c2-9a60-918ca0cae98c">
 
+## Warnings ##
+
+There are a few grammatical/proofreading warnings but otherwise free of Java warnings
+
+<img width="606" alt="Screen Shot 2023-08-13 at 6 17 19 PM" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/53711531/683eb123-7e81-480d-a5dd-ccd458e8f7d7">
 
 ## License ##
 
