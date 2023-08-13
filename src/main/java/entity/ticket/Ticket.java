@@ -3,10 +3,10 @@ package entity.ticket;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Ticket is an abstract class that represents a general ticket.
+ * Ticket is a class that represents a general ticket.
  * Each ticket has an expiry time and abstract methods to get the type ID and price.
  * The expiry time is given at the creation of the ticket.
- * The type ID and price should be provided by the concrete classes that extend Ticket.
+ * The type of ticket and price should be provided by the TicketType at instantiation.
  */
 public class Ticket {
 
