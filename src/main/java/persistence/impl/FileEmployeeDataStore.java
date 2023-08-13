@@ -49,7 +49,9 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     // Inherited javadoc
     @Override
     public void deleteAll() {
-
+        for (File file : DataStorage.getIO().listFiles(directory)) {
+            DataStorage.getIO().delete(file);
+        }
     }
 
     // Inherited javadoc
