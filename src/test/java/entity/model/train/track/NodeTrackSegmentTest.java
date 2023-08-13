@@ -1,4 +1,4 @@
-package model.train.track;
+package entity.model.train.track;
 
 import entity.model.control.TransitModel;
 import entity.model.node.NodeFactory;

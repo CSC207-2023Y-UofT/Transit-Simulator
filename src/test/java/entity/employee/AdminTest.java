@@ -1,4 +1,4 @@
-package employee;
+package entity.employee;
 
 import app_business.common.EmployeeType;
 import entity.employee.Admin;

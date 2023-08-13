@@ -1,4 +1,4 @@
-package model.train;
+package entity.model.train;
 
 import entity.model.train.repo.impl.MemoryTrackRepo;
 import entity.model.train.repo.TrackRepo;

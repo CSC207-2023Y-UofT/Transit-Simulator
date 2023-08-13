@@ -1,4 +1,4 @@
-package model.node;
+package entity.model.node;
 
 import entity.model.control.TransitModel;
 

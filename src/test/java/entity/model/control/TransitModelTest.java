@@ -1,4 +1,4 @@
-package model.control;
+package entity.model.control;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
