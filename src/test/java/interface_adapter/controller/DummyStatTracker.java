@@ -3,8 +3,8 @@ package interface_adapter.controller;
 import stats.StatTracker;
 import stats.aggregator.StatAggregator;
 import stats.entry.StatEntry;
-import stats.timing.BasicIndexingStrategy;
-import stats.timing.IndexingStrategy;
+import stats.timing.BasicTimeIndexingStrategy;
+import stats.timing.TimeIndexingStrategy;
 
 import java.io.Serializable;
 import java.util.*;
@@ -14,8 +14,8 @@ public class DummyStatTracker implements StatTracker {
     public void record(StatEntry entry) {}
 
     @Override
-    public IndexingStrategy getIndexingStrategy() {
-        return new BasicIndexingStrategy(60000);
+    public TimeIndexingStrategy getIndexingStrategy() {
+        return new BasicTimeIndexingStrategy(60000);
     }
 
     @Override

@@ -23,8 +23,8 @@ import stats.StatTracker;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
 import persistence.impl.JsonTicketDataStore;
-import stats.timing.BasicIndexingStrategy;
-import stats.timing.IndexingStrategy;
+import stats.timing.BasicTimeIndexingStrategy;
+import stats.timing.TimeIndexingStrategy;
 import ui.UIController;
 import ui.WelcomePage;
 import util.AsyncWriteIOProvider;
@@ -70,7 +70,7 @@ public class Main {
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
         StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
-        IndexingStrategy indexStrategy = new BasicIndexingStrategy(4000);
+        TimeIndexingStrategy indexStrategy = new BasicTimeIndexingStrategy(4000);
 
         StatTracker stats = new StatDataControllerImpl(indexStrategy, statDataStore, statAggregateDataStore);
 

@@ -5,7 +5,7 @@ import persistence.boundary.StatEntryDataStore;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
-import stats.timing.IndexingStrategy;
+import stats.timing.TimeIndexingStrategy;
 import util.Timing;
 
 import java.io.Serializable;
@@ -21,7 +21,7 @@ public class StatDataControllerImpl implements StatTracker {  // Facade design p
     /**
      * Provides time indices for keeping track of stats.
      */
-    private final IndexingStrategy indexStrategy;
+    private final TimeIndexingStrategy indexStrategy;
 
     /**
      * DataStore used to persist StatEntry objects.
@@ -53,7 +53,7 @@ public class StatDataControllerImpl implements StatTracker {  // Facade design p
      * @param entryDataStore     the store for stat entries.
      * @param aggregateDataStore the store for aggregate statistics.
      */
-    public StatDataControllerImpl(IndexingStrategy indexStrategy, StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
+    public StatDataControllerImpl(TimeIndexingStrategy indexStrategy, StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
         this.indexStrategy = indexStrategy;
         this.entryDataStore = entryDataStore;
         this.aggregateDataStore = aggregateDataStore;
@@ -75,7 +75,7 @@ public class StatDataControllerImpl implements StatTracker {  // Facade design p
 
     // Inherited java docs
     @Override
-    public IndexingStrategy getIndexingStrategy() {
+    public TimeIndexingStrategy getIndexingStrategy() {
         return indexStrategy;
     }
 

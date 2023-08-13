@@ -2,7 +2,7 @@ package stats.timing;
 
 import util.Preconditions;
 
-public class BasicIndexingStrategy implements IndexingStrategy {
+public class BasicTimeIndexingStrategy implements TimeIndexingStrategy {
 
     /**
      * The length of each time index in ms.
@@ -15,7 +15,7 @@ public class BasicIndexingStrategy implements IndexingStrategy {
      * @param indexLength The size of each time index in ms.
      * @throws IllegalArgumentException if indexSize is not positive.
      */
-    public BasicIndexingStrategy(long indexLength) {
+    public BasicTimeIndexingStrategy(long indexLength) {
         Preconditions.checkArgument(indexLength > 0, "indexSize must be positive");
         this.indexLength = indexLength;
     }

@@ -194,7 +194,7 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
         EmployeeDTO juanDTO = new EmployeeDTO(10, "Juan", EmployeeType.OPERATOR, assignJuan);
         EmployeeDTO dougDTO = new EmployeeDTO(21, "Doug", EmployeeType.ENGINEER, assignDoug);
 
-        // Assertions.assertEquals(juanDTO, interactor.toDTO(juan));  // DTObjects do not override Equals, it's not possible to compare using Equals
+        Assertions.assertEquals(juanDTO, interactorImpl.toDTO(juan));
         EmployeeDTO test_Variable_Juan = interactorImpl.toDTO(juan);
         EmployeeDTO test_Variable_Doug = interactorImpl.toDTO(doug);
 
@@ -213,5 +213,11 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
         Assertions.assertTrue(test_Variable_Doug.getAssignment().isPresent());
         Assertions.assertEquals(dougDTO.getAssignment().get().getTrainName(), test_Variable_Doug.getAssignment().get().getTrainName());
         Assertions.assertEquals(dougDTO.getAssignment().get().getRole(), test_Variable_Doug.getAssignment().get().getRole());
+    }
+
+    @Test
+    public void testIdGeneration() {
+        assert interactor.idGenerator() != interactor.idGenerator();
+        assert interactor.idGenerator(999999999) != interactor.idGenerator(99999999);
     }
 }

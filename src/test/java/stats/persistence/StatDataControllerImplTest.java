@@ -10,7 +10,7 @@ import stats.aggregator.impl.ExpenseAggregator;
 import stats.entry.impl.expense.MaintenanceStat;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
-import stats.timing.BasicIndexingStrategy;
+import stats.timing.BasicTimeIndexingStrategy;
 import util.AsyncWriteIOProvider;
 import util.DeflateCompressionProvider;
 
@@ -57,7 +57,7 @@ class StatTrackerTest {
         deleteDirectory(aggregateFolder);
 
         controllerImpl = new StatDataControllerImpl(
-                new BasicIndexingStrategy(1000), new FileEntryDataStore(entryFolder),
+                new BasicTimeIndexingStrategy(1000), new FileEntryDataStore(entryFolder),
                 new FileAggregateDataStore(aggregateFolder)
         );
         controller = controllerImpl;

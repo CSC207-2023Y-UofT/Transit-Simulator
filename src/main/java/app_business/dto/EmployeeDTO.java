@@ -86,7 +86,7 @@ public class EmployeeDTO {
     public boolean equals(Object obj) {
         if (obj instanceof EmployeeDTO) {
             EmployeeDTO other = (EmployeeDTO) obj;
-            return staffNumber == other.staffNumber && name.equals(other.name) && type == other.type && assignment == other.assignment;
+            return staffNumber == other.staffNumber && name.equals(other.name) && type == other.type && Objects.equals(assignment, other.assignment);
         }
         return false;
     }

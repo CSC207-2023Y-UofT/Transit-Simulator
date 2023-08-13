@@ -2,7 +2,7 @@ package stats;
 
 import stats.aggregator.StatAggregator;
 import stats.entry.StatEntry;
-import stats.timing.IndexingStrategy;
+import stats.timing.TimeIndexingStrategy;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,7 +20,7 @@ public interface StatTracker {
     /**
      * Returns the time indexing strategy
      */
-    IndexingStrategy getIndexingStrategy();
+    TimeIndexingStrategy getIndexingStrategy();
 
     /**
      * Flush all recorded stat entries to the data store.
