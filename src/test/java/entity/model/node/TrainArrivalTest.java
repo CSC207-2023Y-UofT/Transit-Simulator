@@ -1,7 +1,6 @@
-package model.node;
+package entity.model.node;
 
 import entity.model.control.TransitModel;
-import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.station.StationFactory;
 import entity.model.node.line.TrainArrival;

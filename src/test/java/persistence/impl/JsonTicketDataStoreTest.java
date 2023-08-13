@@ -1,4 +1,4 @@
-package ticket;
+package persistence.impl;
 
 import persistence.boundary.TicketDataStore;
 import persistence.impl.JsonTicketDataStore;

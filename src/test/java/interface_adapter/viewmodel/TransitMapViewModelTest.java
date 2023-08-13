@@ -31,9 +31,9 @@ class TransitMapViewModelTest {
     @Test
     void testPresent() {
         Graphics2D graphics = mock(Graphics2D.class);
-        StationDTO station = new StationDTO("Station A", Arrays.asList(1), 1000, 1000); // Corrected here
-        when(stationInteractor.getStations()).thenReturn(Arrays.asList(station));
-        when(trainInteractor.getTrains()).thenReturn(Arrays.asList());
+        StationDTO station = new StationDTO("Station A", List.of(1), 1000, 1000); // Corrected here
+        when(stationInteractor.getStations()).thenReturn(List.of(station));
+        when(trainInteractor.getTrains()).thenReturn(List.of());
         viewModel.present(graphics, 1920, 1080);
         verify(stationInteractor, times(1)).getStations();
         verify(trainInteractor, times(1)).getTrains();
@@ -53,8 +53,8 @@ class TransitMapViewModelTest {
 
     @Test
     void testOnMouseMoveWithHighlighting() {
-        StationDTO station = new StationDTO("Station A", Arrays.asList(1), 1000, 1000); // Corrected instantiation
-        when(stationInteractor.getStations()).thenReturn(Arrays.asList(station));
+        StationDTO station = new StationDTO("Station A", List.of(1), 1000, 1000); // Corrected instantiation
+        when(stationInteractor.getStations()).thenReturn(List.of(station));
         viewModel.present(mock(Graphics2D.class), 1920, 1080); // Ensure the stations list is populated
         viewModel.onMouseMove(1000, 1000); // Using the known station's position
         // An internal state is changed. For it to be validated, a method exposing the internal state would be needed.
@@ -63,8 +63,8 @@ class TransitMapViewModelTest {
 
     @Test
     void testOnMouseMoveWithoutHighlighting() {
-        StationDTO station = new StationDTO("Station A", Arrays.asList(1), 1000, 1000); // Corrected instantiation
-        when(stationInteractor.getStations()).thenReturn(Arrays.asList(station));
+        StationDTO station = new StationDTO("Station A", List.of(1), 1000, 1000); // Corrected instantiation
+        when(stationInteractor.getStations()).thenReturn(List.of(station));
         viewModel.present(mock(Graphics2D.class), 1920, 1080); // Ensure the stations list is populated
         viewModel.onMouseMove(1500, 1500); // Using a random position
         // An internal state is changed. For it to be validated, a method exposing the internal state would be needed.

@@ -1,15 +1,15 @@
-package model.train;
+package entity.model.train;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
 import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.station.StationFactory;
-import entity.model.train.Train;
-import entity.model.train.TrainPosition;
 import entity.model.train.track.TrackSegment;
 
 import org.junit.jupiter.api.*;
+
+import java.util.Optional;
 
 public class TrainPositionTest {
     public static TrackSegment track1;
@@ -67,7 +67,9 @@ public class TrainPositionTest {
 
     @Test
     public void testMoveZero() {
-        TrainPosition trainPosition2 = trainPosition1.move(0).orElseThrow();
+        Optional<TrainPosition> testVariable = trainPosition1.move(0);
+        Assertions.assertTrue(testVariable.isPresent());
+        TrainPosition trainPosition2 = testVariable.get();
         Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
     }
 
@@ -87,7 +89,9 @@ public class TrainPositionTest {
         t1f.linkForward(s2f);
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
-        trainPosition2 = trainPosition2.move(10, false).orElseThrow();
+        var testVariable = trainPosition2.move(10, false);
+        Assertions.assertTrue(testVariable.isPresent());
+        trainPosition2 = testVariable.get();
         Assertions.assertEquals(10, trainPosition2.getPositionOnTrack());
         Assertions.assertSame(s1f, trainPosition2.getTrack());
         trainPosition2 = trainPosition2.move(100, false).get();
@@ -113,10 +117,12 @@ public class TrainPositionTest {
         TrackSegment s2f = lineProfile2.getTrack(Direction.FORWARD);
         s1f.linkForward(t1f);
         t1f.linkForward(s2f);
-        Train trainForward = transitModel.createTrain(s2f, "trainForward", 120);
+        transitModel.createTrain(s2f, "trainForward", 120);  // Don't need the returned Train object
         TrainPosition trainPosition2 = new TrainPosition(s1f, 0);
         Assertions.assertEquals(0, trainPosition2.getPositionOnTrack());
-        trainPosition2 = trainPosition2.move(150, false).orElseThrow();
+        var testVariable = trainPosition2.move(150, false);
+        Assertions.assertTrue(testVariable.isPresent());
+        trainPosition2 = testVariable.get();
         Assertions.assertEquals(50, trainPosition2.getPositionOnTrack());
         Assertions.assertSame(t1f, trainPosition2.getTrack());
         Assertions.assertFalse(trainPosition2.move(100, false).isPresent());

@@ -1,7 +1,6 @@
-package model.control;
+package entity.model.control;
 
 import entity.model.Direction;
-import entity.model.control.TransitModel;
 import entity.model.train.repo.TrackRepo;
 import entity.model.train.Train;
 import entity.model.node.station.Station;
@@ -15,7 +14,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 
 
-public class TransitModelTest {
+public class TransitModelTest {  // TODO: DEPRECATED TEST CLASS!!!!!! REWRITE THE THING
 
     private static TransitModel transitModel;
 

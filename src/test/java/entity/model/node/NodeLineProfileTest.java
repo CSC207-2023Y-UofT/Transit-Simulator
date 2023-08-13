@@ -1,8 +1,7 @@
-package model.node;
+package entity.model.node;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
-import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.station.StationFactory;
 import entity.model.node.line.TrainArrival;
@@ -29,7 +28,6 @@ public class NodeLineProfileTest {
     public static NodeLineProfile lineProfile2;
     public static NodeLineProfile lineProfile3;
     public static Train train1;
-    public static Train train2;
 
     @DisplayName("NodeLineProfileTest Class Setup")
     @BeforeAll
@@ -73,7 +71,6 @@ public class NodeLineProfileTest {
         t1b.linkForward(s1b);
 
         train1 = transitModel.createTrain(s1f, "t1", 120);
-        train2 = transitModel.createTrain(t2f, "t2", 120);
     }
 
     @Test
@@ -113,6 +110,5 @@ public class NodeLineProfileTest {
         lineProfile2 = null;
         lineProfile3 = null;
         train1 = null;
-        train2 = null;
     }
 }

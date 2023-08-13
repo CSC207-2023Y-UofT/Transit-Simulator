@@ -2,15 +2,13 @@ package interface_adapter.controller;
 
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
-import app_business.interactor.TicketInteractor;
-import entity.ticket.Ticket;
 import entity.ticket.TicketType;
-import org.junit.jupiter.api.*;
-import persistence.boundary.TicketDataStore;
-import persistence.impl.MemoryTicketDataStore;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.junit.jupiter.api.*;
 
 
 /**
@@ -20,21 +18,13 @@ import java.util.Optional;
  * values; that's why we skip the logic inside the interactor and assume it gives valid results.
  */
 public class TicketControllerTest {
-    static TicketController ticketController;
+    TicketController ticketController;
+    MockTicketInteractor mockTicketInteractor;
 
     @DisplayName("TicketControllerTest Class Setup")
-    @BeforeAll
-    public static void setup() {
-
-        TicketDataStore dataStore = new MemoryTicketDataStore();
-
-        dataStore.save(new Ticket(123, TicketType.ADULT));
-
-        ITicketInteractor mockTicketInteractor = new TicketInteractor(
-                dataStore,
-                new DummyStatTracker()
-        );
-
+    @BeforeEach
+    public void setup() {
+        mockTicketInteractor = new MockTicketInteractor();
         ticketController = new TicketController(mockTicketInteractor);
     }
 
@@ -47,14 +37,9 @@ public class TicketControllerTest {
 
     @Test
     public void testActivateTicket() {
-        var tickets = ticketController.buyTickets(List.of(TicketType.CHILD));
-        var ticket = tickets.get(0);
-        int id = ticket.getTicketId();
-        ticketController.activateTicket(id);
-        Optional<TicketDTO> optTicket = ticketController.getTicket(id);
+        ticketController.activateTicket(123);
 
-        Assertions.assertTrue(optTicket.isPresent());
-        Assertions.assertTrue(optTicket.get().isActivated());
+        Assertions.assertTrue(mockTicketInteractor.wasTicketActivated(123));
     }
 
     @Test
@@ -65,14 +50,9 @@ public class TicketControllerTest {
         Assertions.assertEquals(123, ticket.get().getTicketId());
     }
 
-    @DisplayName("TicketControllerTest Class Teardown")
-    @AfterAll
-    public static void teardown() {
-        ticketController = null;
-    }
-
 
     private static class MockTicketInteractor implements ITicketInteractor {
+        final List<Integer> wasActivated = new ArrayList<>();
         @Override
         public List<TicketDTO> buyTickets(List<TicketType> ticketTypes) {
             return List.of(
@@ -82,8 +62,9 @@ public class TicketControllerTest {
         }
 
         @Override
-        public void activateTicket(int ticketId) {
-            // Do nothing
+        public Optional<TicketDTO> activateTicket(int ticketId) {
+            wasActivated.add(ticketId);  // record that the ticket with id ticketId was activated
+            return Optional.of(new TicketDTO(5, TicketType.ADULT, ticketId, true, 7200000));
         }
 
         @Override
@@ -94,6 +75,10 @@ public class TicketControllerTest {
         @Override
         public void cleanTickets() {
             // Do nothing
+        }
+
+        public boolean wasTicketActivated(int ticketId) {
+            return wasActivated.contains(ticketId);
         }
     }
 

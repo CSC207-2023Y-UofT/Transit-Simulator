@@ -111,6 +111,8 @@ public class StatsPanel extends JPanel {
 
     /**
      * Gets the time horizon for the statistics.
+     *
+     * @param horizon the time horizon
      */
     public void setHorizon(TimeHorizon horizon) {
         this.horizon = horizon;

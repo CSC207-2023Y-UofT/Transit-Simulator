@@ -26,9 +26,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void testAssignJobToNonExistentEmployee() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(100, "Train !", TrainRole.OPERATOR);
-        }, "Expected IllegalArgumentException for non-existent employee");
+        assertThrows(IllegalArgumentException.class, () -> controller.assignEmployee(100, "Train !", TrainRole.OPERATOR), "Expected IllegalArgumentException for non-existent employee");
     }
 
     @Test
@@ -36,9 +34,7 @@ public class EmployeeControllerTest {
         EmployeeDTO dto = controller.registerEmployee("John", EmployeeType.OPERATOR);
         controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
-        }, "Expected IllegalArgumentException when assigning same job twice to the same employee");
+        assertThrows(IllegalArgumentException.class, () -> controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR), "Expected IllegalArgumentException when assigning same job twice to the same employee");
     }
 
     @Test
@@ -47,9 +43,7 @@ public class EmployeeControllerTest {
         EmployeeDTO dto2 = controller.registerEmployee("Doe", EmployeeType.OPERATOR);
         controller.assignEmployee(dto1.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(dto2.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
-        }, "Expected IllegalArgumentException when assigning same job to different employees");
+        assertThrows(IllegalArgumentException.class, () -> controller.assignEmployee(dto2.getStaffNumber(), "Train 1", TrainRole.OPERATOR), "Expected IllegalArgumentException when assigning same job to different employees");
     }
 
     @Test
@@ -108,39 +102,31 @@ public class EmployeeControllerTest {
 
     @Test
     public void testAssignNonExistingEmployee() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(999, "Train 1", TrainRole.OPERATOR);
-        });
+        assertThrows(IllegalArgumentException.class, () -> controller.assignEmployee(999, "Train 1", TrainRole.OPERATOR));
     }
 
     @Test
     public void testAssignEmployeeToInvalidTrain() {
         // Assuming 100 is a valid staff number in your mock
-        assertThrows(IllegalArgumentException.class, () -> {
-            controller.assignEmployee(100, "InvalidTrain", TrainRole.OPERATOR);
-        });
+        assertThrows(IllegalArgumentException.class, () -> controller.assignEmployee(100, "InvalidTrain", TrainRole.OPERATOR));
     }
 
     @Test
     public void testAssignEmployeeSuccessfully() {
         EmployeeDTO dto = controller.registerEmployee("Example Name", EmployeeType.OPERATOR);
-        assertDoesNotThrow(() -> {
-            controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR);
-        });
+        assertDoesNotThrow(() -> controller.assignEmployee(dto.getStaffNumber(), "Train 1", TrainRole.OPERATOR));
     }
 
 
     @Test
     public void testUnassignEmployeeSuccessfully() {
         // Assuming 100 is a valid staff number in your mock
-        assertDoesNotThrow(() -> {
-            controller.unassignEmployee(100);
-        });
+        assertDoesNotThrow(() -> controller.unassignEmployee(100));
     }
 
 
 
-    public class MockEmployeeInteractor implements IEmployeeInteractor {
+    public static class MockEmployeeInteractor implements IEmployeeInteractor {
         private final Map<Integer, EmployeeDTO> employeeDatabase = new HashMap<>();
         private final Map<Integer, String> employeeAssignments = new HashMap<>();
 
@@ -182,7 +168,7 @@ public class EmployeeControllerTest {
             }
 
             // Check if another employee is already assigned to this job on the train
-            if (employeeAssignments.values().contains(trainName + job.name())) {
+            if (employeeAssignments.containsValue(trainName + job.name())) {
                 throw new IllegalArgumentException("Job is already assigned to another employee");
             }
 

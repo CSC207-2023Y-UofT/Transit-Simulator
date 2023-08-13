@@ -72,7 +72,13 @@ public class FileAggregateDataStore implements StatAggregateDataStore {
         PageFileUtils.write(file, map);
     }
 
+    /**
+     * Converts from index to page
+     * @param index The index of the data.
+     * @return idx / pageSize (default 256)
+     */
     private long toPage(long index) {
+        // The page size, i.e. the number of aggregates per file.
         int pageSize = 256;
         return index / pageSize;
     }

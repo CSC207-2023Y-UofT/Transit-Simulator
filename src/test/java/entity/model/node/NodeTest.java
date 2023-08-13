@@ -1,8 +1,7 @@
-package model.node;
+package entity.model.node;
 
 import entity.model.control.TransitModel;
 
-import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.station.Station;
 import entity.model.node.station.StationFactory;
@@ -47,6 +46,7 @@ public class NodeTest {
     @Test
     public void testGetTracker() {
         Assertions.assertSame(transitModel, station1.getTracker());
+        Assertions.assertSame(transitModel, station2.getTracker());
     }
 
     @Test

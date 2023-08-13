@@ -1,9 +1,5 @@
-package employee;
+package entity.employee;
 
-import entity.employee.Employee;
-import entity.employee.EmployeeTracker;
-import entity.employee.TrainEngineer;
-import entity.employee.TrainOperator;
 import persistence.impl.MemoryEmployeeDataStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,13 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class EmployeeTrackerTest {
-
     private EmployeeTracker employeeTracker;
     private Employee employee1;
     private Employee employee2;
     private Employee trainOperator;
     private Employee trainEngineer;
-
 
     @BeforeEach
     public void setUp() {

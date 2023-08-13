@@ -237,14 +237,15 @@ public class TrainSimulator implements Simulator {
      * Add waiting passengers to the station.
      */
     private void addWaitingPassengers() {
+        // The maximum number of passengers that can be in the waiting list.
+        final int maxWaitingPassengers = 100;
 
         double noise = this.passengerNoise.noise(tickNumber / 12000.0);
         noise += 1.0;
 
-
         int numToAdd = (int) (noise * 10);
         for (int i = 0; i < numToAdd; i++) {
-            int maxWaitingPassengers = 100;
+
             if (waitingPassengers.size() >= maxWaitingPassengers) {
                 break;
             }

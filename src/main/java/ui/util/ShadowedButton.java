@@ -45,6 +45,9 @@ public class ShadowedButton extends JButton {
      */
     @Override
     protected void paintComponent(Graphics g) {
+        // The thickness of the shadow.
+        final int shadowThickness = 6;
+
         if (getModel().isArmed()) {
             // If button is pressed, use a different color
             g.setColor(Color.lightGray);
@@ -59,7 +62,7 @@ public class ShadowedButton extends JButton {
         Color c = g.getColor();
         g.setColor(g.getColor().darker());
         Color colour = new Color(0, 0, 0, 40);
-        int shadowThickness = 6;
+
         for (int i = 0; i < shadowThickness; i++) {
             Color edited = new Color(
                     colour.getRed(),

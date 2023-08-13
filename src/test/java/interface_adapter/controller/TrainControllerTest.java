@@ -60,7 +60,7 @@ public class TrainControllerTest {
      * The MockTrainInteractor provides hardcoded behavior for the ITrainInteractor methods to assist in isolating the
      * tests of TrainController.
      */
-    private class MockTrainInteractor implements ITrainInteractor {
+    private static class MockTrainInteractor implements ITrainInteractor {
         boolean maintenanceUpdated = false;
         @Override
         public Optional<TrainDTO> find(String name) {

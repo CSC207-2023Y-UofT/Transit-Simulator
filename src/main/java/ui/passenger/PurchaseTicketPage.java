@@ -45,21 +45,25 @@ public class PurchaseTicketPage extends JPanel {
             this.add(new JLabel("  "));
         }
 
+        // The JLabel that displays the count of adult tickets.
         JLabel adultCount = createCountLabel(() -> viewModel.count(TicketType.ADULT));
         JButton adultMinus = createMinusButton();
         JButton adultPlus = createPlusButton();
         createRow("Adult", adultMinus, adultPlus, adultCount, TicketType.ADULT);
 
+        // The JLabel that displays the count of child tickets.
         JLabel childCount = createCountLabel(() -> viewModel.count(TicketType.CHILD));
         JButton childMinus = createMinusButton();
         JButton childPlus = createPlusButton();
         createRow("Child", childMinus, childPlus, childCount, TicketType.CHILD);
 
+        // The JLabel that displays the count of senior tickets.
         JLabel seniorCount = createCountLabel(() -> viewModel.count(TicketType.SENIOR));
         JButton seniorMinus = createMinusButton();
         JButton seniorPlus = createPlusButton();
         createRow("Senior", seniorMinus, seniorPlus, seniorCount, TicketType.SENIOR);
 
+        // The JLabel that displays the count of student tickets.
         JLabel studentCount = createCountLabel(() -> viewModel.count(TicketType.STUDENT));
         JButton studentMinus = createMinusButton();
         JButton studentPlus = createPlusButton();
