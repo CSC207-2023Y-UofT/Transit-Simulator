@@ -1,7 +1,7 @@
 package stats.aggregator;
 
+import stats.StatTracker;
 import stats.entry.StatEntry;
-import stats.StatDataController;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * An abstract class that aggregates data from a {@link StatDataController} into a single aggregate value.
+ * An abstract class that aggregates data from a {@link stats.StatTracker} into a single aggregate value.
  *
  * @param <E> The type of entries this aggregator operates on, which must extend {@link StatEntry}.
  * @param <A> The type of aggregated data, which must be serializable.
@@ -63,7 +63,7 @@ public abstract class StatAggregator<E extends StatEntry, A extends Serializable
      * @param endIndex   The end index (inclusive) of the range of entries to aggregate.
      * @return An Optional containing the aggregate value, or an empty Optional if no data was found in the given range.
      */
-    public final Optional<A> aggregate(StatDataController data, long startIndex, long endIndex) {
+    public final Optional<A> aggregate(StatTracker data, long startIndex, long endIndex) {
         List<A> aggregates = new ArrayList<>(data.getOrAggregate(this, startIndex, endIndex).values());
         if (aggregates.isEmpty()) return Optional.empty();
         return Optional.ofNullable(aggregateExisting(aggregates));

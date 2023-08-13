@@ -59,9 +59,8 @@ public class EmployeeController {
     }
 
     /**
-     * Unassigns an employee from a train.
-     *
-     * @param staffNumber the staff number of the employee
+     * Unassigns an employee.
+     * @param staffNumber the staff number of the employee.
      */
     public void unassignEmployee(int staffNumber) {
         interactor.unassign(staffNumber);

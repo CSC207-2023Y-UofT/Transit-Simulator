@@ -9,11 +9,9 @@ import app_business.dto.EmployeeDTO;
 import entity.model.train.TrainRole;
 import interface_adapter.controller.EmployeeController;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,14 +26,8 @@ public class ManageEmployeesViewModelTest {
     @Mock
     private EmployeeController controller;
 
-    @InjectMocks  // Automatically inject the mock into the viewModel
+    @InjectMocks
     private ManageEmployeesViewModel viewModel;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);  // Initialization for Mockito in JUnit 5
-        reset(controller);
-    }
 
     @Test
     public void testGetTableData_Empty() {
@@ -45,7 +37,7 @@ public class ManageEmployeesViewModelTest {
 
         assertEquals(0, result.length);
 
-        verify(controller, times(1)).getEmployees();
+        verify(controller).getEmployees();
     }
 
     @Test

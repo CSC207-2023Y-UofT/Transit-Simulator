@@ -93,9 +93,7 @@ public class PurchaseTicketViewModelTest {
 
     @Test
     public void testAddNullTicket() {
-        assertThrows(IllegalArgumentException.class, () -> {
-        viewModel.addTicket(null);
-        }, "type cannot be null");
+        assertThrows(IllegalArgumentException.class, () -> viewModel.addTicket(null));
     }
 
     @Test

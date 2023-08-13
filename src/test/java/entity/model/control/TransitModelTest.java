@@ -2,7 +2,6 @@ package entity.model.control;
 
 import entity.model.Direction;
 import entity.model.train.repo.TrackRepo;
-import entity.model.train.Train;
 import entity.model.node.station.Station;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.train.track.TrackSegment;
@@ -58,7 +57,6 @@ public class TransitModelTest {  // TODO: DEPRECATED TEST CLASS!!!!!! REWRITE TH
         t2f.linkForward(s3f);
 
         // Create the trains
-        Train trainForwards = transitModel.createTrain(s1f, "tf", 120);
     }
 
 

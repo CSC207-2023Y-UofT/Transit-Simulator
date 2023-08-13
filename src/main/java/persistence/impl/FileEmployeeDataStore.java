@@ -5,7 +5,6 @@ import persistence.DataStorage;
 import persistence.boundary.EmployeeDataStore;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +12,7 @@ import java.util.Optional;
 /**
  * File data store for employees.
  */
+@SuppressWarnings({"ResultOfMethodCallIgnored", "BlockingMethodInNonBlockingContext"})
 public class FileEmployeeDataStore implements EmployeeDataStore {
 
     /**
@@ -42,17 +42,15 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     public void delete(int staffNumber) {
         File file = getFile(staffNumber);
         if (!DataStorage.getIO().exists(file)) return;
-        try {
-            Files.delete(getFile(staffNumber).toPath());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        DataStorage.getIO().delete(getFile(staffNumber));
     }
 
     // Inherited javadoc
     @Override
     public void deleteAll() {
-
+        for (File file : DataStorage.getIO().listFiles(directory)) {
+            DataStorage.getIO().delete(file);
+        }
     }
 
     // Inherited javadoc
@@ -61,7 +59,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
         try {
             int staffNumber = employee.getStaffNumber();
             File file = getFile(staffNumber);
-            boolean unused = file.createNewFile(); // So no warning  // TODO: warning? maybe using assert?
+            file.createNewFile();
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             ObjectOutputStream objectOut = new ObjectOutputStream(out);
             objectOut.writeObject(employee);
@@ -100,8 +98,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     // Inherited javadoc
     @Override
     public List<Employee> findAll() {
-        File[] files = directory.listFiles();
-        if (files == null) return new ArrayList<>();
+        List<File> files = DataStorage.getIO().listFiles(directory);
         List<Employee> employees = new ArrayList<>();
         for (File file : files) {
             if (!file.getName().endsWith(".staff")) {

@@ -2,7 +2,7 @@ package stats.timing;
 
 import util.Preconditions;
 
-public class BasicTimeIndexProvider implements TimeIndexProvider {
+public class BasicTimeIndexingStrategy implements TimeIndexingStrategy {
 
     /**
      * The length of each time index in ms.
@@ -15,7 +15,7 @@ public class BasicTimeIndexProvider implements TimeIndexProvider {
      * @param indexLength The size of each time index in ms.
      * @throws IllegalArgumentException if indexSize is not positive.
      */
-    public BasicTimeIndexProvider(long indexLength) {
+    public BasicTimeIndexingStrategy(long indexLength) {
         Preconditions.checkArgument(indexLength > 0, "indexSize must be positive");
         this.indexLength = indexLength;
     }
@@ -27,8 +27,7 @@ public class BasicTimeIndexProvider implements TimeIndexProvider {
     }
 
     // Inherited javadocs
-    @Override
-    public long getTimeIndex(long epochTime) {
+    private long getTimeIndex(long epochTime) {
         return epochTime / indexLength;
     }
 }

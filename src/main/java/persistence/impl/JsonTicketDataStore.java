@@ -7,8 +7,6 @@ import persistence.DataStorage;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +14,7 @@ import java.util.Optional;
 /**
  * This class facilitates the storage and retrieval of ticket data in JSON format.
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class JsonTicketDataStore implements TicketDataStore {
 
     /**
@@ -102,7 +101,7 @@ public class JsonTicketDataStore implements TicketDataStore {
     // Inherited javadoc
     @Override
     public void delete(int id) {
-        getFile(id).delete();
+        DataStorage.getIO().delete(getFile(id));
     }
 
     @Override
@@ -112,22 +111,16 @@ public class JsonTicketDataStore implements TicketDataStore {
 
     @Override
     public void deleteAll() {
-        File[] files = directory.listFiles();
-        if (files == null) return;
+        List<File> files = DataStorage.getIO().listFiles(directory);
         for (File file : files) {
-            try {
-                Files.delete(file.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            DataStorage.getIO().delete(file);
         }
     }
 
     // Inherited javadoc
     @Override
     public List<Ticket> findAll() {
-        File[] files = directory.listFiles();
-        if (files == null) return new ArrayList<>();
+        List<File> files = DataStorage.getIO().listFiles(directory);
         List<Ticket> tickets = new ArrayList<>();
         for (File file : files) {
             Optional<Ticket> ticket = read(file);
@@ -139,15 +132,8 @@ public class JsonTicketDataStore implements TicketDataStore {
     // Inherited javadoc
     @Override
     public void cleanExpiredTickets() {
-        for (Ticket ticket : findAll()) {
-            long timeSinceCreation = System.currentTimeMillis() - ticket.getCreatedAt();
-            if (timeSinceCreation > 1000 * 60 * 60 * 24) {
-                delete(ticket.getId());
-                continue;
-            }
-            if (ticket.getExpiry() == -1) continue;
-            if (ticket.getExpiry() > System.currentTimeMillis()) continue;
-            delete(ticket.getId());
-        }
+        findAll().stream()
+                .filter(Ticket::isExpired)
+                .forEach(ticket -> delete(ticket.getId()));
     }
 }

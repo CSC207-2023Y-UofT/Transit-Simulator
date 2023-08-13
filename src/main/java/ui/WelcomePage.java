@@ -36,9 +36,7 @@ public class WelcomePage extends JPanel {
         passengerButton.setPreferredSize(new Dimension(200, 50));
         passengerButton.setBackground(new Color(112, 170, 255));
         passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        passengerButton.addActionListener(e ->
-            controller.open(new PassengerHomePage(controller))
-        );
+        passengerButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
 
         // Staff button
         JButton staffButton = new ShadowedButton("Staff");
@@ -47,9 +45,7 @@ public class WelcomePage extends JPanel {
         staffButton.setPreferredSize(new Dimension(200, 50));
         staffButton.setBackground(new Color(112, 170, 255));
         staffButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        staffButton.addActionListener(e ->
-            controller.open(new StaffHomePage(controller))
-        );
+        staffButton.addActionListener(e -> controller.open(new StaffHomePage(controller)));
 
         // Add components to the panel
 

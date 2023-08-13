@@ -33,9 +33,7 @@ public class TrainPositionTest {
 
     @Test
     public void testWithOffsetFirstPrecondition() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
-            trainPosition1.withOffset(-1)
-        );
+        Assertions.assertThrows(IllegalArgumentException.class, () -> trainPosition1.withOffset(-1));
     }
 
     @Test
@@ -47,9 +45,7 @@ public class TrainPositionTest {
     @Test
     public void testConstructorFirstPrecondition() {
         TrackSegment track = new TrackSegment(null, "track", 100);
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
-            new TrainPosition(track, -1)
-        );
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new TrainPosition(track, -1));
     }
 
     @Test
@@ -57,8 +53,7 @@ public class TrainPositionTest {
         TrainPosition trainPosition2 = new TrainPosition(track1, 50);
         Assertions.assertEquals(50, trainPosition2.trackEndOffset(Direction.FORWARD));
         Assertions.assertEquals(-50, trainPosition2.trackEndOffset(Direction.BACKWARD));
-        Assertions.assertTrue(trainPosition2.move(1).isPresent());
-        trainPosition2 = trainPosition2.move(1).get();
+        trainPosition2 = trainPosition2.move(1).orElseThrow();
         Assertions.assertEquals(49, trainPosition2.trackEndOffset(Direction.FORWARD));
         Assertions.assertEquals(-51, trainPosition2.trackEndOffset(Direction.BACKWARD));
     }

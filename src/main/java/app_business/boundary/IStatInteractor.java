@@ -12,25 +12,19 @@ public interface IStatInteractor {
     // Technically, Aggregates can be thought of as in the Use-Case/Interactor layer
 
     /**
-     * The amount of time in milliseconds that one time index represents when it
-     * comes to storing/querying stats
-     */
-    int TIME_INTERVAL = 4000;
-
-    /**
-     * Get the revenue aggregates for the last horizonMinutes minutes
+     * Get the revenue aggregates for the last horizon minutes
      *
-     * @param horizonMinutes The number of minutes to look back
+     * @param horizon The number of minutes to look back
      * @return The revenue aggregates
      */
-    List<RevenueAggregate> getRevenue(long horizonMinutes);
+    List<RevenueAggregate> getRevenue(long horizon);
 
     /**
-     * Get the expense aggregates for the last horizonMinutes minutes
+     * Get the expense aggregates for the last horizon minutes
      *
-     * @param horizonMinutes The number of minutes to look back
+     * @param horizon The number of minutes to look back
      * @return The expense aggregates
      */
-    List<ExpenseAggregate> getExpenses(long horizonMinutes);
+    List<ExpenseAggregate> getExpenses(long horizon);
 
 }

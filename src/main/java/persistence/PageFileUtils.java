@@ -13,6 +13,7 @@ import java.util.zip.DataFormatException;
  * A utility class for reading and writing page files that store a map
  * of long keys to a generic type.
  */
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class PageFileUtils {
 
     /**

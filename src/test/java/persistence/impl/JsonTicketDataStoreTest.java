@@ -1,5 +1,6 @@
 package persistence.impl;
 
+import persistence.boundary.TicketDataStore;
 import persistence.impl.JsonTicketDataStore;
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
@@ -10,13 +11,34 @@ import util.AsyncWriteIOProvider;
 import util.DeflateCompressionProvider;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 class JsonTicketDataStoreTest {
 
-    private static JsonTicketDataStore data;
+    private static TicketDataStore data;
     private static Ticket ticket;
+
+
+    /**
+     * Utility method to delete a directory recursively.
+     * @param directory The directory to delete.
+     */
+    private static void deleteDirectory(File directory) {
+        if (directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File f : files)
+                    deleteDirectory(f);
+            }
+        }
+        try {
+            Files.delete(directory.toPath());
+        } catch (IOException ignored) {}
+    }
 
     @BeforeAll
     public static void setUp() {
@@ -26,7 +48,10 @@ class JsonTicketDataStoreTest {
                 new DeflateCompressionProvider()
         );
 
-        data = new JsonTicketDataStore(new File("test-tickets"));
+        File directory = new File("test-tickets");
+        deleteDirectory(directory);
+
+        data = new JsonTicketDataStore(directory);
         ticket = new Ticket(1, TicketType.ADULT);
         data.save(ticket);
     }
@@ -56,6 +81,7 @@ class JsonTicketDataStoreTest {
         assertTrue(data.find(3).isPresent());
 
         data.delete(3);
+
         assertFalse(data.find(3).isPresent());
 
     }
@@ -83,14 +109,17 @@ class JsonTicketDataStoreTest {
 
         assertTrue(data.find(10).isPresent());
 
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
         data.cleanExpiredTickets();
 
         assertFalse(data.find(10).isPresent());
+    }
+
+    @Test
+    public void testDelete() {
+        Ticket ticket = new Ticket(1, TicketType.ADULT);
+        data.save(ticket);
+        assert data.existsById(1);
+        data.delete(1);
+        assert !data.existsById(1);
     }
 }

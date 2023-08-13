@@ -7,7 +7,6 @@ public class TicketDTOTest {
     static double cost;
     static TicketType type;
     static int ticketId;
-    static boolean activated;
     static long expiry;
     static TicketDTO ticketDTO;
 
@@ -17,9 +16,8 @@ public class TicketDTOTest {
         cost = 99.99;
         type = TicketType.ADULT;
         ticketId = 99;
-        activated = true;
         expiry = 999999999;
-        ticketDTO = new TicketDTO(cost, type, ticketId, activated, expiry);  // convenient test constructor
+        ticketDTO = new TicketDTO(cost, type, ticketId, true, expiry);  // convenient test constructor
     }
 
     @Test
@@ -39,7 +37,7 @@ public class TicketDTOTest {
 
     @Test
     void testIsActivated() {
-        Assertions.assertEquals(activated, ticketDTO.isActivated());
+        Assertions.assertTrue(ticketDTO.isActivated());
     }
 
     @Test
@@ -53,7 +51,6 @@ public class TicketDTOTest {
         cost = 0;
         type = null;
         ticketId = 0;
-        activated = false;
         expiry = 0;
         ticketDTO = null;
     }

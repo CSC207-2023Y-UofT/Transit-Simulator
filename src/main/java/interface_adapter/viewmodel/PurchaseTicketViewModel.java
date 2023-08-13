@@ -20,7 +20,8 @@ public class PurchaseTicketViewModel {
      * Adds a ticket to the list of tickets to purchase
      */
     public void addTicket(TicketType type) {
-        Preconditions.checkArgument(type != null, "type cannot be null");
+        Preconditions.checkArgument(type != null, "Ticket type cannot be null");
+
         if (ticketTypesList.size() >= 12) return;
         ticketTypesList.add(type);
     }

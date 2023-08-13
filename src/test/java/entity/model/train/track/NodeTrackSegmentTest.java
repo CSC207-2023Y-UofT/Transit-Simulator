@@ -33,7 +33,7 @@ public class NodeTrackSegmentTest {
     public void testGetNode() {
         NodeTrackSegment nodeTrackSegment = new NodeTrackSegment(transitModel.getTrackRepo(), stationFactory.createNode(transitModel, "station1"), "l1-s1-for", 100);
         Assertions.assertTrue(nodeTrackSegment.getNode().isPresent());
-        Assertions.assertEquals("station1", nodeTrackSegment.getNode().get().getName());
+        Assertions.assertEquals("station1", nodeTrackSegment.getNode().orElseThrow().getName());
     }
 
     @DisplayName("NodeTrackSegmentTest Class Teardown")

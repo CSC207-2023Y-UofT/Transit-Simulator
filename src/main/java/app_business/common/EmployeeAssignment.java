@@ -3,6 +3,7 @@ package app_business.common;
 import entity.model.train.TrainRole;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Immutable Data Class to represent an employee assignment
@@ -56,5 +57,18 @@ public class EmployeeAssignment implements Serializable {
     @Override
     public String toString() {
         return role + " on " + trainName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeAssignment that = (EmployeeAssignment) o;
+        return Objects.equals(trainName, that.trainName) && role == that.role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(trainName, role);
     }
 }

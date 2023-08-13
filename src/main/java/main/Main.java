@@ -17,12 +17,14 @@ import persistence.impl.JsonModelDataStore;
 import main.pool.InteractorPool;
 import persistence.DataStorage;
 import simulation.Simulation;
-import stats.StatDataController;
+import simulation.TrainSimulator;
+import stats.StatDataControllerImpl;
+import stats.StatTracker;
 import persistence.impl.FileAggregateDataStore;
 import persistence.impl.FileEntryDataStore;
 import persistence.impl.JsonTicketDataStore;
-import stats.timing.BasicTimeIndexProvider;
-import stats.timing.TimeIndexProvider;
+import stats.timing.BasicTimeIndexingStrategy;
+import stats.timing.TimeIndexingStrategy;
 import ui.UIController;
 import ui.WelcomePage;
 import util.AsyncWriteIOProvider;
@@ -36,6 +38,7 @@ import java.nio.file.Files;
 /**
  * The main() containing Main class that sets up all required classes and starts the program.
  */
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class Main {
 
     /**
@@ -68,9 +71,9 @@ public class Main {
         // Stat data storage
         StatEntryDataStore statDataStore = new FileEntryDataStore(new File("stat-entries"));
         StatAggregateDataStore statAggregateDataStore = new FileAggregateDataStore(new File("stat-aggregates"));
-        TimeIndexProvider timeIndexProvider = new BasicTimeIndexProvider(4000);
+        TimeIndexingStrategy indexStrategy = new BasicTimeIndexingStrategy(4000);
 
-        StatDataController stats = new StatDataController(timeIndexProvider, statDataStore, statAggregateDataStore);
+        StatTracker stats = new StatDataControllerImpl(indexStrategy, statDataStore, statAggregateDataStore);
 
         // Ticket data store
         TicketDataStore store = new JsonTicketDataStore(new File("tickets"));
@@ -100,7 +103,9 @@ public class Main {
         employeeTracker.saveEmployee(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
-        new Simulation(model, pool, stats).start();
+        Simulation simulation = new Simulation(model, pool, stats);
+        simulation.addSimulator(new TrainSimulator(stats));
+        simulation.start();
     }
 }
 

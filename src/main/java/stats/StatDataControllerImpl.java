@@ -5,7 +5,7 @@ import persistence.boundary.StatEntryDataStore;
 import stats.aggregator.StatAggregator;
 import stats.entry.EntryHierarchy;
 import stats.entry.StatEntry;
-import stats.timing.TimeIndexProvider;
+import stats.timing.TimeIndexingStrategy;
 import util.Timing;
 
 import java.io.Serializable;
@@ -15,13 +15,13 @@ import java.util.*;
  * A controller for the stat data stores. It handles the seamless
  * recording, retrieval, and aggregation of stat entries and aggregates.
  */
-public class StatDataController {  // Facade design pattern used!!!
+public class StatDataControllerImpl implements StatTracker {  // Facade design pattern used!!!
 
 
     /**
      * Provides time indices for keeping track of stats.
      */
-    private final TimeIndexProvider timeIndexProvider;
+    private final TimeIndexingStrategy indexStrategy;
 
     /**
      * DataStore used to persist StatEntry objects.
@@ -49,16 +49,16 @@ public class StatDataController {  // Facade design pattern used!!!
     /**
      * Constructs a StatDataController instance with a given EntryDataStore and AggregateDataStore.
      *
-     * @param timeIndexProvider  the time index provider, used for calculating time indices.
+     * @param indexStrategy  the time index provider, used for calculating time indices.
      * @param entryDataStore     the store for stat entries.
      * @param aggregateDataStore the store for aggregate statistics.
      */
-    public StatDataController(TimeIndexProvider timeIndexProvider, StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
-        this.timeIndexProvider = timeIndexProvider;
+    public StatDataControllerImpl(TimeIndexingStrategy indexStrategy, StatEntryDataStore entryDataStore, StatAggregateDataStore aggregateDataStore) {
+        this.indexStrategy = indexStrategy;
         this.entryDataStore = entryDataStore;
         this.aggregateDataStore = aggregateDataStore;
 
-        currTimeIndex = timeIndexProvider.getTimeIndex();
+        currTimeIndex = indexStrategy.getTimeIndex();
 
         EntryHierarchy hierarchy = entryDataStore.retrieveHierarchy();
         hierarchy.getAllLeafClasses().forEach(StatEntry.HIERARCHY::map);
@@ -73,18 +73,14 @@ public class StatDataController {  // Facade design pattern used!!!
         return aggregateDataStore;
     }
 
-    /**
-     * Returns the time index provider.
-     */
-    public TimeIndexProvider getTimeIndexProvider() {
-        return timeIndexProvider;
+    // Inherited java docs
+    @Override
+    public TimeIndexingStrategy getIndexingStrategy() {
+        return indexStrategy;
     }
 
-    /**
-     * Record a stat entry.
-     *
-     * @param entry The stat entry to record.
-     */
+    // Inherited java docs
+    @Override
     public void record(StatEntry entry) {
 
         Class<? extends StatEntry> clazz = entry.getClass(); // Will always be a concrete class
@@ -97,19 +93,17 @@ public class StatDataController {  // Facade design pattern used!!!
         }
     }
 
-    /**
-     * Flush the current time index.
-     */
+    // Inherited java docs
+    @Override
     public void flush() {
         flush(currTimeIndex);
     }
 
-    /**
-     * Flush all recorded stat entries to the data store.
-     */
+    // Inherited java docs
+    @Override
     public synchronized void flush(long index) {
         // Update the current time index
-        currTimeIndex = timeIndexProvider.getTimeIndex();
+        currTimeIndex = indexStrategy.getTimeIndex();
 
         // Store the hierarchy first
         entryDataStore.storeHierarchy(StatEntry.HIERARCHY);
@@ -124,24 +118,14 @@ public class StatDataController {  // Facade design pattern used!!!
         entries.clear();
     }
 
-    /**
-     * Returns whether the stat data controller should flush.
-     *
-     * @return True iff the stat data controller should flush.
-     */
+    // Inherited java docs
+    @Override
     public boolean shouldFlush() {
-        return timeIndexProvider.getTimeIndex() != currTimeIndex;
+        return indexStrategy.getTimeIndex() != currTimeIndex;
     }
 
-    /**
-     * Retrieve all stat entries of type {@code entryClass} that were recorded
-     * at the specified time index {@code index}.
-     *
-     * @param entryClass The type of stat entries to retrieve.
-     * @param index      The time index at which the stat entries were recorded.
-     * @param <E>        The type of stat entries to retrieve.
-     * @return A list of stat entries of type {@code entryClass} that were
-     */
+    // Inherited java docs
+    @Override
     public synchronized <E extends StatEntry> List<E> getEntries(Class<E> entryClass, long index) {
 
         List<Class<? extends E>> concreteClasses = StatEntry.HIERARCHY.getInheritors(entryClass);
@@ -156,36 +140,14 @@ public class StatDataController {  // Facade design pattern used!!!
         return entries;
     }
 
-    /**
-     * Retrieve the aggregate of type {@code aggregateClass} that was
-     * recorded at the specified time index {@code index}.
-     *
-     * @param entryClass       The type of stat entries that were aggregated.
-     * @param aggregateClass   The type of aggregate to retrieve.
-     * @param fromIndex        The beginning  time index at which the stat entries were recorded.
-     * @param toIndexInclusive The ending time index at which the stat entries were recorded.
-     * @param <E>              The type of stat entries that were aggregated.
-     * @param <A>              The type of aggregate to retrieve.
-     * @return The aggregate of type {@code aggregateClass} that was
-     * recorded at the specified time index {@code index}.
-     */
+    // Inherited java docs
+    @Override
     public synchronized <E extends StatEntry, A> Map<Long, A> getAggregates(Class<E> entryClass, Class<A> aggregateClass, long fromIndex, long toIndexInclusive) {
         return aggregateDataStore.retrieve(fromIndex, toIndexInclusive, entryClass, aggregateClass);
     }
 
-    /**
-     * Aggregate the data of type {@code entryClass} that was recorded
-     * at the specified time index {@code index} using the specified
-     * {@code aggregator}. This will search for existing aggregations first,
-     * and if none are found, it will aggregate the data and store the
-     * resulting aggregate.
-     *
-     * @param aggregator        The aggregator to use to aggregate the data.
-     * @param startIndex        The beginning  time index at which the stat entries were recorded.
-     * @param endIndexInclusive The ending time index at which the stat entries were recorded.
-     * @param <E>               The type of stat entries to aggregate.
-     * @param <A>               The type of aggregate to retrieve.
-     */
+    // Inherited java docs
+    @Override
     public synchronized <E extends StatEntry, A extends Serializable> Map<Long, A> getOrAggregate(StatAggregator<E, A> aggregator,
                                                                                                   long startIndex, long endIndexInclusive) {
 
@@ -193,7 +155,7 @@ public class StatDataController {  // Facade design pattern used!!!
         Class<E> entryClass = aggregator.getEntryClass();
         Class<A> aggregateClass = aggregator.getAggregateClass();
 
-        Timing timing = new Timing("getOrAggregate");
+        Timing timing = new Timing();
         timing.start();
 
         // Get all of those aggregates
@@ -250,20 +212,8 @@ public class StatDataController {  // Facade design pattern used!!!
         return aggregates;
     }
 
-    /**
-     * Aggregates the current statistics based on a provided aggregator.
-     *
-     * <p>This method fetches all instances of the specified stat entry type and its inheritors
-     * from a predefined entry storage and then aggregates these entries using the given
-     * aggregator. If there are no entries to aggregate, the method will return an empty optional.</p>
-     *
-     * @param <E>        Type of the stat entry, which must extend {@code StatEntry}.
-     * @param <A>        Type of the aggregation result, which must be serializable.
-     * @param aggregator The aggregator responsible for processing the entries.
-     * @return An optional containing the aggregated result if there are entries,
-     * or an empty optional otherwise.
-     * @throws ClassCastException if any of the entries can't be cast to the {@code entryClass}.
-     */
+    // Inherited java docs
+    @Override
     public <E extends StatEntry, A extends Serializable> Optional<A> aggregateCurrent(
             StatAggregator<E, A> aggregator
     ) {

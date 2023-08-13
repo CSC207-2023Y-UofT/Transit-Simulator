@@ -62,9 +62,8 @@ public class TicketControllerTest {
         }
 
         @Override
-        public Optional<TicketDTO> activateTicket(int ticketId) {
+        public void activateTicket(int ticketId) {
             wasActivated.add(ticketId);  // record that the ticket with id ticketId was activated
-            return Optional.of(new TicketDTO(5, TicketType.ADULT, ticketId, true, 7200000));
         }
 
         @Override

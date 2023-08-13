@@ -2,8 +2,8 @@ package app_business.interactor;
 
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
+import stats.StatTracker;
 import stats.entry.impl.revenue.TicketSaleStat;
-import stats.StatDataController;
 import entity.ticket.Ticket;
 import persistence.boundary.TicketDataStore;
 import entity.ticket.TicketType;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class TicketInteractor implements ITicketInteractor {
 
     /** Controller for statistics data. */
-    private final StatDataController stats;
+    private final StatTracker stats;
 
     /** Data storage for tickets. */
     private final TicketDataStore dataStore;
@@ -30,7 +30,7 @@ public class TicketInteractor implements ITicketInteractor {
      * @param dataStore The ticket data store.
      * @param stats The statistics data controller.
      */
-    public TicketInteractor(TicketDataStore dataStore, StatDataController stats) {
+    public TicketInteractor(TicketDataStore dataStore, StatTracker stats) {
         this.dataStore = dataStore;
         this.stats = stats;
     }
@@ -85,20 +85,19 @@ public class TicketInteractor implements ITicketInteractor {
      * Activates a specific ticket by its ID.
      *
      * @param ticketId The ID of the ticket to activate.
-     * @return An optional {@link TicketDTO} containing updated ticket details, if successful.
      */
     @Override
-    public Optional<TicketDTO> activateTicket(int ticketId) {
+    public void activateTicket(int ticketId) {
         Ticket ticket = dataStore.find(ticketId).orElse(null);
-        if (ticket == null) return Optional.empty();
-        if (ticket.isActivated()) return Optional.of(toDTO(ticket));
+        if (ticket == null) return;
+        if (ticket.isActivated()) return;
         ticket.activate();
         dataStore.save(ticket);
-        return Optional.of(new TicketDTO(ticket.getPrice(),
+        new TicketDTO(ticket.getPrice(),
                 ticket.getType(),
                 ticket.getId(),
                 ticket.isActivated(),
-                ticket.getExpiry()));
+                ticket.getExpiry());
     }
 
     /**

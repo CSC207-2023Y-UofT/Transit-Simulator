@@ -8,9 +8,6 @@ import java.util.Map;
  */
 public class Timing {
 
-    /** The name of the timing */
-    private final String name;
-
     /** Map of timings for each id */
     private final Map<String, Long> timings = new HashMap<>();
 
@@ -19,15 +16,6 @@ public class Timing {
 
     /** The current mark, or -1 if not started */
     private long mark = -1;
-
-    /**
-     * Creates a new timing with the given name
-     *
-     * @param name The name of the timing
-     */
-    public Timing(String name) {
-        this.name = name;
-    }
 
     /**
      * Starts the timing
@@ -50,16 +38,6 @@ public class Timing {
         timings.put(id, timings.getOrDefault(id, 0L) + diff);
         counts.put(id, counts.getOrDefault(id, 0) + 1);
         mark = now;
-    }
-
-    /**
-     * Prints the timing to stdout
-     */
-    public void print() {
-        System.out.println("Timing for " + name);
-        for (Map.Entry<String, Long> entry : timings.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue() + "ms (" + counts.get(entry.getKey()) + ")");
-        }
     }
 
 }

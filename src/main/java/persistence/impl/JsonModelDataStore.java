@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class JsonModelDataStore implements ModelDataStore {
 
     /**

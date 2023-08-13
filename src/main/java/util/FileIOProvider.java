@@ -2,10 +2,12 @@ package util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Provides file IO operations asynchronously.
+ * Provides file IO operations asynchronously. As well as
+ * to synchronize IO operations across the application.
  */
 public interface FileIOProvider {
 
@@ -45,4 +47,12 @@ public interface FileIOProvider {
      * Checks if a file exists, or is cached
      */
     boolean exists(File file);
+
+    CompletableFuture<Void> delete(File file);
+
+    /**
+     * List a list of files in the specified directory of which
+     * can likely immediately be read with this IO provider.
+     */
+    List<File> listFiles(File directory);
 }

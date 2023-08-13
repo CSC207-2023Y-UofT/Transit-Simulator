@@ -19,6 +19,7 @@ import java.util.Map;
  * A file-based implementation of the {@link StatEntryDataStore} interface.
  * This class provides methods to store and retrieve statistic entry data from a file system.
  */
+@SuppressWarnings({"ResultOfMethodCallIgnored", "BlockingMethodInNonBlockingContext"})
 public class FileEntryDataStore implements StatEntryDataStore {
 
     /**
@@ -134,7 +135,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
             byPage.put(page, pageIndices);
         }
 
-        Timing timing = new Timing("retrieve indexed");
+        Timing timing = new Timing();
         timing.start();
         timing.mark("Pages: " + byPage.keySet().size());
 

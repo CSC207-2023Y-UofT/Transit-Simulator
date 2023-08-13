@@ -3,6 +3,7 @@ package app_business.dto;
 import app_business.common.EmployeeAssignment;
 import app_business.common.EmployeeType;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -80,4 +81,18 @@ public class EmployeeDTO {
         return Optional.ofNullable(assignment);
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof EmployeeDTO) {
+            EmployeeDTO other = (EmployeeDTO) obj;
+            return staffNumber == other.staffNumber && name.equals(other.name) && type == other.type && Objects.equals(assignment, other.assignment);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(staffNumber, name, type, assignment);
+    }
 }

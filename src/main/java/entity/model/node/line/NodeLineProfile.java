@@ -140,11 +140,4 @@ public class NodeLineProfile {
         return arrivals;
     }
 
-    /**
-     * Is this a node at the end of a line?
-     */
-    public boolean isEndNode() {
-        return getTrack(Direction.FORWARD).getNext() == getTrack(Direction.BACKWARD);
-    } // visitor design pattern used
-
 }

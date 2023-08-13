@@ -9,8 +9,6 @@ import ui.util.SuppliedRoundLabel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.function.Supplier;
 
 /**
@@ -90,17 +88,14 @@ public class PurchaseTicketPage extends JPanel {
         cancelButton.setFont(new Font("Arial", Font.BOLD, 20));
         cancelButton.setPreferredSize(new Dimension(200, 50));
         cancelButton.setBackground(new Color(172, 64, 58));
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // reset all the values
-                viewModel.reset();
-                repaint();
-            }
+        cancelButton.addActionListener(e -> {
+            // reset all the values
+            viewModel.reset();
+            repaint();
         });
         this.add(cancelButton);
 
-        // The JLabel that displays the total cost of the tickets.
+        // Total cost label
         JLabel totalCostLabel = new SuppliedLabel(() -> "Total $" + String.format("%.2f", viewModel.getTotalCost()));
         totalCostLabel.setFont(totalCostLabel.getFont().deriveFont(20.0f));
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);

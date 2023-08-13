@@ -17,6 +17,7 @@ import org.junit.jupiter.api.*;
  * want to isolate the behavior of the interactor from the controller, since we are testing only the controller.
  * Be extremely careful not to test interactor logic in the controller tests, and vice versa.
  */
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 public class StatsControllerTest {
     static StatsController statsController;
 

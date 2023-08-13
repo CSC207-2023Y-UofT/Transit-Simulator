@@ -10,11 +10,6 @@ import stats.entry.impl.revenue.RevenueStat;
 public class TicketSaleStat implements RevenueStat {
 
     /**
-     * The type of the ticket.
-     */
-    private final String ticketType;
-
-    /**
      * The price of the ticket, representing the revenue.
      */
     private final double price;
@@ -25,17 +20,7 @@ public class TicketSaleStat implements RevenueStat {
      * @param ticket The ticket for which the statistic is applicable.
      */
     public TicketSaleStat(Ticket ticket) {
-        ticketType = ticket.getType().name();
         price = ticket.getPrice();
-    }
-
-    /**
-     * Returns the type of the ticket for this statistic entry.
-     *
-     * @return The ticket type as a String.
-     */
-    public String getTicketType() {
-        return ticketType;
     }
 
     /**
