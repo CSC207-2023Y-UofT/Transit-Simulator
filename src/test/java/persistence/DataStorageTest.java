@@ -17,7 +17,6 @@ class DataStorageTest {
 
     private FileIOProvider mockIOProvider;
     private FileCompressionProvider mockCompressionProvider;
-    private File mockFile;
 
     @BeforeEach
     void setUp() {
@@ -56,29 +55,6 @@ class DataStorageTest {
     @Test
     void testInitializationWithBothNull() {
         assertThrows(IllegalArgumentException.class, () -> DataStorage.init(null, null));
-    }
-
-    @Test
-    void testFileIOProviderReadFails() throws IOException {
-        DataStorage.init(mockIOProvider, mockCompressionProvider);
-        when(mockIOProvider.read(mockFile)).thenThrow(new IOException());
-
-        assertThrows(IOException.class, () -> mockIOProvider.read(mockFile));
-    }
-
-    @Test
-    void testFileCompressionFails() throws DataFormatException {
-        DataStorage.init(mockIOProvider, mockCompressionProvider);
-        when(mockCompressionProvider.decompress("data".getBytes())).thenThrow(new DataFormatException());
-
-        assertThrows(DataFormatException.class, () -> mockCompressionProvider.decompress("data".getBytes()));
-    }
-
-    // Helper method to mock a failed future for async operations
-    private <T> CompletableFuture<T> failedFuture() {
-        CompletableFuture<T> failed = new CompletableFuture<>();
-        failed.completeExceptionally(new IOException());
-        return failed;
     }
 
 }

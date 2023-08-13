@@ -5,7 +5,6 @@ import stats.aggregate.RevenueAggregate;
 import stats.aggregate.SingletonAggregate;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

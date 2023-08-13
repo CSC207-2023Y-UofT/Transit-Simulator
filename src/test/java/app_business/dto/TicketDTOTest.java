@@ -17,9 +17,8 @@ public class TicketDTOTest {
         cost = 99.99;
         type = TicketType.ADULT;
         ticketId = 99;
-        activated = true;
         expiry = 999999999;
-        ticketDTO = new TicketDTO(cost, type, ticketId, activated, expiry);  // convenient test constructor
+        ticketDTO = new TicketDTO(cost, type, ticketId, true, expiry);  // convenient test constructor
     }
 
     @Test
