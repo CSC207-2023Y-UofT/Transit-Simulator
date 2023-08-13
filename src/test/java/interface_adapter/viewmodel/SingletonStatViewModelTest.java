@@ -1,8 +1,8 @@
 package interface_adapter.viewmodel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import stats.aggregate.RevenueAggregate;
 import stats.aggregate.SingletonAggregate;
-import ui.UIController;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -37,17 +37,14 @@ class SingletonStatViewModelTest {
     @Test
     void testSetAndGetAggregates() {
         // Mock SingletonAggregate objects
-        SingletonAggregate<Number> aggregate1 = mock(SingletonAggregate.class);
-        SingletonAggregate<Number> aggregate2 = mock(SingletonAggregate.class);
-
-        when(aggregate1.getValue()).thenReturn(100);
-        when(aggregate2.getValue()).thenReturn(150);
+        SingletonAggregate<? extends Number> aggregate1 = new RevenueAggregate(100);
+        SingletonAggregate<? extends Number> aggregate2 = new RevenueAggregate(150);
 
         // Set and test aggregates
         viewModel.setAggregates(Arrays.asList(aggregate1, aggregate2));
         assertEquals(2, viewModel.getAggregates().size());
-        assertEquals(100, viewModel.getAggregates().get(0).getValue());
-        assertEquals(150, viewModel.getAggregates().get(1).getValue());
+        assertEquals(100.0, viewModel.getAggregates().get(0).getValue());
+        assertEquals(150.0, viewModel.getAggregates().get(1).getValue());
     }
 
     // matt pls help

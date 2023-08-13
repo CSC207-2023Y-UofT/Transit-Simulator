@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import app_business.boundary.IStationInteractor;
 import app_business.dto.StationDTO;
 import entity.model.Direction;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,12 +26,19 @@ public class ArrivalsViewModelTest {
 
     private StationDTO sampleStation;
 
+    private AutoCloseable closeable;
+
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        closeable = MockitoAnnotations.openMocks(this);
 
         sampleStation = new StationDTO("Station 99", List.of(1, 2), 1, 2);
         viewModel = new ArrivalsViewModel(sampleStation, stationInteractor);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        closeable.close();
     }
 
     @Test

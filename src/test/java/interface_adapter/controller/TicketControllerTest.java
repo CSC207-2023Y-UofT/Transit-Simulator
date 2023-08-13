@@ -8,7 +8,6 @@ import entity.ticket.TicketType;
 import org.junit.jupiter.api.*;
 import persistence.boundary.TicketDataStore;
 import persistence.impl.MemoryTicketDataStore;
-import stats.StatTracker;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +27,7 @@ public class TicketControllerTest {
     public static void setup() {
 
         TicketDataStore dataStore = new MemoryTicketDataStore();
-        
+
         dataStore.save(new Ticket(123, TicketType.ADULT));
 
         ITicketInteractor mockTicketInteractor = new TicketInteractor(

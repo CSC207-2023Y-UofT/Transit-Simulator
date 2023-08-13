@@ -1,7 +1,5 @@
 package ticket;
 
-import app_business.interactor.TicketInteractor;
-import entity.model.control.TransitModel;
 import persistence.boundary.TicketDataStore;
 import persistence.impl.JsonTicketDataStore;
 import entity.ticket.Ticket;
@@ -9,7 +7,6 @@ import entity.ticket.TicketType;
 import persistence.DataStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import stats.StatDataControllerImpl;
 import util.AsyncWriteIOProvider;
 import util.DeflateCompressionProvider;
 

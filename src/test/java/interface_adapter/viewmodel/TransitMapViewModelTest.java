@@ -3,14 +3,11 @@ package interface_adapter.viewmodel;
 import app_business.boundary.IStationInteractor;
 import app_business.boundary.ITrainInteractor;
 import app_business.dto.StationDTO;
-import app_business.dto.TrainDTO;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

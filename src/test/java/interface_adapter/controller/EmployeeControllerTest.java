@@ -5,14 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import app_business.boundary.IEmployeeInteractor;
 import app_business.common.EmployeeType;
 import app_business.dto.EmployeeDTO;
-import entity.employee.Employee;
 import entity.model.train.TrainRole;
 import interface_adapter.controller.EmployeeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import persistence.boundary.EmployeeDataStore;
 
-import java.io.IOException;
 import java.util.*;
 
 public class EmployeeControllerTest {

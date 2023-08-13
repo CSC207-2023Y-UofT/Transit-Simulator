@@ -7,6 +7,7 @@ import app_business.boundary.ITrainInteractor;
 import app_business.dto.TrainDTO;
 import entity.model.train.TrainStatus;
 import interface_adapter.controller.TrainController;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,10 +27,17 @@ public class MaintenanceViewModelTest {
 
     private MaintenanceViewModel viewModel;
 
+    private AutoCloseable closeable;
+
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        closeable = MockitoAnnotations.openMocks(this);
         viewModel = new MaintenanceViewModel(trainController);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        closeable.close();
     }
 
     @Test
