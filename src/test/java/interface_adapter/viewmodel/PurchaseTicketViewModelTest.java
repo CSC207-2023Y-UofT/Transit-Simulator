@@ -94,7 +94,7 @@ public class PurchaseTicketViewModelTest {
    // Edge Case, matt pls help
     @Test
     public void testAddNullTicket() {
-        assertThrows(NullPointerException.class, () -> viewModel.addTicket(null));
+        assertThrows(IllegalArgumentException.class, () -> viewModel.addTicket(null));
     }
 
     @Test

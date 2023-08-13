@@ -3,8 +3,10 @@ package interface_adapter.controller;
 import app_business.boundary.ITicketInteractor;
 import app_business.dto.TicketDTO;
 import app_business.interactor.TicketInteractor;
+import entity.ticket.Ticket;
 import entity.ticket.TicketType;
 import org.junit.jupiter.api.*;
+import persistence.boundary.TicketDataStore;
 import persistence.impl.MemoryTicketDataStore;
 import stats.StatTracker;
 
@@ -25,8 +27,12 @@ public class TicketControllerTest {
     @BeforeAll
     public static void setup() {
 
+        TicketDataStore dataStore = new MemoryTicketDataStore();
+        
+        dataStore.save(new Ticket(123, TicketType.ADULT));
+
         ITicketInteractor mockTicketInteractor = new TicketInteractor(
-                new MemoryTicketDataStore(),
+                dataStore,
                 new DummyStatTracker()
         );
 
@@ -42,11 +48,14 @@ public class TicketControllerTest {
 
     @Test
     public void testActivateTicket() {
-        ticketController.activateTicket(123);
-        Optional<TicketDTO> ticket = ticketController.getTicket(123);
+        var tickets = ticketController.buyTickets(List.of(TicketType.CHILD));
+        var ticket = tickets.get(0);
+        int id = ticket.getTicketId();
+        ticketController.activateTicket(id);
+        Optional<TicketDTO> optTicket = ticketController.getTicket(id);
 
-        Assertions.assertTrue(ticket.isPresent());
-        Assertions.assertTrue(ticket.get().isActivated());
+        Assertions.assertTrue(optTicket.isPresent());
+        Assertions.assertTrue(optTicket.get().isActivated());
     }
 
     @Test

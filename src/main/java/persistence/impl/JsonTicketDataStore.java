@@ -103,11 +103,7 @@ public class JsonTicketDataStore implements TicketDataStore {
     // Inherited javadoc
     @Override
     public void delete(int id) {
-        try {
-            Files.delete(getFile(id).toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        DataStorage.getIO().delete(getFile(id));
     }
 
     @Override
@@ -117,22 +113,16 @@ public class JsonTicketDataStore implements TicketDataStore {
 
     @Override
     public void deleteAll() {
-        File[] files = directory.listFiles();
-        if (files == null) return;
+        List<File> files = DataStorage.getIO().listFiles(directory);
         for (File file : files) {
-            try {
-                Files.delete(file.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            DataStorage.getIO().delete(file);
         }
     }
 
     // Inherited javadoc
     @Override
     public List<Ticket> findAll() {
-        File[] files = directory.listFiles();
-        if (files == null) return new ArrayList<>();
+        List<File> files = DataStorage.getIO().listFiles(directory);
         List<Ticket> tickets = new ArrayList<>();
         for (File file : files) {
             Optional<Ticket> ticket = read(file);

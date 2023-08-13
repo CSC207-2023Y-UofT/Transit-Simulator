@@ -19,6 +19,7 @@ import java.util.Map;
  * A file-based implementation of the {@link StatEntryDataStore} interface.
  * This class provides methods to store and retrieve statistic entry data from a file system.
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class FileEntryDataStore implements StatEntryDataStore {
 
     /**
@@ -43,9 +44,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
      * @param directory The directory where the entry data files are stored.
      */
     public FileEntryDataStore(File directory) {
-        if (!directory.mkdirs()) {
-            throw new RuntimeException("Failed to create directory: " + directory);
-        }
+        directory.mkdirs();
         this.directory = directory;
     }
 
@@ -58,9 +57,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private File getFile(long index, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
-        if (!classFolder.mkdirs()) {
-            throw new RuntimeException("Failed to create directory: " + classFolder);
-        }
+        classFolder.mkdirs();
         return new File(classFolder, (index / pageSize) + ".stat");
     }
 
@@ -73,9 +70,7 @@ public class FileEntryDataStore implements StatEntryDataStore {
      */
     private File getPageFile(long page, Class<? extends StatEntry> clazz) {
         File classFolder = new File(directory, clazz.getSimpleName());
-        if (!classFolder.mkdirs()) {
-            throw new RuntimeException("Failed to create directory: " + classFolder);
-        }
+        classFolder.mkdirs();
         return new File(classFolder, page + ".stat");
     }
 

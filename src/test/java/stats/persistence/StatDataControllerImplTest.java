@@ -40,9 +40,7 @@ class StatTrackerTest {
         }
         try {
             Files.delete(directory.toPath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException ignored) {}
     }
 
     @BeforeAll

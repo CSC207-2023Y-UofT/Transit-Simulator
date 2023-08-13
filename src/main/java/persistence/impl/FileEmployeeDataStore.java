@@ -43,11 +43,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     public void delete(int staffNumber) {
         File file = getFile(staffNumber);
         if (!DataStorage.getIO().exists(file)) return;
-        try {
-            Files.delete(getFile(staffNumber).toPath());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        DataStorage.getIO().delete(getFile(staffNumber));
     }
 
     // Inherited javadoc
@@ -101,8 +97,7 @@ public class FileEmployeeDataStore implements EmployeeDataStore {
     // Inherited javadoc
     @Override
     public List<Employee> findAll() {
-        File[] files = directory.listFiles();
-        if (files == null) return new ArrayList<>();
+        List<File> files = DataStorage.getIO().listFiles(directory);
         List<Employee> employees = new ArrayList<>();
         for (File file : files) {
             if (!file.getName().endsWith(".staff")) {

@@ -12,7 +12,9 @@ class AsyncWriteIOProviderTest {
     void write() throws IOException {
         FileIOProvider ioProvider = new AsyncWriteIOProvider();
         File file = new File("test.txt");
-        Files.delete(file.toPath());
+        try {
+            Files.delete(file.toPath());
+        } catch(IOException ignored) {}
         var future = ioProvider.write(file, "Hello world!".getBytes());
         assert ioProvider.exists(file);
 
@@ -25,12 +27,27 @@ class AsyncWriteIOProviderTest {
     void writeString() throws IOException {
         FileIOProvider ioProvider = new AsyncWriteIOProvider();
         File file = new File("test.txt");
-        Files.delete(file.toPath());
+        try {
+            Files.delete(file.toPath());
+        } catch(IOException ignored) {}
         var future = ioProvider.writeString(file, "Hello world!");
         assert ioProvider.exists(file);
 
         future.join();
         assert file.exists();
         assert ioProvider.readString(file).equals("Hello world!");
+    }
+
+    @Test
+    void delete() {
+        FileIOProvider ioProvider = new AsyncWriteIOProvider();
+        File file = new File("test.txt");
+        try {
+            Files.delete(file.toPath());
+        } catch (IOException ignored) {}
+        ioProvider.write(file, "Hello world!".getBytes()).join();
+        assert file.exists();
+        ioProvider.delete(file).join();
+        assert !file.exists();
     }
 }
