@@ -1,0 +1,17 @@
+package persistence.impl;
+
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class JsonModelDataStoreTest {
+
+    @Test
+    void readModel() {
+        JsonModelDataStore data = new JsonModelDataStore(new File("doieajod"));
+        assertThrows(IOException.class, data::readModel);
+    }
+}
