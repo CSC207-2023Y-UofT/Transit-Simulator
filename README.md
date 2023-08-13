@@ -87,12 +87,11 @@ Group name: The BBC
 ## Code Coverage ##
 <img width="1512" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/97990b34-39aa-4150-b862-c08680552842">
 <img width="1511" alt="image" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/133708007/722cc50f-be82-4379-a476-c850a5f8970d">
-
+<!-- TODO: need image of percentages -->
 
 
 ## License ##
-***
 
-This project is licensed under the MIT License; see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
 
 
