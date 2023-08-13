@@ -2,7 +2,11 @@ package simulation;
 
 import main.pool.InteractorPool;
 import entity.model.control.TransitModel;
+import simulation.api.Simulator;
 import stats.StatTracker;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Technically part of the use-case/interactor layer
@@ -23,7 +27,7 @@ public class Simulation {
     /**
      * The train simulator
      */
-    private final TrainSimulator trainSimulator;
+    private final List<Simulator> simulators = new ArrayList<>();
 
     /**
      * Stat data controller
@@ -41,6 +45,11 @@ public class Simulation {
     private long tickNumber = 0;
 
     /**
+     * Whether the simulation has started
+     */
+    private boolean started = false;
+
+    /**
      * Creates a new simulation on the given model.
      *
      * @param model The model to run the simulation on.
@@ -49,7 +58,16 @@ public class Simulation {
         this.model = model;
         this.stats = stats;
         this.pool = pool;
-        this.trainSimulator = new TrainSimulator(TICK_SPEED, stats);
+    }
+
+    /**
+     * Adds a simulator to the simulation.
+     */
+    public void addSimulator(Simulator simulator) {
+        simulators.add(simulator);
+        if (started) {
+            simulator.onStart(model);
+        }
     }
 
     /**
@@ -57,7 +75,10 @@ public class Simulation {
      */
     @SuppressWarnings({"BusyWait", "InfiniteLoopStatement"})
     public void start() {
-        this.trainSimulator.recreateTrains(model);
+
+        started = true;
+
+        simulators.forEach(simulator -> simulator.onStart(model));
 
         long msPerTick = 1000 / TICK_SPEED;
 
@@ -66,7 +87,7 @@ public class Simulation {
         while (true) {
 
             long delta = System.currentTimeMillis() - lastTick;
-            tick((double) delta / msPerTick);
+            tick(delta / 1000.0);
 
             delta = System.currentTimeMillis() - lastTick;
             lastTick = System.currentTimeMillis();
@@ -87,7 +108,7 @@ public class Simulation {
      */
     public void tick(double delta) {
 
-        trainSimulator.tick(model, delta);
+        simulators.forEach(simulator -> simulator.tick(model, delta));
 
         if (stats.shouldFlush()) {
             stats.flush();

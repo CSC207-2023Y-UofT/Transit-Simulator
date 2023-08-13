@@ -17,6 +17,7 @@ import persistence.impl.JsonModelDataStore;
 import main.pool.InteractorPool;
 import persistence.DataStorage;
 import simulation.Simulation;
+import simulation.TrainSimulator;
 import stats.StatDataControllerImpl;
 import stats.StatTracker;
 import persistence.impl.FileAggregateDataStore;
@@ -101,7 +102,9 @@ public class Main {
         employeeTracker.saveEmployee(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
-        new Simulation(model, pool, stats).start();
+        Simulation simulation = new Simulation(model, pool, stats);
+        simulation.addSimulator(new TrainSimulator(stats));
+        simulation.start();
     }
 }
 

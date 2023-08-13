@@ -7,6 +7,7 @@ import entity.model.node.line.NodeLineProfile;
 import entity.model.train.Passenger;
 import entity.model.train.Train;
 import entity.model.train.track.TrackSegment;
+import simulation.api.Simulator;
 import stats.entry.impl.expense.ElectricityUsageStat;
 import stats.entry.impl.revenue.TicketSaleStat;
 import stats.StatTracker;
@@ -22,13 +23,7 @@ import java.util.Set;
 /**
  * A class that simulates the trains in the transit system.
  */
-public class TrainSimulator {
-
-    /**
-     * The number of ticks per second
-     */
-    private final int tickSpeed;
-
+public class TrainSimulator implements Simulator {
     /**
      * Stat data controller
      */
@@ -63,12 +58,14 @@ public class TrainSimulator {
 
     /**
      * Creates a new train simulator with the given tick speed.
-     *
-     * @param tickSpeed The number of ticks per second
      */
-    public TrainSimulator(int tickSpeed, StatTracker stats) {
-        this.tickSpeed = tickSpeed;
+    public TrainSimulator(StatTracker stats) {
         this.stats = stats;
+    }
+
+    @Override
+    public void onStart(TransitModel model) {
+        recreateTrains(model);
     }
 
     /**
@@ -153,6 +150,7 @@ public class TrainSimulator {
      *
      * @param model The model to simulate on
      */
+    @Override
     public void tick(TransitModel model, double delta) {
 
         for (Train train : model.getTrainList()) {
@@ -162,7 +160,7 @@ public class TrainSimulator {
                     .isPresent();
 
             // Move the train a bit
-            train.move(Direction.FORWARD, Train.MAX_SPEED / tickSpeed * delta);
+            train.move(Direction.FORWARD, Train.MAX_SPEED * delta);
 
             // Record electric use
             if (!wasAtStation) {
