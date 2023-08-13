@@ -21,6 +21,7 @@ public class PurchaseTicketViewModel {
      */
     public void addTicket(TicketType type) {
         Preconditions.checkArgument(type != null, "Ticket type cannot be null");
+
         if (ticketTypesList.size() >= 12) return;
         ticketTypesList.add(type);
     }

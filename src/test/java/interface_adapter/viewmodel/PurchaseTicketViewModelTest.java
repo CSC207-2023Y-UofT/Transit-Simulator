@@ -91,7 +91,6 @@ public class PurchaseTicketViewModelTest {
         assertEquals(expectedCost, viewModel.getTotalCost());
     }
 
-   // Edge Case, matt pls help
     @Test
     public void testAddNullTicket() {
         assertThrows(IllegalArgumentException.class, () -> viewModel.addTicket(null));
