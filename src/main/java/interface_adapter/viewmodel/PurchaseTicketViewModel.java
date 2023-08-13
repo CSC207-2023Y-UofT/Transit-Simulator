@@ -1,6 +1,7 @@
 package interface_adapter.viewmodel;
 
 import entity.ticket.TicketType;
+import util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class PurchaseTicketViewModel {
      * Adds a ticket to the list of tickets to purchase
      */
     public void addTicket(TicketType type) {
+        Preconditions.checkArgument(type != null, "type cannot be null");
         if (ticketTypesList.size() >= 12) return;
         ticketTypesList.add(type);
     }
