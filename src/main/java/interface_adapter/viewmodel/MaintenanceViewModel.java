@@ -4,9 +4,12 @@ import app_business.dto.TrainDTO;
 import entity.model.train.TrainStatus;
 import interface_adapter.controller.TrainController;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MaintenanceViewModel {
     private final TrainController controller;
@@ -27,7 +30,15 @@ public class MaintenanceViewModel {
 
     public Object[][] getMaintenanceTable() {
         return maintenanceStatuses.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
+                .sorted(Comparator.comparingInt(entry -> {
+                    Pattern pattern = Pattern.compile("\\d+");
+                    String trainName = entry.getKey();
+                    Matcher matcher = pattern.matcher(trainName);
+                    if (matcher.find()) {
+                        return Integer.parseInt(matcher.group());
+                    }
+                    return 0;
+                }))
                 .map(entry -> new Object[]{entry.getKey(), entry.getValue()})
                 .toArray(Object[][]::new);
     }
