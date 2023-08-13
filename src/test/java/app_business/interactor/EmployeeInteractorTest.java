@@ -1,5 +1,6 @@
 package app_business.interactor;
 
+import app_business.boundary.IEmployeeInteractor;
 import app_business.common.EmployeeAssignment;
 import app_business.common.EmployeeType;
 import app_business.dto.EmployeeDTO;
@@ -23,7 +24,8 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
     TrackRepo repo;
     EmployeeDataStore data;
     EmployeeTracker tracker;
-    EmployeeInteractor interactor;
+    IEmployeeInteractor interactor;
+    EmployeeInteractor interactorImpl;
     TrackSegment segment;
     @DisplayName("EmployeeInteractorTest Class Setup")
     @BeforeEach  // This is run BeforeEach test case.
@@ -32,7 +34,8 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
         repo = model.getTrackRepo();  // Note: the repo must belong to the instantiated TransitModel. It cannot be a new MemoryTrackRepo() instance like written earlier.
         data = new MemoryEmployeeDataStore();
         tracker = new EmployeeTracker(data);
-        interactor = new EmployeeInteractor(tracker, model);
+        interactorImpl = new EmployeeInteractor(tracker, model);
+        interactor = interactorImpl;  // This is the interface that we will be testing.
 
         // Creating the test tracks and trains; it's okay even if some test cases don't use this.
         segment = new TrackSegment(repo, "23", 10);
@@ -192,8 +195,8 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
         EmployeeDTO dougDTO = new EmployeeDTO(21, "Doug", EmployeeType.ENGINEER, assignDoug);
 
         // Assertions.assertEquals(juanDTO, interactor.toDTO(juan));  // DTObjects do not override Equals, it's not possible to compare using Equals
-        EmployeeDTO test_Variable_Juan = interactor.toDTO(juan);
-        EmployeeDTO test_Variable_Doug = interactor.toDTO(doug);
+        EmployeeDTO test_Variable_Juan = interactorImpl.toDTO(juan);
+        EmployeeDTO test_Variable_Doug = interactorImpl.toDTO(doug);
 
         Assertions.assertEquals(juanDTO.getStaffNumber(), test_Variable_Juan.getStaffNumber());
         Assertions.assertEquals(juanDTO.getName(), test_Variable_Juan.getName());

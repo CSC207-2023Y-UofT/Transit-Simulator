@@ -17,10 +17,6 @@ public class EmployeeController {
      */
     private final IEmployeeInteractor interactor;
 
-    public IEmployeeInteractor getInteractor() {
-        return interactor;
-    }
-
     /**
      * Constructs a new EmployeeController with the given interactor.
      *
