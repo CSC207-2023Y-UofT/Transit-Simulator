@@ -33,6 +33,8 @@ public class LoginPage extends JPanel {
         JLabel label = new JLabel("Personnel Number: ", SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, 25));
 
+        JLabel hint = new JLabel("Hint: Try 123");
+
         JTextField personnelNumberField = new JPasswordField();
         personnelNumberField.setFont(new Font("Arial", Font.PLAIN, 20));
 
@@ -89,7 +91,7 @@ public class LoginPage extends JPanel {
 
         this.add(label);
         this.add(personnelNumberField);
-        this.add(new JLabel("  "));
+        this.add(hint);
 
         for (int i = 0; i < 3; i++) {
             this.add(new JLabel("  "));

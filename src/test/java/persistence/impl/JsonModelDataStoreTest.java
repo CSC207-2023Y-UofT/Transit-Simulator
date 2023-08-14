@@ -11,7 +11,7 @@ class JsonModelDataStoreTest {
 
     @Test
     void readModel() {
-        JsonModelDataStore data = new JsonModelDataStore(new File("doieajod"));
+        JsonModelDataStore data = new JsonModelDataStore(new File("boobs.non-existent"));
         assertThrows(IOException.class, data::readModel);
     }
 }
