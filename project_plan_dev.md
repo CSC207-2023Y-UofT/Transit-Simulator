@@ -18,7 +18,7 @@ In this course project, you are expected to use GitHub to manage your code. This
 
 ![](images/images_project_plan_dev/link_project.png)
 
-5. The project will show up in the the list below.
+5. The project will show up in the list below.
 
 ## Define Your Features for the Implementation Plan
 As a part of the project planning, you are required to record all features formulated from your user stories, as **issues** in your GitHub repository.
@@ -30,7 +30,7 @@ As a part of the project planning, you are required to record all features formu
 1. Fill in the title as the name of the feature and provide a brief description of the feature.
 **Please use a consistent naming convention for your issues.** For example, you can use the following format: `[Feature x] <feature name>` 
 
-2. On the side bar, select the **Assignee**, **Labels** (Enhancement for your Features), and **Projects**(the one you just created) for the issue. Then click **Submit new issue**.
+2. On the sidebar, select the **Assignee**, **Labels** (Enhancement for your Features), and **Projects**(the one you just created) for the issue. Then click **Submit new issue**.
 
 ![](images/images_project_plan_dev/set_tags.png)
 
@@ -40,7 +40,7 @@ As a part of the project planning, you are required to record all features formu
 ## Feature Development
 When you work on a feature, you are always required to create a **branch** for the feature and **merge** the branch back to the main branch with **pull requests** when the feature is completed. Note: the below should remind you of the "workflow" we covered in the first lab this term. Please review the details of that document in addition to the below, which provides additional details about how the process works on GitHub. 
 
-1. To create a new branch, navigate to the issue you are assigned to, and click **Create branch** on the right side bar.
+1. To create a new branch, navigate to the issue you are assigned to, and click **Create branch** on the right sidebar.
 
 ![](images/images_project_plan_dev/create_branch.png)
 
@@ -84,7 +84,7 @@ must be reviewed and approved by other team members before merging.** :warning: 
 
 6. (Optional) Delete the feature branch after the pull request is merged. You can delete the branch by navigating to the **View all branches** page.
 
-7. (Optional) If the feature is not completed or you want to continue working on the feature, you can reopen the issue and create new pull requests. Remember to change the status of the issue to **In Progress**.
+7. (Optional) If the feature is not completed, or you want to continue working on the feature, you can reopen the issue and create new pull requests. Remember to change the status of the issue to **In Progress**.
 
 
 ## More Project Management and Other Resources (Optional)
