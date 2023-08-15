@@ -38,12 +38,7 @@ public class StationInteractor implements IStationInteractor {
      * @return The station state.
      */
     public Optional<StationDTO> find(String stationName) {
-        Node node = model.getNode(stationName);
-        if (node == null) {
-            return Optional.empty();
-        }
-
-        return Optional.of(toDTO(node));
+        return model.getNode(stationName).map(StationInteractor::toDTO);
     }
 
     /**
@@ -55,20 +50,10 @@ public class StationInteractor implements IStationInteractor {
      * @return The next station state, if any.
      */
     public Optional<StationDTO> getNextStation(String stationName, int line, Direction direction) {
-        Node node = model.getNode(stationName);
-
-        if (node == null) {
-            return Optional.empty();
-        }
-
-        NodeLineProfile lineProfile = node.getLineProfile(line).orElseThrow();
-        Node nextNode = lineProfile.getNextNode(direction).orElse(null);
-
-        if (nextNode == null) {
-            return Optional.empty();
-        }
-
-        return find(nextNode.getName());
+        return model.getNode(stationName)
+                .flatMap(n -> n.getLineProfile(line))
+                .flatMap(p -> p.getNextNode(direction))
+                .map(StationInteractor::toDTO);
     }
 
     /**

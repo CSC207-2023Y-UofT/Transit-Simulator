@@ -83,7 +83,7 @@ public class TransitModel implements NodeTracker, TrainRepo {
      */
     @Override
     public Optional<Node> getNode(String name) {
-        return nodeMap.get(name);
+        return Optional.ofNullable(nodeMap.get(name));
     }
 
     /**
