@@ -21,6 +21,8 @@ class SimulationTest {
     void testEverything() {
         var model = new TransitModel();
 
+        model.
+
         var stats = new StatDataControllerImpl(
                 new BasicTimeIndexingStrategy(1000),
                 new MemoryEntryDataStore(),
@@ -39,8 +41,8 @@ class SimulationTest {
 
         Simulation simulation = new Simulation(new TransitModel(), pool, stats);
 
-        AtomicBoolean started = new AtomicBoolean(false);
-        AtomicBoolean ticked = new AtomicBoolean(false);
+        var started = new AtomicBoolean(false);
+        var ticked = new AtomicBoolean(false);
 
         Simulator simulator = new Simulator() {
 

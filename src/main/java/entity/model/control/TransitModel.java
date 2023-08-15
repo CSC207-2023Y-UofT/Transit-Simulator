@@ -82,7 +82,7 @@ public class TransitModel implements NodeTracker, TrainRepo {
      * @return The Node object with the given name. Null if no such node exists.
      */
     @Override
-    public @Nullable Node getNode(String name) {
+    public Optional<Node> getNode(String name) {
         return nodeMap.get(name);
     }
 
