@@ -1,6 +1,6 @@
 package entity.employee;
 
-import persistence.impl.MemoryEmployeeDataStore;
+import persistence.impl.memory.MemoryEmployeeDataStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

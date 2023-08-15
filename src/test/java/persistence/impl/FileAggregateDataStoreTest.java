@@ -3,6 +3,7 @@ package persistence.impl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.DataStorage;
+import persistence.impl.file.FileAggregateDataStore;
 import stats.aggregate.ExpenseAggregate;
 import stats.entry.impl.expense.ElectricityUsageStat;
 import util.DeflateCompressionProvider;

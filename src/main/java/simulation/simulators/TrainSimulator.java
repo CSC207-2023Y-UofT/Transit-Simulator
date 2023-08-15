@@ -1,4 +1,4 @@
-package simulation;
+package simulation.simulators;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
@@ -221,14 +221,12 @@ public class TrainSimulator implements Simulator {
     private void simulateBoarding(Train train) {
 
         if (train.getPassengerList().size() >= train.getCapacity()) return;
-        int numPassengersBoarded = 0;
 
         for (int i = 0; i < waitingPassengers.size(); i++) {
             Passenger passenger = waitingPassengers.get(i);
             if (train.getPassengerList().size() >= train.getCapacity()) break;
             train.addPassenger(passenger);
             waitingPassengers.remove(passenger);
-            numPassengersBoarded++;
         }
 
     }

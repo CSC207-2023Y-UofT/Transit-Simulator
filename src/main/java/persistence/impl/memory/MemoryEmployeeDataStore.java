@@ -1,4 +1,4 @@
-package persistence.impl;
+package persistence.impl.memory;
 
 import entity.employee.Employee;
 import persistence.boundary.EmployeeDataStore;

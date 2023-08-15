@@ -16,6 +16,11 @@ import java.util.List;
 public class Simulation {
 
     /**
+     * Boolean to represent if the simulation should stop.
+     */
+    private boolean stop = false;
+
+    /**
      * Number of ticks per second
      */
     public static final int TICK_SPEED = 100;
@@ -85,7 +90,7 @@ public class Simulation {
 
         long lastTick = System.currentTimeMillis() - msPerTick;
 
-        while (true) {
+        while (!stop) {
 
             long delta = System.currentTimeMillis() - lastTick;
             tick(delta / 1000.0);
@@ -102,6 +107,10 @@ public class Simulation {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void stop() {
+        this.stop = true;
     }
 
     /**
