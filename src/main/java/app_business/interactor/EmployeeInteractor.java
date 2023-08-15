@@ -8,6 +8,7 @@ import entity.employee.*;
 import entity.model.control.TransitModel;
 import entity.model.train.Train;
 import entity.model.train.TrainRole;
+import persistence.boundary.EmployeeDataStore;
 import util.Preconditions;
 
 import java.util.*;
@@ -22,7 +23,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     /**
      * Tracks the employees and their details.
      */
-    private final EmployeeTracker tracker;
+    private final EmployeeDataStore repo;
 
     /**
      * Represents the transit model which might contain trains and other details.
@@ -32,11 +33,11 @@ public class EmployeeInteractor implements IEmployeeInteractor {
     /**
      * Constructs an EmployeeInteractor instance.
      *
-     * @param tracker The employee tracker.
+     * @param repo The employee repository.
      * @param model   The transit model.
      */
-    public EmployeeInteractor(EmployeeTracker tracker, TransitModel model) {
-        this.tracker = tracker;
+    public EmployeeInteractor(EmployeeDataStore repo, TransitModel model) {
+        this.repo = repo;
         this.model = model;
     }
 
@@ -53,7 +54,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         do {
             id = random.nextInt(bound);
             if (tries++ >= 10) throw new IllegalStateException("Could not generate a unique ID");
-        } while (tracker.getEmployee(id).isPresent());
+        } while (repo.find(id).isPresent());
         return id;
     }
 
@@ -69,15 +70,15 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         switch (type) {
             case ENGINEER:
                 TrainEngineer eng = new TrainEngineer(id, name);
-                tracker.saveEmployee(eng);
+                repo.save(eng);
                 return toDTO(eng);
             case OPERATOR:
                 TrainOperator ope = new TrainOperator(id, name);
-                tracker.saveEmployee(ope);
+                repo.save(ope);
                 return toDTO(ope);
             case ADMINISTRATOR:
                 Admin adm = new Admin(id, name);
-                tracker.saveEmployee(adm);
+                repo.save(adm);
                 return toDTO(adm);
         }
         return null;
@@ -91,7 +92,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
      */
     @Override
     public Optional<EmployeeDTO> find(int staffNumber) {
-        Employee employee = tracker.getEmployee(staffNumber)
+        Employee employee = repo.find(staffNumber)
                 .orElse(null);
         if (employee == null) return Optional.empty();
         return Optional.of(toDTO(employee));
@@ -104,7 +105,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
      */
     @Override
     public void removeEmployee(int staffNumber) {
-        tracker.removeEmployee(staffNumber);
+        repo.find(staffNumber);
     }
 
     /**
@@ -118,7 +119,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
      */
     @Override
     public void assignJob(int staffNumber, String trainName, TrainRole job) {
-        Employee employee = tracker.getEmployee(staffNumber)
+        Employee employee = repo.find(staffNumber)
                 .orElse(null);
 
         Preconditions.checkArgument(employee != null, "Employee does not exist");
@@ -138,7 +139,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         }
 
         employee.setAssignment(new EmployeeAssignment(trainName, job));
-        tracker.saveEmployee(employee);
+        repo.save(employee);
     }
 
     /**
@@ -148,7 +149,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
      */
     @Override
     public void unassign(int staffNumber) {
-        Employee employee = tracker.getEmployee(staffNumber)
+        Employee employee = repo.find(staffNumber)
                 .orElse(null);
         if (employee == null) return;
         employee.setAssignment(null);
@@ -165,7 +166,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
         Train train = model.getTrain(trainName);
         if (train == null) return new ArrayList<>();
 
-        List<Employee> employees = tracker.getEmployeeList();
+        List<Employee> employees = repo.findAll();
 
         return employees.stream()
                 .map(this::toDTO)
@@ -176,7 +177,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
 
     @Override
     public List<EmployeeDTO> getEmployees() {
-        return tracker.getEmployeeList().stream()
+        return repo.findAll().stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }

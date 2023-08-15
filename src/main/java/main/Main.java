@@ -1,7 +1,6 @@
 package main;
 
 import entity.employee.Admin;
-import entity.employee.EmployeeTracker;
 import entity.employee.TrainEngineer;
 import entity.employee.TrainOperator;
 import persistence.boundary.*;
@@ -80,14 +79,13 @@ public class Main {
 
         // Employee data store
         EmployeeDataStore employeeDataStore = new FileEmployeeDataStore(new File("employees"));
-        EmployeeTracker employeeTracker = new EmployeeTracker(employeeDataStore);
 
         // Create the presenter
         InteractorPool pool = new InteractorPool(
                 new StationInteractor(model),
                 new TrainInteractor(model),
                 new TicketInteractor(store, stats),
-                new EmployeeInteractor(employeeTracker, model),
+                new EmployeeInteractor(employeeDataStore, model),
                 new StatInteractor(stats)
         );
 
