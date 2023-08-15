@@ -80,22 +80,11 @@ public class StationInteractor implements IStationInteractor {
      * @return The time till the next arrival, if any. In milliseconds
      */
     public Optional<Long> getTimeTillNextArrival(String stationName, int line, Direction direction) {
-        Node node = model.getNode(stationName);
-
-        if (node == null) {
-            return Optional.empty();
-        }
-
-        NodeLineProfile lineProfile = node.getLineProfile(line).orElseThrow();
-        List<TrainArrival> arrivals = lineProfile.nextArrivals(direction, 1);
-
-        if (arrivals.isEmpty()) {
-            return Optional.empty();
-        }
-
-        TrainArrival arrival = arrivals.get(0);
-
-        return Optional.of(arrival.getDelay());
+        return model.getNode(stationName)
+                .flatMap(n -> n.getLineProfile(line))
+                .map(p -> p.nextArrivals(direction, 1))
+                .flatMap(a -> a.stream().findFirst())
+                .map(TrainArrival::getDelay);
     }
 
     /**
