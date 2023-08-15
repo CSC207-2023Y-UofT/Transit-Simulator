@@ -94,11 +94,11 @@ public class Main {
         controller.open(new WelcomePage(controller));
 
         // Default employees
-        employeeTracker.saveEmployee(new Admin(123, "Matt"));
-        employeeTracker.saveEmployee(new Admin(111, "Grace"));
-        employeeTracker.saveEmployee(new TrainEngineer(222, "Charles"));
-        employeeTracker.saveEmployee(new TrainEngineer(333, "Zoey"));
-        employeeTracker.saveEmployee(new TrainOperator(444, "Jarret"));
+        employeeDataStore.save(new Admin(123, "Matt"));
+        employeeDataStore.save(new Admin(111, "Grace"));
+        employeeDataStore.save(new TrainEngineer(222, "Charles"));
+        employeeDataStore.save(new TrainEngineer(333, "Zoey"));
+        employeeDataStore.save(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
         Simulation simulation = new Simulation(model, pool, stats);
