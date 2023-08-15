@@ -6,10 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for {@link MemoryEmployeeDataStore}
+ */
 class MemoryEmployeeDataStoreTest {
 
+    /**
+     * Data store
+     */
     private static final MemoryEmployeeDataStore STORE = new MemoryEmployeeDataStore();
 
+    /**
+     * Test adding an employee
+     */
     @Test
     public void testAdd() {
         Employee employee = new Admin(1, "John");
@@ -17,6 +26,9 @@ class MemoryEmployeeDataStoreTest {
         assertTrue(STORE.existsById(1));
     }
 
+    /**
+     * Test deleting an employee
+     */
     @Test
     public void testDelete() {
         Employee employee = new Admin(1, "John");
@@ -26,6 +38,9 @@ class MemoryEmployeeDataStoreTest {
         assertFalse(STORE.existsById(1));
     }
 
+    /**
+     * Test deleting all employees
+     */
     @Test
     public void testDeleteAll() {
         Employee employee = new Admin(1, "John");
@@ -39,6 +54,9 @@ class MemoryEmployeeDataStoreTest {
         assertFalse(STORE.existsById(2));
     }
 
+    /**
+     * Test finding an employee
+     */
     @Test
     public void testFind() {
         Employee employee = new Admin(1, "John");
@@ -47,6 +65,9 @@ class MemoryEmployeeDataStoreTest {
         assertEquals(employee, STORE.find(1).orElseThrow());
     }
 
+    /**
+     * Test finding all employees
+     */
     @Test
     public void testFindAll() {
         Employee employee = new Admin(1, "John");
@@ -58,6 +79,9 @@ class MemoryEmployeeDataStoreTest {
         assertEquals(2, STORE.findAll().size());
     }
 
+    /**
+     * Test checking if an employee exists
+     */
     @Test
     public void testExistsById() {
         Employee employee = new Admin(1, "John");
@@ -65,7 +89,5 @@ class MemoryEmployeeDataStoreTest {
         assertTrue(STORE.existsById(1));
         assertFalse(STORE.existsById(2));
     }
-
-
 
 }
