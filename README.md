@@ -48,7 +48,7 @@ As staff:
 
 ## Architecture ##
 
-Here are the [Class-Responsibility-Collaborator Cards](https://1drv.ms/o/s!AsmO3TTchzhwgv4tpGIJJfhWGQZ0uw?e=o4QCpp "CRC cards") used to design the program. TODO: change viewmode to read-only instead of edit
+Here are the [Class-Responsibility-Collaborator Cards](https://1drv.ms/o/s!AsmO3TTchzhwgv4tlXWT_oTuhUen_A?e=b8BHb7 "Class-Responsibility-Collaborator Cards") used to design the program.
 
 
 ## Installation ##
