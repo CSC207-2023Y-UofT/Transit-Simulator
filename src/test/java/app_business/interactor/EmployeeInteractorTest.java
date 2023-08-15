@@ -78,7 +78,6 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
         Employee emp = new TrainEngineer(101, "Hill");
         data.save(emp);
         interactor.removeEmployee(101);
-
         Assertions.assertFalse(interactor.find(101).isPresent());  // With Optionals, we have to assert that it is false that the Optional is present, instead of asserting that the Optional is null.
     }
 

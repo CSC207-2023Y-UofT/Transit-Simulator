@@ -105,7 +105,7 @@ public class EmployeeInteractor implements IEmployeeInteractor {
      */
     @Override
     public void removeEmployee(int staffNumber) {
-        repo.find(staffNumber);
+        repo.delete(staffNumber);
     }
 
     /**

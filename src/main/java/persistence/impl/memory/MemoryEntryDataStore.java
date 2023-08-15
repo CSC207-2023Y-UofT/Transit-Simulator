@@ -22,7 +22,7 @@ public class MemoryEntryDataStore implements StatEntryDataStore {
     /**
      * Stores the entries.
      */
-    private Map<Class<? extends StatEntry>, Map<Long, List<?>>> data = new HashMap<>();
+    private final Map<Class<? extends StatEntry>, Map<Long, List<?>>> data = new HashMap<>();
 
     @Override
     public <E extends StatEntry> void store(long index, Class<? extends StatEntry> clazz, List<E> entries) {

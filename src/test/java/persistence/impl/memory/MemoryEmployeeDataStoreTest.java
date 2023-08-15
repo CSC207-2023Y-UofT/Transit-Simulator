@@ -87,7 +87,7 @@ class MemoryEmployeeDataStoreTest {
         Employee employee = new Admin(1, "John");
         STORE.save(employee);
         assertTrue(STORE.existsById(1));
-        assertFalse(STORE.existsById(2));
+        assertFalse(STORE.existsById(23));
     }
 
 }
