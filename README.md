@@ -75,8 +75,6 @@ git clone https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git
 
 ## Team ##
 
-Group name: The BBC
-
 - [Binhe Jia](https://github.com/Binhe-Jia "Jarrett's GitHub page")
 - [Charles Cheung](https://github.com/charlescheung22 "Charles' GitHub page")
 - [Grace Liu](https://github.com/gracelliu "Grace's GitHub page")
@@ -86,6 +84,8 @@ Group name: The BBC
 
 ## Code Coverage ##
 <img width="431" alt="testing coverage" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/53711531/d40488fb-0243-47c2-9a60-918ca0cae98c">
+
+The only files that are not tested are Main.main and the UI directory. 
 
 ## Warnings ##
 
