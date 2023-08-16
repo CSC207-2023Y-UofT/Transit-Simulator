@@ -13,10 +13,29 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * || BUILDER PATTERN USED ||
+ * Builder for a transit model
+ */
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public class TransitModelBuilder {
+    /**
+     * The model that is being built
+     */
     private final TransitModel model = new TransitModel();
+
+    /**
+     * The set of created lines
+     */
     private final Set<Integer> createdLines = new HashSet<>();
 
+    /**
+     * Creates a new station with the specified name and coordinates
+     *
+     * @param name The name of the station
+     * @param x    The x coordinate
+     * @param y    The y coordinate
+     */
     public TransitModelBuilder station(String name, int x, int y) {
         Preconditions.checkArgument(model.getNode(name).isEmpty(), "Station already created");
         Node node = model.createNode(new StationFactory(), name);
@@ -25,22 +44,57 @@ public class TransitModelBuilder {
         return this;
     }
 
+    /**
+     * Creates a line with the specified line number and specified
+     *
+     * @param lineNumber The line number
+     * @param stations   The list of stations
+     */
     public TransitModelBuilder line(int lineNumber, String... stations) {
         return line(lineNumber, List.of(stations), false);
     }
 
+    /**
+     * Creates a cyclic line with the specified line number and specified
+     *
+     * @param lineNumber The line number
+     * @param stations   The list of stations
+     * @return The builder
+     */
     public TransitModelBuilder cyclicLine(int lineNumber, String... stations) {
         return line(lineNumber, List.of(stations), true);
     }
 
+    /**
+     * Creates a line with the specified line number and specified
+     *
+     * @param lineNumber The line number
+     * @param stations   The list of stations
+     * @return The builder
+     */
     public TransitModelBuilder line(int lineNumber, List<String> stations) {
         return line(lineNumber, stations, false);
     }
 
+    /**
+     * Creates a cyclic line with the specified line number and specified
+     * list of stations
+     *
+     * @param lineNumber The line number
+     * @param stations   The list of stations
+     */
     public TransitModelBuilder cyclicLine(int lineNumber, List<String> stations) {
         return line(lineNumber, stations, true);
     }
 
+    /**
+     * Creates a line with the specified line number and specified
+     * list of stations
+     *
+     * @param lineNumber The line number
+     * @param stations   The list of stations
+     * @param cyclic     Whether the line is cyclic
+     */
     private TransitModelBuilder line(int lineNumber, List<String> stations, boolean cyclic) {
         Preconditions.checkArgument(!createdLines.contains(lineNumber), "Line already created");
         Preconditions.checkArgument(stations.size() > 1, "At least two stations are required");
@@ -71,6 +125,13 @@ public class TransitModelBuilder {
         return this;
     }
 
+    /**
+     * Creates an edge between two stations.
+     *
+     * @param station1   The first station
+     * @param station2   The second station
+     * @param lineNumber The line number
+     */
     private void linkStations(Node station1, Node station2, int lineNumber) {
         var profile1 = station1.createLineProfile(lineNumber);
         var profile2 = station2.createLineProfile(lineNumber);
