@@ -83,7 +83,7 @@ git clone https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git
 
 
 ## Code Coverage ##
-<img width="431" alt="testing coverage" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/53711531/d40488fb-0243-47c2-9a60-918ca0cae98c">
+<img width="391" alt="Screen Shot 2023-08-15 at 8 48 42 PM" src="https://github.com/CSC207-2023Y-UofT/Transit-Simulator/assets/53711531/af5ac612-710d-4fd8-b444-a3d912f24a6b">
 
 The only files that are not tested are Main.main and the UI directory. 
 
