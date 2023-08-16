@@ -85,7 +85,9 @@ git clone https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git
 ## Code Coverage ##
 <img width="391" alt="Screen Shot 2023-08-15 at 8 48 42 PM" src="https://github.com/CSC207-2023Y-UofT/Transit-Simulator/assets/53711531/af5ac612-710d-4fd8-b444-a3d912f24a6b">
 
-The only files that are not tested are Main.main and the UI directory. 
+The only files that are not tested are Main.java and the UI directory.
+The UI classes are difficult to test and we have been told we don't need to test them.
+Main.java is the class that sets up the whole program for execution, it deals with UI and therefore can't be tested very well.
 
 ## Warnings ##
 
