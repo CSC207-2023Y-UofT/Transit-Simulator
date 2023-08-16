@@ -79,7 +79,7 @@ public class Simulation {
     /**
      * Starts the simulation.
      */
-    @SuppressWarnings({"BusyWait", "InfiniteLoopStatement"})
+    @SuppressWarnings({"BusyWait"})
     public void start() {
 
         started = true;

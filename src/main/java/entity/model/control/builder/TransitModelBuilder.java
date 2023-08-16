@@ -76,7 +76,7 @@ public class TransitModelBuilder {
         var profile2 = station2.createLineProfile(lineNumber);
 
         var n1For = profile1.getTrack(Direction.FORWARD);
-        var n1Back = profile2.getTrack(Direction.BACKWARD);
+        var n1Back = profile1.getTrack(Direction.BACKWARD);
 
         var n2For = profile2.getTrack(Direction.FORWARD);
         var n2Back = profile2.getTrack(Direction.BACKWARD);
@@ -104,6 +104,9 @@ public class TransitModelBuilder {
 
         interFor.linkForward(n2For);
         interBack.linkBackward(n2Back);
+
+        repo.addTrack(interFor);
+        repo.addTrack(interBack);
     }
 
     public TransitModel build() {
