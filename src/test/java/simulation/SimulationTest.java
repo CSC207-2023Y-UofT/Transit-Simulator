@@ -17,6 +17,7 @@ import stats.timing.BasicTimeIndexingStrategy;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+@SuppressWarnings("BlockingMethodInNonBlockingContext")
 class SimulationTest {
 
     @Test
