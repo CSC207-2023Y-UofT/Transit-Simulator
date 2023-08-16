@@ -76,7 +76,7 @@ To install this application,
 - Clone the repository to your desired directory with the following commands in terminal:
 ```
 cd "Your-desired-file-path"
-git clone https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git
+git clone https://github.com/CSC207-2023Y-UofT/Transit-Simulator.git
 ```
 - Then run Main.java to access the management system GUI.
 
