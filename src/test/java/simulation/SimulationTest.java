@@ -21,8 +21,6 @@ class SimulationTest {
     void testEverything() {
         var model = new TransitModel();
 
-        model.
-
         var stats = new StatDataControllerImpl(
                 new BasicTimeIndexingStrategy(1000),
                 new MemoryEntryDataStore(),

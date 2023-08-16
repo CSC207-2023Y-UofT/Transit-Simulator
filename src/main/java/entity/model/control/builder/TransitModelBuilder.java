@@ -59,6 +59,7 @@ public class TransitModelBuilder {
         for (int i = 1; i < nodes.size(); i++) {
             var next = nodes.get(i);
             linkStations(curr, next, lineNumber);
+            curr = next;
         }
 
         if (cyclic) {
@@ -101,8 +102,8 @@ public class TransitModelBuilder {
         n1For.linkForward(interFor);
         n1Back.linkBackward(interBack);
 
-        n2For.linkForward(interBack);
-        n2Back.linkBackward(interFor);
+        interFor.linkForward(n2For);
+        interBack.linkBackward(n2Back);
     }
 
     public TransitModel build() {
