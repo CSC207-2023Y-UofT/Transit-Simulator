@@ -2,6 +2,7 @@ package ui.passenger;
 
 import interface_adapter.viewmodel.TicketViewModel;
 import app_business.dto.TicketDTO;
+import org.jetbrains.annotations.NotNull;
 import ui.UIController;
 import ui.util.ShadowedButton;
 import ui.util.ShadowPanel;
@@ -127,22 +128,7 @@ public class TicketPanel extends JPanel {
         ticketId.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Valid Time
-        SuppliedLabel validTime = new SuppliedLabel(() -> {
-            long expiry = viewModel.getTicket().getExpiry();
-            if (expiry != -1) {
-                long timeLeft = expiry - System.currentTimeMillis();
-                long hours = timeLeft / 3600000;
-                long minutes = (timeLeft % 3600000) / 60000;
-                long seconds = (timeLeft % 60000) / 1000;
-
-                return "Ticket Validity: " + hours + ":" + minutes + ":" + seconds;
-            } else {
-                return "";
-            }
-        });
-
-        validTime.setHorizontalAlignment(SwingConstants.CENTER);
-        validTime.setFont(new Font("Arial", Font.PLAIN, 20));
+        SuppliedLabel validTime = getSuppliedLabel();
 
         // Activate before boarding label
         JLabel activateLabel = new JLabel("Activate before boarding", SwingConstants.CENTER);
@@ -186,6 +172,27 @@ public class TicketPanel extends JPanel {
         panel.add(activateLabel);
         panel.add(validTime);
         panel.add(activateButton);
+    }
+
+    @NotNull
+    private SuppliedLabel getSuppliedLabel() {
+        SuppliedLabel validTime = new SuppliedLabel(() -> {
+            long expiry = viewModel.getTicket().getExpiry();
+            if (expiry != -1) {
+                long timeLeft = expiry - System.currentTimeMillis();
+                long hours = timeLeft / 3600000;
+                long minutes = (timeLeft % 3600000) / 60000;
+                long seconds = (timeLeft % 60000) / 1000;
+
+                return "Ticket Validity: " + hours + ":" + minutes + ":" + seconds;
+            } else {
+                return "";
+            }
+        });
+
+        validTime.setHorizontalAlignment(SwingConstants.CENTER);
+        validTime.setFont(new Font("Arial", Font.PLAIN, 20));
+        return validTime;
     }
 
     /**

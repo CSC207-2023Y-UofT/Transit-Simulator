@@ -1,7 +1,5 @@
 package stats.aggregate;
 
-import stats.aggregate.SingletonAggregate;
-
 /**
  * The RevenueAggregate class extends the SingletonAggregate to manage the aggregation of revenue.
  * This class specifically handles Double type values representing total revenue.

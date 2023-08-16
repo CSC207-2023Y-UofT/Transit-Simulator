@@ -201,7 +201,6 @@ public class TrainSimulator implements Simulator {
      * Handle the alighting passengers on this train.
      */
     private void simulateAlighting(Train train) {
-        int counter = 0;
 
         List<Passenger> passengerList = new ArrayList<>(train.getPassengerList());
         for (Passenger passenger : passengerList) {
@@ -209,7 +208,6 @@ public class TrainSimulator implements Simulator {
 
             if (passenger.shouldAlight()) {
                 train.removePassenger(passenger);
-                counter++;
             }
         }
 
@@ -221,14 +219,12 @@ public class TrainSimulator implements Simulator {
     private void simulateBoarding(Train train) {
 
         if (train.getPassengerList().size() >= train.getCapacity()) return;
-        int numPassengersBoarded = 0;
 
         for (int i = 0; i < waitingPassengers.size(); i++) {
             Passenger passenger = waitingPassengers.get(i);
             if (train.getPassengerList().size() >= train.getCapacity()) break;
             train.addPassenger(passenger);
             waitingPassengers.remove(passenger);
-            numPassengersBoarded++;
         }
 
     }
