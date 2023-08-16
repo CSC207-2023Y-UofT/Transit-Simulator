@@ -75,8 +75,6 @@ git clone https://github.com/CSC207-2023Y-UofT/course-project-the-bbc.git
 
 ## Team ##
 
-Group name: The BBC
-
 - [Binhe Jia](https://github.com/Binhe-Jia "Jarrett's GitHub page")
 - [Charles Cheung](https://github.com/charlescheung22 "Charles' GitHub page")
 - [Grace Liu](https://github.com/gracelliu "Grace's GitHub page")
@@ -85,7 +83,11 @@ Group name: The BBC
 
 
 ## Code Coverage ##
-<img width="431" alt="testing coverage" src="https://github.com/CSC207-2023Y-UofT/course-project-the-bbc/assets/53711531/d40488fb-0243-47c2-9a60-918ca0cae98c">
+<img width="391" alt="Screen Shot 2023-08-15 at 8 48 42 PM" src="https://github.com/CSC207-2023Y-UofT/Transit-Simulator/assets/53711531/af5ac612-710d-4fd8-b444-a3d912f24a6b">
+
+The only files that are not tested are Main.java and the UI directory.
+The UI classes are difficult to test and we have been told we don't need to test them.
+Main.java is the class that sets up the whole program for execution, it deals with UI and therefore can't be tested very well.
 
 ## Warnings ##
 
