@@ -148,7 +148,7 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
 
         List<EmployeeDTO> assignedEmployees = interactor.getAssignedEmployees("ICE10151");
         Assertions.assertEquals(2, assignedEmployees.size());
-        Assertions.assertEquals(10, assignedEmployees.get(0).getStaffNumber());  // TODO: Consider whether the order of the list is guaranteed or not
+        Assertions.assertEquals(10, assignedEmployees.get(0).getStaffNumber());
         Assertions.assertEquals(21, assignedEmployees.get(1).getStaffNumber());
     }
 
@@ -166,7 +166,7 @@ public class EmployeeInteractorTest {  // Note: Tests are not necessarily run by
         data.save(empDoug);
         Assertions.assertEquals(2, interactor.getEmployees().size());
 
-        Assertions.assertEquals(empJuan.getName(), interactor.getEmployees().get(0).getName());  // TODO Consider whether the order of the list is guaranteed or not
+        Assertions.assertEquals(empJuan.getName(), interactor.getEmployees().get(0).getName());
         Assertions.assertEquals(empJuan.getEmployeeType(), interactor.getEmployees().get(0).getType());
         Assertions.assertEquals(empJuan.getStaffNumber(), interactor.getEmployees().get(0).getStaffNumber());
         Assertions.assertEquals(empJuan.getAssignment(), interactor.getEmployees().get(0).getAssignment());
