@@ -8,7 +8,6 @@ import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.line.TrainArrival;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

@@ -1,12 +1,9 @@
 package persistence.impl.memory;
 
-import main.Main;
 import org.junit.jupiter.api.Test;
 import stats.entry.impl.expense.MaintenanceStat;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for {@link MemoryEntryDataStore}
