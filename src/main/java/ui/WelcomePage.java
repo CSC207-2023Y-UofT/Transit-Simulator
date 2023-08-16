@@ -1,5 +1,6 @@
 package ui;
 
+import org.jetbrains.annotations.NotNull;
 import ui.passenger.PassengerHomePage;
 import ui.staff.StaffHomePage;
 import ui.util.ShadowedButton;
@@ -30,13 +31,7 @@ public class WelcomePage extends JPanel {
         userTypeLabel.setFont(new Font("Arial", Font.BOLD, 25));
 
         // Passenger button
-        JButton passengerButton = new ShadowedButton("Passenger");
-        passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        passengerButton.setFont(new Font("Arial", Font.BOLD, 25));
-        passengerButton.setPreferredSize(new Dimension(200, 50));
-        passengerButton.setBackground(new Color(112, 170, 255));
-        passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-        passengerButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
+        JButton passengerButton = getjButton(controller);
 
         // Staff button
         JButton staffButton = new ShadowedButton("Staff");
@@ -84,6 +79,18 @@ public class WelcomePage extends JPanel {
         // Make background color light gray
         this.setBackground(new Color(220, 220, 220));
 
+    }
+
+    @NotNull
+    private static JButton getjButton(UIController controller) {
+        JButton passengerButton = new ShadowedButton("Passenger");
+        passengerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passengerButton.setFont(new Font("Arial", Font.BOLD, 25));
+        passengerButton.setPreferredSize(new Dimension(200, 50));
+        passengerButton.setBackground(new Color(112, 170, 255));
+        passengerButton.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        passengerButton.addActionListener(e -> controller.open(new PassengerHomePage(controller)));
+        return passengerButton;
     }
 
 }
