@@ -1,7 +1,5 @@
 package stats.aggregate;
 
-import stats.aggregate.SingletonAggregate;
-
 /**
  * The ExpenseAggregate class extends the SingletonAggregate to manage the aggregation of expenses.
  * This class specifically deals with Double type values representing the total expense.

@@ -4,6 +4,7 @@ import interface_adapter.viewmodel.PurchaseTicketViewModel;
 import interface_adapter.controller.TicketController;
 import interface_adapter.viewmodel.TicketViewModel;
 import app_business.dto.TicketDTO;
+import org.jetbrains.annotations.NotNull;
 import ui.UIController;
 import ui.util.ShadowedButton;
 
@@ -39,21 +40,7 @@ public class ConfirmPaymentPage extends JPanel {
         totalCostLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Create the confirm button
-        JButton confirmButton = new ShadowedButton("Confirm");
-        confirmButton.setFont(new Font("Arial", Font.BOLD, 28));
-        confirmButton.setPreferredSize(new Dimension(150, 50));
-        confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        confirmButton.setBackground(new Color(0, 151, 8));
-        confirmButton.addActionListener(e -> {
-            TicketController ticketController = controller.getControllerPool().getTicketController();
-            List<TicketDTO> tickets = ticketController.buyTickets(viewModel.getTicketTypesList());
-            List<TicketViewModel> viewModels = new ArrayList<>();
-            for (TicketDTO ticket : tickets) {
-                viewModels.add(new TicketViewModel(ticket));
-            }
-
-            controller.open(new ThankYouPage(controller, viewModels));
-        });
+        JButton confirmButton = getjButton(controller, viewModel);
 
         // Create the cancel button
         JButton cancelButton = new ShadowedButton("Cancel");
@@ -86,6 +73,26 @@ public class ConfirmPaymentPage extends JPanel {
         this.add(cancelButton);
         this.add(new JLabel("  "));
         this.add(confirmButton);
+    }
+
+    @NotNull
+    private static JButton getjButton(UIController controller, PurchaseTicketViewModel viewModel) {
+        JButton confirmButton = new ShadowedButton("Confirm");
+        confirmButton.setFont(new Font("Arial", Font.BOLD, 28));
+        confirmButton.setPreferredSize(new Dimension(150, 50));
+        confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        confirmButton.setBackground(new Color(0, 151, 8));
+        confirmButton.addActionListener(e -> {
+            TicketController ticketController = controller.getControllerPool().getTicketController();
+            List<TicketDTO> tickets = ticketController.buyTickets(viewModel.getTicketTypesList());
+            List<TicketViewModel> viewModels = new ArrayList<>();
+            for (TicketDTO ticket : tickets) {
+                viewModels.add(new TicketViewModel(ticket));
+            }
+
+            controller.open(new ThankYouPage(controller, viewModels));
+        });
+        return confirmButton;
     }
 
 }
