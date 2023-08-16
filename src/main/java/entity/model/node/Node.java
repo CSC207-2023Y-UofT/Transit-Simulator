@@ -128,11 +128,15 @@ public abstract class Node {
      *
      * @param lineNumber the line number for the new NodeLineProfile
      * @return the newly created NodeLineProfile
-     * @throws IllegalArgumentException if the line number is not positive or already exists
+     * @throws IllegalArgumentException if the line number is not positive
      */
     public NodeLineProfile createLineProfile(int lineNumber) {
         Preconditions.checkArgument(lineNumber > 0, "Line number must be positive");
-        Preconditions.checkArgument(!lineProfiles.containsKey(lineNumber), "Line number already exists");
+
+        if (lineProfiles.containsKey(lineNumber)) {
+            return lineProfiles.get(lineNumber);
+        }
+
         NodeLineProfile profile = new NodeLineProfile(this, lineNumber);
         lineProfiles.put(lineNumber, profile);
         return profile;
