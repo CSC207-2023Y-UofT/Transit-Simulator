@@ -116,10 +116,25 @@ public class TransitModelBuilder {
             curr = next;
         }
 
-        if (cyclic) {
-            var first = nodes.get(0);
-            var last = nodes.get(nodes.size() - 1);
-            if (first != last) linkStations(last, first, lineNumber);
+        var first = nodes.get(0);
+        var last = nodes.get(nodes.size() - 1);
+        if (first != last) {
+            if (cyclic) {
+                linkStations(last, first, lineNumber);
+            } else {
+                // For the endpoints, link the forward and backward tracks
+                var prof = first.createLineProfile(lineNumber);
+                var n1For = prof.getTrack(Direction.FORWARD);
+                var n1Back = prof.getTrack(Direction.BACKWARD);
+
+                n1For.linkBackward(n1Back);
+
+                var prof2 = last.createLineProfile(lineNumber);
+                var n2For = prof2.getTrack(Direction.FORWARD);
+                var n2Back = prof2.getTrack(Direction.BACKWARD);
+
+                n2For.linkForward(n2Back);
+            }
         }
 
         return this;
