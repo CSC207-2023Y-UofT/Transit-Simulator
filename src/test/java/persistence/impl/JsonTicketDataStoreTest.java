@@ -1,7 +1,7 @@
 package persistence.impl;
 
 import persistence.boundary.TicketDataStore;
-import persistence.impl.JsonTicketDataStore;
+import persistence.impl.file.JsonTicketDataStore;
 import entity.ticket.Ticket;
 import entity.ticket.TicketType;
 import persistence.DataStorage;

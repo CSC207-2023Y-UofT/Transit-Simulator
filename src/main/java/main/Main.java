@@ -1,28 +1,27 @@
 package main;
 
 import entity.employee.Admin;
-import entity.employee.EmployeeTracker;
 import entity.employee.TrainEngineer;
 import entity.employee.TrainOperator;
 import persistence.boundary.*;
-import persistence.impl.FileEmployeeDataStore;
+import persistence.impl.file.FileEmployeeDataStore;
 import app_business.interactor.EmployeeInteractor;
 import app_business.interactor.StatInteractor;
 import app_business.interactor.StationInteractor;
 import app_business.interactor.TicketInteractor;
 import app_business.interactor.TrainInteractor;
 import entity.model.control.TransitModel;
-import persistence.impl.JsonModelDataStore;
+import persistence.impl.file.JsonModelDataStore;
 
 import main.pool.InteractorPool;
 import persistence.DataStorage;
 import simulation.Simulation;
-import simulation.TrainSimulator;
+import simulation.simulators.TrainSimulator;
 import stats.StatDataControllerImpl;
 import stats.StatTracker;
-import persistence.impl.FileAggregateDataStore;
-import persistence.impl.FileEntryDataStore;
-import persistence.impl.JsonTicketDataStore;
+import persistence.impl.file.FileAggregateDataStore;
+import persistence.impl.file.FileEntryDataStore;
+import persistence.impl.file.JsonTicketDataStore;
 import stats.timing.BasicTimeIndexingStrategy;
 import stats.timing.TimeIndexingStrategy;
 import ui.UIController;
@@ -80,14 +79,13 @@ public class Main {
 
         // Employee data store
         EmployeeDataStore employeeDataStore = new FileEmployeeDataStore(new File("employees"));
-        EmployeeTracker employeeTracker = new EmployeeTracker(employeeDataStore);
 
         // Create the presenter
         InteractorPool pool = new InteractorPool(
                 new StationInteractor(model),
                 new TrainInteractor(model),
                 new TicketInteractor(store, stats),
-                new EmployeeInteractor(employeeTracker, model),
+                new EmployeeInteractor(employeeDataStore, model),
                 new StatInteractor(stats)
         );
 
@@ -96,11 +94,11 @@ public class Main {
         controller.open(new WelcomePage(controller));
 
         // Default employees
-        employeeTracker.saveEmployee(new Admin(123, "Matt"));
-        employeeTracker.saveEmployee(new Admin(111, "Grace"));
-        employeeTracker.saveEmployee(new TrainEngineer(222, "Charles"));
-        employeeTracker.saveEmployee(new TrainEngineer(333, "Zoey"));
-        employeeTracker.saveEmployee(new TrainOperator(444, "Jarret"));
+        employeeDataStore.save(new Admin(123, "Matt"));
+        employeeDataStore.save(new Admin(111, "Grace"));
+        employeeDataStore.save(new TrainEngineer(222, "Charles"));
+        employeeDataStore.save(new TrainEngineer(333, "Zoey"));
+        employeeDataStore.save(new TrainOperator(444, "Jarret"));
 
         // Start the simulation
         Simulation simulation = new Simulation(model, pool, stats);

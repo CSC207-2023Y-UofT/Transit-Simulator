@@ -4,6 +4,7 @@ import app_business.common.EmployeeAssignment;
 import app_business.common.EmployeeType;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -125,6 +126,9 @@ public abstract class Employee implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Employee)) return false;
-        return ((Employee) obj).staffNumber == this.staffNumber;
+        Employee other = (Employee) obj;
+        return staffNumber == other.staffNumber &&
+                paid == other.paid &&
+                Objects.equals(trainAssignment, other.trainAssignment);
     }
 }

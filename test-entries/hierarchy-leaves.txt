@@ -1,1 +1,3 @@
+stats.entry.impl.revenue.TicketSaleStat
 stats.entry.impl.expense.MaintenanceStat
+stats.entry.impl.expense.ElectricityUsageStat

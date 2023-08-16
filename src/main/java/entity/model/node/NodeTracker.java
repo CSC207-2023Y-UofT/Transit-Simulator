@@ -3,6 +3,7 @@ package entity.model.node;
 import entity.model.train.repo.TrackRepo;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * The NodeTracker interface represents a collection of nodes in a track system.
@@ -24,7 +25,7 @@ public interface NodeTracker {
      * @param name The name of the node to retrieve.
      * @return The Node object with the specified name, or null if not found.
      */
-    Node getNode(String name);
+    Optional<Node> getNode(String name);
 
     /**
      * Creates a new node in the track system using the provided NodeFactory.

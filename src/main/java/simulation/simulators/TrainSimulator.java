@@ -1,4 +1,4 @@
-package simulation;
+package simulation.simulators;
 
 import entity.model.Direction;
 import entity.model.control.TransitModel;
@@ -126,6 +126,8 @@ public class TrainSimulator implements Simulator {
 
         // The train-number of the next train to be spawned
         int trainNum = 1;
+
+        System.out.println("Spawning " + loops.size() + " trains");
 
         for (Set<TrackSegment> loop : loops) {
             // loop will never be empty as when it is constructed

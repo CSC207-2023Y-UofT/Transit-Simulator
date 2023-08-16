@@ -1,4 +1,4 @@
-package persistence.impl;
+package persistence.impl.file;
 
 import persistence.PageFileUtils;
 import stats.entry.StatEntry;

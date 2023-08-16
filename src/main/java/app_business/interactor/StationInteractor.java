@@ -8,9 +8,9 @@ import entity.model.node.Node;
 import entity.model.node.line.NodeLineProfile;
 import entity.model.node.line.TrainArrival;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * The interactor for the station.
@@ -38,12 +38,8 @@ public class StationInteractor implements IStationInteractor {
      * @return The station state.
      */
     public Optional<StationDTO> find(String stationName) {
-        Node node = model.getNode(stationName);
-        if (node == null) {
-            return Optional.empty();
-        }
-
-        return Optional.of(toDTO(node));
+        return model.getNode(stationName)
+                .map(StationInteractor::toDTO);
     }
 
     /**
@@ -55,20 +51,10 @@ public class StationInteractor implements IStationInteractor {
      * @return The next station state, if any.
      */
     public Optional<StationDTO> getNextStation(String stationName, int line, Direction direction) {
-        Node node = model.getNode(stationName);
-
-        if (node == null) {
-            return Optional.empty();
-        }
-
-        NodeLineProfile lineProfile = node.getLineProfile(line).orElseThrow();
-        Node nextNode = lineProfile.getNextNode(direction).orElse(null);
-
-        if (nextNode == null) {
-            return Optional.empty();
-        }
-
-        return find(nextNode.getName());
+        return model.getNode(stationName)
+                .flatMap(n -> n.getLineProfile(line))
+                .flatMap(p -> p.getNextNode(direction))
+                .map(StationInteractor::toDTO);
     }
 
     /**
@@ -77,13 +63,10 @@ public class StationInteractor implements IStationInteractor {
      * @return The list of stations.
      */
     public List<StationDTO> getStations() {
-        List<StationDTO> stations = new ArrayList<>();
-
-        for (Node node : model.getNodes().values()) {
-            stations.add(toDTO(node));
-        }
-
-        return stations;
+        return model.getNodes().values()
+                .stream()
+                .map(StationInteractor::toDTO)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -95,22 +78,11 @@ public class StationInteractor implements IStationInteractor {
      * @return The time till the next arrival, if any. In milliseconds
      */
     public Optional<Long> getTimeTillNextArrival(String stationName, int line, Direction direction) {
-        Node node = model.getNode(stationName);
-
-        if (node == null) {
-            return Optional.empty();
-        }
-
-        NodeLineProfile lineProfile = node.getLineProfile(line).orElseThrow();
-        List<TrainArrival> arrivals = lineProfile.nextArrivals(direction, 1);
-
-        if (arrivals.isEmpty()) {
-            return Optional.empty();
-        }
-
-        TrainArrival arrival = arrivals.get(0);
-
-        return Optional.of(arrival.getDelay());
+        return model.getNode(stationName)
+                .flatMap(n -> n.getLineProfile(line))
+                .map(p -> p.nextArrivals(direction, 1))
+                .flatMap(a -> a.stream().findFirst())
+                .map(TrainArrival::getDelay);
     }
 
     /**
@@ -120,10 +92,11 @@ public class StationInteractor implements IStationInteractor {
      * @return The station state.
      */
     public static StationDTO toDTO(Node node) {
-        List<Integer> lineProfiles = new ArrayList<>();
-        for (NodeLineProfile profile : node.getLineProfiles()) {
-            lineProfiles.add(profile.getLineNumber());
-        }
+
+        List<Integer> lineProfiles = node.getLineProfiles()
+                .stream()
+                .map(NodeLineProfile::getLineNumber)
+                .collect(Collectors.toList());
 
         return new StationDTO(
                 node.getName(),

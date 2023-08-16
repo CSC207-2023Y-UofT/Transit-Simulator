@@ -1,6 +1,7 @@
 package persistence.impl;
 
 import org.junit.jupiter.api.Test;
+import persistence.impl.file.JsonModelDataStore;
 
 import java.io.File;
 import java.io.IOException;

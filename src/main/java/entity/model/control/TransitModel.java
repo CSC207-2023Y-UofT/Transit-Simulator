@@ -9,7 +9,6 @@ import entity.model.train.repo.TrackRepo;
 import entity.model.train.repo.TrainRepo;
 import entity.model.train.repo.impl.MemoryTrackRepo;
 import entity.model.train.track.TrackSegment;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -82,8 +81,8 @@ public class TransitModel implements NodeTracker, TrainRepo {
      * @return The Node object with the given name. Null if no such node exists.
      */
     @Override
-    public @Nullable Node getNode(String name) {
-        return nodeMap.get(name);
+    public Optional<Node> getNode(String name) {
+        return Optional.ofNullable(nodeMap.get(name));
     }
 
     /**
