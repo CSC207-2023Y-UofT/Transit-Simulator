@@ -1,11 +1,9 @@
 package ui.passenger;
 
-import interface_adapter.viewmodel.TransitMapViewModel;
 import interface_adapter.viewmodel.PurchaseTicketViewModel;
+import ui.MapDisplay;
 import ui.UIController;
 import ui.WelcomePage;
-import ui.map.MapPanel;
-import ui.util.ShadowPanel;
 import ui.util.ShadowedButton;
 
 import javax.swing.*;
@@ -44,32 +42,8 @@ public class PassengerHomePage extends JPanel {
         backButton.addActionListener(e -> controller.open(new WelcomePage(controller)));
 
 
-        // Add components to the panel
+        JPanel panel = MapDisplay.createPageWithMapAndButtons(controller, buyButton, new Color(230, 230, 230));
+        this.add(panel);
 
-        this.setBackground(new Color(230, 230, 230));
-
-        // Map
-        TransitMapViewModel presenter = new TransitMapViewModel(
-                controller.getInteractorPool().getStationInteractor(),
-                controller.getInteractorPool().getTrainInteractor()
-        );
-        MapPanel mapPanel = new MapPanel(presenter);
-
-        JPanel marginPanel = new JPanel(new BorderLayout());
-        ShadowPanel shadowPanel = new ShadowPanel(new BorderLayout());
-        shadowPanel.setThickness(10);
-
-        marginPanel.setBorder(BorderFactory.createEmptyBorder(35, 35, 35, 35));
-        marginPanel.setBackground(new Color(230, 230, 230));
-        shadowPanel.add(mapPanel, BorderLayout.CENTER);
-        marginPanel.add(shadowPanel, BorderLayout.CENTER);
-        this.add(marginPanel);
-
-        JPanel bottomPanel = new JPanel(new GridLayout(0, 3));
-        bottomPanel.add(backButton, BorderLayout.WEST);
-        bottomPanel.add(new JLabel(""));
-        bottomPanel.add(buyButton, BorderLayout.EAST);
-        this.add(bottomPanel, BorderLayout.SOUTH);
     }
-
 }
