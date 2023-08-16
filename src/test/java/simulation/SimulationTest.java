@@ -2,6 +2,7 @@ package simulation;
 
 import app_business.interactor.*;
 import entity.model.control.TransitModel;
+import entity.model.control.builder.TransitModelBuilder;
 import main.pool.InteractorPool;
 import org.junit.jupiter.api.Test;
 import persistence.impl.memory.MemoryAggregateDataStore;
@@ -11,6 +12,7 @@ import persistence.impl.memory.MemoryTicketDataStore;
 import simulation.api.Simulator;
 import simulation.simulators.TrainSimulator;
 import stats.StatDataControllerImpl;
+import stats.aggregator.impl.ExpenseAggregator;
 import stats.timing.BasicTimeIndexingStrategy;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -19,10 +21,18 @@ class SimulationTest {
 
     @Test
     void testEverything() {
-        var model = new TransitModel();
+        var modelBuilder = new TransitModelBuilder();
+        modelBuilder.station("A", 1, 1);
+        modelBuilder.station("B", 2, 2);
+        modelBuilder.station("C", 3, 3);
+        modelBuilder.station("D", 4, 4);
+
+        modelBuilder.line(1, "A", "B");
+
+        var model = modelBuilder.build();
 
         var stats = new StatDataControllerImpl(
-                new BasicTimeIndexingStrategy(1000),
+                new BasicTimeIndexingStrategy(999999),
                 new MemoryEntryDataStore(),
                 new MemoryAggregateDataStore()
         );
@@ -43,7 +53,6 @@ class SimulationTest {
         var ticked = new AtomicBoolean(false);
 
         Simulator simulator = new Simulator() {
-
             @Override
             public void onStart(TransitModel model) {
                 started.set(true);
@@ -71,6 +80,9 @@ class SimulationTest {
 
         assert started.get();
         assert ticked.get();
+
+        assert stats.aggregateCurrent(new ExpenseAggregator())
+                .isPresent();
 
     }
 

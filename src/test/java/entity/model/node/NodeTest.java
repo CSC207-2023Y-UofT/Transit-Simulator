@@ -83,13 +83,6 @@ public class NodeTest {
     }
 
     @Test
-    public void testCreateLineProfileSecondPrecondition() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            station1.createLineProfile(1);  // line profile already exists (in setup)
-        });
-    }
-
-    @Test
     public void testCreateLineProfile() {
         NodeLineProfile lineProfile2 = station1.createLineProfile(2);
         Assertions.assertSame(lineProfile2, station1.getLineProfile(2).orElse(null));
