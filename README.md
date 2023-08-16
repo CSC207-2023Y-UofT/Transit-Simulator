@@ -50,6 +50,25 @@ As staff:
 
 Here are the [Class-Responsibility-Collaborator Cards](https://1drv.ms/o/s!AsmO3TTchzhwgv4tlXWT_oTuhUen_A?e=b8BHb7 "Class-Responsibility-Collaborator Cards") used to design the program.
 
+## Design Patterns ##
+We used many design patterns, here are a few of the ones we used and where:
+
+### Builder ###
+We used the builder design pattern in the form of the class TransitModelBuilder.java, which is used to creating transit model from the JSON file that stores the model, and it is used in tests for setting up a model to be used in the tests.
+
+### Strategy ###
+Strategy is a very powerful pattern and is actually used quite a few times in our program:
+- One of which is as a parameter to StatDataController, an instance of TimeIndexingStrategy must be passed, which represents a strategy for coming up with the time indices that statistics will be stored with.
+- Another instance where we used the strategy pattern is with SuppliedLabel, which is a type of JLabel that uses a strategy for getting the text that should be on the label.
+- Another two instances are with FileIOProvider and DataCompressionProvider which are two interfaces that represent strategies for synchronizing file IO between threads (and allowing asynchronous writes along with that), and compressing data respectively.
+- StatAggregator classes are all strategies for analyzing statistics data (stat entries), and they allow for easy analysis of past statistics.
+- Simulator classes are strategies for simulating different aspects of our program.
+
+### Factory ###
+We use the factory design pattern with NodeFactory which allows TransitModel to create any specified type of Node while still allowing it to guarantee it is added/registered with the transit model after it is created. This is also a form of dependency injection.
+
+### Visitor ###
+StatAggregator also acts as a visitor for a specified type of StatEntry object.
 
 ## Installation ##
 
